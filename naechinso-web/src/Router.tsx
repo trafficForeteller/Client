@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LandingPage from "./@components/LandingPage";
 
 import { routePaths } from "./core/routes/path";
 
@@ -6,7 +7,7 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={routePaths.Main} element={<MainPage />} />
+        <Route path={routePaths.Landing} element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,5 +1,5 @@
 export const routePaths = {
-    Main: "/",
+    Landing: "/",
     Login: "/login",
     Category: "/category",
     CardCollection: "/card-collection",
