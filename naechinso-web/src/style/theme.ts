@@ -47,7 +47,7 @@ const fonts = {
 } as const;
 
 type BackQuoteArgs = string[];
-
+// 이건 언제쓴느 걸까 ..
 interface Media {
   desktop: (...args: BackQuoteArgs) => CSSProp | undefined;
 }
