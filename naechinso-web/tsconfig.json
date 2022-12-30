@@ -14,7 +14,7 @@
    "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
      "module": "esnext",       // esnext: next version of javascript
-     "moduleResolution": "Node",
+     "moduleResolution": "node",
       "resolveJsonModule": true,
       "isolatedModules": true,
       "noEmit": true,
