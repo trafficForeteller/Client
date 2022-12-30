@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { Landing } from "../../asset/image";
+import NextPageBtn from "../@common/NextPageBtn";
 import Title from "../@common/Title";
 
 export default function LandingPage() {
@@ -10,6 +11,7 @@ export default function LandingPage() {
       <St.Blank />
       <Title title={"내친소는 친구의 추천사가 있는 사람만 이용이 가능하거든"} />
       <St.LandingImg src={Landing} alt={"랜딩페이지 아이콘"} />
+      <NextPageBtn nextPage={} title={"추천사 쓰러가기"}/>
     </St.LandingPage>
   );
 }
