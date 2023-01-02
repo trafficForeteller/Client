@@ -20,9 +20,6 @@ const St = {
   MobileContainer: styled.div`
     position: relative;
     margin: 0 auto;
-
-    ${({ theme }) => theme.media.desktop`
-      width: 36rem;
-    `};
+    width: 37.5rem;
   `,
 };

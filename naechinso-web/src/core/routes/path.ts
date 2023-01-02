@@ -1,13 +1,7 @@
 export const routePaths = {
   Landing: "/",
-  Login: "/login",
-  Category: "/category",
-  CardCollection: "/card-collection",
-  Vote: "/vote",
-  VoteId: "/:voteId",
-  MyPage: "/my-page",
-  BookmarkPage: "/bookmark",
-  Delete: "/delete",
+  InstallApp: "/naechinso-app",
+  PhoneNum: "/join",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];
