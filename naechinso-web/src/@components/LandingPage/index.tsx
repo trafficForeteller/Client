@@ -10,12 +10,12 @@ import RecommendPageBtn from "./RecommendPageBtn";
 export default function index() {
   return (
     <St.LandingPage>
-      <St.LandingTop>
+      <St.PageTop>
         <IcLandingLogo aria-label="내친소" />
         <St.Blank />
         <Title title={"소개팅은 받고 싶은데"} />
         <Title title={" 소개팅 앱은 싫다면?"} />
-      </St.LandingTop>
+      </St.PageTop>
 
       <St.LandingImgWrapper>
         <St.LandingImg src={Landing} alt={"랜딩페이지 아이콘"} />
@@ -31,7 +31,7 @@ export default function index() {
 
 const St = {
   LandingPage: styled.main``,
-  LandingTop: styled.hgroup`
+  PageTop: styled.hgroup`
     padding: 9.8rem 3.6rem 0;
   `,
   Blank: styled.div`

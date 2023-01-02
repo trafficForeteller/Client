@@ -12,7 +12,7 @@ export default function SubTitle(props: SubTitleProps) {
 
 const St = {
   SubTitle: styled.h2`
-    ${({ theme }) => theme.fonts.body2};
+    ${({ theme }) => theme.fonts.body4};
     color: ${({ theme }) => theme.colors.black40};
   `,
 };
