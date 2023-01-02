@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { IcLandingLogo } from "../../asset/icons";
 import { Landing } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
-import NextPageBtn from "../@common/NextPageBtn";
+import NextPageBtn from "../@common/MoveNextPageBtn";
 import Title from "../@common/Title";
 import RecommendPageBtn from "./RecommendPageBtn";
 
@@ -15,7 +15,6 @@ export default function index() {
         <St.Blank />
         <Title title={"소개팅은 받고 싶은데"} />
         <Title title={" 소개팅 앱은 싫다면?"} />
-        <St.SubTitle>진짜 친구가 해주는 소개팅</St.SubTitle>
       </St.LandingTop>
 
       <St.LandingImgWrapper>
