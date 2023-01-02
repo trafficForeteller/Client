@@ -5,7 +5,6 @@ import Router from "./Router";
 import setScreenSize from "./util/setScreenSize";
 
 export default function App() {
-
   useEffect(() => {
     setScreenSize();
   }, []);
