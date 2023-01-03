@@ -41,7 +41,7 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
 }
 
 const St = {
-  PhoneNumInputBox: styled.article`
+  PhoneNumInputBox: styled.section`
     width: 33.5rem;
     height: 8rem;
 

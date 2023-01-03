@@ -17,7 +17,7 @@ export default function ShortInputBox(props: ShortInputProps) {
 }
 
 const St = {
-  InputBox: styled.article`
+  InputBox: styled.section`
     width: 33.5rem;
     height: 8rem;
 
