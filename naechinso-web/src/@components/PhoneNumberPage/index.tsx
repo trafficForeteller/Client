@@ -23,7 +23,7 @@ export default function PhoneNumberPOage() {
           inputActive={inputActive}
           setInputActive={setInputActive}
           label={"휴대폰 번호"}
-          placeholder={"휴대폰 번호를 입력해줘"}
+          placeholder={""}
         />
       </St.InputWrapper>
       <NextPageBtn nextPage={routePaths.InstallApp} title={"인증번호 받기"} inputActive={inputActive} />

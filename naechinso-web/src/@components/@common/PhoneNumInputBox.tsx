@@ -10,7 +10,7 @@ export interface PhoneNumInputProps {
 
 export default function PhoneNumInputBox(props: PhoneNumInputProps) {
   const { label, placeholder, inputActive, setInputActive } = props;
-  const [phoneNum, setPhoneNum] = useState("");
+  const [phoneNum, setPhoneNum] = useState("010");
 
   const checkPhoneNumLength = (phoneNum: string) => {
     if (phoneNum.length === 13) setInputActive(false);
