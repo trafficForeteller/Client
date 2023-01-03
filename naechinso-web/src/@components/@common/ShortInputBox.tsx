@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 export interface ShortInputProps {
@@ -8,7 +7,6 @@ export interface ShortInputProps {
 
 export default function ShortInputBox(props: ShortInputProps) {
   const { label, placeholder } = props;
-  const [text, setText] = useState("");
 
   return (
     <St.InputBox>
