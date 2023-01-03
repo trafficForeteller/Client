@@ -14,7 +14,7 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
     setPhoneNum(
       phoneNum
         .replace(/[^0-9]/g, "")
-        .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3")
+        .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1 $2 $3")
         // eslint-disable-next-line
         .replace(/(\-{1,2})$/g, ""),
     );
