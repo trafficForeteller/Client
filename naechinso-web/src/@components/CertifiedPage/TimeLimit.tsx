@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 export default function TimeLimit() {
-  const [count, setCount] = useState(10);
+  const [count, setCount] = useState(180);
   const [minute, setMinute] = useState(3);
   const [second, setSecond] = useState(0o0);
 
