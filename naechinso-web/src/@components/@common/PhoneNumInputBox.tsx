@@ -18,15 +18,8 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
   };
 
   const autoHyphen = (phoneNum: string) => {
-    setPhoneNum(
-      phoneNum
-        .replace(/[^0-9]/g, "")
-        .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1 $2 $3")
-        // eslint-disable-next-line
-        .replace(/(\-{1,2})$/g, ""),
-    );
+    setPhoneNum(phoneNum.replace(/[^0-9]/g, "").replace(/^(\d{2,3})(\d{3,4})(\d{4})$/g, "$1 $2 $3"));
     checkPhoneNumLength(phoneNum);
-    console.log(inputActive);
   };
 
   const handlePhoneNum = (e: React.ChangeEvent<HTMLInputElement>) => {
