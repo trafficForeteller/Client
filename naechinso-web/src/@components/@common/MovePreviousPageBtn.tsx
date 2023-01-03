@@ -22,8 +22,5 @@ const St = {
     position: absolute;
     top: 1em;
     left: 1.6rem;
-    /* 
-    display: flex;
-    justify-content: center; */
   `,
 };
