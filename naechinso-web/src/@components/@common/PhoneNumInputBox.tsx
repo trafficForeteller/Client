@@ -28,7 +28,7 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
   return (
     <St.PhoneNumInputBox>
       <St.Label>{label}</St.Label>
-      <St.Input type="text" value={phoneNum} onChange={handlePhoneNum} placeholder={placeholder} />
+      <St.Input type="text" value={phoneNum} onChange={handlePhoneNum} placeholder={placeholder} maxLength={13} />
     </St.PhoneNumInputBox>
   );
 }
