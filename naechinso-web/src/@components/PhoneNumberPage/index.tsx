@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { routePaths } from "../../core/routes/path";
 import NextPageBtn from "../@common/MoveNextPageBtn";
 import PreviousPageBtn from "../@common/MovePreviousPageBtn";
-import PhoneNumInputBox from "../@common/PhoneNumInputBox";
+import PhoneNumInput from "../@common/PhoneNumInput";
 import Title from "../@common/Title";
 
 export default function PhoneNumberPOage() {
@@ -19,7 +19,7 @@ export default function PhoneNumberPOage() {
         <Title title={"너의 휴대폰 번호를 적어줘!"} />
       </St.PageTop>
       <St.InputWrapper>
-        <PhoneNumInputBox
+        <PhoneNumInput
           inputActive={inputActive}
           setInputActive={setInputActive}
           label={"휴대폰 번호"}

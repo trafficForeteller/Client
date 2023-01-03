@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { routePaths } from "../../core/routes/path";
 import NextPageBtn from "../@common/MoveNextPageBtn";
 import PreviousPageBtn from "../@common/MovePreviousPageBtn";
-import PhoneNumInputBox from "../@common/PhoneNumInputBox";
 import Title from "../@common/Title";
+import AuthenticationNumInput from "./AuthenticationNumInput";
 
 export default function CertifiedPage() {
   const [inputActive, setInputActive] = useState(true);
@@ -19,12 +19,7 @@ export default function CertifiedPage() {
         <Title title={"인증번호를 적어줘!"} />
       </St.PageTop>
       <St.InputWrapper>
-        <PhoneNumInputBox
-          inputActive={inputActive}
-          setInputActive={setInputActive}
-          label={"인증 번호"}
-          placeholder={"인증번호를 입력해줘"}
-        />
+        <AuthenticationNumInput inputActive={inputActive} setInputActive={setInputActive} />
       </St.InputWrapper>
       <NextPageBtn nextPage={routePaths.InstallApp} title={"완료"} inputActive={inputActive} />
     </St.AutorizePage>
