@@ -9,16 +9,16 @@ export interface AuthenticationNumProps {
 export default function AuthenticationNumInput(props: AuthenticationNumProps) {
   const { inputActive, setInputActive } = props;
 
-  const [phoneNum, setPhoneNum] = useState("");
+  const [authNum, setAuthNum] = useState("");
 
-  const checkPhoneNumLength = (phoneNum: string) => {
-    if (phoneNum.length === 9) setInputActive(false);
+  const checkAuthenticationNumLength = (authNum: string) => {
+    if (authNum.length === 6) setInputActive(false);
     else setInputActive(true);
   };
 
-  const autoHyphen = (phoneNum: string) => {
-    setPhoneNum(phoneNum.replace(/[^0-9]/g, "").replace(/^(\d{3,4})(\d{4})$/g, "$1 $2"));
-    checkPhoneNumLength(phoneNum);
+  const autoHyphen = (authNum: string) => {
+    setAuthNum(authNum.replace(/[^0-9]/g, ""));
+    checkAuthenticationNumLength(authNum);
   };
 
   const handlePhoneNum = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,15 +28,14 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
   return (
     <St.AuthenticationNumInputBox>
       <St.Label inputActive={inputActive}>인증번호</St.Label>
-      <St.InputWrapper>
-        <St.Input
-          type="text"
-          value={phoneNum}
-          onChange={handlePhoneNum}
-          placeholder={"인증번호를 입력해줘"}
-          maxLength={9}
-        />
-      </St.InputWrapper>
+
+      <St.Input
+        type="text"
+        value={authNum}
+        onChange={handlePhoneNum}
+        placeholder={"인증번호를 입력해줘"}
+        maxLength={6}
+      />
     </St.AuthenticationNumInputBox>
   );
 }
@@ -54,13 +53,7 @@ const St = {
     color: ${({ theme, inputActive }) => (inputActive ? theme.colors.orange : theme.colors.black40)};
     ${({ theme }) => theme.fonts.body2};
   `,
-  InputWrapper: styled.article`
-    display: flex;
-    align-items: center;
-    color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.sub2};
-  `,
-  FrontPhoneNum: styled.span``,
+
   Input: styled.input`
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub2};
