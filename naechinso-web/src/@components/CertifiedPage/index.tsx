@@ -7,32 +7,32 @@ import PreviousPageBtn from "../@common/MovePreviousPageBtn";
 import PhoneNumInputBox from "../@common/PhoneNumInputBox";
 import Title from "../@common/Title";
 
-export default function PhoneNumberPOage() {
+export default function CertifiedPage() {
   const [inputActive, setInputActive] = useState(true);
 
   return (
-    <St.PhoneNumberPage>
+    <St.AutorizePage>
       <PreviousPageBtn />
       <St.PageTop>
-        <Title title={"🏃🏻‍♀️"} />
-        <Title title={"먼저 신원인증을 위해 "} />
-        <Title title={"너의 휴대폰 번호를 적어줘!"} />
+        <Title title={"📩"} />
+        <Title title={"방금 보낸 "} />
+        <Title title={"인증번호를 적어줘!"} />
       </St.PageTop>
       <St.InputWrapper>
         <PhoneNumInputBox
           inputActive={inputActive}
           setInputActive={setInputActive}
-          label={"휴대폰 번호"}
-          placeholder={""}
+          label={"인증 번호"}
+          placeholder={"인증번호를 입력해줘"}
         />
       </St.InputWrapper>
-      <NextPageBtn nextPage={routePaths.Certified} title={"인증번호 받기"} inputActive={inputActive} />
-    </St.PhoneNumberPage>
+      <NextPageBtn nextPage={routePaths.InstallApp} title={"완료"} inputActive={inputActive} />
+    </St.AutorizePage>
   );
 }
 
 const St = {
-  PhoneNumberPage: styled.main``,
+  AutorizePage: styled.main``,
   PageTop: styled.hgroup`
     padding: 5.8rem 3.6rem 0;
     margin-bottom: 2.4rem;
