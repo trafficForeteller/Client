@@ -6,6 +6,7 @@ import NextPageBtn from "../@common/MoveNextPageBtn";
 import PreviousPageBtn from "../@common/MovePreviousPageBtn";
 import Title from "../@common/Title";
 import AuthenticationNumInput from "./AuthenticationNumInput";
+import ResendAuthNumBtn from "./ResendAuthNumBtn";
 
 export default function CertifiedPage() {
   const [inputActive, setInputActive] = useState(true);
@@ -21,6 +22,7 @@ export default function CertifiedPage() {
       <St.InputWrapper>
         <AuthenticationNumInput inputActive={inputActive} setInputActive={setInputActive} />
       </St.InputWrapper>
+      <ResendAuthNumBtn />
       <NextPageBtn nextPage={routePaths.InstallApp} title={"완료"} inputActive={inputActive} />
     </St.AutorizePage>
   );
@@ -29,7 +31,7 @@ export default function CertifiedPage() {
 const St = {
   AutorizePage: styled.main``,
   PageTop: styled.hgroup`
-    padding: 5.8rem 3.6rem 0;
+    padding: 5.8rem 2.4rem 0;
     margin-bottom: 2.4rem;
   `,
   InputWrapper: styled.section`

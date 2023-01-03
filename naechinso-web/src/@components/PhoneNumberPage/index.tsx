@@ -34,7 +34,7 @@ export default function PhoneNumberPOage() {
 const St = {
   PhoneNumberPage: styled.main``,
   PageTop: styled.hgroup`
-    padding: 5.8rem 3.6rem 0;
+    padding: 5.8rem 2.4rem 0;
     margin-bottom: 2.4rem;
   `,
   InputWrapper: styled.section`

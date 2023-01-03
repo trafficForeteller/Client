@@ -34,7 +34,7 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
     <St.AuthenticationNumInputBox>
       <St.LabelWrapper>
         <St.Label inputActive={inputActive}>인증번호</St.Label>
-        <TimeLimit />
+        <TimeLimit inputActive={inputActive} />
       </St.LabelWrapper>
 
       <St.Input
