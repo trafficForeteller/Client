@@ -13,16 +13,19 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
   const [phoneNum, setPhoneNum] = useState("");
 
   const checkPhoneNumLength = (phoneNum: string) => {
+    //휴대폰번호 길이 확인해 label글자색, nextBtn 색 변화
     if (phoneNum.length === 9) setInputActive(false);
     else setInputActive(true);
   };
 
   const autoHyphen = (phoneNum: string) => {
+    // 전화번호 정규식
     setPhoneNum(phoneNum.replace(/[^0-9]/g, "").replace(/^(\d{3,4})(\d{4})$/g, "$1 $2"));
     checkPhoneNumLength(phoneNum);
   };
 
   const handlePhoneNum = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //휴대폰번호 handle 함수
     autoHyphen(e.target.value);
   };
 

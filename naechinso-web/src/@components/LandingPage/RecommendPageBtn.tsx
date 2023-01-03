@@ -11,6 +11,7 @@ export default function RecommendPageBtn(props: RecommendPageBtnProps) {
   const navigate = useNavigate();
 
   function goNextPage() {
+    // 다음페이지로 이동
     navigate(`${nextPage}`);
   }
 

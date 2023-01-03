@@ -7,6 +7,7 @@ export default function PreviousPageBtn() {
   const navigate = useNavigate();
 
   function movePreviousPage() {
+    //이전페이지로 이동
     navigate(-1);
   }
 

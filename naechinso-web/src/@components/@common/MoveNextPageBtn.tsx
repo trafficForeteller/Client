@@ -12,6 +12,7 @@ export default function NextPageBtn(props: NextPageBtnProps) {
   const navigate = useNavigate();
 
   const goNextPage = () => {
+    //다음페이지로 이동
     navigate(`${nextPage}`);
   };
 

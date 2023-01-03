@@ -12,16 +12,19 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
   const [authNum, setAuthNum] = useState("");
 
   const checkAuthenticationNumLength = (authNum: string) => {
+    //인증번호 길이 확인해 label글자색, nextBtn 색 변화
     if (authNum.length === 6) setInputActive(false);
     else setInputActive(true);
   };
 
   const autoHyphen = (authNum: string) => {
+    // 인증번호 정규식
     setAuthNum(authNum.replace(/[^0-9]/g, ""));
     checkAuthenticationNumLength(authNum);
   };
 
   const handlePhoneNum = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // 인증번호 handle 함수
     autoHyphen(e.target.value);
   };
 
