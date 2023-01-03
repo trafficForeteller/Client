@@ -4,12 +4,13 @@ import styled from "styled-components";
 export interface PhoneNumInputProps {
   label: string;
   placeholder: string;
+  inputActive: boolean;
+  setInputActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function PhoneNumInputBox(props: PhoneNumInputProps) {
-  const { label, placeholder } = props;
+  const { label, placeholder, inputActive, setInputActive } = props;
   const [phoneNum, setPhoneNum] = useState("");
-  const [inputActive, setInputActive] = useState(true);
 
   const checkPhoneNumLength = (phoneNum: string) => {
     if (phoneNum.length === 13) setInputActive(false);

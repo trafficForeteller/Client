@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 import { IcLandingLogo } from "../../asset/icons";
@@ -7,7 +8,9 @@ import NextPageBtn from "../@common/MoveNextPageBtn";
 import Title from "../@common/Title";
 import RecommendPageBtn from "./RecommendPageBtn";
 
-export default function index() {
+export default function LandingPage() {
+  const [inputActive, setInputActive] = useState(true);
+
   return (
     <St.LandingPage>
       <St.PageTop>
@@ -22,7 +25,7 @@ export default function index() {
       </St.LandingImgWrapper>
 
       <St.LandingBottom>
-        <NextPageBtn nextPage={routePaths.InstallApp} title={"내친소 시작하기"} />
+        <NextPageBtn inputActive={inputActive} nextPage={routePaths.InstallApp} title={"내친소 시작하기"} />
         <RecommendPageBtn nextPage={routePaths.PhoneNum} title={"내 친구를 소개하고 싶어"} />
       </St.LandingBottom>
     </St.LandingPage>

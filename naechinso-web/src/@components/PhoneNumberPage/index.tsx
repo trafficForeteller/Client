@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 import { routePaths } from "../../core/routes/path";
@@ -6,7 +7,9 @@ import PreviousPageBtn from "../@common/MovePreviousPageBtn";
 import PhoneNumInputBox from "../@common/PhoneNumInputBox";
 import Title from "../@common/Title";
 
-export default function index() {
+export default function PhoneNumberPOage() {
+  const [inputActive, setInputActive] = useState(true);
+
   return (
     <St.PhoneNumberPage>
       <PreviousPageBtn />
@@ -16,9 +19,14 @@ export default function index() {
         <Title title={"너의 휴대폰 번호를 적어줘!"} />
       </St.PageTop>
       <St.InputWrapper>
-        <PhoneNumInputBox label={"휴대폰 번호"} placeholder={"휴대폰 번호를 입력해줘"} />
+        <PhoneNumInputBox
+          inputActive={inputActive}
+          setInputActive={setInputActive}
+          label={"휴대폰 번호"}
+          placeholder={"휴대폰 번호를 입력해줘"}
+        />
       </St.InputWrapper>
-      <NextPageBtn nextPage={routePaths.InstallApp} title={"인증번호 받기"} />
+      <NextPageBtn nextPage={routePaths.InstallApp} title={"인증번호 받기"} inputActive={inputActive} />
     </St.PhoneNumberPage>
   );
 }
