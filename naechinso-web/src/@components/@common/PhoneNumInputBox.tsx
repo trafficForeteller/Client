@@ -9,6 +9,12 @@ export interface PhoneNumInputProps {
 export default function PhoneNumInputBox(props: PhoneNumInputProps) {
   const { label, placeholder } = props;
   const [phoneNum, setPhoneNum] = useState("");
+  const [inputActive, setInputActive] = useState(true);
+
+  const checkPhoneNumLength = (phoneNum: string) => {
+    if (phoneNum.length === 13) setInputActive(false);
+    else setInputActive(true);
+  };
 
   const autoHyphen = (phoneNum: string) => {
     setPhoneNum(
@@ -18,16 +24,17 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
         // eslint-disable-next-line
         .replace(/(\-{1,2})$/g, ""),
     );
+    checkPhoneNumLength(phoneNum);
+    console.log(inputActive);
   };
 
   const handlePhoneNum = (e: React.ChangeEvent<HTMLInputElement>) => {
     autoHyphen(e.target.value);
-    console.log(phoneNum);
   };
 
   return (
     <St.PhoneNumInputBox>
-      <St.Label>{label}</St.Label>
+      <St.Label inputActive={inputActive}>{label}</St.Label>
       <St.Input type="text" value={phoneNum} onChange={handlePhoneNum} placeholder={placeholder} maxLength={13} />
     </St.PhoneNumInputBox>
   );
@@ -42,8 +49,8 @@ const St = {
     background-color: ${({ theme }) => theme.colors.neural};
     padding: 1rem 2rem 1.6rem;
   `,
-  Label: styled.p`
-    color: ${({ theme }) => theme.colors.orange};
+  Label: styled.p<{ inputActive: boolean }>`
+    color: ${({ theme, inputActive }) => (inputActive ? theme.colors.orange : theme.colors.black40)};
     ${({ theme }) => theme.fonts.body2};
   `,
   Input: styled.input`
