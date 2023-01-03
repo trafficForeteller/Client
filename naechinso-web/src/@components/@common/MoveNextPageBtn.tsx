@@ -40,5 +40,9 @@ const St = {
     width: 33.5rem;
     height: 5.6rem;
     border-radius: 1.6rem;
+
+    &:disabled {
+      background-color: ${({ theme }) => theme.colors.orange20};
+    }
   `,
 };
