@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import InstallApp from "./@components/InstallApp";
+import InstallApp from "./@components/InstallAppPage";
 import LandingPage from "./@components/LandingPage";
 import PhoneNumberPage from "./@components/PhoneNumberPage";
 import { routePaths } from "./core/routes/path";
