@@ -14,12 +14,20 @@ export default function NextPageBtn(props: NextPageBtnProps) {
     navigate(`${nextPage}`);
   }
 
-  return <St.Button onClick={goNextPage}>{title}</St.Button>;
+  return (
+    <St.ButtonWrapper>
+      <St.Button onClick={goNextPage}>{title}</St.Button>
+    </St.ButtonWrapper>
+  );
 }
 
 const St = {
+  ButtonWrapper: styled.section`
+    display: flex;
+    justify-content: center;
+  `,
   Button: styled.button`
-    position: "absolute";
+    position: absolute;
     bottom: 3.6rem;
     padding: 1rem;
 

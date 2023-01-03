@@ -21,5 +21,6 @@ const St = {
     position: relative;
     margin: 0 auto;
     width: 37.5rem;
+    height: 100vh;
   `,
 };

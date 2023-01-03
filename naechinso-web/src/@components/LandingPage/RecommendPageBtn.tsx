@@ -19,9 +19,10 @@ export default function RecommendPageBtn(props: RecommendPageBtnProps) {
 
 const St = {
   Button: styled.button`
-    position: "absolute";
-    bottom: 3.6rem;
+    position: absolute;
+    bottom: 0rem;
     padding: 1rem;
+    background-color: ${({ theme }) => theme.colors.white};
     border: 1px solid ${({ theme }) => theme.colors.black20};
     color: ${({ theme }) => theme.colors.black40};
     ${({ theme }) => theme.fonts.sub3};

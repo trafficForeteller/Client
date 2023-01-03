@@ -37,6 +37,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     touch-action: manipulation;
     line-height: 1;
+    min-height: 100%;
   }
   menu, ol, ul {
     list-style: none;
