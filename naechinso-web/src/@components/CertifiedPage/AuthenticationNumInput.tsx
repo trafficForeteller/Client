@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 import TimeLimit from "./TimeLimit";
@@ -12,7 +12,7 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
   const { inputActive, setInputActive } = props;
 
   const [authNum, setAuthNum] = useState("");
-  const [count, setCount] = useState(3);
+  const [count, setCount] = useState(180);
 
   const checkAuthenticationNumLength = (authNum: string) => {
     //인증번호 길이 확인해 label글자색, nextBtn 색 변화

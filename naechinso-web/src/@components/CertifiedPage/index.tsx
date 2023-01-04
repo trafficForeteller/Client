@@ -21,13 +21,22 @@ export default function CertifiedPage() {
         <Title title={"방금 보낸 "} />
         <Title title={"인증번호를 적어줘!"} />
       </St.PageTop>
-      <St.AuthNumWrapper>
+      <St.AuthNumWrapper inputActive={inputActive}>
         <AuthenticationNumInput inputActive={inputActive} setInputActive={setInputActive} />
         <ResendAuthNumBtn />
       </St.AuthNumWrapper>
       <NextPageBtn nextPage={routePaths.InstallApp} title={"완료"} inputActive={inputActive} />
 
-      {inputActive ? <></> : <Modal />}
+      {inputActive ? (
+        <></>
+      ) : (
+        <Modal
+          title={"인증번호 입력 시간이 초과되었어 ⏰"}
+          desc={"같은 번호로 다시 보내줄테니까 확인하고 다시 입력해줘!"}
+          button={"다시 받기"}
+          setInputActive={setInputActive}
+        />
+      )}
     </St.AutorizePage>
   );
 }
@@ -48,12 +57,12 @@ const St = {
     position: relative;
     z-index: -1;
   `,
-  AuthNumWrapper: styled.section`
+  AuthNumWrapper: styled.section<{ inputActive: boolean }>`
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 1rem;
     position: relative;
-    z-index: -1;
+    z-index: ${({ inputActive }) => (inputActive ? "" : "-1")};
   `,
 };

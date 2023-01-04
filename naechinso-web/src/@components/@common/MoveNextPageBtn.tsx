@@ -18,7 +18,7 @@ export default function NextPageBtn(props: NextPageBtnProps) {
 
   return (
     <St.ButtonWrapper>
-      <St.Button onClick={goNextPage} disabled={inputActive}>
+      <St.Button onClick={goNextPage} disabled={inputActive} type="button">
         {title}
       </St.Button>
     </St.ButtonWrapper>

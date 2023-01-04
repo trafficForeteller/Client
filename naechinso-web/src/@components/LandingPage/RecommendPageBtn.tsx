@@ -15,7 +15,11 @@ export default function RecommendPageBtn(props: RecommendPageBtnProps) {
     navigate(`${nextPage}`);
   }
 
-  return <St.Button onClick={goNextPage}>{title}</St.Button>;
+  return (
+    <St.Button onClick={goNextPage} type="button">
+      {title}
+    </St.Button>
+  );
 }
 
 const St = {

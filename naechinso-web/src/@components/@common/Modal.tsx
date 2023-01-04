@@ -1,11 +1,21 @@
 import styled from "styled-components";
 
-export default function Modal() {
+export interface ModalProps {
+  title: string;
+  desc: string;
+  button: string;
+  setInputActive: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export default function Modal(props: ModalProps) {
+  const { title, desc, button, setInputActive } = props;
+
   return (
     <St.Modal>
-      <St.Title>인증번호 입력 시간이 초과되었어🔐</St.Title>
-      <St.Desc>같은 번호로 다시 보내줄테니까 확인하고 다시 입력해줘!</St.Desc>
-      <St.Button>다시 받기</St.Button>
+      <St.Title>{title}</St.Title>
+      <St.Desc>{desc}</St.Desc>
+      <St.Button onClick={() => setInputActive(true)} type="button">
+        {button}
+      </St.Button>
     </St.Modal>
   );
 }

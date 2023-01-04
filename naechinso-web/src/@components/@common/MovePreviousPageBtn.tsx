@@ -12,7 +12,7 @@ export default function PreviousPageBtn() {
   }
 
   return (
-    <St.Button onClick={movePreviousPage}>
+    <St.Button onClick={movePreviousPage} type="button">
       <IcPreviousBtn />
     </St.Button>
   );

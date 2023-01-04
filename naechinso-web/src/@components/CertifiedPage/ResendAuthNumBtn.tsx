@@ -4,7 +4,7 @@ export default function ResendAuthNumBtn() {
   // 클릭 시 재전송 post 보내기
   return (
     <St.ButtonWrapper>
-      <St.Button>인증번호 재전송</St.Button>
+      <St.Button type="button">인증번호 재전송</St.Button>
     </St.ButtonWrapper>
   );
 }
