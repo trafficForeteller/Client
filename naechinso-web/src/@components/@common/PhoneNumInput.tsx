@@ -23,6 +23,7 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
   };
 
   const processPhoneNum = (phoneNum: string) => {
+    // 입력한 번호의 공백제거 && 010붙여주기
     const postPhoneNum = "010" + phoneNum.replace(/ /g, "");
     setPostPhoneNum({ phoneNumber: postPhoneNum });
   };

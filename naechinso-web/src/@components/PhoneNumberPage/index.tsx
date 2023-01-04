@@ -21,7 +21,6 @@ export default function PhoneNumberPOage() {
 
   const sendSms = async () => {
     await postSmsSend(postPhoneNum);
-    console.log(postPhoneNum);
   };
 
   return (
