@@ -14,32 +14,46 @@ export default function CertifiedPage() {
   const [inputActive, setInputActive] = useState(true);
 
   return (
-    <St.AutorizePage>
+    <St.AutorizePage inputActive={inputActive}>
       <PreviousPageBtn />
       <St.PageTop>
         <Title title={"📩"} />
         <Title title={"방금 보낸 "} />
         <Title title={"인증번호를 적어줘!"} />
       </St.PageTop>
-      <St.InputWrapper>
+      <St.AuthNumWrapper>
         <AuthenticationNumInput inputActive={inputActive} setInputActive={setInputActive} />
-      </St.InputWrapper>
-      <ResendAuthNumBtn />
+        <ResendAuthNumBtn />
+      </St.AuthNumWrapper>
       <NextPageBtn nextPage={routePaths.InstallApp} title={"완료"} inputActive={inputActive} />
+
       {inputActive ? <></> : <Modal />}
     </St.AutorizePage>
   );
 }
 
 const St = {
-  AutorizePage: styled.main``,
+  AutorizePage: styled.main<{ inputActive: boolean }>`
+    background-color: rgba(${({ inputActive }) => (inputActive ? "" : "0, 0, 0, 0.64")});
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  `,
+
   PageTop: styled.hgroup`
     padding: 5.8rem 2.4rem 0;
     margin-bottom: 2.4rem;
+    position: relative;
+    z-index: -1;
   `,
-  InputWrapper: styled.section`
+  AuthNumWrapper: styled.section`
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-top: 1rem;
+    position: relative;
+    z-index: -1;
   `,
 };
