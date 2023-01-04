@@ -15,7 +15,7 @@ export default function TimeLimit(props: TimeLimitProps) {
 
   useEffect(() => {
     // 1초마다 state 변화
-    if (count < 0) return setInputActive(false);
+    if (count <= 0) return setInputActive(false);
 
     const id = setInterval(() => {
       setCount((count) => count - 1);
