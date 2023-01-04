@@ -3,18 +3,19 @@ import styled from "styled-components";
 
 export interface TimeLimitProps {
   inputActive: boolean;
+  setInputActive: React.Dispatch<React.SetStateAction<boolean>>;
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function TimeLimit(props: TimeLimitProps) {
-  const { inputActive, count, setCount } = props;
+  const { inputActive, count, setCount, setInputActive } = props;
   const [minute, setMinute] = useState(3);
   const [second, setSecond] = useState(0);
 
   useEffect(() => {
     // 1초마다 state 변화
-    if (count < 0) return;
+    if (count < 0) return setInputActive(false);
 
     const id = setInterval(() => {
       setCount((count) => count - 1);

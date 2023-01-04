@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { routePaths } from "../../core/routes/path";
+import Modal from "../@common/Modal";
 import NextPageBtn from "../@common/MoveNextPageBtn";
 import PreviousPageBtn from "../@common/MovePreviousPageBtn";
 import Title from "../@common/Title";
@@ -9,6 +10,7 @@ import AuthenticationNumInput from "./AuthenticationNumInput";
 import ResendAuthNumBtn from "./ResendAuthNumBtn";
 
 export default function CertifiedPage() {
+  // input창이 비활성화 될 때는 인증번호 색 변화 && 시간 제한 hidden && 모달이 뜬다
   const [inputActive, setInputActive] = useState(true);
 
   return (
@@ -24,6 +26,7 @@ export default function CertifiedPage() {
       </St.InputWrapper>
       <ResendAuthNumBtn />
       <NextPageBtn nextPage={routePaths.InstallApp} title={"완료"} inputActive={inputActive} />
+      {inputActive ? <></> : <Modal />}
     </St.AutorizePage>
   );
 }
