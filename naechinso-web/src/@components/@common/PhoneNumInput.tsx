@@ -1,27 +1,37 @@
-import { useState } from "react";
 import styled from "styled-components";
+
+export interface IPostPhoneNumber {
+  phoneNumber: string;
+}
 
 export interface PhoneNumInputProps {
   label: string;
   placeholder: string;
   inputActive: boolean;
   setInputActive: React.Dispatch<React.SetStateAction<boolean>>;
+  phoneNum: string;
+  setPhoneNum: React.Dispatch<React.SetStateAction<string>>;
+  setPostPhoneNum: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
 }
 
 export default function PhoneNumInputBox(props: PhoneNumInputProps) {
-  const { label, placeholder, inputActive, setInputActive } = props;
-  const [phoneNum, setPhoneNum] = useState("");
-
+  const { label, placeholder, inputActive, setInputActive, phoneNum, setPhoneNum, setPostPhoneNum } = props;
   const checkPhoneNumLength = (phoneNum: string) => {
     //휴대폰번호 길이 확인해 label글자색, nextBtn 색 변화
     if (phoneNum.length === 9) setInputActive(false);
     else setInputActive(true);
   };
 
+  const processPhoneNum = (phoneNum: string) => {
+    const postPhoneNum = "010" + phoneNum.replace(/ /g, "");
+    setPostPhoneNum({ phoneNumber: postPhoneNum });
+  };
+
   const autoHyphen = (phoneNum: string) => {
     // 전화번호 정규식
     setPhoneNum(phoneNum.replace(/[^0-9]/g, "").replace(/^(\d{3,4})(\d{4})$/g, "$1 $2"));
     checkPhoneNumLength(phoneNum);
+    processPhoneNum(phoneNum);
   };
 
   const handlePhoneNum = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -5,14 +5,15 @@ export interface NextPageBtnProps {
   nextPage: string;
   title: string;
   inputActive: boolean;
+  sendSms?: () => Promise<void>;
 }
 
 export default function NextPageBtn(props: NextPageBtnProps) {
-  const { nextPage, title, inputActive } = props;
+  const { nextPage, title, inputActive, sendSms } = props;
   const navigate = useNavigate();
 
   const goNextPage = () => {
-    //다음페이지로 이동
+    if (sendSms) sendSms();
     navigate(`${nextPage}`);
   };
 
