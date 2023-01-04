@@ -32,7 +32,7 @@ const St = {
   `,
   Button: styled.button`
     position: absolute;
-    bottom: 3.6rem;
+    bottom: 10rem;
     padding: 1rem;
 
     background-color: ${({ theme }) => theme.colors.orange};

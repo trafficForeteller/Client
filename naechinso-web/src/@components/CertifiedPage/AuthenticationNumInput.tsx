@@ -12,6 +12,7 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
   const { inputActive, setInputActive } = props;
 
   const [authNum, setAuthNum] = useState("");
+  const [count, setCount] = useState(3);
 
   const checkAuthenticationNumLength = (authNum: string) => {
     //인증번호 길이 확인해 label글자색, nextBtn 색 변화
@@ -34,7 +35,7 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
     <St.AuthenticationNumInputBox>
       <St.LabelWrapper>
         <St.Label inputActive={inputActive}>인증번호</St.Label>
-        <TimeLimit inputActive={inputActive} />
+        <TimeLimit inputActive={inputActive} count={count} setCount={setCount} />
       </St.LabelWrapper>
 
       <St.Input

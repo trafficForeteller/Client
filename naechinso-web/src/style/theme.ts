@@ -55,7 +55,7 @@ interface Media {
 const media: Media = {
   desktop: (...args: BackQuoteArgs) =>
     css`
-      @media screen and (min-width: 48rem), screen and (min-height: 48rem) and (orientation: landscape) {
+      @media screen and (min-width: 37.5rem), screen and (min-height: 81.2rem) and (orientation: landscape) {
         ${args}
       }
     `,

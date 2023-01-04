@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --vh: 100%;
+    --vh: 100vh;
    }
 
   html, body, div, span, applet, object, iframe,
@@ -38,6 +38,7 @@ export const GlobalStyle = createGlobalStyle`
     touch-action: manipulation;
     line-height: 1;
     min-height: 100%;
+    margin:0;
   }
   menu, ol, ul {
     list-style: none;

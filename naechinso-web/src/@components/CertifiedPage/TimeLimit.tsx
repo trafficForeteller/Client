@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 export interface TimeLimitProps {
   inputActive: boolean;
+  count: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function TimeLimit(props: TimeLimitProps) {
-  const { inputActive } = props;
-
-  const [count, setCount] = useState(180);
+  const { inputActive, count, setCount } = props;
   const [minute, setMinute] = useState(3);
   const [second, setSecond] = useState(0);
 
