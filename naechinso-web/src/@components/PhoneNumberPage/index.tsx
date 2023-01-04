@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import { postSmsSend } from "../../apis/sms.api";
 import { routePaths } from "../../core/routes/path";
 import NextPageBtn from "../@common/MoveNextPageBtn";
 import PreviousPageBtn from "../@common/MovePreviousPageBtn";
@@ -12,16 +11,16 @@ interface IPostPhoneNumber {
   phoneNumber: string;
 }
 
-export default function PhoneNumberPOage() {
+export interface PhoneNumberPageProps {
+  setPostPhoneNum: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
+  sendSms: () => Promise<void>;
+}
+
+export default function PhoneNumberPOage(props: PhoneNumberPageProps) {
+  const { setPostPhoneNum, sendSms } = props;
+
   const [inputActive, setInputActive] = useState(true);
   const [phoneNum, setPhoneNum] = useState("");
-  const [postPhoneNum, setPostPhoneNum] = useState<IPostPhoneNumber>({
-    phoneNumber: "",
-  });
-
-  const sendSms = async () => {
-    await postSmsSend(postPhoneNum);
-  };
 
   return (
     <St.PhoneNumberPage>

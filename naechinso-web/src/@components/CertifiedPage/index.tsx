@@ -9,7 +9,13 @@ import Title from "../@common/Title";
 import AuthenticationNumInput from "./AuthenticationNumInput";
 import ResendAuthNumBtn from "./ResendAuthNumBtn";
 
-export default function CertifiedPage() {
+export interface CertifiedPageProps {
+  sendSms: () => Promise<void>;
+}
+
+export default function CertifiedPage(props: CertifiedPageProps) {
+  const { sendSms } = props;
+
   // input창이 비활성화 될 때는 인증번호 색 변화 && 시간 제한 hidden && 모달이 뜬다
   const [inputActive, setInputActive] = useState(true);
   const [count, setCount] = useState(180);
@@ -33,7 +39,13 @@ export default function CertifiedPage() {
           authNum={authNum}
           setAuthNum={setAuthNum}
         />
-        <ResendAuthNumBtn />
+        <ResendAuthNumBtn
+          setInputActive={setInputActive}
+          setCount={setCount}
+          setAuthNum={setAuthNum}
+          setResendMessage={setResendMessage}
+          sendSms={sendSms}
+        />
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
       </St.AuthNumWrapper>
       <NextPageBtn nextPage={routePaths.InstallApp} title={"완료"} inputActive={inputActive} />
@@ -49,6 +61,7 @@ export default function CertifiedPage() {
           setCount={setCount}
           setAuthNum={setAuthNum}
           setResendMessage={setResendMessage}
+          sendSms={sendSms}
         />
       )}
     </St.AutorizePage>

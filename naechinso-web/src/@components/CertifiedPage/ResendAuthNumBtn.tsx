@@ -1,10 +1,32 @@
 import styled from "styled-components";
 
-export default function ResendAuthNumBtn() {
+export interface ResendAuthNumBtnProps {
+  setInputActive: React.Dispatch<React.SetStateAction<boolean>>;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+  setAuthNum: React.Dispatch<React.SetStateAction<string>>;
+  setResendMessage: React.Dispatch<React.SetStateAction<string>>;
+  sendSms?: () => Promise<void>;
+}
+
+export default function ResendAuthNumBtn(props: ResendAuthNumBtnProps) {
+  const { setInputActive, setCount, setAuthNum, setResendMessage, sendSms } = props;
+
+  const resendAuthNum = () => {
+    setInputActive(true);
+    setCount(180);
+    setAuthNum("");
+    if (sendSms) {
+      sendSms();
+      setResendMessage("인증번호를 다시 보냈어!");
+    }
+  };
+
   // 클릭 시 재전송 post 보내기
   return (
     <St.ButtonWrapper>
-      <St.Button type="button">인증번호 재전송</St.Button>
+      <St.Button type="button" onClick={resendAuthNum}>
+        인증번호 재전송
+      </St.Button>
     </St.ButtonWrapper>
   );
 }
