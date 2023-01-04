@@ -6,13 +6,14 @@ import TimeLimit from "./TimeLimit";
 export interface AuthenticationNumProps {
   inputActive: boolean;
   setInputActive: React.Dispatch<React.SetStateAction<boolean>>;
+  count: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+  authNum: string;
+  setAuthNum: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function AuthenticationNumInput(props: AuthenticationNumProps) {
-  const { inputActive, setInputActive } = props;
-
-  const [authNum, setAuthNum] = useState("");
-  const [count, setCount] = useState(180);
+  const { inputActive, setInputActive, count, setCount, authNum, setAuthNum } = props;
 
   const checkAuthenticationNumLength = (authNum: string) => {
     //인증번호 길이 확인해 label글자색, nextBtn 색 변화

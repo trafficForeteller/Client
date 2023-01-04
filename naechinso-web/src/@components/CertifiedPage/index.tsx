@@ -12,6 +12,9 @@ import ResendAuthNumBtn from "./ResendAuthNumBtn";
 export default function CertifiedPage() {
   // input창이 비활성화 될 때는 인증번호 색 변화 && 시간 제한 hidden && 모달이 뜬다
   const [inputActive, setInputActive] = useState(true);
+  const [count, setCount] = useState(180);
+  const [authNum, setAuthNum] = useState("");
+  const [resendMessage, setResendMessage] = useState("");
 
   return (
     <St.AutorizePage inputActive={inputActive}>
@@ -22,8 +25,16 @@ export default function CertifiedPage() {
         <Title title={"인증번호를 적어줘!"} />
       </St.PageTop>
       <St.AuthNumWrapper inputActive={inputActive}>
-        <AuthenticationNumInput inputActive={inputActive} setInputActive={setInputActive} />
+        <AuthenticationNumInput
+          inputActive={inputActive}
+          setInputActive={setInputActive}
+          count={count}
+          setCount={setCount}
+          authNum={authNum}
+          setAuthNum={setAuthNum}
+        />
         <ResendAuthNumBtn />
+        <St.ResendMessage>{resendMessage}</St.ResendMessage>
       </St.AuthNumWrapper>
       <NextPageBtn nextPage={routePaths.InstallApp} title={"완료"} inputActive={inputActive} />
 
@@ -35,6 +46,9 @@ export default function CertifiedPage() {
           desc={"같은 번호로 다시 보내줄테니까 확인하고 다시 입력해줘!"}
           button={"다시 받기"}
           setInputActive={setInputActive}
+          setCount={setCount}
+          setAuthNum={setAuthNum}
+          setResendMessage={setResendMessage}
         />
       )}
     </St.AutorizePage>
@@ -64,5 +78,10 @@ const St = {
     margin-top: 1rem;
     position: relative;
     z-index: ${({ inputActive }) => (inputActive ? "" : "-1")};
+  `,
+  ResendMessage: styled.span`
+    color: ${({ theme }) => theme.colors.error};
+    ${({ theme }) => theme.fonts.caption1};
+    margin-top: 0.8rem;
   `,
 };
