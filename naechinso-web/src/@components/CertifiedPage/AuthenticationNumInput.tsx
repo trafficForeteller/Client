@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { postSmsVerify } from "../../apis/sms.api";
+import { IPostPhoneNumber, IPostVerifyPhoneNumber } from "../../types/sms";
 import TimeLimit from "./TimeLimit";
 
 export interface AuthenticationNumProps {
@@ -10,26 +12,47 @@ export interface AuthenticationNumProps {
   setCount: React.Dispatch<React.SetStateAction<number>>;
   authNum: string;
   setAuthNum: React.Dispatch<React.SetStateAction<string>>;
+  postPhoneNum: IPostPhoneNumber;
 }
 
 export default function AuthenticationNumInput(props: AuthenticationNumProps) {
-  const { inputActive, setInputActive, count, setCount, authNum, setAuthNum } = props;
+  const { inputActive, setInputActive, count, setCount, authNum, setAuthNum, postPhoneNum } = props;
+  const [postAuthNum, setPostAuthNum] = useState<IPostVerifyPhoneNumber>({
+    code: "",
+    phoneNumber: postPhoneNum.phoneNumber,
+  });
 
-  const checkAuthenticationNumLength = (authNum: string) => {
+  useEffect(() => {
+    checkAuthNumLength(authNum);
+  }, [authNum]);
+
+  useEffect(() => {
+    if (postAuthNum.code === "") return;
+    verifyAuthNum();
+  }, [postAuthNum]);
+
+  const checkAuthNumLength = (authNum: string) => {
     //인증번호 길이 확인해 label글자색, nextBtn 색 변화
-    if (authNum.length === 6) setInputActive(false);
-    else setInputActive(true);
+    if (authNum.length === 6) {
+      setPostAuthNum({ ...postAuthNum, code: authNum });
+      setInputActive(false);
+    } else setInputActive(true);
   };
 
-  const autoHyphen = (authNum: string) => {
-    // 인증번호 정규식
-    setAuthNum(authNum.replace(/[^0-9]/g, ""));
-    checkAuthenticationNumLength(authNum);
+  const enterNumOnly = (inputNum: string) => {
+    // input에 숫자만 입력가능케하는 정규식
+    setAuthNum(inputNum.replace(/[^0-9]/g, ""));
+    checkAuthNumLength(authNum);
   };
 
-  const handlePhoneNum = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAuthNum = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 인증번호 handle 함수
-    autoHyphen(e.target.value);
+    enterNumOnly(e.target.value);
+  };
+
+  const verifyAuthNum = async () => {
+    // 인증번호 확인 서버에 POST
+    await postSmsVerify(postAuthNum);
   };
 
   return (
@@ -42,7 +65,7 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
       <St.Input
         type="text"
         value={authNum}
-        onChange={handlePhoneNum}
+        onChange={handleAuthNum}
         placeholder={"인증번호를 입력해줘"}
         maxLength={6}
       />

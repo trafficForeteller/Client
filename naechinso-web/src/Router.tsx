@@ -27,7 +27,7 @@ export default function Router() {
           path={routePaths.PhoneNum}
           element={<PhoneNumberPage setPostPhoneNum={setPostPhoneNum} sendSms={sendSms} />}
         />
-        <Route path={routePaths.Certified} element={<CertifiedPage sendSms={sendSms} />} />
+        <Route path={routePaths.Certified} element={<CertifiedPage sendSms={sendSms} postPhoneNum={postPhoneNum} />} />
       </Routes>
     </BrowserRouter>
   );

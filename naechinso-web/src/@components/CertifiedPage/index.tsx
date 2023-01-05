@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { routePaths } from "../../core/routes/path";
+import { IPostPhoneNumber } from "../../types/sms";
 import Modal from "../@common/Modal";
 import NextPageBtn from "../@common/MoveNextPageBtn";
 import PreviousPageBtn from "../@common/MovePreviousPageBtn";
@@ -11,22 +12,27 @@ import ResendAuthNumBtn from "./ResendAuthNumBtn";
 
 export interface CertifiedPageProps {
   sendSms: () => Promise<void>;
+  postPhoneNum: IPostPhoneNumber;
 }
 
 export default function CertifiedPage(props: CertifiedPageProps) {
-  const { sendSms } = props;
-
+  const { sendSms, postPhoneNum } = props;
   // input창이 비활성화 될 때는 인증번호 색 변화 && 시간 제한 hidden && 모달이 뜬다
   const [inputActive, setInputActive] = useState(true);
   const [count, setCount] = useState(180);
   const [authNum, setAuthNum] = useState("");
   const [resendMessage, setResendMessage] = useState("");
+  const [correctAuthNum, setCorrectAuthNum] = useState(true);
 
-  // 인증번호 다시 보내기
-  const resendAuthNum = () => {
+  const closeModal = () => {
+    // 모달 닫기
     setInputActive(true);
     setCount(180);
     setAuthNum("");
+  };
+
+  const resendAuthNum = () => {
+    // 인증번호 다시 보내기
     if (sendSms) {
       sendSms();
       setResendMessage("인증번호를 다시 보냈어!");
@@ -49,6 +55,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           setCount={setCount}
           authNum={authNum}
           setAuthNum={setAuthNum}
+          postPhoneNum={postPhoneNum}
         />
         <ResendAuthNumBtn resendAuthNum={resendAuthNum} />
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
@@ -57,12 +64,21 @@ export default function CertifiedPage(props: CertifiedPageProps) {
 
       {inputActive ? (
         <></>
-      ) : (
+      ) : count === 0 ? (
         <Modal
           title={"인증번호 입력 시간이 초과되었어 ⏰"}
           desc={"같은 번호로 다시 보내줄테니까 확인하고 다시 입력해줘!"}
           button={"다시 받기"}
           resendAuthNum={resendAuthNum}
+          closeModal={closeModal}
+        />
+      ) : (
+        <Modal
+          title={"인증번호를 확인해줘"}
+          desc={"잘못된 인증번호를 입력했어 인증번호를 다시 확인하고 입력해줘!"}
+          button={"확인"}
+          closeModal={closeModal}
+          setCorrectAuthNum={setCorrectAuthNum}
         />
       )}
     </St.AutorizePage>

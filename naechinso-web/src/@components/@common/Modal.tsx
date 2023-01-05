@@ -5,14 +5,27 @@ export interface ModalProps {
   desc: string;
   button: string;
   resendAuthNum?: () => void;
+  closeModal: () => void;
+  setCorrectAuthNum?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export default function Modal(props: ModalProps) {
-  const { title, desc, button, resendAuthNum } = props;
+  const { title, desc, button, resendAuthNum, closeModal, setCorrectAuthNum } = props;
+
+  const handleModal = () => {
+    if (resendAuthNum) {
+      resendAuthNum();
+      closeModal();
+    } else if (setCorrectAuthNum) {
+      setCorrectAuthNum(false);
+      closeModal();
+    }
+  };
+
   return (
     <St.Modal>
       <St.Title>{title}</St.Title>
       <St.Desc>{desc}</St.Desc>
-      <St.Button onClick={resendAuthNum} type="button">
+      <St.Button onClick={handleModal} type="button">
         {button}
       </St.Button>
     </St.Modal>
@@ -45,7 +58,7 @@ const St = {
     z-index: 3;
     position: relative;
     top: 4.4rem;
-    width: 25rem;
+    width: 26rem;
     margin: 0 auto;
   `,
   Button: styled.button`
