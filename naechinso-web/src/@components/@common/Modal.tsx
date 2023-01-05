@@ -4,25 +4,10 @@ export interface ModalProps {
   title: string;
   desc: string;
   button: string;
-  setInputActive: React.Dispatch<React.SetStateAction<boolean>>;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
-  setAuthNum: React.Dispatch<React.SetStateAction<string>>;
-  setResendMessage: React.Dispatch<React.SetStateAction<string>>;
-  sendSms?: () => Promise<void>;
+  resendAuthNum?: () => void;
 }
 export default function Modal(props: ModalProps) {
-  const { title, desc, button, setInputActive, setCount, setAuthNum, setResendMessage, sendSms } = props;
-
-  const resendAuthNum = () => {
-    setInputActive(true);
-    setCount(180);
-    setAuthNum("");
-    if (sendSms) {
-      sendSms();
-      setResendMessage("인증번호를 다시 보냈어!");
-    }
-  };
-
+  const { title, desc, button, resendAuthNum } = props;
   return (
     <St.Modal>
       <St.Title>{title}</St.Title>

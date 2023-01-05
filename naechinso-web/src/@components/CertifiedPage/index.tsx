@@ -22,6 +22,17 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const [authNum, setAuthNum] = useState("");
   const [resendMessage, setResendMessage] = useState("");
 
+  // 인증번호 다시 보내기
+  const resendAuthNum = () => {
+    setInputActive(true);
+    setCount(180);
+    setAuthNum("");
+    if (sendSms) {
+      sendSms();
+      setResendMessage("인증번호를 다시 보냈어!");
+    }
+  };
+
   return (
     <St.AutorizePage inputActive={inputActive}>
       <PreviousPageBtn />
@@ -39,13 +50,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           authNum={authNum}
           setAuthNum={setAuthNum}
         />
-        <ResendAuthNumBtn
-          setInputActive={setInputActive}
-          setCount={setCount}
-          setAuthNum={setAuthNum}
-          setResendMessage={setResendMessage}
-          sendSms={sendSms}
-        />
+        <ResendAuthNumBtn resendAuthNum={resendAuthNum} />
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
       </St.AuthNumWrapper>
       <NextPageBtn nextPage={routePaths.InstallApp} title={"완료"} inputActive={inputActive} />
@@ -57,11 +62,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           title={"인증번호 입력 시간이 초과되었어 ⏰"}
           desc={"같은 번호로 다시 보내줄테니까 확인하고 다시 입력해줘!"}
           button={"다시 받기"}
-          setInputActive={setInputActive}
-          setCount={setCount}
-          setAuthNum={setAuthNum}
-          setResendMessage={setResendMessage}
-          sendSms={sendSms}
+          resendAuthNum={resendAuthNum}
         />
       )}
     </St.AutorizePage>
