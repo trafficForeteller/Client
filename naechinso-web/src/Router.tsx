@@ -7,10 +7,7 @@ import LandingPage from "./@components/LandingPage";
 import PhoneNumberPage from "./@components/PhoneNumberPage";
 import { postSmsSend } from "./apis/sms.api";
 import { routePaths } from "./core/routes/path";
-
-interface IPostPhoneNumber {
-  phoneNumber: string;
-}
+import { IPostPhoneNumber } from "./types/sms";
 
 export default function Router() {
   const [postPhoneNum, setPostPhoneNum] = useState<IPostPhoneNumber>({

@@ -2,14 +2,11 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { routePaths } from "../../core/routes/path";
+import { IPostPhoneNumber } from "../../types/sms";
 import NextPageBtn from "../@common/MoveNextPageBtn";
 import PreviousPageBtn from "../@common/MovePreviousPageBtn";
 import PhoneNumInput from "../@common/PhoneNumInput";
 import Title from "../@common/Title";
-
-interface IPostPhoneNumber {
-  phoneNumber: string;
-}
 
 export interface PhoneNumberPageProps {
   setPostPhoneNum: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
