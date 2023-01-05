@@ -10,7 +10,7 @@ export const postSmsSend = async (phoneNumberData: IPostPhoneNumber): Promise<vo
       headers: { "Content-Type": "application/json" },
     });
 
-    if (data.status === 200) {
+    if (data?.status === 200) {
       return data.data;
     }
   } catch (err) {
@@ -19,15 +19,16 @@ export const postSmsSend = async (phoneNumberData: IPostPhoneNumber): Promise<vo
 };
 
 export const postSmsVerify = async (AuthNumberData: IPostVerifyPhoneNumber): Promise<void | null> => {
-  try {
-    const { data } = await serverAxios.post(`${PREFIX_URL}/verify`, AuthNumberData, {
-      headers: { "Content-Type": "application/json" },
-    });
+  const { data } = await serverAxios.post(`${PREFIX_URL}/verify`, AuthNumberData);
 
+  try {
     if (data.status === 200) {
       return data.data;
     }
   } catch (err) {
+    if (data.status === 400) {
+      return data.message;
+    }
     throw new Error("Failed to verify your Authentication number or your phone number");
   }
 };

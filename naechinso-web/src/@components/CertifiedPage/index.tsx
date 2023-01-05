@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
+import { postSmsVerify } from "../../apis/sms.api";
 import { routePaths } from "../../core/routes/path";
 import { IPostPhoneNumber } from "../../types/sms";
 import Modal from "../@common/Modal";
@@ -56,6 +57,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           authNum={authNum}
           setAuthNum={setAuthNum}
           postPhoneNum={postPhoneNum}
+          correctAuthNum={correctAuthNum}
         />
         <ResendAuthNumBtn resendAuthNum={resendAuthNum} />
         <St.ResendMessage>{resendMessage}</St.ResendMessage>

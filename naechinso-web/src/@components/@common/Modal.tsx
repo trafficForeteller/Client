@@ -4,13 +4,12 @@ export interface ModalProps {
   title: string;
   desc: string;
   button: string;
-  resendAuthNum?: () => void;
   closeModal: () => void;
+  resendAuthNum?: () => void;
   setCorrectAuthNum?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export default function Modal(props: ModalProps) {
   const { title, desc, button, resendAuthNum, closeModal, setCorrectAuthNum } = props;
-
   const handleModal = () => {
     if (resendAuthNum) {
       resendAuthNum();

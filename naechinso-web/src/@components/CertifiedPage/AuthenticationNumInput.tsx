@@ -13,14 +13,16 @@ export interface AuthenticationNumProps {
   authNum: string;
   setAuthNum: React.Dispatch<React.SetStateAction<string>>;
   postPhoneNum: IPostPhoneNumber;
+  correctAuthNum: boolean;
 }
 
 export default function AuthenticationNumInput(props: AuthenticationNumProps) {
-  const { inputActive, setInputActive, count, setCount, authNum, setAuthNum, postPhoneNum } = props;
+  const { inputActive, setInputActive, count, setCount, authNum, setAuthNum, postPhoneNum, correctAuthNum } = props;
   const [postAuthNum, setPostAuthNum] = useState<IPostVerifyPhoneNumber>({
     code: "",
     phoneNumber: postPhoneNum.phoneNumber,
   });
+  const [data, setData] = useState({});
 
   useEffect(() => {
     checkAuthNumLength(authNum);
@@ -52,13 +54,18 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
 
   const verifyAuthNum = async () => {
     // 인증번호 확인 서버에 POST
-    await postSmsVerify(postAuthNum);
+    const userData = await postSmsVerify(postAuthNum);
+    userData && setData(userData);
+    // console.log(postAuthNum);
+    console.log(data);
   };
 
   return (
-    <St.AuthenticationNumInputBox>
+    <St.AuthenticationNumInputBox correctAuthNum={correctAuthNum}>
       <St.LabelWrapper>
-        <St.Label inputActive={inputActive}>인증번호</St.Label>
+        <St.Label inputActive={inputActive} correctAuthNum={correctAuthNum}>
+          인증번호
+        </St.Label>
         <TimeLimit inputActive={inputActive} setInputActive={setInputActive} count={count} setCount={setCount} />
       </St.LabelWrapper>
 
@@ -74,10 +81,10 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
 }
 
 const St = {
-  AuthenticationNumInputBox: styled.section`
+  AuthenticationNumInputBox: styled.section<{ correctAuthNum: boolean }>`
     width: 33.5rem;
     height: 8rem;
-
+    border: 1px solid ${({ theme, correctAuthNum }) => (correctAuthNum ? "transparent" : theme.colors.error)};
     border-radius: 1.6rem;
     background-color: ${({ theme }) => theme.colors.neural};
     padding: 1rem 2rem 1.6rem;
@@ -87,7 +94,7 @@ const St = {
     align-items: center;
     gap: 1rem;
   `,
-  Label: styled.p<{ inputActive: boolean }>`
+  Label: styled.p<{ inputActive: boolean; correctAuthNum: boolean }>`
     color: ${({ theme, inputActive }) => (inputActive ? theme.colors.orange : theme.colors.black40)};
     ${({ theme }) => theme.fonts.body2};
   `,
