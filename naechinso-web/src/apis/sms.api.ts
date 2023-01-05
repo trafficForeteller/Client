@@ -1,5 +1,5 @@
+// eslint-disable-next-line
 import { IPostPhoneNumber, IPostVerifyPhoneNumber } from "../types/sms";
-
 import { serverAxios } from "./index";
 
 const PREFIX_URL = "/sms";
