@@ -56,7 +56,6 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
     // 인증번호 확인 서버에 POST
     const userData = await postSmsVerify(postAuthNum);
     userData && setData(userData);
-    // console.log(postAuthNum);
     console.log(data);
   };
 

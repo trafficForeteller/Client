@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postSmsVerify } from "../../apis/sms.api";
@@ -9,6 +10,7 @@ import NextPageBtn from "../@common/MoveNextPageBtn";
 import PreviousPageBtn from "../@common/MovePreviousPageBtn";
 import Title from "../@common/Title";
 import AuthenticationNumInput from "./AuthenticationNumInput";
+import PolicyModal from "./PolicyModal";
 import ResendAuthNumBtn from "./ResendAuthNumBtn";
 
 export interface CertifiedPageProps {
@@ -24,6 +26,10 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const [authNum, setAuthNum] = useState("");
   const [resendMessage, setResendMessage] = useState("");
   const [correctAuthNum, setCorrectAuthNum] = useState(true);
+
+  // useEffect(() => {
+  //   if (correctAuthNum) navigate(routePaths.Accept);
+  // }, [correctAuthNum]);
 
   const closeModal = () => {
     // 모달 닫기
@@ -62,9 +68,14 @@ export default function CertifiedPage(props: CertifiedPageProps) {
         <ResendAuthNumBtn resendAuthNum={resendAuthNum} />
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
       </St.AuthNumWrapper>
-      <NextPageBtn nextPage={routePaths.InstallApp} title={"완료"} inputActive={inputActive} />
-
-      {inputActive ? (
+      <NextPageBtn
+        nextPage={routePaths.Accept}
+        title={"완료"}
+        inputActive={inputActive}
+        correctAuthNum={correctAuthNum}
+      />
+      <PolicyModal />
+      {/* {inputActive ? (
         <></>
       ) : count === 0 ? (
         <Modal
@@ -74,6 +85,8 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           resendAuthNum={resendAuthNum}
           closeModal={closeModal}
         />
+      ) : correctAuthNum ? (
+        <PolicyModal />
       ) : (
         <Modal
           title={"인증번호를 확인해줘"}
@@ -82,14 +95,14 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           closeModal={closeModal}
           setCorrectAuthNum={setCorrectAuthNum}
         />
-      )}
+      )} */}
     </St.AutorizePage>
   );
 }
 
 const St = {
   AutorizePage: styled.main<{ inputActive: boolean }>`
-    background-color: rgba(${({ inputActive }) => (inputActive ? "" : "0, 0, 0, 0.64")});
+    background-color: rgba(${({ inputActive }) => (inputActive ? "0, 0, 0, 0.64" : "0, 0, 0, 0.64")});
     position: absolute;
     left: 0;
     top: 0;

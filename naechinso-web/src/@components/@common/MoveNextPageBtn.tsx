@@ -6,6 +6,7 @@ export interface NextPageBtnProps {
   title: string;
   inputActive: boolean;
   sendSms?: () => Promise<void>;
+  correctAuthNum?: boolean;
 }
 
 export default function NextPageBtn(props: NextPageBtnProps) {
