@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { IcAllChecked, IcAllUnChecked, IcChecked, IcUnChecked } from "../../asset/icons";
@@ -12,25 +12,47 @@ export interface PolicyModalProps {
 export default function PolicyModal(props: PolicyModalProps) {
   const { inputActive } = props;
   const [allChecked, setAllChecked] = useState(false);
-  const [checked, setChecked] = useState(false);
-  const policy = ["서비스 이용약관전체동의", "개인정보 처리 동의", "종교정보 제공 동의", "마케팅 정보 수신 동의(선택)"];
+  const [policy, setPolicy] = useState([
+    { title: "서비스 이용약관전체동의", checked: false },
+    { title: "개인정보 처리 동의", checked: false },
+    { title: "종교정보 제공 동의", checked: false },
+    { title: "마케팅 정보 수신 동의(선택)", checked: false },
+  ]);
+
+  useEffect(() => {
+    // 전체동의 클릭 시 모든 항목 동의||비동의
+    // if (allChecked) setChecked(true);
+    // else setChecked(false);
+  }, [allChecked]);
+
+  const toggleAllcheck = () => {
+    setAllChecked(!allChecked);
+  };
+
+  const toggleCheck = (id: number) => {
+    const newPolicy = policy.map((p, index) => {
+      if (id === index) p.checked = !p.checked;
+      return p;
+    });
+    setPolicy(newPolicy);
+  };
 
   return (
     <St.Modal>
       <St.Title>내친소 이용 약관 동의</St.Title>
-      <St.AllCheckWrapper type="button" onClick={() => setAllChecked(!allChecked)}>
+      <St.AllCheckWrapper type="button" onClick={toggleAllcheck}>
         <St.IcAllCheckWrapper>{allChecked ? <IcAllChecked /> : <IcAllUnChecked />}</St.IcAllCheckWrapper>
         <St.AllCheck>내친소 이용약관에 모두 동의하기</St.AllCheck>
       </St.AllCheckWrapper>
       <St.CheckContainer>
-        {policy.map((i, idx) => {
+        {policy.map((i, id) => {
           return (
-            <St.CheckBox key={idx}>
-              <St.CheckWrapper type="button" onClick={() => setChecked(!checked)}>
-                <St.IcCheckWrapper>{checked ? <IcChecked /> : <IcUnChecked />}</St.IcCheckWrapper>
-                <St.Check>{i}</St.Check>
+            <St.CheckBox key={i.title}>
+              <St.CheckWrapper type="button" onClick={() => toggleCheck(id)}>
+                <St.IcCheckWrapper>{i.checked ? <IcChecked /> : <IcUnChecked />}</St.IcCheckWrapper>
+                <St.Check>{i.title}</St.Check>
               </St.CheckWrapper>
-              <St.SeePolicy type="button" checked={checked}>
+              <St.SeePolicy type="button" checked={i.checked}>
                 보기
               </St.SeePolicy>
             </St.CheckBox>
