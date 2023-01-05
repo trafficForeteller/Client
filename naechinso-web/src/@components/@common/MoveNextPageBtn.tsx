@@ -34,7 +34,7 @@ const St = {
   `,
   Button: styled.button`
     position: absolute;
-    bottom: 10rem;
+    bottom: 3.5rem;
     padding: 1rem;
 
     background-color: ${({ theme }) => theme.colors.orange};

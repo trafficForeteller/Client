@@ -74,7 +74,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
         inputActive={inputActive}
         correctAuthNum={correctAuthNum}
       />
-      <PolicyModal />
+      <PolicyModal inputActive={inputActive} />
       {/* {inputActive ? (
         <></>
       ) : count === 0 ? (
