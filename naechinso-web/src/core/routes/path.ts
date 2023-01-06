@@ -3,7 +3,7 @@ export const routePaths = {
   InstallApp: "/naechinso-app",
   PhoneNum: "/join",
   Certified: "/join/autorize",
-  Accept: "/join/accept",
+  RecommendLanding: "/recommendLanding",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];

@@ -74,7 +74,7 @@ export default function PolicyModal(props: PolicyModalProps) {
         })}
       </St.CheckContainer>
 
-      <NextPageBtn nextPage={routePaths.Accept} title={"내친소 시작하기"} inputActive={startActive} />
+      <NextPageBtn nextPage={routePaths.RecommendLanding} title={"내친소 시작하기"} inputActive={startActive} />
     </St.Modal>
   );
 }

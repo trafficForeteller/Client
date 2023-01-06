@@ -107,7 +107,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
       </St.AuthNumWrapper>
       <MoveNextPageBtn
-        nextPage={routePaths.Accept}
+        nextPage={routePaths.RecommendLanding}
         title={"완료"}
         inputActive={inputActive}
         correctAuthNum={correctAuthNum}
