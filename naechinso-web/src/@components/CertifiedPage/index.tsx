@@ -29,11 +29,6 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const [inputborder, setInputBorder] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (correctAuthNum) navigate(routePaths.Accept);
-    setInputBorder(false);
-  }, [correctAuthNum]);
-
   const closeModal = () => {
     // 모달 닫기
     setInputActive(true);
@@ -67,6 +62,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           setAuthNum={setAuthNum}
           postPhoneNum={postPhoneNum}
           inputborder={inputborder}
+          setCorrectAuthNum={setCorrectAuthNum}
         />
         <ResendAuthNumBtn resendAuthNum={resendAuthNum} />
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
@@ -90,14 +86,13 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           setCount={setCount}
         />
       ) : correctAuthNum ? (
-        <PolicyModal setInputActive={setInputActive} closeModal={closeModal} />
+        <PolicyModal setInputActive={setInputActive} />
       ) : (
         <Modal
           title={"인증번호를 확인해줘"}
           desc={"잘못된 인증번호를 입력했어 인증번호를 다시 확인하고 입력해줘!"}
           button={"확인"}
           closeModal={closeModal}
-          setCorrectAuthNum={setCorrectAuthNum}
           setCount={setCount}
           setInputBorder={setInputBorder}
         />

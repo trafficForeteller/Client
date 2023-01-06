@@ -14,10 +14,21 @@ export interface AuthenticationNumProps {
   setAuthNum: React.Dispatch<React.SetStateAction<string>>;
   postPhoneNum: IPostPhoneNumber;
   inputborder: boolean;
+  setCorrectAuthNum: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function AuthenticationNumInput(props: AuthenticationNumProps) {
-  const { inputActive, setInputActive, count, setCount, authNum, setAuthNum, postPhoneNum, inputborder } = props;
+  const {
+    inputActive,
+    setInputActive,
+    count,
+    setCount,
+    authNum,
+    setAuthNum,
+    postPhoneNum,
+    inputborder,
+    setCorrectAuthNum,
+  } = props;
   const [postAuthNum, setPostAuthNum] = useState<IPostVerifyPhoneNumber>({
     code: "",
     phoneNumber: postPhoneNum.phoneNumber,
@@ -33,6 +44,10 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
     verifyAuthNum();
   }, [postAuthNum]);
 
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   const checkAuthNumLength = (authNum: string) => {
     //인증번호 길이 확인해 label글자색, nextBtn 색 변화
     if (authNum.length === 6) {
@@ -41,22 +56,17 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
     } else setInputActive(true);
   };
 
-  const enterNumOnly = (inputNum: string) => {
-    // input에 숫자만 입력가능케하는 정규식
-    setAuthNum(inputNum.replace(/[^0-9]/g, ""));
-    checkAuthNumLength(authNum);
-  };
-
   const handleAuthNum = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // 인증번호 handle 함수
-    enterNumOnly(e.target.value);
+    // 인증번호 handle 함수 -input에 숫자만 입력가능케하는 정규식
+    setAuthNum(e.target.value.replace(/[^0-9]/g, ""));
+    checkAuthNumLength(authNum);
   };
 
   const verifyAuthNum = async () => {
     // 인증번호 확인 서버에 POST
     const userData = await postSmsVerify(postAuthNum);
     userData && setData(userData);
-    console.log(data);
+    setCorrectAuthNum(true);
   };
 
   return (
