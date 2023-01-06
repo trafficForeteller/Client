@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 
-import { IPostPhoneNumber, IPostVerifyPhoneNumber } from "../../types/sms";
 import TimeLimit from "./TimeLimit";
 
 export interface AuthenticationNumProps {
@@ -10,51 +9,18 @@ export interface AuthenticationNumProps {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   authNum: string;
-  setAuthNum: React.Dispatch<React.SetStateAction<string>>;
-  postPhoneNum: IPostPhoneNumber;
   inputborder: boolean;
-  verifyAuthNum: (postAuthNum: IPostVerifyPhoneNumber) => Promise<void>;
+  handleAuthNum: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  checkAuthNumLength: (authNum: string) => void;
 }
 
 export default function AuthenticationNumInput(props: AuthenticationNumProps) {
-  const {
-    inputActive,
-    setInputActive,
-    count,
-    setCount,
-    authNum,
-    setAuthNum,
-    postPhoneNum,
-    inputborder,
-    verifyAuthNum,
-  } = props;
-  const [postAuthNum, setPostAuthNum] = useState<IPostVerifyPhoneNumber>({
-    code: "",
-    phoneNumber: postPhoneNum.phoneNumber,
-  });
+  const { inputActive, setInputActive, count, setCount, authNum, inputborder, checkAuthNumLength, handleAuthNum } =
+    props;
 
   useEffect(() => {
     checkAuthNumLength(authNum);
   }, [authNum]);
-
-  useEffect(() => {
-    if (postAuthNum.code === "") return;
-    verifyAuthNum(postAuthNum);
-  }, [postAuthNum]);
-
-  const checkAuthNumLength = (authNum: string) => {
-    //인증번호 길이 확인해 label글자색, nextBtn 색 변화
-    if (authNum.length === 6) {
-      setPostAuthNum({ ...postAuthNum, code: authNum });
-      setInputActive(false);
-    } else setInputActive(true);
-  };
-
-  const handleAuthNum = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // 인증번호 handle 함수 -input에 숫자만 입력가능케하는 정규식
-    setAuthNum(e.target.value.replace(/[^0-9]/g, ""));
-    checkAuthNumLength(authNum);
-  };
 
   return (
     <St.AuthenticationNumInputBox inputborder={inputborder}>

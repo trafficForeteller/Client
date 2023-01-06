@@ -28,7 +28,15 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const [correctAuthNum, setCorrectAuthNum] = useState(false);
   const [inputborder, setInputBorder] = useState(false);
   const [token, setToken] = useState({});
-  const navigate = useNavigate();
+  const [postAuthNum, setPostAuthNum] = useState<IPostVerifyPhoneNumber>({
+    code: "",
+    phoneNumber: postPhoneNum.phoneNumber,
+  });
+
+  useEffect(() => {
+    if (postAuthNum.code === "") return;
+    verifyAuthNum(postAuthNum);
+  }, [postAuthNum]);
 
   useEffect(() => {
     console.log(token);
@@ -49,11 +57,26 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     }
   };
 
+  const checkAuthNumLength = (authNum: string) => {
+    //인증번호 길이 확인해 label글자색, nextBtn 색 변화
+    if (authNum.length === 6) {
+      setPostAuthNum({ ...postAuthNum, code: authNum });
+      setInputActive(false);
+    } else setInputActive(true);
+  };
+
+  const handleAuthNum = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // 인증번호 handle 함수 -input에 숫자만 입력가능케하는 정규식
+    setAuthNum(e.target.value.replace(/[^0-9]/g, ""));
+    checkAuthNumLength(authNum);
+  };
+
   const verifyAuthNum = async (postAuthNum: IPostVerifyPhoneNumber) => {
     // 인증번호 확인 서버에 POST
     const userData = await postSmsVerify(postAuthNum);
     userData && setToken(userData);
     setCorrectAuthNum(true);
+    setInputBorder(true);
   };
 
   return (
@@ -71,10 +94,9 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           count={count}
           setCount={setCount}
           authNum={authNum}
-          setAuthNum={setAuthNum}
-          postPhoneNum={postPhoneNum}
           inputborder={inputborder}
-          verifyAuthNum={verifyAuthNum}
+          handleAuthNum={handleAuthNum}
+          checkAuthNumLength={checkAuthNumLength}
         />
         <ResendAuthNumBtn resendAuthNum={resendAuthNum} />
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
