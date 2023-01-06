@@ -1,3 +1,4 @@
+import { ITokenType } from "../../types/member";
 import { Modal } from "../@common";
 import PolicyModal from "./PolicyModal";
 
@@ -10,11 +11,23 @@ export interface AuthModalProps {
   closeModal: () => void;
   correctAuthNum: boolean;
   setInputBorder: React.Dispatch<React.SetStateAction<boolean>>;
+  token: ITokenType;
+  setToken: React.Dispatch<React.SetStateAction<ITokenType>>;
 }
 
 export default function AuthModal(props: AuthModalProps) {
-  const { inputActive, setInputActive, count, setCount, resendAuthNum, closeModal, correctAuthNum, setInputBorder } =
-    props;
+  const {
+    inputActive,
+    setInputActive,
+    count,
+    setCount,
+    resendAuthNum,
+    closeModal,
+    correctAuthNum,
+    setInputBorder,
+    token,
+    setToken,
+  } = props;
 
   return (
     <>
@@ -29,7 +42,7 @@ export default function AuthModal(props: AuthModalProps) {
           closeModal={closeModal}
         />
       ) : correctAuthNum ? (
-        <PolicyModal setInputActive={setInputActive} />
+        <PolicyModal setInputActive={setInputActive} token={token} setToken={setToken} />
       ) : (
         <Modal
           title={"인증번호를 확인해줘"}

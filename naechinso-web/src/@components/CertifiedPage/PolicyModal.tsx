@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { postMemberJoin } from "../../apis/member.api";
 import { IcAllChecked, IcAllUnChecked, IcChecked, IcUnChecked } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
+import { IPostPolicy, ITokenType } from "../../types/member";
 import NextPageBtn from "../@common/MoveNextPageBtn";
 
 export interface PolicyModalProps {
   setInputActive: React.Dispatch<React.SetStateAction<boolean>>;
+  token: ITokenType;
+  setToken: React.Dispatch<React.SetStateAction<ITokenType>>;
 }
 
 export default function PolicyModal(props: PolicyModalProps) {
+  const { setInputActive, token, setToken } = props;
   const [allChecked, setAllChecked] = useState(false);
   const [policy, setPolicy] = useState([
     { id: "acceptsService", title: "서비스 이용약관전체동의", checked: false },
@@ -18,10 +23,18 @@ export default function PolicyModal(props: PolicyModalProps) {
     { id: "acceptsMarketing", title: "마케팅 정보 수신 동의(선택)", checked: false },
   ]);
   const [startActive, setStartActive] = useState(true);
+  const [postPolicy, setPostPolicy] = useState({
+    acceptsInfo: false,
+    acceptsReligion: false,
+    acceptsService: false,
+    acceptsLocation: false,
+    acceptsMarketing: false,
+  });
 
   useEffect(() => {
     checkConfirmation();
   }, [policy]);
+
   const checkConfirmation = () => {
     // 조건에 따른 내친소 시작 버튼 활성화
     policy.forEach((el) => {
@@ -49,6 +62,12 @@ export default function PolicyModal(props: PolicyModalProps) {
       return p;
     });
     setPolicy(newPolicy);
+  };
+
+  const checkedPolicy = async (postPolicy: IPostPolicy) => {
+    //  체크한 이용약관 POST
+    const userData = await postMemberJoin(postPolicy, token.registerToken);
+    userData && setToken(userData);
   };
 
   return (

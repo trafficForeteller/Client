@@ -18,8 +18,10 @@ export const postSmsSend = async (phoneNumberData: IPostPhoneNumber): Promise<vo
   }
 };
 
-export const postSmsVerify = async (AuthNumberData: IPostVerifyPhoneNumber): Promise<void | null> => {
-  const { data } = await serverAxios.post(`${PREFIX_URL}/verify`, AuthNumberData);
+export const postSmsVerify = async (authNumberData: IPostVerifyPhoneNumber): Promise<void | null> => {
+  const { data } = await serverAxios.post(`${PREFIX_URL}/verify`, authNumberData, {
+    headers: { "Content-Type": "application/json" },
+  });
 
   try {
     if (data.status === 200) {

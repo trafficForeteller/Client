@@ -24,7 +24,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const [resendMessage, setResendMessage] = useState("");
   const [correctAuthNum, setCorrectAuthNum] = useState(false);
   const [inputborder, setInputBorder] = useState(false);
-  const [token, setToken] = useState({});
+  const [token, setToken] = useState({ registerToken: "", accessToken: "" });
   const [postAuthNum, setPostAuthNum] = useState<IPostVerifyPhoneNumber>({
     code: "",
     phoneNumber: postPhoneNum.phoneNumber,
@@ -38,7 +38,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
 
   useEffect(() => {
     console.log(token);
-    if ("accessToken" in token) navigate("/recommend/landing");
+    if (!token["accessToken"]) navigate("/recommend/landing");
   }, [token]);
 
   const closeModal = () => {
@@ -116,6 +116,8 @@ export default function CertifiedPage(props: CertifiedPageProps) {
         closeModal={closeModal}
         correctAuthNum={correctAuthNum}
         setInputBorder={setInputBorder}
+        token={token}
+        setToken={setToken}
       />
     </St.AutorizePage>
   );
