@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { IcAllChecked, IcAllUnChecked, IcChecked, IcUnChecked } from "../../asset/icons";
@@ -6,32 +6,49 @@ import { routePaths } from "../../core/routes/path";
 import NextPageBtn from "../@common/MoveNextPageBtn";
 
 export interface PolicyModalProps {
-  inputActive: boolean;
+  setInputActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function PolicyModal(props: PolicyModalProps) {
-  const { inputActive } = props;
+  const { setInputActive } = props;
   const [allChecked, setAllChecked] = useState(false);
   const [policy, setPolicy] = useState([
-    { title: "서비스 이용약관전체동의", checked: false },
-    { title: "개인정보 처리 동의", checked: false },
-    { title: "종교정보 제공 동의", checked: false },
-    { title: "마케팅 정보 수신 동의(선택)", checked: false },
+    { id: "acceptsService", title: "서비스 이용약관전체동의", checked: false },
+    { id: "accpetsInfo", title: "개인정보 처리 동의", checked: false },
+    { id: "acceptsReligion", title: "종교정보 제공 동의", checked: false },
+    { id: "acceptsMarketing", title: "마케팅 정보 수신 동의(선택)", checked: false },
   ]);
+  const [startActive, setStartActive] = useState(true);
 
   useEffect(() => {
-    // 전체동의 클릭 시 모든 항목 동의||비동의
-    // if (allChecked) setChecked(true);
-    // else setChecked(false);
-  }, [allChecked]);
+    checkConfirmation();
+    console.log(policy);
+  }, [policy]);
 
-  const toggleAllcheck = () => {
-    setAllChecked(!allChecked);
+  const checkConfirmation = () => {
+    // 조건에 따른 내친소 시작 버튼 활성화
+    policy.forEach((el) => {
+      if (el.id === "acceptsMarketing") return;
+      else if (el.checked === false) return setStartActive(true);
+      else return setStartActive(false);
+    });
   };
 
-  const toggleCheck = (id: number) => {
+  const toggleAllcheck = () => {
+    // 전체동의 클릭 시 토글
+    setAllChecked(!allChecked);
+    const newPolicy = policy.map((p) => {
+      p.checked = !allChecked;
+      return p;
+    });
+    setPolicy(newPolicy);
+  };
+
+  const toggleCheck = (idx: number) => {
+    // 항목별 체크
     const newPolicy = policy.map((p, index) => {
-      if (id === index) p.checked = !p.checked;
+      if (idx === index) p.checked = !p.checked;
+      if (!p.checked) setAllChecked(false);
       return p;
     });
     setPolicy(newPolicy);
@@ -45,10 +62,10 @@ export default function PolicyModal(props: PolicyModalProps) {
         <St.AllCheck>내친소 이용약관에 모두 동의하기</St.AllCheck>
       </St.AllCheckWrapper>
       <St.CheckContainer>
-        {policy.map((i, id) => {
+        {policy.map((i, idx) => {
           return (
-            <St.CheckBox key={i.title}>
-              <St.CheckWrapper type="button" onClick={() => toggleCheck(id)}>
+            <St.CheckBox key={i.id}>
+              <St.CheckWrapper type="button" onClick={() => toggleCheck(idx)}>
                 <St.IcCheckWrapper>{i.checked ? <IcChecked /> : <IcUnChecked />}</St.IcCheckWrapper>
                 <St.Check>{i.title}</St.Check>
               </St.CheckWrapper>
@@ -60,7 +77,7 @@ export default function PolicyModal(props: PolicyModalProps) {
         })}
       </St.CheckContainer>
 
-      <NextPageBtn nextPage={routePaths.Accept} title={"내친소 시작하기"} inputActive={inputActive} />
+      <NextPageBtn nextPage={routePaths.Accept} title={"내친소 시작하기"} inputActive={startActive} />
     </St.Modal>
   );
 }
