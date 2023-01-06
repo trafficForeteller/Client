@@ -13,11 +13,11 @@ export interface AuthenticationNumProps {
   authNum: string;
   setAuthNum: React.Dispatch<React.SetStateAction<string>>;
   postPhoneNum: IPostPhoneNumber;
-  correctAuthNum: boolean;
+  inputborder: boolean;
 }
 
 export default function AuthenticationNumInput(props: AuthenticationNumProps) {
-  const { inputActive, setInputActive, count, setCount, authNum, setAuthNum, postPhoneNum, correctAuthNum } = props;
+  const { inputActive, setInputActive, count, setCount, authNum, setAuthNum, postPhoneNum, inputborder } = props;
   const [postAuthNum, setPostAuthNum] = useState<IPostVerifyPhoneNumber>({
     code: "",
     phoneNumber: postPhoneNum.phoneNumber,
@@ -60,11 +60,9 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
   };
 
   return (
-    <St.AuthenticationNumInputBox correctAuthNum={correctAuthNum}>
+    <St.AuthenticationNumInputBox inputborder={inputborder}>
       <St.LabelWrapper>
-        <St.Label inputActive={inputActive} correctAuthNum={correctAuthNum}>
-          인증번호
-        </St.Label>
+        <St.Label inputActive={inputActive}>인증번호</St.Label>
         <TimeLimit inputActive={inputActive} setInputActive={setInputActive} count={count} setCount={setCount} />
       </St.LabelWrapper>
 
@@ -80,10 +78,10 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
 }
 
 const St = {
-  AuthenticationNumInputBox: styled.section<{ correctAuthNum: boolean }>`
+  AuthenticationNumInputBox: styled.section<{ inputborder: boolean }>`
     width: 33.5rem;
     height: 8rem;
-    border: 1px solid ${({ theme, correctAuthNum }) => (correctAuthNum ? "transparent" : theme.colors.error)};
+    border: 2px solid ${({ theme, inputborder }) => (inputborder ? theme.colors.error : "transparent")};
     border-radius: 1.6rem;
     background-color: ${({ theme }) => theme.colors.neural};
     padding: 1rem 2rem 1.6rem;
@@ -93,7 +91,7 @@ const St = {
     align-items: center;
     gap: 1rem;
   `,
-  Label: styled.p<{ inputActive: boolean; correctAuthNum: boolean }>`
+  Label: styled.p<{ inputActive: boolean }>`
     color: ${({ theme, inputActive }) => (inputActive ? theme.colors.orange : theme.colors.black40)};
     ${({ theme }) => theme.fonts.body2};
   `,

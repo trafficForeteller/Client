@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 
 export interface ModalProps {
@@ -7,15 +8,23 @@ export interface ModalProps {
   closeModal: () => void;
   resendAuthNum?: () => void;
   setCorrectAuthNum?: React.Dispatch<React.SetStateAction<boolean>>;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+  setInputBorder?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export default function Modal(props: ModalProps) {
-  const { title, desc, button, resendAuthNum, closeModal, setCorrectAuthNum } = props;
+  const { title, desc, button, resendAuthNum, closeModal, setCorrectAuthNum, setCount, setInputBorder } = props;
+
+  useEffect(() => {
+    setCount(-1);
+  }, []);
+
   const handleModal = () => {
     if (resendAuthNum) {
       resendAuthNum();
       closeModal();
-    } else if (setCorrectAuthNum) {
+    } else if (setCorrectAuthNum && setInputBorder) {
       setCorrectAuthNum(false);
+      setInputBorder(true);
       closeModal();
     }
   };

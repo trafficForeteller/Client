@@ -7,10 +7,11 @@ import NextPageBtn from "../@common/MoveNextPageBtn";
 
 export interface PolicyModalProps {
   setInputActive: React.Dispatch<React.SetStateAction<boolean>>;
+  closeModal: () => void;
 }
 
 export default function PolicyModal(props: PolicyModalProps) {
-  const { setInputActive } = props;
+  const { closeModal } = props;
   const [allChecked, setAllChecked] = useState(false);
   const [policy, setPolicy] = useState([
     { id: "acceptsService", title: "서비스 이용약관전체동의", checked: false },
@@ -22,8 +23,9 @@ export default function PolicyModal(props: PolicyModalProps) {
 
   useEffect(() => {
     checkConfirmation();
-    console.log(policy);
   }, [policy]);
+
+  useEffect(() => closeModal());
 
   const checkConfirmation = () => {
     // 조건에 따른 내친소 시작 버튼 활성화

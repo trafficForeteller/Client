@@ -25,11 +25,14 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const [count, setCount] = useState(180);
   const [authNum, setAuthNum] = useState("");
   const [resendMessage, setResendMessage] = useState("");
-  const [correctAuthNum, setCorrectAuthNum] = useState(true);
+  const [correctAuthNum, setCorrectAuthNum] = useState(false);
+  const [inputborder, setInputBorder] = useState(false);
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (correctAuthNum) navigate(routePaths.Accept);
-  // }, [correctAuthNum]);
+  useEffect(() => {
+    if (correctAuthNum) navigate(routePaths.Accept);
+    setInputBorder(false);
+  }, [correctAuthNum]);
 
   const closeModal = () => {
     // 모달 닫기
@@ -63,7 +66,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           authNum={authNum}
           setAuthNum={setAuthNum}
           postPhoneNum={postPhoneNum}
-          correctAuthNum={correctAuthNum}
+          inputborder={inputborder}
         />
         <ResendAuthNumBtn resendAuthNum={resendAuthNum} />
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
@@ -74,8 +77,8 @@ export default function CertifiedPage(props: CertifiedPageProps) {
         inputActive={inputActive}
         correctAuthNum={correctAuthNum}
       />
-      <PolicyModal setInputActive={setInputActive} />
-      {/* {inputActive ? (
+
+      {inputActive ? (
         <></>
       ) : count === 0 ? (
         <Modal
@@ -84,9 +87,10 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           button={"다시 받기"}
           resendAuthNum={resendAuthNum}
           closeModal={closeModal}
+          setCount={setCount}
         />
       ) : correctAuthNum ? (
-        <PolicyModal />
+        <PolicyModal setInputActive={setInputActive} closeModal={closeModal} />
       ) : (
         <Modal
           title={"인증번호를 확인해줘"}
@@ -94,15 +98,17 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           button={"확인"}
           closeModal={closeModal}
           setCorrectAuthNum={setCorrectAuthNum}
+          setCount={setCount}
+          setInputBorder={setInputBorder}
         />
-      )} */}
+      )}
     </St.AutorizePage>
   );
 }
 
 const St = {
   AutorizePage: styled.main<{ inputActive: boolean }>`
-    background-color: rgba(${({ inputActive }) => (inputActive ? "0, 0, 0, 0.64" : "0, 0, 0, 0.64")});
+    background-color: rgba(${({ inputActive }) => (inputActive ? "" : "0, 0, 0, 0.64")});
     position: absolute;
     left: 0;
     top: 0;
