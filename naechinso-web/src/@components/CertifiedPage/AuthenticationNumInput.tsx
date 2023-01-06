@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { postSmsVerify } from "../../apis/sms.api";
 import { IPostPhoneNumber, IPostVerifyPhoneNumber } from "../../types/sms";
 import TimeLimit from "./TimeLimit";
 
@@ -14,7 +13,7 @@ export interface AuthenticationNumProps {
   setAuthNum: React.Dispatch<React.SetStateAction<string>>;
   postPhoneNum: IPostPhoneNumber;
   inputborder: boolean;
-  setCorrectAuthNum: React.Dispatch<React.SetStateAction<boolean>>;
+  verifyAuthNum: (postAuthNum: IPostVerifyPhoneNumber) => Promise<void>;
 }
 
 export default function AuthenticationNumInput(props: AuthenticationNumProps) {
@@ -27,13 +26,12 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
     setAuthNum,
     postPhoneNum,
     inputborder,
-    setCorrectAuthNum,
+    verifyAuthNum,
   } = props;
   const [postAuthNum, setPostAuthNum] = useState<IPostVerifyPhoneNumber>({
     code: "",
     phoneNumber: postPhoneNum.phoneNumber,
   });
-  const [data, setData] = useState({});
 
   useEffect(() => {
     checkAuthNumLength(authNum);
@@ -41,12 +39,8 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
 
   useEffect(() => {
     if (postAuthNum.code === "") return;
-    verifyAuthNum();
+    verifyAuthNum(postAuthNum);
   }, [postAuthNum]);
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   const checkAuthNumLength = (authNum: string) => {
     //인증번호 길이 확인해 label글자색, nextBtn 색 변화
@@ -60,13 +54,6 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
     // 인증번호 handle 함수 -input에 숫자만 입력가능케하는 정규식
     setAuthNum(e.target.value.replace(/[^0-9]/g, ""));
     checkAuthNumLength(authNum);
-  };
-
-  const verifyAuthNum = async () => {
-    // 인증번호 확인 서버에 POST
-    const userData = await postSmsVerify(postAuthNum);
-    userData && setData(userData);
-    setCorrectAuthNum(true);
   };
 
   return (

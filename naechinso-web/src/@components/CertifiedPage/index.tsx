@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { postSmsVerify } from "../../apis/sms.api";
 import { routePaths } from "../../core/routes/path";
-import { IPostPhoneNumber } from "../../types/sms";
+import { IPostPhoneNumber, IPostVerifyPhoneNumber } from "../../types/sms";
 import Modal from "../@common/Modal";
 import NextPageBtn from "../@common/MoveNextPageBtn";
 import PreviousPageBtn from "../@common/MovePreviousPageBtn";
@@ -27,7 +27,12 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const [resendMessage, setResendMessage] = useState("");
   const [correctAuthNum, setCorrectAuthNum] = useState(false);
   const [inputborder, setInputBorder] = useState(false);
+  const [token, setToken] = useState({});
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(token);
+  }, [token]);
 
   const closeModal = () => {
     // 모달 닫기
@@ -42,6 +47,13 @@ export default function CertifiedPage(props: CertifiedPageProps) {
       sendSms();
       setResendMessage("인증번호를 다시 보냈어!");
     }
+  };
+
+  const verifyAuthNum = async (postAuthNum: IPostVerifyPhoneNumber) => {
+    // 인증번호 확인 서버에 POST
+    const userData = await postSmsVerify(postAuthNum);
+    userData && setToken(userData);
+    setCorrectAuthNum(true);
   };
 
   return (
@@ -62,7 +74,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           setAuthNum={setAuthNum}
           postPhoneNum={postPhoneNum}
           inputborder={inputborder}
-          setCorrectAuthNum={setCorrectAuthNum}
+          verifyAuthNum={verifyAuthNum}
         />
         <ResendAuthNumBtn resendAuthNum={resendAuthNum} />
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
