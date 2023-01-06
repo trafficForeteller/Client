@@ -5,10 +5,7 @@ import styled from "styled-components";
 import { postSmsVerify } from "../../apis/sms.api";
 import { routePaths } from "../../core/routes/path";
 import { IPostPhoneNumber, IPostVerifyPhoneNumber } from "../../types/sms";
-import Modal from "../@common/Modal";
-import NextPageBtn from "../@common/MoveNextPageBtn";
-import PreviousPageBtn from "../@common/MovePreviousPageBtn";
-import Title from "../@common/Title";
+import { Modal, MoveNextPageBtn, MovePreviousPageBtn, Title } from "../@common";
 import AuthenticationNumInput from "./AuthenticationNumInput";
 import PolicyModal from "./PolicyModal";
 import ResendAuthNumBtn from "./ResendAuthNumBtn";
@@ -32,6 +29,8 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     code: "",
     phoneNumber: postPhoneNum.phoneNumber,
   });
+  const [hasAccessToken, setHasAccessToken] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (postAuthNum.code === "") return;
@@ -40,7 +39,13 @@ export default function CertifiedPage(props: CertifiedPageProps) {
 
   useEffect(() => {
     console.log(token);
+    if ("registerToken" in token) setHasAccessToken(false);
+    else if ("accessToken" in token) setHasAccessToken(true);
   }, [token]);
+
+  useEffect(() => {
+    if (hasAccessToken) navigate("/recommend/landing");
+  }, [hasAccessToken]);
 
   const closeModal = () => {
     // 모달 닫기
@@ -76,12 +81,12 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     const userData = await postSmsVerify(postAuthNum);
     userData && setToken(userData);
     setCorrectAuthNum(true);
-    setInputBorder(true);
+    setInputBorder(false);
   };
 
   return (
     <St.AutorizePage inputActive={inputActive}>
-      <PreviousPageBtn />
+      <MovePreviousPageBtn />
       <St.PageTop>
         <Title title={"📩"} />
         <Title title={"방금 보낸 "} />
@@ -101,7 +106,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
         <ResendAuthNumBtn resendAuthNum={resendAuthNum} />
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
       </St.AuthNumWrapper>
-      <NextPageBtn
+      <MoveNextPageBtn
         nextPage={routePaths.Accept}
         title={"완료"}
         inputActive={inputActive}
@@ -117,7 +122,6 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           button={"다시 받기"}
           resendAuthNum={resendAuthNum}
           closeModal={closeModal}
-          setCount={setCount}
         />
       ) : correctAuthNum ? (
         <PolicyModal setInputActive={setInputActive} />

@@ -9,7 +9,7 @@ export interface NextPageBtnProps {
   correctAuthNum?: boolean;
 }
 
-export default function NextPageBtn(props: NextPageBtnProps) {
+export default function MoveNextPageBtn(props: NextPageBtnProps) {
   const { nextPage, title, inputActive, sendSms } = props;
   const navigate = useNavigate();
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { IcPreviousBtn } from "../../asset/icons";
 
-export default function PreviousPageBtn() {
+export default function MovePreviousPageBtn() {
   const navigate = useNavigate();
 
   function movePreviousPage() {
