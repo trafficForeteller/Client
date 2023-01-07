@@ -34,15 +34,11 @@ export default function PolicyModal(props: PolicyModalProps) {
   useEffect(() => {
     checkConfirmation();
     handlePolicy();
+    setAllChecked(policyList.every(isAllPolicyChecked));
   }, [policyList]);
 
   const checkConfirmation = () => {
     // 조건에 따른 내친소 시작 버튼 활성화
-    // policyList.forEach((el) => {
-    //   if (el.policyName === "acceptsMarketing") return;
-    //   else if (el.checked === false) return setStartActive(true);
-    //   else return setStartActive(false);
-    // });
     const newPolicyList = [...policyList];
     for (let i = 0; i < newPolicyList.length; i++) {
       if (newPolicyList[i].policyName === "acceptsMarketing") {
@@ -53,6 +49,7 @@ export default function PolicyModal(props: PolicyModalProps) {
     setStartActive(!newPolicyList.every(isAllPolicyChecked));
   };
 
+  // 배열에 모든 게 체크되어있는지 확인
   const isAllPolicyChecked = (item: { checked: boolean }) => item.checked === true;
 
   const toggleAllcheck = () => {
@@ -69,7 +66,6 @@ export default function PolicyModal(props: PolicyModalProps) {
     // 항목별 체크
     const newPolicy = policyList.map((p, index) => {
       if (idx === index) p.checked = !p.checked;
-      if (!p.checked) setAllChecked(false);
       return p;
     });
     setPolicyList(newPolicy);
