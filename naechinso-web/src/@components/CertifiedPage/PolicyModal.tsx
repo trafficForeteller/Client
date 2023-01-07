@@ -33,6 +33,7 @@ export default function PolicyModal(props: PolicyModalProps) {
   useEffect(() => {
     checkConfirmation();
     setAllChecked(policyList.every(isAllPolicyChecked));
+    console.log(policyList);
   }, [policyList]);
 
   useEffect(() => {
@@ -74,7 +75,7 @@ export default function PolicyModal(props: PolicyModalProps) {
   };
 
   const handlePolicy = () => {
-    // 내친소 시작하기 클릭 시 postPolicy에 체크한 이용약관 담아 POST
+    // 내친소 시작하기 클릭 시 postPolicy 객체 변환하여 담아 POST
     const isAgreedList = policyList.map((policyItem) => {
       return { [policyItem.policyName]: policyItem.checked };
     });
@@ -86,7 +87,6 @@ export default function PolicyModal(props: PolicyModalProps) {
     //  체크한 이용약관 POST
     const userData = await postMemberJoin(postPolicyList, token.registerToken);
     userData && setToken(userData);
-    console.log(token);
   };
 
   return (
@@ -111,14 +111,14 @@ export default function PolicyModal(props: PolicyModalProps) {
           );
         })}
       </St.CheckContainer>
-
-      <NextPageBtn
-        nextPage={routePaths.RecommendLanding}
-        title={"내친소 시작하기"}
-        inputActive={startActive}
-        onClick={() => handlePolicy()}
-        state={token}
-      />
+      <button onClick={() => handlePolicy()}>
+        <NextPageBtn
+          nextPage={routePaths.RecommendLanding}
+          title={"내친소 시작하기"}
+          inputActive={startActive}
+          state={token}
+        />
+      </button>
     </St.Modal>
   );
 }
