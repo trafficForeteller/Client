@@ -16,14 +16,14 @@ export interface PolicyModalProps {
 export default function PolicyModal(props: PolicyModalProps) {
   const { setInputActive, token, setToken } = props;
   const [allChecked, setAllChecked] = useState(false);
-  const [policy, setPolicy] = useState([
-    { id: "acceptsService", title: "서비스 이용약관전체동의", checked: false },
-    { id: "accpetsInfo", title: "개인정보 처리 동의", checked: false },
-    { id: "acceptsReligion", title: "종교정보 제공 동의", checked: false },
-    { id: "acceptsMarketing", title: "마케팅 정보 수신 동의(선택)", checked: false },
+  const [policyList, setPolicyList] = useState([
+    { policyName: "acceptsService", title: "서비스 이용약관전체동의", checked: false },
+    { policyName: "accpetsInfo", title: "개인정보 처리 동의", checked: false },
+    { policyName: "acceptsReligion", title: "종교정보 제공 동의", checked: false },
+    { policyName: "acceptsMarketing", title: "마케팅 정보 수신 동의(선택)", checked: false },
   ]);
   const [startActive, setStartActive] = useState(true);
-  const [postPolicy, setPostPolicy] = useState({
+  const [postPolicyList, setPostPolicyList] = useState({
     acceptsInfo: false,
     acceptsReligion: false,
     acceptsService: false,
@@ -33,12 +33,13 @@ export default function PolicyModal(props: PolicyModalProps) {
 
   useEffect(() => {
     checkConfirmation();
-  }, [policy]);
+    handlePolicy();
+  }, [policyList]);
 
   const checkConfirmation = () => {
     // 조건에 따른 내친소 시작 버튼 활성화
-    policy.forEach((el) => {
-      if (el.id === "acceptsMarketing") return;
+    policyList.forEach((el) => {
+      if (el.policyName === "acceptsMarketing") return;
       else if (el.checked === false) return setStartActive(true);
       else return setStartActive(false);
     });
@@ -47,26 +48,34 @@ export default function PolicyModal(props: PolicyModalProps) {
   const toggleAllcheck = () => {
     // 전체동의 클릭 시 토글
     setAllChecked(!allChecked);
-    const newPolicy = policy.map((p) => {
+    const newPolicy = policyList.map((p) => {
       p.checked = !allChecked;
       return p;
     });
-    setPolicy(newPolicy);
+    setPolicyList(newPolicy);
   };
 
   const toggleCheck = (idx: number) => {
     // 항목별 체크
-    const newPolicy = policy.map((p, index) => {
+    const newPolicy = policyList.map((p, index) => {
       if (idx === index) p.checked = !p.checked;
       if (!p.checked) setAllChecked(false);
       return p;
     });
-    setPolicy(newPolicy);
+    setPolicyList(newPolicy);
   };
 
-  const checkedPolicy = async (postPolicy: IPostPolicy) => {
+  const handlePolicy = () => {
+    // 내친소 시작하기 클릭 시 postPolicy에 체크한 이용약관 담아 POST
+    const isAgreedList = policyList.map((policyItem) => {
+      return { [policyItem.policyName]: policyItem.checked };
+    });
+    console.log(isAgreedList);
+  };
+
+  const checkedPolicy = async (postPolicyList: IPostPolicy) => {
     //  체크한 이용약관 POST
-    const userData = await postMemberJoin(postPolicy, token.registerToken);
+    const userData = await postMemberJoin(postPolicyList, token.registerToken);
     userData && setToken(userData);
   };
 
@@ -78,9 +87,9 @@ export default function PolicyModal(props: PolicyModalProps) {
         <St.AllCheck>내친소 이용약관에 모두 동의하기</St.AllCheck>
       </St.AllCheckWrapper>
       <St.CheckContainer>
-        {policy.map((i, idx) => {
+        {policyList.map((i, idx) => {
           return (
-            <St.CheckBox key={i.id}>
+            <St.CheckBox key={i.policyName}>
               <St.CheckWrapper type="button" onClick={() => toggleCheck(idx)}>
                 <St.IcCheckWrapper>{i.checked ? <IcChecked /> : <IcUnChecked />}</St.IcCheckWrapper>
                 <St.Check>{i.title}</St.Check>

@@ -38,7 +38,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
 
   useEffect(() => {
     console.log(token);
-    if (!token["accessToken"]) navigate("/recommend/landing");
+    if (token["accessToken"]) navigate("/recommend/landing");
   }, [token]);
 
   const closeModal = () => {
