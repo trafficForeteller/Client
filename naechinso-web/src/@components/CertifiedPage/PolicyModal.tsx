@@ -38,12 +38,22 @@ export default function PolicyModal(props: PolicyModalProps) {
 
   const checkConfirmation = () => {
     // 조건에 따른 내친소 시작 버튼 활성화
-    policyList.forEach((el) => {
-      if (el.policyName === "acceptsMarketing") return;
-      else if (el.checked === false) return setStartActive(true);
-      else return setStartActive(false);
-    });
+    // policyList.forEach((el) => {
+    //   if (el.policyName === "acceptsMarketing") return;
+    //   else if (el.checked === false) return setStartActive(true);
+    //   else return setStartActive(false);
+    // });
+    const newPolicyList = [...policyList];
+    for (let i = 0; i < newPolicyList.length; i++) {
+      if (newPolicyList[i].policyName === "acceptsMarketing") {
+        newPolicyList.splice(i, 1);
+        i--;
+      }
+    }
+    setStartActive(!newPolicyList.every(isAllPolicyChecked));
   };
+
+  const isAllPolicyChecked = (item: { checked: boolean }) => item.checked === true;
 
   const toggleAllcheck = () => {
     // 전체동의 클릭 시 토글
