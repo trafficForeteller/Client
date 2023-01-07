@@ -109,7 +109,6 @@ export default function CertifiedPage(props: CertifiedPageProps) {
 
       <AuthModal
         inputActive={inputActive}
-        setInputActive={setInputActive}
         count={count}
         setCount={setCount}
         resendAuthNum={resendAuthNum}

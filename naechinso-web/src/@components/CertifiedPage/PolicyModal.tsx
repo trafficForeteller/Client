@@ -8,13 +8,12 @@ import { IPostPolicy, ITokenType } from "../../types/member";
 import NextPageBtn from "../@common/MoveNextPageBtn";
 
 export interface PolicyModalProps {
-  setInputActive: React.Dispatch<React.SetStateAction<boolean>>;
   token: ITokenType;
   setToken: React.Dispatch<React.SetStateAction<ITokenType>>;
 }
 
 export default function PolicyModal(props: PolicyModalProps) {
-  const { setInputActive, token, setToken } = props;
+  const { token, setToken } = props;
   const [allChecked, setAllChecked] = useState(false);
   const [policyList, setPolicyList] = useState([
     { policyName: "acceptsService", title: "서비스 이용약관전체동의", checked: false },
@@ -76,7 +75,8 @@ export default function PolicyModal(props: PolicyModalProps) {
     const isAgreedList = policyList.map((policyItem) => {
       return { [policyItem.policyName]: policyItem.checked };
     });
-    console.log(isAgreedList);
+    setPostPolicyList(Object.assign({}, ...isAgreedList, { acceptsLocation: false }));
+    console.log(postPolicyList);
   };
 
   const checkedPolicy = async (postPolicyList: IPostPolicy) => {
