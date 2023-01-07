@@ -1,21 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { ITokenType } from "../../types/member";
+
 export interface NextPageBtnProps {
   nextPage: string;
   title: string;
   inputActive: boolean;
   sendSms?: () => Promise<void>;
   correctAuthNum?: boolean;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  state?: ITokenType;
 }
 
 export default function MoveNextPageBtn(props: NextPageBtnProps) {
-  const { nextPage, title, inputActive, sendSms } = props;
+  const { nextPage, title, inputActive, sendSms, state } = props;
   const navigate = useNavigate();
 
   const goNextPage = () => {
     if (sendSms) sendSms();
-    navigate(`${nextPage}`);
+    navigate(`${nextPage}`, { state: { state: `${state}` } });
   };
 
   return (
