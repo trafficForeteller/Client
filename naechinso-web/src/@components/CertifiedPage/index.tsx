@@ -37,7 +37,6 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   }, [postAuthNum]);
 
   useEffect(() => {
-    console.log(token);
     if (token["accessToken"]) navigate("/recommend/landing");
   }, [token]);
 

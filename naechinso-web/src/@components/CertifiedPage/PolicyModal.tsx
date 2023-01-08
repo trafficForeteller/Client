@@ -17,7 +17,7 @@ export default function PolicyModal(props: PolicyModalProps) {
   const [allChecked, setAllChecked] = useState(false);
   const [policyList, setPolicyList] = useState([
     { policyName: "acceptsService", title: "서비스 이용약관전체동의", checked: false },
-    { policyName: "accpetsInfo", title: "개인정보 처리 동의", checked: false },
+    { policyName: "acceptsInfo", title: "개인정보 처리 동의", checked: false },
     { policyName: "acceptsReligion", title: "종교정보 제공 동의", checked: false },
     { policyName: "acceptsMarketing", title: "마케팅 정보 수신 동의(선택)", checked: false },
   ]);
@@ -33,12 +33,12 @@ export default function PolicyModal(props: PolicyModalProps) {
   useEffect(() => {
     checkConfirmation();
     setAllChecked(policyList.every(isAllPolicyChecked));
-    console.log(policyList);
+    changePolicyType();
   }, [policyList]);
 
   useEffect(() => {
-    console.log("postPolicyList", postPolicyList);
-  }, [postPolicyList]);
+    console.log(postPolicyList);
+  });
 
   const checkConfirmation = () => {
     // 조건에 따른 내친소 시작 버튼 활성화
@@ -74,17 +74,16 @@ export default function PolicyModal(props: PolicyModalProps) {
     setPolicyList(newPolicy);
   };
 
-  const handlePolicy = () => {
-    // 내친소 시작하기 클릭 시 postPolicy 객체 변환하여 담아 POST
+  const changePolicyType = () => {
+    // 서버에서 원하는 객체 형태로  postPolicy 변환하여 담아 POST
     const isAgreedList = policyList.map((policyItem) => {
       return { [policyItem.policyName]: policyItem.checked };
     });
     setPostPolicyList(Object.assign({}, ...isAgreedList, { acceptsLocation: false }));
-    checkedPolicy(postPolicyList);
   };
 
-  const checkedPolicy = async (postPolicyList: IPostPolicy) => {
-    //  체크한 이용약관 POST
+  const handlePolicy = async () => {
+    //  내친소 시작하기 클릭 시 체크한 이용약관 POST
     const userData = await postMemberJoin(postPolicyList, token.registerToken);
     userData && setToken(userData);
   };

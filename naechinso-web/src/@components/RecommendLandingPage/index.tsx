@@ -6,8 +6,8 @@ export default function RecommendLandingPage() {
   const { token } = location.state;
 
   useEffect(() => {
-    console.log("token", token);
-  }, [token]);
+    if (token) console.log("token", token);
+  }, []);
 
   return <div>RecommendLandingPage</div>;
 }
