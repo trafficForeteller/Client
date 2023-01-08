@@ -110,14 +110,14 @@ export default function PolicyModal(props: PolicyModalProps) {
           );
         })}
       </St.CheckContainer>
-      <button onClick={() => handlePolicy()}>
+      <St.NextButton onClick={() => handlePolicy()}>
         <NextPageBtn
           nextPage={routePaths.RecommendLanding}
           title={"내친소 시작하기"}
           inputActive={startActive}
           state={token}
         />
-      </button>
+      </St.NextButton>
     </St.Modal>
   );
 }
@@ -197,4 +197,5 @@ const St = {
     ${({ theme }) => theme.fonts.body2};
     z-index: 3;
   `,
+  NextButton: styled.span``,
 };
