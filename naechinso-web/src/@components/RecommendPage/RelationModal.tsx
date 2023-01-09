@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { IcRelationChecked } from "../../asset/icons";
@@ -10,15 +11,30 @@ export interface RelationModalProps {
 
 export default function RelationModal(props: RelationModalProps) {
   const { question, relationArr } = props;
+  const [relationList, setRelationList] = useState(relationArr);
+
+  useEffect(() => {
+    console.log(relationList);
+  }, [relationList]);
+
+  const toggleCheck = (id: number) => {
+    // 항목별 체크
+    const newRelationList = relationList.map((el, index) => {
+      if (id === index) el.checked = true;
+      else el.checked = false;
+      return el;
+    });
+    setRelationList(newRelationList);
+  };
+
   return (
     <St.RelationModal>
       <St.Question>{question}</St.Question>
-      {relationArr.map((el) => {
-        console.log(el.checked);
+      {relationList.map((el) => {
         return (
-          <St.Relation type="button" key={el.id}>
+          <St.Relation type="button" key={el.id} onClick={() => toggleCheck(el.id)}>
             {el.relation}
-            {`${el.checked}` ? <IcRelationChecked /> : <></>}
+            <St.CheckedWrapper>{el.checked ? <IcRelationChecked /> : <></>}</St.CheckedWrapper>
           </St.Relation>
         );
       })}
@@ -47,11 +63,15 @@ const St = {
     height: 5rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 2.4rem;
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub3};
-
+    cursor: pointer;
+  `,
+  CheckedWrapper: styled.span`
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
   `,
 };
