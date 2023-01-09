@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { relationType } from "../../core/recommend/recommend";
 import { MovePreviousPageBtn, ShortInputBox, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
+import RelationModal from "./RelationModal";
+import ToggleRelationModal from "./ToggleRelationModal";
 
 export default function RecommendPage() {
   const [progressRate, setProgressRate] = useState(20);
@@ -15,13 +18,15 @@ export default function RecommendPage() {
     else setActiveBtn(false);
   }, [name]);
 
-  const handleStep = () => {
-    setStep(step + 1);
-  };
-
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
     setName(e.target.value);
+  };
+
+  const handleStep = () => {
+    // 친구정보 step을 관리하는 함수
+    setStep(step + 1);
+    setActiveBtn(false);
   };
 
   return (
@@ -35,18 +40,17 @@ export default function RecommendPage() {
         <Title title="어떤 친구를 소개해줄거야?" />
         <Title title="너무 궁금해!👀" />
       </St.TitleWrapper>
-      {step === 1 ? (
-        <>
-          <ShortInputBox
-            label="친구 이름"
-            placeholder="실명을 적어줘. 이름 가운데는 *처리돼"
-            value={name}
-            onChange={(e) => handleNameInput(e)}
-          />
-        </>
-      ) : (
-        <></>
-      )}
+
+      <ToggleRelationModal label="관계" placeholder="어떤 관계인지 선택해줘" />
+      <RelationModal question="친구와 어떤 관계야?" relationArr={relationType} />
+
+      <ShortInputBox
+        label="친구 이름"
+        placeholder="실명을 적어줘. 이름 가운데는 *처리돼"
+        value={name}
+        onChange={(e) => handleNameInput(e)}
+      />
+
       <St.NextStepBtnWrapper>
         <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep}>
           다음

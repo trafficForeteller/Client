@@ -10,6 +10,7 @@ export interface ModalProps {
   setCount?: React.Dispatch<React.SetStateAction<number>>;
   setInputBorder?: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 export default function Modal(props: ModalProps) {
   const { title, desc, button, resendAuthNum, closeModal, setCount, setInputBorder } = props;
 
