@@ -113,7 +113,7 @@ export default function PolicyModal(props: PolicyModalProps) {
       <St.NextButton onClick={() => handlePolicy()}>
         <NextPageBtn
           nextPage={routePaths.RecommendLanding}
-          title={"내친소 시작하기"}
+          title="내친소 시작하기"
           inputActive={startActive}
           state={token}
         />

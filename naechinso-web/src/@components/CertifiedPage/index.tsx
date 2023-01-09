@@ -81,9 +81,9 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     <St.AutorizePage inputActive={inputActive}>
       <MovePreviousPageBtn />
       <St.PageTop>
-        <Title title={"📩"} />
-        <Title title={"방금 보낸 "} />
-        <Title title={"인증번호를 적어줘!"} />
+        <Title title="📩" />
+        <Title title="방금 보낸 " />
+        <Title title="인증번호를 적어줘!" />
       </St.PageTop>
       <St.AuthNumWrapper inputActive={inputActive}>
         <AuthenticationNumInput
@@ -101,7 +101,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
       </St.AuthNumWrapper>
       <MoveNextPageBtn
         nextPage={routePaths.RecommendLanding}
-        title={"완료"}
+        title="완료"
         inputActive={inputActive}
         correctAuthNum={correctAuthNum}
       />

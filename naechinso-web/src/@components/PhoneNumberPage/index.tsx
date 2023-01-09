@@ -23,9 +23,9 @@ export default function PhoneNumberPOage(props: PhoneNumberPageProps) {
     <St.PhoneNumberPage>
       <PreviousPageBtn />
       <St.PageTop>
-        <Title title={"🏃🏻‍♀️"} />
-        <Title title={"먼저 신원인증을 위해 "} />
-        <Title title={"너의 휴대폰 번호를 적어줘!"} />
+        <Title title="🏃🏻‍♀️" />
+        <Title title="먼저 신원인증을 위해 " />
+        <Title title="너의 휴대폰 번호를 적어줘!" />
       </St.PageTop>
       <St.InputWrapper>
         <PhoneNumInput
@@ -33,17 +33,12 @@ export default function PhoneNumberPOage(props: PhoneNumberPageProps) {
           setPhoneNum={setPhoneNum}
           inputActive={inputActive}
           setInputActive={setInputActive}
-          label={"휴대폰 번호"}
+          label="휴대폰 번호"
           placeholder={""}
           setPostPhoneNum={setPostPhoneNum}
         />
       </St.InputWrapper>
-      <NextPageBtn
-        nextPage={routePaths.Certified}
-        title={"인증번호 받기"}
-        inputActive={inputActive}
-        sendSms={sendSms}
-      />
+      <NextPageBtn nextPage={routePaths.Certified} title="인증번호 받기" inputActive={inputActive} sendSms={sendSms} />
     </St.PhoneNumberPage>
   );
 }

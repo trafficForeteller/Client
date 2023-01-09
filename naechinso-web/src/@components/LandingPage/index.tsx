@@ -16,8 +16,8 @@ export default function LandingPage() {
       <St.PageTop>
         <IcLandingLogo aria-label="내친소" />
         <St.Blank />
-        <Title title={"소개팅은 받고 싶은데"} />
-        <Title title={" 소개팅 앱은 싫다면?"} />
+        <Title title="소개팅은 받고 싶은데" />
+        <Title title=" 소개팅 앱은 싫다면?" />
       </St.PageTop>
 
       <St.LandingImgWrapper>
