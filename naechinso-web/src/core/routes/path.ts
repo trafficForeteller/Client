@@ -4,6 +4,7 @@ export const routePaths = {
   PhoneNum: "/join",
   Certified: "/join/autorize",
   RecommendLanding: "/recommend/landing",
+  Recommend: "/recommend",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];

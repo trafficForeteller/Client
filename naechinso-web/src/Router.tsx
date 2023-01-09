@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import CertifiedPage from "./@components/CertifiedPage";
-import InstallAppPage from "./@components/InstallAppPage";
-import LandingPage from "./@components/LandingPage";
-import PhoneNumberPage from "./@components/PhoneNumberPage";
-import RecommendLandingPage from "./@components/RecommendLandingPage";
+import {
+  CertifiedPage,
+  InstallAppPage,
+  LandingPage,
+  PhoneNumberPage,
+  RecommendLandingPage,
+  RecommendPage,
+} from "./@components";
 import { postSmsSend } from "./apis/sms.api";
 import { routePaths } from "./core/routes/path";
 import { IPostPhoneNumber } from "./types/sms";
@@ -30,6 +33,7 @@ export default function Router() {
         />
         <Route path={routePaths.Certified} element={<CertifiedPage sendSms={sendSms} postPhoneNum={postPhoneNum} />} />
         <Route path={routePaths.RecommendLanding} element={<RecommendLandingPage />} />
+        <Route path={routePaths.Recommend} element={<RecommendPage />} />
       </Routes>
     </BrowserRouter>
   );

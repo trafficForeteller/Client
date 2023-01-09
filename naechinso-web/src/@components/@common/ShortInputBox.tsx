@@ -24,6 +24,7 @@ const St = {
     border-radius: 1.6rem;
     background-color: ${({ theme }) => theme.colors.neural};
     padding: 1rem 2rem 1.6rem;
+    margin: 0 auto;
   `,
   Label: styled.p`
     color: ${({ theme }) => theme.colors.orange};
@@ -32,6 +33,9 @@ const St = {
   Input: styled.input`
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub2};
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.black20};

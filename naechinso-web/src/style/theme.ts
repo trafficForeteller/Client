@@ -15,6 +15,7 @@ const colors = {
   error_bac: "#FFEFEF",
   blue: "#6B9AF",
   blue_bac: "#EAF1FF",
+  old_gray: "#EBEBF0",
 } as const;
 
 interface Font {

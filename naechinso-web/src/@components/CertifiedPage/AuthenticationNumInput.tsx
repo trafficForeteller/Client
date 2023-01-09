@@ -66,6 +66,9 @@ const St = {
   Input: styled.input`
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub2};
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.black20};
