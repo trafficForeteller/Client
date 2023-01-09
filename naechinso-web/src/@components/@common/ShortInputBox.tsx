@@ -3,15 +3,17 @@ import styled from "styled-components";
 export interface ShortInputProps {
   label: string;
   placeholder: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function ShortInputBox(props: ShortInputProps) {
-  const { label, placeholder } = props;
+  const { label, placeholder, value, onChange } = props;
 
   return (
     <St.InputBox>
       <St.Label>{label}</St.Label>
-      <St.Input placeholder={placeholder} />
+      <St.Input placeholder={placeholder} value={value} onChange={(e) => onChange(e)} />
     </St.InputBox>
   );
 }
@@ -31,11 +33,11 @@ const St = {
     ${({ theme }) => theme.fonts.body2};
   `,
   Input: styled.input`
+    width: 100%;
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub2};
     display: flex;
     justify-content: center;
-    align-items: center;
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.black20};

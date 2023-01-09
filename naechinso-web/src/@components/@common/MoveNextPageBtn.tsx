@@ -50,6 +50,7 @@ const St = {
 
     &:disabled {
       background-color: ${({ theme }) => theme.colors.orange20};
+      cursor: default;
     }
   `,
 };

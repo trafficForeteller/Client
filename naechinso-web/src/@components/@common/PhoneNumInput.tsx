@@ -76,7 +76,7 @@ const St = {
     ${({ theme }) => theme.fonts.sub2};
     display: flex;
     justify-content: center;
-    align-items: center;
+    width: 100%;
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.black20};
