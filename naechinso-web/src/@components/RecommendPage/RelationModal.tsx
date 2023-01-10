@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { IcRelationChecked } from "../../asset/icons";
@@ -7,10 +7,11 @@ import { relationTypeProps } from "../../core/recommend/recommend";
 export interface RelationModalProps {
   question: string;
   relationArr: relationTypeProps[];
+  setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function RelationModal(props: RelationModalProps) {
-  const { question, relationArr } = props;
+  const { question, relationArr, setIsModalOpened } = props;
   const [relationList, setRelationList] = useState(relationArr);
 
   useEffect(() => {
@@ -25,6 +26,7 @@ export default function RelationModal(props: RelationModalProps) {
       return el;
     });
     setRelationList(newRelationList);
+    setIsModalOpened(false);
   };
 
   return (
@@ -54,7 +56,7 @@ const St = {
   Question: styled.h2`
     display: flex;
     align-items: center;
-    margin: 0 2.4rem;
+    margin: 3.2rem 2.4rem 1.2rem;
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub2};
   `,

@@ -5,13 +5,14 @@ export interface ShortInputProps {
   placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isModalOpened: boolean;
 }
 
 export default function ShortInputBox(props: ShortInputProps) {
-  const { label, placeholder, value, onChange } = props;
+  const { label, placeholder, value, onChange, isModalOpened } = props;
 
   return (
-    <St.InputBox>
+    <St.InputBox isModalOpened={isModalOpened}>
       <St.Label>{label}</St.Label>
       <St.Input placeholder={placeholder} value={value} onChange={(e) => onChange(e)} />
     </St.InputBox>
@@ -19,7 +20,7 @@ export default function ShortInputBox(props: ShortInputProps) {
 }
 
 const St = {
-  InputBox: styled.section`
+  InputBox: styled.section<{ isModalOpened: boolean }>`
     width: 33.5rem;
     height: 8rem;
 
@@ -27,6 +28,8 @@ const St = {
     background-color: ${({ theme }) => theme.colors.neural};
     padding: 1rem 2rem 1.6rem;
     margin: 0 auto;
+    position: relative;
+    z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
   `,
   Label: styled.p`
     color: ${({ theme }) => theme.colors.orange};

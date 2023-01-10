@@ -5,13 +5,18 @@ import { relationType } from "../../core/recommend/recommend";
 import { MovePreviousPageBtn, ShortInputBox, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
 import RelationModal from "./RelationModal";
-import ToggleRelationModal from "./ToggleRelationModal";
+import RelationToggle from "./RelationToggle";
 
 export default function RecommendPage() {
   const [progressRate, setProgressRate] = useState(20);
   const [step, setStep] = useState(1);
   const [activeBtn, setActiveBtn] = useState(false);
   const [name, setName] = useState("");
+  const [isModalOpened, setIsModalOpened] = useState(true);
+
+  useEffect(() => {
+    setIsModalOpened(true);
+  }, []);
 
   useEffect(() => {
     if (name.length >= 2) setActiveBtn(true);
@@ -30,7 +35,7 @@ export default function RecommendPage() {
   };
 
   return (
-    <St.RecommendPage>
+    <St.RecommendPage isModalOpened={isModalOpened}>
       <St.Header>
         <MovePreviousPageBtn />
         친구 정보
@@ -41,18 +46,23 @@ export default function RecommendPage() {
         <Title title="너무 궁금해!👀" />
       </St.TitleWrapper>
 
-      <ToggleRelationModal label="관계" placeholder="어떤 관계인지 선택해줘" />
-      <RelationModal question="친구와 어떤 관계야?" relationArr={relationType} />
+      <RelationToggle label="관계" placeholder="어떤 관계인지 선택해줘" isModalOpened={isModalOpened} />
+      {isModalOpened ? (
+        <RelationModal question="친구와 어떤 관계야?" relationArr={relationType} setIsModalOpened={setIsModalOpened} />
+      ) : (
+        <></>
+      )}
 
       <ShortInputBox
         label="친구 이름"
         placeholder="실명을 적어줘. 이름 가운데는 *처리돼"
         value={name}
         onChange={(e) => handleNameInput(e)}
+        isModalOpened={isModalOpened}
       />
 
       <St.NextStepBtnWrapper>
-        <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep}>
+        <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep} isModalOpened={isModalOpened}>
           다음
         </St.NextStepBtn>
       </St.NextStepBtnWrapper>
@@ -61,7 +71,14 @@ export default function RecommendPage() {
 }
 
 const St = {
-  RecommendPage: styled.main``,
+  RecommendPage: styled.main<{ isModalOpened: boolean }>`
+    background-color: rgba(${({ isModalOpened }) => (isModalOpened ? "0, 0, 0, 0.64" : "")});
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  `,
   Header: styled.header`
     height: 5.6rem;
     display: flex;
@@ -73,13 +90,17 @@ const St = {
   TitleWrapper: styled.hgroup`
     margin-left: 2.4rem;
     margin-bottom: 2.4rem;
+    position: relative;
+    z-index: -1;
   `,
   NextStepBtnWrapper: styled.section`
     display: flex;
     justify-content: center;
   `,
-  NextStepBtn: styled.button`
+  NextStepBtn: styled.button<{ isModalOpened: boolean }>`
     position: absolute;
+    visibility: ${({ isModalOpened }) => (isModalOpened ? "hidden" : "")};
+
     bottom: 3.5rem;
     padding: 1rem;
 

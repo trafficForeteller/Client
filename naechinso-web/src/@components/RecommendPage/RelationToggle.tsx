@@ -1,25 +1,25 @@
 import styled from "styled-components";
 
-export interface ToggleRelationModalProps {
+export interface RelationToggleProps {
   label: string;
   placeholder: string;
   value?: string;
-  //   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isModalOpened: boolean;
 }
 
-export default function ToggleRelationModal(props: ToggleRelationModalProps) {
-  const { label, placeholder, value } = props;
+export default function RelationToggle(props: RelationToggleProps) {
+  const { label, placeholder, value, isModalOpened } = props;
 
   return (
-    <St.ToggleModal>
+    <St.RelationToggle isModalOpened={isModalOpened}>
       <St.Label>{label}</St.Label>
       <St.Input placeholder={placeholder} value={value} />
-    </St.ToggleModal>
+    </St.RelationToggle>
   );
 }
 
 const St = {
-  ToggleModal: styled.section`
+  RelationToggle: styled.section<{ isModalOpened: boolean }>`
     width: 33.5rem;
     height: 8rem;
 
@@ -27,6 +27,8 @@ const St = {
     background-color: ${({ theme }) => theme.colors.neural};
     padding: 1rem 2rem 1.6rem;
     margin: 0 auto 1.6rem;
+    position: relative;
+    z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
   `,
   Label: styled.p`
     color: ${({ theme }) => theme.colors.orange};

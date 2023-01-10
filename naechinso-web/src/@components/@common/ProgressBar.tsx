@@ -20,6 +20,7 @@ const St = {
     height: 0.4rem;
     background-color: ${({ theme }) => theme.colors.old_gray};
     margin: 0.8rem 0 2.8rem;
+    position: relative;
     z-index: -1;
   `,
   ProgressRate: styled.article<{ progressRate: number }>`
