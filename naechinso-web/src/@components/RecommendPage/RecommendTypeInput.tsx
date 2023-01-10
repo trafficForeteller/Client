@@ -13,10 +13,21 @@ export interface RelationTypeInputProps {
   isTypeModalOpened: boolean;
   setIsTypeModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
   isModalOpened: boolean;
+  relationEtc: string;
+  setRelationEtc: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function RelationTypeInput(props: RelationTypeInputProps) {
-  const { isTypeModalOpened, relationType, setRelationType, setIsTypeModalOpened, isModalOpened } = props;
+  const {
+    isTypeModalOpened,
+    relationType,
+    setRelationType,
+    setIsTypeModalOpened,
+    isModalOpened,
+    relationEtc,
+    setRelationEtc,
+  } = props;
+
   const closeRelationModal = (target: string) => {
     setIsTypeModalOpened(false);
     setRelationType(target);
@@ -35,7 +46,11 @@ export default function RelationTypeInput(props: RelationTypeInputProps) {
         openRelationModal={openRelationModal}
         isModalOpened={isModalOpened}
       />
-      {relationType === "기타" ? <RelationInput isModalOpened={isModalOpened} /> : <></>}
+      {relationType === "기타" ? (
+        <RelationInput isModalOpened={isModalOpened} relationEtc={relationEtc} setRelationEtc={setRelationEtc} />
+      ) : (
+        <></>
+      )}
       {isTypeModalOpened ? (
         <RelationModal
           question="친구와 어떤 관계야?"

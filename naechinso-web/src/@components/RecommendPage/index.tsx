@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { MovePreviousPageBtn, ShortInputBox, Title } from "../@common";
@@ -11,6 +12,7 @@ export default function RecommendPage() {
   const [progressRate, setProgressRate] = useState(20);
   const [step, setStep] = useState(1);
   const [activeBtn, setActiveBtn] = useState(false);
+  const navigate = useNavigate();
 
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isTypeModalOpened, setIsTypeModalOpened] = useState(false);
@@ -18,6 +20,7 @@ export default function RecommendPage() {
 
   const [name, setName] = useState("");
   const [relationType, setRelationType] = useState("");
+  const [relationEtc, setRelationEtc] = useState("");
   const [relationDuration, setRelationDuration] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
 
@@ -29,12 +32,13 @@ export default function RecommendPage() {
     // step에 따라 다른 모달 open
     if (step === 2) setIsTypeModalOpened(true);
     else if (step === 3) setIsDurationModalOpened(true);
+    else if (step === 5) navigate("/recommend/keyword");
   }, [step]);
 
   useEffect(() => {
     // step에 따른 ActiveButton 활성화
     if (name.length >= 2) setActiveBtn(true);
-    else if (step >= 2 && relationType) setActiveBtn(true);
+    else if (step >= 2 && relationType === "친족") setActiveBtn(true);
     else if (step >= 3 && relationDuration) setActiveBtn(true);
     else setActiveBtn(false);
   }, [name, relationType, relationDuration]);
@@ -102,6 +106,8 @@ export default function RecommendPage() {
           setIsTypeModalOpened={setIsTypeModalOpened}
           setRelationType={setRelationType}
           isModalOpened={isModalOpened}
+          relationEtc={relationEtc}
+          setRelationEtc={setRelationEtc}
         />
       ) : (
         <></>

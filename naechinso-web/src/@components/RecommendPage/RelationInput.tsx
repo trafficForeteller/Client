@@ -2,13 +2,21 @@ import styled from "styled-components";
 
 export interface RelationInputProps {
   isModalOpened: boolean;
+  relationEtc: string;
+  setRelationEtc: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function RelationInput(props: RelationInputProps) {
-  const { isModalOpened } = props;
+  const { isModalOpened, relationEtc, setRelationEtc } = props;
+
+  const handleRelationEtc = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //기타 관계 선택 시 input 입력
+    setRelationEtc(e.target.value);
+  };
+
   return (
     <St.RelationInput isModalOpened={isModalOpened}>
-      : <St.Input placeholder="그러면 어떻게 만났어?" />
+      : <St.Input placeholder="그러면 어떻게 만났어?" value={relationEtc} onChange={handleRelationEtc} />
     </St.RelationInput>
   );
 }
