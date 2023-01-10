@@ -7,16 +7,13 @@ import { relationTypeProps } from "../../core/recommend/recommend";
 export interface RelationModalProps {
   question: string;
   relationArr: relationTypeProps[];
-  setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
+  // setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
+  closeRelationModal: () => void;
 }
 
 export default function RelationModal(props: RelationModalProps) {
-  const { question, relationArr, setIsModalOpened } = props;
+  const { question, relationArr, closeRelationModal } = props;
   const [relationList, setRelationList] = useState(relationArr);
-
-  useEffect(() => {
-    console.log(relationList);
-  }, [relationList]);
 
   const toggleCheck = (id: number) => {
     // 항목별 체크
@@ -26,11 +23,12 @@ export default function RelationModal(props: RelationModalProps) {
       return el;
     });
     setRelationList(newRelationList);
-    setIsModalOpened(false);
+    console.log(relationList);
+    closeRelationModal();
   };
 
   return (
-    <St.RelationModal>
+    <St.RelationModal onClick={closeRelationModal}>
       <St.Question>{question}</St.Question>
       {relationList.map((el) => {
         return (

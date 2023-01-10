@@ -1,19 +1,25 @@
 import styled from "styled-components";
 
+import { IcToggleArrow } from "../../asset/icons";
+
 export interface RelationToggleProps {
   label: string;
   placeholder: string;
   value?: string;
   isModalOpened: boolean;
+  openRelationModal: () => void;
 }
 
 export default function RelationToggle(props: RelationToggleProps) {
-  const { label, placeholder, value, isModalOpened } = props;
+  const { label, placeholder, value, isModalOpened, openRelationModal } = props;
 
   return (
-    <St.RelationToggle isModalOpened={isModalOpened}>
+    <St.RelationToggle isModalOpened={isModalOpened} onClick={openRelationModal}>
       <St.Label>{label}</St.Label>
-      <St.Input placeholder={placeholder} value={value} />
+      <St.InputWrapper>
+        <St.Input placeholder={placeholder} value={value} />
+        <IcToggleArrow />
+      </St.InputWrapper>
     </St.RelationToggle>
   );
 }
@@ -34,12 +40,18 @@ const St = {
     color: ${({ theme }) => theme.colors.orange};
     ${({ theme }) => theme.fonts.body2};
   `,
+  InputWrapper: styled.span`
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  `,
   Input: styled.input`
     width: 100%;
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub2};
     display: flex;
     justify-content: center;
+    cursor: pointer;
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.black20};

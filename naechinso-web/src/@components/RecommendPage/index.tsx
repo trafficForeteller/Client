@@ -19,12 +19,25 @@ export default function RecommendPage() {
   }, [step]);
 
   useEffect(() => {
+    console.log(isModalOpened);
+  }, [isModalOpened]);
+
+  useEffect(() => {
     if (name.length >= 2) setActiveBtn(true);
     else setActiveBtn(false);
   }, [name]);
 
+  const closeRelationModal = () => {
+    setIsModalOpened(false);
+    console.log("모달 닫는데이");
+  };
+  const openRelationModal = () => {
+    setIsModalOpened(true);
+    console.log("모달 연데이");
+  };
+
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    // 친구 이름을 관리하는 함수
     setName(e.target.value);
   };
 
@@ -47,12 +60,17 @@ export default function RecommendPage() {
       </St.TitleWrapper>
 
       <St.RelationWrapper step={step}>
-        <RelationToggle label="관계" placeholder="어떤 관계인지 선택해줘" isModalOpened={isModalOpened} />
+        <RelationToggle
+          label="관계"
+          placeholder="어떤 관계인지 선택해줘"
+          isModalOpened={isModalOpened}
+          openRelationModal={openRelationModal}
+        />
         {isModalOpened ? (
           <RelationModal
             question="친구와 어떤 관계야?"
             relationArr={relationType}
-            setIsModalOpened={setIsModalOpened}
+            closeRelationModal={closeRelationModal}
           />
         ) : (
           <></>
