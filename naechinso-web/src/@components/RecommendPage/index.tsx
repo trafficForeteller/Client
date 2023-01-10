@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { MovePreviousPageBtn, PhoneNumInput, ShortInputBox, Title } from "../@common";
+import { MovePreviousPageBtn, ShortInputBox, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
+import PhoneNumInputBox from "./PhoneNumInput";
 import RelationDurationInput from "./RecommendDurationInput";
 import RelationTypeInput from "./RecommendTypeInput";
 
@@ -67,13 +68,14 @@ export default function RecommendPage() {
       </St.TitleWrapper>
 
       {step >= 4 ? (
-        <PhoneNumInput
+        <PhoneNumInputBox
           label="친구의 휴대폰 번호"
           placeholder="0000 0000"
           phoneNum={phoneNum}
           setPhoneNum={setPhoneNum}
-          inputActive={activeBtn}
-          setInputActive={setActiveBtn}
+          activeBtn={activeBtn}
+          setActiveBtn={setActiveBtn}
+          isModalOpened={isModalOpened}
         />
       ) : (
         <></>
