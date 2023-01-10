@@ -13,7 +13,7 @@ export interface PhoneNumberPageProps {
   sendSms: () => Promise<void>;
 }
 
-export default function PhoneNumberPOage(props: PhoneNumberPageProps) {
+export default function PhoneNumberPage(props: PhoneNumberPageProps) {
   const { setPostPhoneNum, sendSms } = props;
 
   const [inputActive, setInputActive] = useState(true);

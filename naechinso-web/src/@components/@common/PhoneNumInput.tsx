@@ -11,7 +11,7 @@ export interface PhoneNumInputProps {
   setInputActive: React.Dispatch<React.SetStateAction<boolean>>;
   phoneNum: string;
   setPhoneNum: React.Dispatch<React.SetStateAction<string>>;
-  setPostPhoneNum: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
+  setPostPhoneNum?: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
 }
 
 export default function PhoneNumInputBox(props: PhoneNumInputProps) {
@@ -25,7 +25,7 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
   const processPhoneNum = (phoneNum: string) => {
     // 입력한 번호의 공백제거 && 010붙여주기
     const postPhoneNum = "010" + phoneNum.replace(/ /g, "");
-    setPostPhoneNum({ phoneNumber: postPhoneNum });
+    setPostPhoneNum && setPostPhoneNum({ phoneNumber: postPhoneNum });
   };
 
   const autoHyphen = (phoneNum: string) => {
@@ -59,6 +59,7 @@ const St = {
     border-radius: 1.6rem;
     background-color: ${({ theme }) => theme.colors.neural};
     padding: 1rem 2rem 1.6rem;
+    margin: 0 auto;
   `,
   Label: styled.p<{ inputActive: boolean }>`
     color: ${({ theme, inputActive }) => (inputActive ? theme.colors.orange : theme.colors.black40)};
@@ -77,6 +78,7 @@ const St = {
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-left: 0.5rem;
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.black20};

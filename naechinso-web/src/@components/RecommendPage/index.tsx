@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { MovePreviousPageBtn, ShortInputBox, Title } from "../@common";
+import { MovePreviousPageBtn, PhoneNumInput, ShortInputBox, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
 import RelationDurationInput from "./RecommendDurationInput";
 import RelationTypeInput from "./RecommendTypeInput";
@@ -18,6 +18,7 @@ export default function RecommendPage() {
   const [name, setName] = useState("");
   const [relationType, setRelationType] = useState("");
   const [relationDuration, setRelationDuration] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
 
   useEffect(() => {
     checkIsModalOpened();
@@ -64,6 +65,19 @@ export default function RecommendPage() {
         <Title title="어떤 친구를 소개해줄거야?" />
         <Title title="너무 궁금해!👀" />
       </St.TitleWrapper>
+
+      {step >= 4 ? (
+        <PhoneNumInput
+          label="친구의 휴대폰 번호"
+          placeholder="0000 0000"
+          phoneNum={phoneNum}
+          setPhoneNum={setPhoneNum}
+          inputActive={activeBtn}
+          setInputActive={setActiveBtn}
+        />
+      ) : (
+        <></>
+      )}
 
       {step >= 3 ? (
         <RelationDurationInput
