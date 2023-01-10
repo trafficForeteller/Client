@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { relationTypeList } from "../../core/recommend/recommend";
 import { MovePreviousPageBtn, ShortInputBox, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
-import RelationInput from "./RelationInput";
-import RelationModal from "./RelationModal";
-import RelationToggle from "./RelationToggle";
+import RelationType from "./RelationType";
 
 export default function RecommendPage() {
   const [progressRate, setProgressRate] = useState(20);
@@ -61,26 +58,30 @@ export default function RecommendPage() {
         <Title title="너무 궁금해!👀" />
       </St.TitleWrapper>
 
-      <St.RelationWrapper step={step}>
-        <RelationToggle
+      {step >= 3 ? (
+        <RelationType
           step={step}
-          label="관계"
-          placeholder="어떤 관계인지 선택해줘"
           defaultValue={relationType}
           isModalOpened={isModalOpened}
           openRelationModal={openRelationModal}
+          closeRelationModal={closeRelationModal}
+          relationType={relationType}
         />
-        {relationType === "기타" ? <RelationInput isModalOpened={isModalOpened} /> : <></>}
-        {isModalOpened ? (
-          <RelationModal
-            question="친구와 어떤 관계야?"
-            relationArr={relationTypeList}
-            closeRelationModal={closeRelationModal}
-          />
-        ) : (
-          <></>
-        )}
-      </St.RelationWrapper>
+      ) : (
+        <></>
+      )}
+      {step >= 2 ? (
+        <RelationType
+          step={step}
+          defaultValue={relationType}
+          isModalOpened={isModalOpened}
+          openRelationModal={openRelationModal}
+          closeRelationModal={closeRelationModal}
+          relationType={relationType}
+        />
+      ) : (
+        <></>
+      )}
 
       <ShortInputBox
         label="친구 이름"
@@ -123,9 +124,7 @@ const St = {
     position: relative;
     z-index: -1;
   `,
-  RelationWrapper: styled.span<{ step: number }>`
-    display: ${({ step }) => (step < 2 ? "none" : "")};
-  `,
+
   NextStepBtnWrapper: styled.section`
     display: flex;
     justify-content: center;
