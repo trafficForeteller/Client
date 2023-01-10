@@ -6,13 +6,12 @@ export interface RelationToggleProps {
   label: string;
   placeholder: string;
   defaultValue: string;
-  stepModalOpened: boolean;
   openRelationModal: () => void;
   isModalOpened: boolean;
 }
 
 export default function RelationToggle(props: RelationToggleProps) {
-  const { label, placeholder, defaultValue, stepModalOpened, openRelationModal, isModalOpened } = props;
+  const { label, placeholder, defaultValue, openRelationModal, isModalOpened } = props;
 
   return (
     <St.RelationToggle isModalOpened={isModalOpened} onClick={openRelationModal}>

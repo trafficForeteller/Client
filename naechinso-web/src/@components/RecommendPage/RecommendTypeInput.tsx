@@ -17,7 +17,6 @@ export interface RelationTypeInputProps {
 
 export default function RelationTypeInput(props: RelationTypeInputProps) {
   const { isTypeModalOpened, relationType, setRelationType, setIsTypeModalOpened, isModalOpened } = props;
-
   const closeRelationModal = (target: string) => {
     setIsTypeModalOpened(false);
     setRelationType(target);
@@ -33,7 +32,6 @@ export default function RelationTypeInput(props: RelationTypeInputProps) {
         label="관계"
         placeholder="어떤 관계인지 선택해줘"
         defaultValue={relationType}
-        stepModalOpened={isTypeModalOpened}
         openRelationModal={openRelationModal}
         isModalOpened={isModalOpened}
       />

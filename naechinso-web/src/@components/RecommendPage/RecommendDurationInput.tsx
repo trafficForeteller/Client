@@ -33,7 +33,6 @@ export default function RelationDurationInput(props: RelationTypeDurationProps) 
         label="관계"
         placeholder="어떤 관계인지 선택해줘"
         defaultValue={relationDuration}
-        stepModalOpened={isDurationModalOpened}
         openRelationModal={openRelationModal}
         isModalOpened={isModalOpened}
       />
