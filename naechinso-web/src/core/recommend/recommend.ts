@@ -4,7 +4,7 @@ export type relationTypeProps = {
   checked: boolean;
 };
 
-export const relationType: relationTypeProps[] = [
+export const relationTypeList: relationTypeProps[] = [
   { id: 0, relation: "친족", checked: false },
   { id: 1, relation: "초/중/고 친구", checked: false },
   { id: 2, relation: "대학교 친구", checked: false },

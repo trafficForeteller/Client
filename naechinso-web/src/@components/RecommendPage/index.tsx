@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { relationType } from "../../core/recommend/recommend";
+import { relationTypeList } from "../../core/recommend/recommend";
 import { MovePreviousPageBtn, ShortInputBox, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
 import RelationModal from "./RelationModal";
@@ -13,27 +13,27 @@ export default function RecommendPage() {
   const [activeBtn, setActiveBtn] = useState(false);
   const [name, setName] = useState("");
   const [isModalOpened, setIsModalOpened] = useState(false);
+  const [relationType, setRelationType] = useState("");
 
   useEffect(() => {
     if (step === 2) setIsModalOpened(true);
   }, [step]);
 
   useEffect(() => {
-    console.log(isModalOpened);
-  }, [isModalOpened]);
+    console.log(relationType);
+  }, [relationType]);
 
   useEffect(() => {
     if (name.length >= 2) setActiveBtn(true);
     else setActiveBtn(false);
   }, [name]);
 
-  const closeRelationModal = () => {
+  const closeRelationModal = (target?: string) => {
     setIsModalOpened(false);
-    console.log("모달 닫는데이");
+    target && setRelationType(target);
   };
   const openRelationModal = () => {
     setIsModalOpened(true);
-    console.log("모달 연데이");
   };
 
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,13 +63,14 @@ export default function RecommendPage() {
         <RelationToggle
           label="관계"
           placeholder="어떤 관계인지 선택해줘"
+          defaultValue={relationType}
           isModalOpened={isModalOpened}
           openRelationModal={openRelationModal}
         />
         {isModalOpened ? (
           <RelationModal
             question="친구와 어떤 관계야?"
-            relationArr={relationType}
+            relationArr={relationTypeList}
             closeRelationModal={closeRelationModal}
           />
         ) : (

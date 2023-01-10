@@ -8,31 +8,30 @@ export interface RelationModalProps {
   question: string;
   relationArr: relationTypeProps[];
   // setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
-  closeRelationModal: () => void;
+  closeRelationModal: (target: string) => void;
 }
 
 export default function RelationModal(props: RelationModalProps) {
   const { question, relationArr, closeRelationModal } = props;
   const [relationList, setRelationList] = useState(relationArr);
 
-  const toggleCheck = (id: number) => {
+  const toggleCheck = (el: relationTypeProps) => {
     // 항목별 체크
-    const newRelationList = relationList.map((el, index) => {
-      if (id === index) el.checked = true;
-      else el.checked = false;
-      return el;
+    const newRelationList = relationList.map((relation, index) => {
+      if (el.id === index) relation.checked = true;
+      else relation.checked = false;
+      return relation;
     });
     setRelationList(newRelationList);
-    console.log(relationList);
-    closeRelationModal();
+    closeRelationModal(el.relation);
   };
 
   return (
-    <St.RelationModal onClick={closeRelationModal}>
+    <St.RelationModal>
       <St.Question>{question}</St.Question>
       {relationList.map((el) => {
         return (
-          <St.Relation type="button" key={el.id} onClick={() => toggleCheck(el.id)}>
+          <St.Relation type="button" key={el.id} onClick={() => toggleCheck(el)}>
             {el.relation}
             <St.CheckedWrapper>{el.checked ? <IcRelationChecked /> : <></>}</St.CheckedWrapper>
           </St.Relation>
