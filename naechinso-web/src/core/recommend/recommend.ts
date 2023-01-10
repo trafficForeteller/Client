@@ -19,14 +19,24 @@ export const relationDurationList: relationTypeProps[] = [
   { id: 3, relation: "5년 이상", checked: false },
 ];
 
-export const stepItemList = [
-  { step: 2, itemList: { label: "관계", placeholder: "어떤 관계인지 선택해줘", relationArr: { relationTypeList } } },
+export type stepItemsProps = {
+  label: string;
+  placeholder: string;
+  question: string;
+  relationArr: relationTypeProps[];
+};
+
+export const stepItemList: stepItemsProps[] = [
   {
-    step: 3,
-    itemList: {
-      label: "알고 지낸 기간",
-      placeholder: "알고 지낸 기간을 선택해줘",
-      relationArr: { relationDurationList },
-    },
+    label: "관계",
+    placeholder: "어떤 관계인지 선택해줘",
+    question: "친구와 어떤 관계야?",
+    relationArr: relationTypeList,
+  },
+  {
+    label: "알고 지낸 기간",
+    placeholder: "알고 지낸 기간을 선택해줘",
+    question: "알고 지낸 지는 얼마나 됐어?",
+    relationArr: relationDurationList,
   },
 ];

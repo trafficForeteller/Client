@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { stepItemList } from "../../core/recommend/recommend";
 import { MovePreviousPageBtn, ShortInputBox, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
 import RelationType from "./RelationType";
@@ -9,12 +10,14 @@ export default function RecommendPage() {
   const [progressRate, setProgressRate] = useState(20);
   const [step, setStep] = useState(1);
   const [activeBtn, setActiveBtn] = useState(false);
-  const [name, setName] = useState("");
   const [isModalOpened, setIsModalOpened] = useState(false);
+
+  const [name, setName] = useState("");
   const [relationType, setRelationType] = useState("");
+  const [relationDuration, setRelationDuration] = useState("");
 
   useEffect(() => {
-    if (step === 2) setIsModalOpened(true);
+    if (step === 2 || step === 3) setIsModalOpened(true);
   }, [step]);
 
   useEffect(() => {
@@ -29,7 +32,8 @@ export default function RecommendPage() {
 
   const closeRelationModal = (target: string) => {
     setIsModalOpened(false);
-    target && setRelationType(target);
+    if (target && step === 2) setRelationType(target);
+    else if (target && step === 3) setRelationDuration(target);
   };
   const openRelationModal = () => {
     setIsModalOpened(true);
@@ -61,7 +65,8 @@ export default function RecommendPage() {
       {step >= 3 ? (
         <RelationType
           step={step}
-          defaultValue={relationType}
+          stepItemList={stepItemList[1]}
+          defaultValue={relationDuration}
           isModalOpened={isModalOpened}
           openRelationModal={openRelationModal}
           closeRelationModal={closeRelationModal}
@@ -70,9 +75,11 @@ export default function RecommendPage() {
       ) : (
         <></>
       )}
+
       {step >= 2 ? (
         <RelationType
           step={step}
+          stepItemList={stepItemList[0]}
           defaultValue={relationType}
           isModalOpened={isModalOpened}
           openRelationModal={openRelationModal}
