@@ -1,7 +1,6 @@
-import { useState } from "react";
 import styled from "styled-components";
 
-import { relationDurationList, relationTypeList, stepItemList, stepItemsProps } from "../../core/recommend/recommend";
+import { relationDurationList, relationTypeList, stepItemsProps } from "../../core/recommend/recommend";
 import RelationInput from "./RelationInput";
 import RelationModal from "./RelationModal";
 import RelationToggle from "./RelationToggle";
@@ -31,10 +30,20 @@ export default function RelationType(props: RelationTypeProps) {
         openRelationModal={openRelationModal}
       />
       {relationType === "기타" ? <RelationInput isModalOpened={isModalOpened} /> : <></>}
-      {isModalOpened ? (
+      {isModalOpened && step === 2 ? (
         <RelationModal
-          question={stepItemList.question}
-          relationArr={stepItemList.relationArr}
+          question="친구와 어떤 관계야?"
+          relationArr={relationTypeList}
+          closeRelationModal={closeRelationModal}
+        />
+      ) : (
+        <></>
+      )}
+
+      {isModalOpened && step === 3 ? (
+        <RelationModal
+          question="알고 지낸 지는 얼마나 됐어?"
+          relationArr={relationDurationList}
           closeRelationModal={closeRelationModal}
         />
       ) : (

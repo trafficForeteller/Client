@@ -21,21 +21,20 @@ export default function RecommendPage() {
   }, [step]);
 
   useEffect(() => {
-    console.log(relationType);
-    if (step >= 2 && relationType) setActiveBtn(true);
-  }, [relationType]);
-
-  useEffect(() => {
     if (name.length >= 2) setActiveBtn(true);
+    else if (step >= 2 && relationType) setActiveBtn(true);
+    else if (step >= 3 && relationDuration) setActiveBtn(true);
     else setActiveBtn(false);
-  }, [name]);
+  }, [name, relationType, relationDuration]);
 
   const closeRelationModal = (target: string) => {
     setIsModalOpened(false);
-    if (target && step === 2) setRelationType(target);
-    else if (target && step === 3) setRelationDuration(target);
+    console.log("닫힛다");
+    if (step === 2) setRelationType(target);
+    else if (step === 3) setRelationDuration(target);
   };
   const openRelationModal = () => {
+    console.log("열릿다");
     setIsModalOpened(true);
   };
 
