@@ -1,46 +1,50 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { stepItemList } from "../../core/recommend/recommend";
 import { MovePreviousPageBtn, ShortInputBox, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
-import RelationType from "./RelationType";
+import RelationDurationInput from "./RecommendDurationInput";
+import RelationTypeInput from "./RecommendTypeInput";
 
 export default function RecommendPage() {
   const [progressRate, setProgressRate] = useState(20);
   const [step, setStep] = useState(1);
   const [activeBtn, setActiveBtn] = useState(false);
+
   const [isModalOpened, setIsModalOpened] = useState(false);
+  const [isTypeModalOpened, setIsTypeModalOpened] = useState(false);
+  const [isDurationModalOpened, setIsDurationModalOpened] = useState(false);
 
   const [name, setName] = useState("");
   const [relationType, setRelationType] = useState("");
   const [relationDuration, setRelationDuration] = useState("");
 
   useEffect(() => {
-    if (step === 2 || step === 3) setIsModalOpened(true);
+    checkIsModalOpened();
+  }, [isTypeModalOpened, isDurationModalOpened]);
+
+  useEffect(() => {
+    // step에 따라 다른 모달 open
+    if (step === 2) setIsTypeModalOpened(true);
+    else if (step === 3) setIsDurationModalOpened(true);
   }, [step]);
 
   useEffect(() => {
+    // step에 따른 ActiveButton 활성화
     if (name.length >= 2) setActiveBtn(true);
     else if (step >= 2 && relationType) setActiveBtn(true);
     else if (step >= 3 && relationDuration) setActiveBtn(true);
     else setActiveBtn(false);
   }, [name, relationType, relationDuration]);
 
-  const closeRelationModal = (target: string) => {
-    setIsModalOpened(false);
-    console.log("닫힛다");
-    if (step === 2) setRelationType(target);
-    else if (step === 3) setRelationDuration(target);
-  };
-  const openRelationModal = () => {
-    console.log("열릿다");
-    setIsModalOpened(true);
-  };
-
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 친구 이름을 관리하는 함수
     setName(e.target.value);
+  };
+
+  const checkIsModalOpened = () => {
+    if (isTypeModalOpened || isDurationModalOpened) return setIsModalOpened(true);
+    else return setIsModalOpened(false);
   };
 
   const handleStep = () => {
@@ -62,28 +66,26 @@ export default function RecommendPage() {
       </St.TitleWrapper>
 
       {step >= 3 ? (
-        <RelationType
+        <RelationDurationInput
           step={step}
-          stepItemList={stepItemList[1]}
-          defaultValue={relationDuration}
+          relationDuration={relationDuration}
+          isDurationModalOpened={isDurationModalOpened}
+          setRelationDuration={setRelationDuration}
+          setIsDurationModalOpened={setIsDurationModalOpened}
           isModalOpened={isModalOpened}
-          openRelationModal={openRelationModal}
-          closeRelationModal={closeRelationModal}
-          relationType={relationType}
         />
       ) : (
         <></>
       )}
 
       {step >= 2 ? (
-        <RelationType
+        <RelationTypeInput
           step={step}
-          stepItemList={stepItemList[0]}
-          defaultValue={relationType}
-          isModalOpened={isModalOpened}
-          openRelationModal={openRelationModal}
-          closeRelationModal={closeRelationModal}
           relationType={relationType}
+          isTypeModalOpened={isTypeModalOpened}
+          setIsTypeModalOpened={setIsTypeModalOpened}
+          setRelationType={setRelationType}
+          isModalOpened={isModalOpened}
         />
       ) : (
         <></>
