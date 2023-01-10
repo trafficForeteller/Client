@@ -12,11 +12,11 @@ export default function RecommendPage() {
   const [step, setStep] = useState(1);
   const [activeBtn, setActiveBtn] = useState(false);
   const [name, setName] = useState("");
-  const [isModalOpened, setIsModalOpened] = useState(true);
+  const [isModalOpened, setIsModalOpened] = useState(false);
 
   useEffect(() => {
-    setIsModalOpened(true);
-  }, []);
+    if (step === 2) setIsModalOpened(true);
+  }, [step]);
 
   useEffect(() => {
     if (name.length >= 2) setActiveBtn(true);
@@ -46,12 +46,18 @@ export default function RecommendPage() {
         <Title title="너무 궁금해!👀" />
       </St.TitleWrapper>
 
-      <RelationToggle label="관계" placeholder="어떤 관계인지 선택해줘" isModalOpened={isModalOpened} />
-      {isModalOpened ? (
-        <RelationModal question="친구와 어떤 관계야?" relationArr={relationType} setIsModalOpened={setIsModalOpened} />
-      ) : (
-        <></>
-      )}
+      <St.RelationWrapper step={step}>
+        <RelationToggle label="관계" placeholder="어떤 관계인지 선택해줘" isModalOpened={isModalOpened} />
+        {isModalOpened ? (
+          <RelationModal
+            question="친구와 어떤 관계야?"
+            relationArr={relationType}
+            setIsModalOpened={setIsModalOpened}
+          />
+        ) : (
+          <></>
+        )}
+      </St.RelationWrapper>
 
       <ShortInputBox
         label="친구 이름"
@@ -92,6 +98,9 @@ const St = {
     margin-bottom: 2.4rem;
     position: relative;
     z-index: -1;
+  `,
+  RelationWrapper: styled.span<{ step: number }>`
+    display: ${({ step }) => (step < 2 ? "none" : "")};
   `,
   NextStepBtnWrapper: styled.section`
     display: flex;
