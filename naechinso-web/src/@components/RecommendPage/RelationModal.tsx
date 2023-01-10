@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 import { IcRelationChecked } from "../../asset/icons";
@@ -13,7 +13,6 @@ export interface RelationModalProps {
 export default function RelationModal(props: RelationModalProps) {
   const { question, relationArr, closeRelationModal } = props;
   const [relationList, setRelationList] = useState(relationArr);
-  const [otherRelation, setOtherRelation] = useState("");
 
   const toggleCheck = (el: relationTypeProps) => {
     // 항목별 체크
@@ -24,8 +23,6 @@ export default function RelationModal(props: RelationModalProps) {
     });
     setRelationList(newRelationList);
     closeRelationModal(el.relation);
-
-    // if (el.relation === "기타")
   };
 
   return (

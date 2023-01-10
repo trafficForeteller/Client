@@ -22,15 +22,15 @@ export default function RecommendPage() {
 
   useEffect(() => {
     console.log(relationType);
+    if (step >= 2 && relationType) setActiveBtn(true);
   }, [relationType]);
 
   useEffect(() => {
     if (name.length >= 2) setActiveBtn(true);
-    // if (step >= 2 && relationType) setActiveBtn(true);
     else setActiveBtn(false);
   }, [name]);
 
-  const closeRelationModal = (target?: string) => {
+  const closeRelationModal = (target: string) => {
     setIsModalOpened(false);
     target && setRelationType(target);
   };
@@ -63,6 +63,7 @@ export default function RecommendPage() {
 
       <St.RelationWrapper step={step}>
         <RelationToggle
+          step={step}
           label="관계"
           placeholder="어떤 관계인지 선택해줘"
           defaultValue={relationType}

@@ -8,14 +8,15 @@ export interface RelationToggleProps {
   defaultValue: string;
   isModalOpened: boolean;
   openRelationModal: () => void;
+  step: number;
 }
 
 export default function RelationToggle(props: RelationToggleProps) {
-  const { label, placeholder, defaultValue, isModalOpened, openRelationModal } = props;
+  const { label, placeholder, defaultValue, isModalOpened, openRelationModal, step } = props;
 
   return (
     <St.RelationToggle isModalOpened={isModalOpened} onClick={openRelationModal}>
-      <St.Label>{label}</St.Label>
+      <St.Label step={step}>{label}</St.Label>
       <St.InputWrapper>
         <St.Input placeholder={placeholder} defaultValue={defaultValue} />
         <IcToggleArrow />
@@ -36,8 +37,8 @@ const St = {
     position: relative;
     z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
   `,
-  Label: styled.p`
-    color: ${({ theme }) => theme.colors.orange};
+  Label: styled.p<{ step: number }>`
+    color: ${({ theme, step }) => (step === 2 ? theme.colors.orange : theme.colors.gray40)};
     ${({ theme }) => theme.fonts.body2};
   `,
   InputWrapper: styled.span`
