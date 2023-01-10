@@ -32,7 +32,7 @@ const St = {
     border-radius: 1.6rem;
     background-color: ${({ theme }) => theme.colors.neural};
     padding: 1rem 2rem 1.6rem;
-    margin: 0 auto 1.6rem;
+    margin: 0 auto;
     position: relative;
     z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
   `,

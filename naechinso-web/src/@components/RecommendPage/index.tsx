@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { relationTypeList } from "../../core/recommend/recommend";
 import { MovePreviousPageBtn, ShortInputBox, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
+import RelationInput from "./RelationInput";
 import RelationModal from "./RelationModal";
 import RelationToggle from "./RelationToggle";
 
@@ -25,6 +26,7 @@ export default function RecommendPage() {
 
   useEffect(() => {
     if (name.length >= 2) setActiveBtn(true);
+    // if (step >= 2 && relationType) setActiveBtn(true);
     else setActiveBtn(false);
   }, [name]);
 
@@ -67,6 +69,7 @@ export default function RecommendPage() {
           isModalOpened={isModalOpened}
           openRelationModal={openRelationModal}
         />
+        {relationType === "기타" ? <RelationInput isModalOpened={isModalOpened} /> : <></>}
         {isModalOpened ? (
           <RelationModal
             question="친구와 어떤 관계야?"
