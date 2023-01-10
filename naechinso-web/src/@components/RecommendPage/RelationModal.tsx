@@ -7,7 +7,6 @@ import { relationTypeProps } from "../../core/recommend/recommend";
 export interface RelationModalProps {
   question: string;
   relationArr: relationTypeProps[];
-  // setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
   closeRelationModal: (target: string) => void;
 }
 

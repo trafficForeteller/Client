@@ -6,14 +6,15 @@ export interface ShortInputProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isModalOpened: boolean;
+  step: number;
 }
 
 export default function ShortInputBox(props: ShortInputProps) {
-  const { label, placeholder, value, onChange, isModalOpened } = props;
+  const { label, placeholder, value, onChange, isModalOpened, step } = props;
 
   return (
     <St.InputBox isModalOpened={isModalOpened}>
-      <St.Label>{label}</St.Label>
+      <St.Label step={step}>{label}</St.Label>
       <St.Input placeholder={placeholder} value={value} onChange={(e) => onChange(e)} />
     </St.InputBox>
   );
@@ -31,8 +32,8 @@ const St = {
     position: relative;
     z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
   `,
-  Label: styled.p`
-    color: ${({ theme }) => theme.colors.orange};
+  Label: styled.p<{ step: number }>`
+    color: ${({ theme, step }) => (step === 1 ? theme.colors.orange : theme.colors.gray40)};
     ${({ theme }) => theme.fonts.body2};
   `,
   Input: styled.input`

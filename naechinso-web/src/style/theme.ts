@@ -16,6 +16,7 @@ const colors = {
   blue: "#6B9AF",
   blue_bac: "#EAF1FF",
   old_gray: "#EBEBF0",
+  gray40: "#ABABAE",
 } as const;
 
 interface Font {

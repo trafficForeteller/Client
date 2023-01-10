@@ -84,6 +84,7 @@ export default function RecommendPage() {
         value={name}
         onChange={(e) => handleNameInput(e)}
         isModalOpened={isModalOpened}
+        step={step}
       />
 
       <St.NextStepBtnWrapper>
