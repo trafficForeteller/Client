@@ -1,20 +1,20 @@
 import styled from "styled-components";
 
 export interface RelationInputProps {
-  stepModalOpened: boolean;
+  isModalOpened: boolean;
 }
 
 export default function RelationInput(props: RelationInputProps) {
-  const { stepModalOpened } = props;
+  const { isModalOpened } = props;
   return (
-    <St.RelationInput stepModalOpened={stepModalOpened}>
+    <St.RelationInput isModalOpened={isModalOpened}>
       : <St.Input placeholder="그러면 어떻게 만났어?" />
     </St.RelationInput>
   );
 }
 
 const St = {
-  RelationInput: styled.article<{ stepModalOpened: boolean }>`
+  RelationInput: styled.article<{ isModalOpened: boolean }>`
     width: 33.5rem;
     height: 2.6rem;
     margin: 1.2rem auto 0;
@@ -26,7 +26,7 @@ const St = {
 
     gap: 1.4rem;
     position: relative;
-    z-index: ${({ stepModalOpened }) => (stepModalOpened ? "-1" : "")};
+    z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
   `,
   Input: styled.input`
     width: 100%auto;

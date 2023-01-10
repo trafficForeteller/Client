@@ -32,7 +32,7 @@ export default function RelationDurationInput(props: RelationTypeDurationProps) 
       <RelationToggle
         label="관계"
         placeholder="어떤 관계인지 선택해줘"
-        defaultValue={relationDuration}
+        value={relationDuration}
         openRelationModal={openRelationModal}
         isModalOpened={isModalOpened}
       />

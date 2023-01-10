@@ -31,11 +31,11 @@ export default function RelationTypeInput(props: RelationTypeInputProps) {
       <RelationToggle
         label="관계"
         placeholder="어떤 관계인지 선택해줘"
-        defaultValue={relationType}
+        value={relationType}
         openRelationModal={openRelationModal}
         isModalOpened={isModalOpened}
       />
-      {relationType === "기타" ? <RelationInput stepModalOpened={isTypeModalOpened} /> : <></>}
+      {relationType === "기타" ? <RelationInput isModalOpened={isModalOpened} /> : <></>}
       {isTypeModalOpened ? (
         <RelationModal
           question="친구와 어떤 관계야?"

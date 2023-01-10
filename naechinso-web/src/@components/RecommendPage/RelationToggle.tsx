@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 
 import { IcToggleArrow } from "../../asset/icons";
@@ -5,19 +6,19 @@ import { IcToggleArrow } from "../../asset/icons";
 export interface RelationToggleProps {
   label: string;
   placeholder: string;
-  defaultValue: string;
+  value: string;
   openRelationModal: () => void;
   isModalOpened: boolean;
 }
 
 export default function RelationToggle(props: RelationToggleProps) {
-  const { label, placeholder, defaultValue, openRelationModal, isModalOpened } = props;
+  const { label, placeholder, value, openRelationModal, isModalOpened } = props;
 
   return (
     <St.RelationToggle isModalOpened={isModalOpened} onClick={openRelationModal}>
       <St.Label>{label}</St.Label>
       <St.InputWrapper>
-        <St.Input placeholder={placeholder} defaultValue={defaultValue} />
+        <St.Input placeholder={placeholder} value={value} readOnly />
         <IcToggleArrow />
       </St.InputWrapper>
     </St.RelationToggle>
