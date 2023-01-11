@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { IPostFriendInfo } from "../types/recommend";
+import { IPatchFriendDetail, IPostFriendInfo } from "../types/recommend";
 import { serverAxios } from ".";
 
 const PREFIX_URL = "/recommend";
@@ -40,4 +40,5 @@ export const patchRecommendFriendDetail = async (
       return data.message;
     }
     throw new Error("Failed to patch your detail recommend");
+  }
 };
