@@ -6,7 +6,7 @@ const PREFIX_URL = "/recommend";
 
 export const postRecommendFriendInfo = async (
   friendsInfo: IPostFriendsInfo,
-  accessToken: string,
+  accessToken: string | null,
 ): Promise<void | null> => {
   const { data } = await serverAxios.post(`${PREFIX_URL}/request-uuid`, friendsInfo, {
     headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },

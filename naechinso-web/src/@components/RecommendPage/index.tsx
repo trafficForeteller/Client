@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postRecommendFriendInfo } from "../../apis/recommend.api";
@@ -35,9 +35,6 @@ export default function RecommendPage() {
     meet: "",
     period: "",
   });
-  const location = useLocation();
-  const { accessToken } = location.state;
-  const [uuid, setUuid] = useState("");
 
   useEffect(() => {
     setTimeout(() => {
@@ -54,15 +51,14 @@ export default function RecommendPage() {
     if (step === 2) setIsTypeModalOpened(true);
     else if (step === 3) setIsDurationModalOpened(true);
     else if (step === 5) {
-      navigate("/recommend/keyword");
+      navigate("/recommend/keyword", { state: { setProgressRate: setProgressRate } });
       handleFriendInfo();
     }
   }, [step]);
 
   const handleFriendInfo = async () => {
     // 친구의 기본정보 POST
-    const userData = await postRecommendFriendInfo(postFriendInfo, accessToken);
-    userData && setUuid(userData["uuid"]);
+    const userData = await postRecommendFriendInfo(postFriendInfo, localStorage.getItem("accessToken"));
     userData && localStorage.setItem("uuid", userData["uuid"]);
   };
 

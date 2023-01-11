@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { postMemberJoin } from "../../apis/member.api";
 import { IcAllChecked, IcAllUnChecked, IcChecked, IcUnChecked } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
-import { IPostPolicy, ITokenType } from "../../types/member";
+import { ITokenType } from "../../types/member";
 import NextPageBtn from "../@common/MoveNextPageBtn";
 
 export interface PolicyModalProps {
