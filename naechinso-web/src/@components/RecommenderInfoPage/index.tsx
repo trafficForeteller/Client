@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { IcSheild } from "../../asset/icons";
 import { MovePreviousPageBtn, ProgressBar, SubTitle, Title } from "../@common";
 
 export default function RecommenderInfoPage() {
@@ -16,6 +17,11 @@ export default function RecommenderInfoPage() {
       </St.TitleWrapper>
       <SubTitle subTitle="네 정보를 밝히며 친구를 추천하면" />
       <SubTitle subTitle="이 친구에게 엄청난 신뢰가 더해질거야✌️" />
+
+      <St.SheildWrapper>
+        <IcSheild />
+        <St.SheildDesc>이름 가운데는 *처리 되니 안심해! (ex. 김*민, 박*)</St.SheildDesc>
+      </St.SheildWrapper>
     </St.RecommenderInfo>
   );
 }
@@ -43,5 +49,22 @@ const St = {
 
     display: flex;
     flex-direction: column;
+  `,
+
+  SheildWrapper: styled.article`
+    width: 32.7rem;
+    height: 3.6rem;
+    border-radius: 8px;
+    margin: 2.4rem auto;
+    padding: 0.8rem 2rem 0.8rem 1rem;
+    background-color: ${({ theme }) => theme.colors.blue40};
+
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  `,
+  SheildDesc: styled.p`
+    color: ${({ theme }) => theme.colors.blue};
+    ${({ theme }) => theme.fonts.caption4}
   `,
 };

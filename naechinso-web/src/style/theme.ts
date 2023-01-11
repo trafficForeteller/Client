@@ -21,7 +21,7 @@ const colors = {
 } as const;
 
 interface Font {
-  weight: 500 | 600 | 700;
+  weight: 400 | 500 | 600 | 700;
   size: number;
   lineHeight: number;
 }
@@ -48,6 +48,7 @@ const fonts = {
   caption1: FONT({ weight: 500, size: 1.6, lineHeight: 1.6 }),
   caption2: FONT({ weight: 600, size: 1, lineHeight: 1.4 }),
   caption3: FONT({ weight: 500, size: 1.2, lineHeight: 2 }),
+  caption4: FONT({ weight: 400, size: 1.4, lineHeight: 2 }),
 } as const;
 
 type BackQuoteArgs = string[];
