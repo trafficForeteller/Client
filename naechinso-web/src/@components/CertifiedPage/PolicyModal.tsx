@@ -29,7 +29,6 @@ export default function PolicyModal(props: PolicyModalProps) {
     acceptsLocation: false,
     acceptsMarketing: false,
   });
-
   useEffect(() => {
     checkConfirmation();
     setAllChecked(policyList.every(isAllPolicyChecked));
@@ -85,6 +84,7 @@ export default function PolicyModal(props: PolicyModalProps) {
   const handlePolicy = async () => {
     //  내친소 시작하기 클릭 시 체크한 이용약관 POST
     const userData = await postMemberJoin(postPolicyList, token.registerToken);
+    userData && localStorage.setItem("accessToken", userData["accessToken"]);
     userData && setToken(userData);
   };
 

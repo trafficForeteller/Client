@@ -37,7 +37,10 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   }, [postAuthNum]);
 
   useEffect(() => {
-    if (token["accessToken"]) navigate("/recommend/landing");
+    if (token["accessToken"]) {
+      localStorage.setItem("accessToken", token["accessToken"]);
+      navigate("/recommend/landing");
+    }
   }, [token]);
 
   const closeModal = () => {

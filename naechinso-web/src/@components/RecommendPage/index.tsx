@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { postRecommendFriendInfo } from "../../apis/recommend.api";
 import { MovePreviousPageBtn, ShortInputBox, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
 import PhoneNumInputBox from "./PhoneNumInput";
@@ -45,14 +46,20 @@ export default function RecommendPage() {
     // step에 따라 다른 모달 open
     if (step === 2) setIsTypeModalOpened(true);
     else if (step === 3) setIsDurationModalOpened(true);
-    else if (step === 5) navigate("/recommend/keyword");
+    else if (step === 5) {
+      navigate("/recommend/keyword");
+    }
   }, [step]);
+
+  const handleFriendInfo = async () => {
+    // 친구의 기본정보 POST
+    // const userData = await postRecommendFriendInfo(postFriendInfo);
+  };
 
   useEffect(() => {
     // step에 따른 ActiveButton 활성화
     if (name.length >= 2) setActiveBtn(true);
     else if (step >= 2 && postRelationType) setActiveBtn(true);
-    // else if (step >= 2 && relationType === "기타") setActiveBtn(false);
     else if (step >= 3 && relationDuration) setActiveBtn(true);
     else setActiveBtn(false);
   }, [name, relationType, relationDuration]);

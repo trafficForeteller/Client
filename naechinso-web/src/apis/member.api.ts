@@ -8,7 +8,6 @@ export const postMemberJoin = async (policyData: IPostPolicy, registerToken: str
   const { data } = await serverAxios.post(`${PREFIX_URL}/join`, policyData, {
     headers: { Authorization: `${registerToken}`, "Content-Type": "application/json" },
   });
-  console.log(data.data);
   try {
     if (data.status === 200) {
       return data.data;
