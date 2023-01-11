@@ -19,24 +19,29 @@ export const relationDurationList: relationTypeProps[] = [
   { id: 3, relation: "5년 이상", checked: false },
 ];
 
-export type stepItemsProps = {
-  label: string;
-  placeholder: string;
-  question: string;
-  relationArr: relationTypeProps[];
+export type keywordProps = {
+  id: number;
+  keyword: string;
+  checked: boolean;
 };
 
-export const stepItemList: stepItemsProps[] = [
-  {
-    label: "관계",
-    placeholder: "어떤 관계인지 선택해줘",
-    question: "친구와 어떤 관계야?",
-    relationArr: relationTypeList,
-  },
-  {
-    label: "알고 지낸 기간",
-    placeholder: "알고 지낸 기간을 선택해줘",
-    question: "알고 지낸 지는 얼마나 됐어?",
-    relationArr: relationDurationList,
-  },
+export const keywordList: keywordProps[] = [
+  { id: 1, keyword: "패션센스🧥", checked: false },
+  { id: 2, keyword: "자기관리🏊🏻‍♀️", checked: false },
+  { id: 3, keyword: "사랑꾼💗", checked: false },
+  { id: 4, keyword: "일잘러🤓", checked: false },
+  { id: 5, keyword: "애교쟁이😘", checked: false },
+  { id: 6, keyword: "실물파👀", checked: false },
+  { id: 7, keyword: "귀여워🐹", checked: false },
+  { id: 8, keyword: "다정해🎩", checked: false },
+  { id: 9, keyword: "섬세해🪡", checked: false },
+  { id: 10, keyword: "유머러스😜", checked: false },
+  { id: 11, keyword: "뇌섹🧠", checked: false },
+  { id: 12, keyword: "인성갑😇", checked: false },
+  { id: 13, keyword: "차분해🍵", checked: false },
+  { id: 14, keyword: "화목한가정‍👩‍👦  ", checked: false },
+  { id: 15, keyword: "🚗가 ", checked: false },
+  { id: 16, keyword: "핫바디💪🏻", checked: false },
+  { id: 17, keyword: "🍯성대", checked: false },
+  { id: 18, keyword: "여유있지💰", checked: false },
 ];

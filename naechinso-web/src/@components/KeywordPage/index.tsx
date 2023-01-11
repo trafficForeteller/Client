@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { keywordList } from "../../core/recommend/recommend";
 import { MovePreviousPageBtn, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
 
@@ -15,6 +16,16 @@ export default function KeywordPage() {
         <Title title="네가 생각하는" />
         <Title title="친구의 매력을 3개 선택해줘" />
       </St.TitleWrapper>
+
+      <St.KeywordListWrapper>
+        {keywordList.map((keyword) => {
+          return (
+            <St.KeywordWrapper type="button" key={keyword.id}>
+              {keyword.keyword}
+            </St.KeywordWrapper>
+          );
+        })}
+      </St.KeywordListWrapper>
     </St.KeywordPage>
   );
 }
@@ -34,5 +45,20 @@ const St = {
     margin-bottom: 2.4rem;
     position: relative;
     z-index: -1;
+  `,
+  KeywordListWrapper: styled.section`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  `,
+  KeywordWrapper: styled.button`
+    width: 16rem;
+    height: 5.8rem;
+    color: ${({ theme }) => theme.colors.brown};
+    ${({ theme }) => theme.fonts.sub3};
+    background: ${({ theme }) => theme.colors.neural};
+    border-radius: 16px;
   `,
 };
