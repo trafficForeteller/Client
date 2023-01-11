@@ -1,13 +1,24 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import { keywordList } from "../../core/recommend/recommend";
+import { keywordList, keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { MoveNextPageBtn, MovePreviousPageBtn, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
 
 export default function KeywordPage() {
   const [activeNextBtn, setActiveNextBtn] = useState(false);
+  const [keywordArr, setKeywordArr] = useState(keywordList);
+
+  const toggleCheck = (el: keywordProps) => {
+    // 항목별 체크
+    const newKeywordList = keywordArr.map((keyword, index) => {
+      if (el.id === index) keyword.checked = true;
+      else keyword.checked = false;
+      return keyword;
+    });
+    setKeywordArr(newKeywordList);
+  };
 
   return (
     <St.KeywordPage>
@@ -22,10 +33,10 @@ export default function KeywordPage() {
       </St.TitleWrapper>
 
       <St.KeywordListWrapper>
-        {keywordList.map((keyword) => {
+        {keywordArr.map((el) => {
           return (
-            <St.KeywordWrapper type="button" key={keyword.id}>
-              {keyword.keyword}
+            <St.KeywordWrapper type="button" key={el.id} onClick={() => toggleCheck(el)} checked={el.checked}>
+              {el.keyword}
             </St.KeywordWrapper>
           );
         })}
@@ -59,12 +70,12 @@ const St = {
     flex-wrap: wrap;
     gap: 1.5rem;
   `,
-  KeywordWrapper: styled.button`
+  KeywordWrapper: styled.button<{ checked: boolean }>`
     width: 16rem;
     height: 5.8rem;
-    color: ${({ theme }) => theme.colors.brown};
+    color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.brown)};
     ${({ theme }) => theme.fonts.sub3};
-    background: ${({ theme }) => theme.colors.neural};
+    background: ${({ theme, checked }) => (checked ? theme.colors.brown : theme.colors.neural)};
     border-radius: 16px;
   `,
 };
