@@ -7,6 +7,7 @@ import {
   KeywordPage,
   LandingPage,
   PhoneNumberPage,
+  RecommenderInfoPage,
   RecommendPage,
   SubjectiveDescPage,
 } from "./@components";
@@ -36,6 +37,7 @@ export default function Router() {
         <Route path={routePaths.Recommend} element={<RecommendPage />} />
         <Route path={routePaths.Keyword} element={<KeywordPage />} />
         <Route path={routePaths.SubjectiveDesc} element={<SubjectiveDescPage />} />
+        <Route path={routePaths.RecommenderInfo} element={<RecommenderInfoPage />} />
       </Routes>
     </BrowserRouter>
   );
