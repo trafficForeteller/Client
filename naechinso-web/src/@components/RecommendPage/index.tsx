@@ -46,10 +46,6 @@ export default function RecommendPage() {
   });
 
   useEffect(() => {
-    console.log(postFriendInfo);
-  }, [postFriendInfo]);
-
-  useEffect(() => {
     checkIsModalOpened();
   }, [isTypeModalOpened, isDurationModalOpened]);
 
@@ -68,7 +64,6 @@ export default function RecommendPage() {
     const userData = await postRecommendFriendInfo(postFriendInfo, accessToken);
     userData && setUuid(userData["uuid"]);
     userData && localStorage.setItem("uuid", userData["uuid"]);
-    console.log(uuid);
   };
 
   useEffect(() => {

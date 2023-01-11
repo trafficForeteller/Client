@@ -35,10 +35,6 @@ export default function PolicyModal(props: PolicyModalProps) {
     changePolicyType();
   }, [policyList]);
 
-  useEffect(() => {
-    console.log(postPolicyList);
-  });
-
   const checkConfirmation = () => {
     // 조건에 따른 내친소 시작 버튼 활성화
     const newPolicyList = [...policyList];

@@ -11,7 +11,6 @@ export const postRecommendFriendInfo = async (
   const { data } = await serverAxios.post(`${PREFIX_URL}/request-uuid`, friendsInfo, {
     headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
   });
-  console.log(data.data);
   try {
     if (data.status === 200) {
       return data.data;
