@@ -190,7 +190,6 @@ const St = {
     ${({ theme }) => theme.fonts.body1};
   `,
   TitleWrapper: styled.hgroup`
-    margin-left: 2.4rem;
     margin-bottom: 2.4rem;
     position: relative;
     z-index: -1;
