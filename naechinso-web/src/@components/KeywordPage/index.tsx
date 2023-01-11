@@ -10,7 +10,7 @@ export default function KeywordPage() {
         <MovePreviousPageBtn />
         친구 정보
       </St.Header>
-      {/* <ProgressBar progressRate={progressRate} /> */}
+      <ProgressBar progressRate={40} />
       <St.TitleWrapper>
         <Title title="네가 생각하는" />
         <Title title="친구의 매력을 3개 선택해줘" />

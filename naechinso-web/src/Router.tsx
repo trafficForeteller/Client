@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { CertifiedPage, InstallAppPage, LandingPage, PhoneNumberPage, RecommendPage } from "./@components";
-import KeywordPage from "./@components/KeywordPage";
+import { CertifiedPage, InstallAppPage, KeywordPage, LandingPage, PhoneNumberPage, RecommendPage } from "./@components";
 import { postSmsSend } from "./apis/sms.api";
 import { routePaths } from "./core/routes/path";
 import { IPostPhoneNumber } from "./types/sms";

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postRecommendFriendInfo } from "../../apis/recommend.api";
+import { routePaths } from "../../core/routes/path";
 import { MovePreviousPageBtn, ShortInputBox, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
 import PhoneNumInputBox from "./PhoneNumInput";
@@ -12,7 +13,6 @@ import RelationTypeInput from "./RecommendTypeInput";
 
 export default function RecommendPage() {
   const [alert, setAlert] = useState(true);
-  const [progressRate, setProgressRate] = useState(20);
   const [step, setStep] = useState(1);
   const [activeBtn, setActiveBtn] = useState(false);
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ export default function RecommendPage() {
     if (step === 2) setIsTypeModalOpened(true);
     else if (step === 3) setIsDurationModalOpened(true);
     else if (step === 5) {
-      navigate("/recommend/keyword", { state: { setProgressRate: setProgressRate } });
+      navigate(`${routePaths.Keyword}`);
       handleFriendInfo();
     }
   }, [step]);
@@ -103,7 +103,7 @@ export default function RecommendPage() {
             <MovePreviousPageBtn />
             친구 정보
           </St.Header>
-          <ProgressBar progressRate={progressRate} />
+          <ProgressBar progressRate={20} />
           <St.TitleWrapper>
             <Title title="어떤 친구를 소개해줄거야?" />
             <Title title="너무 궁금해!👀" />
