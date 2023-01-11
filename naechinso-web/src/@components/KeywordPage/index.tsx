@@ -1,10 +1,14 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 import { keywordList } from "../../core/recommend/recommend";
-import { MovePreviousPageBtn, Title } from "../@common";
+import { routePaths } from "../../core/routes/path";
+import { MoveNextPageBtn, MovePreviousPageBtn, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
 
 export default function KeywordPage() {
+  const [activeNextBtn, setActiveNextBtn] = useState(false);
+
   return (
     <St.KeywordPage>
       <St.Header>
@@ -26,6 +30,8 @@ export default function KeywordPage() {
           );
         })}
       </St.KeywordListWrapper>
+
+      <MoveNextPageBtn nextPage={routePaths.SubjectiveDesc} title="다음" inputActive={!activeNextBtn} />
     </St.KeywordPage>
   );
 }

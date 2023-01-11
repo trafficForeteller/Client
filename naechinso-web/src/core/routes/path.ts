@@ -5,6 +5,7 @@ export const routePaths = {
   Certified: "/join/autorize",
   Recommend: "/recommend",
   Keyword: "/recommend/keyword",
+  SubjectiveDesc: "/recommend/subjectiveDesc",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];

@@ -37,7 +37,7 @@ const St = {
     justify-content: center;
   `,
   Button: styled.button`
-    position: absolute;
+    position: fixed;
     bottom: 3.5rem;
     padding: 1rem;
 

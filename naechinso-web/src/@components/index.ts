@@ -4,3 +4,4 @@ export { default as KeywordPage } from "./KeywordPage";
 export { default as LandingPage } from "./LandingPage";
 export { default as PhoneNumberPage } from "./PhoneNumberPage";
 export { default as RecommendPage } from "./RecommendPage";
+export { default as SubjectiveDescPage } from "./SubjectiveDescPage";
