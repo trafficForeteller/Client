@@ -3,9 +3,7 @@ import styled from "styled-components";
 
 import { keywordList, keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { MoveNextPageBtn, MovePreviousPageBtn, Title } from "../@common";
-import ProgressBar from "../@common/ProgressBar";
-
+import { MoveNextPageBtn, MovePreviousPageBtn, ProgressBar, Title } from "../@common";
 export default function KeywordPage() {
   const [activeNextBtn, setActiveNextBtn] = useState(false);
   const [keywordArr, setKeywordArr] = useState(keywordList);
