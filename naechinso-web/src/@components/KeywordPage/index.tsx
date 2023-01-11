@@ -12,13 +12,18 @@ export default function KeywordPage() {
   const [checkedAppeals, setCheckedAppeals] = useState<string[]>([]);
 
   useEffect(() => {
+    if (checkedAppeals.length === 3) setActiveNextBtn(true);
+    else setActiveNextBtn(false);
     console.log(checkedAppeals);
   }, [checkedAppeals]);
 
   const toggleChecked = (el: keywordProps) => {
-    // 항목별 체크
+    // 항목별 체크 && 3개 이상 시 체크 불가
     const newKeywordList = keywordArr.map((keyword, index) => {
-      if (el.id === index) keyword.checked = !keyword.checked;
+      if (el.id === index) {
+        if (checkedAppeals.length < 3) keyword.checked = !keyword.checked;
+        else if (el.checked) keyword.checked = !keyword.checked;
+      }
       return keyword;
     });
     setKeywordArr(newKeywordList);
@@ -26,6 +31,7 @@ export default function KeywordPage() {
   };
 
   const countCheckedNum = (el: keywordProps) => {
+    // 체크된 tag 배열에 담기
     if (el.checked) setCheckedAppeals([...checkedAppeals, el.keyword]);
     else setCheckedAppeals(checkedAppeals.filter((appeal) => appeal !== el.keyword));
   };
