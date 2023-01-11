@@ -1,13 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 
+import { IcSheild } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { IPostPhoneNumber } from "../../types/sms";
-import NextPageBtn from "../@common/MoveNextPageBtn";
-import PreviousPageBtn from "../@common/MovePreviousPageBtn";
-import PhoneNumInput from "../@common/PhoneNumInput";
-import Title from "../@common/Title";
-
+import { MoveNextPageBtn, MovePreviousPageBtn, PhoneNumInput, Title } from "../@common";
 export interface PhoneNumberPageProps {
   setPostPhoneNum: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
   sendSms: () => Promise<void>;
@@ -21,7 +18,7 @@ export default function PhoneNumberPage(props: PhoneNumberPageProps) {
 
   return (
     <St.PhoneNumberPage>
-      <PreviousPageBtn />
+      <MovePreviousPageBtn />
       <St.PageTop>
         <Title title="🏃🏻‍♀️" />
         <Title title="먼저 신원인증을 위해 " />
@@ -37,8 +34,21 @@ export default function PhoneNumberPage(props: PhoneNumberPageProps) {
           placeholder={""}
           setPostPhoneNum={setPostPhoneNum}
         />
+        <St.SheildWrapper>
+          <IcSheild />
+          <St.SheildDescWrapper>
+            <St.SheildDesc>∙ 외부에 공개되지 않으니 안심해!</St.SheildDesc>
+            <St.SheildDesc>∙ 네 친구가 내친소에서 연애를 하면 소정의 선물을 보내줄게!🎁</St.SheildDesc>
+          </St.SheildDescWrapper>
+        </St.SheildWrapper>
       </St.InputWrapper>
-      <NextPageBtn nextPage={routePaths.Certified} title="인증번호 받기" inputActive={inputActive} sendSms={sendSms} />
+
+      <MoveNextPageBtn
+        nextPage={routePaths.Certified}
+        title="인증번호 받기"
+        inputActive={inputActive}
+        sendSms={sendSms}
+      />
     </St.PhoneNumberPage>
   );
 }
@@ -51,7 +61,24 @@ const St = {
   `,
   InputWrapper: styled.section`
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     margin-top: 1rem;
+  `,
+  SheildWrapper: styled.article`
+    width: 34.5rem;
+    height: 4.8rem;
+    border-radius: 8px;
+    margin: 1.5rem auto;
+    padding: 0.4rem 1.6rem 0.4rem 0.55rem;
+    background-color: ${({ theme }) => theme.colors.blue40};
+
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  `,
+  SheildDescWrapper: styled.span``,
+  SheildDesc: styled.p`
+    color: ${({ theme }) => theme.colors.blue};
+    ${({ theme }) => theme.fonts.caption3}
   `,
 };
