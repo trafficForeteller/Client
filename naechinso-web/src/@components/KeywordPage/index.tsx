@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { keywordList, keywordProps } from "../../core/recommend/recommend";
@@ -9,15 +9,25 @@ import ProgressBar from "../@common/ProgressBar";
 export default function KeywordPage() {
   const [activeNextBtn, setActiveNextBtn] = useState(false);
   const [keywordArr, setKeywordArr] = useState(keywordList);
+  const [checkedAppeals, setCheckedAppeals] = useState<string[]>([]);
 
-  const toggleCheck = (el: keywordProps) => {
+  useEffect(() => {
+    console.log(checkedAppeals);
+  }, [checkedAppeals]);
+
+  const toggleChecked = (el: keywordProps) => {
     // 항목별 체크
     const newKeywordList = keywordArr.map((keyword, index) => {
-      if (el.id === index) keyword.checked = true;
-      else keyword.checked = false;
+      if (el.id === index) keyword.checked = !keyword.checked;
       return keyword;
     });
     setKeywordArr(newKeywordList);
+    countCheckedNum(el);
+  };
+
+  const countCheckedNum = (el: keywordProps) => {
+    if (el.checked) setCheckedAppeals([...checkedAppeals, el.keyword]);
+    else setCheckedAppeals(checkedAppeals.filter((appeal) => appeal !== el.keyword));
   };
 
   return (
@@ -35,7 +45,7 @@ export default function KeywordPage() {
       <St.KeywordListWrapper>
         {keywordArr.map((el) => {
           return (
-            <St.KeywordWrapper type="button" key={el.id} onClick={() => toggleCheck(el)} checked={el.checked}>
+            <St.KeywordWrapper type="button" key={el.id} onClick={() => toggleChecked(el)} checked={el.checked}>
               {el.keyword}
             </St.KeywordWrapper>
           );

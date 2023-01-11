@@ -40,7 +40,7 @@ export const keywordList: keywordProps[] = [
   { id: 11, keyword: "인성갑😇", checked: false },
   { id: 12, keyword: "차분해🍵", checked: false },
   { id: 13, keyword: "화목한가정‍👩‍👦  ", checked: false },
-  { id: 14, keyword: "🚗가 ", checked: false },
+  { id: 14, keyword: "🚗가 있어", checked: false },
   { id: 15, keyword: "핫바디💪🏻", checked: false },
   { id: 16, keyword: "🍯성대", checked: false },
   { id: 17, keyword: "여유있지💰", checked: false },
