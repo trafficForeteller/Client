@@ -25,7 +25,7 @@ const St = {
     width: 33.5rem;
     height: 8rem;
 
-    border-radius: 1.6rem;
+    border-radius: 16px;
     background-color: ${({ theme }) => theme.colors.neural};
     padding: 1rem 2rem 1.6rem;
     margin: 1.6rem auto 0;

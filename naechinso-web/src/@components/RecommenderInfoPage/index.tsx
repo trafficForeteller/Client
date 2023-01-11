@@ -1,9 +1,18 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 import { IcSheild } from "../../asset/icons";
 import { MovePreviousPageBtn, ProgressBar, SubTitle, Title } from "../@common";
+import NameInputBox from "./NameInputBox";
 
 export default function RecommenderInfoPage() {
+  const [name, setName] = useState("");
+
+  const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //  이름을 관리하는 함수
+    setName(e.target.value);
+  };
+
   return (
     <St.RecommenderInfo>
       <St.Header>
@@ -22,6 +31,8 @@ export default function RecommenderInfoPage() {
         <IcSheild />
         <St.SheildDesc>이름 가운데는 *처리 되니 안심해! (ex. 김*민, 박*)</St.SheildDesc>
       </St.SheildWrapper>
+
+      <NameInputBox name={name} handleNameInput={handleNameInput} />
     </St.RecommenderInfo>
   );
 }
