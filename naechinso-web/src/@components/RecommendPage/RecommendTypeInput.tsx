@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import { relationTypeList } from "../../core/recommend/recommend";
@@ -15,6 +15,7 @@ export interface RelationTypeInputProps {
   isModalOpened: boolean;
   relationEtc: string;
   setRelationEtc: React.Dispatch<React.SetStateAction<string>>;
+  setPostRelationType: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function RelationTypeInput(props: RelationTypeInputProps) {
@@ -26,7 +27,20 @@ export default function RelationTypeInput(props: RelationTypeInputProps) {
     isModalOpened,
     relationEtc,
     setRelationEtc,
+    setPostRelationType,
   } = props;
+
+  useEffect(() => {
+    handlePostRelationType();
+  }, [relationType, relationEtc]);
+
+  const handlePostRelationType = () => {
+    if (relationType === "기타") relationEtc && setPostRelationType(relationEtc);
+    else {
+      relationType && setPostRelationType(relationType);
+      setRelationEtc("");
+    }
+  };
 
   const closeRelationModal = (target: string) => {
     setIsTypeModalOpened(false);

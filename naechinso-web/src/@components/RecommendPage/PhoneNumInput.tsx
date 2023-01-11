@@ -11,7 +11,7 @@ export interface PhoneNumInputProps {
   setActiveBtn: React.Dispatch<React.SetStateAction<boolean>>;
   phoneNum: string;
   setPhoneNum: React.Dispatch<React.SetStateAction<string>>;
-  setPostPhoneNum?: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
+  setPostPhoneNum: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
   isModalOpened: boolean;
 }
 

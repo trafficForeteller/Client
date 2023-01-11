@@ -21,8 +21,21 @@ export default function RecommendPage() {
   const [name, setName] = useState("");
   const [relationType, setRelationType] = useState("");
   const [relationEtc, setRelationEtc] = useState("");
+  const [postRelationType, setPostRelationType] = useState("");
   const [relationDuration, setRelationDuration] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
+  const [postPhoneNum, setPostPhoneNum] = useState({ phoneNumber: "" });
+
+  const [postFriendInfo, setPostFriendInfo] = useState({
+    phone: "",
+    name: "",
+    meet: "",
+    period: "",
+  });
+
+  useEffect(() => {
+    console.log(postFriendInfo);
+  }, [postFriendInfo]);
 
   useEffect(() => {
     checkIsModalOpened();
@@ -38,7 +51,8 @@ export default function RecommendPage() {
   useEffect(() => {
     // step에 따른 ActiveButton 활성화
     if (name.length >= 2) setActiveBtn(true);
-    else if (step >= 2 && relationType === "친족") setActiveBtn(true);
+    else if (step >= 2 && postRelationType) setActiveBtn(true);
+    // else if (step >= 2 && relationType === "기타") setActiveBtn(false);
     else if (step >= 3 && relationDuration) setActiveBtn(true);
     else setActiveBtn(false);
   }, [name, relationType, relationDuration]);
@@ -55,6 +69,13 @@ export default function RecommendPage() {
 
   const handleStep = () => {
     // 친구정보 step을 관리하는 함수
+    setPostFriendInfo({
+      ...postFriendInfo,
+      name: name,
+      meet: postRelationType,
+      period: relationDuration,
+      phone: postPhoneNum.phoneNumber,
+    });
     setStep(step + 1);
     setActiveBtn(false);
   };
@@ -80,6 +101,7 @@ export default function RecommendPage() {
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
           isModalOpened={isModalOpened}
+          setPostPhoneNum={setPostPhoneNum}
         />
       ) : (
         <></>
@@ -108,6 +130,7 @@ export default function RecommendPage() {
           isModalOpened={isModalOpened}
           relationEtc={relationEtc}
           setRelationEtc={setRelationEtc}
+          setPostRelationType={setPostRelationType}
         />
       ) : (
         <></>
