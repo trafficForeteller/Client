@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postRecommendFriendInfo } from "../../apis/recommend.api";
@@ -7,9 +7,11 @@ import { MovePreviousPageBtn, ShortInputBox, Title } from "../@common";
 import ProgressBar from "../@common/ProgressBar";
 import PhoneNumInputBox from "./PhoneNumInput";
 import RelationDurationInput from "./RecommendDurationInput";
+import RecommendLandingSplash from "./RecommendLandingSplash";
 import RelationTypeInput from "./RecommendTypeInput";
 
 export default function RecommendPage() {
+  const [alert, setAlert] = useState(true);
   const [progressRate, setProgressRate] = useState(20);
   const [step, setStep] = useState(1);
   const [activeBtn, setActiveBtn] = useState(false);
@@ -32,6 +34,14 @@ export default function RecommendPage() {
     name: "",
     meet: "",
     period: "",
+  });
+  const location = useLocation();
+  const { accessToken } = location.state;
+
+  useEffect(() => {
+    setTimeout(() => {
+      setAlert(false);
+    }, 2000);
   });
 
   useEffect(() => {
@@ -88,76 +98,82 @@ export default function RecommendPage() {
   };
 
   return (
-    <St.RecommendPage isModalOpened={isModalOpened}>
-      <St.Header>
-        <MovePreviousPageBtn />
-        친구 정보
-      </St.Header>
-      <ProgressBar progressRate={progressRate} />
-      <St.TitleWrapper>
-        <Title title="어떤 친구를 소개해줄거야?" />
-        <Title title="너무 궁금해!👀" />
-      </St.TitleWrapper>
-
-      {step >= 4 ? (
-        <PhoneNumInputBox
-          label="친구의 휴대폰 번호"
-          placeholder="0000 0000"
-          phoneNum={phoneNum}
-          setPhoneNum={setPhoneNum}
-          activeBtn={activeBtn}
-          setActiveBtn={setActiveBtn}
-          isModalOpened={isModalOpened}
-          setPostPhoneNum={setPostPhoneNum}
-        />
+    <>
+      {alert ? (
+        <RecommendLandingSplash />
       ) : (
-        <></>
+        <St.RecommendPage isModalOpened={isModalOpened}>
+          <St.Header>
+            <MovePreviousPageBtn />
+            친구 정보
+          </St.Header>
+          <ProgressBar progressRate={progressRate} />
+          <St.TitleWrapper>
+            <Title title="어떤 친구를 소개해줄거야?" />
+            <Title title="너무 궁금해!👀" />
+          </St.TitleWrapper>
+
+          {step >= 4 ? (
+            <PhoneNumInputBox
+              label="친구의 휴대폰 번호"
+              placeholder="0000 0000"
+              phoneNum={phoneNum}
+              setPhoneNum={setPhoneNum}
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+              isModalOpened={isModalOpened}
+              setPostPhoneNum={setPostPhoneNum}
+            />
+          ) : (
+            <></>
+          )}
+
+          {step >= 3 ? (
+            <RelationDurationInput
+              step={step}
+              relationDuration={relationDuration}
+              isDurationModalOpened={isDurationModalOpened}
+              setRelationDuration={setRelationDuration}
+              setIsDurationModalOpened={setIsDurationModalOpened}
+              isModalOpened={isModalOpened}
+            />
+          ) : (
+            <></>
+          )}
+
+          {step >= 2 ? (
+            <RelationTypeInput
+              step={step}
+              relationType={relationType}
+              isTypeModalOpened={isTypeModalOpened}
+              setIsTypeModalOpened={setIsTypeModalOpened}
+              setRelationType={setRelationType}
+              isModalOpened={isModalOpened}
+              relationEtc={relationEtc}
+              setRelationEtc={setRelationEtc}
+              setPostRelationType={setPostRelationType}
+            />
+          ) : (
+            <></>
+          )}
+
+          <ShortInputBox
+            label="친구 이름"
+            placeholder="실명을 적어줘. 이름 가운데는 *처리돼"
+            value={name}
+            onChange={(e) => handleNameInput(e)}
+            isModalOpened={isModalOpened}
+            step={step}
+          />
+
+          <St.NextStepBtnWrapper>
+            <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep} isModalOpened={isModalOpened}>
+              다음
+            </St.NextStepBtn>
+          </St.NextStepBtnWrapper>
+        </St.RecommendPage>
       )}
-
-      {step >= 3 ? (
-        <RelationDurationInput
-          step={step}
-          relationDuration={relationDuration}
-          isDurationModalOpened={isDurationModalOpened}
-          setRelationDuration={setRelationDuration}
-          setIsDurationModalOpened={setIsDurationModalOpened}
-          isModalOpened={isModalOpened}
-        />
-      ) : (
-        <></>
-      )}
-
-      {step >= 2 ? (
-        <RelationTypeInput
-          step={step}
-          relationType={relationType}
-          isTypeModalOpened={isTypeModalOpened}
-          setIsTypeModalOpened={setIsTypeModalOpened}
-          setRelationType={setRelationType}
-          isModalOpened={isModalOpened}
-          relationEtc={relationEtc}
-          setRelationEtc={setRelationEtc}
-          setPostRelationType={setPostRelationType}
-        />
-      ) : (
-        <></>
-      )}
-
-      <ShortInputBox
-        label="친구 이름"
-        placeholder="실명을 적어줘. 이름 가운데는 *처리돼"
-        value={name}
-        onChange={(e) => handleNameInput(e)}
-        isModalOpened={isModalOpened}
-        step={step}
-      />
-
-      <St.NextStepBtnWrapper>
-        <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep} isModalOpened={isModalOpened}>
-          다음
-        </St.NextStepBtn>
-      </St.NextStepBtnWrapper>
-    </St.RecommendPage>
+    </>
   );
 }
 

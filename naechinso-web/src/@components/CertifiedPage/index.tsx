@@ -39,7 +39,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   useEffect(() => {
     if (token["accessToken"]) {
       localStorage.setItem("accessToken", token["accessToken"]);
-      navigate("/recommend/landing");
+      navigate(`${routePaths.Recommend}`, { state: { accessToken: token["accessToken"] } });
     }
   }, [token]);
 
