@@ -37,6 +37,7 @@ export default function RecommendPage() {
   });
   const location = useLocation();
   const { accessToken } = location.state;
+  const [uuid, setUuid] = useState("");
 
   useEffect(() => {
     setTimeout(() => {
@@ -58,12 +59,16 @@ export default function RecommendPage() {
     else if (step === 3) setIsDurationModalOpened(true);
     else if (step === 5) {
       navigate("/recommend/keyword");
+      handleFriendInfo();
     }
   }, [step]);
 
   const handleFriendInfo = async () => {
     // 친구의 기본정보 POST
-    // const userData = await postRecommendFriendInfo(postFriendInfo);
+    const userData = await postRecommendFriendInfo(postFriendInfo, accessToken);
+    userData && setUuid(userData["uuid"]);
+    userData && localStorage.setItem("uuid", userData["uuid"]);
+    console.log(uuid);
   };
 
   useEffect(() => {

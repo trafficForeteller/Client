@@ -3,7 +3,6 @@ export const routePaths = {
   InstallApp: "/naechinso-app",
   PhoneNum: "/join",
   Certified: "/join/autorize",
-  RecommendLanding: "/recommend/landing",
   Recommend: "/recommend",
   Keyword: "/recommend/keyword",
 };
