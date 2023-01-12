@@ -53,7 +53,7 @@ export default function KeywordPage() {
         })}
       </St.KeywordListWrapper>
 
-      <MoveNextPageBtn nextPage={routePaths.SubjectiveDesc} title="다음" inputActive={!activeNextBtn} />
+      <MoveNextPageBtn nextPage={routePaths.ChooseQuestion} title="다음" inputActive={!activeNextBtn} />
     </St.KeywordPage>
   );
 }

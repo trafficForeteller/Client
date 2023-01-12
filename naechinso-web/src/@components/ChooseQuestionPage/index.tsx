@@ -6,7 +6,7 @@ import { routePaths } from "../../core/routes/path";
 import { MoveNextPageBtn } from "../@common";
 import FixedHeader from "../@common/FixedHeader";
 
-export default function SubjectiveDescPage() {
+export default function ChooseQuestionPage() {
   const [questionArr, setQuestionArr] = useState(questionList);
   const [nextBtnActive, setNextBtnActive] = useState(false);
 
@@ -31,7 +31,7 @@ export default function SubjectiveDescPage() {
   };
 
   return (
-    <St.SubjectiveDesc>
+    <St.ChooseQuestion>
       <FixedHeader header="추천사" progressRate={55} title1="친구를 잘 설명할 수 있는" title2="질문을 골라 답해줘!" />
       <St.QuestionContainer>
         {questionArr.map((question) => {
@@ -51,12 +51,12 @@ export default function SubjectiveDescPage() {
         })}
       </St.QuestionContainer>
       <MoveNextPageBtn nextPage={routePaths.Recommend} title="다음" inputActive={!nextBtnActive} />
-    </St.SubjectiveDesc>
+    </St.ChooseQuestion>
   );
 }
 
 const St = {
-  SubjectiveDesc: styled.main`
+  ChooseQuestion: styled.main`
     padding-bottom: 10rem;
   `,
 

@@ -5,7 +5,7 @@ export const routePaths = {
   Certified: "/join/autorize",
   Recommend: "/recommend",
   Keyword: "/recommend/keyword",
-  SubjectiveDesc: "/recommend/subjectiveDesc",
+  ChooseQuestion: "/recommend/question",
   RecommenderInfo: "/join/recommender",
 };
 
