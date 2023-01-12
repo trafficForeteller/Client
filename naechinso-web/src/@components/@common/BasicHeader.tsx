@@ -3,26 +3,27 @@ import styled from "styled-components";
 import MovePreviousPageBtn from "./MovePreviousPageBtn";
 import ProgressBar from "./ProgressBar";
 
-export interface FriendInfoHeaderProps {
+export interface BasicHeaderProps {
+  header: string;
   progressRate: number;
 }
 
-export default function FriendInfoHeader(props: FriendInfoHeaderProps) {
-  const { progressRate } = props;
+export default function BasicHeader(props: BasicHeaderProps) {
+  const { header, progressRate } = props;
 
   return (
-    <St.FriendInfoHeader>
+    <St.BasicHeader>
       <St.Header>
         <MovePreviousPageBtn />
-        친구 정보
+        {header}
       </St.Header>
       <ProgressBar progressRate={progressRate} />
-    </St.FriendInfoHeader>
+    </St.BasicHeader>
   );
 }
 
 const St = {
-  FriendInfoHeader: styled.article``,
+  BasicHeader: styled.article``,
   Header: styled.header`
     height: 5.6rem;
     display: flex;

@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 import { keywordList, keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { MoveNextPageBtn, MovePreviousPageBtn, ProgressBar, Title } from "../@common";
-import FriendInfoHeader from "../@common/FriendInfoHeader";
+import { MoveNextPageBtn, Title } from "../@common";
+import BasicHeader from "../@common/BasicHeader";
 export default function KeywordPage() {
   const [activeNextBtn, setActiveNextBtn] = useState(false);
   const [keywordArr, setKeywordArr] = useState(keywordList);
@@ -36,7 +36,7 @@ export default function KeywordPage() {
 
   return (
     <St.KeywordPage>
-      <FriendInfoHeader progressRate={40} />
+      <BasicHeader header="친구 정보" progressRate={40} />
       <St.TitleWrapper>
         <Title title="네가 생각하는" />
         <Title title="친구의 매력을 3개 선택해줘" />

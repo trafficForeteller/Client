@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { postRecommendFriendInfo } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
 import { ShortInputBox, Title } from "../@common";
-import FriendInfoHeader from "../@common/FriendInfoHeader";
+import BasicHeader from "../@common/BasicHeader";
 import PhoneNumInputBox from "./PhoneNumInput";
 import RelationDurationInput from "./RecommendDurationInput";
 import RecommendLandingSplash from "./RecommendLandingSplash";
@@ -40,7 +40,7 @@ export default function RecommendPage() {
     setTimeout(() => {
       setAlert(false);
     }, 2000);
-  });
+  }, []);
 
   useEffect(() => {
     checkIsModalOpened();
@@ -99,7 +99,7 @@ export default function RecommendPage() {
         <RecommendLandingSplash />
       ) : (
         <St.RecommendPage isModalOpened={isModalOpened}>
-          <FriendInfoHeader progressRate={20} />
+          <BasicHeader header="친구 정보" progressRate={20} />
           <St.TitleWrapper>
             <Title title="어떤 친구를 소개해줄거야?" />
             <Title title="너무 궁금해!👀" />
