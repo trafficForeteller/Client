@@ -6,6 +6,7 @@ import { postRecommendation } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
 import { IPostRecommend } from "../../types/recommend";
 import FixedHeader from "../@common/FixedHeader";
+import TextAreaBox from "../@common/TextAreaBox";
 import ToggleTipBox from "./ToggleTipBox";
 
 export default function RecommendPage() {
@@ -30,10 +31,6 @@ export default function RecommendPage() {
     else setTextCount(false);
   }, [text]);
 
-  const handleText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value);
-  };
-
   const handleRecommend = async () => {
     // 추천사 POST
     navigate(`${routePaths.AppealDetail}`);
@@ -56,20 +53,13 @@ export default function RecommendPage() {
       />
       <ToggleTipBox isThreeLine={isThreeLine} />
 
-      <St.InputBox>
-        :
-        <St.TextArea
-          placeholder={questionData.placeholder}
-          minLength={199}
-          maxLength={399}
-          value={text}
-          onChange={(e) => handleText(e)}
-        />
-      </St.InputBox>
-      <St.TextLength>
-        <St.TextCount>{text.length}</St.TextCount>
-        /400
-      </St.TextLength>
+      <TextAreaBox
+        placeholder={questionData.placeholder}
+        minLength={199}
+        maxLength={399}
+        text={text}
+        setText={setText}
+      />
 
       <St.NextBtnWrapper>
         <St.NextStepBtn type="button" disabled={!textCount} onClick={handleRecommend}>
@@ -82,46 +72,6 @@ export default function RecommendPage() {
 
 const St = {
   Recommend: styled.main``,
-  InputBox: styled.section`
-    width: 31.9rem;
-    height: 20rem;
-    max-height: auto;
-    margin: 0 auto;
-    display: flex;
-    gap: 0.8rem;
-    ${({ theme }) => theme.fonts.sub3}
-    color: ${({ theme }) => theme.colors.brown}
-  `,
-  TextArea: styled.textarea`
-    display: flex;
-    flex-wrap: wrap;
-    height: 100%;
-    width: 306px;
-    word-break: break-all;
-    color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.sub3}
-    border: none;
-    resize: none;
-
-    &::placeholder {
-      color: ${({ theme }) => theme.colors.gray40};
-    }
-    &:focus {
-      outline: none;
-    }
-  `,
-  TextLength: styled.div`
-    margin-top: 0.8rem;
-    padding-right: 3.3rem;
-    float: right;
-    display: flex;
-    color: ${({ theme }) => theme.colors.gray40};
-    ${({ theme }) => theme.fonts.caption5}
-  `,
-  TextCount: styled.p`
-    color: ${({ theme }) => theme.colors.orange};
-  `,
-
   NextBtnWrapper: styled.section`
     display: flex;
     justify-content: center;
