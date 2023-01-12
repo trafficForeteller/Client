@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { questionList } from "../../core/recommend/recommend";
@@ -10,6 +10,10 @@ export default function SubjectiveDescPage() {
   const [questionArr, setQuestionArr] = useState(questionList);
   const [nextBtnActive, setNextBtnActive] = useState(false);
 
+  useEffect(() => {
+    chooseQuestion();
+  }, [questionArr]);
+
   const toggleCheck = (idx: number) => {
     // 항목별 체크
     const newQuestionArr = questionList.map((q, index) => {
@@ -18,6 +22,12 @@ export default function SubjectiveDescPage() {
       return q;
     });
     setQuestionArr(newQuestionArr);
+  };
+
+  const chooseQuestion = () => {
+    // 하나라도 checked true면 버튼 활성화
+    const isQuestionChecked = (item: { checked: boolean }) => item.checked === true;
+    setNextBtnActive(questionArr.some(isQuestionChecked));
   };
 
   return (
