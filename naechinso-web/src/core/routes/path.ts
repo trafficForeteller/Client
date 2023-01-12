@@ -4,8 +4,9 @@ export const routePaths = {
   PhoneNum: "/join",
   Certified: "/join/autorize",
   FriendInfo: "/recommend",
-  Keyword: "/recommend/keyword",
+  Keyword: "/recommend/charm",
   ChooseQuestion: "/recommend/question",
+  Recommend: "/recommend/answer",
   RecommenderInfo: "/join/recommender",
 };
 

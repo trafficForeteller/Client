@@ -10,6 +10,7 @@ import {
   LandingPage,
   PhoneNumberPage,
   RecommenderInfoPage,
+  RecommendPage,
 } from "./@components";
 import { postSmsSend } from "./apis/sms.api";
 import { routePaths } from "./core/routes/path";
@@ -38,6 +39,7 @@ export default function Router() {
         <Route path={routePaths.Keyword} element={<KeywordPage />} />
         <Route path={routePaths.ChooseQuestion} element={<ChooseQuestionPage />} />
         <Route path={routePaths.RecommenderInfo} element={<RecommenderInfoPage />} />
+        <Route path={routePaths.Recommend} element={<RecommendPage />} />
       </Routes>
     </BrowserRouter>
   );
