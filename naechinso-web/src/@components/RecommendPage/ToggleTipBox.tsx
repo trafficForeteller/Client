@@ -11,9 +11,11 @@ export default function ToggleTipBox() {
     <St.ToggleTipBox>
       <St.TipHeader>
         <St.TipTitle>⭐️ 추천사 꿀팁</St.TipTitle>
-        <IcToggleArrow />
+        <St.ArrowWrapper onClick={() => setOpen(!open)} open={open}>
+          <IcToggleArrow />
+        </St.ArrowWrapper>
       </St.TipHeader>
-      <St.ToggleTipList>
+      <St.ToggleTipList open={open}>
         {TipList.map((tip) => {
           return (
             <St.TipWrapper key={tip.id}>
@@ -35,7 +37,6 @@ const St = {
   ToggleTipBox: styled.section`
     margin: 22rem auto 3.2rem;
     width: 32.9rem;
-    height: 14rem;
     background-color: ${({ theme }) => theme.colors.neural};
     border-radius: 16px;
     padding: 1rem;
@@ -49,8 +50,16 @@ const St = {
     ${({ theme }) => theme.fonts.body6}
   `,
   TipTitle: styled.h3``,
-  ToggleTipList: styled.article`
+  ArrowWrapper: styled.span<{ open: boolean }>`
     display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transform: rotate(${({ open }) => (open ? "" : "0.5turn")});
+    transition: all 0.5s;
+  `,
+  ToggleTipList: styled.article<{ open: boolean }>`
+    display: ${({ open }) => (open ? "flex" : "none")};
     flex-direction: column;
     gap: 0.4rem;
     margin-top: 1.6rem;
