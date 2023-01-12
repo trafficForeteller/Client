@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import FixedHeader from "../@common/FixedHeader";
+import ToggleTipBox from "./ToggleTipBox";
 
 export default function RecommendPage() {
   const location = useLocation();
@@ -21,6 +22,8 @@ export default function RecommendPage() {
         title2={questionData.desc2}
         title3={questionData.desc3}
       />
+
+      <ToggleTipBox />
     </St.Recommend>
   );
 }

@@ -1,0 +1,71 @@
+import { useState } from "react";
+import styled from "styled-components";
+
+import { IcTipCheck, IcToggleArrow } from "../../asset/icons";
+import { TipList } from "../../core/recommend/recommend";
+
+export default function ToggleTipBox() {
+  const [open, setOpen] = useState(true);
+
+  return (
+    <St.ToggleTipBox>
+      <St.TipHeader>
+        <St.TipTitle>⭐️ 추천사 꿀팁</St.TipTitle>
+        <IcToggleArrow />
+      </St.TipHeader>
+      <St.ToggleTipList>
+        {TipList.map((tip) => {
+          return (
+            <St.TipWrapper key={tip.id}>
+              <IcTipCheck />
+              <St.TipDescWrapper>
+                <St.TipDesc>{tip.desc1}</St.TipDesc>
+                <St.TipHighlight>&ldquo;{tip.highlight}&rdquo;</St.TipHighlight>
+                <St.TipDesc>{tip.desc2}</St.TipDesc>
+              </St.TipDescWrapper>
+            </St.TipWrapper>
+          );
+        })}
+      </St.ToggleTipList>
+    </St.ToggleTipBox>
+  );
+}
+
+const St = {
+  ToggleTipBox: styled.section`
+    margin: 22rem auto 3.2rem;
+    width: 32.9rem;
+    height: 14rem;
+    background-color: ${({ theme }) => theme.colors.neural};
+    border-radius: 16px;
+    padding: 1rem;
+  `,
+  TipHeader: styled.article`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: ${({ theme }) => theme.colors.orange};
+    ${({ theme }) => theme.fonts.body6}
+  `,
+  TipTitle: styled.h3``,
+  ToggleTipList: styled.article`
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 1.6rem;
+  `,
+  TipWrapper: styled.div`
+    display: flex;
+    gap: 0.8rem;
+  `,
+  TipDescWrapper: styled.span`
+    display: flex;
+    gap: 0.1rem;
+    ${({ theme }) => theme.fonts.body5}
+  `,
+  TipDesc: styled.p``,
+  TipHighlight: styled.b`
+    color: ${({ theme }) => theme.colors.orange};
+  `,
+};
