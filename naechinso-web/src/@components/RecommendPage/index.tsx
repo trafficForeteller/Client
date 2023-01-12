@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
+import { routePaths } from "../../core/routes/path";
+import { MoveNextPageBtn } from "../@common";
 import FixedHeader from "../@common/FixedHeader";
 import ToggleTipBox from "./ToggleTipBox";
 
 export default function RecommendPage() {
   const [isThreeLine, setIsThreeLine] = useState(false);
-  const [textCount, setTextCount] = useState("");
+  const [textCount, setTextCount] = useState(false);
+  const [text, setText] = useState("");
   const location = useLocation();
   const questionData = location.state.state;
 
@@ -17,11 +20,13 @@ export default function RecommendPage() {
   }, []);
 
   useEffect(() => {
-    console.log(textCount);
-  }, [textCount]);
+    if (text.length >= 200) setTextCount(true);
+    else setTextCount(false);
+    console.log(text.length);
+  }, [text]);
 
   const countTextLength = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTextCount(e.target.value);
+    setText(e.target.value);
   };
 
   return (
@@ -41,14 +46,16 @@ export default function RecommendPage() {
           placeholder={questionData.placeholder}
           minLength={199}
           maxLength={399}
-          value={textCount}
+          value={text}
           onChange={(e) => countTextLength(e)}
         />
       </St.InputBox>
       <St.TextLength>
-        <St.TextCount>{textCount.length}</St.TextCount>
+        <St.TextCount>{text.length}</St.TextCount>
         /400
       </St.TextLength>
+
+      <MoveNextPageBtn nextPage={routePaths.Recommend} title="다음" inputActive={!textCount} />
     </St.Recommend>
   );
 }
