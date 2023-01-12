@@ -6,10 +6,11 @@ export interface TextAreaBoxProps {
   maxLength: number;
   text: string;
   setText: React.Dispatch<React.SetStateAction<string>>;
+  height: number;
 }
 
 export default function TextAreaBox(props: TextAreaBoxProps) {
-  const { placeholder, minLength, maxLength, text, setText } = props;
+  const { placeholder, minLength, maxLength, text, setText, height } = props;
 
   const handleText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -17,7 +18,7 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
 
   return (
     <St.TextAreaBox>
-      <St.TextAreaWrapper>
+      <St.TextAreaWrapper height={height}>
         :
         <St.TextArea
           placeholder={placeholder}
@@ -28,7 +29,7 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
         />
       </St.TextAreaWrapper>
       <St.TextLength>
-        <St.TextCount>{text.length}</St.TextCount>/{maxLength + 1}
+        <St.TextCount>{text.length}</St.TextCount>/{maxLength}
       </St.TextLength>
     </St.TextAreaBox>
   );
@@ -36,9 +37,9 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
 
 const St = {
   TextAreaBox: styled.section``,
-  TextAreaWrapper: styled.article`
+  TextAreaWrapper: styled.article<{ height: number }>`
     width: 31.9rem;
-    height: 20rem;
+    height: ${({ height }) => height}rem;
     max-height: auto;
     margin: 0 auto;
     display: flex;
@@ -56,6 +57,7 @@ const St = {
     ${({ theme }) => theme.fonts.sub3}
     border: none;
     resize: none;
+    overflow: hidden
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray40};
