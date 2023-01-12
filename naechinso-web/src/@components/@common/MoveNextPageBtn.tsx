@@ -35,12 +35,21 @@ const St = {
   ButtonWrapper: styled.section`
     display: flex;
     justify-content: center;
+    width: 100%;
+    position: fixed;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+    height: 11rem;
+
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%);
   `,
   Button: styled.button`
+    margin: 0 auto;
     position: fixed;
     bottom: 3.5rem;
-    padding: 1rem;
-
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.sub3};

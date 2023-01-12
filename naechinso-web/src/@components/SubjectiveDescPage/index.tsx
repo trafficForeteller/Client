@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 import { questionList } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { MoveNextPageBtn, Title } from "../@common";
-import BasicHeader from "../@common/BasicHeader";
+import { MoveNextPageBtn } from "../@common";
+import FixedHeader from "../@common/FixedHeader";
 
 export default function SubjectiveDescPage() {
   const [questionArr, setQuestionArr] = useState(questionList);
@@ -32,12 +32,7 @@ export default function SubjectiveDescPage() {
 
   return (
     <St.SubjectiveDesc>
-      <BasicHeader header="추천사" progressRate={60} />
-      <St.TitleWrapper>
-        <Title title="친구를 잘 설명할 수 있는" />
-        <Title title="질문을 골라 답해줘!" />
-      </St.TitleWrapper>
-      <St.Gradient></St.Gradient>
+      <FixedHeader header="추천사" progressRate={55} title1="친구를 잘 설명할 수 있는" title2="질문을 골라 답해줘!" />
       <St.QuestionContainer>
         {questionArr.map((question) => {
           return (
@@ -51,7 +46,6 @@ export default function SubjectiveDescPage() {
           );
         })}
       </St.QuestionContainer>
-
       <MoveNextPageBtn nextPage={routePaths.Recommend} title="다음" inputActive={!nextBtnActive} />
     </St.SubjectiveDesc>
   );
@@ -61,21 +55,14 @@ const St = {
   SubjectiveDesc: styled.main`
     padding-bottom: 10rem;
   `,
-  TitleWrapper: styled.hgroup`
-    margin-bottom: 2.4rem;
-    position: relative;
-    z-index: -1;
-  `,
-  Gradient: styled.div`
-    width: 100%;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
-    transform: matrix(1, 0, 0, -1, 0, 0);
-  `,
+
   QuestionContainer: styled.section`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.6rem;
+    padding-top: 19rem;
+    z-index: -1;
   `,
   QuestionBox: styled.article<{ checked: boolean }>`
     padding: 1.6rem 1.2rem;

@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 import { keywordList, keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { MoveNextPageBtn, Title } from "../@common";
-import BasicHeader from "../@common/BasicHeader";
+import { MoveNextPageBtn } from "../@common";
+import FixedHeader from "../@common/FixedHeader";
 export default function KeywordPage() {
   const [activeNextBtn, setActiveNextBtn] = useState(false);
   const [keywordArr, setKeywordArr] = useState(keywordList);
@@ -36,11 +36,12 @@ export default function KeywordPage() {
 
   return (
     <St.KeywordPage>
-      <BasicHeader header="친구 정보" progressRate={40} />
-      <St.TitleWrapper>
-        <Title title="네가 생각하는" />
-        <Title title="친구의 매력을 3개 선택해줘" />
-      </St.TitleWrapper>
+      <FixedHeader
+        header="친구 정보"
+        progressRate={40}
+        title1="네가 생각하는"
+        title2="친구의 매력을 딱 3개만 골라봐!"
+      />
 
       <St.KeywordListWrapper>
         {keywordArr.map((el) => {
@@ -61,17 +62,13 @@ const St = {
   KeywordPage: styled.main`
     padding-bottom: 10rem;
   `,
-  TitleWrapper: styled.hgroup`
-    margin-bottom: 2.4rem;
-    position: relative;
-    z-index: -1;
-  `,
   KeywordListWrapper: styled.section`
     width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.5rem;
+    padding-top: 19rem;
   `,
   KeywordWrapper: styled.button<{ checked: boolean }>`
     width: 16rem;
