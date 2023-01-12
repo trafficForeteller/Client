@@ -55,7 +55,7 @@ export default function RecommendPage() {
         /400
       </St.TextLength>
 
-      <MoveNextPageBtn nextPage={routePaths.Recommend} title="다음" inputActive={!textCount} />
+      <MoveNextPageBtn nextPage={routePaths.AppealDetail} title="다음" inputActive={!textCount} />
     </St.Recommend>
   );
 }

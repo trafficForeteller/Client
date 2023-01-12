@@ -7,6 +7,8 @@ export const routePaths = {
   Keyword: "/recommend/charm",
   ChooseQuestion: "/recommend/question",
   Recommend: "/recommend/answer",
+  AppealDetail: "/recommend/appealDetail",
+  DontGo: "/recommend/dontGo",
   RecommenderInfo: "/join/recommender",
 };
 
