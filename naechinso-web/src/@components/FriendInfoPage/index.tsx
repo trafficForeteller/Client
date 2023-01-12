@@ -11,7 +11,7 @@ import RelationDurationInput from "./RecommendDurationInput";
 import RecommendLandingSplash from "./RecommendLandingSplash";
 import RelationTypeInput from "./RecommendTypeInput";
 
-export default function RecommendPage() {
+export default function FriendInfoPage() {
   const [alert, setAlert] = useState(true);
   const [step, setStep] = useState(1);
   const [activeBtn, setActiveBtn] = useState(false);
@@ -98,7 +98,7 @@ export default function RecommendPage() {
       {alert ? (
         <RecommendLandingSplash />
       ) : (
-        <St.RecommendPage isModalOpened={isModalOpened}>
+        <St.FriendInfoPage isModalOpened={isModalOpened}>
           <BasicHeader header="친구 정보" progressRate={20} />
           <St.TitleWrapper>
             <Title title="어떤 친구를 소개해줄거야?" />
@@ -163,14 +163,14 @@ export default function RecommendPage() {
               다음
             </St.NextStepBtn>
           </St.NextStepBtnWrapper>
-        </St.RecommendPage>
+        </St.FriendInfoPage>
       )}
     </>
   );
 }
 
 const St = {
-  RecommendPage: styled.main<{ isModalOpened: boolean }>`
+  FriendInfoPage: styled.main<{ isModalOpened: boolean }>`
     background-color: rgba(${({ isModalOpened }) => (isModalOpened ? "0, 0, 0, 0.64" : "")});
     position: absolute;
     left: 0;

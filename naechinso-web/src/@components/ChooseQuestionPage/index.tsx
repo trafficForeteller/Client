@@ -50,7 +50,7 @@ export default function ChooseQuestionPage() {
           );
         })}
       </St.QuestionContainer>
-      <MoveNextPageBtn nextPage={routePaths.Recommend} title="다음" inputActive={!nextBtnActive} />
+      <MoveNextPageBtn nextPage={routePaths.FriendInfo} title="다음" inputActive={!nextBtnActive} />
     </St.ChooseQuestion>
   );
 }

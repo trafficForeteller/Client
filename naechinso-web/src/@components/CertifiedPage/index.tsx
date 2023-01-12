@@ -40,7 +40,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   useEffect(() => {
     if (token["accessToken"]) {
       localStorage.setItem("accessToken", token["accessToken"]);
-      navigate(`${routePaths.Recommend}`);
+      navigate(`${routePaths.FriendInfo}`);
     }
   }, [token]);
 
@@ -104,7 +104,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
       </St.AuthNumWrapper>
       <MoveNextPageBtn
-        nextPage={routePaths.Recommend}
+        nextPage={routePaths.FriendInfo}
         title="완료"
         inputActive={inputActive}
         correctAuthNum={correctAuthNum}

@@ -4,12 +4,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   CertifiedPage,
   ChooseQuestionPage,
+  FriendInfoPage,
   InstallAppPage,
   KeywordPage,
   LandingPage,
   PhoneNumberPage,
   RecommenderInfoPage,
-  RecommendPage,
 } from "./@components";
 import { postSmsSend } from "./apis/sms.api";
 import { routePaths } from "./core/routes/path";
@@ -34,7 +34,7 @@ export default function Router() {
           element={<PhoneNumberPage setPostPhoneNum={setPostPhoneNum} sendSms={sendSms} />}
         />
         <Route path={routePaths.Certified} element={<CertifiedPage sendSms={sendSms} postPhoneNum={postPhoneNum} />} />
-        <Route path={routePaths.Recommend} element={<RecommendPage />} />
+        <Route path={routePaths.FriendInfo} element={<FriendInfoPage />} />
         <Route path={routePaths.Keyword} element={<KeywordPage />} />
         <Route path={routePaths.ChooseQuestion} element={<ChooseQuestionPage />} />
         <Route path={routePaths.RecommenderInfo} element={<RecommenderInfoPage />} />
