@@ -50,7 +50,9 @@ export type questionProps = {
   id: number;
   icon: string;
   title: string;
-  desc: string;
+  desc1: string;
+  desc2: string;
+  desc3: string;
   placeholder: string;
   checked: boolean;
 };
@@ -60,7 +62,9 @@ export const questionList: questionProps[] = [
     id: 0,
     icon: "✨",
     title: "3가지 TMI",
-    desc: "친구와 친해져야만 알 수 있는 3가지 TMI는?",
+    desc1: "친구와 친해져야만",
+    desc2: "알 수 있는",
+    desc3: "3가지 TMI는?",
     placeholder: "",
     checked: false,
   },
@@ -68,7 +72,9 @@ export const questionList: questionProps[] = [
     id: 1,
     icon: "✏️",
     title: "친구 애인에게",
-    desc: "친구가 만나게 될 미래의 친구 애인에게 편지를 쓴다면?",
+    desc1: "친구가 만나게 될",
+    desc2: "미래의 친구 애인에게",
+    desc3: "편지를 쓴다면?",
     placeholder: "",
     checked: false,
   },
@@ -76,16 +82,29 @@ export const questionList: questionProps[] = [
     id: 2,
     icon: "😍",
     title: "자랑스러워",
-    desc: "친구가 내 친구여서 가장 뿌듯할 때는?",
+    desc1: "",
+    desc2: "친구가 내 친구여서",
+    desc3: "가장 뿌듯할 때는?",
     placeholder: "",
     checked: false,
   },
-  { id: 3, icon: "🥹", title: "감동이야", desc: "친구한테 감동받은 적이 있다면?", placeholder: "", checked: false },
+  {
+    id: 3,
+    icon: "🥹",
+    title: "감동이야",
+    desc1: "",
+    desc2: "친구한테",
+    desc3: "감동받은 적이 있다면?",
+    placeholder: "",
+    checked: false,
+  },
   {
     id: 4,
     icon: "✏️",
     title: "친구 애인에게",
-    desc: "친구가 만나게 될 미래의 친구 애인에게 편지를 쓴다면?",
+    desc1: "친구가 만나게 될",
+    desc2: "미래의 친구 애인에게",
+    desc3: "편지를 쓴다면?",
     placeholder: "",
     checked: false,
   },
@@ -93,7 +112,9 @@ export const questionList: questionProps[] = [
     id: 5,
     icon: "👍🏻",
     title: "가장 큰 장점은",
-    desc: "친구의 성격 중 가장 큰 장점은?",
+    desc1: "",
+    desc2: "친구의 성격 중",
+    desc3: "가장 큰 장점은?",
     placeholder: "",
     checked: false,
   },

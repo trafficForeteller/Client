@@ -41,7 +41,11 @@ export default function SubjectiveDescPage() {
                 <St.Icon>{question.icon}</St.Icon>
                 <St.Title checked={question.checked}>{question.title}</St.Title>
               </St.QuestionWrapper>
-              <St.Desc checked={question.checked}>{question.desc}</St.Desc>
+              <St.DescWrapper checked={question.checked}>
+                <St.Desc>{question.desc1}</St.Desc>
+                <St.Desc>{question.desc2}</St.Desc>
+                <St.Desc>{question.desc3}</St.Desc>
+              </St.DescWrapper>
             </St.QuestionBox>
           );
         })}
@@ -84,14 +88,12 @@ const St = {
     ${({ theme }) => theme.fonts.sub2};
     color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.black)};
   `,
-  Desc: styled.p<{ checked: boolean }>`
+  DescWrapper: styled.div<{ checked: boolean }>`
+    position: absolute;
+    bottom: 1.2rem;
+
     ${({ theme }) => theme.fonts.body5};
     color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.brown)};
-
-    position: absolute;
-    bottom: 1.6rem;
-    word-break: keep-all;
-
-    width: 13rem;
   `,
+  Desc: styled.p``,
 };
