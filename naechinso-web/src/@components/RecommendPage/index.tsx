@@ -27,10 +27,48 @@ export default function RecommendPage() {
       />
 
       <ToggleTipBox isThreeLine={isThreeLine} />
+
+      <St.InputBox isThreeLine={isThreeLine}>
+        :
+        <St.TextArea placeholder={questionData.placeholder} />
+      </St.InputBox>
     </St.Recommend>
   );
 }
 
 const St = {
   Recommend: styled.main``,
+  InputBox: styled.section<{ isThreeLine: boolean }>`
+    width: 31.9rem;
+    /* min-height: 13rem; */
+    height: 20rem;
+
+    margin: ${({ isThreeLine }) => (isThreeLine ? "0rem" : "19rem")} auto 3.2rem;
+
+    display: flex;
+
+    gap: 0.8rem;
+    ${({ theme }) => theme.fonts.sub3}
+    color: ${({ theme }) => theme.colors.brown}
+  `,
+  TextArea: styled.textarea`
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+
+    width: 306px;
+    word-break: break-all;
+    color: ${({ theme }) => theme.colors.black};
+    ${({ theme }) => theme.fonts.sub3}
+
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.gray40};
+    }
+
+    border: none;
+    resize: none;
+    &:focus {
+      outline: none;
+    }
+  `,
 };

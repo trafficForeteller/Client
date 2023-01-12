@@ -95,6 +95,13 @@ export const GlobalStyle = createGlobalStyle`
     &:focus {
       outline: none;
     }
+  textarea {
+    border: none;
+    resize: none;
+    &:focus {
+      outline: none;
+    }
+  }
   }
   /*위에는 styled-reset 내용*/
   @font-face {
