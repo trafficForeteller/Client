@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 import { questionList, questionProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { MoveNextPageBtn } from "../@common";
-import FixedHeader from "../@common/FixedHeader";
+import { FixedHeader, MoveNextPageBtn } from "../@common";
 
 export default function ChooseQuestionPage() {
   const [questionArr, setQuestionArr] = useState(questionList);

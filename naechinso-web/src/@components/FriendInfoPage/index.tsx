@@ -4,8 +4,7 @@ import styled from "styled-components";
 
 import { postRecommendFriendInfo } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
-import { ShortInputBox, Title } from "../@common";
-import BasicHeader from "../@common/BasicHeader";
+import { BasicHeader, ShortInputBox, Title } from "../@common";
 import PhoneNumInputBox from "./PhoneNumInput";
 import RelationDurationInput from "./RecommendDurationInput";
 import RecommendLandingSplash from "./RecommendLandingSplash";

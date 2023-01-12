@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { IcLandingLogo } from "../../asset/icons";
 import { Landing } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
-import NextPageBtn from "../@common/MoveNextPageBtn";
-import Title from "../@common/Title";
+import { MoveNextPageBtn, Title } from "../@common";
 import RecommendPageBtn from "./RecommendPageBtn";
 
 export default function LandingPage() {
@@ -25,7 +24,7 @@ export default function LandingPage() {
       </St.LandingImgWrapper>
 
       <St.LandingBottom>
-        <NextPageBtn inputActive={inputActive} nextPage={routePaths.InstallApp} title={"내친소 시작하기"} />
+        <MoveNextPageBtn inputActive={inputActive} nextPage={routePaths.InstallApp} title={"내친소 시작하기"} />
         <RecommendPageBtn nextPage={routePaths.PhoneNum} title={"내 친구를 소개하고 싶어"} />
       </St.LandingBottom>
     </St.LandingPage>

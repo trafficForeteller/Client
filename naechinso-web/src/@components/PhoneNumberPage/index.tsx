@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { IcSheild } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { IPostPhoneNumber } from "../../types/sms";
-import { MoveNextPageBtn, MovePreviousPageBtn, PhoneNumInput, Title } from "../@common";
-import JoinHeader from "../@common/JoinHeader";
+import { JoinHeader, MoveNextPageBtn, PhoneNumInput, Title } from "../@common";
+
 export interface PhoneNumberPageProps {
   setPostPhoneNum: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
   sendSms: () => Promise<void>;

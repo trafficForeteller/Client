@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 import { keywordList, keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { MoveNextPageBtn } from "../@common";
-import FixedHeader from "../@common/FixedHeader";
+import { FixedHeader, MoveNextPageBtn } from "../@common";
+
 export default function KeywordPage() {
   const [activeNextBtn, setActiveNextBtn] = useState(false);
   const [keywordArr, setKeywordArr] = useState(keywordList);

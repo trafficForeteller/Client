@@ -5,8 +5,7 @@ import styled from "styled-components";
 import { postRecommendation } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
 import { IPostRecommend } from "../../types/recommend";
-import FixedHeader from "../@common/FixedHeader";
-import TextAreaBox from "../@common/TextAreaBox";
+import { FixedHeader, TextAreaBox } from "../@common";
 import ToggleTipBox from "./ToggleTipBox";
 
 export default function RecommendPage() {
