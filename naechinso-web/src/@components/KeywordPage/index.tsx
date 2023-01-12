@@ -58,7 +58,9 @@ export default function KeywordPage() {
 }
 
 const St = {
-  KeywordPage: styled.main``,
+  KeywordPage: styled.main`
+    padding-bottom: 10rem;
+  `,
   TitleWrapper: styled.hgroup`
     margin-bottom: 2.4rem;
     position: relative;
