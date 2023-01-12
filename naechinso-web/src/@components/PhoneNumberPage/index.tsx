@@ -5,6 +5,7 @@ import { IcSheild } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { IPostPhoneNumber } from "../../types/sms";
 import { MoveNextPageBtn, MovePreviousPageBtn, PhoneNumInput, Title } from "../@common";
+import JoinHeader from "../@common/JoinHeader";
 export interface PhoneNumberPageProps {
   setPostPhoneNum: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
   sendSms: () => Promise<void>;
@@ -18,7 +19,7 @@ export default function PhoneNumberPage(props: PhoneNumberPageProps) {
 
   return (
     <St.PhoneNumberPage>
-      <MovePreviousPageBtn />
+      <JoinHeader />
       <St.PageTop>
         <Title title="🏃🏻‍♀️" />
         <Title title="먼저 신원인증을 위해 " />
@@ -56,7 +57,7 @@ export default function PhoneNumberPage(props: PhoneNumberPageProps) {
 const St = {
   PhoneNumberPage: styled.main``,
   PageTop: styled.hgroup`
-    padding: 5.8rem 2.4rem 0;
+    padding: 0 2.4rem;
     margin-bottom: 2.4rem;
   `,
   InputWrapper: styled.section`

@@ -4,7 +4,8 @@ import styled from "styled-components";
 
 import { postRecommendFriendInfo } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
-import { MovePreviousPageBtn, ProgressBar, ShortInputBox, Title } from "../@common";
+import { ShortInputBox, Title } from "../@common";
+import FriendInfoHeader from "../@common/FriendInfoHeader";
 import PhoneNumInputBox from "./PhoneNumInput";
 import RelationDurationInput from "./RecommendDurationInput";
 import RecommendLandingSplash from "./RecommendLandingSplash";
@@ -98,11 +99,7 @@ export default function RecommendPage() {
         <RecommendLandingSplash />
       ) : (
         <St.RecommendPage isModalOpened={isModalOpened}>
-          <St.Header>
-            <MovePreviousPageBtn />
-            친구 정보
-          </St.Header>
-          <ProgressBar progressRate={20} />
+          <FriendInfoHeader progressRate={20} />
           <St.TitleWrapper>
             <Title title="어떤 친구를 소개해줄거야?" />
             <Title title="너무 궁금해!👀" />
@@ -181,20 +178,11 @@ const St = {
     width: 100%;
     height: 100%;
   `,
-  Header: styled.header`
-    height: 5.6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.body1};
-  `,
   TitleWrapper: styled.hgroup`
     margin-bottom: 2.4rem;
     position: relative;
     z-index: -1;
   `,
-
   NextStepBtnWrapper: styled.section`
     display: flex;
     justify-content: center;

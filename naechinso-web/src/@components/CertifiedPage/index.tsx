@@ -6,6 +6,7 @@ import { postSmsVerify } from "../../apis/sms.api";
 import { routePaths } from "../../core/routes/path";
 import { IPostPhoneNumber, IPostVerifyPhoneNumber } from "../../types/sms";
 import { MoveNextPageBtn, MovePreviousPageBtn, Title } from "../@common";
+import JoinHeader from "../@common/JoinHeader";
 import AuthenticationNumInput from "./AuthenticationNumInput";
 import AuthModal from "./AuthModal";
 import ResendAuthNumBtn from "./ResendAuthNumBtn";
@@ -82,7 +83,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
 
   return (
     <St.AutorizePage inputActive={inputActive}>
-      <MovePreviousPageBtn />
+      <JoinHeader />
       <St.PageTop>
         <Title title="📩" />
         <Title title="방금 보낸 " />
@@ -135,7 +136,7 @@ const St = {
   `,
 
   PageTop: styled.hgroup`
-    padding: 5.8rem 2.4rem 0;
+    padding: 0 2.4rem;
     margin-bottom: 2.4rem;
     position: relative;
     z-index: -1;
