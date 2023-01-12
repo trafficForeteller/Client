@@ -7,14 +7,22 @@ import ToggleTipBox from "./ToggleTipBox";
 
 export default function RecommendPage() {
   const [isThreeLine, setIsThreeLine] = useState(false);
+  const [textCount, setTextCount] = useState("");
   const location = useLocation();
   const questionData = location.state.state;
 
   useEffect(() => {
-    console.log(questionData);
     if (questionData.desc1 === "") setIsThreeLine(false);
     else setIsThreeLine(true);
   }, []);
+
+  useEffect(() => {
+    console.log(textCount);
+  }, [textCount]);
+
+  const countTextLength = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setTextCount(e.target.value);
+  };
 
   return (
     <St.Recommend>
@@ -25,13 +33,22 @@ export default function RecommendPage() {
         title2={questionData.desc2}
         title3={questionData.desc3}
       />
-
       <ToggleTipBox isThreeLine={isThreeLine} />
 
       <St.InputBox isThreeLine={isThreeLine}>
         :
-        <St.TextArea placeholder={questionData.placeholder} />
+        <St.TextArea
+          placeholder={questionData.placeholder}
+          minLength={199}
+          maxLength={399}
+          value={textCount}
+          onChange={(e) => countTextLength(e)}
+        />
       </St.InputBox>
+      <St.TextLength>
+        <St.TextCount>{textCount.length}</St.TextCount>
+        /400
+      </St.TextLength>
     </St.Recommend>
   );
 }
@@ -40,13 +57,10 @@ const St = {
   Recommend: styled.main``,
   InputBox: styled.section<{ isThreeLine: boolean }>`
     width: 31.9rem;
-    /* min-height: 13rem; */
     height: 20rem;
-
-    margin: ${({ isThreeLine }) => (isThreeLine ? "0rem" : "19rem")} auto 3.2rem;
-
+    max-height: auto;
+    margin: 0 auto;
     display: flex;
-
     gap: 0.8rem;
     ${({ theme }) => theme.fonts.sub3}
     color: ${({ theme }) => theme.colors.brown}
@@ -55,7 +69,6 @@ const St = {
     display: flex;
     flex-wrap: wrap;
     height: 100%;
-
     width: 306px;
     word-break: break-all;
     color: ${({ theme }) => theme.colors.black};
@@ -64,11 +77,21 @@ const St = {
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray40};
     }
-
     border: none;
     resize: none;
     &:focus {
       outline: none;
     }
+  `,
+  TextLength: styled.div`
+    margin-top: 0.8rem;
+    padding-right: 3.3rem;
+    float: right;
+    display: flex;
+    color: ${({ theme }) => theme.colors.gray40};
+    ${({ theme }) => theme.fonts.caption5}
+  `,
+  TextCount: styled.p`
+    color: ${({ theme }) => theme.colors.orange};
   `,
 };
