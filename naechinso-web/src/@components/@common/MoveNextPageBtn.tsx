@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { ITokenType } from "../../types/member";
-
+import { questionProps } from "../../core/recommend/recommend";
 export interface NextPageBtnProps {
   nextPage: string;
   title: string;
@@ -10,7 +9,7 @@ export interface NextPageBtnProps {
   sendSms?: () => Promise<void>;
   correctAuthNum?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  state?: ITokenType;
+  state?: questionProps;
 }
 
 export default function MoveNextPageBtn(props: NextPageBtnProps) {
@@ -19,7 +18,7 @@ export default function MoveNextPageBtn(props: NextPageBtnProps) {
 
   const goNextPage = () => {
     if (sendSms) sendSms();
-    navigate(`${nextPage}`, { state: { state: `${state}` } });
+    navigate(`${nextPage}`, { state: { state } });
   };
 
   return (

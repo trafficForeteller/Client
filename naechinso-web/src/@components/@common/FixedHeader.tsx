@@ -8,10 +8,11 @@ export interface FixedHeaderProps {
   progressRate: number;
   title1: string;
   title2: string;
+  title3?: string;
 }
 
 export default function FixedHeader(props: FixedHeaderProps) {
-  const { header, progressRate, title1, title2 } = props;
+  const { header, progressRate, title1, title2, title3 } = props;
 
   return (
     <St.FixedHeader>
@@ -19,6 +20,7 @@ export default function FixedHeader(props: FixedHeaderProps) {
       <St.TitleWrapper>
         <Title title={title1} />
         <Title title={title2} />
+        {title3 && <Title title={title3} />}
       </St.TitleWrapper>
     </St.FixedHeader>
   );

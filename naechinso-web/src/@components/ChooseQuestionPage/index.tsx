@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { questionList } from "../../core/recommend/recommend";
+import { questionList, questionProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { MoveNextPageBtn } from "../@common";
 import FixedHeader from "../@common/FixedHeader";
@@ -9,16 +9,20 @@ import FixedHeader from "../@common/FixedHeader";
 export default function ChooseQuestionPage() {
   const [questionArr, setQuestionArr] = useState(questionList);
   const [nextBtnActive, setNextBtnActive] = useState(false);
+  const [checkedQuestion, setCheckedQuestion] = useState<questionProps>();
 
   useEffect(() => {
     chooseQuestion();
+    console.log(checkedQuestion);
   }, [questionArr]);
 
   const toggleCheck = (idx: number) => {
     // 항목별 체크
     const newQuestionArr = questionList.map((q, index) => {
-      if (idx === index) q.checked = !q.checked;
-      else q.checked = false;
+      if (idx === index) {
+        q.checked = !q.checked;
+        q.checked === true && setCheckedQuestion(q);
+      } else q.checked = false;
       return q;
     });
     setQuestionArr(newQuestionArr);
@@ -50,7 +54,12 @@ export default function ChooseQuestionPage() {
           );
         })}
       </St.QuestionContainer>
-      <MoveNextPageBtn nextPage={routePaths.Recommend} title="다음" inputActive={!nextBtnActive} />
+      <MoveNextPageBtn
+        nextPage={routePaths.Recommend}
+        title="다음"
+        inputActive={!nextBtnActive}
+        state={checkedQuestion}
+      />
     </St.ChooseQuestion>
   );
 }
