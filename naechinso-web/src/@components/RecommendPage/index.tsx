@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { postRecommendation } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
 import { IPostRecommend } from "../../types/recommend";
-import { MoveNextPageBtn } from "../@common";
 import FixedHeader from "../@common/FixedHeader";
 import ToggleTipBox from "./ToggleTipBox";
 
@@ -17,6 +16,7 @@ export default function RecommendPage() {
 
   const location = useLocation();
   const questionData = location.state.state;
+  const postQuestion = `${questionData.desc1}` + `${questionData.desc2}` + `${questionData.desc3}`;
 
   useEffect(() => {
     if (questionData.desc1 === "") setIsThreeLine(false);
@@ -24,17 +24,13 @@ export default function RecommendPage() {
   }, []);
 
   useEffect(() => {
+    setPostRecommend({ ...postRecommend, recommendAnswer: text, recommendQuestion: postQuestion });
     if (text.length >= 200) setTextCount(true);
     else setTextCount(false);
   }, [text]);
 
   const countTextLength = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
-  };
-
-  const handlePostRecommend = () => {
-    setPostRecommend({ recommendQuestion: questionData.question, recommendAnswer: text });
-    postRecommend && handleRecommend();
   };
 
   const handleRecommend = async () => {
@@ -44,7 +40,7 @@ export default function RecommendPage() {
       localStorage.getItem("accessToken"),
       localStorage.getItem("uuid"),
     );
-    console.log(userData);
+    console.log("userData", userData);
   };
 
   return (
@@ -73,8 +69,8 @@ export default function RecommendPage() {
         /400
       </St.TextLength>
 
-      <St.NextBtnWrapper onClick={handlePostRecommend}>
-        <St.NextStepBtn type="button" disabled={!textCount} onClick={handlePostRecommend}>
+      <St.NextBtnWrapper>
+        <St.NextStepBtn type="button" disabled={!textCount} onClick={handleRecommend}>
           다음
         </St.NextStepBtn>
       </St.NextBtnWrapper>
