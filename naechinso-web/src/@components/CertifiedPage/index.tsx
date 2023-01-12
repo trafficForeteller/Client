@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { postSmsVerify } from "../../apis/sms.api";
 import { routePaths } from "../../core/routes/path";
 import { IPostPhoneNumber, IPostVerifyPhoneNumber } from "../../types/sms";
-import { MoveNextPageBtn, MovePreviousPageBtn, Title } from "../@common";
+import { MoveNextPageBtn, Title } from "../@common";
 import JoinHeader from "../@common/JoinHeader";
 import AuthenticationNumInput from "./AuthenticationNumInput";
 import AuthModal from "./AuthModal";
