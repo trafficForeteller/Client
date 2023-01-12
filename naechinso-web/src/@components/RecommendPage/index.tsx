@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postRecommendation } from "../../apis/recommend.api";
@@ -14,6 +14,7 @@ export default function RecommendPage() {
   const [text, setText] = useState("");
   const [postRecommend, setPostRecommend] = useState<IPostRecommend>({ recommendQuestion: "", recommendAnswer: "" });
 
+  const navigate = useNavigate();
   const location = useLocation();
   const questionData = location.state.state;
   const postQuestion = `${questionData.desc1}` + `${questionData.desc2}` + `${questionData.desc3}`;
@@ -29,12 +30,13 @@ export default function RecommendPage() {
     else setTextCount(false);
   }, [text]);
 
-  const countTextLength = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
 
   const handleRecommend = async () => {
     // 추천사 POST
+    navigate(`${routePaths.AppealDetail}`);
     const userData = await postRecommendation(
       postRecommend,
       localStorage.getItem("accessToken"),
@@ -61,7 +63,7 @@ export default function RecommendPage() {
           minLength={199}
           maxLength={399}
           value={text}
-          onChange={(e) => countTextLength(e)}
+          onChange={(e) => handleText(e)}
         />
       </St.InputBox>
       <St.TextLength>
