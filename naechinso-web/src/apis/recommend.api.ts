@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { IPatchFriendDetail, IPostFriendInfo } from "../types/recommend";
+import { IPatchFriendDetail, IPostFriendInfo, IPostRecommend } from "../types/recommend";
 import { serverAxios } from ".";
 
 const PREFIX_URL = "/recommend";
@@ -39,6 +39,26 @@ export const patchRecommendFriendDetail = async (
     if (data.status === 400) {
       return data.message;
     }
-    throw new Error("Failed to patch your detail recommend");
+    throw new Error("Failed to patch detail recommend of your friend");
+  }
+};
+
+export const postRecommendation = async (
+  recommend: IPostRecommend,
+  accessToken: string | null,
+  uuid: string | null,
+): Promise<void | null> => {
+  const { data } = await serverAxios.post(`${PREFIX_URL}/question/${uuid}`, recommend, {
+    headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
+  });
+  try {
+    if (data.status === 200) {
+      return data.data;
+    }
+  } catch (err) {
+    if (data.status === 400) {
+      return data.message;
+    }
+    throw new Error("Failed to post your recommend");
   }
 };

@@ -46,8 +46,6 @@ const St = {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%);
   `,
   Button: styled.button`
-    margin: 0 auto;
-    position: fixed;
     bottom: 3.5rem;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};

@@ -10,3 +10,8 @@ export interface IPatchFriendDetail {
   appeals: string[];
   dontGo: string;
 }
+
+export interface IPostRecommend {
+  recommendQuestion: string;
+  recommendAnswer: string;
+}
