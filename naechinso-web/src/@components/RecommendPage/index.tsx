@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
@@ -6,11 +6,14 @@ import FixedHeader from "../@common/FixedHeader";
 import ToggleTipBox from "./ToggleTipBox";
 
 export default function RecommendPage() {
+  const [isThreeLine, setIsThreeLine] = useState(false);
   const location = useLocation();
   const questionData = location.state.state;
 
   useEffect(() => {
     console.log(questionData);
+    if (questionData.desc1 === "") setIsThreeLine(false);
+    else setIsThreeLine(true);
   }, []);
 
   return (
@@ -23,7 +26,7 @@ export default function RecommendPage() {
         title3={questionData.desc3}
       />
 
-      <ToggleTipBox />
+      <ToggleTipBox isThreeLine={isThreeLine} />
     </St.Recommend>
   );
 }
