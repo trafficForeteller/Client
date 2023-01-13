@@ -1,5 +1,6 @@
 export { default as AppealDetailPage } from "./AppealDetailPage";
 export { default as CertifiedPage } from "./CertifiedPage";
+export { default as ChooseJobPage } from "./ChooseJobPage";
 export { default as ChooseQuestionPage } from "./ChooseQuestionPage";
 export { default as DontGoPage } from "./DontGoPage";
 export { default as FriendInfoPage } from "./FriendInfoPage";

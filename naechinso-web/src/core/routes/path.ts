@@ -10,6 +10,7 @@ export const routePaths = {
   AppealDetail: "/recommend/appealDetail",
   DontGo: "/recommend/dontGo",
   RecommenderInfo: "/join/recommender",
+  ChooseJob: "/join/chooseJob",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];

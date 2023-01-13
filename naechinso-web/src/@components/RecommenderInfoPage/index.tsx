@@ -72,7 +72,7 @@ export default function RecommenderInfoPage() {
       </St.ChooseGender>
 
       <MoveNextPageBtn
-        nextPage={routePaths.Certified}
+        nextPage={routePaths.ChooseJob}
         title="다음"
         inputActive={name === "" || checkedGender === ""}
         handleState={handlePostRecommender}

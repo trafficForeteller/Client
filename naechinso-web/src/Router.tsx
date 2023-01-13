@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import {
   AppealDetailPage,
   CertifiedPage,
+  ChooseJobPage,
   ChooseQuestionPage,
   DontGoPage,
   FriendInfoPage,
@@ -44,6 +45,7 @@ export default function Router() {
         <Route path={routePaths.Recommend} element={<RecommendPage />} />
         <Route path={routePaths.AppealDetail} element={<AppealDetailPage />} />
         <Route path={routePaths.DontGo} element={<DontGoPage />} />
+        <Route path={routePaths.ChooseJob} element={<ChooseJobPage />} />
       </Routes>
     </BrowserRouter>
   );
