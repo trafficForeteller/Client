@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { postMemberJoinRecommender } from "../../apis/member.api";
 import { IcCheckedMen, IcCheckedWomen, IcSheild, IcUnCheckedMen, IcUnCheckedWomen } from "../../asset/icons";
 import { genderTypeList, genderTypeProps } from "../../core/member/member";
-import { FixedHeader } from "../@common";
+import { routePaths } from "../../core/routes/path";
+import { FixedHeader, MoveNextPageBtn } from "../@common";
 import NameInputBox from "./NameInputBox";
 
 export default function RecommenderInfoPage() {
@@ -16,12 +18,12 @@ export default function RecommenderInfoPage() {
   });
 
   useEffect(() => {
-    console.log(postRecommender);
-  }, [postRecommender]);
-
-  useEffect(() => {
     setPostRecommender({ ...postRecommender, name: name, gender: checkedGender });
   }, [name, genderTypeArr]);
+
+  const handlePostRecommender = async () => {
+    await postMemberJoinRecommender(postRecommender, localStorage.getItem("accessToken"));
+  };
 
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     //  이름을 관리하는 함수
@@ -33,7 +35,8 @@ export default function RecommenderInfoPage() {
     const newGenderTypeList = genderTypeArr.map((gender, index) => {
       if (el.id === index) {
         gender.checked = !gender.checked;
-        gender.checked && setCheckedGender(gender.string);
+        if (gender.checked) setCheckedGender(gender.string);
+        else setCheckedGender("");
       } else gender.checked = false;
       return gender;
     });
@@ -67,6 +70,13 @@ export default function RecommenderInfoPage() {
           <St.Gender>{genderTypeArr[1].gender}</St.Gender>
         </St.GenderWrapper>
       </St.ChooseGender>
+
+      <MoveNextPageBtn
+        nextPage={routePaths.Certified}
+        title="다음"
+        inputActive={name === "" || checkedGender === ""}
+        handleState={handlePostRecommender}
+      />
     </St.RecommenderInfo>
   );
 }
