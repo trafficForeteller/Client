@@ -102,12 +102,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
         <ResendAuthNumBtn resendAuthNum={resendAuthNum} />
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
       </St.AuthNumWrapper>
-      <MoveNextPageBtn
-        nextPage={routePaths.FriendInfo}
-        title="완료"
-        inputActive={inputActive}
-        correctAuthNum={correctAuthNum}
-      />
+      <MoveNextPageBtn nextPage={routePaths.FriendInfo} title="완료" inputActive={inputActive} />
 
       <AuthModal
         inputActive={inputActive}

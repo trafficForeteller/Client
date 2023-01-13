@@ -6,18 +6,16 @@ export interface NextPageBtnProps {
   nextPage: string;
   title: string;
   inputActive: boolean;
-  sendSms?: () => Promise<void>;
-  correctAuthNum?: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   state?: questionProps;
+  handleState?: () => Promise<void>;
 }
 
 export default function MoveNextPageBtn(props: NextPageBtnProps) {
-  const { nextPage, title, inputActive, sendSms, state } = props;
+  const { nextPage, title, inputActive, handleState, state } = props;
   const navigate = useNavigate();
 
   const goNextPage = () => {
-    if (sendSms) sendSms();
+    handleState && handleState();
     navigate(`${nextPage}`, { state: { state } });
   };
 

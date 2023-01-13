@@ -6,9 +6,9 @@ export interface IPostFriendInfo {
 }
 
 export interface IPatchFriendDetail {
-  appealDetail: string;
-  appeals: string[];
-  dontGo: string;
+  appealDetail: string | null;
+  appeals: string[] | null;
+  dontGo: string | null;
 }
 
 export interface IPostRecommend {

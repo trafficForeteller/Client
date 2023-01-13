@@ -11,6 +11,7 @@ export default function AppealDetailPage() {
 
   useEffect(() => {
     handleTextCheck();
+    localStorage.setItem("appealDetail", text);
   }, [text]);
 
   const handleTextCheck = () => {

@@ -1,17 +1,40 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { patchRecommendFriendDetail } from "../../apis/recommend.api";
 import { ImgDontGo } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
+import { IPatchFriendDetail } from "../../types/recommend";
 import { FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
 
 export default function DontGoPage() {
   const [text, setText] = useState("");
   const [textCheck, setTextCheck] = useState(false);
+  const [patchRecommend, setPatchRecommend] = useState<IPatchFriendDetail>({
+    appealDetail: "",
+    appeals: [],
+    dontGo: "",
+  });
 
   useEffect(() => {
     handleTextCheck();
+    localStorage.setItem("dontGo", text);
+    setPatchRecommend({
+      ...patchRecommend,
+      appealDetail: localStorage.getItem("appealDetail"),
+      appeals: JSON.parse(localStorage.getItem("appeals") || "[]"),
+      dontGo: localStorage.getItem("dontGo"),
+    });
   }, [text]);
+
+  const handleFriendDetail = async () => {
+    const userData = await patchRecommendFriendDetail(
+      patchRecommend,
+      localStorage.getItem("accessToken"),
+      localStorage.getItem("uuid"),
+    );
+    console.log("돈고", userData);
+  };
 
   const handleTextCheck = () => {
     if (text.length > 19) setTextCheck(true);
@@ -33,7 +56,7 @@ export default function DontGoPage() {
       </St.CardWrapper>
 
       <TextAreaBox
-        placeholder="미친듯이 유쾌한 친구야! 함께 있으면 누구보다 행복해질 수 있어!!💕"
+        placeholder="한번만 다시 생각해봐! 일단 내 친구는 만나봐야 얘가 진국인지 아닌지 알 수있기 때문이지! "
         minLength={19}
         maxLength={199}
         text={text}
@@ -41,7 +64,12 @@ export default function DontGoPage() {
         height={10.2}
       />
 
-      <MoveNextPageBtn nextPage={routePaths.DontGo} title="완료" inputActive={!textCheck} />
+      <MoveNextPageBtn
+        nextPage={routePaths.DontGo}
+        title="완료"
+        inputActive={!textCheck}
+        handleState={handleFriendDetail}
+      />
     </St.DontGo>
   );
 }

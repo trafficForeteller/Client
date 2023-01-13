@@ -48,7 +48,7 @@ export default function PhoneNumberPage(props: PhoneNumberPageProps) {
         nextPage={routePaths.Certified}
         title="인증번호 받기"
         inputActive={inputActive}
-        sendSms={sendSms}
+        handleState={sendSms}
       />
     </St.PhoneNumberPage>
   );

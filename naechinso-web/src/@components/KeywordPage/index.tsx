@@ -13,6 +13,7 @@ export default function KeywordPage() {
   useEffect(() => {
     if (checkedAppeals.length === 3) setActiveNextBtn(true);
     else setActiveNextBtn(false);
+    localStorage.setItem("appeals", JSON.stringify(checkedAppeals));
   }, [checkedAppeals]);
 
   const toggleChecked = (el: keywordProps) => {
