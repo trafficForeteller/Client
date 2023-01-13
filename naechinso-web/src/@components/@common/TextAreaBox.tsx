@@ -57,11 +57,12 @@ const St = {
     ${({ theme }) => theme.fonts.sub3}
     border: none;
     resize: none;
-    overflow: hidden
+    overflow: hidden;
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray40};
     }
+
     &:focus {
       outline: none;
     }

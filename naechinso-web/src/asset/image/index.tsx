@@ -1,2 +1,4 @@
-export { default as Landing } from "./landingImg.png";
-export { default as RecommendLanding } from "./recommendLandingImg.png";
+export { default as ImgAppealDetail } from "./appealDetail.png";
+export { default as ImgDontGo } from "./dontGo.png";
+export { default as ImgLanding } from "./landing.png";
+export { default as ImgRecommendLanding } from "./recommendLanding.png";

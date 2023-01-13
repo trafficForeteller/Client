@@ -12,7 +12,6 @@ export default function ChooseQuestionPage() {
 
   useEffect(() => {
     chooseQuestion();
-    console.log(checkedQuestion);
   }, [questionArr]);
 
   const toggleCheck = (idx: number) => {

@@ -28,6 +28,7 @@ export default function RecommendPage() {
     setPostRecommend({ ...postRecommend, recommendAnswer: text, recommendQuestion: postQuestion });
     if (text.length >= 200) setTextCount(true);
     else setTextCount(false);
+    console.log(text);
   }, [text]);
 
   const handleRecommend = async () => {

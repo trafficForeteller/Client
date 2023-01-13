@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { IcLandingLogo } from "../../asset/icons";
-import { Landing } from "../../asset/image";
+import { ImgLanding } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { MoveNextPageBtn, Title } from "../@common";
 import RecommendPageBtn from "./RecommendPageBtn";
@@ -20,7 +20,7 @@ export default function LandingPage() {
       </St.PageTop>
 
       <St.LandingImgWrapper>
-        <St.LandingImg src={Landing} alt={"랜딩페이지 아이콘"} />
+        <St.LandingImg src={ImgLanding} alt={"랜딩페이지 아이콘"} />
       </St.LandingImgWrapper>
 
       <St.LandingBottom>
