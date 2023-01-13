@@ -61,18 +61,24 @@ export default function RecommenderInfoPage() {
       <NameInputBox name={name} handleNameInput={handleNameInput} />
 
       <St.ChooseGender>
-        <St.GenderWrapper onClick={() => toggleChecked(genderTypeArr[0])} checked={genderTypeArr[0].checked}>
+        <St.GenderWrapper
+          type="button"
+          onClick={() => toggleChecked(genderTypeArr[0])}
+          checked={genderTypeArr[0].checked}>
           {genderTypeArr[0].checked ? <IcCheckedMen /> : <IcUnCheckedMen />}
           <St.Gender>{genderTypeArr[0].gender}</St.Gender>
         </St.GenderWrapper>
-        <St.GenderWrapper onClick={() => toggleChecked(genderTypeArr[1])} checked={genderTypeArr[1].checked}>
+        <St.GenderWrapper
+          type="button"
+          onClick={() => toggleChecked(genderTypeArr[1])}
+          checked={genderTypeArr[1].checked}>
           {genderTypeArr[1].checked ? <IcCheckedWomen /> : <IcUnCheckedWomen />}
           <St.Gender>{genderTypeArr[1].gender}</St.Gender>
         </St.GenderWrapper>
       </St.ChooseGender>
 
       <MoveNextPageBtn
-        nextPage={routePaths.ChooseJob}
+        nextPage={routePaths.ChooseWork}
         title="다음"
         inputActive={name === "" || checkedGender === ""}
         handleState={handlePostRecommender}
