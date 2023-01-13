@@ -10,7 +10,7 @@ import ToggleTipBox from "./ToggleTipBox";
 
 export default function RecommendPage() {
   const [isThreeLine, setIsThreeLine] = useState(false);
-  const [textCount, setTextCount] = useState(false);
+  const [textCheck, setTextCheck] = useState(false);
   const [text, setText] = useState("");
   const [postRecommend, setPostRecommend] = useState<IPostRecommend>({ recommendQuestion: "", recommendAnswer: "" });
 
@@ -26,8 +26,8 @@ export default function RecommendPage() {
 
   useEffect(() => {
     setPostRecommend({ ...postRecommend, recommendAnswer: text, recommendQuestion: postQuestion });
-    if (text.length >= 200) setTextCount(true);
-    else setTextCount(false);
+    if (text.length >= 200) setTextCheck(true);
+    else setTextCheck(false);
     console.log(text);
   }, [text]);
 
@@ -63,7 +63,7 @@ export default function RecommendPage() {
       />
 
       <St.NextBtnWrapper>
-        <St.NextStepBtn type="button" disabled={!textCount} onClick={handleRecommend}>
+        <St.NextStepBtn type="button" disabled={!textCheck} onClick={handleRecommend}>
           다음
         </St.NextStepBtn>
       </St.NextBtnWrapper>

@@ -29,7 +29,7 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
         />
       </St.TextAreaWrapper>
       <St.TextLength>
-        <St.TextCount>{text.length}</St.TextCount>/{maxLength}
+        <St.TextCount>{text.length}</St.TextCount>/{maxLength + 1}
       </St.TextLength>
     </St.TextAreaBox>
   );
