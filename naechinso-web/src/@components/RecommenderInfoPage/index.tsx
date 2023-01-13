@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import { IcMen, IcSheild, IcWomen } from "../../asset/icons";
-import { genderTypeList } from "../../core/recommend/member";
+import { IcCheckedMen, IcCheckedWomen, IcSheild, IcUnCheckedMen, IcUnCheckedWomen } from "../../asset/icons";
+import { genderTypeList, genderTypeProps } from "../../core/member/member";
 import { FixedHeader } from "../@common";
 import NameInputBox from "./NameInputBox";
 
@@ -13,6 +13,17 @@ export default function RecommenderInfoPage() {
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     //  이름을 관리하는 함수
     setName(e.target.value);
+  };
+
+  const toggleChecked = (el: genderTypeProps) => {
+    // 항목별 체크
+    const newGenderTypeList = genderTypeArr.map((gender, index) => {
+      if (el.id === index) gender.checked = !gender.checked;
+      else gender.checked = false;
+
+      return gender;
+    });
+    setGenderTypeArr(newGenderTypeList);
   };
 
   return (
@@ -33,13 +44,13 @@ export default function RecommenderInfoPage() {
       <NameInputBox name={name} handleNameInput={handleNameInput} />
 
       <St.ChooseGender>
-        <St.GenderWrapper>
-          <St.GenderIcon src={IcMen} alt="남자" />
-          <St.Gender>남자</St.Gender>
+        <St.GenderWrapper onClick={() => toggleChecked(genderTypeArr[0])} checked={genderTypeArr[0].checked}>
+          {genderTypeArr[0].checked ? <IcCheckedMen /> : <IcUnCheckedMen />}
+          <St.Gender>{genderTypeArr[0].gender}</St.Gender>
         </St.GenderWrapper>
-        <St.GenderWrapper>
-          <St.GenderIcon src={IcWomen} alt="여자" />
-          <St.Gender>여자</St.Gender>
+        <St.GenderWrapper onClick={() => toggleChecked(genderTypeArr[1])} checked={genderTypeArr[1].checked}>
+          {genderTypeArr[1].checked ? <IcCheckedWomen /> : <IcUnCheckedWomen />}
+          <St.Gender>{genderTypeArr[1].gender}</St.Gender>
         </St.GenderWrapper>
       </St.ChooseGender>
     </St.RecommenderInfo>
@@ -77,17 +88,18 @@ const St = {
     margin: 1.6rem auto 0;
     width: fit-content;
   `,
-  GenderWrapper: styled.article`
-    background-color: ${({ theme }) => theme.colors.neural};
+  GenderWrapper: styled.button<{ checked: boolean }>`
+    background-color: ${({ theme, checked }) => (checked ? theme.colors.brown : theme.colors.neural)};
     border-radius: 16px;
 
     display: flex;
+    align-items: center;
     gap: 0.4rem;
     width: 16rem;
     height: 6.2rem;
     padding: 1.6rem 4.8rem;
 
-    color: ${({ theme }) => theme.colors.gray40};
+    color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.gray40)};
     ${({ theme }) => theme.fonts.sub2}
     cursor: pointer;
   `,
