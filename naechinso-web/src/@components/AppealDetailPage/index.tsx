@@ -46,6 +46,9 @@ const St = {
   CardWrapper: styled.section`
     margin-top: 18rem;
     margin-bottom: 3.2rem;
+    height: 22rem;
+
+    background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 30%);
   `,
   CardImg: styled.img`
     width: 37.5rem;
