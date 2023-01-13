@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { IcCheckedMen, IcCheckedWomen, IcSheild, IcUnCheckedMen, IcUnCheckedWomen } from "../../asset/icons";
@@ -9,6 +9,19 @@ import NameInputBox from "./NameInputBox";
 export default function RecommenderInfoPage() {
   const [name, setName] = useState("");
   const [genderTypeArr, setGenderTypeArr] = useState(genderTypeList);
+  const [checkedGender, setCheckedGender] = useState("");
+  const [postRecommender, setPostRecommender] = useState({
+    gender: "",
+    name: "",
+  });
+
+  useEffect(() => {
+    console.log(postRecommender);
+  }, [postRecommender]);
+
+  useEffect(() => {
+    setPostRecommender({ ...postRecommender, name: name, gender: checkedGender });
+  }, [name, genderTypeArr]);
 
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     //  이름을 관리하는 함수
@@ -18,9 +31,10 @@ export default function RecommenderInfoPage() {
   const toggleChecked = (el: genderTypeProps) => {
     // 항목별 체크
     const newGenderTypeList = genderTypeArr.map((gender, index) => {
-      if (el.id === index) gender.checked = !gender.checked;
-      else gender.checked = false;
-
+      if (el.id === index) {
+        gender.checked = !gender.checked;
+        gender.checked && setCheckedGender(gender.string);
+      } else gender.checked = false;
       return gender;
     });
     setGenderTypeArr(newGenderTypeList);
