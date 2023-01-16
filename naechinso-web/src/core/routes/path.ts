@@ -13,6 +13,8 @@ export const routePaths = {
   ChooseWork: "/join/chooseWork",
   Edu: "/join/education",
   Job: "/join/job",
+  EduCertified: "/join/education/certified",
+  JobCertified: "/join/job/certified",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];
