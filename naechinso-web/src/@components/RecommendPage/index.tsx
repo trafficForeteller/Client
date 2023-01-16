@@ -55,7 +55,7 @@ export default function RecommendPage() {
       <TextAreaBox
         placeholder={questionData.placeholder}
         minLength={199}
-        maxLength={400}
+        maxLength={399}
         text={text}
         setText={setText}
         height={20}
