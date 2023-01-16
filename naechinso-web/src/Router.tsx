@@ -9,6 +9,7 @@ import {
   DontGoPage,
   EduCertifiedPage,
   EduPage,
+  FinishPage,
   FriendInfoPage,
   InstallAppPage,
   JobCertifiedPage,
@@ -54,6 +55,7 @@ export default function Router() {
         <Route path={routePaths.Edu} element={<EduPage />} />
         <Route path={routePaths.JobCertified} element={<JobCertifiedPage />} />
         <Route path={routePaths.EduCertified} element={<EduCertifiedPage />} />
+        <Route path={routePaths.Finish} element={<FinishPage />} />
       </Routes>
     </BrowserRouter>
   );

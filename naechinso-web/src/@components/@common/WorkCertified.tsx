@@ -56,7 +56,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
         </St.ConsultantBtn>
       </St.ConsultantWrapper>
 
-      <MoveNextPageBtn nextPage={routePaths.DontGo} title="완료" inputActive={!fileChecked} />
+      <MoveNextPageBtn nextPage={routePaths.Finish} title="완료" inputActive={!fileChecked} />
     </St.WorkCertified>
   );
 }

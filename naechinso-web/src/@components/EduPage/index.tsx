@@ -59,6 +59,12 @@ export default function EduPage() {
 
   const handleStep = () => {
     // 친구정보 step을 관리하는 함수
+    setPostEdu({
+      ...postEdu,
+      eduName: eduName,
+      eduLevel: eduLevel,
+      eduMajor: eduMajor,
+    });
     setStep(step + 1);
     setActiveBtn(false);
   };
@@ -127,7 +133,7 @@ export default function EduPage() {
 const St = {
   EduPage: styled.main<{ isModalOpened: boolean }>`
     background-color: rgba(${({ isModalOpened }) => (isModalOpened ? "0, 0, 0, 0.64" : "")});
-    padding-top: 17rem;
+    padding-top: 18rem;
     height: 100%;
     z-index: 1;
   `,

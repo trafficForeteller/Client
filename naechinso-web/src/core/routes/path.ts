@@ -15,6 +15,7 @@ export const routePaths = {
   Job: "/join/job",
   EduCertified: "/join/education/certified",
   JobCertified: "/join/job/certified",
+  Finish: "/finish",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];

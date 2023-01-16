@@ -5,6 +5,7 @@ export { default as ChooseWorkPage } from "./ChooseWorkPage";
 export { default as DontGoPage } from "./DontGoPage";
 export { default as EduCertifiedPage } from "./EduCertifiedPage";
 export { default as EduPage } from "./EduPage";
+export { default as FinishPage } from "./FinishPage";
 export { default as FriendInfoPage } from "./FriendInfoPage";
 export { default as InstallAppPage } from "./InstallAppPage";
 export { default as JobCertifiedPage } from "./JobCertifiedPage";
