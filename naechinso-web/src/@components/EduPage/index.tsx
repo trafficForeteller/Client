@@ -12,7 +12,9 @@ export default function EduPage() {
     eduLevel: "",
     eduMajor: "",
   });
+
   const [eduLevel, setEduLevel] = useState("");
+  const [eduName, setEduName] = useState("");
 
   const [isSelectionModalOpened, setIsSelectionModalOpened] = useState(false);
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -20,11 +22,11 @@ export default function EduPage() {
 
   useEffect(() => {
     // step에 따른 ActiveButton 활성화
-    if (eduLevel.length >= 2) setActiveBtn(true);
-    // else if (step >= 2 && postRelationType) setActiveBtn(true);
+    if (step === 1 && eduLevel.length >= 2) setActiveBtn(true);
+    else if (step === 2 && eduLevel.length >= 2 && eduName.length >= 2) setActiveBtn(true);
     // else if (step >= 3 && relationDuration) setActiveBtn(true);
     else setActiveBtn(false);
-  }, [eduLevel]);
+  }, [eduLevel, eduName]);
   useEffect(() => {
     checkIsModalOpened();
   }, [isSelectionModalOpened]);
@@ -32,6 +34,11 @@ export default function EduPage() {
   const checkIsModalOpened = () => {
     if (isSelectionModalOpened) return setIsModalOpened(true);
     else return setIsModalOpened(false);
+  };
+
+  const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // 친구 이름을 관리하는 함수
+    setEduName(e.target.value);
   };
 
   const handleStep = () => {
@@ -43,6 +50,22 @@ export default function EduPage() {
   return (
     <St.EduPage isModalOpened={isModalOpened}>
       <FixedHeader header="추천인 소개" progressRate={60} title1="🏫" title2="학교는 어디 다녀?" />
+
+      {step >= 2 ? (
+        <>
+          <ShortInputBox
+            label="학교명"
+            placeholder="학교 이름을 적어줘"
+            value={eduName}
+            onChange={(e) => handleNameInput(e)}
+            isModalOpened={isModalOpened}
+            step={step}
+          />
+          <St.EduNameEx>ex. 연세(X) 연대(X) 연세대학교(O)</St.EduNameEx>
+        </>
+      ) : (
+        <></>
+      )}
 
       <ToggleInputBox
         label="학위"
@@ -70,6 +93,11 @@ const St = {
     padding-top: 17rem;
     height: 100%;
     z-index: 1;
+  `,
+  EduNameEx: styled.article`
+    margin: 0.6rem 4.1rem 0.9rem;
+    color: ${({ theme }) => theme.colors.gray40};
+    ${({ theme }) => theme.fonts.caption6};
   `,
   NextStepBtnWrapper: styled.section`
     display: flex;

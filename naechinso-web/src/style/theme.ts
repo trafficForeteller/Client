@@ -52,6 +52,7 @@ const fonts = {
   caption3: FONT({ weight: 500, size: 1.2, lineHeight: 2 }),
   caption4: FONT({ weight: 400, size: 1.4, lineHeight: 2 }),
   caption5: FONT({ weight: 400, size: 1.2, lineHeight: 1.6 }),
+  caption6: FONT({ weight: 500, size: 1.2, lineHeight: 1.6 }),
 } as const;
 
 type BackQuoteArgs = string[];
