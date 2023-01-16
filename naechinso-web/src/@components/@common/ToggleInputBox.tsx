@@ -1,8 +1,6 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 
 import { eduLevelList } from "../../core/member/member";
-import { relationDurationList } from "../../core/recommend/recommend";
 import ToggleInput from "./ToggleInput";
 import ToggleModal from "./ToggleModal";
 
@@ -29,10 +27,6 @@ export default function ToggleInputBox(props: ToggleInputBoxProps) {
     setIsSelectionModalOpened,
     isModalOpened,
   } = props;
-
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
 
   const closeRelationModal = (target: string) => {
     setIsSelectionModalOpened(false);

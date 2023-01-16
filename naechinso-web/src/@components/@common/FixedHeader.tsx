@@ -13,10 +13,11 @@ export interface FixedHeaderProps {
   title3?: string;
   subTitle1?: string;
   subTitle2?: string;
+  isModalOpened?: boolean;
 }
 
 export default function FixedHeader(props: FixedHeaderProps) {
-  const { header, progressRate, title1, title2, title3, subTitle1, subTitle2 } = props;
+  const { header, progressRate, title1, title2, title3, subTitle1, subTitle2, isModalOpened } = props;
   const [checkSubTitle, setCheckSubTitle] = useState(false);
 
   useEffect(() => {
@@ -29,22 +30,51 @@ export default function FixedHeader(props: FixedHeaderProps) {
   };
 
   return (
-    <St.FixedHeader>
-      <BasicHeader header={header} progressRate={progressRate} />
-      <St.TitleWrapper checkSubTitle={checkSubTitle}>
-        <Title title={title1} />
-        <Title title={title2} />
-        {title3 && <Title title={title3} />}
-      </St.TitleWrapper>
-      <St.SubTitleWrapper>
-        {subTitle1 && <SubTitle subTitle={subTitle1} />}
-        {subTitle2 && <SubTitle subTitle={subTitle2} />}
-      </St.SubTitleWrapper>
-    </St.FixedHeader>
+    <>
+      {isModalOpened ? (
+        <St.FixedHeaderWithModal>
+          <BasicHeader header={header} progressRate={progressRate} />
+          <St.TitleWrapper checkSubTitle={checkSubTitle}>
+            <Title title={title1} />
+            <Title title={title2} />
+            {title3 && <Title title={title3} />}
+          </St.TitleWrapper>
+          <St.SubTitleWrapper>
+            {subTitle1 && <SubTitle subTitle={subTitle1} />}
+            {subTitle2 && <SubTitle subTitle={subTitle2} />}
+          </St.SubTitleWrapper>
+        </St.FixedHeaderWithModal>
+      ) : (
+        <St.FixedHeader>
+          <BasicHeader header={header} progressRate={progressRate} />
+          <St.TitleWrapper checkSubTitle={checkSubTitle}>
+            <Title title={title1} />
+            <Title title={title2} />
+            {title3 && <Title title={title3} />}
+          </St.TitleWrapper>
+          <St.SubTitleWrapper>
+            {subTitle1 && <SubTitle subTitle={subTitle1} />}
+            {subTitle2 && <SubTitle subTitle={subTitle2} />}
+          </St.SubTitleWrapper>
+        </St.FixedHeader>
+      )}
+    </>
   );
 }
 
 const St = {
+  FixedHeaderWithModal: styled.section`
+    width: 36rem;
+    position: fixed;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    padding-bottom: 1rem;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #ffffff 10%);
+    z-index: -1;
+  `,
   FixedHeader: styled.section`
     width: 36rem;
     position: fixed;

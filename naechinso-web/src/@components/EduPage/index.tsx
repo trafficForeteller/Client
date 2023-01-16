@@ -15,6 +15,7 @@ export default function EduPage() {
 
   const [eduLevel, setEduLevel] = useState("");
   const [eduName, setEduName] = useState("");
+  const [eduMajor, setEduMajor] = useState("");
 
   const [isSelectionModalOpened, setIsSelectionModalOpened] = useState(false);
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -24,9 +25,10 @@ export default function EduPage() {
     // step에 따른 ActiveButton 활성화
     if (step === 1 && eduLevel.length >= 2) setActiveBtn(true);
     else if (step === 2 && eduLevel.length >= 2 && eduName.length >= 2) setActiveBtn(true);
-    // else if (step >= 3 && relationDuration) setActiveBtn(true);
+    else if (step === 3 && eduLevel.length >= 2 && eduName.length >= 2 && eduMajor.length >= 2) setActiveBtn(true);
     else setActiveBtn(false);
-  }, [eduLevel, eduName]);
+  }, [eduLevel, eduName, eduMajor]);
+
   useEffect(() => {
     checkIsModalOpened();
   }, [isSelectionModalOpened]);
@@ -36,9 +38,12 @@ export default function EduPage() {
     else return setIsModalOpened(false);
   };
 
-  const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNameInput = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    setState: React.Dispatch<React.SetStateAction<string>>,
+  ) => {
     // 친구 이름을 관리하는 함수
-    setEduName(e.target.value);
+    setState(e.target.value);
   };
 
   const handleStep = () => {
@@ -49,7 +54,28 @@ export default function EduPage() {
 
   return (
     <St.EduPage isModalOpened={isModalOpened}>
-      <FixedHeader header="추천인 소개" progressRate={60} title1="🏫" title2="학교는 어디 다녀?" />
+      <FixedHeader
+        header="추천인 소개"
+        progressRate={60}
+        title1="🏫"
+        title2="학교는 어디 다녀?"
+        isModalOpened={isModalOpened}
+      />
+
+      {step >= 3 ? (
+        <>
+          <ShortInputBox
+            label="전공"
+            placeholder="전공을 적어줘"
+            value={eduMajor}
+            onChange={(e) => handleNameInput(e, setEduMajor)}
+            isModalOpened={isModalOpened}
+            step={step}
+          />
+        </>
+      ) : (
+        <></>
+      )}
 
       {step >= 2 ? (
         <>
@@ -57,7 +83,7 @@ export default function EduPage() {
             label="학교명"
             placeholder="학교 이름을 적어줘"
             value={eduName}
-            onChange={(e) => handleNameInput(e)}
+            onChange={(e) => handleNameInput(e, setEduName)}
             isModalOpened={isModalOpened}
             step={step}
           />
