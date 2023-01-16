@@ -11,8 +11,12 @@ export default function JobPage() {
   const [activeBtn, setActiveBtn] = useState(false);
   const navigate = useNavigate();
 
-  const [job, setJob] = useState("");
-  const [jobGroup, setJobGroup] = useState("");
+  const [jobName, setJobName] = useState("");
+  const [jobPart, setJobPart] = useState("");
+  const [job, setJob] = useState({
+    jobName: "",
+    jobPart: "",
+  });
 
   useEffect(() => {
     // step에 따라 다른 모달 open
@@ -23,21 +27,19 @@ export default function JobPage() {
 
   useEffect(() => {
     // step에 따른 ActiveButton 활성화
-    if (job.length > 0) setActiveBtn(true);
-    else if (step >= 2 && jobGroup.length > 0) setActiveBtn(true);
+    if (jobName.length > 0) setActiveBtn(true);
+    else if (step >= 2 && jobPart.length > 0) setActiveBtn(true);
     else setActiveBtn(false);
-  }, [job, jobGroup]);
+  }, [jobName, jobPart]);
 
   const handleJobInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 직업을 관리하는 함수
-    setJob(e.target.value);
-    console.log(job);
+    setJobName(e.target.value);
   };
 
   const handleJobGroupInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 직업을 관리하는 함수
-    setJobGroup(e.target.value);
-    console.log(jobGroup);
+    setJobPart(e.target.value);
   };
 
   const handleStep = () => {
@@ -68,7 +70,7 @@ export default function JobPage() {
         <ShortInputBox
           label="직무"
           placeholder="무슨 일을 하고있어?"
-          value={jobGroup}
+          value={jobPart}
           onChange={(e) => handleJobGroupInput(e)}
           step={step}
         />
@@ -79,7 +81,7 @@ export default function JobPage() {
       <ShortInputBox
         label="직장"
         placeholder="재직중인 회사명을 적어줘"
-        value={job}
+        value={jobName}
         onChange={(e) => handleJobInput(e)}
         step={step}
       />
