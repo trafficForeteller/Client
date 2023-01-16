@@ -85,7 +85,7 @@ const St = {
 
     padding-bottom: 1rem;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #ffffff 10%);
-    z-index: 0;
+    z-index: 2;
   `,
   TitleWrapper: styled.hgroup<{ checkSubTitle: boolean }>`
     margin-bottom: ${({ checkSubTitle }) => (checkSubTitle ? "0.6rem" : "2.4rem")};

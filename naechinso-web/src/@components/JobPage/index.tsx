@@ -94,12 +94,16 @@ export default function JobPage() {
 }
 
 const St = {
-  JobPage: styled.main``,
+  JobPage: styled.main`
+    height: 100%;
+    padding-top: 22rem;
+  `,
   SheildBox: styled.section`
     width: 32.7rem;
     height: 6.4rem;
     border-radius: 8px;
-    margin: 22rem auto 2.4rem;
+    margin: 0 auto;
+    margin-bottom: 2.4rem;
     padding: 1.2rem 0.5rem;
     background-color: ${({ theme }) => theme.colors.blue40};
 

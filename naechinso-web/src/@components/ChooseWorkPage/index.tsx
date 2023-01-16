@@ -24,9 +24,10 @@ export default function ChooseWorkPage() {
 }
 
 const St = {
-  ChooseWork: styled.main``,
+  ChooseWork: styled.main`
+    padding-top: 19rem;
+  `,
   ButtonWrapper: styled.section`
-    margin-top: 19rem;
     display: flex;
     flex-direction: column;
     gap: 1.6rem;

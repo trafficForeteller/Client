@@ -64,6 +64,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
 const St = {
   WorkCertified: styled.section`
     width: 100%;
+    padding-top: 24rem;
   `,
   ImageUploadBox: styled.label`
     width: 28rem;

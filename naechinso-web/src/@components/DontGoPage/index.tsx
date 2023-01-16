@@ -75,9 +75,10 @@ export default function DontGoPage() {
 }
 
 const St = {
-  DontGo: styled.main``,
+  DontGo: styled.main`
+    padding-top: 21rem;
+  `,
   CardWrapper: styled.section`
-    margin-top: 21rem;
     margin-bottom: 3.2rem;
     height: 18.6rem;
     background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 30%);

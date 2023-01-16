@@ -42,9 +42,10 @@ export default function AppealDetailPage() {
 }
 
 const St = {
-  AppealDetail: styled.main``,
+  AppealDetail: styled.main`
+    padding-top: 18rem;
+  `,
   CardWrapper: styled.section`
-    margin-top: 18rem;
     margin-bottom: 3.2rem;
     height: 22rem;
 

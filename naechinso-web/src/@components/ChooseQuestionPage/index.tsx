@@ -73,6 +73,7 @@ const St = {
     flex-wrap: wrap;
     gap: 1.6rem;
     padding-top: 19rem;
+    padding-bottom: 1.5rem;
     z-index: -1;
   `,
   QuestionBox: styled.article<{ checked: boolean }>`

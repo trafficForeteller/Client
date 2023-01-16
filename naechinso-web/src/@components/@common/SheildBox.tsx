@@ -22,7 +22,7 @@ const St = {
     width: 32.7rem;
     height: 3.6rem;
     border-radius: 8px;
-    margin: 24rem auto 2.4rem;
+    margin: 0 auto 2.4rem;
     padding: 0.8rem 2rem 0.8rem 1rem;
     background-color: ${({ theme }) => theme.colors.blue40};
 

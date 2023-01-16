@@ -4,16 +4,11 @@ import styled from "styled-components";
 import { IcTipCheck, IcToggleArrow } from "../../asset/icons";
 import { TipList } from "../../core/recommend/recommend";
 
-export interface ToggleTipBoxProps {
-  isThreeLine: boolean;
-}
-
-export default function ToggleTipBox(props: ToggleTipBoxProps) {
-  const { isThreeLine } = props;
+export default function ToggleTipBox() {
   const [open, setOpen] = useState(true);
 
   return (
-    <St.ToggleTipBox isThreeLine={isThreeLine}>
+    <St.ToggleTipBox>
       <St.TipHeader>
         <St.TipTitle>⭐️ 추천사 꿀팁</St.TipTitle>
         <St.ArrowWrapper onClick={() => setOpen(!open)} open={open}>
@@ -39,8 +34,8 @@ export default function ToggleTipBox(props: ToggleTipBoxProps) {
 }
 
 const St = {
-  ToggleTipBox: styled.section<{ isThreeLine: boolean }>`
-    margin: ${({ isThreeLine }) => (isThreeLine ? "22rem" : "19rem")} auto 3.2rem;
+  ToggleTipBox: styled.section`
+    margin: 0 auto 3.2rem;
     width: 32.9rem;
     background-color: ${({ theme }) => theme.colors.neural};
     border-radius: 16px;

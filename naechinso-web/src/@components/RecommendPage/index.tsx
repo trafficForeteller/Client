@@ -42,7 +42,7 @@ export default function RecommendPage() {
   };
 
   return (
-    <St.Recommend>
+    <St.Recommend isThreeLine={isThreeLine}>
       <FixedHeader
         header="추천사"
         progressRate={85}
@@ -50,7 +50,7 @@ export default function RecommendPage() {
         title2={questionData.desc2}
         title3={questionData.desc3}
       />
-      <ToggleTipBox isThreeLine={isThreeLine} />
+      <ToggleTipBox />
 
       <TextAreaBox
         placeholder={questionData.placeholder}
@@ -71,7 +71,9 @@ export default function RecommendPage() {
 }
 
 const St = {
-  Recommend: styled.main``,
+  Recommend: styled.main<{ isThreeLine: boolean }>`
+    padding-top: ${({ isThreeLine }) => (isThreeLine ? "22rem" : "19rem")};
+  `,
   NextBtnWrapper: styled.section`
     display: flex;
     justify-content: center;
