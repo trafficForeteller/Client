@@ -4,10 +4,11 @@ import styled from "styled-components";
 
 import { postRecommendFriendInfo } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
-import { BasicHeader, ShortInputBox, Title, ToggleInput } from "../@common";
+import { BasicHeader, ShortInputBox, Title } from "../@common";
 import PhoneNumInputBox from "./PhoneNumInput";
 import RecommendLandingSplash from "./RecommendLandingSplash";
 import RelationTypeInput from "./RecommendTypeInput";
+import RelationDurationInput from "./RelationDurationInput";
 
 export default function FriendInfoPage() {
   const [alert, setAlert] = useState(true);
@@ -119,7 +120,10 @@ export default function FriendInfoPage() {
           )}
 
           {step >= 3 ? (
-            <ToggleInput
+            <RelationDurationInput
+              label="관계"
+              placeholder="어떤 관계인지 선택해줘"
+              question="친구와 어떤 관계야?"
               step={step}
               relationDuration={relationDuration}
               isDurationModalOpened={isDurationModalOpened}

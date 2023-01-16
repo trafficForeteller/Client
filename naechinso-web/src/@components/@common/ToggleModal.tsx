@@ -2,19 +2,19 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { IcRelationChecked } from "../../asset/icons";
-import { relationTypeProps } from "../../core/recommend/recommend";
+import { eduLevelrops } from "../../core/member/member";
 
-export interface RelationModalProps {
+export interface ToggleModalProps {
   question?: string;
-  relationArr: relationTypeProps[];
+  array: eduLevelrops[];
   closeRelationModal: (target: string) => void;
 }
 
-export default function RelationModal(props: RelationModalProps) {
-  const { question, relationArr, closeRelationModal } = props;
-  const [relationList, setRelationList] = useState(relationArr);
+export default function ToggleModal(props: ToggleModalProps) {
+  const { question, array, closeRelationModal } = props;
+  const [relationList, setRelationList] = useState(array);
 
-  const toggleCheck = (el: relationTypeProps) => {
+  const toggleCheck = (el: eduLevelrops) => {
     // 항목별 체크
     const newRelationList = relationList.map((relation, index) => {
       if (el.id === index) relation.checked = true;
@@ -22,32 +22,33 @@ export default function RelationModal(props: RelationModalProps) {
       return relation;
     });
     setRelationList(newRelationList);
-    closeRelationModal(el.relation);
+    closeRelationModal(el.eduLevel);
   };
 
   return (
-    <St.RelationModal>
+    <St.ToggleModal>
       {question ? <St.Question>{question}</St.Question> : ""}
-      {relationList.map((el) => {
+      {array.map((el) => {
         return (
           <St.Relation type="button" key={el.id} onClick={() => toggleCheck(el)}>
-            {el.relation}
+            {el.eduLevel}
             <St.CheckedWrapper>{el.checked ? <IcRelationChecked /> : <></>}</St.CheckedWrapper>
           </St.Relation>
         );
       })}
-    </St.RelationModal>
+    </St.ToggleModal>
   );
 }
 
 const St = {
-  RelationModal: styled.section`
+  ToggleModal: styled.section`
     width: 100%;
-    height: 41rem;
+    height: 29rem;
     position: absolute;
     bottom: 0;
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 32px 32px 0 0;
+    padding-top: 3.2rem;
   `,
   Question: styled.h2`
     display: flex;

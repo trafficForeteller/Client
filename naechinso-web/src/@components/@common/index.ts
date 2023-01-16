@@ -10,4 +10,3 @@ export { default as ShortInputBox } from "./ShortInputBox";
 export { default as SubTitle } from "./SubTitle";
 export { default as TextAreaBox } from "./TextAreaBox";
 export { default as Title } from "./Title";
-export { default as ToggleInput } from "./ToggleInput";

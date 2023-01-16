@@ -11,7 +11,7 @@ export const routePaths = {
   DontGo: "/recommend/dontGo",
   RecommenderInfo: "/join/recommender",
   ChooseWork: "/join/chooseWork",
-  School: "/join/school",
+  Edu: "/join/education",
   Job: "/join/job",
 };
 

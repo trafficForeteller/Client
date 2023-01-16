@@ -7,6 +7,7 @@ import {
   ChooseQuestionPage,
   ChooseWorkPage,
   DontGoPage,
+  EduPage,
   FriendInfoPage,
   InstallAppPage,
   JobPage,
@@ -15,7 +16,6 @@ import {
   PhoneNumberPage,
   RecommenderInfoPage,
   RecommendPage,
-  SchoolPage,
 } from "./@components";
 import { postSmsSend } from "./apis/sms.api";
 import { routePaths } from "./core/routes/path";
@@ -49,7 +49,7 @@ export default function Router() {
         <Route path={routePaths.DontGo} element={<DontGoPage />} />
         <Route path={routePaths.ChooseWork} element={<ChooseWorkPage />} />
         <Route path={routePaths.Job} element={<JobPage />} />
-        <Route path={routePaths.School} element={<SchoolPage />} />
+        <Route path={routePaths.Edu} element={<EduPage />} />
       </Routes>
     </BrowserRouter>
   );

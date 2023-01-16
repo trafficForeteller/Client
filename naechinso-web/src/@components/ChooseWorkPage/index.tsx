@@ -15,7 +15,7 @@ export default function ChooseWorkPage() {
         <St.ChooseWorkButton type="button" onClick={() => navigate(`${routePaths.Job}`)}>
           응, 일을 하고 있어
         </St.ChooseWorkButton>
-        <St.ChooseWorkButton type="button" onClick={() => navigate(`${routePaths.School}`)}>
+        <St.ChooseWorkButton type="button" onClick={() => navigate(`${routePaths.Edu}`)}>
           아니, 아직 공부 중인 학생이야
         </St.ChooseWorkButton>
       </St.ButtonWrapper>

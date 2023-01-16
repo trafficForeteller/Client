@@ -1,54 +1,61 @@
-import React from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 
-import { relationDurationList } from "../../core/recommend/recommend";
-import RelationModal from "../FriendInfoPage/RelationModal";
-import RelationToggle from "../FriendInfoPage/RelationToggle";
+import { IcToggleArrow } from "../../asset/icons";
 
-export interface RelationTypeDurationProps {
-  step: number;
-  isDurationModalOpened: boolean;
-  relationDuration: string;
-  setRelationDuration: React.Dispatch<React.SetStateAction<string>>;
-  setIsDurationModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
+export interface ToggleInputProps {
+  label: string;
+  placeholder: string;
+  value: string;
+  openRelationModal: () => void;
   isModalOpened: boolean;
 }
 
-export default function RelationDurationInput(props: RelationTypeDurationProps) {
-  const { isDurationModalOpened, relationDuration, setRelationDuration, setIsDurationModalOpened, isModalOpened } =
-    props;
-
-  const closeRelationModal = (target: string) => {
-    setIsDurationModalOpened(false);
-    setRelationDuration(target);
-  };
-
-  const openRelationModal = () => {
-    setIsDurationModalOpened(true);
-  };
+export default function ToggleInput(props: ToggleInputProps) {
+  const { label, placeholder, value, openRelationModal, isModalOpened } = props;
 
   return (
-    <St.RelationDurationInput>
-      <RelationToggle
-        label="관계"
-        placeholder="어떤 관계인지 선택해줘"
-        value={relationDuration}
-        openRelationModal={openRelationModal}
-        isModalOpened={isModalOpened}
-      />
-      {isDurationModalOpened ? (
-        <RelationModal
-          question="친구와 어떤 관계야?"
-          relationArr={relationDurationList}
-          closeRelationModal={closeRelationModal}
-        />
-      ) : (
-        <></>
-      )}
-    </St.RelationDurationInput>
+    <St.ToggleInput isModalOpened={isModalOpened} onClick={openRelationModal}>
+      <St.Label>{label}</St.Label>
+      <St.InputWrapper>
+        <St.Input placeholder={placeholder} value={value} readOnly />
+        <IcToggleArrow />
+      </St.InputWrapper>
+    </St.ToggleInput>
   );
 }
 
 const St = {
-  RelationDurationInput: styled.span``,
+  ToggleInput: styled.section<{ isModalOpened: boolean }>`
+    width: 33.5rem;
+    height: 8rem;
+
+    border-radius: 1.6rem;
+    background-color: ${({ theme }) => theme.colors.neural};
+    padding: 1rem 2rem 1.6rem;
+    margin: 1.6rem auto 0;
+    position: relative;
+    z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
+  `,
+  Label: styled.p`
+    color: ${({ theme }) => theme.colors.gray40};
+    ${({ theme }) => theme.fonts.body2};
+  `,
+  InputWrapper: styled.span`
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  `,
+  Input: styled.input`
+    width: 100%;
+    color: ${({ theme }) => theme.colors.black};
+    ${({ theme }) => theme.fonts.sub2};
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.black20};
+    }
+  `,
 };
