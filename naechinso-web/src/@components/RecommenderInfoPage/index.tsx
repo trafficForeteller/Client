@@ -6,6 +6,7 @@ import { IcCheckedMen, IcCheckedWomen, IcSheild, IcUnCheckedMen, IcUnCheckedWome
 import { genderTypeList, genderTypeProps } from "../../core/member/member";
 import { routePaths } from "../../core/routes/path";
 import { FixedHeader, MoveNextPageBtn } from "../@common";
+import SheildBox from "../@common/SheildBox";
 import NameInputBox from "./NameInputBox";
 
 export default function RecommenderInfoPage() {
@@ -54,10 +55,11 @@ export default function RecommenderInfoPage() {
         subTitle2="이 친구에게 엄청난 신뢰가 더해질거야✌️"
       />
 
-      <St.SheildWrapper>
+      {/* <St.SheildWrapper>
         <IcSheild />
-        <St.SheildDesc>이름 가운데는 *처리 되니 안심해! (ex. 김*민, 박*)</St.SheildDesc>
-      </St.SheildWrapper>
+        <St.SheildDesc></St.SheildDesc>
+      </St.SheildWrapper> */}
+      <SheildBox desc="이름 가운데는 *처리 되니 안심해! (ex. 김*민, 박*)" />
       <NameInputBox name={name} handleNameInput={handleNameInput} />
 
       <St.ChooseGender>

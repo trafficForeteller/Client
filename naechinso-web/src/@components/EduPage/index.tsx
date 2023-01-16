@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { routePaths } from "../../core/routes/path";
 import { IEduType } from "../../types/member";
 import { FixedHeader, ShortInputBox } from "../@common";
 import ToggleInputBox from "../@common/ToggleInputBox";
@@ -20,6 +22,15 @@ export default function EduPage() {
   const [isSelectionModalOpened, setIsSelectionModalOpened] = useState(false);
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [activeBtn, setActiveBtn] = useState(false);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // step 4일 때 페이지 이동
+    if (step === 4) {
+      navigate(`${routePaths.EduCertified}`);
+    }
+  }, [step]);
 
   useEffect(() => {
     // step에 따른 ActiveButton 활성화

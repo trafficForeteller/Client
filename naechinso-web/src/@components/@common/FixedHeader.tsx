@@ -64,7 +64,7 @@ export default function FixedHeader(props: FixedHeaderProps) {
 
 const St = {
   FixedHeaderWithModal: styled.section`
-    width: 36rem;
+    width: 37.5rem;
     position: fixed;
     margin: 0 auto;
     left: 0;
@@ -76,7 +76,7 @@ const St = {
     z-index: -1;
   `,
   FixedHeader: styled.section`
-    width: 36rem;
+    width: 37.5rem;
     position: fixed;
     margin: 0 auto;
     left: 0;

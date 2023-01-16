@@ -19,7 +19,7 @@ export default function JobPage() {
   useEffect(() => {
     // step에 따라 다른 모달 open
     if (step === 3) {
-      navigate(`${routePaths.Keyword}`);
+      navigate(`${routePaths.JobCertified}`);
     }
   }, [step]);
 

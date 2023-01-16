@@ -4,6 +4,7 @@ export { ReactComponent as IcChecked } from "./checked.svg";
 export { ReactComponent as IcCheckedMen } from "./checkedMen.svg";
 export { ReactComponent as IcCheckedWomen } from "./checkedWomen.svg";
 export { ReactComponent as IcLandingLogo } from "./landingLogo.svg";
+export { ReactComponent as IcPlus } from "./plus.svg";
 export { ReactComponent as IcPreviousBtn } from "./previousBtn.svg";
 export { ReactComponent as IcRelationChecked } from "./relationChecked.svg";
 export { ReactComponent as IcSheild } from "./sheild.svg";
