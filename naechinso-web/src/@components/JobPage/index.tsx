@@ -11,8 +11,6 @@ export default function JobPage() {
   const [activeBtn, setActiveBtn] = useState(false);
   const navigate = useNavigate();
 
-  const [jobName, setJobName] = useState("");
-  const [jobPart, setJobPart] = useState("");
   const [job, setJob] = useState({
     jobName: "",
     jobPart: "",
@@ -49,7 +47,7 @@ export default function JobPage() {
   };
 
   return (
-    <St.Job>
+    <St.JobPage>
       <FixedHeader
         header="추천인 소개"
         progressRate={60}
@@ -91,12 +89,12 @@ export default function JobPage() {
           다음
         </St.NextStepBtn>
       </St.NextStepBtnWrapper>
-    </St.Job>
+    </St.JobPage>
   );
 }
 
 const St = {
-  Job: styled.main``,
+  JobPage: styled.main``,
   SheildBox: styled.section`
     width: 32.7rem;
     height: 6.4rem;

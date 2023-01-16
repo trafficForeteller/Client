@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import { relationDurationList } from "../../core/recommend/recommend";
-import RelationModal from "./RelationModal";
-import RelationToggle from "./RelationToggle";
+import RelationModal from "../FriendInfoPage/RelationModal";
+import RelationToggle from "../FriendInfoPage/RelationToggle";
 
 export interface RelationTypeDurationProps {
   step: number;

@@ -4,9 +4,8 @@ import styled from "styled-components";
 
 import { postRecommendFriendInfo } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
-import { BasicHeader, ShortInputBox, Title } from "../@common";
+import { BasicHeader, ShortInputBox, Title, ToggleInput } from "../@common";
 import PhoneNumInputBox from "./PhoneNumInput";
-import RelationDurationInput from "./RecommendDurationInput";
 import RecommendLandingSplash from "./RecommendLandingSplash";
 import RelationTypeInput from "./RecommendTypeInput";
 
@@ -120,7 +119,7 @@ export default function FriendInfoPage() {
           )}
 
           {step >= 3 ? (
-            <RelationDurationInput
+            <ToggleInput
               step={step}
               relationDuration={relationDuration}
               isDurationModalOpened={isDurationModalOpened}
