@@ -27,19 +27,19 @@ export default function JobPage() {
 
   useEffect(() => {
     // step에 따른 ActiveButton 활성화
-    if (jobName.length > 0) setActiveBtn(true);
-    else if (step >= 2 && jobPart.length > 0) setActiveBtn(true);
+    if (job.jobName.length > 0) setActiveBtn(true);
+    else if (step >= 2 && job.jobPart.length > 0) setActiveBtn(true);
     else setActiveBtn(false);
-  }, [jobName, jobPart]);
+  }, [job]);
 
   const handleJobInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 직업을 관리하는 함수
-    setJobName(e.target.value);
+    setJob({ ...job, jobName: e.target.value });
   };
 
   const handleJobGroupInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 직업을 관리하는 함수
-    setJobPart(e.target.value);
+    setJob({ ...job, jobPart: e.target.value });
   };
 
   const handleStep = () => {
@@ -70,8 +70,8 @@ export default function JobPage() {
         <ShortInputBox
           label="직무"
           placeholder="무슨 일을 하고있어?"
-          value={jobPart}
-          onChange={(e) => handleJobGroupInput(e)}
+          value={job.jobPart}
+          onChange={handleJobGroupInput}
           step={step}
         />
       ) : (
@@ -81,8 +81,8 @@ export default function JobPage() {
       <ShortInputBox
         label="직장"
         placeholder="재직중인 회사명을 적어줘"
-        value={jobName}
-        onChange={(e) => handleJobInput(e)}
+        value={job.jobName}
+        onChange={handleJobInput}
         step={step}
       />
 
