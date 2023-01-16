@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { IcPlus } from "../../asset/icons";
+import { IcPlus, IcSpeechBubble } from "../../asset/icons";
+import { ImgConsultantNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import FixedHeader from "./FixedHeader";
 import MoveNextPageBtn from "./MoveNextPageBtn";
@@ -48,13 +49,22 @@ export default function WorkCertified(props: WorkCertifiedProps) {
       </St.ImageUploadBox>
       <St.ImageUpload type="file" accept="image/*" id="input-file" />
 
+      <St.ConsultantWrapper>
+        <IcSpeechBubble />
+        <St.ConsultantBtn type="button">
+          <St.ConsultantNaechinso src={ImgConsultantNaechinso} alt="상담원 내친소 아이콘" />
+        </St.ConsultantBtn>
+      </St.ConsultantWrapper>
+
       <MoveNextPageBtn nextPage={routePaths.DontGo} title="완료" inputActive={!fileChecked} />
     </St.WorkCertified>
   );
 }
 
 const St = {
-  WorkCertified: styled.section``,
+  WorkCertified: styled.section`
+    width: 100%;
+  `,
   ImageUploadBox: styled.label`
     width: 28rem;
     height: 18.7rem;
@@ -81,4 +91,15 @@ const St = {
   ImageUpload: styled.input`
     display: none;
   `,
+  ConsultantWrapper: styled.article`
+    display: flex;
+    align-items: center;
+
+    position: absolute;
+
+    right: 2.4rem;
+    bottom: 12.4rem;
+  `,
+  ConsultantBtn: styled.button``,
+  ConsultantNaechinso: styled.img``,
 };
