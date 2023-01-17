@@ -15,6 +15,7 @@ export default function JobCertifiedPage() {
         subTitle2="사원증 / 명함 / 사업자 등록증 사진을 업로드해줘!"
         state={jobImg}
         setState={setJobImg}
+        dir="job"
       />
     </St.JobCertifiedPage>
   );

@@ -15,6 +15,7 @@ export default function EduCertifiedPage() {
         subTitle2="학생증, 재학증명서 또는 학교 포털 캡쳐를 첨부해줘!"
         state={eduImg}
         setState={setEduImg}
+        dir="edu"
       />
     </St.EduCertifiedPage>
   );

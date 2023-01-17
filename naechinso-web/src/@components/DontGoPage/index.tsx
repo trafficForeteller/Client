@@ -28,12 +28,7 @@ export default function DontGoPage() {
   }, [text]);
 
   const handleFriendDetail = async () => {
-    const userData = await patchRecommendFriendDetail(
-      patchRecommend,
-      localStorage.getItem("accessToken"),
-      localStorage.getItem("uuid"),
-    );
-    console.log("돈고", userData);
+    await patchRecommendFriendDetail(patchRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
   };
 
   const handleTextCheck = () => {
@@ -58,7 +53,7 @@ export default function DontGoPage() {
       <TextAreaBox
         placeholder="한번만 다시 생각해봐! 일단 내 친구는 만나봐야 얘가 진국인지 아닌지 알 수있기 때문이지! "
         minLength={19}
-        maxLength={199}
+        maxLength={99}
         text={text}
         setText={setText}
         height={10.2}

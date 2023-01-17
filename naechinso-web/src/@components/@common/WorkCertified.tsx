@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import { postCertifiedImg } from "../../apis/s3.api";
 import { IcPlus, IcSpeechBubble } from "../../asset/icons";
 import { ImgConsultantNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
@@ -15,10 +16,11 @@ export interface WorkCertifiedProps {
   subTitle2: string;
   state: string;
   setState: React.Dispatch<React.SetStateAction<string>>;
+  dir: string;
 }
 
 export default function WorkCertified(props: WorkCertifiedProps) {
-  const { title1, title2, subTitle1, subTitle2 } = props;
+  const { title1, title2, subTitle1, subTitle2, dir } = props;
   const [certifiedImg, setCertifiedImg] = useState("");
   const imgRef = useRef<HTMLInputElement>(null);
   const [fileChecked, setFileChecked] = useState(false);
@@ -27,20 +29,43 @@ export default function WorkCertified(props: WorkCertifiedProps) {
     handleFileChecked();
   }, [certifiedImg]);
 
+  const handleCertifiedImg = () => {
+    // uploadImgToS3(e);
+  };
+
   const handleFileChecked = () => {
     if (certifiedImg) setFileChecked(true);
     else setFileChecked(false);
   };
 
-  const saveImgFile = () => {
+  const handlePostImgFile = async (formData: FormData) => {
+    // s3에 이미지 POST
+    const userData = await postCertifiedImg(formData, localStorage.getItem("accessToken"), dir);
+    console.log(userData);
+  };
+
+  const uploadImgToS3 = (file: File) => {
+    // s3에 업로드하기 위한 data 처리
+    const formData = new FormData();
+    formData.append("multipartFiles", file);
+
+    for (const value of formData.values()) {
+      console.log("value", value);
+    }
+    handlePostImgFile(formData);
+  };
+
+  const previewImgFile = () => {
+    // 미리보기 기능 구현
     const target = imgRef.current as HTMLInputElement;
-    const file = target.files && target.files[0];
+    const file = target.files && (target.files[0] as File);
     const reader = new FileReader();
     file && reader.readAsDataURL(file);
     reader.onloadend = () => {
       const resultImg = reader.result as string;
       setCertifiedImg(resultImg);
     };
+    file && uploadImgToS3(file);
   };
 
   return (
@@ -65,7 +90,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
           </>
         )}
       </St.ImageUploadBox>
-      <St.ImageUpload type="file" accept="image/*" id="input-file" onChange={saveImgFile} ref={imgRef} />
+      <St.ImageUpload type="file" accept="image/*" id="input-file" onChange={previewImgFile} ref={imgRef} />
 
       <St.ConsultantWrapper>
         <IcSpeechBubble />

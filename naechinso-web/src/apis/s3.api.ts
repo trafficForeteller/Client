@@ -3,11 +3,11 @@ import { serverAxios } from ".";
 const PREFIX_URL = "/s3";
 
 export const postCertifiedImg = async (
-  recommenderData: string,
+  formData: FormData,
   accessToken: string | null,
   dir: string,
 ): Promise<void | null> => {
-  const { data } = await serverAxios.post(`${PREFIX_URL}/image/${dir}`, recommenderData, {
+  const { data } = await serverAxios.post(`${PREFIX_URL}/image/${dir}`, formData, {
     headers: { Authorization: `${accessToken}`, "Content-Type": "multipart/form-data" },
   });
   try {
