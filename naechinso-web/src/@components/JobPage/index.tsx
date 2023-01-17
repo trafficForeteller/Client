@@ -15,7 +15,7 @@ export default function JobPage() {
   const [job, setJob] = useState<IJobType>({
     jobName: "",
     jobPart: "",
-    jobLocation: "",
+    jobLocation: "강남구",
   });
 
   useEffect(() => {

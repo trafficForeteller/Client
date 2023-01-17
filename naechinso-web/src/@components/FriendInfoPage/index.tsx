@@ -64,8 +64,8 @@ export default function FriendInfoPage() {
   useEffect(() => {
     // step에 따른 ActiveButton 활성화
     if (step === 1 && name.length >= 2) setActiveBtn(true);
-    else if (step === 2 && name.length >= 2 && postRelationType) setActiveBtn(true);
-    else if (step === 3 && name.length >= 2 && postRelationType && relationDuration) setActiveBtn(true);
+    else if (step === 2 && name.length >= 2 && relationType) setActiveBtn(true);
+    else if (step === 3 && name.length >= 2 && relationType && relationDuration) setActiveBtn(true);
     else setActiveBtn(false);
   }, [name, relationType, relationDuration]);
 

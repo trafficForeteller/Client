@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import { patchMemberEdu, patchMemberJob } from "../../apis/member.api";
 import { postCertifiedImg } from "../../apis/s3.api";
 import { IcPlus, IcSpeechBubble } from "../../asset/icons";
 import { ImgConsultantNaechinso } from "../../asset/image";
@@ -29,9 +30,6 @@ export default function WorkCertified(props: WorkCertifiedProps) {
   const [patchData, setPatchData] = useState({});
 
   useEffect(() => {
-    console.log(patchData);
-  }, [patchData]);
-  useEffect(() => {
     handleFileChecked();
   }, [certifiedImg]);
 
@@ -41,16 +39,15 @@ export default function WorkCertified(props: WorkCertifiedProps) {
     else setFileChecked(false);
   };
 
-  // const postCertifiedData =() => {
-  //   if (dir==="edu") {
-  //     const eduData = await postMemberEdu()
-  //   }
-  // }
+  const postCertifiedData = async () => {
+    if (dir === "edu") await patchMemberEdu(patchData, localStorage.getItem("accessToken"));
+    else if (dir === "job") await patchMemberJob(patchData, localStorage.getItem("accessToken"));
+  };
 
   const handlePostImgFile = async (formData: FormData) => {
     // s3에 이미지 POST
     const userData = await postCertifiedImg(formData, localStorage.getItem("accessToken"), dir);
-    const strImgName = userData && userData[0];
+    const strImgName = userData && (userData[0] as string);
     if (dir === "edu") setPatchData({ ...postData, eduImage: strImgName });
     else if (dir === "job") setPatchData({ ...postData, jobImage: strImgName });
   };
@@ -106,7 +103,12 @@ export default function WorkCertified(props: WorkCertifiedProps) {
         </St.ConsultantBtn>
       </St.ConsultantWrapper>
 
-      <MoveNextPageBtn nextPage={routePaths.Finish} title="완료" inputActive={!fileChecked} />
+      <MoveNextPageBtn
+        nextPage={routePaths.Finish}
+        title="완료"
+        inputActive={!fileChecked}
+        handleState={postCertifiedData}
+      />
     </St.WorkCertified>
   );
 }

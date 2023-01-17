@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { IPostEdu, IPostJob, IPostPolicy, IPostRecommender } from "../types/member";
+import { IPatchEdu, IPatchJob, IPostPolicy, IPostRecommender } from "../types/member";
 import { serverAxios } from ".";
 
 const PREFIX_URL = "/member";
@@ -39,8 +39,8 @@ export const postMemberJoinRecommender = async (
   }
 };
 
-export const postMemberEdu = async (eduData: IPostEdu, accessToken: string | null): Promise<void | null> => {
-  const { data } = await serverAxios.post(`${PREFIX_URL}/edu`, eduData, {
+export const patchMemberEdu = async (eduData: object, accessToken: string | null): Promise<void | null> => {
+  const { data } = await serverAxios.patch(`${PREFIX_URL}/edu`, eduData, {
     headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
   });
   try {
@@ -55,8 +55,8 @@ export const postMemberEdu = async (eduData: IPostEdu, accessToken: string | nul
   }
 };
 
-export const postMemberJob = async (jobData: IPostJob, accessToken: string | null): Promise<void | null> => {
-  const { data } = await serverAxios.post(`${PREFIX_URL}/job`, jobData, {
+export const patchMemberJob = async (jobData: object, accessToken: string | null): Promise<void | null> => {
+  const { data } = await serverAxios.patch(`${PREFIX_URL}/job`, jobData, {
     headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
   });
   try {

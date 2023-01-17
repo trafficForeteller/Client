@@ -22,7 +22,7 @@ export interface IEduType {
   eduMajor: string;
 }
 
-export interface IPostEdu {
+export interface IPatchEdu {
   eduImage: string;
   eduName: string;
   eduLevel: string;
@@ -35,7 +35,7 @@ export interface IJobType {
   jobLocation: string;
 }
 
-export interface IPostJob {
+export interface IPatchJob {
   jobImage: string;
   jobName: string;
   jobPart: string;
