@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-import { ImgFinishNaechinso, ImgHandsUp } from "../../asset/image";
+import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { MoveNextPageBtn } from "../@common";
 
 export default function FinishPage() {
   return (
     <St.FinishPage>
-      <St.Naechinso src={ImgFinishNaechinso} alt="내친소" />
+      <St.Naechinso src={ImgCommentNaechinso} alt="내친소" />
       <St.CommentBox>
         <St.CommentWrapper>
           <St.Comment>추천사 작성이 완료 됐어!</St.Comment>
@@ -60,11 +60,6 @@ const St = {
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub3};
     border-radius: 0px 16px 16px 16px;
-  `,
-  Comments: styled.img`
-    width: 21.1rem;
-    height: 23rem;
-    margin-top: 20rem;
   `,
   Emoji: styled.img`
     width: 9rem;
