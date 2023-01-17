@@ -29,6 +29,9 @@ export default function WorkCertified(props: WorkCertifiedProps) {
   const [patchData, setPatchData] = useState({});
 
   useEffect(() => {
+    console.log(patchData);
+  }, [patchData]);
+  useEffect(() => {
     handleFileChecked();
   }, [certifiedImg]);
 
@@ -38,20 +41,24 @@ export default function WorkCertified(props: WorkCertifiedProps) {
     else setFileChecked(false);
   };
 
+  // const postCertifiedData =() => {
+  //   if (dir==="edu") {
+  //     const eduData = await postMemberEdu()
+  //   }
+  // }
+
   const handlePostImgFile = async (formData: FormData) => {
     // s3에 이미지 POST
     const userData = await postCertifiedImg(formData, localStorage.getItem("accessToken"), dir);
-    console.log(userData);
+    const strImgName = userData && userData[0];
+    if (dir === "edu") setPatchData({ ...postData, eduImage: strImgName });
+    else if (dir === "job") setPatchData({ ...postData, jobImage: strImgName });
   };
 
   const uploadImgToS3 = (file: File) => {
     // s3에 업로드하기 위한 data 처리
     const formData = new FormData();
     formData.append("multipartFiles", file);
-
-    for (const value of formData.values()) {
-      console.log("value", value);
-    }
     handlePostImgFile(formData);
   };
 
@@ -103,7 +110,6 @@ export default function WorkCertified(props: WorkCertifiedProps) {
     </St.WorkCertified>
   );
 }
-
 const St = {
   WorkCertified: styled.section`
     width: 100%;
