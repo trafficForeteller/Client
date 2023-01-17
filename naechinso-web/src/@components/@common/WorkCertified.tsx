@@ -5,6 +5,7 @@ import { postCertifiedImg } from "../../apis/s3.api";
 import { IcPlus, IcSpeechBubble } from "../../asset/icons";
 import { ImgConsultantNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
+import { IEduType, IJobType } from "../../types/member";
 import FixedHeader from "./FixedHeader";
 import MoveNextPageBtn from "./MoveNextPageBtn";
 import SheildBox from "./SheildBox";
@@ -17,23 +18,22 @@ export interface WorkCertifiedProps {
   state: string;
   setState: React.Dispatch<React.SetStateAction<string>>;
   dir: string;
+  postData: IEduType | IJobType;
 }
 
 export default function WorkCertified(props: WorkCertifiedProps) {
-  const { title1, title2, subTitle1, subTitle2, dir } = props;
+  const { title1, title2, subTitle1, subTitle2, dir, postData } = props;
   const [certifiedImg, setCertifiedImg] = useState("");
   const imgRef = useRef<HTMLInputElement>(null);
   const [fileChecked, setFileChecked] = useState(false);
+  const [patchData, setPatchData] = useState({});
 
   useEffect(() => {
     handleFileChecked();
   }, [certifiedImg]);
 
-  const handleCertifiedImg = () => {
-    // uploadImgToS3(e);
-  };
-
   const handleFileChecked = () => {
+    // 이미지 파일 유무 확인하기
     if (certifiedImg) setFileChecked(true);
     else setFileChecked(false);
   };

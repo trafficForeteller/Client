@@ -9,7 +9,7 @@ import ToggleInputBox from "../@common/ToggleInputBox";
 
 export default function EduPage() {
   const [step, setStep] = useState(1);
-  const [postEdu, setPostEdu] = useState<IEduType>({
+  const [edu, setEdu] = useState<IEduType>({
     eduName: "",
     eduLevel: "",
     eduMajor: "",
@@ -28,7 +28,7 @@ export default function EduPage() {
   useEffect(() => {
     // step 4일 때 페이지 이동
     if (step === 4) {
-      navigate(`${routePaths.EduCertified}`);
+      navigate(`${routePaths.EduCertified}`, { state: edu });
     }
   }, [step]);
 
@@ -59,8 +59,8 @@ export default function EduPage() {
 
   const handleStep = () => {
     // 친구정보 step을 관리하는 함수
-    setPostEdu({
-      ...postEdu,
+    setEdu({
+      ...edu,
       eduName: eduName,
       eduLevel: eduLevel,
       eduMajor: eduMajor,

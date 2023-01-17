@@ -15,8 +15,15 @@ export interface IPostRecommender {
   gender: string;
   name: string;
 }
+
 export interface IEduType {
   eduName: string;
   eduLevel: string;
   eduMajor: string;
+}
+
+export interface IJobType {
+  jobName: string;
+  jobPart: string;
+  jobLocation: string;
 }

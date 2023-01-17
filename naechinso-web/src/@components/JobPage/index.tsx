@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { IcSheild } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
+import { IJobType } from "../../types/member";
 import { FixedHeader, ShortInputBox } from "../@common";
 
 export default function JobPage() {
@@ -11,15 +12,16 @@ export default function JobPage() {
   const [activeBtn, setActiveBtn] = useState(false);
   const navigate = useNavigate();
 
-  const [job, setJob] = useState({
+  const [job, setJob] = useState<IJobType>({
     jobName: "",
     jobPart: "",
+    jobLocation: "",
   });
 
   useEffect(() => {
     // step에 따라 다른 모달 open
     if (step === 3) {
-      navigate(`${routePaths.JobCertified}`);
+      navigate(`${routePaths.JobCertified}`, { state: job });
     }
   }, [step]);
 

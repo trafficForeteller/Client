@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import WorkCertified from "../@common/WorkCertified";
 
 export default function JobCertifiedPage() {
   const [jobImg, setJobImg] = useState("");
+  const location = useLocation();
+  const jobPostData = location.state;
 
   return (
     <St.JobCertifiedPage>
@@ -16,6 +19,7 @@ export default function JobCertifiedPage() {
         state={jobImg}
         setState={setJobImg}
         dir="job"
+        postData={jobPostData}
       />
     </St.JobCertifiedPage>
   );

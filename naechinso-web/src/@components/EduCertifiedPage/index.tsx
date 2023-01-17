@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import WorkCertified from "../@common/WorkCertified";
 
 export default function EduCertifiedPage() {
   const [eduImg, setEduImg] = useState("");
+  const location = useLocation();
+  const eduPostData = location.state;
 
   return (
     <St.EduCertifiedPage>
@@ -16,6 +19,7 @@ export default function EduCertifiedPage() {
         state={eduImg}
         setState={setEduImg}
         dir="edu"
+        postData={eduPostData}
       />
     </St.EduCertifiedPage>
   );
