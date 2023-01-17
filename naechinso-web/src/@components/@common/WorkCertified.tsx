@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import { IcPlus, IcSpeechBubble } from "../../asset/icons";
@@ -13,11 +13,14 @@ export interface WorkCertifiedProps {
   title2: string;
   subTitle1: string;
   subTitle2: string;
+  state: string;
+  setState: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function WorkCertified(props: WorkCertifiedProps) {
   const { title1, title2, subTitle1, subTitle2 } = props;
   const [certifiedImg, setCertifiedImg] = useState("");
+  const imgRef = useRef<HTMLInputElement>(null);
   const [fileChecked, setFileChecked] = useState(false);
 
   useEffect(() => {
@@ -27,6 +30,17 @@ export default function WorkCertified(props: WorkCertifiedProps) {
   const handleFileChecked = () => {
     if (certifiedImg) setFileChecked(true);
     else setFileChecked(false);
+  };
+
+  const saveImgFile = () => {
+    const target = imgRef.current as HTMLInputElement;
+    const file = target.files && target.files[0];
+    const reader = new FileReader();
+    file && reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      const resultImg = reader.result as string;
+      setCertifiedImg(resultImg);
+    };
   };
 
   return (
@@ -42,12 +56,16 @@ export default function WorkCertified(props: WorkCertifiedProps) {
       <SheildBox desc="인증자료는 절대로 외부에 공개되지 않으니 안심해" />
 
       <St.ImageUploadBox htmlFor="input-file">
-        <St.ImgUploadWrapper>
-          <IcPlus />
-          사진 인증하기
-        </St.ImgUploadWrapper>
+        {certifiedImg ? (
+          <St.UploadImage src={certifiedImg} alt="인증사진" />
+        ) : (
+          <>
+            <IcPlus />
+            사진 인증하기
+          </>
+        )}
       </St.ImageUploadBox>
-      <St.ImageUpload type="file" accept="image/*" id="input-file" />
+      <St.ImageUpload type="file" accept="image/*" id="input-file" onChange={saveImgFile} ref={imgRef} />
 
       <St.ConsultantWrapper>
         <IcSpeechBubble />
@@ -69,16 +87,11 @@ const St = {
   ImageUploadBox: styled.label`
     width: 28rem;
     height: 18.7rem;
-    display: inline-block;
     margin-left: 4.8rem;
 
     background-color: ${({ theme }) => theme.colors.neural};
     border-radius: 16px;
     cursor: pointer;
-  `,
-  ImgUploadWrapper: styled.span`
-    width: 28rem;
-    height: 18.7rem;
 
     display: flex;
     flex-direction: column;
@@ -91,6 +104,11 @@ const St = {
   `,
   ImageUpload: styled.input`
     display: none;
+  `,
+  UploadImage: styled.img`
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
   `,
   ConsultantWrapper: styled.article`
     display: flex;
