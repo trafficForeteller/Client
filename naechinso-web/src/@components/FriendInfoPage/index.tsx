@@ -33,7 +33,6 @@ export default function FriendInfoPage() {
     meet: "",
     period: "",
   });
-
   const [postMagicFriendInfo, setPostMagicFriendInfo] = useState<IPostFriendInfo>({
     name: "",
     meet: "",
