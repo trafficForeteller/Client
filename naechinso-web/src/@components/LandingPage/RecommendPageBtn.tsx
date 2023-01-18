@@ -16,23 +16,24 @@ export default function RecommendPageBtn(props: RecommendPageBtnProps) {
   }
 
   return (
-    <St.Button onClick={goNextPage} type="button">
+    <St.Button onClick={goNextPage} type="button" title={title}>
       {title}
     </St.Button>
   );
 }
 
 const St = {
-  Button: styled.button`
-    position: absolute;
-    bottom: 0rem;
+  Button: styled.button<{ title: string }>`
     padding: 1rem;
-    background-color: ${({ theme }) => theme.colors.white};
-    border: 1px solid ${({ theme }) => theme.colors.black20};
-    color: ${({ theme }) => theme.colors.black40};
+    background-color: ${({ theme, title }) => (title === "내친소 시작하기" ? theme.colors.orange : theme.colors.white)};
+    border: 1px solid
+      ${({ theme, title }) => (title === "내친소 시작하기" ? theme.colors.orange : theme.colors.black20)};
+    color: ${({ theme, title }) => (title === "내친소 시작하기" ? theme.colors.white : theme.colors.black40)};
     ${({ theme }) => theme.fonts.sub3};
     width: 33.5rem;
     height: 5.6rem;
     border-radius: 1.6rem;
+
+    cursor: pointer;
   `,
 };

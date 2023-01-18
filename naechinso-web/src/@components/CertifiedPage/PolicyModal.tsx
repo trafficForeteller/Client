@@ -107,7 +107,7 @@ export default function PolicyModal(props: PolicyModalProps) {
         })}
       </St.CheckContainer>
       <St.NextButton onClick={() => handlePolicy()}>
-        <NextPageBtn nextPage={routePaths.FriendInfo} title="내친소 시작하기" inputActive={startActive} />
+        <NextPageBtn nextPage={routePaths.RecommendLanding} title="내친소 시작하기" inputActive={startActive} />
       </St.NextButton>
     </St.Modal>
   );

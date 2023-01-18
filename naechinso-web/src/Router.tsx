@@ -19,6 +19,7 @@ import {
   PhoneNumberPage,
   RecommenderInfoPage,
   RecommenderLandingPage,
+  RecommendLandingPage,
   RecommendPage,
 } from "./@components";
 import { postSmsSend } from "./apis/sms.api";
@@ -48,6 +49,10 @@ export default function Router() {
         <Route
           path={routePaths.Certified}
           element={<CertifiedPage sendSms={sendSms} postPhoneNum={postPhoneNum} token={token} setToken={setToken} />}
+        />
+        <Route
+          path={routePaths.RecommenderLanding}
+          element={token["accessToken"] ? <RecommendLandingPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.FriendInfo}

@@ -1,35 +1,32 @@
 import styled from "styled-components";
 
-import { ImgCommentNaechinso } from "../../asset/image";
+import { IcLandingLogo } from "../../asset/icons";
+import { ImgLanding } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
-import { MoveNextPageBtn } from "../@common";
+import RecommendPageBtn from "./RecommendPageBtn";
 
 export default function LandingPage() {
   return (
     <St.LandingPage>
-      <St.CommentBox>
-        <St.Naechinso src={ImgCommentNaechinso} alt="내친소" />
+      <St.Top>
         <St.CommentWrapper>
-          <St.Comment>안녕 나는 친소야!</St.Comment>
-          <St.Comment>네 친구라면...</St.Comment>
-          <St.Comment>분명 멋있겠지? 😘</St.Comment>
-          <St.Comment>너무 기대된다!</St.Comment>
+          <St.Comment>소개팅은 받고 싶은데</St.Comment>
+          <St.Comment>소개팅 앱은 싫다면?😎</St.Comment>
         </St.CommentWrapper>
-      </St.CommentBox>
+        <St.Naechinso src={ImgLanding} alt="내친소" />
+      </St.Top>
 
       <St.Bottom>
         <St.TitleWrapper>
-          <St.Title>딱 10분만 투자해서</St.Title>
-          <St.Title>소중한 친구를 자랑해줘!</St.Title>
+          <St.OneLineIntro>진짜 친구가 해주는 소개팅</St.OneLineIntro>
+          <IcLandingLogo />
         </St.TitleWrapper>
 
-        <St.Desc>
-          현재는 수도권에 거주하는 <St.Highlight>89~99년도생</St.Highlight>만
-        </St.Desc>
-        <St.Desc> 내친소를 이용할 수 있어!</St.Desc>
-        <St.Desc> 추천하는 사람의 나이는 상관 없으니 걱정하지 마</St.Desc>
+        <St.ButtonWrapper>
+          <RecommendPageBtn nextPage={routePaths.PhoneNum} title="내친소 시작하기" />
+          <RecommendPageBtn nextPage={routePaths.InstallApp} title="내 친구를 소개하고 싶어" />
+        </St.ButtonWrapper>
       </St.Bottom>
-      <MoveNextPageBtn nextPage={routePaths.PhoneNum} title="추천사 작성 시작하기" inputActive={false} />
     </St.LandingPage>
   );
 }
@@ -38,64 +35,61 @@ const St = {
   LandingPage: styled.main`
     width: 100%;
     height: 100%;
-    background-color: ${({ theme }) => theme.colors.neural};
   `,
-  CommentBox: styled.section`
-    display: flex;
-    gap: 1.5rem;
-  `,
-  Naechinso: styled.img`
-    width: 12.5rem;
-    height: 16.5rem;
-    margin-top: 40%;
+  Top: styled.section`
+    background-color: ${({ theme }) => theme.colors.orange};
+    width: 100%;
+    height: 45%;
+    z-index: -1;
+
+    position: relative;
   `,
   CommentWrapper: styled.article`
-    margin-top: 55%;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+
+    position: absolute;
+    top: 12.3rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 20rem;
   `,
   Comment: styled.p`
     width: fit-content;
-    background-color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.orange50};
     padding: 0.8rem 1.2rem;
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.sub3};
-    border-radius: 0px 16px 16px 16px;
+    border-radius: 16px 16px 16px 0px;
+  `,
+  Naechinso: styled.img`
+    width: 102%;
+    height: 12.1rem;
+    position: absolute;
+    bottom: -1px;
+    left: -1px;
   `,
   Bottom: styled.section`
-    width: 37.5rem;
-    padding-top: 2.8rem;
-    height: 30.4rem;
+    width: 100%;
     background-color: ${({ theme }) => theme.colors.white};
-    border-radius: 20px 20px 0px 0px;
-
-    position: fixed;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
 
     display: flex;
     flex-direction: column;
     align-items: center;
   `,
   TitleWrapper: styled.hgroup`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    margin-bottom: 1.2rem;
+    margin-bottom: 4rem;
   `,
-  Title: styled.h2`
-    color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.head1};
-  `,
-  Desc: styled.p`
-    color: ${({ theme }) => theme.colors.black};
+  OneLineIntro: styled.h2`
+    color: ${({ theme }) => theme.colors.gray50};
     ${({ theme }) => theme.fonts.body2};
   `,
-  Highlight: styled.b`
-    color: ${({ theme }) => theme.colors.orange};
+
+  ButtonWrapper: styled.article`
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.2rem;
   `,
 };

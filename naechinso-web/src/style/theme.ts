@@ -9,6 +9,7 @@ const colors = {
   black64: "#595857",
   orange: "#FF7A00",
   orange20: "#FFE4CC",
+  orange50: "#FF922E",
   brown: "#A58E79",
   yellow: "#FFB700",
   error: "#FF3A3A",
@@ -17,6 +18,7 @@ const colors = {
   blue_bac: "#EAF1FF",
   old_gray: "#EBEBF0",
   gray40: "#ABABAE",
+  gray50: "#8F8F92",
   blue40: "#EAF1FF",
 } as const;
 

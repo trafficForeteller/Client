@@ -42,7 +42,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   useEffect(() => {
     if (token["accessToken"]) {
       localStorage.setItem("accessToken", token["accessToken"]);
-      navigate(`${routePaths.FriendInfo}`);
+      navigate(`${routePaths.RecommendLanding}`);
     }
   }, [token]);
 
