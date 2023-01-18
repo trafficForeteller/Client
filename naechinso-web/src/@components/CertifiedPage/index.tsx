@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { postSmsVerify } from "../../apis/sms.api";
 import { routePaths } from "../../core/routes/path";
+import { ITokenType } from "../../types/member";
 import { IPostPhoneNumber, IPostVerifyPhoneNumber } from "../../types/sms";
 import { JoinHeader, MoveNextPageBtn, Title } from "../@common";
 import AuthenticationNumInput from "./AuthenticationNumInput";
@@ -13,10 +14,12 @@ import ResendAuthNumBtn from "./ResendAuthNumBtn";
 export interface CertifiedPageProps {
   sendSms: () => Promise<void>;
   postPhoneNum: IPostPhoneNumber;
+  token: ITokenType;
+  setToken: React.Dispatch<React.SetStateAction<ITokenType>>;
 }
 
 export default function CertifiedPage(props: CertifiedPageProps) {
-  const { sendSms, postPhoneNum } = props;
+  const { sendSms, postPhoneNum, token, setToken } = props;
   // input창이 비활성화 될 때는 인증번호 색 변화 && 시간 제한 hidden && 모달이 뜬다
   const [inputActive, setInputActive] = useState(true);
   const [count, setCount] = useState(180);
@@ -24,7 +27,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const [resendMessage, setResendMessage] = useState("");
   const [correctAuthNum, setCorrectAuthNum] = useState(false);
   const [inputborder, setInputBorder] = useState(false);
-  const [token, setToken] = useState({ registerToken: "", accessToken: "" });
+
   const [postAuthNum, setPostAuthNum] = useState<IPostVerifyPhoneNumber>({
     code: "",
     phoneNumber: postPhoneNum.phoneNumber,

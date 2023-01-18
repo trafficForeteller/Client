@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import {
   AppealDetailPage,
@@ -23,12 +23,14 @@ import {
 } from "./@components";
 import { postSmsSend } from "./apis/sms.api";
 import { routePaths } from "./core/routes/path";
+import { ITokenType } from "./types/member";
 import { IPostPhoneNumber } from "./types/sms";
 
 export default function Router() {
   const [postPhoneNum, setPostPhoneNum] = useState<IPostPhoneNumber>({
     phoneNumber: "",
   });
+  const [token, setToken] = useState<ITokenType>({ registerToken: "", accessToken: "" });
 
   const sendSms = async () => {
     await postSmsSend(postPhoneNum);
@@ -43,21 +45,54 @@ export default function Router() {
           path={routePaths.PhoneNum}
           element={<PhoneNumberPage setPostPhoneNum={setPostPhoneNum} sendSms={sendSms} />}
         />
-        <Route path={routePaths.Certified} element={<CertifiedPage sendSms={sendSms} postPhoneNum={postPhoneNum} />} />
-        <Route path={routePaths.FriendInfo} element={<FriendInfoPage />} />
-        <Route path={routePaths.Keyword} element={<KeywordPage />} />
-        <Route path={routePaths.ChooseQuestion} element={<ChooseQuestionPage />} />
-        <Route path={routePaths.RecommenderInfo} element={<RecommenderInfoPage />} />
-        <Route path={routePaths.Recommend} element={<RecommendPage />} />
-        <Route path={routePaths.AppealDetail} element={<AppealDetailPage />} />
-        <Route path={routePaths.DontGo} element={<DontGoPage />} />
-        <Route path={routePaths.ChooseWork} element={<ChooseWorkPage />} />
-        <Route path={routePaths.Job} element={<JobPage />} />
-        <Route path={routePaths.Edu} element={<EduPage />} />
-        <Route path={routePaths.JobCertified} element={<JobCertifiedPage />} />
-        <Route path={routePaths.EduCertified} element={<EduCertifiedPage />} />
-        <Route path={routePaths.Finish} element={<FinishPage />} />
-        <Route path={routePaths.RecommenderLanding} element={<RecommenderLandingPage />} />
+        <Route
+          path={routePaths.Certified}
+          element={<CertifiedPage sendSms={sendSms} postPhoneNum={postPhoneNum} token={token} setToken={setToken} />}
+        />
+        <Route
+          path={routePaths.FriendInfo}
+          element={token["accessToken"] ? <FriendInfoPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.Keyword}
+          element={token["accessToken"] ? <KeywordPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.ChooseQuestion}
+          element={token["accessToken"] ? <ChooseQuestionPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.RecommenderInfo}
+          element={token["accessToken"] ? <RecommenderInfoPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.Recommend}
+          element={token["accessToken"] ? <RecommendPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.AppealDetail}
+          element={token["accessToken"] ? <AppealDetailPage /> : <Navigate to="/" replace />}
+        />
+        <Route path={routePaths.DontGo} element={token["accessToken"] ? <DontGoPage /> : <Navigate to="/" replace />} />
+        <Route
+          path={routePaths.ChooseWork}
+          element={token["accessToken"] ? <ChooseWorkPage /> : <Navigate to="/" replace />}
+        />
+        <Route path={routePaths.Job} element={token["accessToken"] ? <JobPage /> : <Navigate to="/" replace />} />
+        <Route path={routePaths.Edu} element={token["accessToken"] ? <EduPage /> : <Navigate to="/" replace />} />
+        <Route
+          path={routePaths.JobCertified}
+          element={token["accessToken"] ? <JobCertifiedPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.EduCertified}
+          element={token["accessToken"] ? <EduCertifiedPage /> : <Navigate to="/" replace />}
+        />
+        <Route path={routePaths.Finish} element={token["accessToken"] ? <FinishPage /> : <Navigate to="/" replace />} />
+        <Route
+          path={routePaths.RecommenderLanding}
+          element={token["accessToken"] ? <RecommenderLandingPage /> : <Navigate to="/" replace />}
+        />
       </Routes>
     </BrowserRouter>
   );

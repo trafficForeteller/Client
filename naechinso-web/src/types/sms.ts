@@ -6,3 +6,8 @@ export interface IPostVerifyPhoneNumber {
   code: string;
   phoneNumber: string;
 }
+
+export interface IToken {
+  registerToken: "";
+  accessToken: "";
+}

@@ -33,12 +33,7 @@ export default function RecommendPage() {
   const handleRecommend = async () => {
     // 추천사 POST
     navigate(`${routePaths.AppealDetail}`);
-    const userData = await postRecommendation(
-      postRecommend,
-      localStorage.getItem("accessToken"),
-      localStorage.getItem("uuid"),
-    );
-    console.log("userData", userData);
+    await postRecommendation(postRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
   };
 
   return (
