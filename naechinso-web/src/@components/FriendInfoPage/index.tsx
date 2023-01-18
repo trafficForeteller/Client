@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { postRecommendFriendInfo } from "../../apis/recommend.api";
+import { postMagicRecommendFriendInfo, postRecommendFriendInfo } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
+import { IPostFriendInfo } from "../../types/recommend";
 import { BasicHeader, ShortInputBox, Title } from "../@common";
 import PhoneNumInputBox from "./PhoneNumInput";
 import RelationTypeInput from "./RecommendTypeInput";
@@ -26,8 +27,14 @@ export default function FriendInfoPage() {
   const [phoneNum, setPhoneNum] = useState("");
   const [postPhoneNum, setPostPhoneNum] = useState({ phoneNumber: "" });
 
-  const [postFriendInfo, setPostFriendInfo] = useState({
+  const [postFriendInfo, setPostFriendInfo] = useState<IPostFriendInfo>({
     phone: "",
+    name: "",
+    meet: "",
+    period: "",
+  });
+
+  const [postMagicFriendInfo, setPostMagicFriendInfo] = useState<IPostFriendInfo>({
     name: "",
     meet: "",
     period: "",
@@ -41,11 +48,24 @@ export default function FriendInfoPage() {
     // step에 따라 다른 모달 open
     if (step === 2) setIsTypeModalOpened(true);
     else if (step === 3) setIsDurationModalOpened(true);
-    else if (step === 5) {
+    else if (step === 4 && localStorage.getItem("member-uuid")) {
+      navigate(`${routePaths.Keyword}`);
+      handleMagicFriendInfo();
+    } else if (step === 5) {
       navigate(`${routePaths.Keyword}`);
       handleFriendInfo();
     }
   }, [step]);
+
+  const handleMagicFriendInfo = async () => {
+    // 매직링크 가진 친구의 기본정보 POST
+    const userData = await postMagicRecommendFriendInfo(
+      postMagicFriendInfo,
+      localStorage.getItem("accessToken"),
+      localStorage.getItem("member-uuid"),
+    );
+    userData && localStorage.setItem("uuid", userData["uuid"]);
+  };
 
   const handleFriendInfo = async () => {
     // 친구의 기본정보 POST
@@ -79,6 +99,12 @@ export default function FriendInfoPage() {
       meet: postRelationType,
       period: relationDuration,
       phone: postPhoneNum.phoneNumber,
+    });
+    setPostMagicFriendInfo({
+      ...postMagicFriendInfo,
+      name: name,
+      meet: postRelationType,
+      period: relationDuration,
     });
     setStep(step + 1);
     setActiveBtn(false);

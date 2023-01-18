@@ -23,6 +23,25 @@ export const postRecommendFriendInfo = async (
   }
 };
 
+export const postMagicRecommendFriendInfo = async (
+  friendsInfo: IPostFriendInfo,
+  accessToken: string | null,
+  memberUuid: string | null,
+): Promise<void | null> => {
+  const { data } = await serverAxios.post(`${PREFIX_URL}/request-uuid${memberUuid}`, friendsInfo, {
+    headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+  });
+  try {
+    if (data.status === 200) {
+      return data.data;
+    }
+  } catch (err) {
+    if (data.status === 400) {
+      return data.message;
+    }
+    throw new Error("Failed to post your recommend");
+  }
+};
 export const patchRecommendFriendDetail = async (
   friendDetail: IPatchFriendDetail,
   accessToken: string | null,

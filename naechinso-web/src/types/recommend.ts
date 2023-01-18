@@ -1,5 +1,5 @@
 export interface IPostFriendInfo {
-  phone: string;
+  phone?: string;
   name: string;
   period: string;
   meet: string;
