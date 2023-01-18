@@ -1,33 +1,42 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { ImgCommentNaechinso } from "../../asset/image";
+import { RecommendLandingList } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { MoveNextPageBtn } from "../@common";
 
 export default function RecommendLandingPage() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (localStorage.getItem("member-uuid")) setIndex(1);
+    else setIndex(0);
+  }, []);
+
   return (
     <St.RecommendLandingPage>
       <St.CommentBox>
         <St.Naechinso src={ImgCommentNaechinso} alt="내친소" />
         <St.CommentWrapper>
-          <St.Comment>안녕 나는 친소야!</St.Comment>
-          <St.Comment>네 친구라면...</St.Comment>
-          <St.Comment>분명 멋있겠지? 😘</St.Comment>
+          <St.Comment>{RecommendLandingList[index].comment1}</St.Comment>
+          <St.Comment>{RecommendLandingList[index].comment2}</St.Comment>
+          <St.Comment>{RecommendLandingList[index].comment3}</St.Comment>
           <St.Comment>너무 기대된다!</St.Comment>
         </St.CommentWrapper>
       </St.CommentBox>
 
-      <St.Bottom>
+      <St.Bottom index={index}>
         <St.TitleWrapper>
           <St.Title>딱 10분만 투자해서</St.Title>
           <St.Title>소중한 친구를 자랑해줘!</St.Title>
         </St.TitleWrapper>
 
         <St.Desc>
-          현재는 수도권에 거주하는 <St.Highlight>89~99년도생</St.Highlight>만
+          {RecommendLandingList[index].desc1} <St.Highlight>{RecommendLandingList[index].highlight}</St.Highlight>만
         </St.Desc>
-        <St.Desc> 내친소를 이용할 수 있어!</St.Desc>
-        <St.Desc> 추천하는 사람의 나이는 상관 없으니 걱정하지 마</St.Desc>
+        <St.Desc> {RecommendLandingList[index].desc2}</St.Desc>
+        <St.Desc> {RecommendLandingList[index].desc3}</St.Desc>
       </St.Bottom>
       <MoveNextPageBtn nextPage={routePaths.FriendInfo} title="추천사 작성 시작하기" inputActive={false} />
     </St.RecommendLandingPage>
@@ -50,6 +59,7 @@ const St = {
     margin-top: 40%;
   `,
   CommentWrapper: styled.article`
+    width: 19.2rem;
     margin-top: 55%;
     display: flex;
     flex-direction: column;
@@ -63,10 +73,10 @@ const St = {
     ${({ theme }) => theme.fonts.sub3};
     border-radius: 0px 16px 16px 16px;
   `,
-  Bottom: styled.section`
+  Bottom: styled.section<{ index: number }>`
     width: 37.5rem;
     padding-top: 2.8rem;
-    height: 30.4rem;
+    height: ${({ index }) => (index === 0 ? "30.4rem" : "28rem")};
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 20px 20px 0px 0px;
 

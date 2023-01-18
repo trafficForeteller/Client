@@ -161,3 +161,36 @@ export const TipList: TipProps[] = [
   { id: 1, desc1: "", highlight: "구체적인 에피소드", desc2: "와 함께 적어주면 더 좋아" },
   { id: 2, desc1: "실명 언급보단", highlight: "내 친구", desc2: "로 작성 부탁할게" },
 ];
+
+export type RecommendLandingProps = {
+  id: number;
+  comment1: string;
+  comment2: string;
+  comment3: string;
+  highlight?: string;
+  desc1: string;
+  desc2: string;
+  desc3?: string;
+};
+
+export const RecommendLandingList: RecommendLandingProps[] = [
+  {
+    id: 0,
+    comment1: "안녕 나는 친소야!",
+    comment2: "네 친구라면...",
+    comment3: "분명 멋있겠지? 😘",
+    highlight: "89~99년도생만",
+    desc1: "현재는 수도권에 거주하는",
+    desc2: "내친소를 이용할 수 있어!",
+    desc3: "추천하는 사람의 나이는 상관 없으니 걱정하지 마",
+  },
+  {
+    id: 1,
+    comment1: "안녕!",
+    comment2: "우리는 지인기반 소개앱 내친소야😎",
+    comment3: "너의 추천사는 친구가 좋은 인연을 만나는 데 분명 큰 도움이 될거야! ",
+
+    desc1: "잠깐만 시간을 내서 친구에 대해서",
+    desc2: "소개해줄 수 있을까?",
+  },
+];
