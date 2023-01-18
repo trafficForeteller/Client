@@ -1,15 +1,10 @@
-import { useState } from "react";
 import styled from "styled-components";
 
-import { IcLandingLogo } from "../../asset/icons";
-import { ImgCommentNaechinso, ImgLanding } from "../../asset/image";
+import { ImgCommentNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
-import { MoveNextPageBtn, Title } from "../@common";
-import RecommendPageBtn from "./RecommendPageBtn";
+import { MoveNextPageBtn } from "../@common";
 
 export default function LandingPage() {
-  const [inputActive, setInputActive] = useState(true);
-
   return (
     <St.LandingPage>
       <St.CommentBox>

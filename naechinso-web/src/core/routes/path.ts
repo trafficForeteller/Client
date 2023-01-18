@@ -9,13 +9,14 @@ export const routePaths = {
   Recommend: "/recommend/answer",
   AppealDetail: "/recommend/appealDetail",
   DontGo: "/recommend/dontGo",
-  RecommenderInfo: "/join/recommender",
-  ChooseWork: "/join/chooseWork",
-  Edu: "/join/education",
-  Job: "/join/job",
-  EduCertified: "/join/education/certified",
-  JobCertified: "/join/job/certified",
+  RecommenderInfo: "/recommender/info",
+  ChooseWork: "/recommender/chooseWork",
+  Edu: "/recommender/education",
+  Job: "/recommender/job",
+  EduCertified: "/recommender/education/certified",
+  JobCertified: "/recommender/job/certified",
   Finish: "/finish",
+  RecommenderLanding: "/recommender",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];

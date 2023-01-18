@@ -60,7 +60,7 @@ export default function DontGoPage() {
       />
 
       <MoveNextPageBtn
-        nextPage={routePaths.RecommenderInfo}
+        nextPage={routePaths.RecommenderLanding}
         title="완료"
         inputActive={!textCheck}
         handleState={handleFriendDetail}

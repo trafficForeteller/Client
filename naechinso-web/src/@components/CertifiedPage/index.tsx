@@ -75,9 +75,11 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const verifyAuthNum = async (postAuthNum: IPostVerifyPhoneNumber) => {
     // 인증번호 확인 서버에 POST
     const userData = await postSmsVerify(postAuthNum);
-    userData && setToken(userData);
-    setCorrectAuthNum(true);
-    setInputBorder(false);
+    if (userData) {
+      setToken(userData);
+      setCorrectAuthNum(true);
+      setInputBorder(false);
+    }
   };
 
   return (

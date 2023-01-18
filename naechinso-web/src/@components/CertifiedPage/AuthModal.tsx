@@ -30,9 +30,7 @@ export default function AuthModal(props: AuthModalProps) {
           resendAuthNum={resendAuthNum}
           closeModal={closeModal}
         />
-      ) : correctAuthNum ? (
-        <PolicyModal token={token} setToken={setToken} />
-      ) : (
+      ) : !correctAuthNum && token ? (
         <Modal
           title="인증번호를 확인해줘"
           desc="잘못된 인증번호를 입력했어 인증번호를 다시 확인하고 입력해줘!"
@@ -41,6 +39,12 @@ export default function AuthModal(props: AuthModalProps) {
           setCount={setCount}
           setInputBorder={setInputBorder}
         />
+      ) : correctAuthNum && token["accessToken"] ? (
+        <></>
+      ) : token ? (
+        <PolicyModal token={token} setToken={setToken} />
+      ) : (
+        <></>
       )}
     </>
   );

@@ -18,6 +18,7 @@ import {
   LandingPage,
   PhoneNumberPage,
   RecommenderInfoPage,
+  RecommenderLandingPage,
   RecommendPage,
 } from "./@components";
 import { postSmsSend } from "./apis/sms.api";
@@ -56,6 +57,7 @@ export default function Router() {
         <Route path={routePaths.JobCertified} element={<JobCertifiedPage />} />
         <Route path={routePaths.EduCertified} element={<EduCertifiedPage />} />
         <Route path={routePaths.Finish} element={<FinishPage />} />
+        <Route path={routePaths.RecommenderLanding} element={<RecommenderLandingPage />} />
       </Routes>
     </BrowserRouter>
   );
