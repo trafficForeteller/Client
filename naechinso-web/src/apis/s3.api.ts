@@ -8,7 +8,7 @@ export const postCertifiedImg = async (
   dir: string,
 ): Promise<void | null> => {
   const { data } = await serverAxios.post(`${PREFIX_URL}/image/${dir}`, formData, {
-    headers: { Authorization: `${accessToken}`, "Content-Type": "multipart/form-data" },
+    headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "multipart/form-data" },
   });
   try {
     if (data.status === 200) {

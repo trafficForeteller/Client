@@ -25,7 +25,7 @@ export const postMemberJoinRecommender = async (
   accessToken: string | null,
 ): Promise<void | null> => {
   const { data } = await serverAxios.post(`${PREFIX_URL}/join/recommender`, recommenderData, {
-    headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
   });
   try {
     if (data.status === 200) {
@@ -41,7 +41,7 @@ export const postMemberJoinRecommender = async (
 
 export const patchMemberEdu = async (eduData: object, accessToken: string | null): Promise<void | null> => {
   const { data } = await serverAxios.patch(`${PREFIX_URL}/edu`, eduData, {
-    headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
   });
   try {
     if (data.status === 200) {
@@ -57,7 +57,7 @@ export const patchMemberEdu = async (eduData: object, accessToken: string | null
 
 export const patchMemberJob = async (jobData: object, accessToken: string | null): Promise<void | null> => {
   const { data } = await serverAxios.patch(`${PREFIX_URL}/job`, jobData, {
-    headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
   });
   try {
     if (data.status === 200) {

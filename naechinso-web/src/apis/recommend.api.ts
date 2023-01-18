@@ -9,7 +9,7 @@ export const postRecommendFriendInfo = async (
   accessToken: string | null,
 ): Promise<void | null> => {
   const { data } = await serverAxios.post(`${PREFIX_URL}/request-uuid`, friendsInfo, {
-    headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
   });
   try {
     if (data.status === 200) {
@@ -29,7 +29,7 @@ export const patchRecommendFriendDetail = async (
   uuid: string | null,
 ): Promise<void | null> => {
   const { data } = await serverAxios.patch(`${PREFIX_URL}/${uuid}/accept`, friendDetail, {
-    headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
   });
   try {
     if (data.status === 200) {
@@ -49,7 +49,7 @@ export const postRecommendation = async (
   uuid: string | null,
 ): Promise<void | null> => {
   const { data } = await serverAxios.post(`${PREFIX_URL}/question/${uuid}`, recommend, {
-    headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
   });
   try {
     if (data.status === 200) {
