@@ -23,7 +23,7 @@ export default function FinishPage() {
         <St.Emoji src={ImgHandsUp} alt="손 올리는 아이콘" />
       </St.CommentBox>
 
-      <MoveNextPageBtn nextPage={routePaths.FriendInfo} title="완료" inputActive={false} />
+      <MoveNextPageBtn nextPage={routePaths.Landing} title="완료" inputActive={false} />
     </St.FinishPage>
   );
 }

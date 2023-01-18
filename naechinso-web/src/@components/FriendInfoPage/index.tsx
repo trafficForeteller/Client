@@ -6,12 +6,10 @@ import { postRecommendFriendInfo } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
 import { BasicHeader, ShortInputBox, Title } from "../@common";
 import PhoneNumInputBox from "./PhoneNumInput";
-import RecommendLandingSplash from "./RecommendLandingSplash";
 import RelationTypeInput from "./RecommendTypeInput";
 import RelationDurationInput from "./RelationDurationInput";
 
 export default function FriendInfoPage() {
-  const [alert, setAlert] = useState(true);
   const [step, setStep] = useState(1);
   const [activeBtn, setActiveBtn] = useState(false);
   const navigate = useNavigate();
@@ -34,12 +32,6 @@ export default function FriendInfoPage() {
     meet: "",
     period: "",
   });
-
-  useEffect(() => {
-    setTimeout(() => {
-      setAlert(false);
-    }, 2000);
-  }, []);
 
   useEffect(() => {
     checkIsModalOpened();
@@ -93,81 +85,75 @@ export default function FriendInfoPage() {
   };
 
   return (
-    <>
-      {alert ? (
-        <RecommendLandingSplash />
+    <St.FriendInfoPage isModalOpened={isModalOpened}>
+      <BasicHeader header="친구 정보" progressRate={20} />
+      <St.TitleWrapper>
+        <Title title="어떤 친구를 소개해줄거야?" />
+        <Title title="너무 궁금해!👀" />
+      </St.TitleWrapper>
+
+      {step >= 4 ? (
+        <PhoneNumInputBox
+          label="친구의 휴대폰 번호"
+          placeholder="0000 0000"
+          phoneNum={phoneNum}
+          setPhoneNum={setPhoneNum}
+          activeBtn={activeBtn}
+          setActiveBtn={setActiveBtn}
+          isModalOpened={isModalOpened}
+          setPostPhoneNum={setPostPhoneNum}
+        />
       ) : (
-        <St.FriendInfoPage isModalOpened={isModalOpened}>
-          <BasicHeader header="친구 정보" progressRate={20} />
-          <St.TitleWrapper>
-            <Title title="어떤 친구를 소개해줄거야?" />
-            <Title title="너무 궁금해!👀" />
-          </St.TitleWrapper>
-
-          {step >= 4 ? (
-            <PhoneNumInputBox
-              label="친구의 휴대폰 번호"
-              placeholder="0000 0000"
-              phoneNum={phoneNum}
-              setPhoneNum={setPhoneNum}
-              activeBtn={activeBtn}
-              setActiveBtn={setActiveBtn}
-              isModalOpened={isModalOpened}
-              setPostPhoneNum={setPostPhoneNum}
-            />
-          ) : (
-            <></>
-          )}
-
-          {step >= 3 ? (
-            <RelationDurationInput
-              label="관계"
-              placeholder="어떤 관계인지 선택해줘"
-              question="친구와 어떤 관계야?"
-              step={step}
-              relationDuration={relationDuration}
-              isDurationModalOpened={isDurationModalOpened}
-              setRelationDuration={setRelationDuration}
-              setIsDurationModalOpened={setIsDurationModalOpened}
-              isModalOpened={isModalOpened}
-            />
-          ) : (
-            <></>
-          )}
-
-          {step >= 2 ? (
-            <RelationTypeInput
-              step={step}
-              relationType={relationType}
-              isTypeModalOpened={isTypeModalOpened}
-              setIsTypeModalOpened={setIsTypeModalOpened}
-              setRelationType={setRelationType}
-              isModalOpened={isModalOpened}
-              relationEtc={relationEtc}
-              setRelationEtc={setRelationEtc}
-              setPostRelationType={setPostRelationType}
-            />
-          ) : (
-            <></>
-          )}
-
-          <ShortInputBox
-            label="친구 이름"
-            placeholder="실명을 적어줘. 이름 가운데는 *처리돼"
-            value={name}
-            onChange={handleNameInput}
-            isModalOpened={isModalOpened}
-            step={step}
-          />
-
-          <St.NextStepBtnWrapper>
-            <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep} isModalOpened={isModalOpened}>
-              다음
-            </St.NextStepBtn>
-          </St.NextStepBtnWrapper>
-        </St.FriendInfoPage>
+        <></>
       )}
-    </>
+
+      {step >= 3 ? (
+        <RelationDurationInput
+          label="관계"
+          placeholder="어떤 관계인지 선택해줘"
+          question="친구와 어떤 관계야?"
+          step={step}
+          relationDuration={relationDuration}
+          isDurationModalOpened={isDurationModalOpened}
+          setRelationDuration={setRelationDuration}
+          setIsDurationModalOpened={setIsDurationModalOpened}
+          isModalOpened={isModalOpened}
+        />
+      ) : (
+        <></>
+      )}
+
+      {step >= 2 ? (
+        <RelationTypeInput
+          step={step}
+          relationType={relationType}
+          isTypeModalOpened={isTypeModalOpened}
+          setIsTypeModalOpened={setIsTypeModalOpened}
+          setRelationType={setRelationType}
+          isModalOpened={isModalOpened}
+          relationEtc={relationEtc}
+          setRelationEtc={setRelationEtc}
+          setPostRelationType={setPostRelationType}
+        />
+      ) : (
+        <></>
+      )}
+
+      <ShortInputBox
+        label="친구 이름"
+        placeholder="실명을 적어줘. 이름 가운데는 *처리돼"
+        value={name}
+        onChange={handleNameInput}
+        isModalOpened={isModalOpened}
+        step={step}
+      />
+
+      <St.NextStepBtnWrapper>
+        <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep} isModalOpened={isModalOpened}>
+          다음
+        </St.NextStepBtn>
+      </St.NextStepBtnWrapper>
+    </St.FriendInfoPage>
   );
 }
 

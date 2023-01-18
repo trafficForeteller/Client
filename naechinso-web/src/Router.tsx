@@ -22,6 +22,7 @@ import {
   RecommendLandingPage,
   RecommendPage,
 } from "./@components";
+import ScrollToTop from "./@components/@common/ScrollToTop";
 import { postSmsSend } from "./apis/sms.api";
 import { routePaths } from "./core/routes/path";
 import { ITokenType } from "./types/member";
@@ -39,6 +40,7 @@ export default function Router() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path={routePaths.Landing} element={<LandingPage />} />
         <Route path={routePaths.InstallApp} element={<InstallAppPage />} />
@@ -51,7 +53,7 @@ export default function Router() {
           element={<CertifiedPage sendSms={sendSms} postPhoneNum={postPhoneNum} token={token} setToken={setToken} />}
         />
         <Route
-          path={routePaths.RecommenderLanding}
+          path={routePaths.RecommendLanding}
           element={token["accessToken"] ? <RecommendLandingPage /> : <Navigate to="/" replace />}
         />
         <Route
