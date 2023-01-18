@@ -4,6 +4,15 @@ import { IcCopy, IcKakaotalk } from "../../asset/icons";
 import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
 
 export default function MagicFinish() {
+  const handleCopyClipBoard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("클립보드에 링크가 복사되었습니다.");
+    } catch (e) {
+      alert("복사에 실패하였습니다");
+    }
+  };
+
   return (
     <St.MagicFinish>
       <St.Naechinso src={ImgCommentNaechinso} alt="내친소" />
@@ -28,7 +37,7 @@ export default function MagicFinish() {
         <St.Title>아래의 링크를 친구에게 전달해봐!</St.Title>
         <St.Desc>링크를 친구에게 전달하면</St.Desc>
         <St.Desc>친구가 자기소개를 할 수 있을거야😗</St.Desc>
-        <St.CopyLinkBox>
+        <St.CopyLinkBox type="button" onClick={() => handleCopyClipBoard("https://naechinso.invite/96...")}>
           <St.Label>초대링크</St.Label>
           <St.CopyLinkWrapper>
             https://naechinso.invite/96...
@@ -108,7 +117,7 @@ const St = {
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.body2};
   `,
-  CopyLinkBox: styled.section`
+  CopyLinkBox: styled.button`
     width: 33.1rem;
     height: 8rem;
     background-color: ${({ theme }) => theme.colors.neural};
@@ -119,6 +128,8 @@ const St = {
     flex-direction: column;
     gap: 0.4rem;
     border-radius: 16px;
+
+    cursor: pointer;
   `,
   Label: styled.label`
     color: ${({ theme }) => theme.colors.gray40};
@@ -128,8 +139,7 @@ const St = {
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub4};
     display: flex;
-    justify-content: center;
-    gap: 1.1rem;
+    gap: 3rem;
   `,
   ShareKakaotalkBtn: styled.button`
     width: 33.5rem;
@@ -144,5 +154,6 @@ const St = {
     gap: 1.2rem;
 
     border-radius: 16px;
+    cursor: pointer;
   `,
 };
