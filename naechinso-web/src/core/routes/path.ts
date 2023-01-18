@@ -1,4 +1,5 @@
 export const routePaths = {
+  MagicLink: "/*",
   Landing: "/",
   InstallApp: "/naechinso-app",
   PhoneNum: "/join",

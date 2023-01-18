@@ -37,11 +37,11 @@ export default function Router() {
   const sendSms = async () => {
     await postSmsSend(postPhoneNum);
   };
-
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
+        <Route path={routePaths.MagicLink} element={<LandingPage />} />
         <Route path={routePaths.Landing} element={<LandingPage />} />
         <Route path={routePaths.InstallApp} element={<InstallAppPage />} />
         <Route

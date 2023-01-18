@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import { IcLandingLogo } from "../../asset/icons";
@@ -6,6 +8,13 @@ import { routePaths } from "../../core/routes/path";
 import RecommendPageBtn from "./RecommendPageBtn";
 
 export default function LandingPage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log(location.pathname);
+    localStorage.setItem("member-uuid", location.pathname);
+  }, [location]);
+
   return (
     <St.LandingPage>
       <St.Top>
