@@ -89,6 +89,11 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     padding: 0;
   }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
   input {
     appearance: none;
     

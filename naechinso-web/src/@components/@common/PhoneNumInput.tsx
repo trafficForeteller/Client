@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 export interface IPostPhoneNumber {
@@ -9,16 +10,16 @@ export interface PhoneNumInputProps {
   placeholder: string;
   inputActive: boolean;
   setInputActive: React.Dispatch<React.SetStateAction<boolean>>;
-  phoneNum: string;
-  setPhoneNum: React.Dispatch<React.SetStateAction<string>>;
   setPostPhoneNum?: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
 }
 
 export default function PhoneNumInputBox(props: PhoneNumInputProps) {
-  const { label, placeholder, inputActive, setInputActive, phoneNum, setPhoneNum, setPostPhoneNum } = props;
+  const { label, placeholder, inputActive, setInputActive, setPostPhoneNum } = props;
+  const [phoneNum, setPhoneNum] = useState("");
+
   const checkPhoneNumLength = (phoneNum: string) => {
     //휴대폰번호 길이 확인해 label글자색, nextBtn 색 변화
-    if (phoneNum.length === 9) setInputActive(false);
+    if (phoneNum.length === 8) setInputActive(false);
     else setInputActive(true);
   };
 
@@ -28,16 +29,14 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
     setPostPhoneNum && setPostPhoneNum({ phoneNumber: postPhoneNum });
   };
 
-  const autoHyphen = (phoneNum: string) => {
-    // 전화번호 정규식
-    setPhoneNum(phoneNum.replace(/[^0-9]/g, "").replace(/^(\d{3,4})(\d{4})$/g, "$1 $2"));
-    checkPhoneNumLength(phoneNum);
-    processPhoneNum(phoneNum);
-  };
-
   const handlePhoneNum = (e: React.ChangeEvent<HTMLInputElement>) => {
     //휴대폰번호 handle 함수
-    autoHyphen(e.target.value);
+    if (e.target.value.length > e.target.maxLength) {
+      e.target.value = e.target.value.slice(0, e.target.maxLength);
+    }
+    setPhoneNum(phoneNum);
+    checkPhoneNumLength(phoneNum);
+    processPhoneNum(phoneNum);
   };
 
   return (
@@ -45,14 +44,7 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
       <St.Label inputActive={inputActive}>{label}</St.Label>
       <St.InputWrapper>
         <St.FrontPhoneNum>010</St.FrontPhoneNum>
-        <St.Input
-          type="number"
-          pattern="\d*"
-          value={phoneNum}
-          onChange={handlePhoneNum}
-          placeholder={placeholder}
-          maxLength={9}
-        />
+        <St.Input type="number" value={phoneNum} onChange={handlePhoneNum} placeholder={placeholder} maxLength={8} />
       </St.InputWrapper>
     </St.PhoneNumInputBox>
   );
@@ -86,7 +78,7 @@ const St = {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-left: 0.5rem;
+    margin-left: 0.2rem;
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.black20};
