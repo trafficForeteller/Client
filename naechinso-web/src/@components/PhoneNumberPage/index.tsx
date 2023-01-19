@@ -14,7 +14,6 @@ export default function PhoneNumberPage(props: PhoneNumberPageProps) {
   const { setPostPhoneNum, sendSms } = props;
 
   const [inputActive, setInputActive] = useState(true);
-  const [phoneNum, setPhoneNum] = useState("");
 
   return (
     <St.PhoneNumberPage>
@@ -26,8 +25,6 @@ export default function PhoneNumberPage(props: PhoneNumberPageProps) {
       </St.PageTop>
 
       <PhoneNumInput
-        phoneNum={phoneNum}
-        setPhoneNum={setPhoneNum}
         inputActive={inputActive}
         setInputActive={setInputActive}
         label="휴대폰 번호"
