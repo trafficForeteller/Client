@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { patchRecommendFriendDetail } from "../../apis/recommend.api";
+import { IcDontGo } from "../../asset/icons";
 import { ImgDontGo } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { IPatchFriendDetail } from "../../types/recommend";
@@ -47,7 +48,7 @@ export default function DontGoPage() {
       />
 
       <St.CardWrapper>
-        <St.CardImg src={ImgDontGo} alt="내친소 추천카드" />
+        <IcDontGo />
       </St.CardWrapper>
 
       <TextAreaBox
@@ -74,11 +75,12 @@ const St = {
     padding-top: 21rem;
   `,
   CardWrapper: styled.section`
-    margin-bottom: 3.2rem;
-    height: 18.6rem;
+    width: 100%;
+    height: 22rem;
+    position: absolute;
+    top: 21rem;
+    left: 0;
+
     background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 30%);
-  `,
-  CardImg: styled.img`
-    width: 37.5rem;
   `,
 };
