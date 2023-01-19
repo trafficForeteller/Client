@@ -133,12 +133,13 @@ export default function EduPage() {
 const St = {
   EduPage: styled.main<{ isModalOpened: boolean }>`
     background-color: rgba(${({ isModalOpened }) => (isModalOpened ? "0, 0, 0, 0.64" : "")});
-    padding-top: 18rem;
+    padding: 17rem 2rem 0;
     height: 100%;
-    z-index: 1;
+    z-index: 2;
   `,
   EduNameEx: styled.article`
-    margin: 0.6rem 4.1rem 0.9rem;
+    margin: 0.6rem 2.1rem 0.9rem;
+    width: 100%;
     color: ${({ theme }) => theme.colors.gray40};
     ${({ theme }) => theme.fonts.caption6};
   `,
