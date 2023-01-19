@@ -29,14 +29,19 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
     setPostPhoneNum && setPostPhoneNum({ phoneNumber: postPhoneNum });
   };
 
+  const autoHyphen = (phoneNum: string) => {
+    // 전화번호 정규식
+    setPhoneNum(phoneNum);
+    checkPhoneNumLength(phoneNum);
+    processPhoneNum(phoneNum);
+  };
+
   const handlePhoneNum = (e: React.ChangeEvent<HTMLInputElement>) => {
     //휴대폰번호 handle 함수
     if (e.target.value.length > e.target.maxLength) {
       e.target.value = e.target.value.slice(0, e.target.maxLength);
     }
-    setPhoneNum(phoneNum);
-    checkPhoneNumLength(phoneNum);
-    processPhoneNum(phoneNum);
+    autoHyphen(e.target.value);
   };
 
   return (
