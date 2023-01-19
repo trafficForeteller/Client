@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ImgRecommenderLanding } from "../../asset/image";
+import { IcRecommenderLanding } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { MoveNextPageBtn, Title } from "../@common";
 
@@ -12,7 +12,10 @@ export default function RecommenderLandingPage() {
         <Title title="친구를 정성들여" />
         <Title title="소개해줘서 고마워" />
       </St.TitleWrapper>
-      <St.Naechinso src={ImgRecommenderLanding} alt="내친소 카드" />
+
+      <St.ImgWrapper>
+        <IcRecommenderLanding />
+      </St.ImgWrapper>
 
       <St.Bottom>
         <St.Desc>내친소는 신뢰를 기반으로 하고 있는데</St.Desc>
@@ -28,12 +31,14 @@ const St = {
     width: 100%;
     height: 100%;
     background-color: ${({ theme }) => theme.colors.neural};
-    padding-top: 29%;
+    padding-top: 10%;
   `,
   TitleWrapper: styled.hgroup`
-    margin-bottom: 3.2rem;
+    margin-bottom: 5%;
+    margin-left: 2.4rem;
   `,
-  Naechinso: styled.img`
+  ImgWrapper: styled.article`
+    width: 35rem;
     float: right;
   `,
   Bottom: styled.section`
