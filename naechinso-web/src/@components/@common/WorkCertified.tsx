@@ -115,12 +115,12 @@ export default function WorkCertified(props: WorkCertifiedProps) {
 const St = {
   WorkCertified: styled.section`
     width: 100%;
-    padding-top: 24rem;
+    padding: 24rem 2rem 0;
   `,
   ImageUploadBox: styled.label`
     width: 28rem;
     height: 18.7rem;
-    margin-left: 4.8rem;
+    margin: 0 auto;
 
     background-color: ${({ theme }) => theme.colors.neural};
     border-radius: 16px;
