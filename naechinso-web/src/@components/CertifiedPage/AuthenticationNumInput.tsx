@@ -38,7 +38,8 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
       </St.LabelWrapper>
 
       <St.Input
-        type="text"
+        type="number"
+        pattern="\d*"
         value={authNum}
         onChange={handleAuthNum}
         placeholder={"인증번호를 입력해줘"}
