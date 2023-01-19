@@ -5,10 +5,8 @@ import MovePreviousPageBtn from "./MovePreviousPageBtn";
 export default function JoinHeader() {
   return (
     <St.JoinHeader>
-      <St.Header>
-        <MovePreviousPageBtn />
-        회원가입
-      </St.Header>
+      <MovePreviousPageBtn />
+      회원가입
     </St.JoinHeader>
   );
 }
@@ -19,13 +17,19 @@ const St = {
     justify-content: center;
     align-items: center;
     margin-bottom: 1.2rem;
+
+    position: absolute;
+    width: 100%;
+    height: 5.6rem;
+    top: 0;
+    left: 0;
+
+    color: ${({ theme }) => theme.colors.black};
+    ${({ theme }) => theme.fonts.body1};
   `,
   Header: styled.header`
-    height: 5.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.body1};
   `,
 };

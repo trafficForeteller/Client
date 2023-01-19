@@ -53,7 +53,7 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
 
 const St = {
   PhoneNumInputBox: styled.section`
-    width: 33.5rem;
+    width: 100%;
     height: 8rem;
 
     border-radius: 1.6rem;
@@ -68,6 +68,7 @@ const St = {
   InputWrapper: styled.article`
     display: flex;
     align-items: center;
+    justify-content: center;
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub2};
   `,

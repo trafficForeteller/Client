@@ -71,7 +71,7 @@ const St = {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1.6rem;
+    gap: 1.5rem;
     padding-top: 19rem;
     padding-bottom: 1.5rem;
     z-index: -1;

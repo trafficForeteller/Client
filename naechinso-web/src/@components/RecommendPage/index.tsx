@@ -53,7 +53,7 @@ export default function RecommendPage() {
         maxLength={399}
         text={text}
         setText={setText}
-        height={20}
+        height={13}
       />
 
       <St.NextBtnWrapper>
@@ -68,6 +68,8 @@ export default function RecommendPage() {
 const St = {
   Recommend: styled.main<{ isThreeLine: boolean }>`
     padding-top: ${({ isThreeLine }) => (isThreeLine ? "22rem" : "19rem")};
+    padding-left: 2rem;
+    padding-right: 2rem;
   `,
   NextBtnWrapper: styled.section`
     display: flex;

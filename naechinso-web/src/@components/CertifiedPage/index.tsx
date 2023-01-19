@@ -132,10 +132,10 @@ const St = {
     top: 0;
     width: 100%;
     height: 100%;
+    padding: 5.6rem 2rem 0;
   `,
 
   PageTop: styled.hgroup`
-    padding: 0 2.4rem;
     margin-bottom: 2.4rem;
     position: relative;
     z-index: -1;

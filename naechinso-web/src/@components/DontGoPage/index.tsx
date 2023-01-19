@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { patchRecommendFriendDetail } from "../../apis/recommend.api";
+import { IcDontGo } from "../../asset/icons";
 import { ImgDontGo } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { IPatchFriendDetail } from "../../types/recommend";
@@ -47,17 +48,19 @@ export default function DontGoPage() {
       />
 
       <St.CardWrapper>
-        <St.CardImg src={ImgDontGo} alt="내친소 추천카드" />
+        <IcDontGo />
       </St.CardWrapper>
 
-      <TextAreaBox
-        placeholder="한번만 다시 생각해봐! 일단 내 친구는 만나봐야 얘가 진국인지 아닌지 알 수있기 때문이지! "
-        minLength={19}
-        maxLength={99}
-        text={text}
-        setText={setText}
-        height={10.2}
-      />
+      <St.TextWrapper>
+        <TextAreaBox
+          placeholder="한번만 다시 생각해봐! 일단 내 친구는 만나봐야 얘가 진국인지 아닌지 알 수있기 때문이지! "
+          minLength={19}
+          maxLength={99}
+          text={text}
+          setText={setText}
+          height={7.8}
+        />
+      </St.TextWrapper>
 
       <MoveNextPageBtn
         nextPage={routePaths.RecommenderLanding}
@@ -71,14 +74,18 @@ export default function DontGoPage() {
 
 const St = {
   DontGo: styled.main`
-    padding-top: 21rem;
+    padding: 21rem 2rem 0;
   `,
   CardWrapper: styled.section`
-    margin-bottom: 3.2rem;
+    width: 100%;
     height: 18.6rem;
+    position: absolute;
+    top: 21rem;
+    left: 0;
+
     background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 30%);
   `,
-  CardImg: styled.img`
-    width: 37.5rem;
+  TextWrapper: styled.section`
+    margin-top: 21rem;
   `,
 };

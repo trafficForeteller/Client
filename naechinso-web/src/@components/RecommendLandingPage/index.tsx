@@ -48,6 +48,7 @@ const St = {
     width: 100%;
     height: 100%;
     background-color: ${({ theme }) => theme.colors.neural};
+    padding-top: 8%;
   `,
   CommentBox: styled.section`
     display: flex;
@@ -56,11 +57,10 @@ const St = {
   Naechinso: styled.img`
     width: 12.5rem;
     height: 16.5rem;
-    margin-top: 40%;
   `,
   CommentWrapper: styled.article`
     width: 19.2rem;
-    margin-top: 55%;
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;

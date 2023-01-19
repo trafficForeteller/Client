@@ -63,7 +63,7 @@ const St = {
     gap: 1.2rem;
 
     position: absolute;
-    top: 12.3rem;
+    top: 25%;
     left: 50%;
     transform: translate(-50%, 0);
     width: 20rem;

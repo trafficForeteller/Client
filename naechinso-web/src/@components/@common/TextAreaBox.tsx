@@ -36,9 +36,11 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
 }
 
 const St = {
-  TextAreaBox: styled.section``,
+  TextAreaBox: styled.section`
+    padding-bottom: 15rem;
+  `,
   TextAreaWrapper: styled.article<{ height: number }>`
-    width: 31.9rem;
+    width: 100%;
     height: ${({ height }) => height}rem;
     max-height: auto;
     margin: 0 auto;
@@ -51,25 +53,25 @@ const St = {
     display: flex;
     flex-wrap: wrap;
     height: 100%;
-    width: 306px;
+    width: 32rem;
     word-break: break-all;
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub3}
     border: none;
     resize: none;
-    overflow: hidden;
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray40};
     }
-
     &:focus {
       outline: none;
+    }
+    &::-webkit-scrollbar {
+      background-color: white;
     }
   `,
   TextLength: styled.div`
     margin-top: 0.8rem;
-    padding-right: 3.3rem;
     float: right;
     display: flex;
     color: ${({ theme }) => theme.colors.gray40};

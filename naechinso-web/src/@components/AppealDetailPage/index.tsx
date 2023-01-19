@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { IcAppealDetail } from "../../asset/icons";
 import { ImgAppealDetail } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
@@ -24,17 +25,19 @@ export default function AppealDetailPage() {
       <FixedHeader header="추천사" progressRate={92} title1="거의 다 왔어!" title2="내 친구를 한줄로 소개한다면?" />
 
       <St.CardWrapper>
-        <St.CardImg src={ImgAppealDetail} alt="내친소 추천카드" />
+        <IcAppealDetail />
       </St.CardWrapper>
 
-      <TextAreaBox
-        placeholder="미친듯이 유쾌한 친구야! 함께 있으면 누구보다 행복해질 수 있어!!💕"
-        minLength={19}
-        maxLength={39}
-        text={text}
-        setText={setText}
-        height={6}
-      />
+      <St.TextWrapper>
+        <TextAreaBox
+          placeholder="미친듯이 유쾌한 친구야! 함께 있으면 누구보다 행복해질 수 있어!!💕"
+          minLength={19}
+          maxLength={39}
+          text={text}
+          setText={setText}
+          height={5}
+        />
+      </St.TextWrapper>
 
       <MoveNextPageBtn nextPage={routePaths.DontGo} title="완료" inputActive={!textCheck} />
     </St.AppealDetail>
@@ -43,15 +46,18 @@ export default function AppealDetailPage() {
 
 const St = {
   AppealDetail: styled.main`
-    padding-top: 18rem;
+    padding: 18rem 2rem 0;
   `,
   CardWrapper: styled.section`
-    margin-bottom: 3.2rem;
+    width: 100%;
     height: 22rem;
+    position: absolute;
+    top: 17rem;
+    left: 0;
 
     background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 30%);
   `,
-  CardImg: styled.img`
-    width: 37.5rem;
+  TextWrapper: styled.section`
+    margin-top: 23.2rem;
   `,
 };

@@ -45,6 +45,7 @@ const St = {
     height: 29rem;
     position: absolute;
     bottom: 0;
+    left: 0;
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 32px 32px 0 0;
     word-break: keep-all;

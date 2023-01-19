@@ -21,6 +21,8 @@ const St = {
     display: flex;
     justify-content: center;
     margin-top: 1.6rem;
+
+    width: 100%;
   `,
   Button: styled.button`
     padding: 1rem;

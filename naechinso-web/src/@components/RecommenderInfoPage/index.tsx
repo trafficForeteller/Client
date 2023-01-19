@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { postMemberJoinRecommender } from "../../apis/member.api";
-import { IcCheckedMen, IcCheckedWomen, IcSheild, IcUnCheckedMen, IcUnCheckedWomen } from "../../asset/icons";
+import { IcCheckedMen, IcCheckedWomen, IcUnCheckedMen, IcUnCheckedWomen } from "../../asset/icons";
 import { genderTypeList, genderTypeProps } from "../../core/member/member";
 import { routePaths } from "../../core/routes/path";
 import { FixedHeader, MoveNextPageBtn } from "../@common";
@@ -55,10 +55,6 @@ export default function RecommenderInfoPage() {
         subTitle2="이 친구에게 엄청난 신뢰가 더해질거야✌️"
       />
 
-      {/* <St.SheildWrapper>
-        <IcSheild />
-        <St.SheildDesc></St.SheildDesc>
-      </St.SheildWrapper> */}
       <SheildBox desc="이름 가운데는 *처리 되니 안심해! (ex. 김*민, 박*)" />
       <NameInputBox name={name} handleNameInput={handleNameInput} />
 
@@ -91,29 +87,7 @@ export default function RecommenderInfoPage() {
 
 const St = {
   RecommenderInfo: styled.main`
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    padding-top: 23rem;
-  `,
-
-  SheildWrapper: styled.article`
-    width: 32.7rem;
-    height: 3.6rem;
-    border-radius: 8px;
-    margin: 24rem auto 2.4rem;
-    padding: 0.8rem 2rem 0.8rem 1rem;
-    background-color: ${({ theme }) => theme.colors.blue40};
-
-    display: flex;
-    align-items: center;
-    gap: 0.55rem;
-  `,
-  SheildDesc: styled.p`
-    color: ${({ theme }) => theme.colors.blue};
-    ${({ theme }) => theme.fonts.caption4}
+    padding: 23rem 2rem 0;
   `,
   ChooseGender: styled.section`
     display: flex;

@@ -61,11 +61,11 @@ const St = {
 
     display: flex;
     gap: 1.5rem;
+    padding-top: 8%;
   `,
   Naechinso: styled.img`
     width: 12.5rem;
     height: 16.5rem;
-    margin-top: 28%;
   `,
   CommentBox: styled.section`
     display: flex;
@@ -73,7 +73,7 @@ const St = {
     gap: 1.8rem;
   `,
   CommentWrapper: styled.article`
-    margin-top: 75%;
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;

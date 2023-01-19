@@ -25,7 +25,7 @@ export default function ChooseWorkPage() {
 
 const St = {
   ChooseWork: styled.main`
-    padding-top: 19rem;
+    padding: 19rem 2rem 0;
   `,
   ButtonWrapper: styled.section`
     display: flex;
@@ -34,11 +34,15 @@ const St = {
     gap: 1.6rem;
   `,
   ChooseWorkButton: styled.button`
-    width: 33.5rem;
+    width: 100%;
     height: 7rem;
     background-color: ${({ theme }) => theme.colors.neural};
     border-radius: 16px;
     color: ${({ theme }) => theme.colors.brown};
     ${({ theme }) => theme.fonts.sub2};
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `,
 };

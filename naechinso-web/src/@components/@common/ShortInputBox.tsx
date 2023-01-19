@@ -42,7 +42,7 @@ const St = {
     z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
   `,
   InputBox: styled.section`
-    width: 33.5rem;
+    width: 100%;
     height: 8rem;
 
     border-radius: 16px;
@@ -61,6 +61,7 @@ const St = {
     ${({ theme }) => theme.fonts.sub2};
     display: flex;
     justify-content: center;
+    align-items: center;
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.black20};

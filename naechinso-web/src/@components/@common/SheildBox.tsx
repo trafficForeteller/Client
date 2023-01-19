@@ -19,10 +19,10 @@ export default function SheildBox(props: SheildBoxProps) {
 
 const St = {
   SheildBox: styled.article`
-    width: 32.7rem;
+    width: 100%;
     height: 3.6rem;
     border-radius: 8px;
-    margin: 0 auto 2.4rem;
+    margin-bottom: 2.4rem;
     padding: 0.8rem 2rem 0.8rem 1rem;
     background-color: ${({ theme }) => theme.colors.blue40};
 
