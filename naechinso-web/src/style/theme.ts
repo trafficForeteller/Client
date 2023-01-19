@@ -13,6 +13,7 @@ const colors = {
   brown: "#A58E79",
   yellow: "#FFB700",
   error: "#FF3A3A",
+  error20: "#FFEFEF",
   error_bac: "#FFEFEF",
   blue: "#6B9AFF",
   blue_bac: "#EAF1FF",
@@ -39,6 +40,7 @@ function FONT({ weight, size, lineHeight }: Font): string {
 
 const fonts = {
   head1: FONT({ weight: 700, size: 2.5, lineHeight: 3.4 }),
+  head2: FONT({ weight: 700, size: 2.2, lineHeight: 2.6 }),
   sub1: FONT({ weight: 500, size: 2, lineHeight: 3 }),
   sub2: FONT({ weight: 700, size: 2, lineHeight: 3 }),
   sub3: FONT({ weight: 500, size: 1.8, lineHeight: 2.6 }),

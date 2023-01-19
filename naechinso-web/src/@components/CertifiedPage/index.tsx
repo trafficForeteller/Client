@@ -44,8 +44,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   useEffect(() => {
     if (token["accessToken"]) {
       localStorage.setItem("accessToken", token["accessToken"]);
-      isPendingStatue();
-      navigate(`${routePaths.RecommendLanding}`);
+      isPendingStatus();
     }
   }, [token]);
 
@@ -91,13 +90,16 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     }
   };
 
-  const isPendingStatue = async () => {
+  const isPendingStatus = async () => {
     // 펜딩 상태 서버에서 GET해서 확인
     const userData = await getPendingStatus(localStorage.getItem("accessToken"));
-    const userDataType = userData && (userData[0] as IGetPending);
-    if (userDataType.member === "JOB") navigate(`${routePaths.RecommenderLanding}`, { state: { userData } });
-    else if (userDataType.member === "EDU") navigate(`${routePaths.RecommenderLanding}`, { state: { userData } });
-    else return;
+    if (userData) {
+      if (userData[0].type === "JOB") {
+        navigate(`${routePaths.JobEdit}`, { state: userData[0] });
+      } else if (userData[0].type === "EDU") {
+        navigate(`${routePaths.EduEdit}`, { state: userData[0] });
+      } else navigate(`${routePaths.RecommendLanding}`);
+    }
   };
 
   return (

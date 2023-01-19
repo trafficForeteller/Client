@@ -61,6 +61,7 @@ export const patchMemberJob = async (jobData: object, accessToken: string | null
   });
   try {
     if (data.status === 200) {
+      console.log(data.data);
       return data.data;
     }
   } catch (err) {

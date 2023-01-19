@@ -33,7 +33,7 @@ export default function RecommendLandingPage() {
         </St.TitleWrapper>
 
         <St.Desc>
-          {RecommendLandingList[index].desc1} <St.Highlight>{RecommendLandingList[index].highlight}</St.Highlight>만
+          {RecommendLandingList[index].desc1} <St.Highlight>{RecommendLandingList[index].highlight}</St.Highlight>
         </St.Desc>
         <St.Desc> {RecommendLandingList[index].desc2}</St.Desc>
         <St.Desc> {RecommendLandingList[index].desc3}</St.Desc>

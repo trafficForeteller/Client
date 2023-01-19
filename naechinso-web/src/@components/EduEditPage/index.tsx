@@ -1,11 +1,15 @@
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-import { Edit } from "../@common";
+import { EditHeader } from "../@common";
 
 export default function EduEditPage() {
+  const location = useLocation();
+  const eduGetData = location.state;
+
   return (
     <St.EduEditPage>
-      <Edit />
+      <EditHeader />
     </St.EduEditPage>
   );
 }

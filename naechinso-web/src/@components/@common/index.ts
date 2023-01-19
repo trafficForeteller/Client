@@ -1,5 +1,5 @@
 export { default as BasicHeader } from "./BasicHeader";
-export { default as Edit } from "./Edit";
+export { default as EditHeader } from "./EditHeader";
 export { default as FixedHeader } from "./FixedHeader";
 export { default as JoinHeader } from "./JoinHeader";
 export { default as Modal } from "./Modal";

@@ -19,3 +19,4 @@ export { ReactComponent as IcToggleArrow } from "./toggleArrow.svg";
 export { ReactComponent as IcUnChecked } from "./unChecked.svg";
 export { ReactComponent as IcUnCheckedMen } from "./unCheckedMen.svg";
 export { ReactComponent as IcUnCheckedWomen } from "./unCheckedWomen.svg";
+export { ReactComponent as IcWarning } from "./warning.svg";
