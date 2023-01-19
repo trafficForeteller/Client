@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { IcAppealDetail } from "../../asset/icons";
 import { ImgAppealDetail } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
@@ -24,7 +25,7 @@ export default function AppealDetailPage() {
       <FixedHeader header="추천사" progressRate={92} title1="거의 다 왔어!" title2="내 친구를 한줄로 소개한다면?" />
 
       <St.CardWrapper>
-        <St.CardImg src={ImgAppealDetail} alt="내친소 추천카드" />
+        <IcAppealDetail />
       </St.CardWrapper>
 
       <TextAreaBox
@@ -46,12 +47,12 @@ const St = {
     padding-top: 18rem;
   `,
   CardWrapper: styled.section`
-    margin-bottom: 3.2rem;
+    width: 100%;
     height: 22rem;
+    position: absolute;
+    top: 17rem;
+    left: 0;
 
     background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 30%);
-  `,
-  CardImg: styled.img`
-    width: 37.5rem;
   `,
 };

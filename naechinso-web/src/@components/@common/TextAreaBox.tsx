@@ -36,7 +36,9 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
 }
 
 const St = {
-  TextAreaBox: styled.section``,
+  TextAreaBox: styled.section`
+    margin-top: 23.2rem;
+  `,
   TextAreaWrapper: styled.article<{ height: number }>`
     width: 100%;
     height: ${({ height }) => height}rem;

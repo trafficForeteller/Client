@@ -1,9 +1,11 @@
 export { ReactComponent as IcAllChecked } from "./allChecked.svg";
 export { ReactComponent as IcAllUnChecked } from "./allUnChecked.svg";
+export { ReactComponent as IcAppealDetail } from "./appealDetail.svg";
 export { ReactComponent as IcChecked } from "./checked.svg";
 export { ReactComponent as IcCheckedMen } from "./checkedMen.svg";
 export { ReactComponent as IcCheckedWomen } from "./checkedWomen.svg";
 export { ReactComponent as IcCopy } from "./copy.svg";
+export { ReactComponent as IcDontGo } from "./dontGo.svg";
 export { ReactComponent as IcKakaotalk } from "./kakaotalk.svg";
 export { ReactComponent as IcLandingLogo } from "./landingLogo.svg";
 export { ReactComponent as IcPlus } from "./plus.svg";
