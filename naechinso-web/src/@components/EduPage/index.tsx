@@ -4,9 +4,7 @@ import styled from "styled-components";
 
 import { routePaths } from "../../core/routes/path";
 import { IEduType } from "../../types/member";
-import { FixedHeader, ShortInputBox } from "../@common";
-import ToggleInputBox from "../@common/ToggleInputBox";
-
+import { FixedHeader, ShortInputBox, ToggleInputBox } from "../@common";
 export default function EduPage() {
   const [step, setStep] = useState(1);
   const [edu, setEdu] = useState<IEduType>({

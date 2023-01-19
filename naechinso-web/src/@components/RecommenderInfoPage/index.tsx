@@ -5,8 +5,7 @@ import { postMemberJoinRecommender } from "../../apis/member.api";
 import { IcCheckedMen, IcCheckedWomen, IcUnCheckedMen, IcUnCheckedWomen } from "../../asset/icons";
 import { genderTypeList, genderTypeProps } from "../../core/member/member";
 import { routePaths } from "../../core/routes/path";
-import { FixedHeader, MoveNextPageBtn } from "../@common";
-import SheildBox from "../@common/SheildBox";
+import { FixedHeader, MoveNextPageBtn, SheildBox } from "../@common";
 import NameInputBox from "./NameInputBox";
 
 export default function RecommenderInfoPage() {

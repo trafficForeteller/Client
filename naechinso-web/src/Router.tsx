@@ -8,11 +8,13 @@ import {
   ChooseWorkPage,
   DontGoPage,
   EduCertifiedPage,
+  EduEditPage,
   EduPage,
   FinishPage,
   FriendInfoPage,
   InstallAppPage,
   JobCertifiedPage,
+  JobEditPage,
   JobPage,
   KeywordPage,
   LandingPage,
@@ -22,7 +24,7 @@ import {
   RecommendLandingPage,
   RecommendPage,
 } from "./@components";
-import ScrollToTop from "./@components/@common/ScrollToTop";
+import { ScrollToTop } from "./@components/@common";
 import { postSmsSend } from "./apis/sms.api";
 import { routePaths } from "./core/routes/path";
 import { ITokenType } from "./types/member";
@@ -51,6 +53,14 @@ export default function Router() {
         <Route
           path={routePaths.Certified}
           element={<CertifiedPage sendSms={sendSms} postPhoneNum={postPhoneNum} token={token} setToken={setToken} />}
+        />
+        <Route
+          path={routePaths.JobEdit}
+          element={token["accessToken"] ? <JobEditPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.EduEdit}
+          element={token["accessToken"] ? <EduEditPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.RecommendLanding}

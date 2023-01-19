@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { getPendingStatus } from "../../apis/pending.api";
 import { postSmsVerify } from "../../apis/sms.api";
 import { routePaths } from "../../core/routes/path";
 import { ITokenType } from "../../types/member";
+import { IGetPending } from "../../types/pending";
 import { IPostPhoneNumber, IPostVerifyPhoneNumber } from "../../types/sms";
 import { JoinHeader, MoveNextPageBtn, Title } from "../@common";
 import AuthenticationNumInput from "./AuthenticationNumInput";
@@ -42,6 +44,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   useEffect(() => {
     if (token["accessToken"]) {
       localStorage.setItem("accessToken", token["accessToken"]);
+      isPendingStatue();
       navigate(`${routePaths.RecommendLanding}`);
     }
   }, [token]);
@@ -86,6 +89,15 @@ export default function CertifiedPage(props: CertifiedPageProps) {
       setCorrectAuthNum(true);
       setInputBorder(false);
     }
+  };
+
+  const isPendingStatue = async () => {
+    // 펜딩 상태 서버에서 GET해서 확인
+    const userData = await getPendingStatus(localStorage.getItem("accessToken"));
+    const userDataType = userData && (userData[0] as IGetPending);
+    if (userDataType.member === "JOB") navigate(`${routePaths.RecommenderLanding}`, { state: { userData } });
+    else if (userDataType.member === "EDU") navigate(`${routePaths.RecommenderLanding}`, { state: { userData } });
+    else return;
   };
 
   return (

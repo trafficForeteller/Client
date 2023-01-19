@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-import WorkCertified from "../@common/WorkCertified";
+import { WorkCertified } from "../@common";
 
 export default function JobCertifiedPage() {
   const [jobImg, setJobImg] = useState("");

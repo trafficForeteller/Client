@@ -19,6 +19,8 @@ export const routePaths = {
   Finish: "/finish",
   RecommenderLanding: "/recommender",
   RecommendLanding: "/recommend",
+  JobEdit: "/edit/job",
+  EduEdit: "/edit/edu",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];
