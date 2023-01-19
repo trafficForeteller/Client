@@ -27,6 +27,7 @@ export default function EduPage() {
 
   useEffect(() => {
     // step 4일 때 페이지 이동
+    window.scrollTo(0, 0);
     if (step === 4) {
       navigate(`${routePaths.EduCertified}`, { state: edu });
     }

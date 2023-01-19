@@ -19,7 +19,8 @@ export default function JobPage() {
   });
 
   useEffect(() => {
-    // step에 따라 다른 모달 open
+    // step에 따라 페이지 이동
+    window.scrollTo(0, 0);
     if (step === 3) {
       navigate(`${routePaths.JobCertified}`, { state: job });
     }
