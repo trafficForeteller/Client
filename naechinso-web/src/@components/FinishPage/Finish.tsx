@@ -32,11 +32,11 @@ const St = {
 
     display: flex;
     gap: 1.5rem;
+    padding-top: 20%;
   `,
   Naechinso: styled.img`
     width: 12.5rem;
     height: 16.5rem;
-    margin-top: 40%;
   `,
   CommentBox: styled.section`
     display: flex;
@@ -44,7 +44,7 @@ const St = {
     gap: 3rem;
   `,
   CommentWrapper: styled.article`
-    margin-top: 110%;
+    margin-top: 20%;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
