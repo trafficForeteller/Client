@@ -47,7 +47,7 @@ export default function PhoneNumberPage(props: PhoneNumberPageProps) {
 
 const St = {
   PhoneNumberPage: styled.main`
-    padding-top: 5.6rem;
+    padding: 5.6rem 2rem 0;
   `,
   PageTop: styled.hgroup`
     margin-bottom: 2.4rem;

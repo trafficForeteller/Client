@@ -28,14 +28,16 @@ export default function AppealDetailPage() {
         <IcAppealDetail />
       </St.CardWrapper>
 
-      <TextAreaBox
-        placeholder="미친듯이 유쾌한 친구야! 함께 있으면 누구보다 행복해질 수 있어!!💕"
-        minLength={19}
-        maxLength={39}
-        text={text}
-        setText={setText}
-        height={6}
-      />
+      <St.TextWrapper>
+        <TextAreaBox
+          placeholder="미친듯이 유쾌한 친구야! 함께 있으면 누구보다 행복해질 수 있어!!💕"
+          minLength={19}
+          maxLength={39}
+          text={text}
+          setText={setText}
+          height={5}
+        />
+      </St.TextWrapper>
 
       <MoveNextPageBtn nextPage={routePaths.DontGo} title="완료" inputActive={!textCheck} />
     </St.AppealDetail>
@@ -44,7 +46,7 @@ export default function AppealDetailPage() {
 
 const St = {
   AppealDetail: styled.main`
-    padding-top: 18rem;
+    padding: 18rem 2rem 0;
   `,
   CardWrapper: styled.section`
     width: 100%;
@@ -54,5 +56,8 @@ const St = {
     left: 0;
 
     background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 30%);
+  `,
+  TextWrapper: styled.section`
+    margin-top: 23.2rem;
   `,
 };

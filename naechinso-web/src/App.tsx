@@ -20,7 +20,6 @@ const St = {
   MobileContainer: styled.div`
     position: relative;
     margin: 0 auto;
-    padding: 0 2rem;
     width: 37.5rem;
     height: 100vh;
     box-sizing: border-box;

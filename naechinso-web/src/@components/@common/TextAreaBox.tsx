@@ -37,7 +37,7 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
 
 const St = {
   TextAreaBox: styled.section`
-    margin-top: 23.2rem;
+    padding-bottom: 15rem;
   `,
   TextAreaWrapper: styled.article<{ height: number }>`
     width: 100%;
@@ -54,20 +54,20 @@ const St = {
     flex-wrap: wrap;
     height: 100%;
     width: 32rem;
-    right: 0;
     word-break: break-all;
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub3}
     border: none;
     resize: none;
-    overflow: hidden;
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray40};
     }
-
     &:focus {
       outline: none;
+    }
+    &::-webkit-scrollbar {
+      background-color: white;
     }
   `,
   TextLength: styled.div`

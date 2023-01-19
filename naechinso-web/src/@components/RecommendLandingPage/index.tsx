@@ -48,7 +48,7 @@ const St = {
     width: 100%;
     height: 100%;
     background-color: ${({ theme }) => theme.colors.neural};
-    padding-top: 10%;
+    padding-top: 8%;
   `,
   CommentBox: styled.section`
     display: flex;
@@ -60,7 +60,7 @@ const St = {
   `,
   CommentWrapper: styled.article`
     width: 19.2rem;
-    margin-top: 6rem;
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
