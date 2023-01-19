@@ -49,7 +49,14 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
       <St.Label inputActive={inputActive}>{label}</St.Label>
       <St.InputWrapper>
         <St.FrontPhoneNum>010</St.FrontPhoneNum>
-        <St.Input type="number" value={phoneNum} onChange={handlePhoneNum} placeholder={placeholder} maxLength={8} />
+        <St.Input
+          type="number"
+          pattern="\d*"
+          value={phoneNum}
+          onChange={handlePhoneNum}
+          placeholder={placeholder}
+          maxLength={8}
+        />
       </St.InputWrapper>
     </St.PhoneNumInputBox>
   );

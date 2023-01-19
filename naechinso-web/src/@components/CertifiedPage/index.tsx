@@ -71,6 +71,9 @@ export default function CertifiedPage(props: CertifiedPageProps) {
 
   const handleAuthNum = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 인증번호 handle 함수 -input에 숫자만 입력가능케하는 정규식
+    if (e.target.value.length > e.target.maxLength) {
+      e.target.value = e.target.value.slice(0, e.target.maxLength);
+    }
     setAuthNum(e.target.value.replace(/[^0-9]/g, ""));
     checkAuthNumLength(authNum);
   };
