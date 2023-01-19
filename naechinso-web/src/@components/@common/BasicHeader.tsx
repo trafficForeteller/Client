@@ -31,5 +31,11 @@ const St = {
     justify-content: center;
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.body1};
+
+    position: absolute;
+    width: 100%;
+    height: 5.6rem;
+    top: 0;
+    left: 0;
   `,
 };

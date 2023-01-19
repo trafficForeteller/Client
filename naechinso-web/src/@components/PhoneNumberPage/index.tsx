@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import { IcSheild } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { IPostPhoneNumber } from "../../types/sms";
 import { JoinHeader, MoveNextPageBtn, PhoneNumInput, Title } from "../@common";
