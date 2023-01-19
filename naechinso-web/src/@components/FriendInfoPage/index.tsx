@@ -45,6 +45,7 @@ export default function FriendInfoPage() {
 
   useEffect(() => {
     // step에 따라 다른 모달 open
+    window.scrollTo(0, 0);
     if (step === 2) setIsTypeModalOpened(true);
     else if (step === 3) setIsDurationModalOpened(true);
     else if (step === 4 && localStorage.getItem("member-uuid")) {
