@@ -19,8 +19,8 @@ export default function App() {
 const St = {
   MobileContainer: styled.div`
     position: relative;
-    padding: 2rem;
     margin: 0 auto;
+    padding: 0 2rem;
     width: 37.5rem;
     height: 100vh;
     box-sizing: border-box;

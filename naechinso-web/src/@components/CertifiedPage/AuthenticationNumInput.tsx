@@ -50,7 +50,7 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
 
 const St = {
   AuthenticationNumInputBox: styled.section<{ inputborder: boolean }>`
-    width: 33.5rem;
+    width: 100%;
     height: 8rem;
     border: 1px solid ${({ theme, inputborder }) => (inputborder ? theme.colors.error : "transparent")};
     border-radius: 1.6rem;
@@ -71,6 +71,7 @@ const St = {
     ${({ theme }) => theme.fonts.sub2};
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
 
     &::placeholder {
