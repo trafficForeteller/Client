@@ -23,5 +23,7 @@ const St = {
     position: absolute;
     top: 1em;
     left: 1.6rem;
+    z-index: 8;
+    cursor: pointer;
   `,
 };
