@@ -14,7 +14,5 @@ const St = {
   Title: styled.h1`
     ${({ theme }) => theme.fonts.head1};
     color: ${({ theme }) => theme.colors.black};
-
-    margin-left: 2.4rem;
   `,
 };
