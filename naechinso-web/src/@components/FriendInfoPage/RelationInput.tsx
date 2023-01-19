@@ -37,7 +37,7 @@ const St = {
     z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
   `,
   Input: styled.input`
-    width: 100%auto;
+    width: 100%;
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub3};
     display: flex;

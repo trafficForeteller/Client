@@ -90,6 +90,7 @@ const St = {
   TitleWrapper: styled.hgroup<{ checkSubTitle: boolean }>`
     margin-bottom: ${({ checkSubTitle }) => (checkSubTitle ? "0.6rem" : "2.4rem")};
     position: relative;
+    padding: 9rem 2rem 0;
   `,
   SubTitleWrapper: styled.span``,
 };
