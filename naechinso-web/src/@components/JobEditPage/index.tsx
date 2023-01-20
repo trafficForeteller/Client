@@ -12,9 +12,7 @@ export default function JobEditPage() {
 
   const [jobName, setJobName] = useState(jobGetData.content.jobName);
   const [jobPart, setJobPart] = useState(jobGetData.content.jobPart);
-  const [jobImage, setJobImage] = useState(
-    `https://elasticbeanstalk-ap-northeast-2-381146100755.s3.ap-northeast-2.amazonaws.com/${jobGetData.content.jobImage}`,
-  );
+  const [jobImage, setJobImage] = useState(jobGetData.content.jobImage);
 
   const [patchJob, setPatchJob] = useState<IPatchJob>({
     jobName: jobName,
@@ -22,6 +20,14 @@ export default function JobEditPage() {
     jobImage: jobImage,
     jobLocation: "강남",
   });
+
+  useEffect(() => {
+    if (jobGetData.content.jobImage.startsWith("https://elasticbeanstalk")) setJobImage(jobImage);
+    else
+      setJobImage(
+        `https://elasticbeanstalk-ap-northeast-2-381146100755.s3.ap-northeast-2.amazonaws.com/${jobGetData.content.jobImage}`,
+      );
+  }, []);
 
   useEffect(() => {
     setPatchJob({
@@ -42,7 +48,6 @@ export default function JobEditPage() {
 
   const patchEditJobData = async () => {
     const response = await patchMemberJob(patchJob, localStorage.getItem("accessToken"));
-    console.log(response);
   };
 
   return (

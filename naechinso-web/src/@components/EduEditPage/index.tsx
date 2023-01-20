@@ -15,15 +15,22 @@ export default function EduEditPage() {
   const [eduLevel, setEduLevel] = useState(eduGetData.content.eduLevel);
   const [eduName, setEduName] = useState(eduGetData.content.eduName);
   const [eduMajor, setEduMajor] = useState(eduGetData.content.eduMajor);
-  const [eduImage, setEduImage] = useState(
-    `https://elasticbeanstalk-ap-northeast-2-381146100755.s3.ap-northeast-2.amazonaws.com/${eduGetData.content.eduImage}`,
-  );
+  const [eduImage, setEduImage] = useState(eduGetData.content.eduImage);
+
   const [patchEdu, setPatchEdu] = useState<IPatchEdu>({
     eduName: eduName,
     eduLevel: eduLevel,
     eduMajor: eduMajor,
     eduImage: eduImage,
   });
+
+  useEffect(() => {
+    if (eduGetData.content.eduImage.startsWith("https://elasticbeanstalk")) setEduImage(eduImage);
+    else
+      setEduImage(
+        `https://elasticbeanstalk-ap-northeast-2-381146100755.s3.ap-northeast-2.amazonaws.com/${eduGetData.content.eduImage}`,
+      );
+  }, []);
 
   useEffect(() => {
     setPatchEdu({
@@ -54,7 +61,6 @@ export default function EduEditPage() {
 
   const patchEditEduData = async () => {
     const response = await patchMemberEdu(patchEdu, localStorage.getItem("accessToken"));
-    console.log(response);
   };
 
   return (
