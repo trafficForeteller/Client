@@ -41,7 +41,7 @@ export default function EditToggleModal(props: EditToggleModalProps) {
 const St = {
   EditToggleModal: styled.section`
     width: 100%;
-    height: 29rem;
+    height: 25rem;
     position: absolute;
     bottom: 0;
     left: 0;
