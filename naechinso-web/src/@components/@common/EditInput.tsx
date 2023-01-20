@@ -12,17 +12,18 @@ export default function EditInput(props: EditInputProps) {
   const { label, value, onChange, desc, isModalOpened } = props;
 
   return (
-    <>
+    <St.EditInputBox>
       <St.EditInput>
         <St.Label>{label}</St.Label>
         <St.Input value={value} onChange={(e) => onChange(e)} />
       </St.EditInput>
       {desc ? <St.EduNameEx>ex. 연세(X) 연대(X) 연세대학교(O)</St.EduNameEx> : <></>}
-    </>
+    </St.EditInputBox>
   );
 }
 
 const St = {
+  EditInputBox: styled.span``,
   EditInput: styled.section`
     width: 100%;
     height: 7.2rem;

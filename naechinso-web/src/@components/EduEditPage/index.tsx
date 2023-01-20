@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-import { EditHeader, EditImageBox, EditInput, EditTitleBox, ToggleInputBox } from "../@common";
+import { EditHeader, EditImageBox, EditInput, EditTitleBox, EditToggleInputBox } from "../@common";
 export default function EduEditPage() {
   const location = useLocation();
   const eduGetData = location.state;
@@ -39,15 +39,18 @@ export default function EduEditPage() {
       <St.EditBox>
         <St.EditWrapper>
           <EditTitleBox question="🏤 졸업 또는 재학 중인 학교정보를 적어줘!" />
-          <ToggleInputBox
-            label="학위"
-            state={eduLevel}
-            setState={setEduLevel}
-            isSelectionModalOpened={isSelectionModalOpened}
-            setIsSelectionModalOpened={setIsSelectionModalOpened}
-            isModalOpened={isModalOpened}
-          />
-          <EditInput label="학교명" value={eduName} desc={true} onChange={(e) => handleInput(e, setEduName)} />
+          <St.EditInputWrapper>
+            <EditToggleInputBox
+              label="학위"
+              state={eduLevel}
+              setState={setEduLevel}
+              isSelectionModalOpened={isSelectionModalOpened}
+              setIsSelectionModalOpened={setIsSelectionModalOpened}
+              isModalOpened={isModalOpened}
+            />
+            <EditInput label="학교명" value={eduName} desc={true} onChange={(e) => handleInput(e, setEduName)} />
+          </St.EditInputWrapper>
+
           <EditInput label="전공" value={eduMajor} onChange={(e) => handleInput(e, setEduMajor)} />
         </St.EditWrapper>
         <St.EditWrapper>
@@ -70,4 +73,8 @@ const St = {
     background-color: ${({ theme }) => theme.colors.neural};
   `,
   EditWrapper: styled.article``,
+  EditInputWrapper: styled.article`
+    display: flex;
+    gap: 1rem;
+  `,
 };
