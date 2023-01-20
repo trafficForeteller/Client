@@ -1,5 +1,8 @@
 export { default as BasicHeader } from "./BasicHeader";
 export { default as EditHeader } from "./EditHeader";
+export { default as EditImageBox } from "./EditImageBox";
+export { default as EditInput } from "./EditInput";
+export { default as EditTitleBox } from "./EditTitleBox";
 export { default as FixedHeader } from "./FixedHeader";
 export { default as JoinHeader } from "./JoinHeader";
 export { default as Modal } from "./Modal";

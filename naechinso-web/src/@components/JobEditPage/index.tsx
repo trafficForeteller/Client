@@ -2,11 +2,7 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-import { EditHeader } from "../@common";
-import EditImageBox from "../@common/EditImageBox";
-import EditInput from "../@common/EditInput";
-import EditQuestionBox from "../@common/EditQuestionBox";
-
+import { EditHeader, EditImageBox, EditInput, EditTitleBox } from "../@common";
 export default function JobEditPage() {
   const location = useLocation();
   const jobGetData = location.state;
@@ -30,12 +26,12 @@ export default function JobEditPage() {
       <EditHeader />
       <St.EditBox>
         <St.EditWrapper>
-          <EditQuestionBox question="💼 재직 중인 회사정보를 적어줘!" desc1="프리랜서는 프리랜서라고 적어주면 돼" />
+          <EditTitleBox question="💼 재직 중인 회사정보를 적어줘!" desc1="프리랜서는 프리랜서라고 적어주면 돼" />
           <EditInput label="직장" value={jobName} desc={true} onChange={(e) => handleInput(e, setJobName)} />
           <EditInput label="직무" value={jobPart} onChange={(e) => handleInput(e, setJobPart)} />
         </St.EditWrapper>
         <St.EditWrapper>
-          <EditQuestionBox
+          <EditTitleBox
             question="✔️ 회사 인증을 해볼까?"
             desc1="내친소는 신뢰 기반의 서비스라 인증이 필요해."
             desc2="사원증, 명함 또는 사업자등록증을 첨부해줘!"

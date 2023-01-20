@@ -6,9 +6,8 @@ import ToggleModal from "./ToggleModal";
 
 export interface ToggleInputBoxProps {
   label: string;
-  placeholder: string;
+  placeholder?: string;
   question?: string;
-  step: number;
   state: string;
   setState: React.Dispatch<React.SetStateAction<string>>;
   isSelectionModalOpened: boolean;

@@ -112,7 +112,6 @@ export default function EduPage() {
       <ToggleInputBox
         label="학위"
         placeholder="학위를 선택해줘"
-        step={step}
         state={eduLevel}
         setState={setEduLevel}
         isSelectionModalOpened={isSelectionModalOpened}

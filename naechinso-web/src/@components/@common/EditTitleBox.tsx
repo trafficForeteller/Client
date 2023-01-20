@@ -1,25 +1,25 @@
 import styled from "styled-components";
 
-export interface EditQuestionBoxProps {
+export interface EditTitleBoxProps {
   question: string;
   desc1?: string;
   desc2?: string;
 }
 
-export default function EditQuestionBox(props: EditQuestionBoxProps) {
+export default function EditTitleBox(props: EditTitleBoxProps) {
   const { question, desc1, desc2 } = props;
 
   return (
-    <St.EditQuestionBox>
+    <St.EditTitleBox>
       <St.EditQuestion>{question}</St.EditQuestion>
       {desc1 ? <St.EditDesc>{desc1}</St.EditDesc> : <></>}
       {desc2 ? <St.EditDesc>{desc2}</St.EditDesc> : <></>}
-    </St.EditQuestionBox>
+    </St.EditTitleBox>
   );
 }
 
 const St = {
-  EditQuestionBox: styled.hgroup`
+  EditTitleBox: styled.hgroup`
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
