@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 import { ImgEditNaechinso } from "../../asset/image";
-import JoinHeader from "./JoinHeader";
 import MovePreviousPageBtn from "./MovePreviousPageBtn";
 import WarningBox from "./WarningBox";
 export default function EditHeader() {
@@ -44,10 +43,12 @@ const St = {
   HeaderWrapper: styled.header`
     display: flex;
     gap: 1.2rem;
+    z-index: -1;
   `,
   Naechinso: styled.img`
     width: 4rem;
     height: 4rem;
+    z-index: -1;
   `,
   WarningWrapper: styled.article`
     display: flex;
@@ -63,5 +64,6 @@ const St = {
   Title: styled.h1`
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.head2};
+    z-index: -1;
   `,
 };

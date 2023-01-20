@@ -26,15 +26,26 @@ export default function JobEditPage() {
       <EditHeader />
       <St.EditBox>
         <St.EditWrapper>
-          <EditTitleBox question="💼 재직 중인 회사정보를 적어줘!" desc1="프리랜서는 프리랜서라고 적어주면 돼" />
-          <EditInput label="직장" value={jobName} desc={true} onChange={(e) => handleInput(e, setJobName)} />
-          <EditInput label="직무" value={jobPart} onChange={(e) => handleInput(e, setJobPart)} />
+          <EditTitleBox
+            question="💼 재직 중인 회사정보를 적어줘!"
+            desc1="프리랜서는 프리랜서라고 적어주면 돼"
+            isModalOpened={false}
+          />
+          <EditInput
+            isModalOpened={false}
+            label="직장"
+            value={jobName}
+            desc={true}
+            onChange={(e) => handleInput(e, setJobName)}
+          />
+          <EditInput isModalOpened={false} label="직무" value={jobPart} onChange={(e) => handleInput(e, setJobPart)} />
         </St.EditWrapper>
         <St.EditWrapper>
           <EditTitleBox
             question="✔️ 회사 인증을 해볼까?"
             desc1="내친소는 신뢰 기반의 서비스라 인증이 필요해."
             desc2="사원증, 명함 또는 사업자등록증을 첨부해줘!"
+            isModalOpened={false}
           />
           <EditImageBox image={jobImage} setImage={setJobImage} dir={jobGetData.type.toLowerCase()} />
         </St.EditWrapper>

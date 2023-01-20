@@ -4,16 +4,17 @@ export interface EditTitleBoxProps {
   question: string;
   desc1?: string;
   desc2?: string;
+  isModalOpened: boolean;
 }
 
 export default function EditTitleBox(props: EditTitleBoxProps) {
-  const { question, desc1, desc2 } = props;
+  const { question, desc1, desc2, isModalOpened } = props;
 
   return (
     <St.EditTitleBox>
-      <St.EditQuestion>{question}</St.EditQuestion>
-      {desc1 ? <St.EditDesc>{desc1}</St.EditDesc> : <></>}
-      {desc2 ? <St.EditDesc>{desc2}</St.EditDesc> : <></>}
+      <St.EditQuestion isModalOpened={isModalOpened}>{question}</St.EditQuestion>
+      {desc1 ? <St.EditDesc isModalOpened={isModalOpened}>{desc1}</St.EditDesc> : <></>}
+      {desc2 ? <St.EditDesc isModalOpened={isModalOpened}>{desc2}</St.EditDesc> : <></>}
     </St.EditTitleBox>
   );
 }
@@ -26,12 +27,14 @@ const St = {
     padding-top: 3.6rem;
     padding-bottom: 1.4rem;
   `,
-  EditQuestion: styled.h2`
+  EditQuestion: styled.h2<{ isModalOpened: boolean }>`
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub4};
+    z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
   `,
-  EditDesc: styled.p`
+  EditDesc: styled.p<{ isModalOpened: boolean }>`
     color: ${({ theme }) => theme.colors.gray50};
     ${({ theme }) => theme.fonts.caption7};
+    z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
   `,
 };

@@ -17,11 +17,7 @@ export default function ToggleInput(props: ToggleInputProps) {
     <St.ToggleInput isModalOpened={isModalOpened} onClick={openRelationModal}>
       <St.Label>{label}</St.Label>
       <St.InputWrapper>
-        {placeholder ? (
-          <St.Input placeholder={placeholder} value={value} readOnly />
-        ) : (
-          <St.Input value={value} readOnly />
-        )}
+        <St.Input placeholder={placeholder} value={value} readOnly />
         <IcToggleArrow />
       </St.InputWrapper>
     </St.ToggleInput>
@@ -38,7 +34,7 @@ const St = {
     padding: 1rem 2rem 1.6rem;
     margin: 1.6rem auto 0;
     position: relative;
-    z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "3")};
+    z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
   `,
   Label: styled.p`
     color: ${({ theme }) => theme.colors.gray40};

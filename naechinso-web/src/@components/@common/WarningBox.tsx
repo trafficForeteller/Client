@@ -28,6 +28,7 @@ const St = {
     display: flex;
     align-items: center;
     gap: 0.55rem;
+    z-index: -1;
   `,
   WarningDesc: styled.p`
     color: ${({ theme }) => theme.colors.error};

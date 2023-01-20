@@ -134,6 +134,8 @@ const St = {
     padding: 17rem 2rem 0;
     height: 100%;
     z-index: 2;
+
+    overflow: ${({ isModalOpened }) => (isModalOpened ? "hidden" : "")};
   `,
   EduNameEx: styled.article`
     margin: 0.6rem 2.1rem 0.9rem;

@@ -35,6 +35,7 @@ const St = {
     background-color: ${({ theme }) => theme.colors.white};
     padding: 1.2rem 2rem;
     position: relative;
+    z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
   `,
   Label: styled.p`
     ${({ theme }) => theme.fonts.body7};

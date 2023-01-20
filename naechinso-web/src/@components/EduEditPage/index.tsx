@@ -34,11 +34,11 @@ export default function EduEditPage() {
   };
 
   return (
-    <St.EduEditPage>
+    <St.EduEditPage isModalOpened={isModalOpened}>
       <EditHeader />
-      <St.EditBox>
+      <St.EditBox isModalOpened={isModalOpened}>
         <St.EditWrapper>
-          <EditTitleBox question="🏤 졸업 또는 재학 중인 학교정보를 적어줘!" />
+          <EditTitleBox question="🏤 졸업 또는 재학 중인 학교정보를 적어줘!" isModalOpened={isModalOpened} />
           <St.EditInputWrapper>
             <EditToggleInputBox
               label="학위"
@@ -48,16 +48,28 @@ export default function EduEditPage() {
               setIsSelectionModalOpened={setIsSelectionModalOpened}
               isModalOpened={isModalOpened}
             />
-            <EditInput label="학교명" value={eduName} desc={true} onChange={(e) => handleInput(e, setEduName)} />
+            <EditInput
+              label="학교명"
+              value={eduName}
+              desc={true}
+              isModalOpened={isModalOpened}
+              onChange={(e) => handleInput(e, setEduName)}
+            />
           </St.EditInputWrapper>
 
-          <EditInput label="전공" value={eduMajor} onChange={(e) => handleInput(e, setEduMajor)} />
+          <EditInput
+            label="전공"
+            value={eduMajor}
+            isModalOpened={isModalOpened}
+            onChange={(e) => handleInput(e, setEduMajor)}
+          />
         </St.EditWrapper>
         <St.EditWrapper>
           <EditTitleBox
             question="✔️ 학교 인증을 해볼까?"
             desc1="내친소는 신뢰 기반의 서비스라 인증이 필요해."
             desc2="학생증, 재학증명서 또는 학교 포털 캡쳐를 첨부해줘!"
+            isModalOpened={isModalOpened}
           />
           <EditImageBox image={eduImage} setImage={setEduImage} dir={eduGetData.type.toLowerCase()} />
         </St.EditWrapper>
@@ -67,10 +79,15 @@ export default function EduEditPage() {
 }
 
 const St = {
-  EduEditPage: styled.main``,
-  EditBox: styled.section`
+  EduEditPage: styled.main<{ isModalOpened: boolean }>`
+    background-color: rgba(${({ isModalOpened }) => (isModalOpened ? "0, 0, 0, 0.64" : "")});
+    overflow: ${({ isModalOpened }) => (isModalOpened ? "hidden" : "")};
+    height: 100%;
+  `,
+
+  EditBox: styled.section<{ isModalOpened: boolean }>`
     padding: 0.2rem 2rem 14rem;
-    background-color: ${({ theme }) => theme.colors.neural};
+    background-color: ${({ theme, isModalOpened }) => (isModalOpened ? "" : theme.colors.neural)};
   `,
   EditWrapper: styled.article``,
   EditInputWrapper: styled.article`

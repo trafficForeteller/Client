@@ -5,15 +5,15 @@ export interface EditInputProps {
   value: string;
   desc?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  isModalOpened?: boolean;
+  isModalOpened: boolean;
 }
 
 export default function EditInput(props: EditInputProps) {
   const { label, value, onChange, desc, isModalOpened } = props;
 
   return (
-    <St.EditInputBox>
-      <St.EditInput>
+    <St.EditInputBox isModalOpened={isModalOpened}>
+      <St.EditInput isModalOpened={isModalOpened}>
         <St.Label>{label}</St.Label>
         <St.Input value={value} onChange={(e) => onChange(e)} />
       </St.EditInput>
@@ -23,10 +23,13 @@ export default function EditInput(props: EditInputProps) {
 }
 
 const St = {
-  EditInputBox: styled.span``,
-  EditInput: styled.section`
+  EditInputBox: styled.span<{ isModalOpened: boolean }>`
+    z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
+  `,
+  EditInput: styled.section<{ isModalOpened: boolean }>`
     width: 100%;
     height: 7.2rem;
+    z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
 
     border-radius: 16px;
     background-color: ${({ theme }) => theme.colors.white};
@@ -58,5 +61,6 @@ const St = {
     width: 100%;
     color: ${({ theme }) => theme.colors.gray40};
     ${({ theme }) => theme.fonts.caption6};
+    z-index: -99;
   `,
 };
