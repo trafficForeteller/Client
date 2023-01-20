@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 export interface ShortInputProps {
@@ -11,18 +12,24 @@ export interface ShortInputProps {
 
 export default function ShortInputBox(props: ShortInputProps) {
   const { label, placeholder, value, onChange, isModalOpened, step } = props;
+  const inputFocus = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const inputFocusCurrent = inputFocus && (inputFocus.current as HTMLInputElement);
+    inputFocusCurrent.focus();
+  }, []);
 
   return (
     <>
       {isModalOpened ? (
         <St.InputBoxWithModal isModalOpened={isModalOpened}>
           <St.Label step={step}>{label}</St.Label>
-          <St.Input placeholder={placeholder} value={value} onChange={(e) => onChange(e)} />
+          <St.Input placeholder={placeholder} value={value} onChange={(e) => onChange(e)} ref={inputFocus} />
         </St.InputBoxWithModal>
       ) : (
         <St.InputBox>
           <St.Label step={step}>{label}</St.Label>
-          <St.Input placeholder={placeholder} value={value} onChange={(e) => onChange(e)} />
+          <St.Input placeholder={placeholder} value={value} onChange={(e) => onChange(e)} ref={inputFocus} />
         </St.InputBox>
       )}
     </>

@@ -26,6 +26,7 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
           maxLength={maxLength}
           value={text}
           onChange={(e) => handleText(e)}
+          dir="auto"
         />
       </St.TextAreaWrapper>
       <St.TextLength>

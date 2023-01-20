@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import TimeLimit from "./TimeLimit";
@@ -17,6 +17,12 @@ export interface AuthenticationNumProps {
 export default function AuthenticationNumInput(props: AuthenticationNumProps) {
   const { inputActive, setInputActive, count, setCount, authNum, inputborder, checkAuthNumLength, handleAuthNum } =
     props;
+  const inputFocus = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const inputFocusCurrent = inputFocus && (inputFocus.current as HTMLInputElement);
+    inputFocusCurrent.focus();
+  }, []);
 
   useEffect(() => {
     checkAuthNumLength(authNum);
@@ -44,6 +50,7 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
         onChange={handleAuthNum}
         placeholder={"인증번호를 입력해줘"}
         maxLength={6}
+        ref={inputFocus}
       />
     </St.AuthenticationNumInputBox>
   );
