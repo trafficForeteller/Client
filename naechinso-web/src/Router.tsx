@@ -18,6 +18,7 @@ import {
   JobPage,
   KeywordPage,
   LandingPage,
+  PendingPage,
   PhoneNumberPage,
   RecommenderInfoPage,
   RecommenderLandingPage,
@@ -61,6 +62,10 @@ export default function Router() {
         <Route
           path={routePaths.EduEdit}
           element={token["accessToken"] ? <EduEditPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.Pending}
+          element={token["accessToken"] ? <PendingPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.RecommendLanding}

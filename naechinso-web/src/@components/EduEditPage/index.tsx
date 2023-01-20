@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-import { EditHeader, EditImageBox, EditInput, EditTitleBox, EditToggleInputBox } from "../@common";
+import { routePaths } from "../../core/routes/path";
+import { EditHeader, EditImageBox, EditInput, EditTitleBox, EditToggleInputBox, MoveNextPageBtn } from "../@common";
 export default function EduEditPage() {
   const location = useLocation();
   const eduGetData = location.state;
@@ -74,6 +75,8 @@ export default function EduEditPage() {
           <EditImageBox image={eduImage} setImage={setEduImage} dir={eduGetData.type.toLowerCase()} />
         </St.EditWrapper>
       </St.EditBox>
+
+      <MoveNextPageBtn nextPage={routePaths.Pending} title="수정 완료" inputActive={false} />
     </St.EduEditPage>
   );
 }
