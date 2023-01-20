@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-import { EditHeader, EditImageBox, EditInput, EditTitleBox } from "../@common";
+import { patchMemberJob } from "../../apis/member.api";
+import { routePaths } from "../../core/routes/path";
+import { IPatchJob } from "../../types/member";
+import { EditHeader, EditImageBox, EditInput, EditTitleBox, MoveNextPageBtn } from "../@common";
 export default function JobEditPage() {
   const location = useLocation();
   const jobGetData = location.state;
@@ -13,12 +16,33 @@ export default function JobEditPage() {
     `https://elasticbeanstalk-ap-northeast-2-381146100755.s3.ap-northeast-2.amazonaws.com/${jobGetData.content.jobImage}`,
   );
 
+  const [patchJob, setPatchJob] = useState<IPatchJob>({
+    jobName: jobName,
+    jobPart: jobPart,
+    jobImage: jobImage,
+    jobLocation: "강남",
+  });
+
+  useEffect(() => {
+    setPatchJob({
+      ...patchJob,
+      jobName: jobName,
+      jobPart: jobPart,
+      jobImage: jobImage,
+    });
+  }, [jobName, jobPart, jobImage]);
+
   const handleInput = (
     e: React.ChangeEvent<HTMLInputElement>,
     setState: React.Dispatch<React.SetStateAction<string>>,
   ) => {
     // input 값을 관리하는 함수
     setState(e.target.value);
+  };
+
+  const patchEditJobData = async () => {
+    const response = await patchMemberJob(patchJob, localStorage.getItem("accessToken"));
+    console.log(response);
   };
 
   return (
@@ -50,6 +74,13 @@ export default function JobEditPage() {
           <EditImageBox image={jobImage} setImage={setJobImage} dir={jobGetData.type.toLowerCase()} />
         </St.EditWrapper>
       </St.EditBox>
+
+      <MoveNextPageBtn
+        nextPage={routePaths.Pending}
+        title="수정 완료"
+        inputActive={false}
+        handleState={patchEditJobData}
+      />
     </St.JobEditPage>
   );
 }

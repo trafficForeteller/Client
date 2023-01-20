@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
+import { patchMemberEdu } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
+import { IPatchEdu } from "../../types/member";
 import { EditHeader, EditImageBox, EditInput, EditTitleBox, EditToggleInputBox, MoveNextPageBtn } from "../@common";
 export default function EduEditPage() {
   const location = useLocation();
@@ -16,6 +18,22 @@ export default function EduEditPage() {
   const [eduImage, setEduImage] = useState(
     `https://elasticbeanstalk-ap-northeast-2-381146100755.s3.ap-northeast-2.amazonaws.com/${eduGetData.content.eduImage}`,
   );
+  const [patchEdu, setPatchEdu] = useState<IPatchEdu>({
+    eduName: eduName,
+    eduLevel: eduLevel,
+    eduMajor: eduMajor,
+    eduImage: eduImage,
+  });
+
+  useEffect(() => {
+    setPatchEdu({
+      ...patchEdu,
+      eduName: eduName,
+      eduLevel: eduLevel,
+      eduMajor: eduMajor,
+      eduImage: eduImage,
+    });
+  }, [eduName, eduLevel, eduMajor, eduImage]);
 
   useEffect(() => {
     checkIsModalOpened();
@@ -32,6 +50,11 @@ export default function EduEditPage() {
   ) => {
     // input 값을 관리하는 함수
     setState(e.target.value);
+  };
+
+  const patchEditEduData = async () => {
+    const response = await patchMemberEdu(patchEdu, localStorage.getItem("accessToken"));
+    console.log(response);
   };
 
   return (
@@ -76,7 +99,12 @@ export default function EduEditPage() {
         </St.EditWrapper>
       </St.EditBox>
 
-      <MoveNextPageBtn nextPage={routePaths.Pending} title="수정 완료" inputActive={false} />
+      <MoveNextPageBtn
+        nextPage={routePaths.Pending}
+        title="수정 완료"
+        inputActive={false}
+        handleState={patchEditEduData}
+      />
     </St.EduEditPage>
   );
 }
@@ -86,6 +114,7 @@ const St = {
     background-color: rgba(${({ isModalOpened }) => (isModalOpened ? "0, 0, 0, 0.64" : "")});
     overflow: ${({ isModalOpened }) => (isModalOpened ? "hidden" : "")};
     height: 100%;
+    width: 100%;
   `,
 
   EditBox: styled.section<{ isModalOpened: boolean }>`
