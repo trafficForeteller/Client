@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { IcAppealDetail } from "../../asset/icons";
-import { ImgAppealDetail } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
 

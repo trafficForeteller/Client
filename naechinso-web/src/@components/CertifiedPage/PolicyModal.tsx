@@ -5,8 +5,7 @@ import { postMemberJoin } from "../../apis/member.api";
 import { IcAllChecked, IcAllUnChecked, IcChecked, IcUnChecked } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { ITokenType } from "../../types/member";
-import NextPageBtn from "../@common/MoveNextPageBtn";
-
+import { MoveNextPageBtn } from "../@common";
 export interface PolicyModalProps {
   token: ITokenType;
   setToken: React.Dispatch<React.SetStateAction<ITokenType>>;
@@ -106,9 +105,13 @@ export default function PolicyModal(props: PolicyModalProps) {
           );
         })}
       </St.CheckContainer>
-      <St.NextButton onClick={() => handlePolicy()}>
-        <NextPageBtn nextPage={routePaths.RecommendLanding} title="내친소 시작하기" inputActive={startActive} />
-      </St.NextButton>
+
+      <MoveNextPageBtn
+        nextPage={routePaths.RecommendLanding}
+        title="내친소 시작하기"
+        inputActive={startActive}
+        handleState={handlePolicy}
+      />
     </St.Modal>
   );
 }
@@ -189,5 +192,4 @@ const St = {
     ${({ theme }) => theme.fonts.body2};
     z-index: 3;
   `,
-  NextButton: styled.span``,
 };

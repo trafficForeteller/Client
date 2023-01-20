@@ -4,14 +4,13 @@ import styled from "styled-components";
 import { IcRelationChecked } from "../../asset/icons";
 import { eduLevelrops } from "../../core/member/member";
 
-export interface ToggleModalProps {
-  question?: string;
+export interface EditToggleModalProps {
   array: eduLevelrops[];
   closeRelationModal: (target: string) => void;
 }
 
-export default function ToggleModal(props: ToggleModalProps) {
-  const { question, array, closeRelationModal } = props;
+export default function EditToggleModal(props: EditToggleModalProps) {
+  const { array, closeRelationModal } = props;
   const [relationList, setRelationList] = useState(array);
 
   const toggleCheck = (el: eduLevelrops) => {
@@ -26,8 +25,7 @@ export default function ToggleModal(props: ToggleModalProps) {
   };
 
   return (
-    <St.ToggleModal>
-      {question ? <St.Question>{question}</St.Question> : ""}
+    <St.EditToggleModal>
       {array.map((el) => {
         return (
           <St.Relation type="button" key={el.id} onClick={() => toggleCheck(el)}>
@@ -36,22 +34,21 @@ export default function ToggleModal(props: ToggleModalProps) {
           </St.Relation>
         );
       })}
-    </St.ToggleModal>
+    </St.EditToggleModal>
   );
 }
 
 const St = {
-  ToggleModal: styled.section`
+  EditToggleModal: styled.section`
     width: 100%;
     height: 29rem;
     position: absolute;
     bottom: 0;
-
-    right: 0;
+    left: 0;
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 32px 32px 0 0;
     padding-top: 3.2rem;
-    z-index: 3;
+    z-index: 10;
   `,
   Question: styled.h2`
     display: flex;

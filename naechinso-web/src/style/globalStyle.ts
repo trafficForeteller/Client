@@ -96,6 +96,8 @@ export const GlobalStyle = createGlobalStyle`
   }
   input {
     appearance: none;
+    padding: 0;
+    caret-color: "#FF7A00";
     
     &:focus {
       outline: none;

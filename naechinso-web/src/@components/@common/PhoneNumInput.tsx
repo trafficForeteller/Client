@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 export interface IPostPhoneNumber {
@@ -16,6 +16,12 @@ export interface PhoneNumInputProps {
 export default function PhoneNumInputBox(props: PhoneNumInputProps) {
   const { label, placeholder, inputActive, setInputActive, setPostPhoneNum } = props;
   const [phoneNum, setPhoneNum] = useState("");
+  const inputFocus = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const inputFocusCurrent = inputFocus && (inputFocus.current as HTMLInputElement);
+    inputFocusCurrent.focus();
+  }, []);
 
   const checkPhoneNumLength = (phoneNum: string) => {
     //휴대폰번호 길이 확인해 label글자색, nextBtn 색 변화
@@ -56,6 +62,7 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
           onChange={handlePhoneNum}
           placeholder={placeholder}
           maxLength={8}
+          ref={inputFocus}
         />
       </St.InputWrapper>
     </St.PhoneNumInputBox>

@@ -31,7 +31,7 @@ export default function ShortInputBox(props: ShortInputProps) {
 
 const St = {
   InputBoxWithModal: styled.section<{ isModalOpened: boolean | null }>`
-    width: 33.5rem;
+    width: 100%;
     height: 8rem;
 
     border-radius: 16px;

@@ -13,6 +13,7 @@ const colors = {
   brown: "#A58E79",
   yellow: "#FFB700",
   error: "#FF3A3A",
+  error20: "#FFEFEF",
   error_bac: "#FFEFEF",
   blue: "#6B9AFF",
   blue_bac: "#EAF1FF",
@@ -39,6 +40,7 @@ function FONT({ weight, size, lineHeight }: Font): string {
 
 const fonts = {
   head1: FONT({ weight: 700, size: 2.5, lineHeight: 3.4 }),
+  head2: FONT({ weight: 700, size: 2.2, lineHeight: 2.6 }),
   sub1: FONT({ weight: 500, size: 2, lineHeight: 3 }),
   sub2: FONT({ weight: 700, size: 2, lineHeight: 3 }),
   sub3: FONT({ weight: 500, size: 1.8, lineHeight: 2.6 }),
@@ -49,12 +51,15 @@ const fonts = {
   body4: FONT({ weight: 500, size: 1.4, lineHeight: 2.4 }),
   body5: FONT({ weight: 400, size: 1.4, lineHeight: 2 }),
   body6: FONT({ weight: 600, size: 1.4, lineHeight: 2.4 }),
+  body7: FONT({ weight: 500, size: 1.4, lineHeight: 2 }),
+  body8: FONT({ weight: 700, size: 1.5, lineHeight: 2.2 }),
   caption1: FONT({ weight: 500, size: 1.6, lineHeight: 1.6 }),
   caption2: FONT({ weight: 600, size: 1, lineHeight: 1.4 }),
   caption3: FONT({ weight: 500, size: 1.2, lineHeight: 2 }),
   caption4: FONT({ weight: 400, size: 1.4, lineHeight: 2 }),
   caption5: FONT({ weight: 400, size: 1.2, lineHeight: 1.6 }),
   caption6: FONT({ weight: 500, size: 1.2, lineHeight: 1.6 }),
+  caption7: FONT({ weight: 400, size: 1.3, lineHeight: 2 }),
 } as const;
 
 type BackQuoteArgs = string[];

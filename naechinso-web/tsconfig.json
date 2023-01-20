@@ -23,7 +23,7 @@
     },
     "include": [
       "**/*.ts",
-      "**/*.tsx", "public/mockServiceWorker.js", "public/pwaServiceWorker.js", "src/hoc/auth.js",
+      "**/*.tsx", "public/mockServiceWorker.js", "public/pwaServiceWorker.js", "src/hoc/auth.js", "src/@components/PendingPage",
     ],
     "exclude": [
       "node_modules"

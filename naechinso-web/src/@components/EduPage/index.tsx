@@ -4,9 +4,7 @@ import styled from "styled-components";
 
 import { routePaths } from "../../core/routes/path";
 import { IEduType } from "../../types/member";
-import { FixedHeader, ShortInputBox } from "../@common";
-import ToggleInputBox from "../@common/ToggleInputBox";
-
+import { FixedHeader, ShortInputBox, ToggleInputBox } from "../@common";
 export default function EduPage() {
   const [step, setStep] = useState(1);
   const [edu, setEdu] = useState<IEduType>({
@@ -114,7 +112,6 @@ export default function EduPage() {
       <ToggleInputBox
         label="학위"
         placeholder="학위를 선택해줘"
-        step={step}
         state={eduLevel}
         setState={setEduLevel}
         isSelectionModalOpened={isSelectionModalOpened}
@@ -137,6 +134,8 @@ const St = {
     padding: 17rem 2rem 0;
     height: 100%;
     z-index: 2;
+
+    overflow: ${({ isModalOpened }) => (isModalOpened ? "hidden" : "")};
   `,
   EduNameEx: styled.article`
     margin: 0.6rem 2.1rem 0.9rem;

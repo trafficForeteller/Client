@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { getPendingStatus } from "../../apis/pending.api";
 import { postSmsVerify } from "../../apis/sms.api";
 import { routePaths } from "../../core/routes/path";
 import { ITokenType } from "../../types/member";
@@ -42,7 +43,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   useEffect(() => {
     if (token["accessToken"]) {
       localStorage.setItem("accessToken", token["accessToken"]);
-      navigate(`${routePaths.RecommendLanding}`);
+      isPendingStatus();
     }
   }, [token]);
 
@@ -85,6 +86,18 @@ export default function CertifiedPage(props: CertifiedPageProps) {
       setToken(userData);
       setCorrectAuthNum(true);
       setInputBorder(false);
+    }
+  };
+
+  const isPendingStatus = async () => {
+    // 펜딩 상태 서버에서 GET해서 확인
+    const userData = await getPendingStatus(localStorage.getItem("accessToken"));
+    if (userData) {
+      if (userData[0].type === "JOB") {
+        navigate(`${routePaths.JobEdit}`, { state: userData[0] });
+      } else if (userData[0].type === "EDU") {
+        navigate(`${routePaths.EduEdit}`, { state: userData[0] });
+      } else navigate(`${routePaths.RecommendLanding}`);
     }
   };
 

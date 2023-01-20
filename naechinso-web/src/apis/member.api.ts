@@ -1,12 +1,12 @@
 // eslint-disable-next-line
-import { IPatchEdu, IPatchJob, IPostPolicy, IPostRecommender } from "../types/member";
+import {  IPostPolicy, IPostRecommender } from "../types/member";
 import { serverAxios } from ".";
 
 const PREFIX_URL = "/member";
 
 export const postMemberJoin = async (policyData: IPostPolicy, registerToken: string): Promise<void | null> => {
   const { data } = await serverAxios.post(`${PREFIX_URL}/join`, policyData, {
-    headers: { Authorization: `${registerToken}`, "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${registerToken}`, "Content-Type": "application/json" },
   });
   try {
     if (data.status === 200) {
@@ -61,6 +61,7 @@ export const patchMemberJob = async (jobData: object, accessToken: string | null
   });
   try {
     if (data.status === 200) {
+      console.log(data.data);
       return data.data;
     }
   } catch (err) {

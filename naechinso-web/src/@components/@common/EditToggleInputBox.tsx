@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
 import { eduLevelList } from "../../core/member/member";
-import ToggleInput from "./ToggleInput";
-import ToggleModal from "./ToggleModal";
+import EditToggleInput from "./EditToggleInput";
+import EditToggleModal from "./EditToggleModal";
 
-export interface ToggleInputBoxProps {
+export interface EditToggleInputBoxProps {
   label: string;
-  placeholder?: string;
-  question?: string;
   state: string;
   setState: React.Dispatch<React.SetStateAction<string>>;
   isSelectionModalOpened: boolean;
@@ -15,17 +13,8 @@ export interface ToggleInputBoxProps {
   isModalOpened: boolean;
 }
 
-export default function ToggleInputBox(props: ToggleInputBoxProps) {
-  const {
-    label,
-    placeholder,
-    question,
-    state,
-    setState,
-    isSelectionModalOpened,
-    setIsSelectionModalOpened,
-    isModalOpened,
-  } = props;
+export default function EditToggleInputBox(props: EditToggleInputBoxProps) {
+  const { label, state, setState, isSelectionModalOpened, setIsSelectionModalOpened, isModalOpened } = props;
 
   const closeRelationModal = (target: string) => {
     setIsSelectionModalOpened(false);
@@ -37,23 +26,22 @@ export default function ToggleInputBox(props: ToggleInputBoxProps) {
   };
 
   return (
-    <St.ToggleInputBox>
-      <ToggleInput
+    <St.EditToggleInputBox>
+      <EditToggleInput
         label={label}
-        placeholder={placeholder}
         value={state}
         openRelationModal={openRelationModal}
         isModalOpened={isModalOpened}
       />
       {isSelectionModalOpened ? (
-        <ToggleModal question={question} array={eduLevelList} closeRelationModal={closeRelationModal} />
+        <EditToggleModal array={eduLevelList} closeRelationModal={closeRelationModal} />
       ) : (
         <></>
       )}
-    </St.ToggleInputBox>
+    </St.EditToggleInputBox>
   );
 }
 
 const St = {
-  ToggleInputBox: styled.span``,
+  EditToggleInputBox: styled.span``,
 };

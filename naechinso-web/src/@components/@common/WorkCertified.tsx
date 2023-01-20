@@ -39,7 +39,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
     else setFileChecked(false);
   };
 
-  const postCertifiedData = async () => {
+  const patchCertifiedData = async () => {
     if (dir === "edu") await patchMemberEdu(patchData, localStorage.getItem("accessToken"));
     else if (dir === "job") await patchMemberJob(patchData, localStorage.getItem("accessToken"));
   };
@@ -107,7 +107,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
         nextPage={routePaths.Finish}
         title="완료"
         inputActive={!fileChecked}
-        handleState={postCertifiedData}
+        handleState={patchCertifiedData}
       />
     </St.WorkCertified>
   );
