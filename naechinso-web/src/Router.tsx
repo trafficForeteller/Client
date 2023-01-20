@@ -57,63 +57,75 @@ export default function Router() {
         />
         <Route
           path={routePaths.JobEdit}
-          element={token["accessToken"] ? <JobEditPage /> : <Navigate to="/" replace />}
+          element={localStorage.getItem("accessToken") ? <JobEditPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.EduEdit}
-          element={token["accessToken"] ? <EduEditPage /> : <Navigate to="/" replace />}
+          element={localStorage.getItem("accessToken") ? <EduEditPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.Pending}
-          element={token["accessToken"] ? <PendingPage /> : <Navigate to="/" replace />}
+          element={localStorage.getItem("accessToken") ? <PendingPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.RecommendLanding}
-          element={token["accessToken"] ? <RecommendLandingPage /> : <Navigate to="/" replace />}
+          element={localStorage.getItem("accessToken") ? <RecommendLandingPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.FriendInfo}
-          element={token["accessToken"] ? <FriendInfoPage /> : <Navigate to="/" replace />}
+          element={localStorage.getItem("accessToken") ? <FriendInfoPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.Keyword}
-          element={token["accessToken"] ? <KeywordPage /> : <Navigate to="/" replace />}
+          element={localStorage.getItem("accessToken") ? <KeywordPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.ChooseQuestion}
-          element={token["accessToken"] ? <ChooseQuestionPage /> : <Navigate to="/" replace />}
+          element={localStorage.getItem("accessToken") ? <ChooseQuestionPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.RecommenderInfo}
-          element={token["accessToken"] ? <RecommenderInfoPage /> : <Navigate to="/" replace />}
+          element={localStorage.getItem("accessToken") ? <RecommenderInfoPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.Recommend}
-          element={token["accessToken"] ? <RecommendPage /> : <Navigate to="/" replace />}
+          element={localStorage.getItem("accessToken") ? <RecommendPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.AppealDetail}
-          element={token["accessToken"] ? <AppealDetailPage /> : <Navigate to="/" replace />}
+          element={localStorage.getItem("accessToken") ? <AppealDetailPage /> : <Navigate to="/" replace />}
         />
-        <Route path={routePaths.DontGo} element={token["accessToken"] ? <DontGoPage /> : <Navigate to="/" replace />} />
+        <Route
+          path={routePaths.DontGo}
+          element={localStorage.getItem("accessToken") ? <DontGoPage /> : <Navigate to="/" replace />}
+        />
         <Route
           path={routePaths.ChooseWork}
-          element={token["accessToken"] ? <ChooseWorkPage /> : <Navigate to="/" replace />}
+          element={localStorage.getItem("accessToken") ? <ChooseWorkPage /> : <Navigate to="/" replace />}
         />
-        <Route path={routePaths.Job} element={token["accessToken"] ? <JobPage /> : <Navigate to="/" replace />} />
-        <Route path={routePaths.Edu} element={token["accessToken"] ? <EduPage /> : <Navigate to="/" replace />} />
+        <Route
+          path={routePaths.Job}
+          element={localStorage.getItem("accessToken") ? <JobPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.Edu}
+          element={localStorage.getItem("accessToken") ? <EduPage /> : <Navigate to="/" replace />}
+        />
         <Route
           path={routePaths.JobCertified}
-          element={token["accessToken"] ? <JobCertifiedPage /> : <Navigate to="/" replace />}
+          element={localStorage.getItem("accessToken") ? <JobCertifiedPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.EduCertified}
-          element={token["accessToken"] ? <EduCertifiedPage /> : <Navigate to="/" replace />}
+          element={localStorage.getItem("accessToken") ? <EduCertifiedPage /> : <Navigate to="/" replace />}
         />
-        <Route path={routePaths.Finish} element={token["accessToken"] ? <FinishPage /> : <Navigate to="/" replace />} />
+        <Route
+          path={routePaths.Finish}
+          element={localStorage.getItem("accessToken") ? <FinishPage /> : <Navigate to="/" replace />}
+        />
         <Route
           path={routePaths.RecommenderLanding}
-          element={token["accessToken"] ? <RecommenderLandingPage /> : <Navigate to="/" replace />}
+          element={localStorage.getItem("accessToken") ? <RecommenderLandingPage /> : <Navigate to="/" replace />}
         />
       </Routes>
     </BrowserRouter>
