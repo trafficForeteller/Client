@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export interface EditQuestionBoxProps {
   question: string;
-  desc1: string;
+  desc1?: string;
   desc2?: string;
 }
 
@@ -12,7 +12,7 @@ export default function EditQuestionBox(props: EditQuestionBoxProps) {
   return (
     <St.EditQuestionBox>
       <St.EditQuestion>{question}</St.EditQuestion>
-      <St.EditDesc>{desc1}</St.EditDesc>
+      {desc1 ? <St.EditDesc>{desc1}</St.EditDesc> : <></>}
       {desc2 ? <St.EditDesc>{desc2}</St.EditDesc> : <></>}
     </St.EditQuestionBox>
   );
@@ -23,6 +23,7 @@ const St = {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
+    padding-top: 3.6rem;
     padding-bottom: 1.4rem;
   `,
   EditQuestion: styled.h2`

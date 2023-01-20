@@ -2,11 +2,14 @@ import styled from "styled-components";
 
 import { ImgEditNaechinso } from "../../asset/image";
 import JoinHeader from "./JoinHeader";
+import MovePreviousPageBtn from "./MovePreviousPageBtn";
 import WarningBox from "./WarningBox";
 export default function EditHeader() {
   return (
     <St.EditHeader>
-      <JoinHeader />
+      <St.JoinHeader>
+        <MovePreviousPageBtn />
+      </St.JoinHeader>
       <St.HeaderWrapper>
         <St.Naechinso src={ImgEditNaechinso} alt="내친소" />
         <St.TitleWrapper>
@@ -23,6 +26,18 @@ export default function EditHeader() {
 }
 
 const St = {
+  JoinHeader: styled.article`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.2rem;
+
+    position: absolute;
+    width: 100%;
+    height: 5.6rem;
+    top: 0;
+    left: 0;
+  `,
   EditHeader: styled.header`
     padding: 7rem 2rem 3.2rem;
   `,

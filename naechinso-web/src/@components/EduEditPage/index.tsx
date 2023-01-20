@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { EditHeader } from "../@common";
 import EditImageBox from "../@common/EditImageBox";
+import EditInput from "../@common/EditInput";
 import EditQuestionBox from "../@common/EditQuestionBox";
 
 export default function EduEditPage() {
@@ -30,13 +31,15 @@ export default function EduEditPage() {
       <EditHeader />
       <St.EditBox>
         <St.EditWrapper>
-          <EditQuestionBox question="💼 재직 중인 회사정보를 적어줘!" desc1="프리랜서는 프리랜서라고 적어주면 돼" />
+          <EditQuestionBox question="🏤 졸업 또는 재학 중인 학교정보를 적어줘!" />
+          <EditInput label="학교명" value={eduName} desc={true} onChange={(e) => handleInput(e, setEduName)} />
+          <EditInput label="전공" value={eduMajor} onChange={(e) => handleInput(e, setEduMajor)} />
         </St.EditWrapper>
         <St.EditWrapper>
           <EditQuestionBox
-            question="✔️ 회사 인증을 해볼까?"
+            question="✔️ 학교 인증을 해볼까?"
             desc1="내친소는 신뢰 기반의 서비스라 인증이 필요해."
-            desc2="사원증, 명함 또는 사업자등록증을 첨부해줘!"
+            desc2="학생증, 재학증명서 또는 학교 포털 캡쳐를 첨부해줘!"
           />
           <EditImageBox image={eduImage} setImage={setEduImage} dir={eduGetData.type.toLowerCase()} />
         </St.EditWrapper>
@@ -48,7 +51,7 @@ export default function EduEditPage() {
 const St = {
   EduEditPage: styled.main``,
   EditBox: styled.section`
-    padding: 4rem 2rem 14rem;
+    padding: 0.2rem 2rem 14rem;
     background-color: ${({ theme }) => theme.colors.neural};
   `,
   EditWrapper: styled.article``,
