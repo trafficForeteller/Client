@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import { EditHeader } from "../@common";
+import EditImageBox from "../@common/EditImageBox";
 import EditQuestionBox from "../@common/EditQuestionBox";
 
 export default function EduEditPage() {
@@ -12,6 +13,9 @@ export default function EduEditPage() {
   const [eduLevel, setEduLevel] = useState(eduGetData.content.eduLevel);
   const [eduName, setEduName] = useState(eduGetData.content.eduName);
   const [eduMajor, setEduMajor] = useState(eduGetData.content.eduMajor);
+  const [eduImage, setEduImage] = useState(
+    `https://elasticbeanstalk-ap-northeast-2-381146100755.s3.ap-northeast-2.amazonaws.com/${eduGetData.content.eduImage}`,
+  );
 
   const handleInput = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -34,6 +38,7 @@ export default function EduEditPage() {
             desc1="내친소는 신뢰 기반의 서비스라 인증이 필요해."
             desc2="사원증, 명함 또는 사업자등록증을 첨부해줘!"
           />
+          <EditImageBox image={eduImage} setImage={setEduImage} dir={eduGetData.type.toLowerCase()} />
         </St.EditWrapper>
       </St.EditBox>
     </St.EduEditPage>
@@ -43,7 +48,7 @@ export default function EduEditPage() {
 const St = {
   EduEditPage: styled.main``,
   EditBox: styled.section`
-    padding: 4rem 2rem 0;
+    padding: 4rem 2rem 14rem;
     background-color: ${({ theme }) => theme.colors.neural};
   `,
   EditWrapper: styled.article``,

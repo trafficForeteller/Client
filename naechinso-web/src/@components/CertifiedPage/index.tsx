@@ -6,7 +6,6 @@ import { getPendingStatus } from "../../apis/pending.api";
 import { postSmsVerify } from "../../apis/sms.api";
 import { routePaths } from "../../core/routes/path";
 import { ITokenType } from "../../types/member";
-import { IGetPending } from "../../types/pending";
 import { IPostPhoneNumber, IPostVerifyPhoneNumber } from "../../types/sms";
 import { JoinHeader, MoveNextPageBtn, Title } from "../@common";
 import AuthenticationNumInput from "./AuthenticationNumInput";

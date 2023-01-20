@@ -9,6 +9,7 @@ export { ReactComponent as IcDontGo } from "./dontGo.svg";
 export { ReactComponent as IcKakaotalk } from "./kakaotalk.svg";
 export { ReactComponent as IcLandingLogo } from "./landingLogo.svg";
 export { ReactComponent as IcPlus } from "./plus.svg";
+export { ReactComponent as IcPlusWhite } from "./plusWhite.svg";
 export { ReactComponent as IcPreviousBtn } from "./previousBtn.svg";
 export { ReactComponent as IcRecommenderLanding } from "./recommenderLanding.svg";
 export { ReactComponent as IcRelationChecked } from "./relationChecked.svg";
