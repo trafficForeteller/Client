@@ -7,7 +7,7 @@ const PREFIX_URL = "/member";
 export const postMemberJoin = async (policyData: IPostPolicy, registerToken: string): Promise<void | null> => {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/join`, policyData, {
-      headers: { Authorization: `Bearer ${registerToken}`, "Content-Type": "application/json" },
+      headers: { Authorization: `${registerToken}`, "Content-Type": "application/json" },
     });
     if (data.status === 200) {
       return data.data;

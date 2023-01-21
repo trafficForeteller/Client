@@ -20,10 +20,6 @@ export default function AuthModal(props: AuthModalProps) {
   const { inputActive, count, setCount, resendAuthNum, closeModal, correctAuthNum, setInputBorder, token, setToken } =
     props;
 
-  useEffect(() => {
-    console.log(correctAuthNum);
-  }, [correctAuthNum]);
-
   return (
     <>
       {inputActive ? (
