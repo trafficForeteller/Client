@@ -87,7 +87,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
       setToken({ ...token, registerToken: userData["registerToken"], accessToken: userData["accessToken"] });
       setCorrectAuthNum(true);
       setInputBorder(false);
-    }
+    } else setCorrectAuthNum(false);
   };
 
   const isPendingStatus = async () => {

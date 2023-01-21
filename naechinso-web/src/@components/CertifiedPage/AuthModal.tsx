@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { ITokenType } from "../../types/member";
 import { Modal } from "../@common";
 import PolicyModal from "./PolicyModal";
@@ -18,6 +20,10 @@ export default function AuthModal(props: AuthModalProps) {
   const { inputActive, count, setCount, resendAuthNum, closeModal, correctAuthNum, setInputBorder, token, setToken } =
     props;
 
+  useEffect(() => {
+    console.log(correctAuthNum);
+  }, [correctAuthNum]);
+
   return (
     <>
       {inputActive ? (
@@ -30,7 +36,11 @@ export default function AuthModal(props: AuthModalProps) {
           resendAuthNum={resendAuthNum}
           closeModal={closeModal}
         />
-      ) : !correctAuthNum && token ? (
+      ) : token["registerToken"] !== "" && token["accessToken"] === "" ? (
+        <PolicyModal token={token} setToken={setToken} />
+      ) : correctAuthNum ? (
+        <></>
+      ) : (
         <Modal
           title="인증번호를 확인해줘"
           desc="잘못된 인증번호를 입력했어 인증번호를 다시 확인하고 입력해줘!"
@@ -39,12 +49,6 @@ export default function AuthModal(props: AuthModalProps) {
           setCount={setCount}
           setInputBorder={setInputBorder}
         />
-      ) : correctAuthNum && token["accessToken"] ? (
-        <></>
-      ) : token ? (
-        <PolicyModal token={token} setToken={setToken} />
-      ) : (
-        <></>
       )}
     </>
   );

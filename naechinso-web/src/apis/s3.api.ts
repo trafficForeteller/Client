@@ -7,17 +7,15 @@ export const postCertifiedImg = async (
   accessToken: string | null,
   dir: string,
 ): Promise<void | null> => {
-  const { data } = await serverAxios.post(`${PREFIX_URL}/image/${dir}`, formData, {
-    headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "multipart/form-data" },
-  });
   try {
+    const { data } = await serverAxios.post(`${PREFIX_URL}/image/${dir}`, formData, {
+      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "multipart/form-data" },
+    });
     if (data.status === 200) {
       return data.data;
     }
   } catch (err) {
-    if (data.status === 400) {
-      return data.message;
-    }
+    console.log(err);
     throw new Error("Failed to post image");
   }
 };

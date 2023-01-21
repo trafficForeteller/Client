@@ -5,15 +5,13 @@ import { serverAxios } from ".";
 const PREFIX_URL = "/pending";
 
 export const getPendingStatus = async (accessToken: string | null): Promise<IGetPending[]> => {
-  const { data } = await serverAxios.get(`${PREFIX_URL}`, {
-    headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
-  });
   try {
+    const { data } = await serverAxios.get(`${PREFIX_URL}`, {
+      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+    });
     return data.data;
   } catch (err) {
-    if (data.status === 400) {
-      return data.message;
-    }
+    console.log(err);
     throw new Error("Failed to get your pending status");
   }
 };
