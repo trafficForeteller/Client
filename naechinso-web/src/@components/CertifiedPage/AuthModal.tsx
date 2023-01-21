@@ -36,7 +36,7 @@ export default function AuthModal(props: AuthModalProps) {
           resendAuthNum={resendAuthNum}
           closeModal={closeModal}
         />
-      ) : token["registerToken"] !== "" && token["accessToken"] === "" ? (
+      ) : token["registerToken"] && token["accessToken"] === "" ? (
         <PolicyModal token={token} setToken={setToken} />
       ) : correctAuthNum ? (
         <></>
