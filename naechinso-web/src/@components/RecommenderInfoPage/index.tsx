@@ -100,10 +100,10 @@ const St = {
 
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.4rem;
     width: 16rem;
     height: 6.2rem;
-    padding: 1.6rem 4.8rem;
 
     color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.gray40)};
     ${({ theme }) => theme.fonts.sub2}

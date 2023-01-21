@@ -166,7 +166,6 @@ const St = {
     align-items: center;
     margin-top: 1rem;
     position: relative;
-    z-index: ${({ inputActive }) => (inputActive ? "" : "-1")};
   `,
   ResendMessage: styled.span`
     color: ${({ theme }) => theme.colors.error};

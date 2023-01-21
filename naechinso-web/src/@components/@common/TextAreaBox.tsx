@@ -42,7 +42,7 @@ const St = {
   `,
   TextAreaWrapper: styled.article<{ height: number }>`
     width: 100%;
-    min-height: ${({ height }) => height}rem;
+    height: ${({ height }) => height}rem;
     max-height: auto;
     margin: 0 auto;
     display: flex;
