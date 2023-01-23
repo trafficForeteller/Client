@@ -42,7 +42,6 @@ const St = {
     height: 11rem;
 
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%);
-    z-index: ${({ inputActive }) => (inputActive ? "-1" : "")};
   `,
   Button: styled.button`
     bottom: 3.5rem;
