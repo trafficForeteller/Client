@@ -29,7 +29,7 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
   }, [authNum]);
 
   return (
-    <St.AuthenticationNumInputBox inputborder={inputborder}>
+    <St.AuthenticationNumInputBox inputborder={inputborder} inputActive={inputActive}>
       <St.LabelWrapper>
         <St.Label inputActive={inputActive} inputborder={inputborder}>
           인증번호
@@ -57,13 +57,15 @@ export default function AuthenticationNumInput(props: AuthenticationNumProps) {
 }
 
 const St = {
-  AuthenticationNumInputBox: styled.section<{ inputborder: boolean }>`
+  AuthenticationNumInputBox: styled.section<{ inputborder: boolean; inputActive: boolean }>`
     width: 100%;
     height: 8rem;
     border: 1px solid ${({ theme, inputborder }) => (inputborder ? theme.colors.error : "transparent")};
     border-radius: 1.6rem;
     background-color: ${({ theme }) => theme.colors.neural};
     padding: 1rem 2rem 1.6rem;
+
+    z-index: ${({ inputActive }) => (inputActive ? "" : "-1")};
   `,
   LabelWrapper: styled.article`
     display: flex;

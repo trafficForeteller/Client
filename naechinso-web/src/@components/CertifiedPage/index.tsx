@@ -83,7 +83,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const verifyAuthNum = async (postAuthNum: IPostVerifyPhoneNumber) => {
     // 인증번호 확인 서버에 POST
     const userData = await postSmsVerify(postAuthNum);
-
+    console.log(userData);
     if (userData) {
       setToken({ ...token, registerToken: userData["registerToken"], accessToken: userData["accessToken"] });
       setCorrectAuthNum(true);
@@ -124,7 +124,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           handleAuthNum={handleAuthNum}
           checkAuthNumLength={checkAuthNumLength}
         />
-        <ResendAuthNumBtn resendAuthNum={resendAuthNum} />
+        <ResendAuthNumBtn resendAuthNum={resendAuthNum} inputActive={inputActive} />
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
       </St.AuthNumWrapper>
       <MoveNextPageBtn nextPage={routePaths.FriendInfo} title="완료" inputActive={inputActive} />

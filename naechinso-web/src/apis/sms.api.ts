@@ -27,7 +27,6 @@ export const postSmsVerify = async (authNumberData: IPostVerifyPhoneNumber): Pro
       return data.data;
     }
   } catch (err) {
-    console.log(err);
-    throw new Error("Failed to verify Authentication number to your phone number");
+    return err as any;
   }
 };
