@@ -98,6 +98,7 @@ export const GlobalStyle = createGlobalStyle`
     appearance: none;
     padding: 0;
     caret-color: "#FF7A00";
+    font-family: "Pretendard";
     
     &:focus {
       outline: none;
