@@ -11,11 +11,26 @@ export default function ChooseQuestionPage() {
   const [checkedQuestion, setCheckedQuestion] = useState<questionProps>();
 
   useEffect(() => {
+    // 새로고침 시 이전에 local에 저장된 friendInfo 초기값으로 세팅
+    const questionListOfLocal = localStorage.getItem("questionList") as string;
+    const questionList = JSON.parse(questionListOfLocal);
+    if (questionList) {
+      setQuestionArr(questionList);
+      const checkedQOfLocal = localStorage.getItem("checkedQ") as string;
+      const checkedQ = JSON.parse(checkedQOfLocal);
+      if (checkedQ) {
+        setCheckedQuestion(checkedQ);
+      }
+      setNextBtnActive(true);
+    }
+  }, []);
+
+  useEffect(() => {
     chooseQuestion();
   }, [questionArr]);
 
   const toggleCheck = (idx: number) => {
-    // 항목별 체크
+    // 질문 체크
     const newQuestionArr = questionList.map((q, index) => {
       if (idx === index) {
         q.checked = !q.checked;
@@ -30,6 +45,11 @@ export default function ChooseQuestionPage() {
     // 하나라도 checked true면 버튼 활성화
     const isQuestionChecked = (item: { checked: boolean }) => item.checked === true;
     setNextBtnActive(questionArr.some(isQuestionChecked));
+  };
+
+  const saveCheckedQuestion = () => {
+    localStorage.setItem("checkedQ", JSON.stringify(checkedQuestion));
+    localStorage.setItem("questionList", JSON.stringify(questionArr));
   };
 
   return (
@@ -57,6 +77,7 @@ export default function ChooseQuestionPage() {
         title="다음"
         inputActive={!nextBtnActive}
         state={checkedQuestion}
+        handleState={saveCheckedQuestion}
       />
     </St.ChooseQuestion>
   );
