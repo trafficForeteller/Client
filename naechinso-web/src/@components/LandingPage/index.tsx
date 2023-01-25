@@ -12,6 +12,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     location.pathname !== "/" && localStorage.setItem("member-uuid", location.pathname);
+    window.localStorage.clear();
   }, [location]);
 
   return (

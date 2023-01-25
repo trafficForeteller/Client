@@ -80,7 +80,7 @@ export default function PolicyModal(props: PolicyModalProps) {
     //  내친소 시작하기 클릭 시 체크한 이용약관 POST
     const userData = await postMemberJoin(postPolicyList, token["registerToken"]);
     userData && localStorage.setItem("accessToken", userData["accessToken"]);
-    userData && setToken(userData);
+    userData && setToken({ accessToken: userData["accessToken"] });
   };
 
   return (
