@@ -41,7 +41,6 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   }, [postAuthNum]);
 
   useEffect(() => {
-    console.log(token);
     if (token["accessToken"]) {
       localStorage.setItem("accessToken", token["accessToken"]);
       isPendingStatus();
@@ -83,7 +82,6 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const verifyAuthNum = async (postAuthNum: IPostVerifyPhoneNumber) => {
     // 인증번호 확인 서버에 POST
     const userData = await postSmsVerify(postAuthNum);
-    console.log(userData && userData.status);
     if (userData) {
       if (userData.status === 200) {
         setToken({
@@ -102,7 +100,6 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const isPendingStatus = async () => {
     // 펜딩 상태 서버에서 GET해서 확인
     const userData = await getPendingStatus(localStorage.getItem("accessToken"));
-    console.log(userData);
     if (userData) {
       if (!userData[0]) navigate(`${routePaths.RecommendLanding}`);
       else if (userData[0].type === "JOB") {

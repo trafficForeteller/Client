@@ -14,7 +14,6 @@ export default function KeywordPage() {
     if (checkedAppeals.length === 3) setActiveNextBtn(true);
     else setActiveNextBtn(false);
     localStorage.setItem("appeals", JSON.stringify(checkedAppeals));
-    console.log(localStorage.getItem("appeals"));
   }, [checkedAppeals]);
 
   const toggleChecked = (el: keywordProps) => {
