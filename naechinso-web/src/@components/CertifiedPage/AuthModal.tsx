@@ -36,6 +36,8 @@ export default function AuthModal(props: AuthModalProps) {
         <PolicyModal token={token} setToken={setToken} />
       ) : token["accessToken"] ? (
         <></>
+      ) : correctAuthNum ? (
+        <></>
       ) : (
         <Modal
           title="인증번호를 확인해줘"

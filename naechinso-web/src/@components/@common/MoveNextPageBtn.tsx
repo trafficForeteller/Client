@@ -20,7 +20,7 @@ export default function MoveNextPageBtn(props: NextPageBtnProps) {
   };
 
   return (
-    <St.ButtonWrapper inputActive={inputActive}>
+    <St.ButtonWrapper>
       <St.Button onClick={goNextPage} disabled={inputActive} type="button">
         {title}
       </St.Button>
@@ -29,7 +29,7 @@ export default function MoveNextPageBtn(props: NextPageBtnProps) {
 }
 
 const St = {
-  ButtonWrapper: styled.section<{ inputActive: boolean }>`
+  ButtonWrapper: styled.section`
     display: flex;
     justify-content: center;
     width: 100%;

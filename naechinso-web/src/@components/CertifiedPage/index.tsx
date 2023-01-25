@@ -6,8 +6,8 @@ import { getPendingStatus } from "../../apis/pending.api";
 import { postSmsVerify } from "../../apis/sms.api";
 import { routePaths } from "../../core/routes/path";
 import { ITokenType } from "../../types/member";
-import { IPostPhoneNumber, IPostVerifyPhoneNumber } from "../../types/sms";
-import { JoinHeader, MoveNextPageBtn, Title } from "../@common";
+import { IPostPhoneNumber, IPostVerifyPhoneNumber, IToken } from "../../types/sms";
+import { JoinHeader, Title } from "../@common";
 import AuthenticationNumInput from "./AuthenticationNumInput";
 import AuthModal from "./AuthModal";
 import ResendAuthNumBtn from "./ResendAuthNumBtn";
@@ -26,7 +26,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const [count, setCount] = useState(180);
   const [authNum, setAuthNum] = useState("");
   const [resendMessage, setResendMessage] = useState("");
-  const [correctAuthNum, setCorrectAuthNum] = useState(false);
+  const [correctAuthNum, setCorrectAuthNum] = useState(true);
   const [inputborder, setInputBorder] = useState(false);
 
   const [postAuthNum, setPostAuthNum] = useState<IPostVerifyPhoneNumber>({
@@ -74,23 +74,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
 
   const verifyAuthNum = async (postAuthNum: IPostVerifyPhoneNumber) => {
     // 인증번호 확인 서버에 POST
-    const userData = await postSmsVerify(postAuthNum);
-
-    if (userData) {
-      if (userData.status === 200) {
-        setToken({
-          ...token,
-          registerToken: userData.data.registerToken,
-          accessToken: userData.data.accessToken,
-        });
-        setCorrectAuthNum(true);
-        setInputBorder(false);
-        userData.data.accessToken && localStorage.setItem("accessToken", userData.data.accessToken);
-        isPendingStatus();
-      }
-    } else {
-      setCorrectAuthNum(false);
-    }
+    await postSmsVerify(postAuthNum, handleSuccessPostSmsVerify, handleFailPostSmsVerify);
   };
 
   const isPendingStatus = async () => {
@@ -104,6 +88,23 @@ export default function CertifiedPage(props: CertifiedPageProps) {
         return navigate(`${routePaths.EduEdit}`, { state: userData[0] });
       } else if (userData[0].type === "REC") return navigate(`${routePaths.Pending}`);
     }
+  };
+
+  const handleSuccessPostSmsVerify = (userData: IToken) => {
+    setToken({
+      ...token,
+      registerToken: userData.registerToken,
+      accessToken: userData.accessToken,
+    });
+    setCorrectAuthNum(true);
+    setInputBorder(false);
+    userData.accessToken && localStorage.setItem("accessToken", userData.accessToken);
+    isPendingStatus();
+  };
+
+  const handleFailPostSmsVerify = (errorMessage: string) => {
+    setCorrectAuthNum(false);
+    console.log(errorMessage);
   };
 
   return (
@@ -128,7 +129,12 @@ export default function CertifiedPage(props: CertifiedPageProps) {
         <ResendAuthNumBtn resendAuthNum={resendAuthNum} inputActive={inputActive} />
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
       </St.AuthNumWrapper>
-      <MoveNextPageBtn nextPage={routePaths.FriendInfo} title="완료" inputActive={inputActive} />
+
+      <St.ButtonWrapper inputActive={inputActive}>
+        <St.Button onClick={() => navigate(routePaths.FriendInfo)} disabled={inputActive} type="button">
+          완료
+        </St.Button>
+      </St.ButtonWrapper>
 
       <AuthModal
         inputActive={inputActive}
@@ -172,5 +178,34 @@ const St = {
     color: ${({ theme }) => theme.colors.error};
     ${({ theme }) => theme.fonts.caption1};
     margin-top: 0.8rem;
+  `,
+  ButtonWrapper: styled.section<{ inputActive: boolean }>`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: fixed;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+    height: 11rem;
+
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%);
+    z-index: ${({ inputActive }) => (inputActive ? "" : "-1")};
+  `,
+  Button: styled.button`
+    bottom: 3.5rem;
+    background-color: ${({ theme }) => theme.colors.orange};
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+    width: 33.5rem;
+    height: 5.6rem;
+    border-radius: 1.6rem;
+
+    &:disabled {
+      background-color: ${({ theme }) => theme.colors.orange20};
+      cursor: default;
+    }
   `,
 };
