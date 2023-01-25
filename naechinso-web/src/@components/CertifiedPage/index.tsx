@@ -83,12 +83,20 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const verifyAuthNum = async (postAuthNum: IPostVerifyPhoneNumber) => {
     // 인증번호 확인 서버에 POST
     const userData = await postSmsVerify(postAuthNum);
-    console.log(userData);
+    console.log(userData && userData.status);
     if (userData) {
-      setToken({ ...token, registerToken: userData["registerToken"], accessToken: userData["accessToken"] });
-      setCorrectAuthNum(true);
-      setInputBorder(false);
-    } else setCorrectAuthNum(false);
+      if (userData.status === 200) {
+        setToken({
+          ...token,
+          registerToken: userData.data["registerToken"],
+          accessToken: userData.data["accessToken"],
+        });
+        setCorrectAuthNum(true);
+        setInputBorder(false);
+      }
+    } else {
+      setCorrectAuthNum(false);
+    }
   };
 
   const isPendingStatus = async () => {

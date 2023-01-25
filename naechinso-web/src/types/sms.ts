@@ -8,6 +8,11 @@ export interface IPostVerifyPhoneNumber {
 }
 
 export interface IToken {
-  registerToken: "";
-  accessToken: "";
+  registerToken?: "";
+  accessToken?: "";
+}
+
+export interface IUserDataType {
+  status: number;
+  data: IToken;
 }

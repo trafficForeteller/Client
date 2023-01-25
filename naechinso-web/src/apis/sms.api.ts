@@ -1,5 +1,7 @@
 // eslint-disable-next-line
-import { IPostPhoneNumber, IPostVerifyPhoneNumber } from "../types/sms";
+import { AxiosError } from "axios";
+import { IPostPhoneNumber, IPostVerifyPhoneNumber, IUserDataType } from "../types/sms";
+
 import { serverAxios } from "./index";
 
 const PREFIX_URL = "/sms";
@@ -18,15 +20,21 @@ export const postSmsSend = async (phoneNumberData: IPostPhoneNumber): Promise<vo
   }
 };
 
-export const postSmsVerify = async (authNumberData: IPostVerifyPhoneNumber): Promise<void | null> => {
+export const postSmsVerify = async (
+  authNumberData: IPostVerifyPhoneNumber,
+): Promise<IUserDataType | null | undefined> => {
+  const { data } = await serverAxios.post(`${PREFIX_URL}/verify`, authNumberData, {
+    headers: { "Content-Type": "application/json" },
+  });
   try {
-    const { data } = await serverAxios.post(`${PREFIX_URL}/verify`, authNumberData, {
-      headers: { "Content-Type": "application/json" },
-    });
     if (data.status === 200) {
-      return data.data;
+      return data;
     }
   } catch (err) {
-    return err as any;
+    const { response } = err as unknown as AxiosError;
+    if (response) {
+      throw { status: response.status, data: response.data };
+    }
+    return response;
   }
 };

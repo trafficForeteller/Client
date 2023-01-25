@@ -7,8 +7,8 @@ export interface IPostPolicy {
 }
 
 export interface ITokenType {
-  registerToken: string;
-  accessToken: string;
+  registerToken?: string;
+  accessToken?: string;
 }
 
 export interface IPostRecommender {

@@ -4,7 +4,10 @@ import { serverAxios } from ".";
 
 const PREFIX_URL = "/member";
 
-export const postMemberJoin = async (policyData: IPostPolicy, registerToken: string): Promise<void | null> => {
+export const postMemberJoin = async (
+  policyData: IPostPolicy,
+  registerToken: string | undefined,
+): Promise<void | null> => {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/join`, policyData, {
       headers: { Authorization: `${registerToken}`, "Content-Type": "application/json" },
