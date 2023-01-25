@@ -10,13 +10,24 @@ export default function AppealDetailPage() {
   const [textCheck, setTextCheck] = useState(false);
 
   useEffect(() => {
+    if (localStorage.getItem("appealDetail")) {
+      const appealDetail = localStorage.getItem("appealDetail") as string;
+      setText(appealDetail);
+      setTextCheck(true);
+    }
+  }, []);
+
+  useEffect(() => {
     handleTextCheck();
-    localStorage.setItem("appealDetail", text);
   }, [text]);
 
   const handleTextCheck = () => {
     if (text.length > 19) setTextCheck(true);
     else setTextCheck(false);
+  };
+
+  const saveTextInLocal = () => {
+    localStorage.setItem("appealDetail", text);
   };
 
   return (
@@ -38,7 +49,12 @@ export default function AppealDetailPage() {
         />
       </St.TextWrapper>
 
-      <MoveNextPageBtn nextPage={routePaths.DontGo} title="완료" inputActive={!textCheck} />
+      <MoveNextPageBtn
+        nextPage={routePaths.DontGo}
+        title="완료"
+        inputActive={!textCheck}
+        handleState={saveTextInLocal}
+      />
     </St.AppealDetail>
   );
 }

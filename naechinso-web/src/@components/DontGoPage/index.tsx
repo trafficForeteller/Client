@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import { patchRecommendFriendDetail } from "../../apis/recommend.api";
 import { IcDontGo } from "../../asset/icons";
-import { ImgDontGo } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { IPatchFriendDetail } from "../../types/recommend";
 import { FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
@@ -16,6 +15,14 @@ export default function DontGoPage() {
     appeals: [],
     dontGo: "",
   });
+
+  useEffect(() => {
+    if (localStorage.getItem("dontGo")) {
+      const dontGo = localStorage.getItem("dontGo") as string;
+      setText(dontGo);
+      setTextCheck(true);
+    }
+  }, []);
 
   useEffect(() => {
     handleTextCheck();
