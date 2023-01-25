@@ -4,10 +4,10 @@ import { serverAxios } from ".";
 
 const PREFIX_URL = "/recommend";
 
-export const postRecommendFriendInfo = async (
+export async function postRecommendFriendInfo(
   friendsInfo: IPostFriendInfo,
   accessToken: string | null,
-): Promise<void | null> => {
+): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/request-uuid`, friendsInfo, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
@@ -19,13 +19,13 @@ export const postRecommendFriendInfo = async (
     console.log(err);
     throw new Error("Failed to post your recommend");
   }
-};
+}
 
-export const postMagicRecommendFriendInfo = async (
+export async function postMagicRecommendFriendInfo(
   friendsInfo: IPostFriendInfo,
   accessToken: string | null,
   memberUuid: string | null,
-): Promise<void | null> => {
+): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/request-uuid${memberUuid}`, friendsInfo, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
@@ -37,12 +37,13 @@ export const postMagicRecommendFriendInfo = async (
     console.log(err);
     throw new Error("Failed to post your recommend");
   }
-};
-export const patchRecommendFriendDetail = async (
+}
+
+export async function patchRecommendFriendDetail(
   friendDetail: IPatchFriendDetail,
   accessToken: string | null,
   uuid: string | null,
-): Promise<void | null> => {
+): Promise<void | null> {
   try {
     const { data } = await serverAxios.patch(`${PREFIX_URL}/${uuid}/accept`, friendDetail, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
@@ -54,13 +55,13 @@ export const patchRecommendFriendDetail = async (
     console.log(err);
     throw new Error("Failed to patch detail recommend of your friend");
   }
-};
+}
 
-export const postRecommendation = async (
+export async function postRecommendation(
   recommend: IPostRecommend,
   accessToken: string | null,
   uuid: string | null,
-): Promise<void | null> => {
+): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/question/${uuid}`, recommend, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
@@ -72,4 +73,4 @@ export const postRecommendation = async (
     console.log(err);
     throw new Error("Failed to post your recommend");
   }
-};
+}

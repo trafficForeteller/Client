@@ -4,7 +4,7 @@ import { serverAxios } from ".";
 
 const PREFIX_URL = "/pending";
 
-export const getPendingStatus = async (accessToken: string | null): Promise<IGetPending[] | []> => {
+export async function getPendingStatus(accessToken: string | null): Promise<IGetPending[] | []> {
   try {
     const { data } = await serverAxios.get(`${PREFIX_URL}`, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
@@ -14,4 +14,4 @@ export const getPendingStatus = async (accessToken: string | null): Promise<IGet
     console.log(err);
     throw new Error("Failed to get your pending status");
   }
-};
+}

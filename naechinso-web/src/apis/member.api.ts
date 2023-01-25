@@ -4,10 +4,7 @@ import { serverAxios } from ".";
 
 const PREFIX_URL = "/member";
 
-export const postMemberJoin = async (
-  policyData: IPostPolicy,
-  registerToken: string | undefined,
-): Promise<void | null> => {
+export async function postMemberJoin(policyData: IPostPolicy, registerToken: string | undefined): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/join`, policyData, {
       headers: { Authorization: `${registerToken}`, "Content-Type": "application/json" },
@@ -19,12 +16,12 @@ export const postMemberJoin = async (
     console.log(err);
     throw new Error("Failed to verify your Authentication number or your phone number");
   }
-};
+}
 
-export const postMemberJoinRecommender = async (
+export async function postMemberJoinRecommender(
   recommenderData: IPostRecommender,
   accessToken: string | null,
-): Promise<void | null> => {
+): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/join/recommender`, recommenderData, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
@@ -36,9 +33,9 @@ export const postMemberJoinRecommender = async (
     console.log(err);
     throw new Error("Failed to post recommender Data");
   }
-};
+}
 
-export const patchMemberEdu = async (eduData: object, accessToken: string | null): Promise<void | null> => {
+export async function patchMemberEdu(eduData: object, accessToken: string | null): Promise<void | null> {
   try {
     const { data } = await serverAxios.patch(`${PREFIX_URL}/edu`, eduData, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
@@ -50,9 +47,9 @@ export const patchMemberEdu = async (eduData: object, accessToken: string | null
     console.log(err);
     throw new Error("Failed to post edu Data");
   }
-};
+}
 
-export const patchMemberJob = async (jobData: object, accessToken: string | null): Promise<void | null> => {
+export async function patchMemberJob(jobData: object, accessToken: string | null): Promise<void | null> {
   try {
     const { data } = await serverAxios.patch(`${PREFIX_URL}/job`, jobData, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
@@ -64,4 +61,4 @@ export const patchMemberJob = async (jobData: object, accessToken: string | null
     console.log(err);
     throw new Error("Failed to post job Data");
   }
-};
+}

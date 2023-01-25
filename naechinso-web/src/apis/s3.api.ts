@@ -2,11 +2,11 @@ import { serverAxios } from ".";
 
 const PREFIX_URL = "/s3";
 
-export const postCertifiedImg = async (
+export async function postCertifiedImg(
   formData: FormData,
   accessToken: string | null,
   dir: string,
-): Promise<void | null> => {
+): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/image/${dir}`, formData, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "multipart/form-data" },
@@ -18,4 +18,4 @@ export const postCertifiedImg = async (
     console.log(err);
     throw new Error("Failed to post image");
   }
-};
+}
