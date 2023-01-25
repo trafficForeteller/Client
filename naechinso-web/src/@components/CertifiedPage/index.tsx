@@ -45,6 +45,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     setInputActive(true);
     setCount(180);
     setAuthNum("");
+    setCorrectAuthNum(true);
   };
 
   const resendAuthNum = () => {
