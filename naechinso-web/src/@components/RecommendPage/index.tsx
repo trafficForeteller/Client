@@ -22,6 +22,12 @@ export default function RecommendPage() {
   useEffect(() => {
     if (questionData.desc1 === "") setIsThreeLine(false);
     else setIsThreeLine(true);
+
+    if (localStorage.getItem("recommendAnswer")) {
+      const recommendAnswer = localStorage.getItem("recommendAnswer") as string;
+      setText(recommendAnswer);
+      setTextCheck(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -34,11 +40,11 @@ export default function RecommendPage() {
     // 추천사 POST
     navigate(`${routePaths.AppealDetail}`);
     await postRecommendation(postRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
-    saveCheckedAppealsInLocal();
+    saveTextInLocal();
   };
 
-  const saveCheckedAppealsInLocal = () => {
-    localStorage.setItem("recommendAnswer", JSON.stringify(postRecommend.recommendAnswer));
+  const saveTextInLocal = () => {
+    localStorage.setItem("recommendAnswer", text);
   };
 
   return (

@@ -20,8 +20,8 @@ export default function ChooseQuestionPage() {
       const checkedQ = JSON.parse(checkedQOfLocal);
       if (checkedQ) {
         setCheckedQuestion(checkedQ);
+        setNextBtnActive(true);
       }
-      setNextBtnActive(true);
     }
   }, []);
 
