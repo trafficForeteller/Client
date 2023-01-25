@@ -7,26 +7,40 @@ import { IEduType } from "../../types/member";
 import { FixedHeader, ShortInputBox, ToggleInputBox } from "../@common";
 export default function EduPage() {
   const [step, setStep] = useState(1);
-  const [edu, setEdu] = useState<IEduType>({
-    eduName: "",
-    eduLevel: "",
-    eduMajor: "",
-  });
-
   const [eduLevel, setEduLevel] = useState("");
   const [eduName, setEduName] = useState("");
   const [eduMajor, setEduMajor] = useState("");
-
   const [isSelectionModalOpened, setIsSelectionModalOpened] = useState(false);
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [activeBtn, setActiveBtn] = useState(false);
 
   const navigate = useNavigate();
 
+  const [edu, setEdu] = useState<IEduType>({
+    eduName: "",
+    eduLevel: "",
+    eduMajor: "",
+  });
+
+  useEffect(() => {
+    // 새로고침 시 이전에 local에 저장된 eduInfo 초기값으로 세팅
+    const eduInfoOfLocal = localStorage.getItem("eduInfo") as string;
+    const eduInfo = JSON.parse(eduInfoOfLocal);
+    if (eduInfo) {
+      setStep(3);
+      setEduName(eduInfo.eduName);
+      setEduMajor(eduInfo.eduMajor);
+      setEduLevel(eduInfo.eduLevel);
+      setEdu({ eduName: eduInfo.eduName, eduLevel: eduInfo.eduLevel, eduMajor: eduInfo.eduMajor });
+      setActiveBtn(true);
+    }
+  }, []);
+
   useEffect(() => {
     // step 4일 때 페이지 이동
     window.scrollTo(0, 0);
     if (step === 4) {
+      saveEduInfoInLocal();
       navigate(`${routePaths.EduCertified}`, { state: edu });
     }
   }, [step]);
@@ -66,6 +80,11 @@ export default function EduPage() {
     });
     setStep(step + 1);
     setActiveBtn(false);
+  };
+
+  const saveEduInfoInLocal = () => {
+    // 로컬스토리지에 저장
+    localStorage.setItem("eduInfo", JSON.stringify(edu));
   };
 
   return (

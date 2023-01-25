@@ -19,9 +19,21 @@ export default function JobPage() {
   });
 
   useEffect(() => {
+    // 새로고침 시 이전에 local에 저장된 jobInfo 초기값으로 세팅
+    const jobInfoOfLocal = localStorage.getItem("jobInfo") as string;
+    const jobInfo = JSON.parse(jobInfoOfLocal);
+    if (jobInfo) {
+      setStep(2);
+      setJob({ ...job, jobName: jobInfo.jobName, jobPart: jobInfo.jobPart });
+      setActiveBtn(true);
+    }
+  }, []);
+
+  useEffect(() => {
     // step에 따라 페이지 이동
     window.scrollTo(0, 0);
     if (step === 3) {
+      saveJobInfoInLocal();
       navigate(`${routePaths.JobCertified}`, { state: job });
     }
   }, [step]);
@@ -47,6 +59,11 @@ export default function JobPage() {
     // 친구정보 step을 관리하는 함수
     setStep(step + 1);
     setActiveBtn(false);
+  };
+
+  const saveJobInfoInLocal = () => {
+    // 로컬스토리지에 저장
+    localStorage.setItem("jobInfo", JSON.stringify(job));
   };
 
   return (
