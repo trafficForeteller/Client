@@ -40,6 +40,46 @@ export default function FriendInfoPage() {
   });
 
   useEffect(() => {
+    // 새로고침 시 이전에 local에 저장된 friendInfo 초기값으로 세팅
+    const friendInfoOfLocal = localStorage.getItem("friendInfo") as string;
+    const friendInfo = JSON.parse(friendInfoOfLocal);
+
+    if (friendInfo) {
+      setName(friendInfo.name);
+      setRelationDuration(friendInfo.period);
+      friendInfo.phone && setPhoneNum(friendInfo.phone.replace("010", "").replace(/^(\d{3,4})(\d{4})$/g, "$1 $2"));
+
+      const periodOfLocal = friendInfo.period as string;
+      switch (periodOfLocal) {
+        case "친족" || "초/중/고 친구" || "대학교 친구" || "회사친구":
+          setRelationType(friendInfo.meet);
+          break;
+        default:
+          setRelationType("기타");
+          setRelationEtc(friendInfo.meet);
+          break;
+      }
+
+      if (friendInfo.phone) {
+        // friendInfo.phone 여부 확인해 step과 postPhoneNum에 다른 값 넣어주기
+        setStep(4);
+        const postPhoneNum =
+          "010" +
+          friendInfo.phone
+            .replace("010", "")
+            .replace(/^(\d{3,4})(\d{4})$/g, "$1 $2")
+            .replace(/ /g, "");
+        setPostPhoneNum && setPostPhoneNum({ phoneNumber: postPhoneNum });
+        setPostFriendInfo(friendInfo);
+      } else if (friendInfo && !friendInfo.phone) {
+        setStep(3);
+        setPostMagicFriendInfo(friendInfo);
+      }
+      setActiveBtn(true);
+    }
+  }, []);
+
+  useEffect(() => {
     checkIsModalOpened();
   }, [isTypeModalOpened, isDurationModalOpened]);
 
@@ -57,6 +97,11 @@ export default function FriendInfoPage() {
     }
   }, [step]);
 
+  const saveFriendInfoInLocal = (friendInfo: IPostFriendInfo) => {
+    // 로컬스토리지에 저장
+    localStorage.setItem("friendInfo", JSON.stringify(friendInfo));
+  };
+
   const handleMagicFriendInfo = async () => {
     // 매직링크 가진 친구의 기본정보 POST
     const userData = await postMagicRecommendFriendInfo(
@@ -65,12 +110,15 @@ export default function FriendInfoPage() {
       localStorage.getItem("member-uuid"),
     );
     userData && localStorage.setItem("uuid", userData["uuid"]);
+    saveFriendInfoInLocal(postMagicFriendInfo);
   };
 
   const handleFriendInfo = async () => {
     // 친구의 기본정보 POST
+    console.log(postFriendInfo);
     const userData = await postRecommendFriendInfo(postFriendInfo, localStorage.getItem("accessToken"));
     userData && localStorage.setItem("uuid", userData["uuid"]);
+    saveFriendInfoInLocal(postFriendInfo);
   };
 
   useEffect(() => {
@@ -78,7 +126,7 @@ export default function FriendInfoPage() {
     if (step === 1 && name.length >= 2) setActiveBtn(true);
     else if (step === 2 && name.length >= 2 && relationType) setActiveBtn(true);
     else if (step === 3 && name.length >= 2 && relationType && relationDuration) setActiveBtn(true);
-    else setActiveBtn(false);
+    // else setActiveBtn(false);
   }, [name, relationType, relationDuration]);
 
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -135,8 +183,8 @@ export default function FriendInfoPage() {
 
       {step >= 3 ? (
         <RelationDurationInput
-          label="관계"
-          placeholder="어떤 관계인지 선택해줘"
+          label="알고 지낸 기간"
+          placeholder="알고 지낸 기간을 선택해줘"
           question="친구와 어떤 관계야?"
           step={step}
           relationDuration={relationDuration}
