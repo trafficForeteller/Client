@@ -7,7 +7,7 @@ export interface NextPageBtnProps {
   title: string;
   inputActive: boolean;
   state?: questionProps;
-  handleState?: () => Promise<void>;
+  handleState?: () => Promise<void> | void;
 }
 
 export default function MoveNextPageBtn(props: NextPageBtnProps) {

@@ -11,9 +11,24 @@ export default function KeywordPage() {
   const [checkedAppeals, setCheckedAppeals] = useState<string[]>([]);
 
   useEffect(() => {
+    // 새로고침 시 이전에 local에 저장된 friendInfo 초기값으로 세팅
+    const keywordListOfLocal = localStorage.getItem("keywordList") as string;
+    const keywordList = JSON.parse(keywordListOfLocal);
+    if (keywordList) {
+      setKeywordArr(keywordList);
+      const appealsOfLocal = localStorage.getItem("appeals") as string;
+      const appeals = JSON.parse(appealsOfLocal);
+      if (appeals) {
+        setCheckedAppeals(appeals);
+        setActiveNextBtn(true);
+      }
+      console.log(appeals);
+    }
+  }, []);
+
+  useEffect(() => {
     if (checkedAppeals.length === 3) setActiveNextBtn(true);
     else setActiveNextBtn(false);
-    localStorage.setItem("appeals", JSON.stringify(checkedAppeals));
   }, [checkedAppeals]);
 
   const toggleChecked = (el: keywordProps) => {
@@ -35,6 +50,11 @@ export default function KeywordPage() {
     else setCheckedAppeals(checkedAppeals.filter((appeal) => appeal !== el.keyword));
   };
 
+  const saveCheckedAppealsInLocal = () => {
+    localStorage.setItem("appeals", JSON.stringify(checkedAppeals));
+    localStorage.setItem("keywordList", JSON.stringify(keywordArr));
+  };
+
   return (
     <St.KeywordPage>
       <FixedHeader
@@ -54,7 +74,12 @@ export default function KeywordPage() {
         })}
       </St.KeywordListWrapper>
 
-      <MoveNextPageBtn nextPage={routePaths.ChooseQuestion} title="다음" inputActive={!activeNextBtn} />
+      <MoveNextPageBtn
+        nextPage={routePaths.ChooseQuestion}
+        title="다음"
+        inputActive={!activeNextBtn}
+        handleState={saveCheckedAppealsInLocal}
+      />
     </St.KeywordPage>
   );
 }

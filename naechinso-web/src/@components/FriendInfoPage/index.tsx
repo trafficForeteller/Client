@@ -115,7 +115,6 @@ export default function FriendInfoPage() {
 
   const handleFriendInfo = async () => {
     // 친구의 기본정보 POST
-    console.log(postFriendInfo);
     const userData = await postRecommendFriendInfo(postFriendInfo, localStorage.getItem("accessToken"));
     userData && localStorage.setItem("uuid", userData["uuid"]);
     saveFriendInfoInLocal(postFriendInfo);

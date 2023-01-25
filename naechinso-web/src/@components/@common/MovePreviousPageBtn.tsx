@@ -8,6 +8,7 @@ export default function MovePreviousPageBtn() {
 
   function movePreviousPage() {
     //이전페이지로 이동
+    window.scrollTo(0, 0);
     navigate(-1);
   }
 
