@@ -10,10 +10,6 @@ import RecommendPageBtn from "./RecommendPageBtn";
 export default function LandingPage() {
   const location = useLocation();
 
-  // useEffect(() => {
-  //   localStorage.removeItem("member-uuid");
-  // }, []);
-
   useEffect(() => {
     location.pathname !== "/" && localStorage.setItem("member-uuid", location.pathname);
   }, [location]);

@@ -60,7 +60,10 @@ export default function FriendInfoPage() {
           break;
       }
 
-      if (friendInfo.phone) {
+      if (localStorage.getItem("member-uuid")) {
+        setStep(3);
+        setPostMagicFriendInfo(friendInfo);
+      } else {
         // friendInfo.phone 여부 확인해 step과 postPhoneNum에 다른 값 넣어주기
         setStep(4);
         const postPhoneNum =
@@ -71,10 +74,8 @@ export default function FriendInfoPage() {
             .replace(/ /g, "");
         setPostPhoneNum && setPostPhoneNum({ phoneNumber: postPhoneNum });
         setPostFriendInfo(friendInfo);
-      } else if (friendInfo && !friendInfo.phone) {
-        setStep(3);
-        setPostMagicFriendInfo(friendInfo);
       }
+
       setActiveBtn(true);
     }
   }, []);

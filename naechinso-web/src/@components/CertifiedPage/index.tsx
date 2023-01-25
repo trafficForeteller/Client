@@ -40,13 +40,6 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     verifyAuthNum(postAuthNum);
   }, [postAuthNum]);
 
-  useEffect(() => {
-    if (token["accessToken"]) {
-      localStorage.setItem("accessToken", token["accessToken"]);
-      isPendingStatus();
-    }
-  }, [token]);
-
   const closeModal = () => {
     // 모달 닫기
     setInputActive(true);
@@ -82,15 +75,18 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const verifyAuthNum = async (postAuthNum: IPostVerifyPhoneNumber) => {
     // 인증번호 확인 서버에 POST
     const userData = await postSmsVerify(postAuthNum);
+
     if (userData) {
       if (userData.status === 200) {
         setToken({
           ...token,
-          registerToken: userData.data["registerToken"],
-          accessToken: userData.data["accessToken"],
+          registerToken: userData.data.registerToken,
+          accessToken: userData.data.accessToken,
         });
         setCorrectAuthNum(true);
         setInputBorder(false);
+        userData.data.accessToken && localStorage.setItem("accessToken", userData.data.accessToken);
+        isPendingStatus();
       }
     } else {
       setCorrectAuthNum(false);
@@ -98,7 +94,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   };
 
   const isPendingStatus = async () => {
-    // 펜딩 상태 서버에서 GET해서 확인
+    // 펜딩 상태 GET
     const userData = await getPendingStatus(localStorage.getItem("accessToken"));
     if (userData) {
       if (!userData[0]) navigate(`${routePaths.RecommendLanding}`);
