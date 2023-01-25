@@ -26,7 +26,7 @@ export default function RecommendPage() {
 
   useEffect(() => {
     setPostRecommend({ ...postRecommend, recommendAnswer: text, recommendQuestion: postQuestion });
-    if (text.length >= 200) setTextCheck(true);
+    if (text.length >= 100) setTextCheck(true);
     else setTextCheck(false);
   }, [text]);
 
@@ -34,6 +34,11 @@ export default function RecommendPage() {
     // 추천사 POST
     navigate(`${routePaths.AppealDetail}`);
     await postRecommendation(postRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
+    saveCheckedAppealsInLocal();
+  };
+
+  const saveCheckedAppealsInLocal = () => {
+    localStorage.setItem("recommendAnswer", JSON.stringify(postRecommend.recommendAnswer));
   };
 
   return (
@@ -49,7 +54,7 @@ export default function RecommendPage() {
 
       <TextAreaBox
         placeholder={questionData.placeholder}
-        minLength={199}
+        minLength={99}
         maxLength={399}
         text={text}
         setText={setText}

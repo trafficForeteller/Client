@@ -1,3 +1,4 @@
+import TextareaAutosize from "react-textarea-autosize";
 import styled from "styled-components";
 
 export interface TextAreaBoxProps {
@@ -20,13 +21,30 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
     <St.TextAreaBox>
       <St.TextAreaWrapper height={height}>
         :
-        <St.TextArea
+        <TextareaAutosize
           placeholder={placeholder}
           minLength={minLength}
           maxLength={maxLength}
           value={text}
           onChange={(e) => handleText(e)}
           dir="auto"
+          rows={1}
+          style={{
+            width: "100%",
+            resize: "none",
+            outline: "none",
+            overflow: "hidden",
+            color: "#111111",
+
+            fontFamily: "Pretendard",
+            fontWeight: "500",
+            fontSize: "1.8rem",
+            lineHeight: "2.6rem",
+
+            border: "none",
+            display: "flex",
+            flexWrap: "wrap",
+          }}
         />
       </St.TextAreaWrapper>
       <St.TextLength>
@@ -39,37 +57,17 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
 const St = {
   TextAreaBox: styled.section`
     padding-bottom: 15rem;
+    height: fit-content;
   `,
   TextAreaWrapper: styled.article<{ height: number }>`
     width: 100%;
-    height: ${({ height }) => height}rem;
-    max-height: auto;
+    min-height: ${({ height }) => height}rem;
+
     margin: 0 auto;
     display: flex;
     gap: 0.8rem;
     ${({ theme }) => theme.fonts.sub3}
     color: ${({ theme }) => theme.colors.brown}
-  `,
-  TextArea: styled.textarea`
-    display: flex;
-    flex-wrap: wrap;
-    height: 100%;
-    width: 32rem;
-    word-break: break-all;
-    color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.sub3}
-    border: none;
-    resize: none;
-
-    &::placeholder {
-      color: ${({ theme }) => theme.colors.gray40};
-    }
-    &:focus {
-      outline: none;
-    }
-    &::-webkit-scrollbar {
-      background-color: white;
-    }
   `,
   TextLength: styled.div`
     margin-top: 0.8rem;

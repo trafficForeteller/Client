@@ -22,7 +22,6 @@ export default function KeywordPage() {
         setCheckedAppeals(appeals);
         setActiveNextBtn(true);
       }
-      console.log(appeals);
     }
   }, []);
 
