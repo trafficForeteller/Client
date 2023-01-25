@@ -11,7 +11,7 @@ export default function KeywordPage() {
   const [checkedAppeals, setCheckedAppeals] = useState<string[]>([]);
 
   useEffect(() => {
-    // 새로고침 시 이전에 local에 저장된 friendInfo 초기값으로 세팅
+    // 새로고침 시 이전에 local에 저장된 keywordList 초기값으로 세팅
     const keywordListOfLocal = localStorage.getItem("keywordList") as string;
     const keywordList = JSON.parse(keywordListOfLocal);
     if (keywordList) {

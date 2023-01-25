@@ -18,10 +18,25 @@ export default function RecommenderInfoPage() {
   });
 
   useEffect(() => {
+    // 새로고침 시 이전에 local에 저장된 postRecommender 초기값으로 세팅
+    const postRecommenderOfLocal = localStorage.getItem("postRecommender") as string;
+    const postRecommender = JSON.parse(postRecommenderOfLocal);
+    if (postRecommender) {
+      setName(postRecommender.name);
+      setCheckedGender(postRecommender.gender);
+
+      const genderTypeListofLocal = localStorage.getItem("genderTypeList") as string;
+      const genderTypeList = JSON.parse(genderTypeListofLocal);
+      setGenderTypeArr(genderTypeList);
+    }
+  }, []);
+
+  useEffect(() => {
     setPostRecommender({ ...postRecommender, name: name, gender: checkedGender });
   }, [name, genderTypeArr]);
 
   const handlePostRecommender = async () => {
+    saveRecommenderInfoInLocal();
     await postMemberJoinRecommender(postRecommender, localStorage.getItem("accessToken"));
   };
 
@@ -41,6 +56,11 @@ export default function RecommenderInfoPage() {
       return gender;
     });
     setGenderTypeArr(newGenderTypeList);
+  };
+
+  const saveRecommenderInfoInLocal = () => {
+    localStorage.setItem("postRecommender", JSON.stringify(postRecommender));
+    localStorage.setItem("genderTypeList", JSON.stringify(genderTypeArr));
   };
 
   return (
