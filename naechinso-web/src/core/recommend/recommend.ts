@@ -69,7 +69,7 @@ export const questionList: questionProps[] = [
     placeholder:
       "처음 이 언니를 봤을 때 너무 예뻐서 깜짝 놀랐잖아. 외모는 아기자기하게 예쁘고, 마르고 스타일이 좋아서 요즘 뉴진스냐고 놀리고 있어ㅋㅋㅋ 사진보다 실물이 훨~씬 나으니 꼭 실물로 봐야해👍🏻",
     checked: false,
-    disabled: true,
+    disabled: false,
   },
   {
     id: 1,

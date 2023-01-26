@@ -42,16 +42,19 @@ export default function RecommendBox(props: RecommendBoxProps) {
       setText(recommendAnswer);
       setTextCheck(true);
     }
-    const checkedQOfLocal = localStorage.getItem("checkedQ") as string;
-    const checkedQ = JSON.parse(checkedQOfLocal);
-    if (checkedQ) {
-      setQuestionData(checkedQ);
-      setPostQuestion(`${checkedQ.desc1}` + `${checkedQ.desc2}` + `${checkedQ.desc3}`);
-
-      if (checkedQ.desc1 === "") setIsThreeLine(false);
-      else setIsThreeLine(true);
-    }
+    const checkedQ1 = parseLocalStorage("checkedQ1");
+    const checkedQ2 = parseLocalStorage("checkedQ2");
+    if (step === 0) handleCheckedQuestion(checkedQ1);
+    else if (step === 1) handleCheckedQuestion(checkedQ2);
   }, []);
+
+  const handleCheckedQuestion = (checkedQ: questionProps) => {
+    // step에 따른 setQuestionData,  setPostQuestion변화
+    setQuestionData(checkedQ);
+    setPostQuestion(`${checkedQ.desc1}` + `${checkedQ.desc2}` + `${checkedQ.desc3}`);
+    if (checkedQ.desc1 === "") setIsThreeLine(false);
+    else setIsThreeLine(true);
+  };
 
   useEffect(() => {
     setPostRecommend({ ...postRecommend, recommendAnswer: text, recommendQuestion: postQuestion });
@@ -60,7 +63,7 @@ export default function RecommendBox(props: RecommendBoxProps) {
   }, [text]);
 
   const handleRecommend = async () => {
-    // 추천사 POST
+    // 추천사 POST && step에 따라 다른 페이지 이동
     if (step === 0) navigate(`${routePaths.ChooseSecondQuestion}`);
     else if (step === 1) navigate(`${routePaths.AppealDetail}`);
 
@@ -70,6 +73,13 @@ export default function RecommendBox(props: RecommendBoxProps) {
 
   const saveTextInLocal = () => {
     localStorage.setItem("recommendAnswer", text);
+  };
+
+  const parseLocalStorage = (item: string) => {
+    //  localStorage에 저장된 친구가 배열 혹은 object일 때 JSON.parse하는 함수
+    const itemInLocal = localStorage.getItem(`${item}`) as string;
+    const parseItem = JSON.parse(itemInLocal);
+    return parseItem;
   };
 
   return (

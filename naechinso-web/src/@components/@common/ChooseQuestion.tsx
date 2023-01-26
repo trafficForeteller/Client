@@ -19,26 +19,59 @@ export default function ChooseQuestion(props: ChooseQuestionProps) {
 
   useEffect(() => {
     // 새로고침 시 이전에 local에 저장된 questionList 초기값으로 세팅
-    const questionListOfLocal = localStorage.getItem("questionList") as string;
-    const questionList = JSON.parse(questionListOfLocal);
+    const questionList = parseLocalStorage("questionList");
     if (questionList) {
-      setQuestionArr(questionList);
-      const checkedQOfLocal = localStorage.getItem("checkedQ") as string;
-      const checkedQ = JSON.parse(checkedQOfLocal);
-      if (checkedQ) {
-        setCheckedQuestion(checkedQ);
-        setNextBtnActive(true);
-      }
+      previouslyCheckedQuestion(questionList);
+      const checkedQ1 = parseLocalStorage("checkedQ1");
+      const checkedQ2 = parseLocalStorage("checkedQ2");
+      if (step === 0 && checkedQ1) handleCheckedQuestion(checkedQ1);
+      else if (step === 1 && checkedQ2) handleCheckedQuestion(checkedQ2);
     }
   }, []);
 
   useEffect(() => {
-    chooseQuestion();
+    chosenQuestion();
+    console.log(questionArr);
   }, [questionArr]);
+
+  const handleCheckedQuestion = (checkedQ: questionProps) => {
+    // step에 따른 CheckedQuestion 변화
+    setCheckedQuestion(checkedQ);
+    setNextBtnActive(true);
+  };
+
+  const previouslyCheckedQuestion = (questionList: questionProps[]) => {
+    // 이전 step에서 체크된 질문은 disabled true, 현재 step에서 disabled false
+    const checkedQ1 = parseLocalStorage("checkedQ1");
+    const checkedQ2 = parseLocalStorage("checkedQ2");
+
+    const newQuestionList = questionList.map((question) => {
+      if (step === 0) {
+        if (checkedQ2 && question.id === checkedQ2.id) {
+          question.disabled = true;
+          question.checked = false;
+        } else if (checkedQ1 && question.id === checkedQ1.id) {
+          question.disabled = false;
+          question.checked = true;
+        }
+        return question;
+      } else {
+        if (checkedQ1 && question.id === checkedQ1.id) {
+          question.disabled = true;
+          question.checked = false;
+        } else if (checkedQ2 && question.id === checkedQ2.id) {
+          question.disabled = false;
+          question.checked = true;
+        }
+        return question;
+      }
+    });
+    setQuestionArr(newQuestionList);
+  };
 
   const toggleCheck = (idx: number) => {
     // 질문 체크
-    const newQuestionArr = questionList.map((q, index) => {
+    const newQuestionArr = questionArr.map((q, index) => {
       if (idx === index) {
         q.checked = !q.checked;
         q.checked === true && setCheckedQuestion(q);
@@ -48,15 +81,23 @@ export default function ChooseQuestion(props: ChooseQuestionProps) {
     setQuestionArr(newQuestionArr);
   };
 
-  const chooseQuestion = () => {
+  const chosenQuestion = () => {
     // 하나라도 checked true면 버튼 활성화
     const isQuestionChecked = (item: { checked: boolean }) => item.checked === true;
     setNextBtnActive(questionArr.some(isQuestionChecked));
   };
 
   const saveCheckedQuestion = () => {
-    localStorage.setItem("checkedQ", JSON.stringify(checkedQuestion));
     localStorage.setItem("questionList", JSON.stringify(questionArr));
+    if (step === 0) localStorage.setItem("checkedQ1", JSON.stringify(checkedQuestion));
+    else if (step === 1) localStorage.setItem("checkedQ2", JSON.stringify(checkedQuestion));
+  };
+
+  const parseLocalStorage = (item: string) => {
+    //  localStorage에 저장된 친구가 배열 혹은 object일 때 JSON.parse하는 함수
+    const itemInLocal = localStorage.getItem(`${item}`) as string;
+    const parseItem = JSON.parse(itemInLocal);
+    return parseItem;
   };
 
   return (
