@@ -6,11 +6,17 @@ import { questionList, questionProps, RecommendStepMessage } from "../../core/re
 import { routePaths } from "../../core/routes/path";
 import { FixedHeader, MoveNextPageBtn } from ".";
 
-export default function ChooseQuestion() {
+export interface ChooseQuestionProps {
+  step: number;
+}
+
+export default function ChooseQuestion(props: ChooseQuestionProps) {
+  const { step } = props;
+
   const [questionArr, setQuestionArr] = useState(questionList);
   const [nextBtnActive, setNextBtnActive] = useState(false);
   const [checkedQuestion, setCheckedQuestion] = useState<questionProps>();
-  const [recommendStep, setRecommendStep] = useState(0);
+  const [recommendStep, setRecommendStep] = useState(step);
 
   useEffect(() => {
     // 새로고침 시 이전에 local에 저장된 questionList 초기값으로 세팅
@@ -52,11 +58,6 @@ export default function ChooseQuestion() {
   const saveCheckedQuestion = () => {
     localStorage.setItem("checkedQ", JSON.stringify(checkedQuestion));
     localStorage.setItem("questionList", JSON.stringify(questionArr));
-    // handleRecommendStep();
-  };
-
-  const handleRecommendStep = () => {
-    setRecommendStep((current) => current + 1);
   };
 
   return (
@@ -86,7 +87,7 @@ export default function ChooseQuestion() {
         })}
       </St.QuestionContainer>
       <MoveNextPageBtn
-        nextPage={routePaths.FirstRecommend}
+        nextPage={recommendStep === 0 ? routePaths.FirstRecommend : routePaths.SecondRecommend}
         title="다음"
         inputActive={!nextBtnActive}
         state={recommendStep}

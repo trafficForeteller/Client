@@ -10,7 +10,13 @@ import FixedHeader from "./FixedHeader";
 import TextAreaBox from "./TextAreaBox";
 import ToggleTipBox from "./ToggleTipBox";
 
-export default function RecommendBox() {
+export interface RecommendBoxProps {
+  step: number;
+}
+
+export default function RecommendBox(props: RecommendBoxProps) {
+  const { step } = props;
+
   const [isThreeLine, setIsThreeLine] = useState(false);
   const [textCheck, setTextCheck] = useState(false);
   const [text, setText] = useState("");
@@ -29,7 +35,8 @@ export default function RecommendBox() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const recommendStep = location.state.state;
+  // const recommendStep = location.state.state;
+  const recommendStep = step;
 
   useEffect(() => {
     if (localStorage.getItem("recommendAnswer")) {
@@ -56,7 +63,9 @@ export default function RecommendBox() {
 
   const handleRecommend = async () => {
     // 추천사 POST
-    navigate(`${routePaths.AppealDetail}`);
+    if (recommendStep === 0) navigate(`${routePaths.ChooseSecondQuestion}`);
+    else if (recommendStep === 1) navigate(`${routePaths.AppealDetail}`);
+
     await postRecommendation(postRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
     saveTextInLocal();
   };
@@ -97,7 +106,7 @@ export default function RecommendBox() {
 
 const St = {
   RecommendBox: styled.main<{ isThreeLine: boolean }>`
-    padding-top: ${({ isThreeLine }) => (isThreeLine ? "25.5rem" : "22.5rem")};
+    padding-top: ${({ isThreeLine }) => (isThreeLine ? "25rem" : "22rem")};
     padding-left: 2rem;
     padding-right: 2rem;
   `,

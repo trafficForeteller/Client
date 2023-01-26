@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { ITokenType } from "../../types/member";
 import { Modal } from "../@common";
 import PolicyModal from "./PolicyModal";

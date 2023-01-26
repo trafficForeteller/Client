@@ -1,5 +1,15 @@
-import React from "react";
+import styled from "styled-components";
+
+import { RecommendBox } from "../@common";
 
 export default function SecondRecommendPage() {
-  return <div>SecondRecommendPage</div>;
+  return (
+    <St.SecondRecommendPage>
+      <RecommendBox step={1} />
+    </St.SecondRecommendPage>
+  );
 }
+
+const St = {
+  SecondRecommendPage: styled.main``,
+};
