@@ -22,7 +22,7 @@ export default function ToggleTipBox() {
               <IcTipCheck />
               <St.TipDescWrapper>
                 <St.TipDesc>{tip.desc1}</St.TipDesc>
-                <St.TipHighlight>&ldquo;{tip.highlight}&rdquo;</St.TipHighlight>
+                <St.TipHighlight>{tip.highlight}</St.TipHighlight>
                 <St.TipDesc>{tip.desc2}</St.TipDesc>
               </St.TipDescWrapper>
             </St.TipWrapper>
@@ -46,7 +46,7 @@ const St = {
     justify-content: space-between;
     align-items: center;
 
-    color: ${({ theme }) => theme.colors.orange};
+    color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.body6}
   `,
   TipTitle: styled.h3``,

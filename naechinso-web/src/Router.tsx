@@ -4,13 +4,15 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import {
   AppealDetailPage,
   CertifiedPage,
-  ChooseQuestionPage,
+  ChooseFirstQuestionPage,
+  ChooseSecondQuestionPage,
   ChooseWorkPage,
   DontGoPage,
   EduCertifiedPage,
   EduEditPage,
   EduPage,
   FinishPage,
+  FirstRecommendPage,
   FriendInfoPage,
   InstallAppPage,
   JobCertifiedPage,
@@ -23,7 +25,7 @@ import {
   RecommenderInfoPage,
   RecommenderLandingPage,
   RecommendLandingPage,
-  RecommendPage,
+  SecondRecommendPage,
 } from "./@components";
 import { ScrollToTop } from "./@components/@common";
 import { postSmsSend } from "./apis/sms.api";
@@ -80,16 +82,24 @@ export default function Router() {
           element={localStorage.getItem("accessToken") ? <KeywordPage /> : <Navigate to="/" replace />}
         />
         <Route
-          path={routePaths.ChooseQuestion}
-          element={localStorage.getItem("accessToken") ? <ChooseQuestionPage /> : <Navigate to="/" replace />}
-        />
-        <Route
           path={routePaths.RecommenderInfo}
           element={localStorage.getItem("accessToken") ? <RecommenderInfoPage /> : <Navigate to="/" replace />}
         />
         <Route
-          path={routePaths.Recommend}
-          element={localStorage.getItem("accessToken") ? <RecommendPage /> : <Navigate to="/" replace />}
+          path={routePaths.ChooseFirstQuestion}
+          element={localStorage.getItem("accessToken") ? <ChooseFirstQuestionPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.FirstRecommend}
+          element={localStorage.getItem("accessToken") ? <FirstRecommendPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.ChooseSecondQuestion}
+          element={localStorage.getItem("accessToken") ? <ChooseSecondQuestionPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.SecondRecommend}
+          element={localStorage.getItem("accessToken") ? <SecondRecommendPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.AppealDetail}

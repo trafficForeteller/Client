@@ -195,3 +195,14 @@ export const RecommendLandingList: RecommendLandingProps[] = [
     desc2: "소개해줄 수 있을까?",
   },
 ];
+
+export type RecommendStepMessageProps = {
+  id: number;
+  questionChoiceMessage: string;
+  recommendStepMessage: string;
+};
+
+export const RecommendStepMessage: RecommendStepMessageProps[] = [
+  { id: 0, questionChoiceMessage: "첫 번째 질문을 선택해줘", recommendStepMessage: "질문 1" },
+  { id: 1, questionChoiceMessage: "두 번째 질문을 선택해줘", recommendStepMessage: "질문 2" },
+];

@@ -3,30 +3,48 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postRecommendation } from "../../apis/recommend.api";
+import { questionProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IPostRecommend } from "../../types/recommend";
-import { FixedHeader, TextAreaBox } from "../@common";
-import ToggleTipBox from "../@common/ToggleTipBox";
+import FixedHeader from "./FixedHeader";
+import TextAreaBox from "./TextAreaBox";
+import ToggleTipBox from "./ToggleTipBox";
 
-export default function RecommendPage() {
+export default function RecommendBox() {
   const [isThreeLine, setIsThreeLine] = useState(false);
   const [textCheck, setTextCheck] = useState(false);
   const [text, setText] = useState("");
   const [postRecommend, setPostRecommend] = useState<IPostRecommend>({ recommendQuestion: "", recommendAnswer: "" });
+  const [postQuestion, setPostQuestion] = useState("");
+  const [questionData, setQuestionData] = useState<questionProps>({
+    id: 0,
+    icon: "",
+    title: "",
+    desc1: "",
+    desc2: "",
+    desc3: "",
+    placeholder: "",
+    checked: true,
+  });
 
   const navigate = useNavigate();
   const location = useLocation();
-  const questionData = location.state.state;
-  const postQuestion = `${questionData.desc1}` + `${questionData.desc2}` + `${questionData.desc3}`;
+  const recommendStep = location.state.state;
 
   useEffect(() => {
-    if (questionData.desc1 === "") setIsThreeLine(false);
-    else setIsThreeLine(true);
-
     if (localStorage.getItem("recommendAnswer")) {
       const recommendAnswer = localStorage.getItem("recommendAnswer") as string;
       setText(recommendAnswer);
       setTextCheck(true);
+    }
+    const checkedQOfLocal = localStorage.getItem("checkedQ") as string;
+    const checkedQ = JSON.parse(checkedQOfLocal);
+    if (checkedQ) {
+      setQuestionData(checkedQ);
+      setPostQuestion(`${checkedQ.desc1}` + `${checkedQ.desc2}` + `${checkedQ.desc3}`);
+
+      if (checkedQ.desc1 === "") setIsThreeLine(false);
+      else setIsThreeLine(true);
     }
   }, []);
 
@@ -48,13 +66,14 @@ export default function RecommendPage() {
   };
 
   return (
-    <St.Recommend isThreeLine={isThreeLine}>
+    <St.RecommendBox isThreeLine={isThreeLine}>
       <FixedHeader
         header="추천사"
         progressRate={85}
         title1={questionData.desc1}
         title2={questionData.desc2}
         title3={questionData.desc3}
+        recommendStep={recommendStep}
       />
       <ToggleTipBox />
 
@@ -72,13 +91,13 @@ export default function RecommendPage() {
           다음
         </St.NextStepBtn>
       </St.NextBtnWrapper>
-    </St.Recommend>
+    </St.RecommendBox>
   );
 }
 
 const St = {
-  Recommend: styled.main<{ isThreeLine: boolean }>`
-    padding-top: ${({ isThreeLine }) => (isThreeLine ? "22rem" : "19rem")};
+  RecommendBox: styled.main<{ isThreeLine: boolean }>`
+    padding-top: ${({ isThreeLine }) => (isThreeLine ? "25.5rem" : "22.5rem")};
     padding-left: 2rem;
     padding-right: 2rem;
   `,

@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { questionList, questionProps } from "../../core/recommend/recommend";
+import { questionList, questionProps, RecommendStepMessage } from "../../core/recommend/recommend";
+// eslint-disable-next-line
 import { routePaths } from "../../core/routes/path";
-import { FixedHeader, MoveNextPageBtn } from "../@common";
+import { FixedHeader, MoveNextPageBtn } from ".";
 
-export default function ChooseQuestionPage() {
+export default function ChooseQuestion() {
   const [questionArr, setQuestionArr] = useState(questionList);
   const [nextBtnActive, setNextBtnActive] = useState(false);
   const [checkedQuestion, setCheckedQuestion] = useState<questionProps>();
+  const [recommendStep, setRecommendStep] = useState(0);
 
   useEffect(() => {
-    // 새로고침 시 이전에 local에 저장된 friendInfo 초기값으로 세팅
+    // 새로고침 시 이전에 local에 저장된 questionList 초기값으로 세팅
     const questionListOfLocal = localStorage.getItem("questionList") as string;
     const questionList = JSON.parse(questionListOfLocal);
     if (questionList) {
@@ -50,11 +52,22 @@ export default function ChooseQuestionPage() {
   const saveCheckedQuestion = () => {
     localStorage.setItem("checkedQ", JSON.stringify(checkedQuestion));
     localStorage.setItem("questionList", JSON.stringify(questionArr));
+    // handleRecommendStep();
+  };
+
+  const handleRecommendStep = () => {
+    setRecommendStep((current) => current + 1);
   };
 
   return (
     <St.ChooseQuestion>
-      <FixedHeader header="추천사" progressRate={55} title1="친구를 잘 설명할 수 있는" title2="질문을 골라 답해줘!" />
+      <FixedHeader
+        header="추천사"
+        progressRate={55}
+        title1="친구를 어필할 수 있는"
+        title2="2개의 질문을 골라 답해보자!"
+      />
+      <St.Label>{RecommendStepMessage[recommendStep].questionChoiceMessage}</St.Label>
       <St.QuestionContainer>
         {questionArr.map((question) => {
           return (
@@ -73,10 +86,10 @@ export default function ChooseQuestionPage() {
         })}
       </St.QuestionContainer>
       <MoveNextPageBtn
-        nextPage={routePaths.Recommend}
+        nextPage={routePaths.FirstRecommend}
         title="다음"
         inputActive={!nextBtnActive}
-        state={checkedQuestion}
+        state={recommendStep}
         handleState={saveCheckedQuestion}
       />
     </St.ChooseQuestion>
@@ -85,15 +98,28 @@ export default function ChooseQuestionPage() {
 
 const St = {
   ChooseQuestion: styled.main`
-    padding-bottom: 10rem;
+    padding: 0 2rem 10rem;
   `,
+  Label: styled.div`
+    ${({ theme }) => theme.fonts.caption8};
+    color: ${({ theme }) => theme.colors.orange};
+    margin-top: 18.5rem;
 
+    width: 14.4rem;
+    height: 3.6rem;
+    border-radius: 16px;
+    border: 1px solid ${({ theme }) => theme.colors.orange};
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `,
   QuestionContainer: styled.section`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.5rem;
-    padding-top: 19rem;
+    padding-top: 1.6rem;
     padding-bottom: 1.5rem;
     z-index: -1;
   `,
