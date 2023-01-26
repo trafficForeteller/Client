@@ -55,6 +55,7 @@ export type questionProps = {
   desc3: string;
   placeholder: string;
   checked: boolean;
+  disabled: boolean;
 };
 
 export const questionList: questionProps[] = [
@@ -68,6 +69,7 @@ export const questionList: questionProps[] = [
     placeholder:
       "처음 이 언니를 봤을 때 너무 예뻐서 깜짝 놀랐잖아. 외모는 아기자기하게 예쁘고, 마르고 스타일이 좋아서 요즘 뉴진스냐고 놀리고 있어ㅋㅋㅋ 사진보다 실물이 훨~씬 나으니 꼭 실물로 봐야해👍🏻",
     checked: false,
+    disabled: true,
   },
   {
     id: 1,
@@ -79,6 +81,7 @@ export const questionList: questionProps[] = [
     placeholder:
       "우리 형은 섬세하고 배려심이 넘쳐요. 이야기도 잘 들어주고 따뜻한 사람이니까 많의 의지할 수 있을 것 같아요. 우리 형도 동그란 사람이니까 따뜻하게 대해주시면 더욱 좋은 그리고 오래가는 커플이 될 수 있을거에요!",
     checked: false,
+    disabled: false,
   },
   {
     id: 2,
@@ -90,6 +93,7 @@ export const questionList: questionProps[] = [
     placeholder:
       "책을 정말 많이 읽는 친구야. 매번 만나서 고민 얘기할 때마다 자기가 읽었던 책 중에 도움이 될만한 책을 추천해주곤 해~ 글구 자기관리가 철저해. 매번 자기가 러닝하는 산책로가 있는데 거기서 보이는 풍경을 하루도 빠짐없이 기록함. 비가 오든 눈이 오든ㅋㅋㅋ",
     checked: false,
+    disabled: false,
   },
 
   {
@@ -102,6 +106,7 @@ export const questionList: questionProps[] = [
     placeholder:
       "친구 스스로 플리마켓 행사를 기획했었는데, 셀러들에게 행복한 플리마켓을 만들어줘서 감사하다고 따로 연락이 왔을 정도야! 그정도로 사람을 진심으로 대하고 행복을 나누는 사람인 게 느껴져서 정말 내 친구인게 뿌듯했어 ㅎㅎ",
     checked: false,
+    disabled: false,
   },
   {
     id: 4,
@@ -113,6 +118,7 @@ export const questionList: questionProps[] = [
     placeholder:
       "내가 프로필이나 인스타에 올리는 사진 중 이친구가 찍으면 바로 올라갈 정도로 예술에대한 감각이 엄청난 친구라서 사진찍는거나 예술에 대한 이야기같이하면 좋을거같아 진짜 같이 사진찍는데도 재밌고 잘찍어줘서 나도 배우고싶은정도ㅋㅋ",
     checked: false,
+    disabled: false,
   },
   {
     id: 5,
@@ -124,6 +130,7 @@ export const questionList: questionProps[] = [
     placeholder:
       "다른 팀과 달리 우리 팀플팀은 아직도 몇년동안 연락하는데, 전적으로 이 친구 덕이라고 생각이 들 만큼 주변사람들 잘 챙기고 자기사람이라 생각되면 귀찮은게 없는 친구야ㅎㅎ 표현도 잘하고 먼저 잘 챙겨주고 보답하는 ENFP 그자체!!",
     checked: false,
+    disabled: false,
   },
   {
     id: 6,
@@ -135,6 +142,7 @@ export const questionList: questionProps[] = [
     placeholder:
       "오래된 친구들과 모일 때 사람들 챙기는 걸 항상 1순위로 생각하는 친구야. 만취할 때 사랑한다. 남발해서 오죽하면 별명이 사랑이야.ㅋㅋㅋㅋ근데 진심인 게 느껴져서 늘 고마울뿐이야",
     checked: false,
+    disabled: false,
   },
   {
     id: 7,
@@ -146,6 +154,7 @@ export const questionList: questionProps[] = [
     placeholder:
       "친구인데도 존경스럽고 배울 점 많은 사람을 떠올릴 때 딱 이 친구가 생각나는 것 같아. 예전에 강릉여행을 4박 5일동안갔는데, 혼자 새벽 6시에 일어나서 러닝하더라구! 성실하고 긍정적이어서 정말 본받고 싶은 친구야",
     checked: false,
+    disabled: false,
   },
 ];
 

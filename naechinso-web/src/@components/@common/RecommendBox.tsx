@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postRecommendation } from "../../apis/recommend.api";
@@ -31,12 +31,10 @@ export default function RecommendBox(props: RecommendBoxProps) {
     desc3: "",
     placeholder: "",
     checked: true,
+    disabled: false,
   });
 
   const navigate = useNavigate();
-  const location = useLocation();
-  // const recommendStep = location.state.state;
-  const recommendStep = step;
 
   useEffect(() => {
     if (localStorage.getItem("recommendAnswer")) {
@@ -63,8 +61,8 @@ export default function RecommendBox(props: RecommendBoxProps) {
 
   const handleRecommend = async () => {
     // 추천사 POST
-    if (recommendStep === 0) navigate(`${routePaths.ChooseSecondQuestion}`);
-    else if (recommendStep === 1) navigate(`${routePaths.AppealDetail}`);
+    if (step === 0) navigate(`${routePaths.ChooseSecondQuestion}`);
+    else if (step === 1) navigate(`${routePaths.AppealDetail}`);
 
     await postRecommendation(postRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
     saveTextInLocal();
@@ -82,7 +80,7 @@ export default function RecommendBox(props: RecommendBoxProps) {
         title1={questionData.desc1}
         title2={questionData.desc2}
         title3={questionData.desc3}
-        recommendStep={recommendStep}
+        recommendStep={step}
       />
       <ToggleTipBox />
 

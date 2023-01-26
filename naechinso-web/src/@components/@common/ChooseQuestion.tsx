@@ -72,12 +72,16 @@ export default function ChooseQuestion(props: ChooseQuestionProps) {
       <St.QuestionContainer>
         {questionArr.map((question) => {
           return (
-            <St.QuestionBox checked={question.checked} key={question.id} onClick={() => toggleCheck(question.id)}>
-              <St.QuestionWrapper>
+            <St.QuestionBox
+              checked={question.checked}
+              key={question.id}
+              onClick={() => toggleCheck(question.id)}
+              disabled={question.disabled}>
+              <St.QuestionWrapper disabled={question.disabled}>
                 <St.Icon>{question.icon}</St.Icon>
                 <St.Title checked={question.checked}>{question.title}</St.Title>
               </St.QuestionWrapper>
-              <St.DescWrapper checked={question.checked}>
+              <St.DescWrapper checked={question.checked} disabled={question.disabled}>
                 <St.Desc>{question.desc1}</St.Desc>
                 <St.Desc>{question.desc2}</St.Desc>
                 <St.Desc>{question.desc3}</St.Desc>
@@ -124,7 +128,7 @@ const St = {
     padding-bottom: 1.5rem;
     z-index: -1;
   `,
-  QuestionBox: styled.article<{ checked: boolean }>`
+  QuestionBox: styled.button<{ checked: boolean }>`
     padding: 1.6rem 1.2rem;
     width: 16rem;
     height: 17rem;
@@ -134,22 +138,36 @@ const St = {
 
     position: relative;
     cursor: pointer;
+
+    display: flex;
+    &:disabled {
+      color: ${({ theme }) => theme.colors.neural};
+    }
   `,
-  QuestionWrapper: styled.hgroup``,
+
+  QuestionWrapper: styled.hgroup<{ disabled: boolean }>`
+    display: flex;
+    flex-direction: column;
+    opacity: ${({ disabled }) => (disabled ? "0.2" : "")};
+  `,
   Icon: styled.h3`
     ${({ theme }) => theme.fonts.sub2};
     color: ${({ theme }) => theme.colors.black};
+    width: fit-content;
   `,
   Title: styled.h3<{ checked: boolean }>`
     ${({ theme }) => theme.fonts.sub2};
     color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.black)};
   `,
-  DescWrapper: styled.div<{ checked: boolean }>`
+  DescWrapper: styled.div<{ checked: boolean; disabled: boolean }>`
     position: absolute;
     bottom: 1.2rem;
 
     ${({ theme }) => theme.fonts.body5};
     color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.brown)};
+    opacity: ${({ disabled }) => (disabled ? "0.2" : "")};
   `,
-  Desc: styled.p``,
+  Desc: styled.p`
+    width: fit-content;
+  `,
 };
