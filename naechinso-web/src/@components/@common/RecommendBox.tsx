@@ -19,7 +19,8 @@ export default function RecommendBox(props: RecommendBoxProps) {
 
   const [isThreeLine, setIsThreeLine] = useState(false);
   const [textCheck, setTextCheck] = useState(false);
-  const [text, setText] = useState("");
+  const [firstRecommend, setFirstRecommend] = useState("");
+  const [secondRecommend, setSecondRecommend] = useState("");
   const [postRecommend, setPostRecommend] = useState<IPostRecommend>({ recommendQuestion: "", recommendAnswer: "" });
   const [postQuestion, setPostQuestion] = useState("");
   const [questionData, setQuestionData] = useState<questionProps>({
@@ -37,16 +38,27 @@ export default function RecommendBox(props: RecommendBoxProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("recommendAnswer")) {
-      const recommendAnswer = localStorage.getItem("recommendAnswer") as string;
-      setText(recommendAnswer);
-      setTextCheck(true);
-    }
     const checkedQ1 = parseLocalStorage("checkedQ1");
     const checkedQ2 = parseLocalStorage("checkedQ2");
-    if (step === 0) handleCheckedQuestion(checkedQ1);
-    else if (step === 1) handleCheckedQuestion(checkedQ2);
+    if (step === 0 && localStorage.getItem("firstRecommend")) {
+      const recommendInLocal = localStorage.getItem("firstRecommend") as string;
+      setFirstRecommend(recommendInLocal);
+      setTextCheck(true);
+      handleCheckedQuestion(checkedQ1);
+    } else if (step === 1 && localStorage.getItem("secondRecommend")) {
+      const recommendInLocal = localStorage.getItem("secondRecommend") as string;
+      setSecondRecommend(recommendInLocal);
+      setTextCheck(true);
+      handleCheckedQuestion(checkedQ2);
+    }
   }, []);
+
+  const handleLocalText = (recommend: string, setRecommend: React.Dispatch<React.SetStateAction<string>>) => {
+    // localStorage에 있는 recommend 가져오기
+    const recommendInLocal = localStorage.getItem(`${recommend}`) as string;
+    setRecommend(recommendInLocal);
+    setTextCheck(true);
+  };
 
   const handleCheckedQuestion = (checkedQ: questionProps) => {
     // step에 따른 setQuestionData,  setPostQuestion변화
@@ -57,22 +69,30 @@ export default function RecommendBox(props: RecommendBoxProps) {
   };
 
   useEffect(() => {
+    if (step === 0) handleEnteredText(firstRecommend);
+    else if (step === 1) handleEnteredText(secondRecommend);
+  }, [firstRecommend, secondRecommend]);
+
+  const handleEnteredText = (text: string) => {
+    // text 넣어 Post 및 글자수 확인
     setPostRecommend({ ...postRecommend, recommendAnswer: text, recommendQuestion: postQuestion });
-    if (text.length >= 100) setTextCheck(true);
-    else setTextCheck(false);
-  }, [text]);
+    if (text) {
+      if (text.length >= 100) setTextCheck(true);
+      else setTextCheck(false);
+    }
+  };
 
   const handleRecommend = async () => {
     // 추천사 POST && step에 따라 다른 페이지 이동
     if (step === 0) navigate(`${routePaths.ChooseSecondQuestion}`);
     else if (step === 1) navigate(`${routePaths.AppealDetail}`);
-
     await postRecommendation(postRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
     saveTextInLocal();
   };
 
   const saveTextInLocal = () => {
-    localStorage.setItem("recommendAnswer", text);
+    if (step === 0) localStorage.setItem("firstRecommend", firstRecommend);
+    else if (step === 1) localStorage.setItem("secondRecommend", secondRecommend);
   };
 
   const parseLocalStorage = (item: string) => {
@@ -98,8 +118,8 @@ export default function RecommendBox(props: RecommendBoxProps) {
         placeholder={questionData.placeholder}
         minLength={99}
         maxLength={399}
-        text={text}
-        setText={setText}
+        text={step === 0 ? firstRecommend : secondRecommend}
+        setText={step === 0 ? setFirstRecommend : setSecondRecommend}
         height={13}
       />
 
