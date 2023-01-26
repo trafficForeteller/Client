@@ -81,6 +81,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     // 펜딩 상태 GET
     const userData = await getPendingStatus(localStorage.getItem("accessToken"));
     if (userData) {
+      console.log(userData);
       if (!userData[0]) navigate(`${routePaths.RecommendLanding}`);
       else if (userData[0].type === "JOB") {
         return navigate(`${routePaths.JobEdit}`, { state: userData[0] });

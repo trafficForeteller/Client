@@ -6,7 +6,7 @@ import { postRecommendation } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
 import { IPostRecommend } from "../../types/recommend";
 import { FixedHeader, TextAreaBox } from "../@common";
-import ToggleTipBox from "./ToggleTipBox";
+import ToggleTipBox from "../@common/ToggleTipBox";
 
 export default function RecommendPage() {
   const [isThreeLine, setIsThreeLine] = useState(false);

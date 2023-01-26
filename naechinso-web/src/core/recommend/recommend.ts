@@ -157,9 +157,10 @@ export type TipProps = {
 };
 
 export const TipList: TipProps[] = [
-  { id: 0, desc1: "추천사는", highlight: "친구의 매칭률", desc2: "에 중요한 영향을 미쳐" },
-  { id: 1, desc1: "", highlight: "구체적인 에피소드", desc2: "와 함께 적어주면 더 좋아" },
-  { id: 2, desc1: "실명 언급보단", highlight: "내 친구", desc2: "로 작성 부탁할게" },
+  { id: 0, desc1: "실명 언급은 안돼!", highlight: "[내 친구]", desc2: "로 작성 부탁할게" },
+  { id: 1, desc1: "", highlight: "[반말]", desc2: "로 친근하게 적어줘" },
+  { id: 2, desc1: "", highlight: "[구체적인 에피소드]", desc2: "와 함께 적어주면 더 좋아" },
+  { id: 3, desc1: "", highlight: "", desc2: "추천사는 친구의 매칭률에 중요한 영향을 미쳐!" },
 ];
 
 export type RecommendLandingProps = {
