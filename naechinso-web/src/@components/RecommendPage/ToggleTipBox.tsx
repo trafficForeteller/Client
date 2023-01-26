@@ -5,7 +5,7 @@ import { IcTipCheck, IcToggleArrow } from "../../asset/icons";
 import { TipList } from "../../core/recommend/recommend";
 
 export default function ToggleTipBox() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   return (
     <St.ToggleTipBox>

@@ -32,8 +32,8 @@ export default function LandingPage() {
         </St.TitleWrapper>
 
         <St.ButtonWrapper>
-          <RecommendPageBtn nextPage={routePaths.PhoneNum} title="내친소 시작하기" />
-          <RecommendPageBtn nextPage={routePaths.InstallApp} title="내 친구를 소개하고 싶어" />
+          <RecommendPageBtn nextPage={routePaths.InstallApp} title="내친소 시작하기" />
+          <RecommendPageBtn nextPage={routePaths.PhoneNum} title="내 친구를 소개하고 싶어" />
         </St.ButtonWrapper>
       </St.Bottom>
     </St.LandingPage>
