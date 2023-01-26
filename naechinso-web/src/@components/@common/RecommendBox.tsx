@@ -80,7 +80,7 @@ export default function RecommendBox(props: RecommendBoxProps) {
         title1={questionData.desc1}
         title2={questionData.desc2}
         title3={questionData.desc3}
-        recommendStep={step}
+        step={step}
       />
       <ToggleTipBox />
 

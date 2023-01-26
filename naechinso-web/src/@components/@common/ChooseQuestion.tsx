@@ -16,7 +16,6 @@ export default function ChooseQuestion(props: ChooseQuestionProps) {
   const [questionArr, setQuestionArr] = useState(questionList);
   const [nextBtnActive, setNextBtnActive] = useState(false);
   const [checkedQuestion, setCheckedQuestion] = useState<questionProps>();
-  const [recommendStep, setRecommendStep] = useState(step);
 
   useEffect(() => {
     // 새로고침 시 이전에 local에 저장된 questionList 초기값으로 세팅
@@ -68,7 +67,7 @@ export default function ChooseQuestion(props: ChooseQuestionProps) {
         title1="친구를 어필할 수 있는"
         title2="2개의 질문을 골라 답해보자!"
       />
-      <St.Label>{RecommendStepMessage[recommendStep].questionChoiceMessage}</St.Label>
+      <St.Label>{RecommendStepMessage[step].questionChoiceMessage}</St.Label>
       <St.QuestionContainer>
         {questionArr.map((question) => {
           return (
@@ -91,10 +90,9 @@ export default function ChooseQuestion(props: ChooseQuestionProps) {
         })}
       </St.QuestionContainer>
       <MoveNextPageBtn
-        nextPage={recommendStep === 0 ? routePaths.FirstRecommend : routePaths.SecondRecommend}
+        nextPage={step === 0 ? routePaths.FirstRecommend : routePaths.SecondRecommend}
         title="다음"
         inputActive={!nextBtnActive}
-        state={recommendStep}
         handleState={saveCheckedQuestion}
       />
     </St.ChooseQuestion>
