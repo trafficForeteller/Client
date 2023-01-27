@@ -40,16 +40,20 @@ export default function RecommendBox(props: RecommendBoxProps) {
   useEffect(() => {
     const checkedQ1 = parseLocalStorage("checkedQ1");
     const checkedQ2 = parseLocalStorage("checkedQ2");
-    if (step === 0 && localStorage.getItem("firstRecommend")) {
-      const recommendInLocal = localStorage.getItem("firstRecommend") as string;
-      setFirstRecommend(recommendInLocal);
-      setTextCheck(true);
+    if (step === 0) {
       handleCheckedQuestion(checkedQ1);
-    } else if (step === 1 && localStorage.getItem("secondRecommend")) {
-      const recommendInLocal = localStorage.getItem("secondRecommend") as string;
-      setSecondRecommend(recommendInLocal);
-      setTextCheck(true);
+      if (localStorage.getItem("firstRecommend")) {
+        const recommendInLocal = localStorage.getItem("firstRecommend") as string;
+        setFirstRecommend(recommendInLocal);
+        setTextCheck(true);
+      }
+    } else if (step === 1) {
       handleCheckedQuestion(checkedQ2);
+      if (localStorage.getItem("secondRecommend")) {
+        const recommendInLocal = localStorage.getItem("secondRecommend") as string;
+        setSecondRecommend(recommendInLocal);
+        setTextCheck(true);
+      }
     }
   }, []);
 
