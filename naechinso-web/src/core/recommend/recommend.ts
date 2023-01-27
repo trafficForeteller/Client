@@ -166,6 +166,7 @@ export const questionList: questionProps[] = [
     placeholder:
       "친구인데도 존경스럽고 배울 점 많은 사람을 떠올릴 때 딱 이 친구가 생각나는 것 같아. 예전에 강릉여행을 4박 5일동안갔는데, 혼자 새벽 6시에 일어나서 러닝하더라구! 성실하고 긍정적이어서 정말 본받고 싶은 친구야",
     checked: false,
+    disabled: false,
   },
   {
     id: 9,
@@ -177,6 +178,7 @@ export const questionList: questionProps[] = [
     placeholder:
       "친구인데도 존경스럽고 배울 점 많은 사람을 떠올릴 때 딱 이 친구가 생각나는 것 같아. 예전에 강릉여행을 4박 5일동안갔는데, 혼자 새벽 6시에 일어나서 러닝하더라구! 성실하고 긍정적이어서 정말 본받고 싶은 친구야",
     checked: false,
+    disabled: false,
   },
 ];
 
