@@ -19,11 +19,10 @@ export interface WorkCertifiedProps {
   state: string;
   setState: React.Dispatch<React.SetStateAction<string>>;
   dir: string;
-  postData: IEduType | IJobType;
 }
 
 export default function WorkCertified(props: WorkCertifiedProps) {
-  const { title1, title2, subTitle1, subTitle2, dir, postData } = props;
+  const { title1, title2, subTitle1, subTitle2, dir } = props;
   const [certifiedImg, setCertifiedImg] = useState("");
   const imgRef = useRef<HTMLInputElement>(null);
   const [fileChecked, setFileChecked] = useState(false);
@@ -49,8 +48,15 @@ export default function WorkCertified(props: WorkCertifiedProps) {
     // s3에 이미지 POST
     const userData = await postCertifiedImg(formData, accessToken, dir);
     const strImgName = userData && (userData[0] as string);
-    if (dir === "edu") setPatchData({ ...postData, eduImage: strImgName });
-    else if (dir === "job") setPatchData({ ...postData, jobImage: strImgName });
+    if (dir === "edu") {
+      const eduInfoOfLocal = localStorage.getItem("eduInfo") as string;
+      const eduInfo = JSON.parse(eduInfoOfLocal);
+      setPatchData({ ...eduInfo, eduImage: strImgName });
+    } else if (dir === "job") {
+      const jobInfoOfLocal = localStorage.getItem("jobInfo") as string;
+      const jobInfo = JSON.parse(jobInfoOfLocal);
+      setPatchData({ ...jobInfo, jobImage: strImgName });
+    }
   };
 
   const uploadImgToS3 = (file: File) => {

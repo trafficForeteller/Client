@@ -41,7 +41,7 @@ export default function EduPage() {
     window.scrollTo(0, 0);
     if (step === 4) {
       saveEduInfoInLocal();
-      navigate(`${routePaths.EduCertified}`, { state: edu });
+      navigate(`${routePaths.EduCertified}`);
     }
   }, [step]);
 
