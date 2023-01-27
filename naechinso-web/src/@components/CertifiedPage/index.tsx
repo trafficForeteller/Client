@@ -87,7 +87,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
         return navigate(`${routePaths.JobEdit}`, { state: userData[0] });
       } else if (userData[0].pendingStatus === "reject" && userData[0].type === "EDU") {
         return navigate(`${routePaths.EduEdit}`, { state: userData[0] });
-      } else return navigate(`${routePaths.Pending}`);
+      } else return navigate(`${routePaths.RecommendLanding}`);
     }
   };
 
