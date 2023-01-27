@@ -53,13 +53,6 @@ export default function RecommendBox(props: RecommendBoxProps) {
     }
   }, []);
 
-  const handleLocalText = (recommend: string, setRecommend: React.Dispatch<React.SetStateAction<string>>) => {
-    // localStorage에 있는 recommend 가져오기
-    const recommendInLocal = localStorage.getItem(`${recommend}`) as string;
-    setRecommend(recommendInLocal);
-    setTextCheck(true);
-  };
-
   const handleCheckedQuestion = (checkedQ: questionProps) => {
     // step에 따른 setQuestionData,  setPostQuestion변화
     setQuestionData(checkedQ);

@@ -31,7 +31,6 @@ export default function ChooseQuestion(props: ChooseQuestionProps) {
 
   useEffect(() => {
     chosenQuestion();
-    console.log(questionArr);
   }, [questionArr]);
 
   const handleCheckedQuestion = (checkedQ: questionProps) => {
