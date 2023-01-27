@@ -62,7 +62,7 @@ export default function DontGoPage() {
         <TextAreaBox
           placeholder="한번만 다시 생각해봐! 일단 내 친구는 만나봐야 얘가 진국인지 아닌지 알 수있기 때문이지! "
           minLength={19}
-          maxLength={99}
+          maxLength={100}
           text={text}
           setText={setText}
           height={7.8}

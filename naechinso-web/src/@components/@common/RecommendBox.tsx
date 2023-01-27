@@ -114,7 +114,7 @@ export default function RecommendBox(props: RecommendBoxProps) {
       <TextAreaBox
         placeholder={questionData.placeholder}
         minLength={99}
-        maxLength={399}
+        maxLength={400}
         text={step === 0 ? firstRecommend : secondRecommend}
         setText={step === 0 ? setFirstRecommend : setSecondRecommend}
         height={13}

@@ -42,7 +42,7 @@ export default function AppealDetailPage() {
         <TextAreaBox
           placeholder="미친듯이 유쾌한 친구야! 함께 있으면 누구보다 행복해질 수 있어!!💕"
           minLength={19}
-          maxLength={39}
+          maxLength={40}
           text={text}
           setText={setText}
           height={5}
