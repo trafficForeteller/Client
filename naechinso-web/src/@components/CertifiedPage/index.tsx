@@ -83,11 +83,11 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     const userData = await getPendingStatus(localStorage.getItem("accessToken"));
     if (userData) {
       if (!userData[0]) navigate(`${routePaths.RecommendLanding}`);
-      else if (userData[0].type === "JOB") {
+      else if (userData[0].pendingStatus === "reject" && userData[0].type === "JOB") {
         return navigate(`${routePaths.JobEdit}`, { state: userData[0] });
-      } else if (userData[0].type === "EDU") {
+      } else if (userData[0].pendingStatus === "reject" && userData[0].type === "EDU") {
         return navigate(`${routePaths.EduEdit}`, { state: userData[0] });
-      } else if (userData[0].type === "REC") return navigate(`${routePaths.Pending}`);
+      } else return navigate(`${routePaths.Pending}`);
     }
   };
 
