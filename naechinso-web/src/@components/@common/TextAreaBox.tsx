@@ -25,7 +25,7 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
           placeholder={placeholder}
           minLength={minLength}
           maxLength={maxLength}
-          value={text}
+          value={text && text}
           onChange={(e) => handleText(e)}
           dir="auto"
           rows={1}
@@ -48,7 +48,7 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
         />
       </St.TextAreaWrapper>
       <St.TextLength>
-        <St.TextCount>{text.length}</St.TextCount>/{maxLength + 1}
+        <St.TextCount>{text && text.length}</St.TextCount>/{maxLength + 1}
       </St.TextLength>
     </St.TextAreaBox>
   );

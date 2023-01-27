@@ -74,7 +74,7 @@ export default function KeywordPage() {
       </St.KeywordListWrapper>
 
       <MoveNextPageBtn
-        nextPage={routePaths.ChooseQuestion}
+        nextPage={routePaths.ChooseFirstQuestion}
         title="다음"
         inputActive={!activeNextBtn}
         handleState={saveCheckedAppealsInLocal}

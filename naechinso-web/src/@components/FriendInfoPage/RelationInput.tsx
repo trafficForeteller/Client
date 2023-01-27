@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 export interface RelationInputProps {
@@ -8,6 +9,12 @@ export interface RelationInputProps {
 
 export default function RelationInput(props: RelationInputProps) {
   const { isModalOpened, relationEtc, setRelationEtc } = props;
+  const inputFocus = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const inputFocusCurrent = inputFocus && (inputFocus.current as HTMLInputElement);
+    inputFocusCurrent.focus();
+  }, []);
 
   const handleRelationEtc = (e: React.ChangeEvent<HTMLInputElement>) => {
     //기타 관계 선택 시 input 입력
@@ -16,7 +23,8 @@ export default function RelationInput(props: RelationInputProps) {
 
   return (
     <St.RelationInput isModalOpened={isModalOpened}>
-      : <St.Input placeholder="그러면 어떻게 만났어?" value={relationEtc} onChange={handleRelationEtc} />
+      :
+      <St.Input placeholder="그러면 어떻게 만났어?" value={relationEtc} onChange={handleRelationEtc} ref={inputFocus} />
     </St.RelationInput>
   );
 }

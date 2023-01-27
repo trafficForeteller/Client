@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { questionProps } from "../../core/recommend/recommend";
 export interface NextPageBtnProps {
   nextPage: string;
   title: string;
   inputActive: boolean;
-  state?: questionProps;
+  state?: number;
   handleState?: () => Promise<void> | void;
 }
 
