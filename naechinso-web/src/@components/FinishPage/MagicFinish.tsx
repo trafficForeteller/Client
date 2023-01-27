@@ -7,7 +7,7 @@ import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
 export default function MagicFinish() {
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
-      window.Kakao.init(process.env.REACT_APP_KAKAOSHARE_API);
+      window.Kakao.init(`${process.env.REACT_APP_KAKAOSHARE_API}`);
       // window.Kakao.isInitialized();
       console.log(window.Kakao.isInitialized());
     }
