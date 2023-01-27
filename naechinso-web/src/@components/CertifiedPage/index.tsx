@@ -99,8 +99,10 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     });
     setCorrectAuthNum(true);
     setInputBorder(false);
-    userData.accessToken && localStorage.setItem("accessToken", userData.accessToken);
-    isPendingStatus();
+    if (userData.accessToken) {
+      localStorage.setItem("accessToken", userData.accessToken);
+      isPendingStatus();
+    }
   };
 
   const handleFailPostSmsVerify = (errorMessage: string) => {

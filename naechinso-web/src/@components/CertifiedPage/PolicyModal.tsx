@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postMemberJoin } from "../../apis/member.api";
@@ -28,6 +29,8 @@ export default function PolicyModal(props: PolicyModalProps) {
     acceptsLocation: false,
     acceptsMarketing: false,
   });
+  const navigate = useNavigate();
+
   useEffect(() => {
     checkConfirmation();
     setAllChecked(policyList.every(isAllPolicyChecked));
@@ -79,8 +82,11 @@ export default function PolicyModal(props: PolicyModalProps) {
   const handlePolicy = async () => {
     //  내친소 시작하기 클릭 시 체크한 이용약관 POST
     const userData = await postMemberJoin(postPolicyList, token["registerToken"]);
-    userData && localStorage.setItem("accessToken", userData["accessToken"]);
-    userData && setToken({ accessToken: userData["accessToken"] });
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      setToken({ accessToken: userData["accessToken"] });
+      navigate(`${routePaths.RecommendLanding}`);
+    }
   };
 
   return (

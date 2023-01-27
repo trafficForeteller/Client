@@ -69,10 +69,7 @@ export default function Router() {
           path={routePaths.Pending}
           element={localStorage.getItem("accessToken") ? <PendingPage /> : <Navigate to="/" replace />}
         />
-        <Route
-          path={routePaths.RecommendLanding}
-          element={localStorage.getItem("accessToken") ? <RecommendLandingPage /> : <Navigate to="/" replace />}
-        />
+        <Route path={routePaths.RecommendLanding} element={<RecommendLandingPage />} />
         <Route
           path={routePaths.FriendInfo}
           element={localStorage.getItem("accessToken") ? <FriendInfoPage /> : <Navigate to="/" replace />}
