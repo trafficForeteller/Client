@@ -47,7 +47,7 @@ export default function JobEditPage() {
   };
 
   const patchEditJobData = async () => {
-    const response = await patchMemberJob(patchJob, localStorage.getItem("accessToken"));
+    await patchMemberJob(patchJob, localStorage.getItem("accessToken"));
   };
 
   return (

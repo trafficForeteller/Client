@@ -60,7 +60,7 @@ export default function EduEditPage() {
   };
 
   const patchEditEduData = async () => {
-    const response = await patchMemberEdu(patchEdu, localStorage.getItem("accessToken"));
+    await patchMemberEdu(patchEdu, localStorage.getItem("accessToken"));
   };
 
   return (

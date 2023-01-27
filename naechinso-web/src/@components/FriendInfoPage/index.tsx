@@ -27,6 +27,9 @@ export default function FriendInfoPage() {
   const [phoneNum, setPhoneNum] = useState("");
   const [postPhoneNum, setPostPhoneNum] = useState({ phoneNumber: "" });
 
+  const accessToken = localStorage.getItem("accessToken");
+  const memberUuid = localStorage.getItem("member-uuid");
+
   const [postFriendInfo, setPostFriendInfo] = useState<IPostFriendInfo>({
     phone: "",
     name: "",
@@ -60,7 +63,7 @@ export default function FriendInfoPage() {
           break;
       }
 
-      if (localStorage.getItem("member-uuid")) {
+      if (memberUuid) {
         setStep(3);
         setPostMagicFriendInfo(friendInfo);
       } else {
@@ -89,7 +92,7 @@ export default function FriendInfoPage() {
     window.scrollTo(0, 0);
     if (step === 2) setIsTypeModalOpened(true);
     else if (step === 3) setIsDurationModalOpened(true);
-    else if (step === 4 && localStorage.getItem("member-uuid")) {
+    else if (step === 4 && memberUuid) {
       navigate(`${routePaths.Keyword}`);
       handleMagicFriendInfo();
     } else if (step === 5) {
@@ -105,18 +108,14 @@ export default function FriendInfoPage() {
 
   const handleMagicFriendInfo = async () => {
     // 매직링크 가진 친구의 기본정보 POST
-    const userData = await postMagicRecommendFriendInfo(
-      postMagicFriendInfo,
-      localStorage.getItem("accessToken"),
-      localStorage.getItem("member-uuid"),
-    );
+    const userData = await postMagicRecommendFriendInfo(postMagicFriendInfo, accessToken, memberUuid);
     userData && localStorage.setItem("uuid", userData["uuid"]);
     saveFriendInfoInLocal(postMagicFriendInfo);
   };
 
   const handleFriendInfo = async () => {
     // 친구의 기본정보 POST
-    const userData = await postRecommendFriendInfo(postFriendInfo, localStorage.getItem("accessToken"));
+    const userData = await postRecommendFriendInfo(postFriendInfo, accessToken);
     userData && localStorage.setItem("uuid", userData["uuid"]);
     saveFriendInfoInLocal(postFriendInfo);
   };
