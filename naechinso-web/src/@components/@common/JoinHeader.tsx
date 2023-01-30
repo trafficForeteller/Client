@@ -6,7 +6,7 @@ export default function JoinHeader() {
   return (
     <St.JoinHeader>
       <MovePreviousPageBtn />
-      회원가입
+      본인인증
     </St.JoinHeader>
   );
 }
