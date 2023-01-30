@@ -12,9 +12,9 @@ export default function MagicFinish() {
     }
   }, []);
 
-  const handleCopyClipBoard = async (text: string) => {
+  const handleCopyClipBoard = async () => {
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText("https://naechinso.invite/96...");
       alert("클립보드에 링크가 복사되었습니다.");
     } catch (e) {
       alert("복사에 실패하였습니다");
@@ -115,7 +115,7 @@ export default function MagicFinish() {
         <St.Title>아래의 링크를 친구에게 전달해봐!</St.Title>
         <St.Desc>링크를 친구에게 전달하면</St.Desc>
         <St.Desc>친구가 자기소개를 할 수 있을거야😗</St.Desc>
-        <St.CopyLinkBox type="button" onClick={() => handleCopyClipBoard("https://naechinso.invite/96...")}>
+        <St.CopyLinkBox type="button" onClick={handleCopyClipBoard}>
           <St.Label>초대링크</St.Label>
           <St.CopyLinkWrapper>
             https://naechinso.invite/96...
