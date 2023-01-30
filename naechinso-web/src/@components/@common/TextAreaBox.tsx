@@ -8,10 +8,11 @@ export interface TextAreaBoxProps {
   text: string;
   setText: React.Dispatch<React.SetStateAction<string>>;
   height: number;
+  letterLimit?: boolean;
 }
 
 export default function TextAreaBox(props: TextAreaBoxProps) {
-  const { placeholder, minLength, maxLength, text, setText, height } = props;
+  const { placeholder, minLength, maxLength, text, setText, height, letterLimit } = props;
 
   const handleText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -48,7 +49,10 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
         />
       </St.TextAreaWrapper>
       <St.TextLength>
-        <St.TextCount>{text ? text.length : 0}</St.TextCount>/{maxLength}
+        {letterLimit ? <St.TextLimit>100자 이상 150자 이내</St.TextLimit> : <></>}
+        <St.TextCountWrapper>
+          <St.TextCount>{text ? text.length : 0}</St.TextCount>/{maxLength}
+        </St.TextCountWrapper>
       </St.TextLength>
     </St.TextAreaBox>
   );
@@ -69,14 +73,22 @@ const St = {
     ${({ theme }) => theme.fonts.sub3}
     color: ${({ theme }) => theme.colors.brown}
   `,
+
   TextLength: styled.div`
     margin-top: 0.8rem;
+    width: 100%;
     float: right;
     display: flex;
+    justify-content: space-between;
     color: ${({ theme }) => theme.colors.gray40};
     ${({ theme }) => theme.fonts.caption5}
   `,
-  TextCount: styled.p`
+  TextLimit: styled.span`
+    margin-left: 1.5rem;
     color: ${({ theme }) => theme.colors.orange};
   `,
+  TextCount: styled.b`
+    color: ${({ theme }) => theme.colors.orange};
+  `,
+  TextCountWrapper: styled.p``,
 };
