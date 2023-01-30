@@ -16,10 +16,30 @@ export default function PolicyModal(props: PolicyModalProps) {
   const { token, setToken } = props;
   const [allChecked, setAllChecked] = useState(false);
   const [policyList, setPolicyList] = useState([
-    { policyName: "acceptsService", title: "서비스 이용약관전체동의", checked: false },
-    { policyName: "acceptsInfo", title: "개인정보 처리 동의", checked: false },
-    { policyName: "acceptsReligion", title: "종교정보 제공 동의", checked: false },
-    { policyName: "acceptsMarketing", title: "마케팅 정보 수신 동의(선택)", checked: false },
+    {
+      policyName: "acceptsService",
+      title: "서비스 이용약관전체동의",
+      checked: false,
+      url: "https://necessary-hubcap-c3b.notion.site/Ati-a4e58b4f3bfb46b6a0de0c13a58098c7",
+    },
+    {
+      policyName: "acceptsInfo",
+      title: "개인정보 처리 동의",
+      checked: false,
+      url: "https://necessary-hubcap-c3b.notion.site/Ati-a4e58b4f3bfb46b6a0de0c13a58098c7",
+    },
+    {
+      policyName: "acceptsReligion",
+      title: "종교정보 제공 동의",
+      checked: false,
+      url: "https://necessary-hubcap-c3b.notion.site/Ati-a4e58b4f3bfb46b6a0de0c13a58098c7",
+    },
+    {
+      policyName: "acceptsMarketing",
+      title: "마케팅 정보 수신 동의(선택)",
+      checked: false,
+      url: "https://necessary-hubcap-c3b.notion.site/Ati-a4e58b4f3bfb46b6a0de0c13a58098c7",
+    },
   ]);
   const [startActive, setStartActive] = useState(true);
   const [postPolicyList, setPostPolicyList] = useState({
@@ -36,6 +56,11 @@ export default function PolicyModal(props: PolicyModalProps) {
     setAllChecked(policyList.every(isAllPolicyChecked));
     changePolicyType();
   }, [policyList]);
+
+  const handleOpenPolicy = (url: string) => {
+    // 새로운 창에서 약관 열기
+    window.open(url, "_blank", "noopener, noreferrer");
+  };
 
   const checkConfirmation = () => {
     // 조건에 따른 내친소 시작 버튼 활성화
@@ -104,7 +129,7 @@ export default function PolicyModal(props: PolicyModalProps) {
                 <St.IcCheckWrapper>{i.checked ? <IcChecked /> : <IcUnChecked />}</St.IcCheckWrapper>
                 <St.Check>{i.title}</St.Check>
               </St.CheckWrapper>
-              <St.SeePolicy type="button" checked={i.checked}>
+              <St.SeePolicy type="button" checked={i.checked} onClick={() => handleOpenPolicy(i.url)}>
                 보기
               </St.SeePolicy>
             </St.CheckBox>
