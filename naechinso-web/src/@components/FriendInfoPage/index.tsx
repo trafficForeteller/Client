@@ -126,7 +126,6 @@ export default function FriendInfoPage() {
     if (step === 1 && name.length >= 2) setActiveBtn(true);
     else if (step === 2 && name.length >= 2 && relationType) setActiveBtn(true);
     else if (step === 3 && name.length >= 2 && relationType && relationDuration) setActiveBtn(true);
-    // else setActiveBtn(false);
   }, [name, relationType, relationDuration]);
 
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
