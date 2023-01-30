@@ -30,6 +30,20 @@ export default function WorkCertified(props: WorkCertifiedProps) {
   const accessToken = localStorage.getItem("accessToken");
 
   useEffect(() => {
+    if (!window.Kakao.isInitialized()) {
+      window.Kakao.init(`${process.env.REACT_APP_KAKAOSHARE_API}`);
+      console.log(window.Kakao.isInitialized());
+    }
+  }, []);
+
+  const issuanceAuthorizeCode = () => {
+    // 카카오톡 인가코드 발급
+    window.Kakao.Auth.authorize({
+      redirectUri: "${REDIRECT_URI}",
+    });
+  };
+
+  useEffect(() => {
     handleFileChecked();
   }, [certifiedImg]);
 
@@ -106,7 +120,11 @@ export default function WorkCertified(props: WorkCertifiedProps) {
       <St.ConsultantWrapper>
         <IcSpeechBubble />
         <St.ConsultantBtn type="button">
-          <St.ConsultantNaechinso src={ImgConsultantNaechinso} alt="상담원 내친소 아이콘" />
+          <St.ConsultantNaechinso
+            src={ImgConsultantNaechinso}
+            alt="상담원 내친소 아이콘"
+            onClick={issuanceAuthorizeCode}
+          />
         </St.ConsultantBtn>
       </St.ConsultantWrapper>
 

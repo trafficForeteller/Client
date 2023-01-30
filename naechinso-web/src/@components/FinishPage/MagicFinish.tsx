@@ -8,7 +8,6 @@ export default function MagicFinish() {
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(`${process.env.REACT_APP_KAKAOSHARE_API}`);
-      // window.Kakao.isInitialized();
       console.log(window.Kakao.isInitialized());
     }
   }, []);
@@ -23,6 +22,7 @@ export default function MagicFinish() {
   };
 
   const shareKakaoMessage = () => {
+    // 카카오톡 메시지 공유하기
     window.Kakao.Share.sendDefault({
       objectType: "feed",
       content: {
