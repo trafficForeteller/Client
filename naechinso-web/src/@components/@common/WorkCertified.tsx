@@ -28,22 +28,13 @@ export default function WorkCertified(props: WorkCertifiedProps) {
   const [patchData, setPatchData] = useState({});
 
   useEffect(() => {
-    if (!window.Kakao.isInitialized()) {
-      window.Kakao.init(`${process.env.REACT_APP_KAKAOSHARE_API}`);
-      console.log(window.Kakao.isInitialized());
-    }
-  }, []);
-
-  const issuanceAuthorizeCode = () => {
-    // 카카오톡 인가코드 발급
-    window.Kakao.Auth.authorize({
-      redirectUri: "${REDIRECT_URI}",
-    });
-  };
-
-  useEffect(() => {
     handleFileChecked();
   }, [certifiedImg]);
+
+  const handleOpenChannel = () => {
+    // 새로운 창에서 약관 열기
+    window.open("https://naechinso.channel.io/lounge", "_blank", "noopener, noreferrer");
+  };
 
   const handleFileChecked = () => {
     // 이미지 파일 유무 확인하기
@@ -117,12 +108,8 @@ export default function WorkCertified(props: WorkCertifiedProps) {
 
       <St.ConsultantWrapper>
         <IcSpeechBubble />
-        <St.ConsultantBtn type="button">
-          <St.ConsultantNaechinso
-            src={ImgConsultantNaechinso}
-            alt="상담원 내친소 아이콘"
-            onClick={issuanceAuthorizeCode}
-          />
+        <St.ConsultantBtn type="button" onClick={handleOpenChannel}>
+          <St.ConsultantNaechinso src={ImgConsultantNaechinso} alt="상담원 내친소 아이콘" />
         </St.ConsultantBtn>
       </St.ConsultantWrapper>
 
