@@ -16,6 +16,7 @@ export default function DontGoPage() {
     appeals: [],
     dontGo: "",
   });
+  const [joinStatus, setJoinStatus] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("dontGo")) {
@@ -38,9 +39,8 @@ export default function DontGoPage() {
 
   const handleFriendDetail = async () => {
     await patchRecommendFriendDetail(patchRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
-    const userData = await getMemberStatus(localStorage.getItem("accessToken"));
-    console.log(userData);
-    console.log("first");
+    const userData = (await getMemberStatus(localStorage.getItem("accessToken"))) as string;
+    setJoinStatus(userData);
   };
 
   const handleTextCheck = () => {
@@ -74,7 +74,11 @@ export default function DontGoPage() {
       </St.TextWrapper>
 
       <MoveNextPageBtn
-        nextPage={routePaths.RecommenderLanding}
+        nextPage={
+          (joinStatus && joinStatus === "NEW") || (joinStatus && joinStatus === "NO_BASIC")
+            ? routePaths.Finish
+            : routePaths.RecommenderLanding
+        }
         title="완료"
         inputActive={!textCheck}
         handleState={handleFriendDetail}

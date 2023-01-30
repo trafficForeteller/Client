@@ -63,9 +63,9 @@ export async function patchMemberJob(jobData: object, accessToken: string | null
   }
 }
 
-export async function getMemberStatus(accessToken: string | null): Promise<void | null> {
+export async function getMemberStatus(accessToken: string | null): Promise<string | undefined> {
   try {
-    const { data } = await serverAxios.patch(`${PREFIX_URL}`, {
+    const { data } = await serverAxios.get(`${PREFIX_URL}`, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
     });
     if (data.status === 200) {
