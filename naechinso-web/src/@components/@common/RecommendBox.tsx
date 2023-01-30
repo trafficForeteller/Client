@@ -103,7 +103,7 @@ export default function RecommendBox(props: RecommendBoxProps) {
     <St.RecommendBox isThreeLine={isThreeLine}>
       <FixedHeader
         header="추천사"
-        progressRate={85}
+        progressRate={55}
         title1={questionData.desc1}
         title2={questionData.desc2}
         title3={questionData.desc3}
