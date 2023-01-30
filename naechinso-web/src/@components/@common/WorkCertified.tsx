@@ -26,7 +26,6 @@ export default function WorkCertified(props: WorkCertifiedProps) {
   const imgRef = useRef<HTMLInputElement>(null);
   const [fileChecked, setFileChecked] = useState(false);
   const [patchData, setPatchData] = useState({});
-  const accessToken = localStorage.getItem("accessToken");
 
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
@@ -53,13 +52,13 @@ export default function WorkCertified(props: WorkCertifiedProps) {
   };
 
   const patchCertifiedData = async () => {
-    if (dir === "edu") await patchMemberEdu(patchData, accessToken);
-    else if (dir === "job") await patchMemberJob(patchData, accessToken);
+    if (dir === "edu") await patchMemberEdu(patchData, localStorage.getItem("accessToken"));
+    else if (dir === "job") await patchMemberJob(patchData, localStorage.getItem("accessToken"));
   };
 
   const handlePostImgFile = async (formData: FormData) => {
     // s3에 이미지 POST
-    const userData = await postCertifiedImg(formData, accessToken, dir);
+    const userData = await postCertifiedImg(formData, localStorage.getItem("accessToken"), dir);
     const strImgName = userData && (userData[0] as string);
     if (dir === "edu") {
       const eduInfoOfLocal = localStorage.getItem("eduInfo") as string;

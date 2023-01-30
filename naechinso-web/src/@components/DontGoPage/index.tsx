@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { getMemberStatus } from "../../apis/member.api";
 import { patchRecommendFriendDetail } from "../../apis/recommend.api";
 import { IcDontGo } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
@@ -37,6 +38,9 @@ export default function DontGoPage() {
 
   const handleFriendDetail = async () => {
     await patchRecommendFriendDetail(patchRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
+    const userData = await getMemberStatus(localStorage.getItem("accessToken"));
+    console.log(userData);
+    console.log("first");
   };
 
   const handleTextCheck = () => {

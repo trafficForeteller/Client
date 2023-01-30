@@ -62,3 +62,17 @@ export async function patchMemberJob(jobData: object, accessToken: string | null
     throw new Error("Failed to post job Data");
   }
 }
+
+export async function getMemberStatus(accessToken: string | null): Promise<void | null> {
+  try {
+    const { data } = await serverAxios.patch(`${PREFIX_URL}`, {
+      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+    });
+    if (data.status === 200) {
+      return data.data.joinStatus;
+    }
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to post job Data");
+  }
+}

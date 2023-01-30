@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 import { AxiosError } from "axios";
-import { IPostPhoneNumber, IPostVerifyPhoneNumber, IToken, IUserDataType } from "../types/sms";
+import { IPostPhoneNumber, IPostVerifyPhoneNumber, IToken } from "../types/sms";
 
 import { serverAxios } from "./index";
 
