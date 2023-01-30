@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 export interface ShortInputProps {
@@ -8,17 +7,10 @@ export interface ShortInputProps {
 
 export default function NameInputBox(props: ShortInputProps) {
   const { name, handleNameInput } = props;
-  const inputFocus = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    const inputFocusCurrent = inputFocus && (inputFocus.current as HTMLInputElement);
-    inputFocusCurrent.focus();
-  }, []);
-
   return (
     <St.NameInputBox>
       <St.Label>이름</St.Label>
-      <St.Input placeholder="실명을 적어줘" onChange={(e) => handleNameInput(e)} value={name} ref={inputFocus} />
+      <St.Input placeholder="실명을 적어줘" onChange={(e) => handleNameInput(e)} value={name} />
     </St.NameInputBox>
   );
 }
