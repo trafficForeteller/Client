@@ -6,7 +6,6 @@ import { postCertifiedImg } from "../../apis/s3.api";
 import { IcPlus, IcSpeechBubble } from "../../asset/icons";
 import { ImgConsultantNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
-import { IEduType, IJobType } from "../../types/member";
 import FixedHeader from "./FixedHeader";
 import MoveNextPageBtn from "./MoveNextPageBtn";
 import SheildBox from "./SheildBox";
