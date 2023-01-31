@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 import { IcCopy, IcKakaotalk } from "../../asset/icons";
-import { ImgCommentNaechinso, ImgHandsUp, ImgShareNaechinso } from "../../asset/image";
+import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
 
 export default function MagicFinish() {
   useEffect(() => {
