@@ -31,8 +31,8 @@ export const keywordList: keywordProps[] = [
   { id: 2, keyword: "활발해🤗", checked: false },
   { id: 3, keyword: "차분해🍵", checked: false },
   { id: 4, keyword: "귀여워🐹", checked: false },
-  { id: 5, keyword: "다정해🎩", checked: false },
-  { id: 6, keyword: "섬세해🪡", checked: false },
+  { id: 5, keyword: "다정해🍭", checked: false },
+  { id: 6, keyword: "섬세해💐", checked: false },
   { id: 7, keyword: "천사야😇", checked: false },
   { id: 8, keyword: "똑똑해🧠", checked: false },
   { id: 9, keyword: "일잘러🤓", checked: false },
@@ -73,7 +73,7 @@ export const questionList: questionProps[] = [
   },
   {
     id: 1,
-    icon: "🥹",
+    icon: "😭",
     title: "감동이야",
     desc1: "",
     desc2: "내 친구한테",
@@ -85,7 +85,7 @@ export const questionList: questionProps[] = [
   },
   {
     id: 2,
-    icon: "😘",
+    icon: "😍",
     title: "이성적 매력",
     desc1: "이성적으로 봤을 때",
     desc2: "내 친구의 가장 큰 ",
@@ -146,7 +146,7 @@ export const questionList: questionProps[] = [
   },
   {
     id: 7,
-    icon: "🪞",
+    icon: "📷",
     title: "이미지",
     desc1: "",
     desc2: "친구는 그룹 내에서",
