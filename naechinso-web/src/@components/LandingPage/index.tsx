@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import { IcLandingLogo } from "../../asset/icons";
-import { ImgLanding, ImgLandingCloud, ImgLandingNaechinso } from "../../asset/image";
+import { ImgLandingCloud, ImgLandingNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import RecommendPageBtn from "./RecommendPageBtn";
 
