@@ -89,7 +89,7 @@ const St = {
     left: 5%;
   `,
   Bottom: styled.section`
-    width: 100%;
+    width: 37.5rem;
     background-color: ${({ theme }) => theme.colors.white};
 
     display: flex;
