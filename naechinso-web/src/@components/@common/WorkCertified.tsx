@@ -29,7 +29,6 @@ export default function WorkCertified(props: WorkCertifiedProps) {
 
   useEffect(() => {
     handleFileChecked();
-    console.log(patchData);
   }, [certifiedImg]);
 
   const handleOpenChannel = () => {

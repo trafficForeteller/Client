@@ -1,14 +1,11 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { InstallNaechinso } from "../@common";
 
 export default function InstallAppPage() {
-  const navigate = useNavigate();
-
   useEffect(() => {
-    if (Mobile()) navigate("https://naechinso.page.link/dynamic");
+    if (Mobile()) window.location.href = "https://naechinso.page.link/dynamic";
     console.log(Mobile());
   }, []);
 

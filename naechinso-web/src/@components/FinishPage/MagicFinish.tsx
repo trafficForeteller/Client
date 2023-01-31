@@ -1,19 +1,13 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { IcCopy, IcKakaotalk } from "../../asset/icons";
 import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
-import ArriveRecommendPage from "../ArriveRecommendPage";
-import LandingPage from "../LandingPage";
 
 export default function MagicFinish() {
-  const navigate = useNavigate();
-
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(`${process.env.REACT_APP_JS_KEY}`);
-      // console.log(window.Kakao.isInitialized());
     }
   }, []);
 
