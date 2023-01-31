@@ -46,6 +46,7 @@ export default function AppealDetailPage() {
           text={text}
           setText={setText}
           height={5}
+          letterLimit={false}
         />
       </St.TextWrapper>
 

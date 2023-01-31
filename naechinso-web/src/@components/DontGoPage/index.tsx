@@ -70,6 +70,7 @@ export default function DontGoPage() {
           text={text}
           setText={setText}
           height={7.8}
+          letterLimit={false}
         />
       </St.TextWrapper>
 

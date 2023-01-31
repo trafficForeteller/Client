@@ -8,7 +8,7 @@ export interface TextAreaBoxProps {
   text: string;
   setText: React.Dispatch<React.SetStateAction<string>>;
   height: number;
-  letterLimit?: boolean;
+  letterLimit: boolean;
 }
 
 export default function TextAreaBox(props: TextAreaBoxProps) {
@@ -49,7 +49,7 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
         />
       </St.TextAreaWrapper>
       <St.TextLength>
-        {letterLimit ? <St.TextLimit>100자 이상 150자 이내</St.TextLimit> : <></>}
+        <St.TextLimit letterLimit={letterLimit}>100자 이상 150자 이내</St.TextLimit>
         <St.TextCountWrapper>
           <St.TextCount>{text ? text.length : 0}</St.TextCount>/{maxLength}
         </St.TextCountWrapper>
@@ -83,9 +83,10 @@ const St = {
     color: ${({ theme }) => theme.colors.gray40};
     ${({ theme }) => theme.fonts.caption5}
   `,
-  TextLimit: styled.span`
+  TextLimit: styled.span<{ letterLimit: boolean }>`
     margin-left: 1.5rem;
     color: ${({ theme }) => theme.colors.orange};
+    display: ${({ letterLimit }) => (letterLimit ? "" : "hidden")};
   `,
   TextCount: styled.b`
     color: ${({ theme }) => theme.colors.orange};
