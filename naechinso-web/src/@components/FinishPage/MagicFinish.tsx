@@ -8,7 +8,7 @@ export default function MagicFinish() {
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(`${process.env.REACT_APP_JS_KEY}`);
-      console.log(window.Kakao.isInitialized());
+      // console.log(window.Kakao.isInitialized());
     }
   }, []);
 

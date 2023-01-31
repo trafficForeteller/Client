@@ -63,6 +63,14 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
           placeholder={placeholder}
           maxLength={8}
           ref={inputFocus}
+          style={{
+            color: "#111111",
+
+            fontFamily: "Pretendard",
+            fontWeight: "700",
+            fontSize: "2rem",
+            lineHeight: "3rem",
+          }}
         />
       </St.InputWrapper>
     </St.PhoneNumInputBox>
