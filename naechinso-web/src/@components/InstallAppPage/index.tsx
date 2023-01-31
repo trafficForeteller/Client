@@ -5,7 +5,7 @@ import { InstallNaechinso } from "../@common";
 export default function installAppPage() {
   return (
     <St.installAppPage>
-      <InstallNaechinso title="친구의 추천서가 도착했어" />
+      <InstallNaechinso title="내친소 시작하러 가볼까?" />
     </St.installAppPage>
   );
 }

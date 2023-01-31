@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { IcCopy, IcKakaotalk } from "../../asset/icons";
 import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
+import ArriveRecommendPage from "../ArriveRecommendPage";
 import LandingPage from "../LandingPage";
 
 export default function MagicFinish() {
@@ -35,7 +36,7 @@ export default function MagicFinish() {
         imageUrl: "https://ifh.cc/g/pocbkv.png",
         link: {
           mobileWebUrl: "https://naechinso.page.link/dynamic",
-          webUrl: navigate(`${LandingPage}`),
+          webUrl: "https://naechinso.page.link/dynamic",
         },
       },
       buttons: [
@@ -43,7 +44,7 @@ export default function MagicFinish() {
           title: "내친소 시작하기",
           link: {
             mobileWebUrl: "https://naechinso.page.link/dynamic",
-            webUrl: navigate(`${LandingPage}`),
+            webUrl: "https://naechinso.page.link/dynamic",
           },
         },
       ],

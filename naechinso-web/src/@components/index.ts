@@ -1,4 +1,5 @@
 export { default as AppealDetailPage } from "./AppealDetailPage";
+export { default as ArriveRecommendPage } from "./ArriveRecommendPage";
 export { default as CertifiedPage } from "./CertifiedPage";
 export { default as ChooseFirstQuestionPage } from "./ChooseFirstQuestionPage";
 export { default as ChooseSecondQuestionPage } from "./ChooseSecondQuestionPage";

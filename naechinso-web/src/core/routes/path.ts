@@ -24,6 +24,7 @@ export const routePaths = {
   JobEdit: "/edit/job",
   EduEdit: "/edit/edu",
   Pending: "/pending",
+  Arrive: "/arrive",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];

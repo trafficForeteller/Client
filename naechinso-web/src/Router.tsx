@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import {
   AppealDetailPage,
+  ArriveRecommendPage,
   CertifiedPage,
   ChooseFirstQuestionPage,
   ChooseSecondQuestionPage,
@@ -135,6 +136,7 @@ export default function Router() {
           path={routePaths.RecommenderLanding}
           element={localStorage.getItem("accessToken") ? <RecommenderLandingPage /> : <Navigate to="/" replace />}
         />
+        <Route path={routePaths.Arrive} element={<ArriveRecommendPage />} />
       </Routes>
     </BrowserRouter>
   );
