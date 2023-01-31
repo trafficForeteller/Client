@@ -1,10 +1,15 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { IcCopy, IcKakaotalk } from "../../asset/icons";
 import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
+import { routePaths } from "../../core/routes/path";
+import { MoveNextPageBtn } from "../@common";
 
 export default function MagicFinish() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(`${process.env.REACT_APP_JS_KEY}`);
@@ -80,6 +85,13 @@ export default function MagicFinish() {
           <IcKakaotalk />
           카카오톡으로 공유
         </St.ShareKakaotalkBtn>
+        <MoveNextPageBtn nextPage={routePaths.Landing} title="완료" inputActive={false} />
+
+        <St.NextBtnWrapper>
+          <St.NextStepBtn type="button" onClick={() => navigate(`${routePaths.Landing}`)}>
+            완료
+          </St.NextStepBtn>
+        </St.NextBtnWrapper>
       </St.Bottom>
     </St.MagicFinish>
   );
@@ -125,8 +137,7 @@ const St = {
   `,
   Bottom: styled.section`
     width: 37.5rem;
-    padding-top: 2.8rem;
-    height: 33.8rem;
+    padding: 2.8rem 2rem 12rem;
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 20px 20px 0px 0px;
 
@@ -174,7 +185,7 @@ const St = {
     gap: 3rem;
   `,
   ShareKakaotalkBtn: styled.button`
-    width: 33.5rem;
+    width: 100%;
     height: 5.6rem;
     background-color: #fee500;
     color: #391b1b;
@@ -187,5 +198,34 @@ const St = {
 
     border-radius: 16px;
     cursor: pointer;
+  `,
+  NextBtnWrapper: styled.section`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: fixed;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+    height: 11rem;
+
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%);
+  `,
+  NextStepBtn: styled.button`
+    bottom: 3.5rem;
+    padding: 1rem;
+    background-color: ${({ theme }) => theme.colors.orange};
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+    width: 33.5rem;
+    height: 5.6rem;
+    border-radius: 1.6rem;
+
+    &:disabled {
+      background-color: ${({ theme }) => theme.colors.orange20};
+      cursor: default;
+    }
   `,
 };
