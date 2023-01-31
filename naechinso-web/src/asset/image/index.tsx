@@ -7,6 +7,8 @@ export { default as ImgHandsUp } from "./handsUp.png";
 export { default as ImgInstallAppQrCode } from "./installAppQrCode.png";
 export { default as ImgInstallNaechinso } from "./installNaechinso.png";
 export { default as ImgLanding } from "./landing.png";
+export { default as ImgLandingCloud } from "./landingCloud.png";
+export { default as ImgLandingNaechinso } from "./landingNaechinso.png";
 export { default as ImgPendingNaechinso } from "./pendingNaechinso.png";
 export { default as ImgRecommenderLanding } from "./recommenderLanding.png";
 export { default as ImgRecommendLanding } from "./recommendLanding.png";

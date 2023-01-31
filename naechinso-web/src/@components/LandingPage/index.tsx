@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import { IcLandingLogo } from "../../asset/icons";
-import { ImgLanding } from "../../asset/image";
+import { ImgLanding, ImgLandingCloud, ImgLandingNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import RecommendPageBtn from "./RecommendPageBtn";
 
@@ -22,7 +22,8 @@ export default function LandingPage() {
           <St.Comment>소개팅은 받고 싶은데</St.Comment>
           <St.Comment>소개팅 앱은 싫다면?😎</St.Comment>
         </St.CommentWrapper>
-        <St.Naechinso src={ImgLanding} alt="내친소" />
+        <St.NaechinsoCloud src={ImgLandingCloud} alt="내친소" />
+        <St.Naechinso src={ImgLandingNaechinso} alt="내친소" />
       </St.Top>
 
       <St.Bottom>
@@ -72,12 +73,20 @@ const St = {
     ${({ theme }) => theme.fonts.sub3};
     border-radius: 16px 16px 16px 0px;
   `,
-  Naechinso: styled.img`
+  NaechinsoCloud: styled.img`
     width: 102%;
     height: 12.1rem;
     position: absolute;
     bottom: -1px;
     left: -1px;
+  `,
+  Naechinso: styled.img`
+    width: 12.1rem;
+    height: 12.1rem;
+    z-index: -1;
+    position: absolute;
+    bottom: -6px;
+    left: 5%;
   `,
   Bottom: styled.section`
     width: 100%;
