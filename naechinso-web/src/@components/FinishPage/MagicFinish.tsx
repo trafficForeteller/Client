@@ -1,10 +1,14 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { IcCopy, IcKakaotalk } from "../../asset/icons";
 import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
+import LandingPage from "../LandingPage";
 
 export default function MagicFinish() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(`${process.env.REACT_APP_JS_KEY}`);
@@ -14,7 +18,7 @@ export default function MagicFinish() {
 
   const handleCopyClipBoard = async () => {
     try {
-      await navigator.clipboard.writeText("https://naechinso.invite/96...");
+      await navigator.clipboard.writeText("https://naechinso.page.link/dynamic");
       alert("클립보드에 링크가 복사되었습니다.");
     } catch (e) {
       alert("복사에 실패하였습니다");
@@ -30,16 +34,16 @@ export default function MagicFinish() {
         description: "내 친구가 써준 추천사가 도착했어!",
         imageUrl: "https://ifh.cc/g/pocbkv.png",
         link: {
-          mobileWebUrl: "https://developers.kakao.com",
-          webUrl: "https://developers.kakao.com",
+          mobileWebUrl: "https://naechinso.page.link/dynamic",
+          webUrl: navigate(`${LandingPage}`),
         },
       },
       buttons: [
         {
           title: "내친소 시작하기",
           link: {
-            mobileWebUrl: "https://developers.kakao.com",
-            webUrl: "https://developers.kakao.com",
+            mobileWebUrl: "https://naechinso.page.link/dynamic",
+            webUrl: navigate(`${LandingPage}`),
           },
         },
       ],
@@ -73,7 +77,7 @@ export default function MagicFinish() {
         <St.CopyLinkBox type="button" onClick={handleCopyClipBoard}>
           <St.Label>초대링크</St.Label>
           <St.CopyLinkWrapper>
-            https://naechinso.invite/96...
+            https://naechinso.page.link...
             <IcCopy />
           </St.CopyLinkWrapper>
         </St.CopyLinkBox>

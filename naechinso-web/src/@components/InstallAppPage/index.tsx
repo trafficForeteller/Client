@@ -1,5 +1,17 @@
-import React from "react";
+import styled from "styled-components";
 
-export default function index() {
-  return <div>앱까시오</div>;
+import { InstallNaechinso } from "../@common";
+
+export default function installAppPage() {
+  return (
+    <St.installAppPage>
+      <InstallNaechinso title="친구의 추천서가 도착했어" />
+    </St.installAppPage>
+  );
 }
+
+const St = {
+  installAppPage: styled.main`
+    /* width: 100vw; */
+  `,
+};
