@@ -8,3 +8,4 @@ export { default as ImgLanding } from "./landing.png";
 export { default as ImgPendingNaechinso } from "./pendingNaechinso.png";
 export { default as ImgRecommenderLanding } from "./recommenderLanding.png";
 export { default as ImgRecommendLanding } from "./recommendLanding.png";
+export { default as ImgShareNaechinso } from "./shareNaechinso.png";
