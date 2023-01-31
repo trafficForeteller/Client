@@ -36,7 +36,7 @@ export default function MagicFinish() {
         imageUrl: "https://ifh.cc/g/pocbkv.png",
         link: {
           mobileWebUrl: "https://naechinso.page.link/dynamic",
-          webUrl: "https://naechinso.page.link/dynamic",
+          webUrl: "https://recommend.naechinso.com/arrive",
         },
       },
       buttons: [
@@ -44,7 +44,7 @@ export default function MagicFinish() {
           title: "내친소 시작하기",
           link: {
             mobileWebUrl: "https://naechinso.page.link/dynamic",
-            webUrl: "https://naechinso.page.link/dynamic",
+            webUrl: "https://recommend.naechinso.com/arrive",
           },
         },
       ],
