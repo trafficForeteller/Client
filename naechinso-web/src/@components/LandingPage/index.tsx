@@ -89,7 +89,7 @@ const St = {
     left: 5%;
   `,
   Bottom: styled.section`
-    width: 37.5rem;
+    width: 100%;
     background-color: ${({ theme }) => theme.colors.white};
 
     display: flex;
@@ -107,7 +107,6 @@ const St = {
   ButtonWrapper: styled.article`
     display: flex;
     flex-direction: column;
-
     gap: 1.2rem;
   `,
 };
