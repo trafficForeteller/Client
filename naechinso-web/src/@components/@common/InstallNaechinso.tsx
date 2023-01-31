@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { ImgInstallAppQrCode, ImgInstallNaechinso } from "../../asset/image";
+import MovePreviousPageBtn from "./MovePreviousPageBtn";
 
 interface InstallNaechinsoProps {
   title: string;
@@ -11,6 +12,7 @@ export default function InstallNaechinso(props: InstallNaechinsoProps) {
 
   return (
     <St.InstallNaechinso>
+      <MovePreviousPageBtn />
       <St.TalkBallon>
         <St.Title>{title}</St.Title>
         <St.Desc>모바일에서 내친소를 확인해줘😊</St.Desc>
