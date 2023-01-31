@@ -86,7 +86,7 @@ const St = {
   TextLimit: styled.span<{ letterLimit: boolean }>`
     margin-left: 1.5rem;
     color: ${({ theme }) => theme.colors.orange};
-    display: ${({ letterLimit }) => (letterLimit ? "" : "hidden")};
+    visibility: ${({ letterLimit }) => (letterLimit ? "" : "hidden")};
   `,
   TextCount: styled.b`
     color: ${({ theme }) => theme.colors.orange};

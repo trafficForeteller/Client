@@ -165,6 +165,9 @@ const St = {
     padding-top: 1.6rem;
     padding-bottom: 1.5rem;
     z-index: -1;
+
+    width: 37.5rem;
+    margin: 0 auto;
   `,
   QuestionBox: styled.button<{ checked: boolean }>`
     padding: 1.6rem 1.2rem;

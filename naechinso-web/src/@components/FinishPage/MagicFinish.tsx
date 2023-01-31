@@ -130,7 +130,7 @@ const St = {
     height: 5rem;
   `,
   Bottom: styled.section`
-    width: 37.5rem;
+    width: 100%;
     padding-top: 2.8rem;
     height: 33.8rem;
     background-color: ${({ theme }) => theme.colors.white};

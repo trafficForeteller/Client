@@ -25,7 +25,6 @@ export default function BasicHeader(props: BasicHeaderProps) {
 const St = {
   BasicHeader: styled.article``,
   Header: styled.header`
-    height: 5.6rem;
     display: flex;
     align-items: center;
     justify-content: center;

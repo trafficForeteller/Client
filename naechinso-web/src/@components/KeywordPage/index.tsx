@@ -85,10 +85,12 @@ export default function KeywordPage() {
 
 const St = {
   KeywordPage: styled.main`
+    width: 100%;
     padding-bottom: 10rem;
   `,
   KeywordListWrapper: styled.section`
-    width: 100%;
+    margin: 0 auto;
+    width: 37.5rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

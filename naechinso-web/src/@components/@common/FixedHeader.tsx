@@ -76,6 +76,10 @@ const St = {
     padding-bottom: 1rem;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #ffffff 10%);
     z-index: -1;
+
+    @media only screen and (min-width: 375px) and (max-width: 600px) {
+      width: 100%;
+    }
   `,
   FixedHeader: styled.section`
     width: 37.5rem;
@@ -88,6 +92,10 @@ const St = {
     padding-bottom: 1rem;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #ffffff 10%);
     z-index: 2;
+
+    @media only screen and (min-width: 375px) and (max-width: 600px) {
+      width: 100%;
+    }
   `,
   Label: styled.div`
     ${({ theme }) => theme.fonts.caption8};
