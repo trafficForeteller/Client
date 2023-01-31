@@ -6,7 +6,7 @@ import { InstallNaechinso } from "../@common";
 export default function InstallAppPage() {
   useEffect(() => {
     if (Mobile()) window.location.href = "https://naechinso.page.link/dynamic";
-    console.log(Mobile());
+    // console.log(Mobile());
   }, []);
 
   const Mobile = () => {

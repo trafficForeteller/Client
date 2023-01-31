@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { IcPreviousBtn } from "../../asset/icons";
 import { ImgInstallAppQrCode, ImgInstallNaechinso } from "../../asset/image";
-import MovePreviousPageBtn from "./MovePreviousPageBtn";
+import { routePaths } from "../../core/routes/path";
 
 interface InstallNaechinsoProps {
   title: string;
@@ -9,10 +11,14 @@ interface InstallNaechinsoProps {
 
 export default function InstallNaechinso(props: InstallNaechinsoProps) {
   const { title } = props;
+  const navigate = useNavigate();
 
   return (
     <St.InstallNaechinso>
-      <MovePreviousPageBtn />
+      <St.Button onClick={() => navigate(`${routePaths.Landing}`)} type="button">
+        <IcPreviousBtn />
+      </St.Button>
+
       <St.TalkBallon>
         <St.Title>{title}</St.Title>
         <St.Desc>모바일에서 내친소를 확인해줘😊</St.Desc>
@@ -80,5 +86,12 @@ const St = {
     position: absolute;
     top: 33rem;
     right: 0;
+  `,
+  Button: styled.button`
+    position: absolute;
+    top: 1em;
+    left: 1.6rem;
+    z-index: 8;
+    cursor: pointer;
   `,
 };
