@@ -76,7 +76,7 @@ export default function DontGoPage() {
           text={text}
           setText={setText}
           height={7.8}
-          letterLimit={false}
+          letterLimit="20자 이상 100자 이내"
         />
       </St.TextWrapper>
 
