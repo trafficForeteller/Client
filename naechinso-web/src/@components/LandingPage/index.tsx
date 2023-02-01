@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
@@ -9,9 +9,26 @@ import RecommendPageBtn from "./RecommendPageBtn";
 
 export default function LandingPage() {
   const location = useLocation();
+  const [accessToken, setAccessToken] = useState(false);
 
   useEffect(() => {
-    window.localStorage.clear();
+    localStorage.removeItem("questionList");
+    localStorage.removeItem("checkedQ1");
+    localStorage.removeItem("checkedQ2");
+    localStorage.removeItem("firstRecommend");
+    localStorage.removeItem("secondRecommend");
+    localStorage.removeItem("eduInfo");
+    localStorage.removeItem("jobInfo");
+    localStorage.removeItem("appealDetail");
+    localStorage.removeItem("dontGo");
+    localStorage.removeItem("appeals");
+    localStorage.removeItem("friendInfo");
+    localStorage.removeItem("keywordList");
+    localStorage.removeItem("postRecommender");
+    localStorage.removeItem("genderTypeList");
+    localStorage.removeItem("uuid");
+
+    localStorage.getItem("accessToken") && setAccessToken(true);
     location.pathname !== "/" && localStorage.setItem("member-uuid", location.pathname);
   }, [location]);
 
@@ -34,7 +51,10 @@ export default function LandingPage() {
 
         <St.ButtonWrapper>
           <RecommendPageBtn nextPage={routePaths.InstallApp} title="내친소 시작하기" />
-          <RecommendPageBtn nextPage={routePaths.PhoneNum} title="내 친구를 소개하고 싶어" />
+          <RecommendPageBtn
+            nextPage={accessToken ? routePaths.RecommendLanding : routePaths.PhoneNum}
+            title="내 친구를 소개하고 싶어"
+          />
         </St.ButtonWrapper>
       </St.Bottom>
     </St.LandingPage>

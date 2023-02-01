@@ -16,7 +16,6 @@ export default function DontGoPage() {
     appeals: [],
     dontGo: "",
   });
-  const [joinStatus, setJoinStatus] = useState("");
   const [allowIntroduce, setAllowIntroduce] = useState(false);
 
   useEffect(() => {
