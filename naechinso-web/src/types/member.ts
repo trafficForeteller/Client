@@ -41,3 +41,8 @@ export interface IPatchJob {
   jobPart: string;
   jobLocation: string;
 }
+
+export interface IGetMemberStatus {
+  jobAccepted: string;
+  eduAccepted: string;
+}

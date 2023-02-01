@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import {  IPostPolicy, IPostRecommender } from "../types/member";
+import {  IGetMemberStatus, IPostPolicy, IPostRecommender } from "../types/member";
 import { serverAxios } from ".";
 
 const PREFIX_URL = "/member";
@@ -63,9 +63,7 @@ export async function patchMemberJob(jobData: object, accessToken: string | null
   }
 }
 
-export async function getMemberStatus(
-  accessToken: string | null,
-): Promise<{ jobAccepted: string; eduAccepted: string } | undefined> {
+export async function getMemberStatus(accessToken: string | null): Promise<IGetMemberStatus | undefined> {
   try {
     const { data } = await serverAxios.get(`${PREFIX_URL}`, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
