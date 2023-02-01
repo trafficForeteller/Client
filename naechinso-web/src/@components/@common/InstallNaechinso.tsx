@@ -16,6 +16,7 @@ export default function InstallNaechinso(props: InstallNaechinsoProps) {
 
   useEffect(() => {
     if (Mobile()) window.location.href = "https://naechinso.page.link/dynamic";
+    console.log(Mobile());
   }, []);
 
   const Mobile = () => {
@@ -42,7 +43,6 @@ const St = {
   InstallNaechinso: styled.div`
     background-color: ${({ theme }) => theme.colors.orange};
     margin: 0;
-    /* width: 100vw; */
     height: 100vh;
   `,
   TalkBallon: styled.div`
