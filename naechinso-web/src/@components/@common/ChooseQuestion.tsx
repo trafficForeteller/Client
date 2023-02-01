@@ -141,12 +141,16 @@ export default function ChooseQuestion(props: ChooseQuestionProps) {
 
 const St = {
   ChooseQuestion: styled.main`
-    padding: 0 2rem 10rem;
+    padding-bottom: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   `,
   Label: styled.div`
     ${({ theme }) => theme.fonts.caption8};
     color: ${({ theme }) => theme.colors.orange};
     margin-top: 18.5rem;
+    margin-left: 2rem;
 
     width: 14.4rem;
     height: 3.6rem;
@@ -164,7 +168,6 @@ const St = {
     gap: 1.5rem;
     padding-top: 1.6rem;
     padding-bottom: 1.5rem;
-    z-index: -1;
 
     width: 37.5rem;
     margin: 0 auto;

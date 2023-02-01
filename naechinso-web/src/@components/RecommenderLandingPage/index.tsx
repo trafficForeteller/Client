@@ -42,7 +42,7 @@ const St = {
     float: right;
   `,
   Bottom: styled.section`
-    width: 37.5rem;
+    width: 100%;
     padding-top: 2.8rem;
     height: 21.2rem;
     background-color: ${({ theme }) => theme.colors.white};

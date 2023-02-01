@@ -74,7 +74,7 @@ const St = {
     border-radius: 0px 16px 16px 16px;
   `,
   Bottom: styled.section<{ index: number }>`
-    width: 37.5rem;
+    width: 100%;
     padding-top: 2.8rem;
     height: ${({ index }) => (index === 0 ? "30.4rem" : "28rem")};
     background-color: ${({ theme }) => theme.colors.white};

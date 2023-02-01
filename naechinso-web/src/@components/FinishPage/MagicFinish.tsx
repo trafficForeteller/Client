@@ -85,13 +85,9 @@ export default function MagicFinish() {
           <IcKakaotalk />
           카카오톡으로 공유
         </St.ShareKakaotalkBtn>
-        <MoveNextPageBtn nextPage={routePaths.Landing} title="완료" inputActive={false} />
-
-        <St.NextBtnWrapper>
-          <St.NextStepBtn type="button" onClick={() => navigate(`${routePaths.Landing}`)}>
-            완료
-          </St.NextStepBtn>
-        </St.NextBtnWrapper>
+        <St.NextStepBtn type="button" onClick={() => navigate(`${routePaths.Landing}`)}>
+          완료
+        </St.NextStepBtn>
       </St.Bottom>
     </St.MagicFinish>
   );
@@ -136,8 +132,8 @@ const St = {
     height: 5rem;
   `,
   Bottom: styled.section`
-    width: 37.5rem;
-    padding: 2.8rem 2rem 12rem;
+    width: 100%;
+    padding: 2.8rem 2rem 3.6rem;
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 20px 20px 0px 0px;
 
@@ -166,7 +162,6 @@ const St = {
     background-color: ${({ theme }) => theme.colors.neural};
     padding: 1.2rem 1.6rem 1.6rem 1.6rem;
     margin-top: 2.8rem;
-    margin-bottom: 1.2rem;
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
@@ -185,7 +180,7 @@ const St = {
     gap: 3rem;
   `,
   ShareKakaotalkBtn: styled.button`
-    width: 100%;
+    width: 33.5rem;
     height: 5.6rem;
     background-color: #fee500;
     color: #391b1b;
@@ -198,21 +193,11 @@ const St = {
 
     border-radius: 16px;
     cursor: pointer;
-  `,
-  NextBtnWrapper: styled.section`
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    position: fixed;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 1rem;
-    height: 11rem;
 
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%);
+    margin-top: 0.8rem;
+    margin-bottom: 1.8rem;
   `,
+
   NextStepBtn: styled.button`
     bottom: 3.5rem;
     padding: 1rem;
