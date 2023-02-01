@@ -122,7 +122,7 @@ export default function PolicyModal(props: PolicyModalProps) {
             <St.CheckBox key={i.policyName}>
               <St.CheckWrapper type="button" onClick={() => toggleCheck(idx)}>
                 <St.IcCheckWrapper>{i.checked ? <IcChecked /> : <IcUnChecked />}</St.IcCheckWrapper>
-                <St.Check>{i.title}</St.Check>
+                <St.Check checked={i.checked}>{i.title}</St.Check>
               </St.CheckWrapper>
               <St.SeePolicy type="button" checked={i.checked} onClick={() => handleOpenPolicy(i.url)}>
                 보기
@@ -208,13 +208,13 @@ const St = {
     width: 2.4rem;
     z-index: 3;
   `,
-  Check: styled.p`
-    color: ${({ theme }) => theme.colors.black};
+  Check: styled.p<{ checked: boolean }>`
+    color: ${({ theme, checked }) => (checked ? theme.colors.black : theme.colors.gray40)};
     ${({ theme }) => theme.fonts.sub3};
     z-index: 3;
   `,
   SeePolicy: styled.button<{ checked: boolean }>`
-    color: ${({ theme, checked }) => (checked ? theme.colors.orange : theme.colors.black20)};
+    color: ${({ theme, checked }) => (checked ? theme.colors.orange : theme.colors.gray40)};
     ${({ theme }) => theme.fonts.body2};
     z-index: 3;
   `,
