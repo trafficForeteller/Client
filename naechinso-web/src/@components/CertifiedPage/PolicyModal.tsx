@@ -7,6 +7,7 @@ import { IcAllChecked, IcAllUnChecked, IcChecked, IcUnChecked } from "../../asse
 import { routePaths } from "../../core/routes/path";
 import { ITokenType } from "../../types/member";
 import { MoveNextPageBtn } from "../@common";
+
 export interface PolicyModalProps {
   token: ITokenType;
   setToken: React.Dispatch<React.SetStateAction<ITokenType>>;
