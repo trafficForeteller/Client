@@ -10,10 +10,10 @@ export default function RecommendPageBtn(props: RecommendPageBtnProps) {
   const { nextPage, title } = props;
   const navigate = useNavigate();
 
-  function goNextPage() {
+  const goNextPage = () => {
     // 다음페이지로 이동
     navigate(`${nextPage}`);
-  }
+  };
 
   return (
     <St.Button onClick={goNextPage} type="button" title={title}>
