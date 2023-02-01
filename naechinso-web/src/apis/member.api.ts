@@ -63,13 +63,15 @@ export async function patchMemberJob(jobData: object, accessToken: string | null
   }
 }
 
-export async function getMemberStatus(accessToken: string | null): Promise<string | undefined> {
+export async function getMemberStatus(
+  accessToken: string | null,
+): Promise<{ jobAccepted: string; eduAccepted: string } | undefined> {
   try {
     const { data } = await serverAxios.get(`${PREFIX_URL}`, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
     });
     if (data.status === 200) {
-      return data.data.joinStatus;
+      return { jobAccepted: data.data.jobAccepted, eduAccepted: data.data.eduAccepted };
     }
   } catch (err) {
     console.log(err);

@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { getMemberStatus } from "../../apis/member.api";
-import { getPendingStatus } from "../../apis/pending.api";
 import { patchRecommendFriendDetail } from "../../apis/recommend.api";
 import { IcDontGo } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
@@ -19,8 +17,7 @@ export default function DontGoPage() {
     dontGo: "",
   });
   const [joinStatus, setJoinStatus] = useState("");
-  const [pandingStatus, setPendingStatus] = useState(false);
-  const navigate = useNavigate();
+  const [allowIntroduce, setAllowIntroduce] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("dontGo")) {
@@ -43,10 +40,9 @@ export default function DontGoPage() {
 
   const handleFriendDetail = async () => {
     await patchRecommendFriendDetail(patchRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
-    const pendingStatus = await getPendingStatus(localStorage.getItem("accessToken"));
-    if (pendingStatus && pendingStatus[0].pendingStatus === "pending") setPendingStatus(true);
-    const userData = (await getMemberStatus(localStorage.getItem("accessToken"))) as string;
-    setJoinStatus(userData);
+    const userData = await getMemberStatus(localStorage.getItem("accessToken"));
+    if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE") setAllowIntroduce(true);
+    else setAllowIntroduce(false);
   };
 
   const handleTextCheck = () => {
@@ -81,11 +77,7 @@ export default function DontGoPage() {
       </St.TextWrapper>
 
       <MoveNextPageBtn
-        nextPage={
-          (joinStatus && joinStatus === "NEW") || (joinStatus && joinStatus === "NO_BASIC")
-            ? routePaths.RecommenderLanding
-            : routePaths.Finish
-        }
+        nextPage={allowIntroduce ? routePaths.RecommenderLanding : routePaths.Finish}
         title="완료"
         inputActive={!textCheck}
         handleState={handleFriendDetail}
