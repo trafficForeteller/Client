@@ -134,7 +134,7 @@ export const questionList: questionProps[] = [
   },
   {
     id: 6,
-    icon: "✨",
+    icon: "🎨",
     title: "3가지 TMI",
     desc1: "내 친구와 친해져야만 ",
     desc2: "알 수 있는 ",
