@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -12,6 +13,14 @@ interface InstallNaechinsoProps {
 export default function InstallNaechinso(props: InstallNaechinsoProps) {
   const { title } = props;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (Mobile()) window.location.href = "https://naechinso.page.link/dynamic";
+  }, []);
+
+  const Mobile = () => {
+    return /Mobi/i.test(window.navigator.userAgent);
+  };
 
   return (
     <St.InstallNaechinso>
