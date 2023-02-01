@@ -70,7 +70,6 @@ const St = {
     position: absolute;
     top: 17rem;
     left: 0;
-
     background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 30%);
   `,
   TextWrapper: styled.section`
