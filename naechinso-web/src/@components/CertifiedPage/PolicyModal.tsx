@@ -145,7 +145,7 @@ export default function PolicyModal(props: PolicyModalProps) {
 const St = {
   Modal: styled.section`
     width: 100%;
-    height: 44rem;
+    height: 38rem;
     position: absolute;
     bottom: 0;
     left: 0;
