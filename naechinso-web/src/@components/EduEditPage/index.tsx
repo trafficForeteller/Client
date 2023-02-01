@@ -6,6 +6,7 @@ import { patchMemberEdu } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IPatchEdu } from "../../types/member";
 import { EditHeader, EditImageBox, EditInput, EditTitleBox, EditToggleInputBox, MoveNextPageBtn } from "../@common";
+
 export default function EduEditPage() {
   const location = useLocation();
   const eduGetData = location.state;

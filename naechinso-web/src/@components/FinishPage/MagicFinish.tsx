@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { IcCopy, IcKakaotalk } from "../../asset/icons";
 import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
-import { MoveNextPageBtn } from "../@common";
 
 export default function MagicFinish() {
   const navigate = useNavigate();

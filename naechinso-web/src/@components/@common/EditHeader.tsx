@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ImgEditNaechinso } from "../../asset/image";
 import MovePreviousPageBtn from "./MovePreviousPageBtn";
 import WarningBox from "./WarningBox";
+
 export default function EditHeader() {
   return (
     <St.EditHeader>
