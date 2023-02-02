@@ -16,7 +16,8 @@ export default function ToggleModal(props: ToggleModalProps) {
 
   const toggleCheck = (el: eduLevelrops) => {
     // 항목별 체크
-    const newRelationList = relationList.map((relation, index) => {
+    const tempRelationList = relationList;
+    const newRelationList = tempRelationList.map((relation, index) => {
       if (el.id === index) relation.checked = true;
       else relation.checked = false;
       return relation;

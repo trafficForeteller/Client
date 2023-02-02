@@ -1,11 +1,13 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
-import { routePaths } from "../../core/routes/path";
 
-export default function Finish() {
-  const navigate = useNavigate();
+interface FinishProps {
+  handleFinish: () => void;
+}
+
+export default function Finish(props: FinishProps) {
+  const { handleFinish } = props;
 
   return (
     <St.Finish>
@@ -24,7 +26,7 @@ export default function Finish() {
         <St.Emoji src={ImgHandsUp} alt="손 올리는 아이콘" />
       </St.CommentBox>
       <St.NextBtnWrapper>
-        <St.NextStepBtn type="button" onClick={() => navigate(`${routePaths.Landing}`)}>
+        <St.NextStepBtn type="button" onClick={() => handleFinish()}>
           완료
         </St.NextStepBtn>
       </St.NextBtnWrapper>

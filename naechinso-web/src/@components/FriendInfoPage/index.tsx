@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postMagicRecommendFriendInfo, postRecommendFriendInfo } from "../../apis/recommend.api";
+import { relationDurationList, relationTypeList, relationTypeProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IPostFriendInfo } from "../../types/recommend";
 import { BasicHeader, ShortInputBox, Title } from "../@common";
@@ -77,8 +78,20 @@ export default function FriendInfoPage() {
       }
 
       setActiveBtn(true);
+    } else {
+      resetListChecked(relationTypeList);
+      resetListChecked(relationDurationList);
     }
   }, []);
+
+  const resetListChecked = (list: relationTypeProps[]) => {
+    // list checked가 모두 되지 않은 상태로 수정하기
+    list.map((el) => {
+      el.checked = false;
+      return el;
+    });
+    return list;
+  };
 
   useEffect(() => {
     checkIsModalOpened();

@@ -18,7 +18,10 @@ export async function postMemberJoin(policyData: IPostPolicy, registerToken: str
   }
 }
 
-export async function postMemberReissue(accessToken: string, refreshToken: string): Promise<IPostReissue | null> {
+export async function postMemberReissue(
+  accessToken: string | null,
+  refreshToken: string | null,
+): Promise<IPostReissue | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/reissue`, "", {
       headers: {

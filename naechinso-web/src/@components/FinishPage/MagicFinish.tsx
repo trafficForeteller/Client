@@ -1,13 +1,15 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { IcCopy, IcKakaotalk } from "../../asset/icons";
 import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
-import { routePaths } from "../../core/routes/path";
 
-export default function MagicFinish() {
-  const navigate = useNavigate();
+interface MagicFinishProps {
+  handleFinish: () => void;
+}
+
+export default function MagicFinish(props: MagicFinishProps) {
+  const { handleFinish } = props;
 
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
@@ -84,7 +86,7 @@ export default function MagicFinish() {
           <IcKakaotalk />
           카카오톡으로 공유
         </St.ShareKakaotalkBtn>
-        <St.NextStepBtn type="button" onClick={() => navigate(`${routePaths.Landing}`)}>
+        <St.NextStepBtn type="button" onClick={() => handleFinish()}>
           완료
         </St.NextStepBtn>
       </St.Bottom>

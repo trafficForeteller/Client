@@ -39,9 +39,7 @@ export default function LandingPage() {
 
   const handlePostMemberReissue = async () => {
     // 액세스 토큰 만료 응답인지 확인
-    const accessToken = localStorage.getItem("accessToken") as string;
-    const refreshToken = localStorage.getItem("refreshToken") as string;
-    const userData = await postMemberReissue(accessToken, refreshToken);
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
     if (userData) {
       localStorage.setItem("accessToken", userData["accessToken"]);
       localStorage.setItem("refreshToken", userData["refreshToken"]);

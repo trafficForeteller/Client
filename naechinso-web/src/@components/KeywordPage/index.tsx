@@ -22,6 +22,11 @@ export default function KeywordPage() {
         setCheckedAppeals(appeals);
         setActiveNextBtn(true);
       }
+    } else {
+      keywordList.map((keyword) => {
+        keyword.checked = false;
+        return keyword;
+      });
     }
   }, []);
 
@@ -32,7 +37,8 @@ export default function KeywordPage() {
 
   const toggleChecked = (el: keywordProps) => {
     // 항목별 체크 && 3개 이상 시 체크 불가
-    const newKeywordList = keywordArr.map((keyword, index) => {
+    const tempKeywordArr = keywordArr;
+    const newKeywordList = tempKeywordArr.map((keyword, index) => {
       if (el.id === index) {
         if (checkedAppeals.length < 3) keyword.checked = !keyword.checked;
         else if (el.checked) keyword.checked = !keyword.checked;
