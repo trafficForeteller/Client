@@ -26,7 +26,7 @@ export default function RelationToggle(props: RelationToggleProps) {
 
 const St = {
   RelationToggle: styled.section<{ isModalOpened: boolean }>`
-    width: 100%;
+    width: 33.5rem;
     height: 8rem;
 
     border-radius: 1.6rem;

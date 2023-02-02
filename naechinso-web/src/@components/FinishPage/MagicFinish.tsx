@@ -159,7 +159,7 @@ const St = {
     ${({ theme }) => theme.fonts.body2};
   `,
   CopyLinkBox: styled.button`
-    width: 33.1rem;
+    width: 33.5rem;
     height: 8rem;
     background-color: ${({ theme }) => theme.colors.neural};
     padding: 1.2rem 1.6rem 1.6rem 1.6rem;

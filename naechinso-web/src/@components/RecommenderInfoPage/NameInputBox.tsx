@@ -17,7 +17,7 @@ export default function NameInputBox(props: ShortInputProps) {
 
 const St = {
   NameInputBox: styled.section`
-    width: 100%;
+    width: 33.5rem;
     height: 8rem;
 
     border-radius: 16px;
