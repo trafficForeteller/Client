@@ -78,7 +78,8 @@ export default function MagicFinish(props: MagicFinishProps) {
         <St.CopyLinkBox type="button" onClick={handleCopyClipBoard}>
           <St.Label>초대링크</St.Label>
           <St.CopyLinkWrapper>
-            https://naechinso.page.link...
+            <St.CopyLink>https://naechinso.page.link...</St.CopyLink>
+
             <IcCopy />
           </St.CopyLinkWrapper>
         </St.CopyLinkBox>
@@ -174,12 +175,15 @@ const St = {
     color: ${({ theme }) => theme.colors.gray40};
     ${({ theme }) => theme.fonts.body2};
   `,
-  CopyLinkWrapper: styled.p`
+  CopyLinkWrapper: styled.div`
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub4};
+    width: 100%;
     display: flex;
-    gap: 3rem;
+    align-items: center;
+    justify-content: space-between;
   `,
+  CopyLink: styled.p``,
   ShareKakaotalkBtn: styled.button`
     width: 33.5rem;
     height: 5.6rem;
