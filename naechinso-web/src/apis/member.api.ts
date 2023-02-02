@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import {  IGetMemberStatus, IPostPolicy, IPostRecommender } from "../types/member";
+import {  IGetMemberStatus, IPostPolicy, IPostRecommender, IPostReissue } from "../types/member";
 import { serverAxios } from ".";
 
 const PREFIX_URL = "/member";
@@ -7,7 +7,7 @@ const PREFIX_URL = "/member";
 export async function postMemberJoin(policyData: IPostPolicy, registerToken: string | undefined): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/join`, policyData, {
-      headers: { Authorization: `${registerToken}`, "Content-Type": "application/json" },
+      headers: { Authorization: `Bearer ${registerToken}`, "Content-Type": "application/json" },
     });
     if (data.status === 200) {
       return data.data;
@@ -15,6 +15,22 @@ export async function postMemberJoin(policyData: IPostPolicy, registerToken: str
   } catch (err) {
     console.log(err);
     throw new Error("Failed to verify your Authentication number or your phone number");
+  }
+}
+
+export async function postMemberReissue(accessToken: string, refreshToken: string): Promise<IPostReissue | null> {
+  try {
+    const { data } = await serverAxios.post(`${PREFIX_URL}/reissue`, "", {
+      headers: {
+        Authorization: `${accessToken}`,
+        Refresh: `${refreshToken}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return data.data;
+  } catch (err) {
+    console.log(err);
+    return null;
   }
 }
 

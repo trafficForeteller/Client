@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
+import { postMemberReissue } from "../../apis/member.api";
 import { IcLandingLogo } from "../../asset/icons";
 import { ImgLandingCloud, ImgLandingNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
@@ -28,9 +29,25 @@ export default function LandingPage() {
     localStorage.removeItem("genderTypeList");
     localStorage.removeItem("uuid");
 
-    localStorage.getItem("accessToken") && setAccessToken(true);
     location.pathname !== "/" && localStorage.setItem("member-uuid", location.pathname);
+    localStorage.getItem("accessToken") && setAccessToken(true);
   }, [location]);
+
+  useEffect(() => {
+    localStorage.getItem("accessToken") && handlePostMemberReissue();
+  }, []);
+
+  const handlePostMemberReissue = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const accessToken = localStorage.getItem("accessToken") as string;
+    const refreshToken = localStorage.getItem("refreshToken") as string;
+    const userData = await postMemberReissue(accessToken, refreshToken);
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+      setAccessToken(true);
+    } else setAccessToken(false);
+  };
 
   return (
     <St.LandingPage>

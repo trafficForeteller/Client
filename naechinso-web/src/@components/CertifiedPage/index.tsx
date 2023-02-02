@@ -99,8 +99,9 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     });
     setCorrectAuthNum(true);
     setInputBorder(false);
-    if (userData.accessToken) {
-      localStorage.setItem("accessToken", userData.accessToken);
+    if (userData) {
+      userData.accessToken && localStorage.setItem("accessToken", userData.accessToken);
+      userData.refreshToken && localStorage.setItem("refreshToken", userData.refreshToken);
       isPendingStatus();
     }
   };
@@ -134,7 +135,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
       </St.AuthNumWrapper>
 
       <St.ButtonWrapper inputActive={inputActive}>
-        <St.Button onClick={() => navigate(routePaths.FriendInfo)} disabled={inputActive} type="button">
+        <St.Button onClick={() => navigate(routePaths.RecommendLanding)} disabled={inputActive} type="button">
           완료
         </St.Button>
       </St.ButtonWrapper>

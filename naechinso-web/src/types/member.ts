@@ -6,6 +6,13 @@ export interface IPostPolicy {
   acceptsMarketing: boolean;
 }
 
+export interface IPostReissue {
+  accessToken: string;
+  refreshToken: string;
+  isActive: boolean;
+  isBanned: boolean;
+}
+
 export interface ITokenType {
   registerToken?: string;
   accessToken?: string;

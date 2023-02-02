@@ -10,6 +10,7 @@ export interface IPostVerifyPhoneNumber {
 export interface IToken {
   registerToken?: "";
   accessToken?: "";
+  refreshToken?: "";
 }
 
 export interface IUserDataType {
