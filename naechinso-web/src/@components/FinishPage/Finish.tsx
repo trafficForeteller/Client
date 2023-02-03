@@ -145,15 +145,4 @@ const St = {
 
     margin-top: 0.8rem;
   `,
-
-  NextStepBtn: styled.button`
-    bottom: 3.5rem;
-    padding: 1rem;
-    background-color: ${({ theme }) => theme.colors.orange};
-    color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
-    width: 100%;
-    height: 5.6rem;
-    border-radius: 1.6rem;
-  `,
 };

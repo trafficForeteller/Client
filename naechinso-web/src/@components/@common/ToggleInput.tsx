@@ -35,6 +35,9 @@ const St = {
     margin: 1.6rem auto 0;
     position: relative;
     z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
+    @media only screen and (min-width: 375px) and (max-width: 600px) {
+      width: 100%;
+    }
   `,
   Label: styled.p`
     color: ${({ theme }) => theme.colors.gray40};

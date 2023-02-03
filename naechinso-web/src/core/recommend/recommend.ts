@@ -222,7 +222,7 @@ export const RecommendLandingList: RecommendLandingProps[] = [
     id: 1,
     comment1: "안녕!",
     comment2: "우리는 지인기반 소개앱 내친소야😎",
-    comment3: "너의 추천사는 친구가 좋은 인연을 만나는 데 분명 큰 도움이 될거야! ",
+    comment3: "너의 추천사는 친구가 좋은 친구를 만나는 데 분명 큰 도움이 될거야! ",
 
     desc1: "잠깐만 시간을 내서 친구에 대해서",
     desc2: "소개해줄 수 있을까?",

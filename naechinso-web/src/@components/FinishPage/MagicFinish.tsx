@@ -62,33 +62,4 @@ const St = {
     color: ${({ theme }) => theme.colors.orange};
     ${({ theme }) => theme.fonts.sub3};
   `,
-  NextBtnWrapper: styled.section`
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    position: fixed;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 1rem;
-    height: 11rem;
-
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%);
-  `,
-  NextStepBtn: styled.button`
-    bottom: 3.5rem;
-    padding: 1rem;
-    background-color: ${({ theme }) => theme.colors.orange};
-    color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
-    width: 33.5rem;
-    height: 5.6rem;
-    border-radius: 1.6rem;
-
-    &:disabled {
-      background-color: ${({ theme }) => theme.colors.orange20};
-      cursor: default;
-    }
-  `,
 };

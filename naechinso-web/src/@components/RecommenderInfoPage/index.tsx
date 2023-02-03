@@ -110,9 +110,11 @@ const St = {
   `,
   ChooseGender: styled.section`
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 1.5rem;
     margin: 1.6rem auto 0;
-    width: fit-content;
+    width: 100%;
   `,
   GenderWrapper: styled.button<{ checked: boolean }>`
     background-color: ${({ theme, checked }) => (checked ? theme.colors.brown : theme.colors.neural)};
@@ -122,7 +124,7 @@ const St = {
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    width: 16rem;
+    width: 100%;
     height: 6.2rem;
 
     color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.gray40)};

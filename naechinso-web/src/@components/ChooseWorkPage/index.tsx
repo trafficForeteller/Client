@@ -34,7 +34,7 @@ const St = {
     gap: 1.6rem;
   `,
   ChooseWorkButton: styled.button`
-    width: 100%;
+    width: 33.5rem;
     height: 7rem;
     background-color: ${({ theme }) => theme.colors.neural};
     border-radius: 16px;
@@ -44,5 +44,8 @@ const St = {
     display: flex;
     align-items: center;
     justify-content: center;
+    @media only screen and (min-width: 375px) and (max-width: 600px) {
+      width: 100%;
+    }
   `,
 };
