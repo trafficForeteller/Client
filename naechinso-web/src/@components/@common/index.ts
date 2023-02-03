@@ -10,6 +10,7 @@ export { default as EditToggleModal } from "./EditToggleModal";
 export { default as FixedHeader } from "./FixedHeader";
 export { default as InstallNaechinso } from "./InstallNaechinso";
 export { default as JoinHeader } from "./JoinHeader";
+export { default as LandingBox } from "./LandingBox";
 export { default as Modal } from "./Modal";
 export { default as MoveNextPageBtn } from "./MoveNextPageBtn";
 export { default as MovePreviousPageBtn } from "./MovePreviousPageBtn";

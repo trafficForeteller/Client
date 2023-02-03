@@ -24,7 +24,6 @@ export default function FinishBottom() {
 
 const St = {
   FinishBottom: styled.footer`
-    width: 37.5rem;
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 20px 20px 0px 0px;
 
@@ -39,6 +38,7 @@ const St = {
     align-items: center;
     padding: 2.8rem 2rem 3.6rem;
 
+    width: 37.5rem;
     @media only screen and (min-width: 375px) and (max-width: 600px) {
       width: 100%;
     }
