@@ -49,6 +49,11 @@ export default function LandingBox() {
     } else setAccessToken(false);
   };
 
+  const handleMoveLandingPage = () => {
+    if (accessToken) navigate(routePaths.RecommendLanding);
+    else navigate(routePaths.PhoneNum);
+  };
+
   return (
     <St.LandingBox>
       <St.Naechinso src={ImgLandingNaechinso} alt="내친소" />
@@ -56,9 +61,7 @@ export default function LandingBox() {
         <St.Title>친구를 소개하러 온 걸</St.Title>
         <St.Title>환영해!🧡</St.Title>
       </St.TitleWrapper>
-      <St.Button
-        onClick={() => (accessToken ? navigate(routePaths.RecommendLanding) : navigate(routePaths.PhoneNum))}
-        type="button">
+      <St.Button onClick={handleMoveLandingPage} type="button">
         내 친구 소개하기
       </St.Button>
     </St.LandingBox>
