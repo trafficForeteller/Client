@@ -50,6 +50,7 @@ const St = {
     border-radius: 32px 32px 0 0;
     word-break: keep-all;
     text-align: center;
+    padding: 0 2rem;
   `,
   Title: styled.h2`
     color: ${({ theme }) => theme.colors.black};
@@ -80,5 +81,8 @@ const St = {
     width: 33.5rem;
     height: 5.6rem;
     border-radius: 1.6rem;
+    @media only screen and (min-width: 375px) and (max-width: 600px) {
+      width: 100%;
+    }
   `,
 };

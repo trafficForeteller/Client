@@ -66,6 +66,9 @@ const St = {
     padding: 1rem 2rem 1.6rem;
 
     z-index: ${({ inputActive }) => (inputActive ? "" : "-1")};
+    @media only screen and (min-width: 375px) and (max-width: 600px) {
+      width: 100%;
+    }
   `,
   LabelWrapper: styled.article`
     display: flex;
