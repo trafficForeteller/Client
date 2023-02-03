@@ -10,6 +10,22 @@ export default function RecommendLandingPage() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    localStorage.removeItem("questionList");
+    localStorage.removeItem("checkedQ1");
+    localStorage.removeItem("checkedQ2");
+    localStorage.removeItem("firstRecommend");
+    localStorage.removeItem("secondRecommend");
+    localStorage.removeItem("eduInfo");
+    localStorage.removeItem("jobInfo");
+    localStorage.removeItem("appealDetail");
+    localStorage.removeItem("dontGo");
+    localStorage.removeItem("appeals");
+    localStorage.removeItem("friendInfo");
+    localStorage.removeItem("keywordList");
+    localStorage.removeItem("postRecommender");
+    localStorage.removeItem("genderTypeList");
+    localStorage.removeItem("uuid");
+
     if (localStorage.getItem("member-uuid")) setIndex(1);
     else setIndex(0);
   }, []);

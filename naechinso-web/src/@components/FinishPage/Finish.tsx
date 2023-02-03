@@ -1,35 +1,26 @@
 import styled from "styled-components";
 
 import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
+import FinishBottom from "./FinishBottom";
 
-interface FinishProps {
-  handleFinish: () => void;
-}
-
-export default function Finish(props: FinishProps) {
-  const { handleFinish } = props;
-
+export default function Finish() {
   return (
     <St.Finish>
       <St.Naechinso src={ImgCommentNaechinso} alt="내친소" />
       <St.CommentBox>
         <St.CommentWrapper>
           <St.Comment>추천사 작성이 완료 됐어!</St.Comment>
-          <St.Comment>친구를 추천해줘서</St.Comment>
-          <St.Comment>정말 고마워!💕</St.Comment>
+          <St.Comment>친구를 추천해줘서 고마워!💕</St.Comment>
           <St.Comment>
-            믿고 추천한만큼
+            <St.Highlight>또 다른 친구</St.Highlight>를 소개하는 건
             <br />
-            내친소도 정말 열심히 할게!
+            훨씬 간단해!
           </St.Comment>
+          <St.Comment>다른 친구도 소개할래?</St.Comment>
         </St.CommentWrapper>
         <St.Emoji src={ImgHandsUp} alt="손 올리는 아이콘" />
       </St.CommentBox>
-      <St.NextBtnWrapper>
-        <St.NextStepBtn type="button" onClick={() => handleFinish()}>
-          완료
-        </St.NextStepBtn>
-      </St.NextBtnWrapper>
+      <FinishBottom />
     </St.Finish>
   );
 }
@@ -51,7 +42,7 @@ const St = {
   CommentBox: styled.section`
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2.1rem;
   `,
   CommentWrapper: styled.article`
     margin-top: 20%;
@@ -66,6 +57,10 @@ const St = {
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub3};
     border-radius: 0px 16px 16px 16px;
+  `,
+  Highlight: styled.b`
+    color: ${({ theme }) => theme.colors.orange};
+    ${({ theme }) => theme.fonts.sub3};
   `,
   Emoji: styled.img`
     width: 9rem;

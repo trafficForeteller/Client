@@ -21,7 +21,9 @@ const colors = {
   gray30: "#C5C5C9",
   gray40: "#ABABAE",
   gray50: "#8F8F92",
+  gray70: "#33333C",
   gray80: "#33333C",
+  gray100: "#121213",
   blue40: "#EAF1FF",
 } as const;
 

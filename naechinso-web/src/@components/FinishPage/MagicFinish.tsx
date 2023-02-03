@@ -3,14 +3,9 @@ import styled from "styled-components";
 
 import { IcCopy, IcKakaotalk } from "../../asset/icons";
 import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
+import FinishBottom from "./FinishBottom";
 
-interface MagicFinishProps {
-  handleFinish: () => void;
-}
-
-export default function MagicFinish(props: MagicFinishProps) {
-  const { handleFinish } = props;
-
+export default function MagicFinish() {
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(`${process.env.REACT_APP_JS_KEY}`);
@@ -57,24 +52,8 @@ export default function MagicFinish(props: MagicFinishProps) {
       <St.CommentBox>
         <St.CommentWrapper>
           <St.Comment>추천사 작성이 완료 됐어!</St.Comment>
-          <St.Comment>
-            친구를 추천해줘서
-            <br />
-            정말 고마워!💕
-          </St.Comment>
-          <St.Comment>
-            믿고 추천한만큼
-            <br />
-            내친소도 정말 열심히 할게!
-          </St.Comment>
         </St.CommentWrapper>
-        <St.Emoji src={ImgHandsUp} alt="손 올리는 아이콘" />
-      </St.CommentBox>
 
-      <St.Bottom>
-        <St.Title>아래의 링크를 친구에게 전달해봐!</St.Title>
-        <St.Desc>링크를 친구에게 전달하면</St.Desc>
-        <St.Desc>친구가 자기소개를 할 수 있을거야😗</St.Desc>
         <St.CopyLinkBox type="button" onClick={handleCopyClipBoard}>
           <St.Label>초대링크</St.Label>
           <St.CopyLinkWrapper>
@@ -87,10 +66,9 @@ export default function MagicFinish(props: MagicFinishProps) {
           <IcKakaotalk />
           카카오톡으로 공유
         </St.ShareKakaotalkBtn>
-        <St.NextStepBtn type="button" onClick={() => handleFinish()}>
-          완료
-        </St.NextStepBtn>
-      </St.Bottom>
+      </St.CommentBox>
+
+      <FinishBottom />
     </St.MagicFinish>
   );
 }
