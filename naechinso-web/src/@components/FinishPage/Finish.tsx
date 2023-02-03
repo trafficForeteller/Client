@@ -1,24 +1,73 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 
+import { IcCopy, IcFinishNaechinso, IcKakaotalk } from "../../asset/icons";
 import { ImgCommentNaechinso } from "../../asset/image";
 import FinishBottom from "./FinishBottom";
 
 export default function Finish() {
+  useEffect(() => {
+    if (!window.Kakao.isInitialized()) {
+      window.Kakao.init(`${process.env.REACT_APP_JS_KEY}`);
+    }
+  }, []);
+
+  const handleCopyClipBoard = async () => {
+    try {
+      await navigator.clipboard.writeText("https://naechinso.page.link/dynamic");
+      alert("클립보드에 링크가 복사되었습니다.");
+    } catch (e) {
+      alert("복사에 실패하였습니다");
+    }
+  };
+
+  const shareKakaoMessage = () => {
+    // 카카오톡 메시지 공유하기
+    window.Kakao.Share.sendDefault({
+      objectType: "feed",
+      content: {
+        title: "내친소 자기소개 쓰러 갈래?",
+        description: "내 친구가 써준 추천사가 도착했어!",
+        imageUrl: "https://ifh.cc/g/pocbkv.png",
+        link: {
+          mobileWebUrl: "https://naechinso.page.link/dynamic",
+          webUrl: "https://recommend.naechinso.com/arrive",
+        },
+      },
+      buttons: [
+        {
+          title: "내친소 시작하기",
+          link: {
+            mobileWebUrl: "https://naechinso.page.link/dynamic",
+            webUrl: "https://recommend.naechinso.com/arrive",
+          },
+        },
+      ],
+    });
+  };
+
   return (
     <St.Finish>
-      <St.Naechinso src={ImgCommentNaechinso} alt="내친소" />
-      <St.CommentBox>
-        <St.CommentWrapper>
-          <St.Comment>추천사 작성이 완료 됐어!</St.Comment>
-          <St.Comment>친구를 추천해줘서 고마워!💕</St.Comment>
-          <St.Comment>
-            <St.Highlight>또 다른 친구</St.Highlight>를 소개하는 건
-            <br />
-            훨씬 간단해!
-          </St.Comment>
-          <St.Comment>다른 친구도 소개할래?🙌</St.Comment>
-        </St.CommentWrapper>
-      </St.CommentBox>
+      <St.TitleWrapper>
+        <IcFinishNaechinso />
+        <St.Title>추천사 작성이 완료됐어!🙌</St.Title>
+      </St.TitleWrapper>
+      <St.DescWrapper>
+        <St.Desc>아래의 링크를 친구에게 전달해봐!</St.Desc>
+        <St.Desc>친구가 자기소개를 할 수 있을 거야.</St.Desc>
+      </St.DescWrapper>
+
+      <St.CopyLinkBox type="button" onClick={handleCopyClipBoard}>
+        <St.Label>초대링크</St.Label>
+        <St.CopyLinkWrapper>
+          <St.CopyLink>https://naechinso.page.link...</St.CopyLink>
+          <IcCopy />
+        </St.CopyLinkWrapper>
+      </St.CopyLinkBox>
+      <St.ShareKakaotalkBtn type="button" onClick={shareKakaoMessage}>
+        <IcKakaotalk />
+        카카오톡으로 공유
+      </St.ShareKakaotalkBtn>
 
       <FinishBottom />
     </St.Finish>
@@ -32,63 +81,79 @@ const St = {
     background-color: ${({ theme }) => theme.colors.neural};
 
     display: flex;
-    gap: 1.5rem;
-    padding-top: 20%;
+    flex-direction: column;
+    align-items: center;
+    padding: 8rem 2rem 0;
   `,
-  Naechinso: styled.img`
-    width: 12.5rem;
-    height: 16.5rem;
-  `,
-  CommentBox: styled.section`
+  TitleWrapper: styled.header`
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2.1rem;
+    gap: 0.9rem;
   `,
-  CommentWrapper: styled.article`
-    margin-top: 20%;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-  `,
-  Comment: styled.p`
-    width: fit-content;
-    background-color: ${({ theme }) => theme.colors.white};
-    padding: 0.8rem 1.2rem;
+  Title: styled.h2`
     color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.sub3};
-    border-radius: 0px 16px 16px 16px;
+    ${({ theme }) => theme.fonts.head1};
   `,
-  Highlight: styled.b`
-    color: ${({ theme }) => theme.colors.orange};
-    ${({ theme }) => theme.fonts.sub3};
+  DescWrapper: styled.section`
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 1.6rem;
   `,
-  NextBtnWrapper: styled.section`
+  Desc: styled.p`
+    color: ${({ theme }) => theme.colors.black};
+    ${({ theme }) => theme.fonts.body2};
+  `,
+  CopyLinkBox: styled.button`
+    width: 100%;
+    height: 8rem;
+    background-color: #e5e2da;
+    padding: 1.2rem 1.6rem 1.6rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border-radius: 16px;
+    cursor: pointer;
+  `,
+  Label: styled.label`
+    color: ${({ theme }) => theme.colors.gray50};
+    ${({ theme }) => theme.fonts.body2};
+  `,
+  CopyLinkWrapper: styled.div`
+    color: ${({ theme }) => theme.colors.black};
+    ${({ theme }) => theme.fonts.sub4};
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  `,
+  CopyLink: styled.p``,
+  ShareKakaotalkBtn: styled.button`
+    width: 100%;
+    height: 5.6rem;
+    background-color: #fee500;
+    color: #391b1b;
+    ${({ theme }) => theme.fonts.sub4};
+
     display: flex;
     justify-content: center;
-    width: 100%;
-    position: fixed;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 1rem;
-    height: 11rem;
+    align-items: center;
+    gap: 1.2rem;
 
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%);
+    border-radius: 16px;
+    cursor: pointer;
+
+    margin-top: 0.8rem;
   `,
+
   NextStepBtn: styled.button`
     bottom: 3.5rem;
     padding: 1rem;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.sub3};
-    width: 33.5rem;
+    width: 100%;
     height: 5.6rem;
     border-radius: 1.6rem;
-
-    &:disabled {
-      background-color: ${({ theme }) => theme.colors.orange20};
-      cursor: default;
-    }
   `,
 };

@@ -7,6 +7,7 @@ export { ReactComponent as IcCheckedMen } from "./checkedMen.svg";
 export { ReactComponent as IcCheckedWomen } from "./checkedWomen.svg";
 export { ReactComponent as IcCopy } from "./copy.svg";
 export { ReactComponent as IcDontGo } from "./dontGo.svg";
+export { ReactComponent as IcFinishNaechinso } from "./finishNaechinso.svg";
 export { ReactComponent as IcKakaotalk } from "./kakaotalk.svg";
 export { ReactComponent as IcPlayStore } from "./playStore.svg";
 export { ReactComponent as IcPlus } from "./plus.svg";

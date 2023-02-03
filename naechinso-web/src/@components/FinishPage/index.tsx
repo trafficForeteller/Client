@@ -11,5 +11,5 @@ export default function FinishPage() {
     else setIsMemberUuid(false);
   }, []);
 
-  return <>{isMemberUuid ? <Finish /> : <MagicFinish />}</>;
+  return <>{isMemberUuid ? <MagicFinish /> : <Finish />}</>;
 }

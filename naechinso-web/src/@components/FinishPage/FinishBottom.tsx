@@ -24,13 +24,12 @@ export default function FinishBottom() {
 
 const St = {
   FinishBottom: styled.footer`
-    width: 100%;
-    padding-top: 2.8rem;
-    padding-bottom: 3.6rem;
+    width: 37.5rem;
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 20px 20px 0px 0px;
 
     position: fixed;
+    margin: 0 auto;
     left: 0;
     right: 0;
     bottom: 0;
@@ -38,6 +37,11 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 2.8rem 2rem 3.6rem;
+
+    @media only screen and (min-width: 375px) and (max-width: 600px) {
+      width: 100%;
+    }
   `,
   Title: styled.h2`
     color: ${({ theme }) => theme.colors.gray100};
@@ -52,7 +56,7 @@ const St = {
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.sub3};
-    width: 33.5rem;
+    width: 100%;
     height: 5.6rem;
     border-radius: 1.6rem;
 
