@@ -19,28 +19,26 @@ export default function index() {
     //alert(Agent);
     // if (Agent.includes("kakao")) { // 카카오, 인스타 인앱 브라우저로 실행 시킨 경우
     if (Agent.indexOf("kakao") > -1 || Agent.indexOf("instagram") > -1) {
-      // 먼저, 카카오 인앱 브라우저 닫기
-      if (Agent.includes("kakao")) {
-        location.href = "kakaotalk://inappbrowser/close";
-      }
-      // 인스타 인앱 브라우저 닫기
-      else if (Agent.includes("instagram")) {
-        location.href = "instagram://inappbrowser/close";
-      }
-      if (navigator.userAgent.match(/iPhone|iPad/i)) {
-        // 아이폰 접속 경우
+      if (!navigator.userAgent.match(/iPhone|iPad/i)) {
+        // 먼저, 카카오 인앱 브라우저 닫기
+        if (Agent.includes("kakao")) {
+          location.href = "kakaotalk://inappbrowser/close";
+        }
+        // 인스타 인앱 브라우저 닫기
+        else if (Agent.includes("instagram")) {
+          location.href = "instagram://inappbrowser/close";
+        }
+
+        // 안드로이드 접속 경우
         console.log("");
-        console.log("[window ready] : [접속 모바일] : " + "[아이폰]");
+        console.log("[window ready] : [접속 모바일] : " + "[안드로이드]");
         console.log("");
-        // 아이폰의 경우 현재 방법이 막혔습니다..
+        // 크롬으로 새창 열기
+        location.href =
+          "intent://" +
+          location.href.replace(/https?:\/\//i, "") +
+          "#Intent;scheme=http;package=com.android.chrome;end";
       }
-      // 안드로이드 접속 경우
-      console.log("");
-      console.log("[window ready] : [접속 모바일] : " + "[안드로이드]");
-      console.log("");
-      // 크롬으로 새창 열기
-      location.href =
-        "intent://" + location.href.replace(/https?:\/\//i, "") + "#Intent;scheme=http;package=com.android.chrome;end";
     }
   };
 }
