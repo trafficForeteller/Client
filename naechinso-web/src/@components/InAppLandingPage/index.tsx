@@ -3,11 +3,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postMemberReissue } from "../../apis/member.api";
-import { IcAppStore, IcPlayStore } from "../../asset/icons";
 import { ImgLandingNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 
-export default function LandingPage() {
+export default function InAppLandingPage() {
   const location = useLocation();
   const [accessToken, setAccessToken] = useState(false);
   const navigate = useNavigate();
@@ -59,21 +58,6 @@ export default function LandingPage() {
         type="button">
         내 친구 소개하기
       </St.Button>
-      <St.Bottom>
-        <St.DescWrapper>
-          <St.Line></St.Line>
-          <St.Desc>내친소를 시작하고 싶다면?</St.Desc>
-          <St.Line></St.Line>
-        </St.DescWrapper>
-        <St.InstallBtnWrapper>
-          <St.InstallBtn type="button">
-            <IcPlayStore />
-          </St.InstallBtn>
-          <St.InstallBtn type="button">
-            <IcAppStore />
-          </St.InstallBtn>
-        </St.InstallBtnWrapper>
-      </St.Bottom>
     </St.LandingPage>
   );
 }
@@ -87,7 +71,7 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 35%;
+    padding-top: 40%;
   `,
   Naechinso: styled.img`
     width: 12.1rem;
@@ -107,6 +91,7 @@ const St = {
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.head1};
   `,
+
   Button: styled.button`
     bottom: 3.5rem;
     background-color: ${({ theme }) => theme.colors.orange};
@@ -115,50 +100,5 @@ const St = {
     width: 33.5rem;
     height: 5.6rem;
     border-radius: 1.6rem;
-  `,
-  Bottom: styled.article`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 2rem 6.3rem;
-
-    position: absolute;
-    bottom: 0;
-  `,
-  DescWrapper: styled.div`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-  `,
-  Line: styled.div`
-    border: 1px solid ${({ theme }) => theme.colors.gray30};
-    width: 23%;
-    height: 1px;
-  `,
-  Desc: styled.p`
-    color: ${({ theme }) => theme.colors.gray50};
-    ${({ theme }) => theme.fonts.body7};
-    width: 14.7rem;
-  `,
-
-  InstallBtnWrapper: styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    margin-top: 2.8rem;
-  `,
-  InstallBtn: styled.button`
-    width: 16rem;
-    height: 4.8rem;
-    background-color: ${({ theme }) => theme.colors.gray80};
-    border-radius: 8px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
   `,
 };

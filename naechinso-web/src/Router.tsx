@@ -15,6 +15,7 @@ import {
   FinishPage,
   FirstRecommendPage,
   FriendInfoPage,
+  InAppLandingPage,
   InstallAppPage,
   JobCertifiedPage,
   JobEditPage,
@@ -50,6 +51,7 @@ export default function Router() {
       <Routes>
         <Route path={routePaths.MagicLink} element={<LandingPage />} />
         <Route path={routePaths.Landing} element={<LandingPage />} />
+        <Route path={routePaths.InAppLanding} element={<InAppLandingPage />} />
         <Route path={routePaths.InstallApp} element={<InstallAppPage />} />
         <Route
           path={routePaths.PhoneNum}

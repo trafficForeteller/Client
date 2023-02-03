@@ -11,6 +11,7 @@ export { default as EduPage } from "./EduPage";
 export { default as FinishPage } from "./FinishPage";
 export { default as FirstRecommendPage } from "./FirstRecommendPage";
 export { default as FriendInfoPage } from "./FriendInfoPage";
+export { default as InAppLandingPage } from "./InAppLandingPage";
 export { default as InstallAppPage } from "./InstallAppPage";
 export { default as JobCertifiedPage } from "./JobCertifiedPage";
 export { default as JobEditPage } from "./JobEditPage";

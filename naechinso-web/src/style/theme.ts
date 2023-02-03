@@ -18,8 +18,10 @@ const colors = {
   blue: "#6B9AFF",
   blue_bac: "#EAF1FF",
   old_gray: "#EBEBF0",
+  gray30: "#C5C5C9",
   gray40: "#ABABAE",
   gray50: "#8F8F92",
+  gray80: "#33333C",
   blue40: "#EAF1FF",
 } as const;
 
