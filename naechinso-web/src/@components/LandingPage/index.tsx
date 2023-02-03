@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postMemberReissue } from "../../apis/member.api";
-import { IcLandingLogo } from "../../asset/icons";
-import { ImgLandingCloud, ImgLandingNaechinso } from "../../asset/image";
+import { ImgLandingNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
-import RecommendPageBtn from "./RecommendPageBtn";
 
 export default function LandingPage() {
   const location = useLocation();
   const [accessToken, setAccessToken] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.removeItem("questionList");
@@ -49,29 +48,16 @@ export default function LandingPage() {
 
   return (
     <St.LandingPage>
-      <St.Top>
-        <St.CommentWrapper>
-          <St.Comment>소개팅은 받고 싶은데</St.Comment>
-          <St.Comment>소개팅 앱은 싫다면?😎</St.Comment>
-        </St.CommentWrapper>
-        <St.NaechinsoCloud src={ImgLandingCloud} alt="내친소" />
-        <St.Naechinso src={ImgLandingNaechinso} alt="내친소" />
-      </St.Top>
-
-      <St.Bottom>
-        <St.TitleWrapper>
-          <St.OneLineIntro>진짜 친구가 해주는 소개팅</St.OneLineIntro>
-          <IcLandingLogo />
-        </St.TitleWrapper>
-
-        <St.ButtonWrapper>
-          <RecommendPageBtn nextPage={routePaths.InstallApp} title="내친소 시작하기" />
-          <RecommendPageBtn
-            nextPage={accessToken ? routePaths.RecommendLanding : routePaths.PhoneNum}
-            title="내 친구를 소개하고 싶어"
-          />
-        </St.ButtonWrapper>
-      </St.Bottom>
+      <St.Naechinso src={ImgLandingNaechinso} alt="내친소" />
+      <St.TitleWrapper>
+        <St.Title>친구를 소개하러 온 걸</St.Title>
+        <St.Title>환영해!🧡</St.Title>
+      </St.TitleWrapper>
+      <St.Button
+        onClick={() => (accessToken ? navigate(routePaths.RecommendLanding) : navigate(routePaths.PhoneNum))}
+        type="button">
+        내 친구 소개하기
+      </St.Button>
     </St.LandingPage>
   );
 }
@@ -80,68 +66,39 @@ const St = {
   LandingPage: styled.main`
     width: 100%;
     height: 100%;
-  `,
-  Top: styled.section`
-    background-color: ${({ theme }) => theme.colors.orange};
-    width: 100%;
-    height: 45%;
-    z-index: -1;
-
-    position: relative;
-  `,
-  CommentWrapper: styled.article`
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width: 20rem;
-  `,
-  Comment: styled.p`
-    width: fit-content;
-    background-color: ${({ theme }) => theme.colors.orange50};
-    padding: 0.8rem 1.2rem;
-    color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
-    border-radius: 16px 16px 16px 0px;
-  `,
-  NaechinsoCloud: styled.img`
-    width: 102%;
-    height: 12.1rem;
-    position: absolute;
-    bottom: -1px;
-    left: -1px;
-  `,
-  Naechinso: styled.img`
-    width: 12.1rem;
-    height: 12.1rem;
-    z-index: -1;
-    position: absolute;
-    bottom: -6px;
-    left: 5%;
-  `,
-  Bottom: styled.section`
-    width: 100%;
-    background-color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.neural};
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 40%;
   `,
-  TitleWrapper: styled.hgroup`
-    margin-bottom: 4rem;
+  Naechinso: styled.img`
+    width: 12.1rem;
+    height: 12.1rem;
   `,
-  OneLineIntro: styled.h2`
-    color: ${({ theme }) => theme.colors.gray50};
-    ${({ theme }) => theme.fonts.body2};
-  `,
-
-  ButtonWrapper: styled.article`
+  TitleWrapper: styled.article`
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: -0.01em;
+    margin-top: 1.6rem;
+    margin-bottom: 3.6rem;
+  `,
+  Title: styled.p`
+    width: fit-content;
+    color: ${({ theme }) => theme.colors.black};
+    ${({ theme }) => theme.fonts.head1};
+  `,
+
+  Button: styled.button`
+    bottom: 3.5rem;
+    background-color: ${({ theme }) => theme.colors.orange};
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+    width: 33.5rem;
+    height: 5.6rem;
+    border-radius: 1.6rem;
   `,
 };
