@@ -145,7 +145,7 @@ const St = {
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 1rem;
+    padding: 0 2rem;
     height: 11rem;
 
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%);
@@ -163,6 +163,9 @@ const St = {
     &:disabled {
       background-color: ${({ theme }) => theme.colors.orange20};
       cursor: default;
+    }
+    @media only screen and (min-width: 375px) and (max-width: 600px) {
+      width: 100%;
     }
   `,
 };

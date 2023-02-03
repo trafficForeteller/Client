@@ -79,6 +79,9 @@ const St = {
 
     position: relative;
     z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
+    @media only screen and (min-width: 375px) and (max-width: 600px) {
+      width: 100%;
+    }
   `,
   Label: styled.p<{ activeBtn: boolean }>`
     color: ${({ theme, activeBtn }) => (activeBtn ? theme.colors.black40 : theme.colors.orange)};

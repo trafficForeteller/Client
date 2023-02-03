@@ -40,6 +40,9 @@ const St = {
     margin: 1.6rem auto 0;
     position: relative;
     z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
+    @media only screen and (min-width: 375px) and (max-width: 600px) {
+      width: 100%;
+    }
   `,
   InputBox: styled.section`
     width: 33.5rem;
@@ -50,6 +53,9 @@ const St = {
     padding: 1rem 2rem 1.6rem;
     margin: 1.6rem auto 0;
     position: relative;
+    @media only screen and (min-width: 375px) and (max-width: 600px) {
+      width: 100%;
+    }
   `,
   Label: styled.p<{ step: number }>`
     color: ${({ theme, step }) => (step === 1 ? theme.colors.orange : theme.colors.gray40)};
