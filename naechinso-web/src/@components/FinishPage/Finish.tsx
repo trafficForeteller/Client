@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
+import { ImgCommentNaechinso } from "../../asset/image";
 import FinishBottom from "./FinishBottom";
 
 export default function Finish() {
@@ -16,9 +16,8 @@ export default function Finish() {
             <br />
             훨씬 간단해!
           </St.Comment>
-          <St.Comment>다른 친구도 소개할래?</St.Comment>
+          <St.Comment>다른 친구도 소개할래?🙌</St.Comment>
         </St.CommentWrapper>
-        <St.Emoji src={ImgHandsUp} alt="손 올리는 아이콘" />
       </St.CommentBox>
       <FinishBottom />
     </St.Finish>
@@ -61,10 +60,6 @@ const St = {
   Highlight: styled.b`
     color: ${({ theme }) => theme.colors.orange};
     ${({ theme }) => theme.fonts.sub3};
-  `,
-  Emoji: styled.img`
-    width: 9rem;
-    height: 10rem;
   `,
   NextBtnWrapper: styled.section`
     display: flex;

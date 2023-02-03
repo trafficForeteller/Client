@@ -15,7 +15,7 @@ export default function FinishBottom() {
       <St.NextStepBtn type="button" onClick={() => navigate(routePaths.RecommendLanding)}>
         다른친구 소개하러 가기
       </St.NextStepBtn>
-      <St.MoveLandingBtn type="button" onClick={() => navigate(routePaths.RecommendLanding)}>
+      <St.MoveLandingBtn type="button" onClick={() => navigate(routePaths.Landing)}>
         홈 화면으로 이동
       </St.MoveLandingBtn>
     </St.FinishBottom>

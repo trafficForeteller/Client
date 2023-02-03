@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 import { IcCopy, IcKakaotalk } from "../../asset/icons";
-import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
+import { ImgCommentNaechinso } from "../../asset/image";
 import FinishBottom from "./FinishBottom";
 
 export default function MagicFinish() {
