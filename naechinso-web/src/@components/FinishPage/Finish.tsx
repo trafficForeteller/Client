@@ -19,6 +19,7 @@ export default function Finish() {
           <St.Comment>다른 친구도 소개할래?🙌</St.Comment>
         </St.CommentWrapper>
       </St.CommentBox>
+
       <FinishBottom />
     </St.Finish>
   );
