@@ -22,6 +22,7 @@ export const routePaths = {
   Finish: "/finish",
   RecommenderLanding: "/recommender",
   RecommendLanding: "/recommend",
+  Edit: "/edit",
   JobEdit: "/edit/job",
   EduEdit: "/edit/edu",
   Pending: "/pending",
