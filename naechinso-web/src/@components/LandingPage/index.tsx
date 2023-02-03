@@ -66,10 +66,10 @@ export default function LandingPage() {
           <St.Line></St.Line>
         </St.DescWrapper>
         <St.InstallBtnWrapper>
-          <St.InstallBtn type="button">
+          <St.InstallBtn type="button" onClick={() => navigate(routePaths.InstallApp)}>
             <IcPlayStore />
           </St.InstallBtn>
-          <St.InstallBtn type="button">
+          <St.InstallBtn type="button" onClick={() => navigate(routePaths.InstallApp)}>
             <IcAppStore />
           </St.InstallBtn>
         </St.InstallBtnWrapper>
