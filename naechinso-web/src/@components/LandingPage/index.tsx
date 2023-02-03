@@ -56,7 +56,7 @@ const St = {
   `,
   Line: styled.div`
     border: 1px solid ${({ theme }) => theme.colors.gray30};
-    width: 23%;
+    width: 20%;
     height: 1px;
   `,
   Desc: styled.p`

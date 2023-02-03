@@ -143,6 +143,6 @@ const St = {
     border-radius: 16px;
     cursor: pointer;
 
-    margin-top: 0.8rem;
+    margin-top: 1.2rem;
   `,
 };
