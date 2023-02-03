@@ -123,7 +123,7 @@ export const questionList: questionProps[] = [
   {
     id: 5,
     icon: "👀",
-    title: "키워드 에피소드",
+    title: "에피소드",
     desc1: "앞서 선택했던",
     desc2: "매력 키워드에 관한 ",
     desc3: "에피소드가 있을까?",

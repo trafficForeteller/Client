@@ -21,19 +21,19 @@ export default function PolicyModal(props: PolicyModalProps) {
       policyName: "acceptsService",
       title: "서비스 이용약관전체동의",
       checked: false,
-      url: "https://www.notion.so/e9432ae62f8045558a28799c1e894ed2",
+      url: "https://spangle-check-b18.notion.site/e9432ae62f8045558a28799c1e894ed2",
     },
     {
       policyName: "acceptsInfo",
       title: "개인정보 처리 동의",
       checked: false,
-      url: "https://www.notion.so/2ea3fa910cd44298b9eec2c91c28600c",
+      url: "https://spangle-check-b18.notion.site/2ea3fa910cd44298b9eec2c91c28600c",
     },
     {
       policyName: "acceptsMarketing",
       title: "마케팅 정보 수신 동의(선택)",
       checked: false,
-      url: "https://www.notion.so/a9aa6ef2bf2848389f950704e7dc5934",
+      url: "https://spangle-check-b18.notion.site/a9aa6ef2bf2848389f950704e7dc5934",
     },
   ]);
   const [startActive, setStartActive] = useState(true);
