@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -7,10 +8,21 @@ import { LandingBox } from "../@common";
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  const [accessToken, setAccessToken] = useState(false);
+
+  const onEnterKeyUp = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === "Enter") handleMoveLandingPage();
+  };
+
+  const handleMoveLandingPage = () => {
+    if (accessToken) navigate(routePaths.RecommendLanding);
+    else navigate(routePaths.PhoneNum);
+  };
 
   return (
-    <St.LandingPage>
-      <LandingBox />
+    <St.LandingPage onKeyUp={onEnterKeyUp}>
+      <input />
+      <LandingBox setAccessToken={setAccessToken} handleMoveLandingPage={handleMoveLandingPage} />
       <St.Bottom>
         <St.DescWrapper>
           <St.Line></St.Line>
@@ -31,11 +43,11 @@ export default function LandingPage() {
 }
 
 const St = {
-  LandingPage: styled.main`
+  LandingPage: styled.div`
     width: 100%;
     height: 100%;
     background-color: ${({ theme }) => theme.colors.neural};
-    padding-top: 35%;
+    padding-top: 30%;
   `,
   Bottom: styled.article`
     width: 100%;

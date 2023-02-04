@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import { postMemberReissue } from "../../apis/member.api";
 import { ImgLandingNaechinso } from "../../asset/image";
-import { routePaths } from "../../core/routes/path";
 
-export default function LandingBox() {
+interface LandingBoxProps {
+  setAccessToken: React.Dispatch<React.SetStateAction<boolean>>;
+  handleMoveLandingPage: () => void;
+}
+
+export default function LandingBox(props: LandingBoxProps) {
+  const { setAccessToken, handleMoveLandingPage } = props;
   const location = useLocation();
-  const [accessToken, setAccessToken] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.removeItem("questionList");
@@ -47,11 +50,6 @@ export default function LandingBox() {
       localStorage.setItem("refreshToken", userData["refreshToken"]);
       setAccessToken(true);
     } else setAccessToken(false);
-  };
-
-  const handleMoveLandingPage = () => {
-    if (accessToken) navigate(routePaths.RecommendLanding);
-    else navigate(routePaths.PhoneNum);
   };
 
   return (
