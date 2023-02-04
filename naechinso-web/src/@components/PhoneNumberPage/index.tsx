@@ -28,8 +28,9 @@ export default function PhoneNumberPage(props: PhoneNumberPageProps) {
         inputActive={inputActive}
         setInputActive={setInputActive}
         label="휴대폰 번호"
-        placeholder={""}
+        placeholder=""
         setPostPhoneNum={setPostPhoneNum}
+        handleState={sendSms}
       />
 
       <MoveNextPageBtn

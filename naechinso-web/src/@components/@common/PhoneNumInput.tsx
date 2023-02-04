@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+
+import { routePaths } from "../../core/routes/path";
 
 export interface IPostPhoneNumber {
   phoneNumber: string;
@@ -11,11 +14,13 @@ export interface PhoneNumInputProps {
   inputActive: boolean;
   setInputActive: React.Dispatch<React.SetStateAction<boolean>>;
   setPostPhoneNum?: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
+  handleState?: () => Promise<void> | void;
 }
 
 export default function PhoneNumInputBox(props: PhoneNumInputProps) {
-  const { label, placeholder, inputActive, setInputActive, setPostPhoneNum } = props;
+  const { label, placeholder, inputActive, setInputActive, setPostPhoneNum, handleState } = props;
   const [phoneNum, setPhoneNum] = useState("");
+  const navigate = useNavigate();
   const inputFocus = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -50,6 +55,13 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
     autoHyphen(e.target.value);
   };
 
+  const onEnterKeyUp = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === "Enter") {
+      handleState && handleState();
+      navigate(routePaths.Certified);
+    }
+  };
+
   return (
     <St.PhoneNumInputBox>
       <St.Label inputActive={inputActive}>{label}</St.Label>
@@ -63,6 +75,7 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
           placeholder={placeholder}
           maxLength={8}
           ref={inputFocus}
+          onKeyUp={onEnterKeyUp}
           style={{
             color: "#111111",
 
