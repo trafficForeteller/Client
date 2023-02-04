@@ -32,7 +32,7 @@ export default function Modal(props: ModalProps) {
     <St.Modal>
       <St.Title>{title}</St.Title>
       <St.Desc>{desc}</St.Desc>
-      <St.Button onClick={handleModal} type="button">
+      <St.Button type="button" onClick={handleModal}>
         {button}
       </St.Button>
     </St.Modal>

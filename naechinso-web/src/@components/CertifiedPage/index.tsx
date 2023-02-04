@@ -35,6 +35,22 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   });
   const navigate = useNavigate();
 
+  const preventClose = (e: BeforeUnloadEvent) => {
+    // 새로고침 막기
+    e.preventDefault();
+    e.returnValue = ""; //Chrome에서 동작하도록; deprecated
+  };
+
+  useEffect(() => {
+    (() => {
+      window.addEventListener("beforeunload", preventClose);
+    })();
+
+    return () => {
+      window.removeEventListener("beforeunload", preventClose);
+    };
+  }, []);
+
   useEffect(() => {
     if (postAuthNum.code === "") return;
     verifyAuthNum(postAuthNum);
