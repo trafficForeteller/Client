@@ -13,10 +13,25 @@ export interface PhoneNumInputProps {
   setPhoneNum: React.Dispatch<React.SetStateAction<string>>;
   setPostPhoneNum: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
   isModalOpened: boolean;
+  handleStep?: () => void;
 }
 
 export default function PhoneNumInputBox(props: PhoneNumInputProps) {
-  const { label, placeholder, activeBtn, setActiveBtn, phoneNum, setPhoneNum, setPostPhoneNum, isModalOpened } = props;
+  const {
+    label,
+    placeholder,
+    activeBtn,
+    setActiveBtn,
+    phoneNum,
+    setPhoneNum,
+    setPostPhoneNum,
+    isModalOpened,
+    handleStep,
+  } = props;
+
+  const onEnterKeyUp = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === "Enter") handleStep && handleStep();
+  };
 
   const checkPhoneNumLength = (phoneNum: string) => {
     //휴대폰번호 길이 확인해 label글자색, nextBtn 색 변화
@@ -53,6 +68,7 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
           onChange={handlePhoneNum}
           placeholder={placeholder}
           maxLength={9}
+          onKeyUp={onEnterKeyUp}
           style={{
             color: "#111111",
 
