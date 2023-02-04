@@ -7,22 +7,27 @@ export interface ShortInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isModalOpened?: boolean;
   step: number;
+  handleStep?: () => void;
 }
 
 export default function ShortInputBox(props: ShortInputProps) {
-  const { label, placeholder, value, onChange, isModalOpened, step } = props;
+  const { label, placeholder, value, onChange, isModalOpened, step, handleStep } = props;
+
+  const onEnterKeyUp = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === "Enter") handleStep && handleStep();
+  };
 
   return (
     <>
       {isModalOpened ? (
         <St.InputBoxWithModal isModalOpened={isModalOpened}>
           <St.Label step={step}>{label}</St.Label>
-          <St.Input placeholder={placeholder} value={value} onChange={(e) => onChange(e)} />
+          <St.Input placeholder={placeholder} value={value} onChange={(e) => onChange(e)} onKeyUp={onEnterKeyUp} />
         </St.InputBoxWithModal>
       ) : (
         <St.InputBox>
           <St.Label step={step}>{label}</St.Label>
-          <St.Input placeholder={placeholder} value={value} onChange={(e) => onChange(e)} />
+          <St.Input placeholder={placeholder} value={value} onChange={(e) => onChange(e)} onKeyUp={onEnterKeyUp} />
         </St.InputBox>
       )}
     </>

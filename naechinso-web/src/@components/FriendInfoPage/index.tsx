@@ -169,7 +169,6 @@ export default function FriendInfoPage() {
     setStep(step + 1);
     setActiveBtn(false);
   };
-
   return (
     <St.FriendInfoPage isModalOpened={isModalOpened}>
       <BasicHeader header="친구 정보" progressRate={20} />
@@ -232,6 +231,7 @@ export default function FriendInfoPage() {
         onChange={handleNameInput}
         isModalOpened={isModalOpened}
         step={step}
+        handleStep={handleStep}
       />
 
       <St.NextStepBtnWrapper>
