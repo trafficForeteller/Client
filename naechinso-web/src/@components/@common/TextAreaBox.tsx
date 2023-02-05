@@ -9,13 +9,19 @@ export interface TextAreaBoxProps {
   setText: React.Dispatch<React.SetStateAction<string>>;
   height: number;
   letterLimit: string;
+  handleState?: () => Promise<void>;
 }
 
 export default function TextAreaBox(props: TextAreaBoxProps) {
-  const { placeholder, minLength, maxLength, text, setText, height, letterLimit } = props;
+  const { placeholder, minLength, maxLength, text, setText, height, letterLimit, handleState } = props;
 
   const handleText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
+  };
+
+  const onEnterKeyUp = (e: React.KeyboardEvent<HTMLElement>) => {
+    // textArea에 onKeyup이 없대
+    if (e.key === "Enter") handleState && handleState();
   };
 
   return (
@@ -28,6 +34,7 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
           maxLength={maxLength}
           value={text && text}
           onChange={(e) => handleText(e)}
+          // onKeyup={onEnterKeyUp}
           dir="auto"
           rows={1}
           style={{

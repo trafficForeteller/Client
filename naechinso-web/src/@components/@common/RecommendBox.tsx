@@ -117,6 +117,7 @@ export default function RecommendBox(props: RecommendBoxProps) {
         maxLength={150}
         text={step === 0 ? firstRecommend : secondRecommend}
         setText={step === 0 ? setFirstRecommend : setSecondRecommend}
+        handleState={handleRecommend}
         height={13}
         letterLimit="100자 이상 150자 이내"
       />
