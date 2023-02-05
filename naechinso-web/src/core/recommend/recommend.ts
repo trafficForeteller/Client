@@ -76,7 +76,7 @@ export const questionList: questionProps[] = [
     icon: "😭",
     title: "감동이야",
     desc1: "",
-    desc2: "내 친구한테",
+    desc2: "내 친구한테 ",
     desc3: "감동받은 일화가 있다면?",
     placeholder:
       "내 친구는 섬세하고 배려심이 넘쳐. 이야기도 잘 들어주고 따뜻한 사람이니까 많이 의지할 수 있을 거야. 한 번은 내가 힘들다고 하니까 늦은 밤인데도 찾아와서 이야기를 들어준 적이 있어! 자기 사람 일이라면 바로 달려와주는 거 보고 정말 감동이었어...",
@@ -87,7 +87,7 @@ export const questionList: questionProps[] = [
     id: 2,
     icon: "😍",
     title: "이성적 매력",
-    desc1: "이성적으로 봤을 때",
+    desc1: "이성적으로 봤을 때 ",
     desc2: "내 친구의 가장 큰 ",
     desc3: "매력은 뭐라고 생각해?",
     placeholder:
@@ -113,7 +113,7 @@ export const questionList: questionProps[] = [
     icon: "👍🏻",
     title: "성격 중 장점",
     desc1: "",
-    desc2: "내 친구의 성격 중",
+    desc2: "내 친구의 성격 중 ",
     desc3: "가장 큰 장점은?",
     placeholder:
       "내가 프로필이나 인스타에 올리는 사진 중 이친구가 찍으면 바로 올라갈 정도로 미적 감각이 엄청난 친구라서 사진찍는거나 예술에 대한 이야기같이하면 좋을거같아 진짜 같이 사진찍는데 주접도 잘 떨고 예쁘게 찍어줘서 나도 배우고 싶을정도야ㅋㅋ",
@@ -124,7 +124,7 @@ export const questionList: questionProps[] = [
     id: 5,
     icon: "👀",
     title: "에피소드",
-    desc1: "앞서 선택했던",
+    desc1: "앞서 선택했던 ",
     desc2: "매력 키워드에 관한 ",
     desc3: "에피소드가 있을까?",
     placeholder:
@@ -149,7 +149,7 @@ export const questionList: questionProps[] = [
     icon: "📷",
     title: "이미지",
     desc1: "",
-    desc2: "친구는 그룹 내에서",
+    desc2: "친구는 그룹 내에서 ",
     desc3: "어떤 이미지야?",
     placeholder:
       "친구인데도 존경스럽고 배울 점 많은 사람을 떠올릴 때 딱 이 친구가 생각나는 것 같아. 예전에 강릉여행을 4박 5일동안갔는데, 혼자 새벽 6시에 일어나서 러닝하더라구! 매일 성실하고 긍정적이게 살아서 정말 본받고 싶은 친구의 정석이야",
@@ -161,7 +161,7 @@ export const questionList: questionProps[] = [
     icon: "💬",
     title: "자주 하는 대화",
     desc1: "",
-    desc2: "친구랑 어떤 주제로",
+    desc2: "친구랑 어떤 주제로 ",
     desc3: "자주 대화해?",
     placeholder:
       "내 친구랑 영화 취향이 비슷해서 영화 얘기를 많이 해! 최근에 에.에.올 보고 너무 재밌어서 친구랑 4시간 동안 영화 얘기만 했었어 ㅋㅋㅋ 같은 영화 보고 느낀 점 얘기하더라도 똑똑한 친구라 그런지 대화에서 인싸이트를 많이 얻어! 그리고 얘기도 잘 들어줘서 정말 대화할 맛 나는 친구야~",
@@ -173,7 +173,7 @@ export const questionList: questionProps[] = [
     icon: "👭🏻",
     title: "친해진 계기",
     desc1: "",
-    desc2: "친구랑 친해진",
+    desc2: "친구랑 친해진 ",
     desc3: "계기가 뭐야?",
     placeholder:
       "상사한테 한 소리듣고 좀 풀죽어 있었던 적이 있었어. 근데 갑자기 얼굴만 알던 직장동기가 와서 힘내라는 쪽지랑 캔커피를 하나 주더라.. 안친한데도 그렇게 친절을 베푼 게 너무 감동이었어. 그래서 내가 친해지고 싶다고 들이대서 친해지게 됐어! ㅎㅎ",
