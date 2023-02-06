@@ -39,7 +39,7 @@ export default function PolicyModal(props: PolicyModalProps) {
   const [startActive, setStartActive] = useState(true);
   const [postPolicyList, setPostPolicyList] = useState({
     acceptsInfo: false,
-    acceptsReligion: true,
+    acceptsReligion: false,
     acceptsService: false,
     acceptsLocation: false,
     acceptsMarketing: false,
@@ -96,7 +96,7 @@ export default function PolicyModal(props: PolicyModalProps) {
     const isAgreedList = policyList.map((policyItem) => {
       return { [policyItem.policyName]: policyItem.checked };
     });
-    setPostPolicyList(Object.assign({}, ...isAgreedList, { acceptsReligion: true, acceptsLocation: false }));
+    setPostPolicyList(Object.assign({}, ...isAgreedList, { acceptsReligion: false, acceptsLocation: false }));
   };
 
   const handlePolicy = async () => {
