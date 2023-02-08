@@ -16,7 +16,6 @@ export default function InstallNaechinso(props: InstallNaechinsoProps) {
 
   useEffect(() => {
     if (Mobile()) window.location.href = "https://naechinso.page.link/dynamic";
-    // console.log(Mobile());
   }, []);
 
   const Mobile = () => {
@@ -25,7 +24,7 @@ export default function InstallNaechinso(props: InstallNaechinsoProps) {
 
   return (
     <St.InstallNaechinso>
-      <St.Button onClick={() => navigate(`${routePaths.Landing}`)} type="button">
+      <St.Button onClick={() => navigate(`${routePaths.Landing}`)} type="button" title={title}>
         <IcPreviousBtn />
       </St.Button>
 
@@ -96,11 +95,12 @@ const St = {
     top: 33rem;
     right: 0;
   `,
-  Button: styled.button`
+  Button: styled.button<{ title: string }>`
     position: absolute;
     top: 1em;
     left: 1.6rem;
     z-index: 8;
     cursor: pointer;
+    visibility: ${({ title }) => (title === "친구의 추천사가 도착했어" ? "" : "hidden")};
   `,
 };
