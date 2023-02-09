@@ -27,6 +27,12 @@ export default function DontGoPage() {
   }, []);
 
   useEffect(() => {
+    if (patchRecommend.dontGo && patchRecommend.dontGo.length >= 20) {
+      handleFriendDetail();
+    }
+  }, [patchRecommend]);
+
+  useEffect(() => {
     handleTextCheck();
     localStorage.setItem("dontGo", text);
     setPatchRecommend({
@@ -79,7 +85,6 @@ export default function DontGoPage() {
         nextPage={allowIntroduce ? routePaths.RecommenderLanding : routePaths.Finish}
         title="완료"
         inputActive={!textCheck}
-        handleState={handleFriendDetail}
       />
     </St.DontGo>
   );
