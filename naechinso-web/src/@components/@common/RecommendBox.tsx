@@ -74,7 +74,7 @@ export default function RecommendBox(props: RecommendBoxProps) {
     // text 넣어 Post 및 글자수 확인
     setPostRecommend({ ...postRecommend, recommendAnswer: text, recommendQuestion: postQuestion });
     if (text) {
-      if (text.length >= 100) setTextCheck(true);
+      if (text.length >= 70) setTextCheck(true);
       else setTextCheck(false);
     }
   };
@@ -119,7 +119,7 @@ export default function RecommendBox(props: RecommendBoxProps) {
         setText={step === 0 ? setFirstRecommend : setSecondRecommend}
         handleState={handleRecommend}
         height={13}
-        letterLimit="100자 이상 150자 이내"
+        letterLimit="70자 이상 150자 이내"
       />
 
       <St.NextBtnWrapper>
