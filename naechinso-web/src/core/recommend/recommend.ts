@@ -44,6 +44,10 @@ export const keywordList: keywordProps[] = [
   { id: 15, keyword: "자기관리🏊🏻‍", checked: false },
   { id: 16, keyword: "화목한가정‍👩‍👦", checked: false },
   { id: 17, keyword: "여유있지💰", checked: false },
+  { id: 18, keyword: "요리왕👨‍🍳", checked: false },
+  { id: 19, keyword: "다독왕📚", checked: false },
+  { id: 20, keyword: "꿀피부🥚", checked: false },
+  { id: 21, keyword: "좀벌어💰", checked: false },
 ];
 
 export type questionProps = {
