@@ -131,17 +131,14 @@ const St = {
     width: 28rem;
     height: 18.7rem;
     margin: 0 auto;
-
     background-color: ${({ theme }) => theme.colors.neural};
     border-radius: 16px;
     cursor: pointer;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 0.4rem;
-
     color: ${({ theme }) => theme.colors.gray40};
     ${({ theme }) => theme.fonts.caption6};
   `,
@@ -156,9 +153,7 @@ const St = {
   ConsultantWrapper: styled.article`
     display: flex;
     align-items: center;
-
     position: absolute;
-
     right: 2.4rem;
     bottom: 12.4rem;
   `,
