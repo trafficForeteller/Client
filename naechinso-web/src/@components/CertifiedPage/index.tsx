@@ -110,6 +110,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   };
 
   const handleSuccessPostSmsVerify = (userData: IToken) => {
+    // 인증번호 맞을 때
     setToken({
       ...token,
       registerToken: userData.registerToken,
@@ -125,6 +126,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   };
 
   const handleFailPostSmsVerify = (errorMessage: string) => {
+    // 인증번호 틀릴 때
     setCorrectAuthNum(false);
     console.log(errorMessage);
   };
