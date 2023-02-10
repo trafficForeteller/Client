@@ -19,6 +19,7 @@ export default function FriendInfoPage() {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isTypeModalOpened, setIsTypeModalOpened] = useState(false);
   const [isDurationModalOpened, setIsDurationModalOpened] = useState(false);
+  const [isFriendAgreeModalOpened, setIsFriendAgreeModalOpened] = useState(false);
 
   const [name, setName] = useState("");
   const [relationType, setRelationType] = useState("");
