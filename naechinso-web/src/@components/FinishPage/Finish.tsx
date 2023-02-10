@@ -27,7 +27,7 @@ export default function Finish() {
       content: {
         title: "내친소 자기소개 쓰러 갈래?",
         description: "내 친구가 써준 추천사가 도착했어!",
-        imageUrl: "https://ifh.cc/g/pocbkv.png",
+        imageUrl: "https://naechinso.s3.ap-northeast-2.amazonaws.com/static/letter_chinso.png",
         link: {
           mobileWebUrl: "https://naechinso.page.link/dynamic",
           webUrl: "https://recommend.naechinso.com/arrive",
