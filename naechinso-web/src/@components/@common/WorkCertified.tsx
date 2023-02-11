@@ -31,6 +31,11 @@ export default function WorkCertified(props: WorkCertifiedProps) {
     handleFileChecked();
   }, [certifiedImg]);
 
+  useEffect(() => {
+    // 파일이 있을 때 이미지 파일 수정해서 patch
+    fileChecked && patchCertifiedData();
+  }, [fileChecked]);
+
   const handleOpenChannel = () => {
     // 새로운 창에서 약관 열기
     window.open("https://naechinso.channel.io/lounge", "_blank", "noopener, noreferrer");
@@ -113,12 +118,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
         </St.ConsultantBtn>
       </St.ConsultantWrapper>
 
-      <MoveNextPageBtn
-        nextPage={routePaths.Finish}
-        title="완료"
-        inputActive={!fileChecked}
-        handleState={patchCertifiedData}
-      />
+      <MoveNextPageBtn nextPage={routePaths.Finish} title="완료" inputActive={!fileChecked} />
     </St.WorkCertified>
   );
 }
