@@ -27,8 +27,8 @@ export default function DontGoPage() {
   }, []);
 
   useEffect(() => {
-    if (patchRecommend.dontGo && patchRecommend.dontGo.length >= 20) {
-      handleFriendDetail();
+    if (patchRecommend.dontGo && patchRecommend.dontGo.length === 20) {
+      handleMemberStatus();
     }
   }, [patchRecommend]);
 
@@ -43,11 +43,16 @@ export default function DontGoPage() {
     });
   }, [text]);
 
-  const handleFriendDetail = async () => {
-    await patchRecommendFriendDetail(patchRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
+  const handleMemberStatus = async () => {
+    // 이미 가입된 유저인지 확인
     const userData = await getMemberStatus(localStorage.getItem("accessToken"));
     if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE") setAllowIntroduce(true);
     else setAllowIntroduce(false);
+  };
+
+  const patchRecommender = async () => {
+    // 추천인으로 등록하기
+    await patchRecommendFriendDetail(patchRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
   };
 
   const handleTextCheck = () => {
@@ -85,6 +90,7 @@ export default function DontGoPage() {
         nextPage={allowIntroduce ? routePaths.RecommenderLanding : routePaths.Finish}
         title="완료"
         inputActive={!textCheck}
+        handleState={patchRecommender}
       />
     </St.DontGo>
   );
