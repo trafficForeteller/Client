@@ -188,7 +188,7 @@ const St = {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
-    padding-bottom: 7.4rem;
+    padding-bottom: 13rem;
   `,
   CheckBox: styled.div`
     display: flex;
