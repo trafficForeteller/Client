@@ -28,13 +28,21 @@ export default function WorkCertified(props: WorkCertifiedProps) {
   const [patchData, setPatchData] = useState({});
 
   useEffect(() => {
-    handleFileChecked();
-  }, [certifiedImg]);
+    if (dir === "edu") {
+      const eduInfoOfLocal = localStorage.getItem("eduInfo") as string;
+      const eduInfo = JSON.parse(eduInfoOfLocal);
+      setPatchData({ ...eduInfo });
+    } else if (dir === "job") {
+      const jobInfoOfLocal = localStorage.getItem("jobInfo") as string;
+      const jobInfo = JSON.parse(jobInfoOfLocal);
+      setPatchData({ ...jobInfo });
+    }
+  }, []);
 
   useEffect(() => {
-    // 파일이 있을 때 이미지 파일 수정해서 patch
-    fileChecked && patchCertifiedData();
-  }, [fileChecked]);
+    if (!certifiedImg) return;
+    handleFileChecked();
+  }, [patchData]);
 
   const handleOpenChannel = () => {
     // 새로운 창에서 약관 열기
@@ -43,8 +51,10 @@ export default function WorkCertified(props: WorkCertifiedProps) {
 
   const handleFileChecked = () => {
     // 이미지 파일 유무 확인하기
-    if (certifiedImg) setFileChecked(true);
-    else setFileChecked(false);
+    if (certifiedImg) {
+      setFileChecked(true);
+      patchCertifiedData();
+    } else setFileChecked(false);
   };
 
   const patchCertifiedData = async () => {
@@ -56,15 +66,8 @@ export default function WorkCertified(props: WorkCertifiedProps) {
     // s3에 이미지 POST
     const userData = await postCertifiedImg(formData, localStorage.getItem("accessToken"), dir);
     const strImgName = userData && (userData[0] as string);
-    if (dir === "edu") {
-      const eduInfoOfLocal = localStorage.getItem("eduInfo") as string;
-      const eduInfo = JSON.parse(eduInfoOfLocal);
-      setPatchData({ ...eduInfo, eduImage: strImgName });
-    } else if (dir === "job") {
-      const jobInfoOfLocal = localStorage.getItem("jobInfo") as string;
-      const jobInfo = JSON.parse(jobInfoOfLocal);
-      setPatchData({ ...jobInfo, jobImage: strImgName });
-    }
+    if (dir === "edu") setPatchData({ ...patchData, eduImage: strImgName });
+    else if (dir === "job") setPatchData({ ...patchData, jobImage: strImgName });
   };
 
   const uploadImgToS3 = (file: File) => {
@@ -74,6 +77,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
     handlePostImgFile(formData);
   };
 
+  // onChange 때얌!
   const previewImgFile = () => {
     // 미리보기 기능 구현
     const target = imgRef.current as HTMLInputElement;
@@ -82,9 +86,10 @@ export default function WorkCertified(props: WorkCertifiedProps) {
     file && reader.readAsDataURL(file);
     reader.onloadend = () => {
       const resultImg = reader.result as string;
+      file && uploadImgToS3(file);
+      console.log(resultImg);
       setCertifiedImg(resultImg);
     };
-    file && uploadImgToS3(file);
   };
 
   return (
