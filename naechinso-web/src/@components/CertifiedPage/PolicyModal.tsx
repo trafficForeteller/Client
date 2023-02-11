@@ -146,7 +146,6 @@ export default function PolicyModal(props: PolicyModalProps) {
 const St = {
   Modal: styled.section`
     width: 100%;
-    height: 38rem;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -189,6 +188,7 @@ const St = {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+    padding-bottom: 7.4rem;
   `,
   CheckBox: styled.div`
     display: flex;
