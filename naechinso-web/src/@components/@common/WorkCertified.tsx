@@ -87,7 +87,6 @@ export default function WorkCertified(props: WorkCertifiedProps) {
     reader.onloadend = () => {
       const resultImg = reader.result as string;
       file && uploadImgToS3(file);
-      console.log(resultImg);
       setCertifiedImg(resultImg);
     };
   };
