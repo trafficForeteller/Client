@@ -113,13 +113,13 @@ export default function RecommendBox(props: RecommendBoxProps) {
 
       <TextAreaBox
         placeholder={questionData.placeholder}
-        minLength={99}
+        minLength={49}
         maxLength={150}
         text={step === 0 ? firstRecommend : secondRecommend}
         setText={step === 0 ? setFirstRecommend : setSecondRecommend}
         handleState={handleRecommend}
         height={13}
-        letterLimit="70자 이상 150자 이내"
+        letterLimit="50자 이상 150자 이내"
       />
 
       <St.NextBtnWrapper>
