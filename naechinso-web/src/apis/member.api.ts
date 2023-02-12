@@ -64,7 +64,7 @@ export async function patchMemberEdu(eduData: object, accessToken: string | null
     }
   } catch (err) {
     console.log(err);
-    throw new Error("Failed to post edu Data");
+    throw new Error("Failed to patch edu Data");
   }
 }
 
@@ -78,7 +78,7 @@ export async function patchMemberJob(jobData: object, accessToken: string | null
     }
   } catch (err) {
     console.log(err);
-    throw new Error("Failed to post job Data");
+    throw new Error("Failed to patch job Data");
   }
 }
 

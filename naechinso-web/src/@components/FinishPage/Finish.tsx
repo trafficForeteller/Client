@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 import { IcCopy, IcFinishNaechinso, IcKakaotalk } from "../../asset/icons";
+import { ImgFinishNaechinso } from "../../asset/image";
 import FinishBottom from "./FinishBottom";
 
 export default function Finish() {
@@ -48,7 +49,7 @@ export default function Finish() {
   return (
     <St.Finish>
       <St.TitleWrapper>
-        <IcFinishNaechinso />
+        <St.Naechinso src={ImgFinishNaechinso} alt="내친소" />
         <St.Title>추천사 작성이 완료됐어!🙌</St.Title>
       </St.TitleWrapper>
       <St.DescWrapper>
@@ -89,6 +90,10 @@ const St = {
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
+  `,
+  Naechinso: styled.img`
+    width: 4rem;
+    height: 4rem;
   `,
   Title: styled.h2`
     color: ${({ theme }) => theme.colors.black};
