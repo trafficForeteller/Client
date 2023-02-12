@@ -102,7 +102,7 @@ const St = {
     flex-wrap: wrap;
     gap: 1.5rem;
     padding-top: 19rem;
-    padding-bottom: 1.5rem;
+    overflow-y: scroll;
   `,
   KeywordWrapper: styled.button<{ checked: boolean }>`
     width: 16rem;
