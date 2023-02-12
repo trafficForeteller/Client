@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postMemberReissue } from "../../apis/member.api";
-import { ImgEditNaechinso, ImgLandingNaechinso } from "../../asset/image";
+import { ImgEditNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 
 export default function EditPage() {
@@ -51,10 +51,10 @@ export default function EditPage() {
       <St.Naechinso src={ImgEditNaechinso} alt="내친소" />
       <St.TitleWrapper>
         <St.Title>소속인증에 문제가 있었어😥 </St.Title>
-        <St.Title>다시 한 번 확인해줘!</St.Title>
+        <St.Title>다시 인증해줄 수 있어?</St.Title>
       </St.TitleWrapper>
       <St.Button onClick={() => navigate(routePaths.PhoneNum)} type="button">
-        소속 인증 다시 하기
+        인증 다시 하기
       </St.Button>
     </St.LandingPage>
   );

@@ -24,7 +24,7 @@ export default function InstallNaechinso(props: InstallNaechinsoProps) {
 
   return (
     <St.InstallNaechinso>
-      <St.Button onClick={() => navigate(`${routePaths.Landing}`)} type="button" title={title}>
+      <St.Button onClick={() => navigate(routePaths.Landing)} type="button" title={title}>
         <IcPreviousBtn />
       </St.Button>
 

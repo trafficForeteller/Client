@@ -32,9 +32,10 @@ export default function LandingBox(props: LandingBoxProps) {
     localStorage.removeItem("uuid");
     localStorage.removeItem("member-uuid");
 
-    if (location.pathname !== "/" && location.pathname !== "/landing") {
-      localStorage.setItem("member-uuid", location.pathname);
-    }
+    if (location.pathname === "/" || location.pathname === "/landing" || location.pathname === "/edit") {
+      localStorage.removeItem("member-uuid");
+    } else localStorage.setItem("member-uuid", location.pathname);
+
     localStorage.getItem("accessToken") && setAccessToken(true);
   }, [location]);
 

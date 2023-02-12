@@ -10,6 +10,7 @@ import {
   ChooseWorkPage,
   DontGoPage,
   EditPage,
+  EditRecommenderLandingPage,
   EduCertifiedPage,
   EduEditPage,
   EduPage,
@@ -66,6 +67,10 @@ export default function Router() {
         <Route
           path={routePaths.JobEdit}
           element={localStorage.getItem("accessToken") ? <JobEditPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.EditRecommender}
+          element={localStorage.getItem("accessToken") ? <EditRecommenderLandingPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.EduEdit}
