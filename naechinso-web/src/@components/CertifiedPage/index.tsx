@@ -106,7 +106,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           navigate(`${routePaths.EduEdit}`, { state: userData[0] });
         } else if (localStorage.getItem("member-uuid") === "/edit") navigate(`${routePaths.EditRecommender}`);
       } else navigate(`${routePaths.EditRecommender}`);
-    }
+    } 
   };
 
   const handleSuccessPostSmsVerify = (userData: IToken) => {
