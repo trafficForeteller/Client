@@ -47,7 +47,15 @@ export const keywordList: keywordProps[] = [
   { id: 18, keyword: "요리왕👨‍🍳", checked: false },
   { id: 19, keyword: "다독왕📚", checked: false },
   { id: 20, keyword: "꿀피부🥚", checked: false },
-  { id: 21, keyword: "좀벌어💰", checked: false },
+  { id: 21, keyword: "리더십👍", checked: false },
+  { id: 22, keyword: "바른 인성⚖", checked: false },
+  { id: 23, keyword: "재주왕🤸‍♀️", checked: false },
+  { id: 24, keyword: "애교쟁이😘", checked: false },
+  { id: 25, keyword: "외모출중✨", checked: false },
+  { id: 26, keyword: "배려심🌊", checked: false },
+  { id: 27, keyword: "긍정적🐥", checked: false },
+  { id: 28, keyword: "예의바름🙇🏻‍♀️", checked: false },
+  { id: 29, keyword: "배울점많아👏🏻", checked: false },
 ];
 
 export type questionProps = {
