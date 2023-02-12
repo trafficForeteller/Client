@@ -101,11 +101,11 @@ export default function CertifiedPage(props: CertifiedPageProps) {
       if (userData) {
         if (!userData[0]) navigate(`${routePaths.RecommendLanding}`);
         else if (userData[0].pendingStatus === "reject" && userData[0].type === "JOB") {
-          return navigate(`${routePaths.JobEdit}`, { state: userData[0] });
+          navigate(`${routePaths.JobEdit}`, { state: userData[0] });
         } else if (userData[0].pendingStatus === "reject" && userData[0].type === "EDU") {
-          return navigate(`${routePaths.EduEdit}`, { state: userData[0] });
-        } else return navigate(`${routePaths.EditRecommender}`);
-      }
+          navigate(`${routePaths.EduEdit}`, { state: userData[0] });
+        } else if (localStorage.getItem("member-uuid") === "/edit") navigate(`${routePaths.EditRecommender}`);
+      } else navigate(`${routePaths.RecommendLanding}`);
     }
   };
 
