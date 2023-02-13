@@ -32,7 +32,7 @@ export default function AppealDetailPage() {
 
   return (
     <St.AppealDetail>
-      <FixedHeader header="추천사" progressRate={75} title1="거의 다 왔어!" title2="내 친구를 한줄로 소개한다면?" />
+      <FixedHeader header="추천사" progressRate={75} title1="거의 다 왔어!" title2="내 친구를 한 줄로 소개한다면?" />
 
       <St.CardWrapper>
         <IcAppealDetail />

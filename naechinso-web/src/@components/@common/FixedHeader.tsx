@@ -116,5 +116,7 @@ const St = {
     position: relative;
     padding: 9rem 2rem 0;
   `,
-  SubTitleWrapper: styled.span``,
+  SubTitleWrapper: styled.section`
+    padding-right: 2rem;
+  `,
 };

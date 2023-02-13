@@ -98,7 +98,7 @@ export default function JobPage() {
 
       <ShortInputBox
         label="직장"
-        placeholder="재직중인 회사명을 적어줘"
+        placeholder="재직 중인 회사명을 적어줘"
         value={job.jobName}
         onChange={handleJobInput}
         step={step}
@@ -136,7 +136,7 @@ const St = {
   SheildWrapper: styled.article``,
   SheildDesc: styled.p`
     color: ${({ theme }) => theme.colors.blue};
-    ${({ theme }) => theme.fonts.caption4}
+    ${({ theme }) => theme.fonts.body3}
   `,
   SheildExample: styled.p`
     color: ${({ theme }) => theme.colors.gray40};
