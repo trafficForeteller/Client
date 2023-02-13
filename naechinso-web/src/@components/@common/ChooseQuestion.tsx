@@ -34,6 +34,7 @@ export default function ChooseQuestion(props: ChooseQuestionProps) {
         }),
       );
     }
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
@@ -181,7 +182,7 @@ const St = {
     margin: 0 auto;
   `,
   QuestionBox: styled.button<{ checked: boolean }>`
-    padding: 1.6rem 1.2rem;
+    padding: 1.6rem 1.2rem 2rem;
     width: 16rem;
     height: 17rem;
 

@@ -105,6 +105,7 @@ const St = {
     gap: 1.5rem;
     padding-top: 19rem;
     overflow-y: scroll;
+    padding-bottom: 3rem;
   `,
   KeywordWrapper: styled.button<{ checked: boolean }>`
     width: 16rem;
