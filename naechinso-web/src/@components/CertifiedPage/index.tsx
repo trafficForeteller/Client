@@ -105,7 +105,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           navigate(`${routePaths.EduEdit}`, { state: userData[0] });
         } else navigate(`${routePaths.EditRecommender}`);
       } else navigate(`${routePaths.EditRecommender}`);
-    }
+    } else navigate(routePaths.RecommendLanding);
   };
 
   const handleSuccessPostSmsVerify = (userData: IToken) => {

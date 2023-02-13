@@ -16,7 +16,7 @@ export default function DontGoPage() {
     appeals: [],
     dontGo: "",
   });
-  const [allowIntroduce, setAllowIntroduce] = useState(true);
+  const [allowIntroduce, setAllowIntroduce] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("dontGo")) {
