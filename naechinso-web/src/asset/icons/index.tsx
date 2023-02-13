@@ -16,7 +16,6 @@ export { ReactComponent as IcPreviousBtn } from "./previousBtn.svg";
 export { ReactComponent as IcRecommenderLanding } from "./recommenderLanding.svg";
 export { ReactComponent as IcRelationChecked } from "./relationChecked.svg";
 export { ReactComponent as IcSheild } from "./sheild.svg";
-export { ReactComponent as IcSpeechBubble } from "./speechBubble.svg";
 export { ReactComponent as IcTipCheck } from "./tipCheck.svg";
 export { ReactComponent as IcToggleArrow } from "./toggleArrow.svg";
 export { ReactComponent as IcUnChecked } from "./unChecked.svg";

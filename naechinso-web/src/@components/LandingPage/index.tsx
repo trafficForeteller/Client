@@ -21,7 +21,6 @@ export default function LandingPage() {
 
   return (
     <St.LandingPage onKeyUp={onEnterKeyUp}>
-      <input />
       <LandingBox setAccessToken={setAccessToken} handleMoveLandingPage={handleMoveLandingPage} />
       <St.Bottom>
         <St.DescWrapper>
@@ -47,7 +46,7 @@ const St = {
     width: 100%;
     height: 100%;
     background-color: ${({ theme }) => theme.colors.neural};
-    padding-top: 30%;
+    padding-top: 25%;
   `,
   Bottom: styled.article`
     width: 100%;
