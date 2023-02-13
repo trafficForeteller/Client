@@ -50,16 +50,17 @@ export default function FriendInfoPage() {
       setName(friendInfo.name);
       setRelationDuration(friendInfo.period);
       friendInfo.phone && setPhoneNum(friendInfo.phone.replace("010", "").replace(/^(\d{3,4})(\d{4})$/g, "$1 $2"));
-
-      const periodOfLocal = friendInfo.period as string;
-      switch (periodOfLocal) {
-        case "친족" || "초/중/고 친구" || "대학교 친구" || "회사친구":
-          setRelationType(friendInfo.meet);
-          break;
-        default:
-          setRelationType("기타");
-          setRelationEtc(friendInfo.meet);
-          break;
+      const meetOfLocal = friendInfo.meet as string;
+      if (
+        meetOfLocal === "친족" ||
+        meetOfLocal === "초/중/고 친구" ||
+        meetOfLocal === "대학교 친구" ||
+        meetOfLocal === "회사친구"
+      ) {
+        setRelationType(meetOfLocal);
+      } else {
+        setRelationType("기타");
+        setRelationEtc(meetOfLocal);
       }
 
       if (localStorage.getItem("member-uuid")) {
