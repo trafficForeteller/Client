@@ -24,10 +24,6 @@ export default function InstallNaechinso(props: InstallNaechinsoProps) {
 
   return (
     <St.InstallNaechinso>
-      <head>
-        <meta property="og:title" content="내친소, 믿을만한 내 친구 소개받을래?" />
-        <meta property="og:description" content="실제 친구가 추천하는 친구 소개받기" />
-      </head>
       <St.Button onClick={() => navigate(routePaths.Landing)} type="button" title={title}>
         <IcPreviousBtn />
       </St.Button>
