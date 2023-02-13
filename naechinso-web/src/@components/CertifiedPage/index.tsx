@@ -106,6 +106,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
         } else if (userData[0].pendingStatus === "reject" && userData[0].type === "EDU") {
           navigate(`${routePaths.EduEdit}`, { state: userData[0] });
         } else if (!userData[0]) navigate(`${routePaths.RecommendLanding}`);
+        else navigate(`${routePaths.RecommendLanding}`);
       } else if (localStorage.getItem("member-uuid") === "/edit") navigate(`${routePaths.EditRecommender}`);
       else navigate(`${routePaths.RecommendLanding}`);
     }
