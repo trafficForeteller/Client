@@ -14,8 +14,6 @@ export default function KeywordPage() {
     // 새로고침 시 이전에 local에 저장된 keywordList 초기값으로 세팅
     const keywordListOfLocal = localStorage.getItem("keywordList") as string;
     const newKeywordList = JSON.parse(keywordListOfLocal);
-    console.log(newKeywordList);
-    console.log(keywordList);
     if (newKeywordList) {
       setKeywordArr(newKeywordList);
       const appealsOfLocal = localStorage.getItem("appeals") as string;

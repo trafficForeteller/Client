@@ -20,7 +20,6 @@ export default function ChooseQuestion(props: ChooseQuestionProps) {
   useEffect(() => {
     // 새로고침 시 이전에 local에 저장된 questionList 초기값으로 세팅
     const newQuestionList = parseLocalStorage("questionList");
-    console.log(newQuestionList);
     if (newQuestionList) {
       previouslyCheckedQuestion(newQuestionList);
       const checkedQ1 = parseLocalStorage("checkedQ1");
