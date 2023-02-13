@@ -107,7 +107,6 @@ export default function CertifiedPage(props: CertifiedPageProps) {
   const handleMemberStatus = async () => {
     // 이미 가입된 유저인지 확인
     const userData = await getMemberStatus(localStorage.getItem("accessToken"));
-    console.log(userData);
     if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE")
       navigate(routePaths.RecommenderLanding);
     else navigate(routePaths.RecommendLanding);
