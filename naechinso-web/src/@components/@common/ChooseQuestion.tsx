@@ -20,6 +20,7 @@ export default function ChooseQuestion(props: ChooseQuestionProps) {
   useEffect(() => {
     // 새로고침 시 이전에 local에 저장된 questionList 초기값으로 세팅
     const newQuestionList = parseLocalStorage("questionList");
+    console.log(newQuestionList);
     if (newQuestionList) {
       previouslyCheckedQuestion(newQuestionList);
       const checkedQ1 = parseLocalStorage("checkedQ1");
@@ -27,10 +28,12 @@ export default function ChooseQuestion(props: ChooseQuestionProps) {
       if (step === 0 && checkedQ1) handleCheckedQuestion(checkedQ1);
       else if (step === 1 && checkedQ2) handleCheckedQuestion(checkedQ2);
     } else {
-      questionList.map((question) => {
-        question.checked = false;
-        return question;
-      });
+      setQuestionArr(
+        questionList.map((question) => {
+          question.checked = false;
+          return question;
+        }),
+      );
     }
   }, []);
 

@@ -25,10 +25,12 @@ export default function KeywordPage() {
         setActiveNextBtn(true);
       }
     } else {
-      keywordList.map((keyword) => {
-        keyword.checked = false;
-        return keyword;
-      });
+      setKeywordArr(
+        keywordList.map((keyword) => {
+          keyword.checked = false;
+          return keyword;
+        }),
+      );
     }
   }, []);
 

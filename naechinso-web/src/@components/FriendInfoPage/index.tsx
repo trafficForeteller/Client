@@ -78,7 +78,6 @@ export default function FriendInfoPage() {
         setPostPhoneNum && setPostPhoneNum({ phoneNumber: postPhoneNum });
         setPostFriendInfo(friendInfo);
       }
-
       setActiveBtn(true);
     } else {
       resetListChecked(relationTypeList);

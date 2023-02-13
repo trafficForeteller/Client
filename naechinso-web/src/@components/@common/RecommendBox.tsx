@@ -40,8 +40,6 @@ export default function RecommendBox(props: RecommendBoxProps) {
   useEffect(() => {
     const checkedQ1 = parseLocalStorage("checkedQ1");
     const checkedQ2 = parseLocalStorage("checkedQ2");
-    console.log("checkedQ1", checkedQ1);
-    console.log("checkedQ2", checkedQ2);
     if (step === 0) {
       handleCheckedQuestion(checkedQ1);
       if (localStorage.getItem("firstRecommend")) {
