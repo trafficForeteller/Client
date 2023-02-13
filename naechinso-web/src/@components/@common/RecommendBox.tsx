@@ -74,7 +74,7 @@ export default function RecommendBox(props: RecommendBoxProps) {
     // text 넣어 Post 및 글자수 확인
     setPostRecommend({ ...postRecommend, recommendAnswer: text, recommendQuestion: postQuestion });
     if (text) {
-      if (text.length >= 70) setTextCheck(true);
+      if (text.length >= 50) setTextCheck(true);
       else setTextCheck(false);
     }
   };
