@@ -8,7 +8,6 @@ import { routePaths } from "../../core/routes/path";
 
 export default function EditPage() {
   const location = useLocation();
-  const [accessToken, setAccessToken] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +28,6 @@ export default function EditPage() {
     localStorage.removeItem("uuid");
 
     location.pathname !== "/" && localStorage.setItem("member-uuid", location.pathname);
-    localStorage.getItem("accessToken") && setAccessToken(true);
   }, [location]);
 
   useEffect(() => {
@@ -42,8 +40,7 @@ export default function EditPage() {
     if (userData) {
       localStorage.setItem("accessToken", userData["accessToken"]);
       localStorage.setItem("refreshToken", userData["refreshToken"]);
-      setAccessToken(true);
-    } else setAccessToken(false);
+    }
   };
 
   return (

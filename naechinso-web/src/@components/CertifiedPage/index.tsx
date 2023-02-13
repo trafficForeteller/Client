@@ -90,16 +90,11 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     checkAuthNumLength(authNum);
   };
 
-  const verifyAuthNum = async (postAuthNum: IPostVerifyPhoneNumber) => {
-    // 인증번호 확인 서버에 POST
-    await postSmsVerify(postAuthNum, handleSuccessPostSmsVerify, handleFailPostSmsVerify);
-  };
-
   const isPendingStatus = async () => {
     // 펜딩 상태 GET
     if (localStorage.getItem("member-uuid") === "/edit") {
       const userData = await getPendingStatus(localStorage.getItem("accessToken"));
-      if (userData) {
+      if (userData[0]) {
         if (userData[0].pendingStatus === "reject" && userData[0].type === "JOB") {
           navigate(routePaths.JobEdit, { state: userData[0] });
         } else if (userData[0].pendingStatus === "reject" && userData[0].type === "EDU") {
@@ -116,6 +111,11 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE")
       navigate(routePaths.RecommenderLanding);
     else navigate(routePaths.RecommendLanding);
+  };
+
+  const verifyAuthNum = async (postAuthNum: IPostVerifyPhoneNumber) => {
+    // 인증번호 확인 서버에 POST
+    await postSmsVerify(postAuthNum, handleSuccessPostSmsVerify, handleFailPostSmsVerify);
   };
 
   const handleSuccessPostSmsVerify = (userData: IToken) => {
