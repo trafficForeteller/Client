@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { getMemberStatus } from "../../apis/member.api";
 import { getPendingStatus } from "../../apis/pending.api";
 import { postSmsVerify } from "../../apis/sms.api";
 import { routePaths } from "../../core/routes/path";
@@ -100,12 +101,21 @@ export default function CertifiedPage(props: CertifiedPageProps) {
       const userData = await getPendingStatus(localStorage.getItem("accessToken"));
       if (userData) {
         if (userData[0].pendingStatus === "reject" && userData[0].type === "JOB") {
-          navigate(`${routePaths.JobEdit}`, { state: userData[0] });
+          navigate(routePaths.JobEdit, { state: userData[0] });
         } else if (userData[0].pendingStatus === "reject" && userData[0].type === "EDU") {
-          navigate(`${routePaths.EduEdit}`, { state: userData[0] });
-        } else navigate(`${routePaths.EditRecommender}`);
-      } else navigate(`${routePaths.EditRecommender}`);
-    } else navigate(routePaths.RecommendLanding);
+          navigate(routePaths.EduEdit, { state: userData[0] });
+        } else navigate(routePaths.EditRecommender);
+      } else navigate(routePaths.EditRecommender);
+    } else handleMemberStatus();
+  };
+
+  const handleMemberStatus = async () => {
+    // 이미 가입된 유저인지 확인
+    const userData = await getMemberStatus(localStorage.getItem("accessToken"));
+    console.log(userData);
+    if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE")
+      navigate(routePaths.RecommenderLanding);
+    else navigate(routePaths.RecommendLanding);
   };
 
   const handleSuccessPostSmsVerify = (userData: IToken) => {
@@ -155,7 +165,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
       </St.AuthNumWrapper>
 
       <St.ButtonWrapper inputActive={inputActive}>
-        <St.Button onClick={() => navigate(routePaths.RecommendLanding)} disabled={inputActive} type="button">
+        <St.Button onClick={() => navigate(routePaths.RecommenderLanding)} disabled={inputActive} type="button">
           완료
         </St.Button>
       </St.ButtonWrapper>

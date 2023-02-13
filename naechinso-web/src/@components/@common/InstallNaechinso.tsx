@@ -15,8 +15,23 @@ export default function InstallNaechinso(props: InstallNaechinsoProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    makeDescriptionMeta();
     if (Mobile()) window.location.href = "https://naechinso.page.link/dynamic";
   }, []);
+
+  const makeDescriptionMeta = (): void => {
+    // installNaechinso 페이지 공유 시
+    const metaTitle = document.createElement("meta");
+    const metaDesc = document.createElement("meta");
+
+    metaTitle.setAttribute("property", "og:title");
+    metaTitle.setAttribute("content", "내친소, 믿을만한 내 친구 소개받을래?");
+    metaDesc.setAttribute("property", "og:description");
+    metaDesc.setAttribute("content", "실제 친구가 추천하는 친구 소개받기");
+
+    document.getElementsByTagName("head")[0].appendChild(metaTitle);
+    document.getElementsByTagName("head")[0].appendChild(metaDesc);
+  };
 
   const Mobile = () => {
     return /Mobi/i.test(window.navigator.userAgent);

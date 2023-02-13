@@ -16,7 +16,6 @@ export default function DontGoPage() {
     appeals: [],
     dontGo: "",
   });
-  const [allowIntroduce, setAllowIntroduce] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("dontGo")) {
@@ -25,12 +24,6 @@ export default function DontGoPage() {
       setTextCheck(true);
     }
   }, []);
-
-  useEffect(() => {
-    if (patchRecommend.dontGo && patchRecommend.dontGo.length === 20) {
-      handleMemberStatus();
-    }
-  }, [patchRecommend]);
 
   useEffect(() => {
     handleTextCheck();
@@ -42,13 +35,6 @@ export default function DontGoPage() {
       dontGo: localStorage.getItem("dontGo"),
     });
   }, [text]);
-
-  const handleMemberStatus = async () => {
-    // 이미 가입된 유저인지 확인
-    const userData = await getMemberStatus(localStorage.getItem("accessToken"));
-    if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE") setAllowIntroduce(true);
-    else setAllowIntroduce(false);
-  };
 
   const patchRecommender = async () => {
     // 추천인으로 등록하기
@@ -87,7 +73,7 @@ export default function DontGoPage() {
       </St.TextWrapper>
 
       <MoveNextPageBtn
-        nextPage={allowIntroduce ? routePaths.RecommenderLanding : routePaths.Finish}
+        nextPage={routePaths.Finish}
         title="완료"
         inputActive={!textCheck}
         handleState={patchRecommender}

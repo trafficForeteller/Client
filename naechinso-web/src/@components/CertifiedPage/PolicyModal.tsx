@@ -106,7 +106,7 @@ export default function PolicyModal(props: PolicyModalProps) {
       localStorage.setItem("accessToken", userData["accessToken"]);
       localStorage.setItem("refreshToken", userData["refreshToken"]);
       setToken({ accessToken: userData["accessToken"] });
-      navigate(`${routePaths.RecommendLanding}`);
+      navigate(`${routePaths.RecommenderLanding}`);
     }
   };
 
@@ -134,7 +134,7 @@ export default function PolicyModal(props: PolicyModalProps) {
       </St.CheckContainer>
 
       <MoveNextPageBtn
-        nextPage={routePaths.RecommendLanding}
+        nextPage={routePaths.RecommenderLanding}
         title="내친소 시작하기"
         inputActive={startActive}
         handleState={handlePolicy}

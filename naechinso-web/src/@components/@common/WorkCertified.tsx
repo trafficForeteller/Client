@@ -119,7 +119,11 @@ export default function WorkCertified(props: WorkCertifiedProps) {
         <St.ConsultantNaechinso src={ImgConsultantNaechinso} alt="상담원 내친소 아이콘" />
       </St.ConsultantBtn>
 
-      <MoveNextPageBtn nextPage={routePaths.Finish} title="완료" inputActive={!fileChecked} />
+      <MoveNextPageBtn
+        nextPage={localStorage.getItem("member-uuid") === "/edit" ? routePaths.Finish : routePaths.RecommendLanding}
+        title="완료"
+        inputActive={!fileChecked}
+      />
     </St.WorkCertified>
   );
 }

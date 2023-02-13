@@ -28,6 +28,13 @@ export default function RecommenderInfoPage() {
       const genderTypeListofLocal = localStorage.getItem("genderTypeList") as string;
       const genderTypeList = JSON.parse(genderTypeListofLocal);
       setGenderTypeArr(genderTypeList);
+    } else {
+      setGenderTypeArr(
+        genderTypeList.map((genderType) => {
+          genderType.checked = false;
+          return genderType;
+        }),
+      );
     }
   }, []);
 

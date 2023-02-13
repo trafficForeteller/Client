@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { getMemberStatus } from "../../apis/member.api";
 import { IcAppStore, IcPlayStore } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { LandingBox } from "../@common";
@@ -11,17 +12,22 @@ export default function LandingPage() {
   const [accessToken, setAccessToken] = useState(false);
 
   const onEnterKeyUp = (e: React.KeyboardEvent<HTMLElement>) => {
-    if (e.key === "Enter") handleMoveLandingPage();
+    if (e.key === "Enter") handleMemberStatus();
   };
 
-  const handleMoveLandingPage = () => {
-    if (accessToken) navigate(routePaths.RecommendLanding);
-    else navigate(routePaths.PhoneNum);
+  const handleMemberStatus = async () => {
+    // 이미 가입된 유저인지 확인
+    if (accessToken && localStorage.getItem("accessToken")) {
+      const userData = await getMemberStatus(localStorage.getItem("accessToken"));
+      if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE")
+        navigate(routePaths.RecommenderLanding);
+      else navigate(routePaths.RecommendLanding);
+    } else navigate(routePaths.PhoneNum);
   };
 
   return (
     <St.LandingPage onKeyUp={onEnterKeyUp}>
-      <LandingBox setAccessToken={setAccessToken} handleMoveLandingPage={handleMoveLandingPage} />
+      <LandingBox setAccessToken={setAccessToken} handleMoveLandingPage={handleMemberStatus} />
       <St.Bottom>
         <St.DescWrapper>
           <St.Line></St.Line>
