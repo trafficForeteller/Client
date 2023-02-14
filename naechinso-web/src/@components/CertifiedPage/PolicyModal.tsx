@@ -106,7 +106,7 @@ export default function PolicyModal(props: PolicyModalProps) {
       localStorage.setItem("accessToken", userData["accessToken"]);
       localStorage.setItem("refreshToken", userData["refreshToken"]);
       setToken({ accessToken: userData["accessToken"] });
-      navigate(`${routePaths.RecommenderLanding}`);
+      navigate(routePaths.RecommenderLanding);
     }
   };
 

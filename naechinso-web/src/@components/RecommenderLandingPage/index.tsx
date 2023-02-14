@@ -9,8 +9,9 @@ export default function RecommenderLandingPage() {
     <St.RecommenderLandingPage>
       <St.TitleWrapper>
         <Title title="🙏" />
-        <Title title="친구를 정성들여" />
-        <Title title="소개해줘서 고마워" />
+        <Title title="친구를 소개해준다고? 고마워!" />
+        <Title title="그 전에 너에 대해" />
+        <Title title="살짝 물어봐도 될까?" />
       </St.TitleWrapper>
 
       <St.ImgWrapper>
@@ -34,8 +35,12 @@ const St = {
     padding-top: 10%;
   `,
   TitleWrapper: styled.hgroup`
-    margin-bottom: 5%;
+    margin-bottom: 10%;
     margin-left: 2.4rem;
+
+    @media only screen and (max-height: 680px) {
+      margin-bottom: 1%;
+    }
   `,
   ImgWrapper: styled.article`
     width: 35rem;
