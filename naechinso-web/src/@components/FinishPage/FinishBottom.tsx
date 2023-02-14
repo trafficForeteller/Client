@@ -6,14 +6,34 @@ import { routePaths } from "../../core/routes/path";
 export default function FinishBottom() {
   const navigate = useNavigate();
 
+  const handleMoveRecommendLanding = () => {
+    navigate(routePaths.RecommendLanding);
+
+    localStorage.removeItem("questionList");
+    localStorage.removeItem("checkedQ1");
+    localStorage.removeItem("checkedQ2");
+    localStorage.removeItem("firstRecommend");
+    localStorage.removeItem("secondRecommend");
+    localStorage.removeItem("eduInfo");
+    localStorage.removeItem("jobInfo");
+    localStorage.removeItem("appealDetail");
+    localStorage.removeItem("dontGo");
+    localStorage.removeItem("appeals");
+    localStorage.removeItem("friendInfo");
+    localStorage.removeItem("keywordList");
+    localStorage.removeItem("postRecommender");
+    localStorage.removeItem("genderTypeList");
+    localStorage.removeItem("uuid");
+  };
+
   return (
     <St.FinishBottom>
       <St.Title>
         <St.HighLight>다른 친구</St.HighLight>도 소개해보는 건 어때?
       </St.Title>
       <St.Title>자기소개는 입력하지 않아도 돼😀</St.Title>
-      <St.NextStepBtn type="button" onClick={() => navigate(routePaths.RecommendLanding)}>
-        다른친구 소개하러 가기
+      <St.NextStepBtn type="button" onClick={handleMoveRecommendLanding}>
+        다른 친구 소개하러 가기
       </St.NextStepBtn>
       <St.MoveLandingBtn type="button" onClick={() => navigate(routePaths.Landing)}>
         홈 화면으로 이동
