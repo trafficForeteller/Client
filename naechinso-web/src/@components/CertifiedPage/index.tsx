@@ -94,7 +94,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     // 펜딩 상태 GET
     if (localStorage.getItem("member-uuid") === "/edit") {
       const userData = await getPendingStatus(localStorage.getItem("accessToken"));
-      if (userData[0].pendingStatus) {
+      if (userData[0]) {
         if (userData[0].pendingStatus === "reject" && userData[0].type === "JOB") {
           navigate(routePaths.JobEdit, { state: userData[0] });
         } else if (userData[0].pendingStatus === "reject" && userData[0].type === "EDU") {
