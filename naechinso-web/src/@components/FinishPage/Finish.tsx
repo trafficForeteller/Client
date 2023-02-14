@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 
-import { IcCopy, IcFinishNaechinso, IcKakaotalk } from "../../asset/icons";
+import { IcCopy, IcKakaotalk } from "../../asset/icons";
 import { ImgFinishNaechinso } from "../../asset/image";
 import FinishBottom from "./FinishBottom";
 
