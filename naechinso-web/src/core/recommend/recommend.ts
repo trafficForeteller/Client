@@ -222,9 +222,9 @@ export type RecommendLandingProps = {
 export const RecommendLandingList: RecommendLandingProps[] = [
   {
     id: 0,
-    comment1: "안녕 나는 친소야!",
-    comment2: "네 친구라면...",
-    comment3: "분명 멋있겠지? 😘",
+    comment1: "네 친구라면...",
+    comment2: "분명 멋있겠지? 😘",
+    comment3: "너무 기대된다!",
     highlight: "89~99년도생만",
     desc1: "현재는 수도권에 거주하는",
     desc2: "내친소를 이용할 수 있어!",
@@ -250,4 +250,25 @@ export type RecommendStepMessageProps = {
 export const RecommendStepMessage: RecommendStepMessageProps[] = [
   { id: 0, questionChoiceMessage: "첫 번째 질문을 선택해줘", recommendStepMessage: "질문 1" },
   { id: 1, questionChoiceMessage: "두 번째 질문을 선택해줘", recommendStepMessage: "질문 2" },
+];
+
+export type RecommenderInfoProps = {
+  id: number;
+  title1: string;
+  title2: string;
+  title3?: string;
+};
+
+export const RecommenderInfoList: RecommenderInfoProps[] = [
+  {
+    id: 0,
+    title1: "👀",
+    title2: "친구 소개 전에",
+    title3: "너에 대해 소개해줄래?",
+  },
+  {
+    id: 1,
+    title1: "😆",
+    title2: "너에 대해 소개해줄래?",
+  },
 ];

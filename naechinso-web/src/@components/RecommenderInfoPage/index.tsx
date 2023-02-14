@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { postMemberJoinRecommender } from "../../apis/member.api";
 import { IcCheckedMen, IcCheckedWomen, IcUnCheckedMen, IcUnCheckedWomen } from "../../asset/icons";
 import { genderTypeList, genderTypeProps } from "../../core/member/member";
+import { RecommenderInfoList } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { FixedHeader, MoveNextPageBtn, SheildBox } from "../@common";
 import NameInputBox from "./NameInputBox";
@@ -16,6 +17,7 @@ export default function RecommenderInfoPage() {
     gender: "",
     name: "",
   });
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     // 새로고침 시 이전에 local에 저장된 postRecommender 초기값으로 세팅
@@ -24,7 +26,6 @@ export default function RecommenderInfoPage() {
     if (postRecommender) {
       setName(postRecommender.name);
       setCheckedGender(postRecommender.gender);
-
       const genderTypeListofLocal = localStorage.getItem("genderTypeList") as string;
       const genderTypeList = JSON.parse(genderTypeListofLocal);
       setGenderTypeArr(genderTypeList);
@@ -36,6 +37,9 @@ export default function RecommenderInfoPage() {
         }),
       );
     }
+
+    if (localStorage.getItem("member-uuid")) setIndex(1);
+    else setIndex(0);
   }, []);
 
   useEffect(() => {
@@ -71,12 +75,13 @@ export default function RecommenderInfoPage() {
   };
 
   return (
-    <St.RecommenderInfo>
+    <St.RecommenderInfo index={index}>
       <FixedHeader
         header="추천인 소개"
         progressRate={20}
-        title1="😆"
-        title2="너에 대해 살짝 소개해줄래?"
+        title1={RecommenderInfoList[index].title1}
+        title2={RecommenderInfoList[index].title2}
+        title3={index === 0 ? RecommenderInfoList[index].title3 : ""}
         subTitle1="네 정보를 밝히며 친구를 추천하면"
         subTitle2="이 친구에게 엄청난 신뢰가 더해질거야✌️"
       />
@@ -112,8 +117,8 @@ export default function RecommenderInfoPage() {
 }
 
 const St = {
-  RecommenderInfo: styled.main`
-    padding: 23rem 2rem 0;
+  RecommenderInfo: styled.main<{ index: number }>`
+    padding: ${({ index }) => (index === 0 ? "26rem" : "23rem")} 2rem 0;
   `,
   ChooseGender: styled.section`
     display: flex;

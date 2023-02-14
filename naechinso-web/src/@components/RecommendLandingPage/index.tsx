@@ -1,58 +1,33 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { ImgCommentNaechinso } from "../../asset/image";
-import { RecommendLandingList } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { MoveNextPageBtn } from "../@common";
 
-export default function RecommendLandingPage() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    localStorage.removeItem("questionList");
-    localStorage.removeItem("checkedQ1");
-    localStorage.removeItem("checkedQ2");
-    localStorage.removeItem("firstRecommend");
-    localStorage.removeItem("secondRecommend");
-    localStorage.removeItem("eduInfo");
-    localStorage.removeItem("jobInfo");
-    localStorage.removeItem("appealDetail");
-    localStorage.removeItem("dontGo");
-    localStorage.removeItem("appeals");
-    localStorage.removeItem("friendInfo");
-    localStorage.removeItem("keywordList");
-    localStorage.removeItem("postRecommender");
-    localStorage.removeItem("genderTypeList");
-    localStorage.removeItem("uuid");
-
-    if (localStorage.getItem("member-uuid")) setIndex(1);
-    else setIndex(0);
-  }, []);
-
+export default function RecommenderLandingPage() {
   return (
     <St.RecommendLandingPage>
       <St.CommentBox>
         <St.Naechinso src={ImgCommentNaechinso} alt="내친소" />
         <St.CommentWrapper>
-          <St.Comment>{RecommendLandingList[index].comment1}</St.Comment>
-          <St.Comment>{RecommendLandingList[index].comment2}</St.Comment>
-          <St.Comment>{RecommendLandingList[index].comment3}</St.Comment>
+          <St.Comment>네 친구라면...</St.Comment>
+          <St.Comment>분명 멋있겠지? 😘</St.Comment>
           <St.Comment>너무 기대된다!</St.Comment>
+          <St.Comment>
+            네 추천사는 친구가
+            <br />
+            좋은 인연을 만나는 데 정말 큰 도움이 될 거야!
+          </St.Comment>
         </St.CommentWrapper>
       </St.CommentBox>
 
-      <St.Bottom index={index}>
+      <St.Bottom>
         <St.TitleWrapper>
-          <St.Title>딱 10분만 투자해서</St.Title>
-          <St.Title>소중한 친구를 자랑해줘!</St.Title>
+          <St.Title>이제 친구를 자랑해볼까?</St.Title>
         </St.TitleWrapper>
 
-        <St.Desc>
-          {RecommendLandingList[index].desc1} <St.Highlight>{RecommendLandingList[index].highlight}</St.Highlight>
-        </St.Desc>
-        <St.Desc> {RecommendLandingList[index].desc2}</St.Desc>
-        <St.Desc> {RecommendLandingList[index].desc3}</St.Desc>
+        <St.Desc>잠깐만 시간내서 친구에 대해</St.Desc>
+        <St.Desc> 소개해줄 수 있을까?</St.Desc>
       </St.Bottom>
       <MoveNextPageBtn nextPage={routePaths.FriendInfo} title="추천사 작성 시작하기" inputActive={false} />
     </St.RecommendLandingPage>
@@ -64,7 +39,10 @@ const St = {
     width: 100%;
     height: 100%;
     background-color: ${({ theme }) => theme.colors.neural};
-    padding-top: 8%;
+    padding-top: 30%;
+    @media only screen and (max-height: 680px) {
+      padding-top: 8%;
+    }
   `,
   CommentBox: styled.section`
     display: flex;
@@ -75,7 +53,7 @@ const St = {
     height: 16.5rem;
   `,
   CommentWrapper: styled.article`
-    width: 19.2rem;
+    width: 19.4rem;
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
@@ -89,10 +67,10 @@ const St = {
     ${({ theme }) => theme.fonts.sub3};
     border-radius: 0px 16px 16px 16px;
   `,
-  Bottom: styled.section<{ index: number }>`
+  Bottom: styled.section`
     width: 100%;
     padding-top: 2.8rem;
-    height: ${({ index }) => (index === 0 ? "30.4rem" : "28rem")};
+    height: 24.6rem;
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 20px 20px 0px 0px;
 
