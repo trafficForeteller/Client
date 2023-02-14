@@ -34,6 +34,9 @@ const St = {
     display: flex;
     gap: 1.5rem;
     padding-top: 20%;
+    @media only screen and (min-height: 680px) {
+      padding-top: 40%;
+    }
   `,
   Naechinso: styled.img`
     width: 12.5rem;

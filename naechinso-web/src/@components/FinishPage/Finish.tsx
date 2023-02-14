@@ -83,7 +83,10 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 8rem 2rem 0;
+    padding: 10% 2rem 0;
+    @media only screen and (min-height: 680px) {
+      padding-top: 30%;
+    }
   `,
   TitleWrapper: styled.header`
     width: 100%;
