@@ -67,6 +67,9 @@ const St = {
     flex-direction: column;
     align-items: center;
     padding-top: 40%;
+    @media only screen and (min-height: 680px) {
+      padding-top: 55%;
+    }
   `,
   Naechinso: styled.img`
     width: 12.1rem;

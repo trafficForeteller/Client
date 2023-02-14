@@ -53,6 +53,9 @@ const St = {
     height: 100%;
     background-color: ${({ theme }) => theme.colors.neural};
     padding-top: 25%;
+    @media only screen and (min-height: 680px) {
+      padding-top: 50%;
+    }
   `,
   Bottom: styled.article`
     width: 100%;
