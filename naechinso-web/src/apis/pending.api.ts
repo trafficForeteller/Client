@@ -7,7 +7,7 @@ const PREFIX_URL = "/pending";
 export async function getPendingStatus(accessToken: string | null): Promise<IGetPending[] | []> {
   try {
     const { data } = await serverAxios.get(`${PREFIX_URL}`, {
-      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+      headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
     return data.data;
   } catch (err) {
