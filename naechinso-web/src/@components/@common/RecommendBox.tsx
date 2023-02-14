@@ -68,6 +68,7 @@ export default function RecommendBox(props: RecommendBoxProps) {
   useEffect(() => {
     if (step === 0) handleEnteredText(firstRecommend);
     else if (step === 1) handleEnteredText(secondRecommend);
+    saveTextInLocal();
   }, [firstRecommend, secondRecommend]);
 
   const handleEnteredText = (text: string) => {
@@ -84,7 +85,6 @@ export default function RecommendBox(props: RecommendBoxProps) {
     if (step === 0) navigate(`${routePaths.ChooseSecondQuestion}`);
     else if (step === 1) navigate(`${routePaths.AppealDetail}`);
     await postRecommendation(postRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
-    saveTextInLocal();
   };
 
   const saveTextInLocal = () => {
