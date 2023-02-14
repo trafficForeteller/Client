@@ -30,7 +30,7 @@ export default function Finish() {
         description: "내 친구가 써준 추천사가 도착했어!",
         imageUrl: "https://naechinso.s3.ap-northeast-2.amazonaws.com/static/letter_chinso.png",
         link: {
-          mobileWebUrl: "https://naechinso.page.link/dynamic",
+          mobileWebUrl: "https://recommend.naechinso.com/arrive",
           webUrl: "https://recommend.naechinso.com/arrive",
         },
       },
@@ -38,7 +38,7 @@ export default function Finish() {
         {
           title: "내친소 시작하기",
           link: {
-            mobileWebUrl: "https://naechinso.page.link/dynamic",
+            mobileWebUrl: "https://recommend.naechinso.com/arrive",
             webUrl: "https://recommend.naechinso.com/arrive",
           },
         },
