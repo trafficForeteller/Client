@@ -263,8 +263,8 @@ export const RecommenderInfoList: RecommenderInfoProps[] = [
   {
     id: 0,
     title1: "👀",
-    title2: "친구 소개 전에",
-    title3: "너에 대해 소개해줄래?",
+    title2: "아참! 친구 소개 전에",
+    title3: "너에 대해 잠깐 소개해줄래?",
   },
   {
     id: 1,
