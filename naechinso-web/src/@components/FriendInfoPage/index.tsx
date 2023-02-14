@@ -235,7 +235,7 @@ export default function FriendInfoPage() {
         step={step}
         handleStep={handleStep}
       />
-
+      <St.Blank></St.Blank>
       <St.NextStepBtnWrapper>
         <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep} isModalOpened={isModalOpened}>
           다음
@@ -254,12 +254,14 @@ const St = {
     width: 100%;
     height: 100%;
     padding: 9rem 2rem;
-    margin-bottom: 5rem;
   `,
   TitleWrapper: styled.hgroup`
     margin-bottom: 2.4rem;
     position: relative;
     z-index: -1;
+  `,
+  Blank: styled.div`
+    height: 13rem;
   `,
   NextStepBtnWrapper: styled.section`
     display: flex;

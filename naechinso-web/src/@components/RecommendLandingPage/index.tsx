@@ -40,7 +40,7 @@ const St = {
     height: 100%;
     background-color: ${({ theme }) => theme.colors.neural};
     padding-top: 10%;
-    @media only screen and (min-height: 680px) {
+    @media only screen and (min-height: 720px) {
       padding-top: 39%;
     }
   `,
