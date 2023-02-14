@@ -78,6 +78,7 @@ const St = {
     border: 1px solid ${({ theme }) => theme.colors.gray30};
     width: 20%;
     height: 1px;
+    width: calc(100% - 294px);
   `,
   Desc: styled.p`
     color: ${({ theme }) => theme.colors.gray50};
