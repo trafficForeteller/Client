@@ -62,7 +62,7 @@ export default function DontGoPage() {
 
       <St.TextWrapper>
         <TextAreaBox
-          placeholder="한번만 다시 생각해봐! 일단 내 친구는 만나봐야 얘가 진국인지 아닌지 알 수있기 때문이지! "
+          placeholder="미래의 형수님 한번만 다시 생각해보십쇼. 이 친구가 겉 보기엔 끌리지 않을 수 있어도, 저와 주변 친구들이 그랬듯 제 친구의 매력에 한 번 빠지면 헤어나올 수 없거든요!"
           minLength={19}
           maxLength={100}
           text={text}
