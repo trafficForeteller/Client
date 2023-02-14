@@ -39,9 +39,9 @@ const St = {
     width: 100%;
     height: 100%;
     background-color: ${({ theme }) => theme.colors.neural};
-    padding-top: 30%;
-    @media only screen and (max-height: 680px) {
-      padding-top: 8%;
+    padding-top: 10%;
+    @media only screen and (min-height: 680px) {
+      padding-top: 39%;
     }
   `,
   CommentBox: styled.section`
