@@ -32,6 +32,9 @@ const St = {
     height: 100%;
     background-color: ${({ theme }) => theme.colors.neural};
     padding-top: 10%;
+    @media only screen and (min-height: 680px) {
+      padding-top: 20%;
+    }
   `,
   TitleWrapper: styled.hgroup`
     margin-bottom: 5%;
@@ -40,6 +43,9 @@ const St = {
   ImgWrapper: styled.article`
     width: 35rem;
     float: right;
+    @media only screen and (min-height: 680px) {
+      padding-top: 10%;
+    }
   `,
   Bottom: styled.section`
     width: 100%;
