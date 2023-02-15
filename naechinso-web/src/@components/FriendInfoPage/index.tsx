@@ -178,7 +178,7 @@ export default function FriendInfoPage() {
         <Title title="너무 궁금해!👀" />
       </St.TitleWrapper>
 
-      {!localStorage.getItem("member-uuid") && step >= 4 ? (
+      {localStorage.getItem("member-uuid") === null && step >= 4 ? (
         <PhoneNumInputBox
           label="친구의 휴대폰 번호"
           placeholder="0000 0000"
