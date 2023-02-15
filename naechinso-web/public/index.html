@@ -61,7 +61,7 @@
         // 카카오, 인스타 인앱 브라우저로 실행 시킨 경우
         if (!navigator.userAgent.match(/iPhone|iPad/i)) {
           // 먼저, 카카오 인앱 브라우저 닫기
-          if (Agent.indexOf("kakao") > -1 || Agent.indexOf("instagram") > -1) {
+          if (Agent.indexOf("kakao") > -1 || Agent.indexOf("instagram") > -1 || Agent.indexOf("naechinso") > -1) {
             if (Agent.includes("kakao")) {
               location.href = "kakaotalk://inappbrowser/close";
             }
