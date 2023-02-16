@@ -133,6 +133,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
     </St.WorkCertified>
   );
 }
+
 const St = {
   WorkCertified: styled.section`
     width: 100%;
