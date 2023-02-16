@@ -111,7 +111,7 @@ export default function PolicyModal(props: PolicyModalProps) {
   };
 
   return (
-    <St.Modal>
+    <St.Modal id="policyModal">
       <St.Title>내친소 이용 약관 동의</St.Title>
       <St.AllCheckWrapper type="button" onClick={toggleAllcheck}>
         <St.IcAllCheckWrapper>{allChecked ? <IcAllChecked /> : <IcAllUnChecked />}</St.IcAllCheckWrapper>
