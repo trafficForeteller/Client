@@ -11,7 +11,23 @@ export interface IPatchFriendDetail {
   dontGo: string | null;
 }
 
-export interface IPostRecommend {
+export interface IPostRecommendElement {
   recommendQuestion: string;
   recommendAnswer: string;
+}
+
+export interface IPostRecommend {
+  recommendQuestions: IPostRecommendElement[];
+}
+
+export interface IPostRecommendQuestion {
+  id: number;
+  icon: string;
+  title: string;
+  desc1: string;
+  desc2: string;
+  desc3: string;
+  placeholder: string;
+  checked: boolean;
+  disabled: boolean;
 }

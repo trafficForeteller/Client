@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { getMemberStatus } from "../../apis/member.api";
-import { patchRecommendFriendDetail } from "../../apis/recommend.api";
+import { patchRecommendFriendDetail, postRecommendation } from "../../apis/recommend.api";
 import { IcDontGo } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
-import { IPatchFriendDetail } from "../../types/recommend";
+import { IPatchFriendDetail, IPostRecommendQuestion } from "../../types/recommend";
 import { FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
 
 export default function DontGoPage() {
@@ -17,12 +16,37 @@ export default function DontGoPage() {
     dontGo: "",
   });
 
+  const [postRecommend, setPostRecommend] = useState({
+    recommendQuestions: [
+      {
+        recommendQuestion: "",
+        recommendAnswer: "",
+      },
+    ],
+  });
+
   useEffect(() => {
     if (localStorage.getItem("dontGo")) {
       const dontGo = localStorage.getItem("dontGo") as string;
       setText(dontGo);
       setTextCheck(true);
     }
+
+    const checkedQ1 = parseLocalStorage("checkedQ1");
+    const checkedQ2 = parseLocalStorage("checkedQ2");
+
+    setPostRecommend({
+      recommendQuestions: [
+        {
+          recommendQuestion: handleRecommendQuestion(checkedQ1),
+          recommendAnswer: localStorage.getItem("firstRecommend") as string,
+        },
+        {
+          recommendQuestion: handleRecommendQuestion(checkedQ2),
+          recommendAnswer: localStorage.getItem("secondRecommend") as string,
+        },
+      ],
+    });
   }, []);
 
   useEffect(() => {
@@ -36,9 +60,23 @@ export default function DontGoPage() {
     });
   }, [text]);
 
-  const patchRecommender = async () => {
+  const handleRegisterRecommender = async () => {
     // 추천인으로 등록하기
     await patchRecommendFriendDetail(patchRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
+    await postRecommendation(postRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
+  };
+
+  const parseLocalStorage = (item: string) => {
+    //  localStorage에 저장된 친구가 배열 혹은 object일 때 JSON.parse하는 함수
+    const itemInLocal = localStorage.getItem(`${item}`) as string;
+    const parseItem = JSON.parse(itemInLocal);
+    return parseItem;
+  };
+
+  const handleRecommendQuestion = (recommendQ: IPostRecommendQuestion) => {
+    // 질문 공백 없이 합치기
+    const recommendQuestion = `${recommendQ.desc1}` + `${recommendQ.desc2}` + `${recommendQ.desc3}`;
+    return recommendQuestion as string;
   };
 
   const handleTextCheck = () => {
@@ -76,7 +114,7 @@ export default function DontGoPage() {
         nextPage={routePaths.Finish}
         title="완료"
         inputActive={!textCheck}
-        handleState={patchRecommender}
+        handleState={handleRegisterRecommender}
       />
     </St.DontGo>
   );

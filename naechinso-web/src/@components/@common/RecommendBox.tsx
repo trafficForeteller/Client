@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { postRecommendation } from "../../apis/recommend.api";
-import { questionProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { IPostRecommend } from "../../types/recommend";
+import { IPostRecommendQuestion } from "../../types/recommend";
 import FixedHeader from "./FixedHeader";
 import TextAreaBox from "./TextAreaBox";
 import ToggleTipBox from "./ToggleTipBox";
@@ -21,9 +19,7 @@ export default function RecommendBox(props: RecommendBoxProps) {
   const [textCheck, setTextCheck] = useState(false);
   const [firstRecommend, setFirstRecommend] = useState("");
   const [secondRecommend, setSecondRecommend] = useState("");
-  const [postRecommend, setPostRecommend] = useState<IPostRecommend>({ recommendQuestion: "", recommendAnswer: "" });
-  const [postQuestion, setPostQuestion] = useState("");
-  const [questionData, setQuestionData] = useState<questionProps>({
+  const [questionData, setQuestionData] = useState<IPostRecommendQuestion>({
     id: 0,
     icon: "",
     title: "",
@@ -57,10 +53,9 @@ export default function RecommendBox(props: RecommendBoxProps) {
     }
   }, []);
 
-  const handleCheckedQuestion = (checkedQ: questionProps) => {
-    // step에 따른 setQuestionData,  setPostQuestion변화
+  const handleCheckedQuestion = (checkedQ: IPostRecommendQuestion) => {
+    // step에 따른 setQuestionData
     setQuestionData(checkedQ);
-    setPostQuestion(`${checkedQ.desc1}` + `${checkedQ.desc2}` + `${checkedQ.desc3}`);
     if (checkedQ.desc1 === "") setIsThreeLine(false);
     else setIsThreeLine(true);
   };
@@ -73,7 +68,6 @@ export default function RecommendBox(props: RecommendBoxProps) {
 
   const handleEnteredText = (text: string) => {
     // text 넣어 Post 및 글자수 확인
-    setPostRecommend({ ...postRecommend, recommendAnswer: text, recommendQuestion: postQuestion });
     if (text) {
       if (text.length >= 50) setTextCheck(true);
       else setTextCheck(false);
@@ -84,7 +78,6 @@ export default function RecommendBox(props: RecommendBoxProps) {
     // 추천사 POST && step에 따라 다른 페이지 이동
     if (step === 0) navigate(`${routePaths.ChooseSecondQuestion}`);
     else if (step === 1) navigate(`${routePaths.AppealDetail}`);
-    await postRecommendation(postRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
   };
 
   const saveTextInLocal = () => {
