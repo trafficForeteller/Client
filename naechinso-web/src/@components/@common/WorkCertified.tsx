@@ -113,7 +113,13 @@ export default function WorkCertified(props: WorkCertifiedProps) {
           </>
         )}
       </St.ImageUploadBox>
-      <St.ImageUpload type="file" accept="image/*" id="input-file" onChange={previewImgFile} ref={imgRef} />
+      <St.ImageUpload
+        type="file"
+        accept="image/*;capture=camera"
+        id="input-file"
+        onChange={previewImgFile}
+        ref={imgRef}
+      />
 
       <St.ConsultantBtn type="button" onClick={handleOpenChannel}>
         <St.ConsultantNaechinso src={ImgConsultantNaechinso} alt="상담원 내친소 아이콘" />
