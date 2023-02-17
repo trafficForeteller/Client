@@ -26,7 +26,7 @@ export default function RelationModal(props: RelationModalProps) {
   };
 
   return (
-    <St.RelationModal>
+    <St.RelationModal id="relationModal">
       {question ? <St.Question>{question}</St.Question> : ""}
       {relationList.map((el) => {
         return (

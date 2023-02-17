@@ -52,7 +52,7 @@ export default function RelationTypeInput(props: RelationTypeInputProps) {
   };
 
   return (
-    <St.RelationTypeInput id="relationTypeInput">
+    <St.RelationTypeInput>
       <RelationToggle
         label="관계"
         placeholder="어떤 관계인지 선택해줘"
