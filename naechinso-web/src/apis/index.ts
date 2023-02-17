@@ -5,5 +5,5 @@ export const serverAxios = axios.create({
   baseURL: "https://api.naechinso.com",
 
   // 개발 서버 사용
-  // baseURL: process.env.REACT_APP_DEV_API,
+  // baseURL: "https://dev.naechinso.com",
 });
