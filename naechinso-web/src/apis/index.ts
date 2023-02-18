@@ -1,7 +1,9 @@
 import axios from "axios";
 
-import { REACT_APP_API_NAECHINSO } from "../util/api";
-
 export const serverAxios = axios.create({
-  baseURL: REACT_APP_API_NAECHINSO,
+  // 실 서버 사용
+  baseURL: "https://api.naechinso.com",
+
+  // 개발 서버 사용
+  // baseURL: "https://dev.naechinso.com",
 });
