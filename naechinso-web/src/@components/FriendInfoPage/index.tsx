@@ -6,7 +6,8 @@ import { postMagicRecommendFriendInfo, postRecommendFriendInfo } from "../../api
 import { relationDurationList, relationTypeList, relationTypeProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IPostFriendInfo } from "../../types/recommend";
-import { BasicHeader, ShortInputBox, Title } from "../@common";
+import { ShortInputBox, Title } from "../@common";
+import FriendInfoHeader from "./FriendInfoHeader";
 import PhoneNumInputBox from "./PhoneNumInput";
 import RelationTypeInput from "./RecommendTypeInput";
 import RelationDurationInput from "./RelationDurationInput";
@@ -19,7 +20,6 @@ export default function FriendInfoPage() {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isTypeModalOpened, setIsTypeModalOpened] = useState(false);
   const [isDurationModalOpened, setIsDurationModalOpened] = useState(false);
-  const [isFriendAgreeModalOpened, setIsFriendAgreeModalOpened] = useState(false);
 
   const [name, setName] = useState("");
   const [relationType, setRelationType] = useState("");
@@ -172,7 +172,7 @@ export default function FriendInfoPage() {
   };
   return (
     <St.FriendInfoPage isModalOpened={isModalOpened}>
-      <BasicHeader header="친구 정보" progressRate={20} />
+      <FriendInfoHeader />
       <St.TitleWrapper>
         <Title title="어떤 친구를 소개해줄거야?" />
         <Title title="너무 궁금해!👀" />
