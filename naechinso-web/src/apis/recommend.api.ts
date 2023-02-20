@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { IPatchFriendDetail, IPostFriendInfo, IPostRecommend } from "../types/recommend";
+import { IPatchFriendDetail, IPostFriendInfo, IPostRecommend, IUuid } from "../types/recommend";
 import { serverAxios } from ".";
 
 const PREFIX_URL = "/recommend";
@@ -7,17 +7,18 @@ const PREFIX_URL = "/recommend";
 export async function postRecommendFriendInfo(
   friendsInfo: IPostFriendInfo,
   accessToken: string | null,
+  onSuccess: (userData: IUuid) => void,
+  onFail: (errorMessage: string) => void,
 ): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/request-uuid`, friendsInfo, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
     });
-    if (data.status === 200) {
-      return data.data;
-    }
+    onSuccess(data.data);
   } catch (err) {
-    console.log(err);
-    throw new Error("Failed to post your recommend");
+    if (err instanceof Error) {
+      onFail(err.message);
+    }
   }
 }
 
@@ -25,17 +26,18 @@ export async function postMagicRecommendFriendInfo(
   friendsInfo: IPostFriendInfo,
   accessToken: string | null,
   memberUuid: string | null,
+  onSuccess: (userData: IUuid) => void,
+  onFail: (errorMessage: string) => void,
 ): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/request-uuid${memberUuid}`, friendsInfo, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
     });
-    if (data.status === 200) {
-      return data.data;
-    }
+    onSuccess(data.data);
   } catch (err) {
-    console.log(err);
-    throw new Error("Failed to post your recommend");
+    if (err instanceof Error) {
+      onFail(err.message);
+    }
   }
 }
 

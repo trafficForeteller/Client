@@ -31,3 +31,7 @@ export interface IPostRecommendQuestion {
   checked: boolean;
   disabled: boolean;
 }
+
+export interface IUuid {
+  uuid: string;
+}

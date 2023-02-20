@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postMemberJoinRecommender } from "../../apis/member.api";
@@ -18,6 +19,8 @@ export default function RecommenderInfoPage() {
     name: "",
   });
   const [index, setIndex] = useState(0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 새로고침 시 이전에 local에 저장된 postRecommender 초기값으로 세팅
@@ -47,8 +50,24 @@ export default function RecommenderInfoPage() {
   }, [name, genderTypeArr]);
 
   const handlePostRecommender = async () => {
+    await postMemberJoinRecommender(
+      postRecommender,
+      localStorage.getItem("accessToken"),
+      handleSuccessPostMemberJoin,
+      handleFailPostMemberJoin,
+    );
+  };
+
+  const handleSuccessPostMemberJoin = () => {
+    // recommender join 성공 시
     saveRecommenderInfoInLocal();
-    await postMemberJoinRecommender(postRecommender, localStorage.getItem("accessToken"));
+    navigate(routePaths.ChooseWork);
+  };
+
+  const handleFailPostMemberJoin = (errorMessage: string) => {
+    // recommender join 실패 시
+    console.log(errorMessage);
+    navigate(routePaths.Error);
   };
 
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -107,7 +126,6 @@ export default function RecommenderInfoPage() {
       </St.ChooseGender>
 
       <MoveNextPageBtn
-        nextPage={routePaths.ChooseWork}
         title="다음"
         inputActive={name === "" || checkedGender === ""}
         handleState={handlePostRecommender}

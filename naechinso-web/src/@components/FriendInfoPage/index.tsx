@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { postMagicRecommendFriendInfo, postRecommendFriendInfo } from "../../apis/recommend.api";
 import { relationDurationList, relationTypeList, relationTypeProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { IPostFriendInfo } from "../../types/recommend";
+import { IPostFriendInfo, IUuid } from "../../types/recommend";
 import { ShortInputBox, Title } from "../@common";
 import FriendInfoHeader from "./FriendInfoHeader";
 import PhoneNumInputBox from "./PhoneNumInput";
@@ -104,10 +104,8 @@ export default function FriendInfoPage() {
     if (step === 2) setIsTypeModalOpened(true);
     else if (step === 3) setIsDurationModalOpened(true);
     else if (step === 4 && localStorage.getItem("member-uuid")) {
-      navigate(`${routePaths.Keyword}`);
       handleMagicFriendInfo();
     } else if (step === 5) {
-      navigate(`${routePaths.Keyword}`);
       handleFriendInfo();
     }
   }, [step]);
@@ -119,20 +117,37 @@ export default function FriendInfoPage() {
 
   const handleMagicFriendInfo = async () => {
     // 매직링크 가진 친구의 기본정보 POST
-    const userData = await postMagicRecommendFriendInfo(
+    await postMagicRecommendFriendInfo(
       postMagicFriendInfo,
       localStorage.getItem("accessToken"),
       localStorage.getItem("member-uuid"),
+      handleSucessPostFriendInfo,
+      handleFailPostFriendInfo,
     );
-    userData && localStorage.setItem("uuid", userData["uuid"]);
-    saveFriendInfoInLocal(postMagicFriendInfo);
   };
 
   const handleFriendInfo = async () => {
     // 친구의 기본정보 POST
-    const userData = await postRecommendFriendInfo(postFriendInfo, localStorage.getItem("accessToken"));
+    await postRecommendFriendInfo(
+      postFriendInfo,
+      localStorage.getItem("accessToken"),
+      handleSucessPostFriendInfo,
+      handleFailPostFriendInfo,
+    );
+  };
+
+  const handleSucessPostFriendInfo = (userData: IUuid) => {
+    // 친구의 기본정보 POST 성공할 시
     userData && localStorage.setItem("uuid", userData["uuid"]);
-    saveFriendInfoInLocal(postFriendInfo);
+    if (localStorage.getItem("member-uuid") === null) saveFriendInfoInLocal(postFriendInfo);
+    else saveFriendInfoInLocal(postMagicFriendInfo);
+    navigate(routePaths.Keyword);
+  };
+
+  const handleFailPostFriendInfo = (errorMessage: string) => {
+    // 친구의 기본정보 POST 실패할 시
+    console.log(errorMessage);
+    navigate(routePaths.Error);
   };
 
   useEffect(() => {

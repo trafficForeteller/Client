@@ -30,9 +30,9 @@ export async function postSmsVerify(
       headers: { "Content-Type": "application/json" },
     });
     onSuccess(data.data);
-  } catch (error) {
-    if (error instanceof Error) {
-      onFail(error.message);
+  } catch (err) {
+    if (err instanceof Error) {
+      onFail(err.message);
     }
   }
 }

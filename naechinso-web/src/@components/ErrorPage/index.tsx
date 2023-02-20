@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { ImgErrorNaechinso } from "../../asset/image";
 import { MovePreviousPageBtn } from "../@common";
 
 export default function ErrorPage() {
@@ -15,7 +16,7 @@ export default function ErrorPage() {
     <St.ErrorPage>
       <MovePreviousPageBtn />
       <St.MainBox>
-        {/* <St.Naechinso src={ImgErrorNaechinso} alt="내친소" /> */}
+        <St.Naechinso src={ImgErrorNaechinso} alt="내친소" />
         <St.Title>일시적인 오류가 발생했어</St.Title>
         <St.DescWrapper>
           <St.Desc>새로고침을 눌러</St.Desc>

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export interface NextPageBtnProps {
-  nextPage: string;
+  nextPage?: string;
   title: string;
   inputActive: boolean;
   state?: number;
@@ -15,7 +15,7 @@ export default function MoveNextPageBtn(props: NextPageBtnProps) {
 
   const goNextPage = () => {
     handleState && handleState();
-    navigate(`${nextPage}`, { state: { state } });
+    nextPage && navigate(`${nextPage}`, { state: { state } });
   };
 
   return (

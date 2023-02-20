@@ -40,17 +40,18 @@ export async function postMemberReissue(
 export async function postMemberJoinRecommender(
   recommenderData: IPostRecommender,
   accessToken: string | null,
+  onSuccess: () => void,
+  onFail: (errorMessage: string) => void,
 ): Promise<void | null> {
   try {
-    const { data } = await serverAxios.post(`${PREFIX_URL}/join/recommender`, recommenderData, {
+    await serverAxios.post(`${PREFIX_URL}/join/recommender`, recommenderData, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
     });
-    if (data.status === 200) {
-      return data.data;
-    }
+    onSuccess();
   } catch (err) {
-    console.log(err);
-    throw new Error("Failed to post recommender Data");
+    if (err instanceof Error) {
+      onFail(err.message);
+    }
   }
 }
 
