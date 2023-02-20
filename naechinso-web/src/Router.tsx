@@ -6,7 +6,6 @@ import {
   ArriveRecommendPage,
   CertifiedPage,
   ChooseFirstQuestionPage,
-  ChooseSecondQuestionPage,
   ChooseWorkPage,
   DontGoPage,
   EditPage,
@@ -102,10 +101,6 @@ export default function Router() {
         <Route
           path={routePaths.FirstRecommend}
           element={localStorage.getItem("accessToken") ? <FirstRecommendPage /> : <Navigate to="/" replace />}
-        />
-        <Route
-          path={routePaths.ChooseSecondQuestion}
-          element={localStorage.getItem("accessToken") ? <ChooseSecondQuestionPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.SecondRecommend}

@@ -18,7 +18,7 @@ export interface FixedHeaderProps {
 }
 
 export default function FixedHeader(props: FixedHeaderProps) {
-  const { header, progressRate, title1, title2, title3, subTitle1, subTitle2, isModalOpened, step } = props;
+  const { header, progressRate, title1, title2, title3, subTitle1, subTitle2, isModalOpened } = props;
   const [checkSubTitle, setCheckSubTitle] = useState(false);
 
   useEffect(() => {
@@ -38,6 +38,7 @@ export default function FixedHeader(props: FixedHeaderProps) {
           <St.TitleWrapper checkSubTitle={checkSubTitle}>
             <Title title={title1} />
             <Title title={title2} />
+            {title3 && <Title title={title3} />}
           </St.TitleWrapper>
           <St.SubTitleWrapper>
             {subTitle1 && <SubTitle subTitle={subTitle1} />}
@@ -50,6 +51,7 @@ export default function FixedHeader(props: FixedHeaderProps) {
           <St.TitleWrapper checkSubTitle={checkSubTitle}>
             <Title title={title1} />
             <Title title={title2} />
+            {title3 && <Title title={title3} />}
           </St.TitleWrapper>
           <St.SubTitleWrapper>
             {subTitle1 && <SubTitle subTitle={subTitle1} />}

@@ -1,5 +1,4 @@
 export { default as BasicHeader } from "./BasicHeader";
-export { default as ChooseQuestion } from "./ChooseQuestion";
 export { default as EditHeader } from "./EditHeader";
 export { default as EditImageBox } from "./EditImageBox";
 export { default as EditInput } from "./EditInput";
@@ -16,7 +15,6 @@ export { default as MoveNextPageBtn } from "./MoveNextPageBtn";
 export { default as MovePreviousPageBtn } from "./MovePreviousPageBtn";
 export { default as PhoneNumInput } from "./PhoneNumInput";
 export { default as ProgressBar } from "./ProgressBar";
-export { default as RecommendBox } from "./RecommendBox";
 export { default as ScrollToTop } from "./ScrollToTop";
 export { default as SheildBox } from "./SheildBox";
 export { default as ShortInputBox } from "./ShortInputBox";

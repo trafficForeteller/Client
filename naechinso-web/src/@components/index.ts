@@ -2,7 +2,6 @@ export { default as AppealDetailPage } from "./AppealDetailPage";
 export { default as ArriveRecommendPage } from "./ArriveRecommendPage";
 export { default as CertifiedPage } from "./CertifiedPage";
 export { default as ChooseFirstQuestionPage } from "./ChooseFirstQuestionPage";
-export { default as ChooseSecondQuestionPage } from "./ChooseSecondQuestionPage";
 export { default as ChooseWorkPage } from "./ChooseWorkPage";
 export { default as DontGoPage } from "./DontGoPage";
 export { default as EditPage } from "./EditPage";

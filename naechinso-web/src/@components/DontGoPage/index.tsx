@@ -35,20 +35,29 @@ export default function DontGoPage() {
     }
 
     const checkedQ1 = parseLocalStorage("checkedQ1");
-    const checkedQ2 = parseLocalStorage("checkedQ2");
-
-    setPostRecommend({
-      recommendQuestions: [
-        {
-          recommendQuestion: handleRecommendQuestion(checkedQ1),
-          recommendAnswer: localStorage.getItem("firstRecommend") as string,
-        },
-        {
-          recommendQuestion: handleRecommendQuestion(checkedQ2),
-          recommendAnswer: localStorage.getItem("secondRecommend") as string,
-        },
-      ],
-    });
+    if (localStorage.getItem("secondRecommend")) {
+      setPostRecommend({
+        recommendQuestions: [
+          {
+            recommendQuestion: handleRecommendQuestion(checkedQ1),
+            recommendAnswer: localStorage.getItem("firstRecommend") as string,
+          },
+          {
+            recommendQuestion: "친구에 대해 더 자랑하고 싶은 점이 있을까?😃",
+            recommendAnswer: localStorage.getItem("secondRecommend") as string,
+          },
+        ],
+      });
+    } else {
+      setPostRecommend({
+        recommendQuestions: [
+          {
+            recommendQuestion: handleRecommendQuestion(checkedQ1),
+            recommendAnswer: localStorage.getItem("firstRecommend") as string,
+          },
+        ],
+      });
+    }
   }, []);
 
   useEffect(() => {

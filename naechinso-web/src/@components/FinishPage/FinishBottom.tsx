@@ -11,7 +11,6 @@ export default function FinishBottom() {
 
     localStorage.removeItem("questionList");
     localStorage.removeItem("checkedQ1");
-    localStorage.removeItem("checkedQ2");
     localStorage.removeItem("firstRecommend");
     localStorage.removeItem("secondRecommend");
     localStorage.removeItem("eduInfo");
