@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { questionList, questionProps, RecommendStepMessage } from "../../core/recommend/recommend";
+import { questionList, questionProps } from "../../core/recommend/recommend";
 // eslint-disable-next-line
 import { routePaths } from "../../core/routes/path";
 import { FixedHeader, MoveNextPageBtn } from ".";
@@ -116,7 +116,6 @@ export default function ChooseQuestion(props: ChooseQuestionProps) {
         title1="친구를 어필할 수 있는"
         title2="2개의 질문을 골라 답해보자!"
       />
-      <St.Label>{RecommendStepMessage[step].questionChoiceMessage}</St.Label>
       <St.QuestionContainer>
         {questionArr.map((question) => {
           return (
@@ -127,13 +126,11 @@ export default function ChooseQuestion(props: ChooseQuestionProps) {
               disabled={question.disabled}>
               <St.QuestionWrapper disabled={question.disabled}>
                 <St.Icon>{question.icon}</St.Icon>
-                <St.Title checked={question.checked}>{question.title}</St.Title>
+                <St.TitleWrapper checked={question.checked}>
+                  <St.Title>{question.title1}</St.Title>
+                  <St.Title>{question.title2}</St.Title>
+                </St.TitleWrapper>
               </St.QuestionWrapper>
-              <St.DescWrapper checked={question.checked} disabled={question.disabled}>
-                <St.Desc>{question.desc1}</St.Desc>
-                <St.Desc>{question.desc2}</St.Desc>
-                <St.Desc>{question.desc3}</St.Desc>
-              </St.DescWrapper>
             </St.QuestionBox>
           );
         })}
@@ -155,36 +152,24 @@ const St = {
     flex-direction: column;
     justify-content: center;
   `,
-  Label: styled.div`
-    ${({ theme }) => theme.fonts.caption8};
-    color: ${({ theme }) => theme.colors.orange};
-    margin-top: 18.5rem;
-    margin-left: 2rem;
-
-    width: 14.4rem;
-    height: 3.6rem;
-    border-radius: 16px;
-    border: 1px solid ${({ theme }) => theme.colors.orange};
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  `,
   QuestionContainer: styled.section`
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 1.5rem;
-    padding-top: 1.6rem;
-    padding-bottom: 1.5rem;
+    align-content: start;
 
-    width: 37.5rem;
-    margin: 0 auto;
+    width: 33.5rem;
+    height: 66rem;
+    padding-top: 1.6rem;
+
+    gap: 1.5rem;
+    margin: 18rem auto 2rem;
   `,
   QuestionBox: styled.button<{ checked: boolean }>`
-    padding: 1.6rem 1.2rem 2rem;
+    padding: 1.2rem;
     width: 16rem;
-    height: 17rem;
+    height: fit-content;
 
     background-color: ${({ theme, checked }) => (checked ? theme.colors.brown : theme.colors.neural)};
     border-radius: 16px;
@@ -197,7 +182,6 @@ const St = {
       color: ${({ theme }) => theme.colors.neural};
     }
   `,
-
   QuestionWrapper: styled.hgroup<{ disabled: boolean }>`
     display: flex;
     flex-direction: column;
@@ -208,19 +192,12 @@ const St = {
     color: ${({ theme }) => theme.colors.black};
     width: fit-content;
   `,
-  Title: styled.h3<{ checked: boolean }>`
+  TitleWrapper: styled.article<{ checked: boolean }>`
     ${({ theme }) => theme.fonts.sub2};
     color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.black)};
+    margin-top: 0.4rem;
   `,
-  DescWrapper: styled.div<{ checked: boolean; disabled: boolean }>`
-    position: absolute;
-    bottom: 1.2rem;
-
-    ${({ theme }) => theme.fonts.body5};
-    color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.brown)};
-    opacity: ${({ disabled }) => (disabled ? "0.2" : "")};
-  `,
-  Desc: styled.p`
+  Title: styled.h3`
     width: fit-content;
   `,
 };

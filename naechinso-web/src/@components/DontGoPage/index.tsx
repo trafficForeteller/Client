@@ -103,7 +103,7 @@ export default function DontGoPage() {
 
   const handleRecommendQuestion = (recommendQ: IPostRecommendQuestion) => {
     // 질문 공백 없이 합치기
-    const recommendQuestion = `${recommendQ.desc1}` + `${recommendQ.desc2}` + `${recommendQ.desc3}`;
+    const recommendQuestion = `${recommendQ.question1}` + `${recommendQ.question2}`;
     return recommendQuestion as string;
   };
 

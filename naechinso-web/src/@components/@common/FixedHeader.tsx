@@ -38,7 +38,6 @@ export default function FixedHeader(props: FixedHeaderProps) {
           <St.TitleWrapper checkSubTitle={checkSubTitle}>
             <Title title={title1} />
             <Title title={title2} />
-            {title3 && <Title title={title3} />}
           </St.TitleWrapper>
           <St.SubTitleWrapper>
             {subTitle1 && <SubTitle subTitle={subTitle1} />}
@@ -49,10 +48,8 @@ export default function FixedHeader(props: FixedHeaderProps) {
         <St.FixedHeader>
           <BasicHeader header={header} progressRate={progressRate} />
           <St.TitleWrapper checkSubTitle={checkSubTitle}>
-            {step !== undefined && <St.Label>질문 {step + 1}</St.Label>}
             <Title title={title1} />
             <Title title={title2} />
-            {title3 && <Title title={title3} />}
           </St.TitleWrapper>
           <St.SubTitleWrapper>
             {subTitle1 && <SubTitle subTitle={subTitle1} />}

@@ -23,10 +23,10 @@ export interface IPostRecommend {
 export interface IPostRecommendQuestion {
   id: number;
   icon: string;
-  title: string;
-  desc1: string;
-  desc2: string;
-  desc3: string;
+  title1: string;
+  title2?: string;
+  question1: string;
+  question2: string;
   placeholder: string;
   checked: boolean;
   disabled: boolean;

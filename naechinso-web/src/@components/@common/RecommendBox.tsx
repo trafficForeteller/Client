@@ -15,17 +15,16 @@ export interface RecommendBoxProps {
 export default function RecommendBox(props: RecommendBoxProps) {
   const { step } = props;
 
-  const [isThreeLine, setIsThreeLine] = useState(false);
   const [textCheck, setTextCheck] = useState(false);
   const [firstRecommend, setFirstRecommend] = useState("");
   const [secondRecommend, setSecondRecommend] = useState("");
   const [questionData, setQuestionData] = useState<IPostRecommendQuestion>({
     id: 0,
     icon: "",
-    title: "",
-    desc1: "",
-    desc2: "",
-    desc3: "",
+    title1: "",
+    title2: "",
+    question1: "",
+    question2: "",
     placeholder: "",
     checked: true,
     disabled: false,
@@ -56,8 +55,6 @@ export default function RecommendBox(props: RecommendBoxProps) {
   const handleCheckedQuestion = (checkedQ: IPostRecommendQuestion) => {
     // step에 따른 setQuestionData
     setQuestionData(checkedQ);
-    if (checkedQ.desc1 === "") setIsThreeLine(false);
-    else setIsThreeLine(true);
   };
 
   useEffect(() => {
@@ -93,13 +90,12 @@ export default function RecommendBox(props: RecommendBoxProps) {
   };
 
   return (
-    <St.RecommendBox isThreeLine={isThreeLine}>
+    <St.RecommendBox>
       <FixedHeader
         header="추천사"
         progressRate={55}
-        title1={questionData.desc1}
-        title2={questionData.desc2}
-        title3={questionData.desc3}
+        title1={questionData.question1}
+        title2={questionData.question2}
         step={step}
       />
       <ToggleTipBox />
@@ -125,8 +121,8 @@ export default function RecommendBox(props: RecommendBoxProps) {
 }
 
 const St = {
-  RecommendBox: styled.main<{ isThreeLine: boolean }>`
-    padding-top: ${({ isThreeLine }) => (isThreeLine ? "25rem" : "22rem")};
+  RecommendBox: styled.main`
+    padding-top: 18rem;
     padding-left: 2rem;
     padding-right: 2rem;
   `,
