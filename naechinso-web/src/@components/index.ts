@@ -10,6 +10,7 @@ export { default as EditRecommenderLandingPage } from "./EditRecommenderLandingP
 export { default as EduCertifiedPage } from "./EduCertifiedPage";
 export { default as EduEditPage } from "./EduEditPage";
 export { default as EduPage } from "./EduPage";
+export { default as ErrorPage } from "./ErrorPage";
 export { default as FinishPage } from "./FinishPage";
 export { default as FirstRecommendPage } from "./FirstRecommendPage";
 export { default as FriendInfoPage } from "./FriendInfoPage";

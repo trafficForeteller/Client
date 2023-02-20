@@ -14,6 +14,7 @@ import {
   EduCertifiedPage,
   EduEditPage,
   EduPage,
+  ErrorPage,
   FinishPage,
   FirstRecommendPage,
   FriendInfoPage,
@@ -56,6 +57,7 @@ export default function Router() {
         <Route path={routePaths.InAppLanding} element={<InAppLandingPage />} />
         <Route path={routePaths.InstallApp} element={<InstallAppPage />} />
         <Route path={routePaths.Edit} element={<EditPage />} />
+        <Route path={routePaths.Error} element={<ErrorPage />} />
         <Route
           path={routePaths.PhoneNum}
           element={<PhoneNumberPage setPostPhoneNum={setPostPhoneNum} sendSms={sendSms} />}

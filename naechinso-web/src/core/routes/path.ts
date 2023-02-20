@@ -28,6 +28,7 @@ export const routePaths = {
   Pending: "/pending",
   Arrive: "/arrive",
   EditRecommender: "/edit/landing",
+  Error: "/error",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];

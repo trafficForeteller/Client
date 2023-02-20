@@ -6,11 +6,11 @@ import { IcPreviousBtn } from "../../asset/icons";
 export default function MovePreviousPageBtn() {
   const navigate = useNavigate();
 
-  function movePreviousPage() {
+  const movePreviousPage = () => {
     //이전페이지로 이동
     window.scrollTo(0, 0);
     navigate(-1);
-  }
+  };
 
   return (
     <St.Button onClick={movePreviousPage} type="button">

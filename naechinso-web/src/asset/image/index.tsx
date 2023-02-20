@@ -3,6 +3,7 @@ export { default as ImgCommentNaechinso } from "./commentNaechinso.png";
 export { default as ImgConsultantNaechinso } from "./consultantNaechinso.png";
 export { default as ImgDontGo } from "./dontGo.png";
 export { default as ImgEditNaechinso } from "./editNaechinso.png";
+export { default as ImgErrorNaechinso } from "./errorNaechinso.png";
 export { default as ImgFinishNaechinso } from "./finishNaechinso.png";
 export { default as ImgHandsUp } from "./handsUp.png";
 export { default as ImgInstallAppQrCode } from "./installAppQrCode.png";
