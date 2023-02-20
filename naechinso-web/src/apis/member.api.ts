@@ -55,7 +55,11 @@ export async function postMemberJoinRecommender(
   }
 }
 
-export async function patchMemberEdu(eduData: object, accessToken: string | null): Promise<void | null> {
+export async function patchMemberEdu(
+  eduData: object,
+  accessToken: string | null,
+  onFail: (errorMessage: string) => void,
+): Promise<void | null> {
   try {
     const { data } = await serverAxios.patch(`${PREFIX_URL}/edu`, eduData, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
@@ -64,12 +68,17 @@ export async function patchMemberEdu(eduData: object, accessToken: string | null
       return data.data;
     }
   } catch (err) {
-    console.log(err);
-    throw new Error("Failed to patch edu Data");
+    if (err instanceof Error) {
+      onFail(err.message);
+    }
   }
 }
 
-export async function patchMemberJob(jobData: object, accessToken: string | null): Promise<void | null> {
+export async function patchMemberJob(
+  jobData: object,
+  accessToken: string | null,
+  onFail: (errorMessage: string) => void,
+): Promise<void | null> {
   try {
     const { data } = await serverAxios.patch(`${PREFIX_URL}/job`, jobData, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
@@ -78,8 +87,9 @@ export async function patchMemberJob(jobData: object, accessToken: string | null
       return data.data;
     }
   } catch (err) {
-    console.log(err);
-    throw new Error("Failed to patch job Data");
+    if (err instanceof Error) {
+      onFail(err.message);
+    }
   }
 }
 

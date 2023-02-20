@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { patchMemberEdu } from "../../apis/member.api";
@@ -17,6 +17,7 @@ export default function EduEditPage() {
   const [eduName, setEduName] = useState(eduGetData.content.eduName);
   const [eduMajor, setEduMajor] = useState(eduGetData.content.eduMajor);
   const [eduImage, setEduImage] = useState(eduGetData.content.eduImage);
+  const navigate = useNavigate();
 
   const [patchEdu, setPatchEdu] = useState<IPatchEdu>({
     eduName: eduName,
@@ -61,7 +62,13 @@ export default function EduEditPage() {
   };
 
   const patchEditEduData = async () => {
-    await patchMemberEdu(patchEdu, localStorage.getItem("accessToken"));
+    await patchMemberEdu(patchEdu, localStorage.getItem("accessToken"), handleFailRequest);
+  };
+
+  const handleFailRequest = (errorMessage: string) => {
+    // 서버 요청 실패 시
+    console.log(errorMessage);
+    navigate(routePaths.Error);
   };
 
   return (

@@ -1,8 +1,10 @@
 import { SetStateAction, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postCertifiedImg } from "../../apis/s3.api";
 import { IcPlusWhite } from "../../asset/icons";
+import { routePaths } from "../../core/routes/path";
 
 export interface EditImageBoxProps {
   image: string;
@@ -14,14 +16,23 @@ export default function EditImageBox(props: EditImageBoxProps) {
   const { image, setImage, dir } = props;
   const imgRef = useRef<HTMLInputElement>(null);
   const [changedImg, setChangedImg] = useState(false);
+  const navigate = useNavigate();
 
   const handlePostImgFile = async (formData: FormData) => {
     // s3에 이미지 POST
+    await postCertifiedImg(formData, localStorage.getItem("accessToken"), dir, handleSuccessPostImg, handleFailPostImg);
+  };
+
+  const handleSuccessPostImg = (userData: string) => {
+    // s3에 이미지 POST 성공 시
     setChangedImg(true);
-    const userData = await postCertifiedImg(formData, localStorage.getItem("accessToken"), dir);
-    const strImgName = userData && (userData[0] as string);
-    strImgName &&
-      setImage(`https://elasticbeanstalk-ap-northeast-2-381146100755.s3.ap-northeast-2.amazonaws.com/${strImgName}`);
+    setImage(`https://elasticbeanstalk-ap-northeast-2-381146100755.s3.ap-northeast-2.amazonaws.com/${userData}`);
+  };
+
+  const handleFailPostImg = (errorMessage: string) => {
+    // s3에 이미지 POST 실패 시
+    console.log(errorMessage);
+    navigate(routePaths.Error);
   };
 
   const uploadImgToS3 = (file: File) => {

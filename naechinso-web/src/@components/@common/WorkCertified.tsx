@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { patchMemberEdu, patchMemberJob } from "../../apis/member.api";
@@ -26,6 +27,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
   const imgRef = useRef<HTMLInputElement>(null);
   const [fileChecked, setFileChecked] = useState(false);
   const [patchData, setPatchData] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (dir === "edu") {
@@ -58,16 +60,25 @@ export default function WorkCertified(props: WorkCertifiedProps) {
   };
 
   const patchCertifiedData = async () => {
-    if (dir === "edu") await patchMemberEdu(patchData, localStorage.getItem("accessToken"));
-    else if (dir === "job") await patchMemberJob(patchData, localStorage.getItem("accessToken"));
+    if (dir === "edu") await patchMemberEdu(patchData, localStorage.getItem("accessToken"), handleFailRequest);
+    else if (dir === "job") await patchMemberJob(patchData, localStorage.getItem("accessToken"), handleFailRequest);
+  };
+
+  const handleFailRequest = (errorMessage: string) => {
+    // 서버 요청 실패 시
+    console.log(errorMessage);
+    navigate(routePaths.Error);
   };
 
   const handlePostImgFile = async (formData: FormData) => {
     // s3에 이미지 POST
-    const userData = await postCertifiedImg(formData, localStorage.getItem("accessToken"), dir);
-    const strImgName = userData && (userData[0] as string);
-    if (dir === "edu") setPatchData({ ...patchData, eduImage: strImgName });
-    else if (dir === "job") setPatchData({ ...patchData, jobImage: strImgName });
+    await postCertifiedImg(formData, localStorage.getItem("accessToken"), dir, handleSuccessPostImg, handleFailRequest);
+  };
+
+  const handleSuccessPostImg = (userData: string) => {
+    // s3에 이미지 POST 성공 시
+    if (dir === "edu") setPatchData({ ...patchData, eduImage: userData });
+    else if (dir === "job") setPatchData({ ...patchData, jobImage: userData });
   };
 
   const uploadImgToS3 = (file: File) => {

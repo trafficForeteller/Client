@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { patchMemberJob } from "../../apis/member.api";
@@ -14,6 +14,7 @@ export default function JobEditPage() {
   const [jobName, setJobName] = useState(jobGetData.content.jobName);
   const [jobPart, setJobPart] = useState(jobGetData.content.jobPart);
   const [jobImage, setJobImage] = useState(jobGetData.content.jobImage);
+  const navigate = useNavigate();
 
   const [patchJob, setPatchJob] = useState<IPatchJob>({
     jobName: jobName,
@@ -48,7 +49,13 @@ export default function JobEditPage() {
   };
 
   const patchEditJobData = async () => {
-    await patchMemberJob(patchJob, localStorage.getItem("accessToken"));
+    await patchMemberJob(patchJob, localStorage.getItem("accessToken"), handleFailRequest);
+  };
+
+  const handleFailRequest = (errorMessage: string) => {
+    // 서버 요청 실패 시
+    console.log(errorMessage);
+    navigate(routePaths.Error);
   };
 
   return (
