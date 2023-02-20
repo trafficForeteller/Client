@@ -121,7 +121,7 @@ export default function FriendInfoPage() {
       postMagicFriendInfo,
       localStorage.getItem("accessToken"),
       localStorage.getItem("member-uuid"),
-      handleSucessPostFriendInfo,
+      handleSuccessPostFriendInfo,
       handleFailPostFriendInfo,
     );
   };
@@ -131,12 +131,12 @@ export default function FriendInfoPage() {
     await postRecommendFriendInfo(
       postFriendInfo,
       localStorage.getItem("accessToken"),
-      handleSucessPostFriendInfo,
+      handleSuccessPostFriendInfo,
       handleFailPostFriendInfo,
     );
   };
 
-  const handleSucessPostFriendInfo = (userData: IUuid) => {
+  const handleSuccessPostFriendInfo = (userData: IUuid) => {
     // 친구의 기본정보 POST 성공할 시
     userData && localStorage.setItem("uuid", userData["uuid"]);
     if (localStorage.getItem("member-uuid") === null) saveFriendInfoInLocal(postFriendInfo);

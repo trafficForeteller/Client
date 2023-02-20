@@ -45,17 +45,18 @@ export async function patchRecommendFriendDetail(
   friendDetail: IPatchFriendDetail,
   accessToken: string | null,
   uuid: string | null,
+  onSuccess: () => void,
+  onFail: (errorMessage: string) => void,
 ): Promise<void | null> {
   try {
-    const { data } = await serverAxios.patch(`${PREFIX_URL}/${uuid}/accept`, friendDetail, {
+    await serverAxios.patch(`${PREFIX_URL}/${uuid}/accept`, friendDetail, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
     });
-    if (data.status === 200) {
-      return data.data;
-    }
+    onSuccess();
   } catch (err) {
-    console.log(err);
-    throw new Error("Failed to patch detail recommend of your friend");
+    if (err instanceof Error) {
+      onFail(err.message);
+    }
   }
 }
 
@@ -63,16 +64,17 @@ export async function postRecommendation(
   recommend: IPostRecommend,
   accessToken: string | null,
   uuid: string | null,
+  onSuccess: () => void,
+  onFail: (errorMessage: string) => void,
 ): Promise<void | null> {
   try {
-    const { data } = await serverAxios.post(`${PREFIX_URL}/question/${uuid}`, recommend, {
+    await serverAxios.post(`${PREFIX_URL}/question/${uuid}`, recommend, {
       headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
     });
-    if (data.status === 200) {
-      return data.data;
-    }
+    onSuccess();
   } catch (err) {
-    console.log(err);
-    throw new Error("Failed to post your recommend");
+    if (err instanceof Error) {
+      onFail(err.message);
+    }
   }
 }

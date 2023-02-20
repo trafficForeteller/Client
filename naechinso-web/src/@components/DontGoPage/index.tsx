@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { patchRecommendFriendDetail, postRecommendation } from "../../apis/recommend.api";
@@ -15,6 +16,7 @@ export default function DontGoPage() {
     appeals: [],
     dontGo: "",
   });
+  const navigate = useNavigate();
 
   const [postRecommend, setPostRecommend] = useState({
     recommendQuestions: [
@@ -62,8 +64,34 @@ export default function DontGoPage() {
 
   const handleRegisterRecommender = async () => {
     // 추천인으로 등록하기
-    await postRecommendation(postRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
-    await patchRecommendFriendDetail(patchRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
+    await postRecommendation(
+      postRecommend,
+      localStorage.getItem("accessToken"),
+      localStorage.getItem("uuid"),
+      handleSuccessPostRecommendation,
+      handleFailRequest,
+    );
+  };
+
+  const handleSuccessPostRecommendation = async () => {
+    // keyword, appealDetail, dontGo POST 성공할 시
+    await patchRecommendFriendDetail(
+      patchRecommend,
+      localStorage.getItem("accessToken"),
+      localStorage.getItem("uuid"),
+      handleSuccessPatchRecommend,
+      handleFailRequest,
+    );
+  };
+  const handleFailRequest = (errorMessage: string) => {
+    // keyword, appealDetail, dontG POST 실패할 시
+    console.log(errorMessage);
+    navigate(routePaths.Error);
+  };
+
+  const handleSuccessPatchRecommend = () => {
+    // 추천사 PATCH 성공할 시
+    navigate(routePaths.Finish);
   };
 
   const parseLocalStorage = (item: string) => {
