@@ -62,8 +62,8 @@ export default function DontGoPage() {
 
   const handleRegisterRecommender = async () => {
     // 추천인으로 등록하기
-    await patchRecommendFriendDetail(patchRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
     await postRecommendation(postRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
+    await patchRecommendFriendDetail(patchRecommend, localStorage.getItem("accessToken"), localStorage.getItem("uuid"));
   };
 
   const parseLocalStorage = (item: string) => {
