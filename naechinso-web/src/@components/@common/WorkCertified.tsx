@@ -148,7 +148,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
 const St = {
   WorkCertified: styled.section`
     width: 100%;
-    padding: 24rem 2rem 0;
+    padding: 22rem 2rem 0;
   `,
   ImageUploadBox: styled.label`
     width: 28rem;
@@ -173,7 +173,6 @@ const St = {
     height: 100%;
     border-radius: 16px;
   `,
-  // ConsultantWrapper: styled.article``,
   ConsultantBtn: styled.button`
     position: absolute;
     right: 2.4rem;
