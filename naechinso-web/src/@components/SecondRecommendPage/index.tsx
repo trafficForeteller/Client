@@ -31,6 +31,11 @@ export default function SecondRecommendPage() {
     }
   };
 
+  const handleSkipButton = () => {
+    localStorage.removeItem("secondRecommend");
+    navigate(routePaths.AppealDetail);
+  };
+
   return (
     <St.SecondRecommendPage>
       <FixedHeader
@@ -38,6 +43,7 @@ export default function SecondRecommendPage() {
         progressRate={55}
         title1="친구에 대해 더 자랑하고 "
         title2="싶은 점을 자유롭게 적어줘😃"
+        selection={true}
       />
 
       <TextAreaBox
@@ -51,9 +57,9 @@ export default function SecondRecommendPage() {
       />
 
       <St.MoveBtnWrapper>
-        {/* <St.SkipButton onClick={() => navigate(routePaths.AppealDetail)} type="button" text={secondRecommend}>
+        <St.SkipButton onClick={handleSkipButton} type="button">
           건너뛰기
-        </St.SkipButton> */}
+        </St.SkipButton>
         <St.NextButton onClick={() => navigate(routePaths.AppealDetail)} disabled={!textCheck} type="button">
           다음
         </St.NextButton>
@@ -64,20 +70,21 @@ export default function SecondRecommendPage() {
 
 const St = {
   SecondRecommendPage: styled.main`
-    padding-top: 19rem;
+    padding-top: 21rem;
     padding-left: 2rem;
     padding-right: 2rem;
   `,
   MoveBtnWrapper: styled.section`
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 1.1rem;
+    gap: 1.9rem;
 
     position: fixed;
     margin: 0 auto;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 3.6rem;
     padding: 0 2rem;
     height: 11rem;
 
@@ -87,22 +94,12 @@ const St = {
       width: 100%;
     }
   `,
-  SkipButton: styled.button<{ text: string }>`
-    bottom: 3.5rem;
-    background-color: ${({ theme }) => theme.colors.neural};
+  SkipButton: styled.button`
     color: ${({ theme }) => theme.colors.gray40};
     ${({ theme }) => theme.fonts.sub3};
-    width: 33.5rem;
-    height: 5.6rem;
     border-radius: 1.6rem;
-    display: ${({ text }) => (text.length > 0 ? "none" : "")};
-
-    @media only screen and (min-width: 375px) and (max-width: 600px) {
-      width: 100%;
-    }
   `,
   NextButton: styled.button`
-    bottom: 3.5rem;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.sub3};

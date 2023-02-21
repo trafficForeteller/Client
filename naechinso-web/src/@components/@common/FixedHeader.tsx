@@ -15,10 +15,11 @@ export interface FixedHeaderProps {
   subTitle2?: string;
   isModalOpened?: boolean;
   step?: number;
+  selection?: boolean;
 }
 
 export default function FixedHeader(props: FixedHeaderProps) {
-  const { header, progressRate, title1, title2, title3, subTitle1, subTitle2, isModalOpened } = props;
+  const { header, progressRate, title1, title2, title3, subTitle1, subTitle2, isModalOpened, selection } = props;
   const [checkSubTitle, setCheckSubTitle] = useState(false);
 
   useEffect(() => {
@@ -49,6 +50,7 @@ export default function FixedHeader(props: FixedHeaderProps) {
         <St.FixedHeader>
           <BasicHeader header={header} progressRate={progressRate} />
           <St.TitleWrapper checkSubTitle={checkSubTitle}>
+            {selection && <St.Selection>(선택)</St.Selection>}
             <Title title={title1} />
             <Title title={title2} />
             {title3 && <Title title={title3} />}
@@ -96,19 +98,10 @@ const St = {
       width: 100%;
     }
   `,
-  Label: styled.div`
+  Selection: styled.div`
     ${({ theme }) => theme.fonts.caption8};
-    color: ${({ theme }) => theme.colors.orange};
-
-    width: 5.6rem;
-    height: 3.6rem;
-    border-radius: 18px;
-    border: 1px solid ${({ theme }) => theme.colors.orange};
-    margin-bottom: 0.5rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: ${({ theme }) => theme.colors.gray40};
+    margin-bottom: 0.4rem;
   `,
   TitleWrapper: styled.hgroup<{ checkSubTitle: boolean }>`
     margin-bottom: ${({ checkSubTitle }) => (checkSubTitle ? "0.6rem" : "2.4rem")};
