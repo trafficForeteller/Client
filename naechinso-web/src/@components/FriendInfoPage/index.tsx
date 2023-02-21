@@ -156,17 +156,16 @@ export default function FriendInfoPage() {
   };
 
   const handleSuccessGetRecommend = (userData: IGetReommend) => {
-    // 추천사 이전에 작성한 거 성공할 시
+    // 추천사 이전에 작성한 거 성공할 시 userData를 localStorage에 넣어주기
     localStorage.setItem("firstRecommend", userData.recommendQuestion[0].recommendAnswer);
     localStorage.setItem("secondRecommend", userData.recommendQuestion[1].recommendAnswer);
     localStorage.setItem("appealDetail", userData.appealDetail);
     localStorage.setItem("dontGo", userData.dontGo);
     localStorage.setItem("appeals", JSON.stringify(userData.appeals));
 
-    const newKeywordList = keywordList.map((keyword) => {
-      userData.appeals.map((appeal) => {
-        if (appeal === keyword.keyword) keyword.checked = true;
-      });
+    const newKeywordList = keywordList.filter((keyword) => {
+      if (userData.appeals.includes(keyword.keyword)) keyword.checked = true;
+      else keyword.checked = false;
       return keyword;
     });
     localStorage.setItem("keywordList", JSON.stringify(newKeywordList));
@@ -184,6 +183,15 @@ export default function FriendInfoPage() {
   };
 
   const handleFailGetRecommend = () => {
+    // 추천사 이전에 작성한 거 실패할 시 localStorage 삭제
+    localStorage.removeItem("firstRecommend");
+    localStorage.removeItem("secondRecommend");
+    localStorage.removeItem("appealDetail");
+    localStorage.removeItem("dontGo");
+    localStorage.removeItem("appeals");
+    localStorage.removeItem("keywordList");
+    localStorage.removeItem("checkedQ1");
+    localStorage.removeItem("questionList");
     navigate(routePaths.Keyword);
   };
 

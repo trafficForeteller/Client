@@ -16,8 +16,6 @@ export default function ChooseFirstQuestionPage() {
     const questionListOfLocal = localStorage.getItem("questionList") as string;
     const newQuestionList = JSON.parse(questionListOfLocal);
     if (newQuestionList) {
-      // previouslyCheckedQuestion(newQuestionList);
-      console.log(newQuestionList);
       const checkedQ1 = parseLocalStorage("checkedQ1");
       if (checkedQ1) handleCheckedQuestion(checkedQ1);
     } else {
@@ -40,19 +38,6 @@ export default function ChooseFirstQuestionPage() {
     // CheckedQuestion 변화
     setCheckedQuestion(checkedQ);
     setNextBtnActive(true);
-  };
-
-  const previouslyCheckedQuestion = (questionList: questionProps[]) => {
-    // 이전에서 체크된 질문은 disabled true, 현재  disabled false
-    const checkedQ1 = parseLocalStorage("checkedQ1");
-    const newQuestionList = questionList.map((question) => {
-      if (checkedQ1 && question.id === checkedQ1.id) {
-        question.disabled = false;
-        question.checked = true;
-      }
-      return question;
-    });
-    setQuestionArr(newQuestionList);
   };
 
   const toggleCheck = (idx: number) => {
