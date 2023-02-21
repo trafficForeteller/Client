@@ -43,7 +43,7 @@ export default function SelfEmployedPage() {
         onChange={handleJobPartInput}
         step={1}
       />
-      <MoveNextPageBtn nextPage={routePaths.Job} disabled={!activeBtn} title="다음" />
+      <MoveNextPageBtn nextPage={routePaths.SelfEmployedCertified} disabled={!activeBtn} title="다음" />
     </St.SelfEmployedPage>
   );
 }

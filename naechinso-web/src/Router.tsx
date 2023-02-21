@@ -32,6 +32,7 @@ import {
   RecommenderLandingPage,
   RecommendLandingPage,
   SecondRecommendPage,
+  SelfEmployedCertifiedPage,
   SelfEmployedPage,
 } from "./@components";
 import { ScrollToTop } from "./@components/@common";
@@ -156,6 +157,10 @@ export default function Router() {
         <Route
           path={routePaths.SelfEmployed}
           element={localStorage.getItem("accessToken") ? <SelfEmployedPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.SelfEmployedCertified}
+          element={localStorage.getItem("accessToken") ? <SelfEmployedCertifiedPage /> : <Navigate to="/" replace />}
         />
         <Route path={routePaths.Arrive} element={<ArriveRecommendPage />} />
       </Routes>

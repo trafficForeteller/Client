@@ -28,4 +28,5 @@ export { default as RecommenderInfoPage } from "./RecommenderInfoPage";
 export { default as RecommenderLandingPage } from "./RecommenderLandingPage";
 export { default as RecommendLandingPage } from "./RecommendLandingPage";
 export { default as SecondRecommendPage } from "./SecondRecommendPage";
+export { default as SelfEmployedCertifiedPage } from "./SelfEmployedCertifiedPage";
 export { default as SelfEmployedPage } from "./SelfEmployedPage";
