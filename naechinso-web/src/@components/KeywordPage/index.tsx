@@ -84,7 +84,7 @@ export default function KeywordPage() {
       <MoveNextPageBtn
         nextPage={routePaths.ChooseFirstQuestion}
         title="다음"
-        inputActive={!activeNextBtn}
+        disabled={!activeNextBtn}
         handleState={saveCheckedAppealsInLocal}
       />
     </St.KeywordPage>

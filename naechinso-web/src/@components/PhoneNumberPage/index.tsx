@@ -36,7 +36,7 @@ export default function PhoneNumberPage(props: PhoneNumberPageProps) {
       <MoveNextPageBtn
         nextPage={routePaths.Certified}
         title="인증번호 받기"
-        inputActive={inputActive}
+        disabled={inputActive}
         handleState={sendSms}
       />
     </St.PhoneNumberPage>

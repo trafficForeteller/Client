@@ -116,7 +116,7 @@ export default function EduEditPage() {
       <MoveNextPageBtn
         nextPage={routePaths.Pending}
         title="수정 완료"
-        inputActive={false}
+        disabled={false}
         handleState={patchEditEduData}
       />
     </St.EduEditPage>

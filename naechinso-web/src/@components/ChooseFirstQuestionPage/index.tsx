@@ -102,7 +102,7 @@ export default function ChooseFirstQuestionPage() {
       <MoveNextPageBtn
         nextPage={routePaths.FirstRecommend}
         title="다음"
-        inputActive={!nextBtnActive}
+        disabled={!nextBtnActive}
         handleState={saveCheckedQuestion}
       />
     </St.ChooseFirstQuestionPage>

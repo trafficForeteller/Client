@@ -150,7 +150,7 @@ export default function DontGoPage() {
       <MoveNextPageBtn
         nextPage={routePaths.Finish}
         title="완료"
-        inputActive={!textCheck}
+        disabled={!textCheck}
         handleState={handleRegisterRecommender}
       />
     </St.DontGo>

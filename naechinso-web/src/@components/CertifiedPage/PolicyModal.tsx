@@ -136,7 +136,7 @@ export default function PolicyModal(props: PolicyModalProps) {
       <MoveNextPageBtn
         nextPage={routePaths.RecommenderLanding}
         title="내친소 시작하기"
-        inputActive={startActive}
+        disabled={startActive}
         handleState={handlePolicy}
       />
     </St.Modal>

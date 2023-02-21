@@ -127,7 +127,7 @@ export default function RecommenderInfoPage() {
 
       <MoveNextPageBtn
         title="다음"
-        inputActive={name === "" || checkedGender === ""}
+        disabled={name === "" || checkedGender === ""}
         handleState={handlePostRecommender}
       />
     </St.RecommenderInfo>

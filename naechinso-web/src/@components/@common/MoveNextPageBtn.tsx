@@ -4,13 +4,13 @@ import styled from "styled-components";
 export interface NextPageBtnProps {
   nextPage?: string;
   title: string;
-  inputActive: boolean;
+  disabled: boolean;
   state?: number;
   handleState?: () => Promise<void> | void;
 }
 
 export default function MoveNextPageBtn(props: NextPageBtnProps) {
-  const { nextPage, title, inputActive, handleState, state } = props;
+  const { nextPage, title, disabled, handleState, state } = props;
   const navigate = useNavigate();
 
   const goNextPage = () => {
@@ -20,7 +20,7 @@ export default function MoveNextPageBtn(props: NextPageBtnProps) {
 
   return (
     <St.ButtonWrapper>
-      <St.Button onClick={goNextPage} disabled={inputActive} type="button">
+      <St.Button onClick={goNextPage} disabled={disabled} type="button">
         {title}
       </St.Button>
     </St.ButtonWrapper>

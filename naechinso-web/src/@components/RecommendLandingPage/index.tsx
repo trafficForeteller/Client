@@ -29,7 +29,7 @@ export default function RecommenderLandingPage() {
         <St.Desc>잠깐만 시간내서 친구에 대해</St.Desc>
         <St.Desc> 소개해줄 수 있을까?</St.Desc>
       </St.Bottom>
-      <MoveNextPageBtn nextPage={routePaths.FriendInfo} title="추천사 작성 시작하기" inputActive={false} />
+      <MoveNextPageBtn nextPage={routePaths.FriendInfo} title="추천사 작성 시작하기" disabled={false} />
     </St.RecommendLandingPage>
   );
 }

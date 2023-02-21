@@ -65,7 +65,7 @@ export default function FirstRecommendPage() {
         letterLimit="50자 이상 150자 이내"
       />
 
-      <MoveNextPageBtn nextPage={routePaths.SecondRecommend} title="다음" inputActive={!textCheck} />
+      <MoveNextPageBtn nextPage={routePaths.SecondRecommend} title="다음" disabled={!textCheck} />
     </St.FirstRecommendPage>
   );
 }

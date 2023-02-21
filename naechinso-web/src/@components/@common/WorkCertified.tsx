@@ -139,7 +139,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
       <MoveNextPageBtn
         nextPage={localStorage.getItem("member-uuid") === "/edit" ? routePaths.Finish : routePaths.RecommendLanding}
         title="다음"
-        inputActive={!fileChecked}
+        disabled={!fileChecked}
       />
     </St.WorkCertified>
   );

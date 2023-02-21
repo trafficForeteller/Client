@@ -34,7 +34,7 @@ export default function JobPage() {
     window.scrollTo(0, 0);
     if (step === 3) {
       saveJobInfoInLocal();
-      navigate(`${routePaths.JobCertified}`);
+      navigate(routePaths.JobCertified);
     }
   }, [step]);
 

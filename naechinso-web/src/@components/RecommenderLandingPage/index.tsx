@@ -32,7 +32,7 @@ export default function RecommenderLandingPage() {
         <St.Desc> {RecommendLandingList[0].desc2}</St.Desc>
         <St.Desc> {RecommendLandingList[0].desc3}</St.Desc>
       </St.Bottom>
-      <MoveNextPageBtn nextPage={routePaths.RecommenderInfo} title="추천사 작성 시작하기" inputActive={false} />
+      <MoveNextPageBtn nextPage={routePaths.RecommenderInfo} title="추천사 작성 시작하기" disabled={false} />
     </St.RecommendLandingPage>
   );
 }

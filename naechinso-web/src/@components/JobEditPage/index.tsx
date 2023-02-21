@@ -91,7 +91,7 @@ export default function JobEditPage() {
       <MoveNextPageBtn
         nextPage={routePaths.Pending}
         title="수정 완료"
-        inputActive={false}
+        disabled={false}
         handleState={patchEditJobData}
       />
     </St.JobEditPage>

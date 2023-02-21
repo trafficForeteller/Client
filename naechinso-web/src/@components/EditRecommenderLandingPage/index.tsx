@@ -21,7 +21,7 @@ export default function EditRecommenderLandingPage() {
         <St.Desc>내친소는 신뢰를 기반으로 하고 있는데</St.Desc>
         <St.Desc>너에 대해서 다시 한 번 소개부탁해!</St.Desc>
       </St.Bottom>
-      <MoveNextPageBtn nextPage={routePaths.RecommenderInfo} title="내 소개 하기" inputActive={false} />
+      <MoveNextPageBtn nextPage={routePaths.RecommenderInfo} title="내 소개 하기" disabled={false} />
     </St.EditRecommenderLandingPage>
   );
 }
