@@ -159,18 +159,22 @@ export default function DontGoPage() {
 
 const St = {
   DontGo: styled.main`
-    padding: 21rem 2rem 0;
+    padding-top: 18rem;
   `,
   CardWrapper: styled.section`
     width: 100%;
     height: 18.6rem;
     position: absolute;
     top: 21rem;
-    left: 0;
+    background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 10%);
+    border-radius: 16px;
 
-    background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 30%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   `,
   TextWrapper: styled.section`
     margin-top: 21rem;
+    padding: 0 2rem;
   `,
 };

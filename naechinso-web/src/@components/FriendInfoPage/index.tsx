@@ -294,7 +294,7 @@ export default function FriendInfoPage() {
         step={step}
         handleStep={handleStep}
       />
-      <St.Blank></St.Blank>
+
       <St.NextStepBtnWrapper>
         <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep} isModalOpened={isModalOpened}>
           다음

@@ -62,17 +62,22 @@ export default function AppealDetailPage() {
 
 const St = {
   AppealDetail: styled.main`
-    padding: 18rem 2rem 0;
+    padding-top: 18rem;
   `,
   CardWrapper: styled.section`
     width: 100%;
     height: 22rem;
     position: absolute;
     top: 17rem;
-    left: 0;
-    background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 30%);
+    background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 10%);
+    border-radius: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   `,
   TextWrapper: styled.section`
     margin-top: 23.2rem;
+    padding: 0 2rem;
   `,
 };
