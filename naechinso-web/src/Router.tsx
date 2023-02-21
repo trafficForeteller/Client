@@ -6,6 +6,7 @@ import {
   ArriveRecommendPage,
   CertifiedPage,
   ChooseFirstQuestionPage,
+  ChooseJobPage,
   ChooseWorkPage,
   DontGoPage,
   EditPage,
@@ -16,6 +17,7 @@ import {
   ErrorPage,
   FinishPage,
   FirstRecommendPage,
+  FreelancePage,
   FriendInfoPage,
   InAppLandingPage,
   InstallAppPage,
@@ -30,6 +32,7 @@ import {
   RecommenderLandingPage,
   RecommendLandingPage,
   SecondRecommendPage,
+  SelfEmployedPage,
 } from "./@components";
 import { ScrollToTop } from "./@components/@common";
 import { postSmsSend } from "./apis/sms.api";
@@ -141,6 +144,18 @@ export default function Router() {
         <Route
           path={routePaths.RecommenderLanding}
           element={localStorage.getItem("accessToken") ? <RecommenderLandingPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.ChooseJob}
+          element={localStorage.getItem("accessToken") ? <ChooseJobPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.Freelance}
+          element={localStorage.getItem("accessToken") ? <FreelancePage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.SelfEmployed}
+          element={localStorage.getItem("accessToken") ? <SelfEmployedPage /> : <Navigate to="/" replace />}
         />
         <Route path={routePaths.Arrive} element={<ArriveRecommendPage />} />
       </Routes>
