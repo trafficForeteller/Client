@@ -35,3 +35,10 @@ export interface IPostRecommendQuestion {
 export interface IUuid {
   uuid: string;
 }
+
+export interface IGetReommend {
+  appeals: string[];
+  appealDetail: string;
+  dontGo: string;
+  recommendQuestion: IPostRecommendElement[];
+}

@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { IPatchFriendDetail, IPostFriendInfo, IPostRecommend, IUuid } from "../types/recommend";
+import { IGetReommend, IPatchFriendDetail, IPostFriendInfo, IPostRecommend, IUuid } from "../types/recommend";
 import { serverAxios } from ".";
 
 const PREFIX_URL = "/recommend";
@@ -12,7 +12,7 @@ export async function postRecommendFriendInfo(
 ): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/request-uuid`, friendsInfo, {
-      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+      headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
     onSuccess(data.data);
   } catch (err) {
@@ -31,7 +31,7 @@ export async function postMagicRecommendFriendInfo(
 ): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/request-uuid${memberUuid}`, friendsInfo, {
-      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+      headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
     onSuccess(data.data);
   } catch (err) {
@@ -50,7 +50,7 @@ export async function patchRecommendFriendDetail(
 ): Promise<void | null> {
   try {
     await serverAxios.patch(`${PREFIX_URL}/${uuid}/accept`, friendDetail, {
-      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+      headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
     onSuccess();
   } catch (err) {
@@ -69,12 +69,30 @@ export async function postRecommendation(
 ): Promise<void | null> {
   try {
     await serverAxios.post(`${PREFIX_URL}/question/${uuid}`, recommend, {
-      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+      headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
     onSuccess();
   } catch (err) {
     if (err instanceof Error) {
       onFail(err.message);
+    }
+  }
+}
+
+export async function getRecommend(
+  accessToken: string | null,
+  uuid: string | null,
+  onSuccess: (userData: IGetReommend) => void,
+  onFail: () => void,
+): Promise<void | null> {
+  try {
+    const { data } = await serverAxios.get(`${PREFIX_URL}/${uuid}`, {
+      headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
+    });
+    onSuccess(data.data);
+  } catch (err) {
+    if (err instanceof Error) {
+      onFail();
     }
   }
 }

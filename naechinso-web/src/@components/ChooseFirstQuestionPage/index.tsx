@@ -13,9 +13,11 @@ export default function ChooseFirstQuestionPage() {
 
   useEffect(() => {
     // 새로고침 시 이전에 local에 저장된 questionList 초기값으로 세팅
-    const newQuestionList = parseLocalStorage("questionList");
+    const questionListOfLocal = localStorage.getItem("questionList") as string;
+    const newQuestionList = JSON.parse(questionListOfLocal);
     if (newQuestionList) {
-      previouslyCheckedQuestion(newQuestionList);
+      // previouslyCheckedQuestion(newQuestionList);
+      console.log(newQuestionList);
       const checkedQ1 = parseLocalStorage("checkedQ1");
       if (checkedQ1) handleCheckedQuestion(checkedQ1);
     } else {
@@ -26,6 +28,7 @@ export default function ChooseFirstQuestionPage() {
         }),
       );
     }
+
     window.scrollTo(0, 0);
   }, []);
 
@@ -34,13 +37,13 @@ export default function ChooseFirstQuestionPage() {
   }, [questionArr]);
 
   const handleCheckedQuestion = (checkedQ: questionProps) => {
-    // step에 따른 CheckedQuestion 변화
+    // CheckedQuestion 변화
     setCheckedQuestion(checkedQ);
     setNextBtnActive(true);
   };
 
   const previouslyCheckedQuestion = (questionList: questionProps[]) => {
-    // 이전 step에서 체크된 질문은 disabled true, 현재 step에서 disabled false
+    // 이전에서 체크된 질문은 disabled true, 현재  disabled false
     const checkedQ1 = parseLocalStorage("checkedQ1");
     const newQuestionList = questionList.map((question) => {
       if (checkedQ1 && question.id === checkedQ1.id) {

@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { postMagicRecommendFriendInfo, postRecommendFriendInfo } from "../../apis/recommend.api";
-import { relationDurationList, relationTypeList, relationTypeProps } from "../../core/recommend/recommend";
+import { getRecommend, postMagicRecommendFriendInfo, postRecommendFriendInfo } from "../../apis/recommend.api";
+import {
+  keywordList,
+  questionList,
+  relationDurationList,
+  relationTypeList,
+  relationTypeProps,
+} from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { IPostFriendInfo, IUuid } from "../../types/recommend";
+import { IGetReommend, IPostFriendInfo, IUuid } from "../../types/recommend";
 import { ShortInputBox, Title } from "../@common";
 import FriendInfoHeader from "./FriendInfoHeader";
 import PhoneNumInputBox from "./PhoneNumInput";
@@ -136,11 +142,48 @@ export default function FriendInfoPage() {
     );
   };
 
-  const handleSuccessPostFriendInfo = (userData: IUuid) => {
+  const handleSuccessPostFriendInfo = async (userData: IUuid) => {
     // 친구의 기본정보 POST 성공할 시
-    userData && localStorage.setItem("uuid", userData["uuid"]);
+    localStorage.setItem("uuid", userData["uuid"]);
     if (localStorage.getItem("member-uuid") === null) saveFriendInfoInLocal(postFriendInfo);
     else saveFriendInfoInLocal(postMagicFriendInfo);
+    await getRecommend(
+      localStorage.getItem("accessToken"),
+      userData["uuid"],
+      handleSuccessGetRecommend,
+      handleFailGetRecommend,
+    );
+  };
+
+  const handleSuccessGetRecommend = (userData: IGetReommend) => {
+    // 추천사 이전에 작성한 거 성공할 시
+    localStorage.setItem("firstRecommend", userData.recommendQuestion[0].recommendAnswer);
+    localStorage.setItem("secondRecommend", userData.recommendQuestion[1].recommendAnswer);
+    localStorage.setItem("appealDetail", userData.appealDetail);
+    localStorage.setItem("dontGo", userData.dontGo);
+    localStorage.setItem("appeals", JSON.stringify(userData.appeals));
+
+    const newKeywordList = keywordList.map((keyword) => {
+      userData.appeals.map((appeal) => {
+        if (appeal === keyword.keyword) keyword.checked = true;
+      });
+      return keyword;
+    });
+    localStorage.setItem("keywordList", JSON.stringify(newKeywordList));
+
+    const newQuestionList = questionList.map((question) => {
+      const newQuestion = `${question.question1}` + `${question.question2}`;
+      if (userData.recommendQuestion[0].recommendQuestion === newQuestion) {
+        question.checked = true;
+        localStorage.setItem("checkedQ1", JSON.stringify(question));
+      } else question.checked = false;
+      return question;
+    });
+    localStorage.setItem("questionList", JSON.stringify(newQuestionList));
+    navigate(routePaths.Keyword);
+  };
+
+  const handleFailGetRecommend = () => {
     navigate(routePaths.Keyword);
   };
 
@@ -185,6 +228,7 @@ export default function FriendInfoPage() {
     setStep(step + 1);
     setActiveBtn(false);
   };
+
   return (
     <St.FriendInfoPage isModalOpened={isModalOpened}>
       <FriendInfoHeader />

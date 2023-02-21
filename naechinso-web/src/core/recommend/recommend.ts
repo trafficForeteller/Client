@@ -77,7 +77,7 @@ export const questionList: questionProps[] = [
     title1: "내 친구에게",
     title2: "본받고 싶은 점",
     question1: "내 친구에게 ",
-    question2: " 어떤 점을 본받고 싶어?",
+    question2: "어떤 점을 본받고 싶어?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
     checked: false,

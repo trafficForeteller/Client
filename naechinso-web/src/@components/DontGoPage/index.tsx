@@ -43,7 +43,7 @@ export default function DontGoPage() {
             recommendAnswer: localStorage.getItem("firstRecommend") as string,
           },
           {
-            recommendQuestion: "친구에 대해 더 자랑하고 싶은 점이 있을까?😃",
+            recommendQuestion: "친구에 대해 더 자랑하고 싶은 점을 자유롭게 적어줘😃",
             recommendAnswer: localStorage.getItem("secondRecommend") as string,
           },
         ],

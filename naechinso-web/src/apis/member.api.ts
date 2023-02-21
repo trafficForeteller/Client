@@ -45,7 +45,7 @@ export async function postMemberJoinRecommender(
 ): Promise<void | null> {
   try {
     await serverAxios.post(`${PREFIX_URL}/join/recommender`, recommenderData, {
-      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+      headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
     onSuccess();
   } catch (err) {
@@ -62,7 +62,7 @@ export async function patchMemberEdu(
 ): Promise<void | null> {
   try {
     const { data } = await serverAxios.patch(`${PREFIX_URL}/edu`, eduData, {
-      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+      headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
     if (data.status === 200) {
       return data.data;
@@ -81,7 +81,7 @@ export async function patchMemberJob(
 ): Promise<void | null> {
   try {
     const { data } = await serverAxios.patch(`${PREFIX_URL}/job`, jobData, {
-      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+      headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
     if (data.status === 200) {
       return data.data;
@@ -96,7 +96,7 @@ export async function patchMemberJob(
 export async function getMemberStatus(accessToken: string | null): Promise<IGetMemberStatus | undefined> {
   try {
     const { data } = await serverAxios.get(`${PREFIX_URL}`, {
-      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+      headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
     if (data.status === 200) {
       return { jobAccepted: data.data.jobAccepted, eduAccepted: data.data.eduAccepted };
