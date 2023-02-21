@@ -239,7 +239,7 @@ export default function FriendInfoPage() {
 
   return (
     <St.FriendInfoPage isModalOpened={isModalOpened}>
-      <FriendInfoHeader />
+      <FriendInfoHeader setIsModalOpened={setIsModalOpened} />
       <St.TitleWrapper>
         <Title title="어떤 친구를 소개해줄거야?" />
         <Title title="너무 궁금해!👀" />
@@ -302,7 +302,7 @@ export default function FriendInfoPage() {
         step={step}
         handleStep={handleStep}
       />
-
+      <St.Blank></St.Blank>
       <St.NextStepBtnWrapper>
         <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep} isModalOpened={isModalOpened}>
           다음

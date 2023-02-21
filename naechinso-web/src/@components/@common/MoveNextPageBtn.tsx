@@ -49,7 +49,7 @@ const St = {
     ${({ theme }) => theme.fonts.sub3};
     width: 33.5rem;
     height: 5.6rem;
-    border-radius: 1.6rem;
+    border-radius: 16px;
 
     &:disabled {
       background-color: ${({ theme }) => theme.colors.orange20};

@@ -1,29 +1,38 @@
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import styled from "styled-components";
 
 import { IcPreviousBtn } from "../../asset/icons";
 import { ProgressBar } from "../@common";
+import WarningModal from "./WarningModal";
 
-export default function FriendInfoHeader() {
-  const navigate = useNavigate();
+export interface FriendInfoHeaderProps {
+  setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function FriendInfoHeader(props: FriendInfoHeaderProps) {
+  const { setIsModalOpened } = props;
+  const [isWarningModalOpened, setIsWarningModalOpened] = useState(false);
 
   function movePreviousPage() {
     //이전페이지로 이동
-    alert("이 페이지를 나가면 추천사는 제출되지 않아🥺 모든 문항을 완성해줘!");
+    setIsModalOpened(true);
+    setIsWarningModalOpened(true);
     window.scrollTo(0, 0);
-    navigate(-1);
   }
 
   return (
-    <St.BasicHeader>
-      <St.Header>
-        <St.Button onClick={movePreviousPage} type="button">
-          <IcPreviousBtn />
-        </St.Button>
-        친구 정보
-      </St.Header>
-      <ProgressBar progressRate={20} />
-    </St.BasicHeader>
+    <>
+      <St.BasicHeader>
+        <St.Header>
+          <St.Button onClick={movePreviousPage} type="button">
+            <IcPreviousBtn />
+          </St.Button>
+          친구 정보
+        </St.Header>
+        <ProgressBar progressRate={20} />
+      </St.BasicHeader>
+      {isWarningModalOpened && <WarningModal />}
+    </>
   );
 }
 
