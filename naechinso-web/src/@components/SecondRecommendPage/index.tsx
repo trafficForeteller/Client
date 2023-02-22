@@ -75,8 +75,8 @@ export default function SecondRecommendPage() {
 
       <TextAreaBox
         placeholder="내 친구는 전 직장 동기야! 자기 일을 진짜 책임감 있게 잘하고 주변을 늘 먼저 생각하는 친구야. 사람한테 치이는 일이 힘들 텐데 내색하지 않고 밝게 웃는 친구를 보면 존경스럽기까지 해!💕"
-        minLength={49}
-        maxLength={150}
+        minLength={0}
+        maxLength={300}
         text={secondRecommend}
         setText={setSecondRecommend}
         height={13}
