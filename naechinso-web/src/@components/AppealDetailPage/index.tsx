@@ -50,7 +50,7 @@ export default function AppealDetailPage() {
         />
       </St.TextWrapper>
 
-      <MoveNextPageBtn nextPage={routePaths.DontGo} title="완료" disabled={!textCheck} handleState={saveTextInLocal} />
+      <MoveNextPageBtn nextPage={routePaths.DontGo} title="다음" disabled={!textCheck} handleState={saveTextInLocal} />
     </St.AppealDetail>
   );
 }
