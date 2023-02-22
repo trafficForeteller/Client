@@ -99,7 +99,7 @@ const St = {
     }
   `,
   Selection: styled.div`
-    ${({ theme }) => theme.fonts.caption8};
+    ${({ theme }) => theme.fonts.body1};
     color: ${({ theme }) => theme.colors.gray40};
     margin-bottom: 0.4rem;
   `,

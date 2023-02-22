@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { patchRecommendFriendDetail, postRecommendation } from "../../apis/recommend.api";
+import { patchRecommendFriendDetail } from "../../apis/recommend.api";
 import { IcDontGo } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
-import { IPatchFriendDetail, IPostRecommendQuestion } from "../../types/recommend";
+import { IPatchFriendDetail } from "../../types/recommend";
 import { FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
 
 export default function DontGoPage() {
@@ -18,45 +18,11 @@ export default function DontGoPage() {
   });
   const navigate = useNavigate();
 
-  const [postRecommend, setPostRecommend] = useState({
-    recommendQuestions: [
-      {
-        recommendQuestion: "",
-        recommendAnswer: "",
-      },
-    ],
-  });
-
   useEffect(() => {
     if (localStorage.getItem("dontGo")) {
       const dontGo = localStorage.getItem("dontGo") as string;
       setText(dontGo);
       setTextCheck(true);
-    }
-
-    const checkedQ1 = parseLocalStorage("checkedQ1");
-    if (localStorage.getItem("secondRecommend")) {
-      setPostRecommend({
-        recommendQuestions: [
-          {
-            recommendQuestion: handleRecommendQuestion(checkedQ1),
-            recommendAnswer: localStorage.getItem("firstRecommend") as string,
-          },
-          {
-            recommendQuestion: "친구에 대해 더 자랑하고 싶은 점을 자유롭게 적어줘😃",
-            recommendAnswer: localStorage.getItem("secondRecommend") as string,
-          },
-        ],
-      });
-    } else {
-      setPostRecommend({
-        recommendQuestions: [
-          {
-            recommendQuestion: handleRecommendQuestion(checkedQ1),
-            recommendAnswer: localStorage.getItem("firstRecommend") as string,
-          },
-        ],
-      });
     }
   }, []);
 
@@ -71,18 +37,7 @@ export default function DontGoPage() {
     });
   }, [text]);
 
-  const handleRegisterRecommender = async () => {
-    // 추천인으로 등록하기
-    await postRecommendation(
-      postRecommend,
-      localStorage.getItem("accessToken"),
-      localStorage.getItem("uuid"),
-      handleSuccessPostRecommendation,
-      handleFailRequest,
-    );
-  };
-
-  const handleSuccessPostRecommendation = async () => {
+  const handlePatchRecommend = async () => {
     // keyword, appealDetail, dontGo POST 성공할 시
     await patchRecommendFriendDetail(
       patchRecommend,
@@ -101,19 +56,6 @@ export default function DontGoPage() {
   const handleSuccessPatchRecommend = () => {
     // 추천사 PATCH 성공할 시
     navigate(routePaths.Finish);
-  };
-
-  const parseLocalStorage = (item: string) => {
-    //  localStorage에 저장된 친구가 배열 혹은 object일 때 JSON.parse하는 함수
-    const itemInLocal = localStorage.getItem(`${item}`) as string;
-    const parseItem = JSON.parse(itemInLocal);
-    return parseItem;
-  };
-
-  const handleRecommendQuestion = (recommendQ: IPostRecommendQuestion) => {
-    // 질문 공백 없이 합치기
-    const recommendQuestion = `${recommendQ.question1}` + `${recommendQ.question2}`;
-    return recommendQuestion as string;
   };
 
   const handleTextCheck = () => {
@@ -151,7 +93,7 @@ export default function DontGoPage() {
         nextPage={routePaths.Finish}
         title="완료"
         disabled={!textCheck}
-        handleState={handleRegisterRecommender}
+        handleState={handlePatchRecommend}
       />
     </St.DontGo>
   );

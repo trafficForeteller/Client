@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { postRecommendation } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
 import { IPostRecommendQuestion } from "../../types/recommend";
 import { FixedHeader, MoveNextPageBtn, TextAreaBox, ToggleTipBox } from "../@common";
@@ -19,6 +21,15 @@ export default function FirstRecommendPage() {
     checked: true,
     disabled: false,
   });
+  const [postRecommend, setPostRecommend] = useState({
+    recommendQuestions: [
+      {
+        recommendQuestion: "",
+        recommendAnswer: "",
+      },
+    ],
+  });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkedQ1 = parseLocalStorage("checkedQ1");
@@ -33,6 +44,14 @@ export default function FirstRecommendPage() {
   useEffect(() => {
     handleEnteredText(firstRecommend);
     localStorage.setItem("firstRecommend", firstRecommend);
+    setPostRecommend({
+      recommendQuestions: [
+        {
+          recommendQuestion: handleRecommendQuestion(parseLocalStorage("checkedQ1")),
+          recommendAnswer: firstRecommend,
+        },
+      ],
+    });
   }, [firstRecommend]);
 
   const handleEnteredText = (text: string) => {
@@ -50,6 +69,33 @@ export default function FirstRecommendPage() {
     return parseItem;
   };
 
+  const handleRegisterRecommender = async () => {
+    // 추천사 등록하기
+    await postRecommendation(
+      postRecommend,
+      localStorage.getItem("accessToken"),
+      localStorage.getItem("uuid"),
+      handleSuccessPostRecommendation,
+      handleFailRequest,
+    );
+  };
+
+  const handleSuccessPostRecommendation = async () => {
+    navigate(routePaths.SecondRecommend);
+  };
+
+  const handleFailRequest = (errorMessage: string) => {
+    //  postRecommendation 실패할 시
+    console.log(errorMessage);
+    navigate(routePaths.Error);
+  };
+
+  const handleRecommendQuestion = (recommendQ: IPostRecommendQuestion) => {
+    // 질문 공백 없이 합치기
+    const recommendQuestion = `${recommendQ.question1}` + `${recommendQ.question2}`;
+    return recommendQuestion as string;
+  };
+
   return (
     <St.FirstRecommendPage>
       <FixedHeader header="추천사" progressRate={65} title1={questionData.question1} title2={questionData.question2} />
@@ -65,7 +111,7 @@ export default function FirstRecommendPage() {
         letterLimit="50자 이상 150자 이내"
       />
 
-      <MoveNextPageBtn nextPage={routePaths.SecondRecommend} title="다음" disabled={!textCheck} />
+      <MoveNextPageBtn title="다음" disabled={!textCheck} handleState={handleRegisterRecommender} />
     </St.FirstRecommendPage>
   );
 }
