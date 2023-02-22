@@ -54,14 +54,21 @@ export default function WorkCertified(props: WorkCertifiedProps) {
   const handleFileChecked = () => {
     // 이미지 파일 유무 확인하기
     if (certifiedImg) {
-      setFileChecked(true);
       patchCertifiedData();
+      setFileChecked(true);
     } else setFileChecked(false);
   };
 
   const patchCertifiedData = async () => {
-    if (dir === "edu") await patchMemberEdu(patchData, localStorage.getItem("accessToken"), handleFailRequest);
-    else if (dir === "job") await patchMemberJob(patchData, localStorage.getItem("accessToken"), handleFailRequest);
+    if (dir === "edu")
+      await patchMemberEdu(patchData, localStorage.getItem("accessToken"), handleSuccessRequest, handleFailRequest);
+    else if (dir === "job")
+      await patchMemberJob(patchData, localStorage.getItem("accessToken"), handleSuccessRequest, handleFailRequest);
+  };
+
+  const handleSuccessRequest = () => {
+    if (localStorage.getItem("member-uuid") === "/edit") navigate(routePaths.Finish);
+    else navigate(routePaths.RecommendLanding);
   };
 
   const handleFailRequest = (errorMessage: string) => {
@@ -136,11 +143,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
         <St.ConsultantNaechinso src={ImgConsultantNaechinso} alt="상담원 내친소 아이콘" />
       </St.ConsultantBtn>
 
-      <MoveNextPageBtn
-        nextPage={localStorage.getItem("member-uuid") === "/edit" ? routePaths.Finish : routePaths.RecommendLanding}
-        title="다음"
-        disabled={!fileChecked}
-      />
+      <MoveNextPageBtn nextPage={routePaths.RecommendLanding} title="다음" disabled={!fileChecked} />
     </St.WorkCertified>
   );
 }

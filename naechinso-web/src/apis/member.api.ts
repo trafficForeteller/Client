@@ -58,15 +58,14 @@ export async function postMemberJoinRecommender(
 export async function patchMemberEdu(
   eduData: object,
   accessToken: string | null,
+  onSuccess: () => void,
   onFail: (errorMessage: string) => void,
 ): Promise<void | null> {
   try {
-    const { data } = await serverAxios.patch(`${PREFIX_URL}/edu`, eduData, {
+    await serverAxios.patch(`${PREFIX_URL}/edu`, eduData, {
       headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
-    if (data.status === 200) {
-      return data.data;
-    }
+    onSuccess();
   } catch (err) {
     if (err instanceof Error) {
       onFail(err.message);
@@ -77,15 +76,14 @@ export async function patchMemberEdu(
 export async function patchMemberJob(
   jobData: object,
   accessToken: string | null,
+  onSuccess: () => void,
   onFail: (errorMessage: string) => void,
 ): Promise<void | null> {
   try {
-    const { data } = await serverAxios.patch(`${PREFIX_URL}/job`, jobData, {
+    await serverAxios.patch(`${PREFIX_URL}/job`, jobData, {
       headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
-    if (data.status === 200) {
-      return data.data;
-    }
+    onSuccess();
   } catch (err) {
     if (err instanceof Error) {
       onFail(err.message);

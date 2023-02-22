@@ -49,7 +49,11 @@ export default function JobEditPage() {
   };
 
   const patchEditJobData = async () => {
-    await patchMemberJob(patchJob, localStorage.getItem("accessToken"), handleFailRequest);
+    await patchMemberJob(patchJob, localStorage.getItem("accessToken"), handleSuccessRequest, handleFailRequest);
+  };
+
+  const handleSuccessRequest = () => {
+    navigate(routePaths.Pending);
   };
 
   const handleFailRequest = (errorMessage: string) => {
@@ -88,12 +92,7 @@ export default function JobEditPage() {
         </St.EditWrapper>
       </St.EditBox>
 
-      <MoveNextPageBtn
-        nextPage={routePaths.Pending}
-        title="수정 완료"
-        disabled={false}
-        handleState={patchEditJobData}
-      />
+      <MoveNextPageBtn title="수정 완료" disabled={false} handleState={patchEditJobData} />
     </St.JobEditPage>
   );
 }

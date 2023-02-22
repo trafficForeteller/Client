@@ -62,7 +62,11 @@ export default function EduEditPage() {
   };
 
   const patchEditEduData = async () => {
-    await patchMemberEdu(patchEdu, localStorage.getItem("accessToken"), handleFailRequest);
+    await patchMemberEdu(patchEdu, localStorage.getItem("accessToken"), handleSuccessRequest, handleFailRequest);
+  };
+
+  const handleSuccessRequest = () => {
+    navigate(routePaths.Pending);
   };
 
   const handleFailRequest = (errorMessage: string) => {
@@ -113,12 +117,7 @@ export default function EduEditPage() {
         </St.EditWrapper>
       </St.EditBox>
 
-      <MoveNextPageBtn
-        nextPage={routePaths.Pending}
-        title="수정 완료"
-        disabled={false}
-        handleState={patchEditEduData}
-      />
+      <MoveNextPageBtn title="수정 완료" disabled={false} handleState={patchEditEduData} />
     </St.EduEditPage>
   );
 }

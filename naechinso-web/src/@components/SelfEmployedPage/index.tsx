@@ -18,7 +18,7 @@ export default function SelfEmployedPage() {
     const jobInfoOfLocal = localStorage.getItem("jobInfo") as string;
     const jobInfo = JSON.parse(jobInfoOfLocal);
     if (jobInfo) {
-      setJob({ ...job, jobName: "프리랜서", jobPart: jobInfo.jobPart });
+      setJob({ ...job, jobName: "자영업자", jobPart: jobInfo.jobPart });
       setActiveBtn(true);
     }
   }, []);
@@ -33,6 +33,12 @@ export default function SelfEmployedPage() {
     // 직업을 관리하는 함수
     setJob({ ...job, jobPart: e.target.value });
   };
+
+  const saveJobInfoInLocal = () => {
+    // 로컬스토리지에 저장
+    localStorage.setItem("jobInfo", JSON.stringify(job));
+  };
+
   return (
     <St.SelfEmployedPage>
       <FixedHeader header="추천인 소개" progressRate={60} title1="💼" title2="어떤 일을 해?" />
@@ -43,7 +49,12 @@ export default function SelfEmployedPage() {
         onChange={handleJobPartInput}
         step={1}
       />
-      <MoveNextPageBtn nextPage={routePaths.SelfEmployedCertified} disabled={!activeBtn} title="다음" />
+      <MoveNextPageBtn
+        nextPage={routePaths.SelfEmployedCertified}
+        disabled={!activeBtn}
+        title="다음"
+        handleState={saveJobInfoInLocal}
+      />
     </St.SelfEmployedPage>
   );
 }

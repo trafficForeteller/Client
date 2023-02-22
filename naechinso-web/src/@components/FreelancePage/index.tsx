@@ -39,7 +39,13 @@ export default function FreelancePage() {
   };
 
   const handlePatchJobData = async () => {
-    if (job.jobPart !== "") await patchMemberJob(job, localStorage.getItem("accessToken"), handleFailRequest);
+    if (job.jobPart !== "")
+      await patchMemberJob(job, localStorage.getItem("accessToken"), handleSuccessRequest, handleFailRequest);
+    console.log(job);
+  };
+
+  const handleSuccessRequest = () => {
+    navigate(routePaths.RecommendLanding);
   };
 
   const handleFailRequest = (errorMessage: string) => {
@@ -58,12 +64,7 @@ export default function FreelancePage() {
         onChange={handleJobPartInput}
         step={1}
       />
-      <MoveNextPageBtn
-        nextPage={routePaths.RecommendLanding}
-        disabled={!activeBtn}
-        title="다음"
-        handleState={handlePatchJobData}
-      />
+      <MoveNextPageBtn disabled={!activeBtn} title="다음" handleState={handlePatchJobData} />
     </St.FreelancePage>
   );
 }

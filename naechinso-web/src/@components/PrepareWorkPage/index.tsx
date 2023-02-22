@@ -44,9 +44,13 @@ export default function PrepareWorkPage() {
   };
 
   const handlePatchJobData = async () => {
-    if (job.jobPart !== "") await patchMemberJob(patchData, localStorage.getItem("accessToken"), handleFailRequest);
+    if (job.jobPart !== "")
+      await patchMemberJob(patchData, localStorage.getItem("accessToken"), handleSuccessRequest, handleFailRequest);
   };
 
+  const handleSuccessRequest = () => {
+    navigate(routePaths.RecommendLanding);
+  };
   const handleFailRequest = (errorMessage: string) => {
     // 서버 요청 실패 시
     console.log(errorMessage);
@@ -63,12 +67,7 @@ export default function PrepareWorkPage() {
           <St.Ready>준비 중</St.Ready>
         </St.InputWrapper>
       </St.InputBox>
-      <MoveNextPageBtn
-        nextPage={routePaths.RecommendLanding}
-        disabled={!activeBtn}
-        title="다음"
-        handleState={handlePatchJobData}
-      />
+      <MoveNextPageBtn disabled={!activeBtn} title="다음" handleState={handlePatchJobData} />
     </St.PrepareWorkPage>
   );
 }
