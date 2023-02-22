@@ -9,10 +9,10 @@ import { FixedHeader, MoveNextPageBtn, ShortInputBox } from "../@common";
 
 export default function FreelancePage() {
   const [job, setJob] = useState<IJobType>({
-    jobName: "",
+    jobName: "프리랜서",
     jobPart: "",
-    jobLocation: "",
-    jobImage: "프리랜서입니다",
+    jobLocation: null,
+    jobImage: null,
   });
   const [activeBtn, setActiveBtn] = useState(false);
   const navigate = useNavigate();
@@ -67,8 +67,6 @@ export default function FreelancePage() {
     </St.FreelancePage>
   );
 }
-
-// 프리랜서 페이지는 인증이 없으므로 인증사진없이 post해줘야 함
 
 const St = {
   FreelancePage: styled.main`

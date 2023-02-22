@@ -9,10 +9,10 @@ import { FixedHeader, MoveNextPageBtn } from "../@common";
 
 export default function PrepareWorkPage() {
   const [job, setJob] = useState<IJobType>({
-    jobName: "",
+    jobName: "준비",
     jobPart: "",
-    jobLocation: "",
-    jobImage: "일을 준비 중인 사람입니다",
+    jobLocation: null,
+    jobImage: null,
   });
   const [patchData, setPatchData] = useState({});
   const [activeBtn, setActiveBtn] = useState(false);

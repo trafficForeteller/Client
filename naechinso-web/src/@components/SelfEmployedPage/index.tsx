@@ -47,7 +47,6 @@ export default function SelfEmployedPage() {
     </St.SelfEmployedPage>
   );
 }
-// 자영업자 페이지는 인증 페이지 만들고 post해줘야 함
 
 const St = {
   SelfEmployedPage: styled.main`

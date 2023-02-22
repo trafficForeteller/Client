@@ -39,8 +39,8 @@ export interface IPatchEdu {
 export interface IJobType {
   jobName: string;
   jobPart: string;
-  jobLocation: string;
-  jobImage?: string;
+  jobLocation: string | null;
+  jobImage?: string | null;
 }
 
 export interface IPatchJob {
