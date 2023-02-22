@@ -51,6 +51,6 @@ export default function SelfEmployedPage() {
 
 const St = {
   SelfEmployedPage: styled.main`
-    padding: 18rem 2rem 0;
+    padding: 17rem 2rem 0;
   `,
 };

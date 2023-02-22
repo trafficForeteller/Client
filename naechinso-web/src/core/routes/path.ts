@@ -28,10 +28,11 @@ export const routePaths = {
   Arrive: "/arrive",
   EditRecommender: "/edit/landing",
   Error: "/error",
-  ChooseJob: "/recommend/chooseJob",
-  Freelance: "/recommend/freelance",
-  SelfEmployed: "/recommend/selfEmployed",
-  SelfEmployedCertified: "/recommend/selfEmployed/certified",
+  ChooseJob: "/recommender/chooseJob",
+  Freelance: "/recommender/freelance",
+  SelfEmployed: "/recommender/selfEmployed",
+  SelfEmployedCertified: "/recommender/selfEmployed/certified",
+  PrepareWork: "/recommender/prepareWork",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];

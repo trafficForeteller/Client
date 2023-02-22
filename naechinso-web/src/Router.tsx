@@ -28,6 +28,7 @@ import {
   LandingPage,
   PendingPage,
   PhoneNumberPage,
+  PrepareWorkPage,
   RecommenderInfoPage,
   RecommenderLandingPage,
   RecommendLandingPage,
@@ -161,6 +162,10 @@ export default function Router() {
         <Route
           path={routePaths.SelfEmployedCertified}
           element={localStorage.getItem("accessToken") ? <SelfEmployedCertifiedPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.PrepareWork}
+          element={localStorage.getItem("accessToken") ? <PrepareWorkPage /> : <Navigate to="/" replace />}
         />
         <Route path={routePaths.Arrive} element={<ArriveRecommendPage />} />
       </Routes>

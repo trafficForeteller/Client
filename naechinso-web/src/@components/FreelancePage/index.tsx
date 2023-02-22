@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { patchMemberJob } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IJobType } from "../../types/member";
 import { FixedHeader, MoveNextPageBtn, ShortInputBox } from "../@common";
 
 export default function FreelancePage() {
   const [job, setJob] = useState<IJobType>({
-    jobName: "프리랜서",
+    jobName: "",
     jobPart: "",
-    jobLocation: "강남구",
+    jobLocation: "",
+    jobImage: "프리랜서입니다",
   });
   const [activeBtn, setActiveBtn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 새로고침 시 이전에 local에 저장된 jobInfo 초기값으로 세팅
@@ -34,6 +38,16 @@ export default function FreelancePage() {
     setJob({ ...job, jobPart: e.target.value });
   };
 
+  const handlePatchJobData = async () => {
+    if (job.jobPart !== "") await patchMemberJob(job, localStorage.getItem("accessToken"), handleFailRequest);
+  };
+
+  const handleFailRequest = (errorMessage: string) => {
+    // 서버 요청 실패 시
+    console.log(errorMessage);
+    navigate(routePaths.Error);
+  };
+
   return (
     <St.FreelancePage>
       <FixedHeader header="추천인 소개" progressRate={60} title1="💼" title2="어떤 영역에서 활동하고 있어?" />
@@ -44,7 +58,12 @@ export default function FreelancePage() {
         onChange={handleJobPartInput}
         step={1}
       />
-      <MoveNextPageBtn nextPage={routePaths.RecommendLanding} disabled={!activeBtn} title="다음" />
+      <MoveNextPageBtn
+        nextPage={routePaths.RecommendLanding}
+        disabled={!activeBtn}
+        title="다음"
+        handleState={handlePatchJobData}
+      />
     </St.FreelancePage>
   );
 }
@@ -53,6 +72,6 @@ export default function FreelancePage() {
 
 const St = {
   FreelancePage: styled.main`
-    padding: 18rem 2rem 0;
+    padding: 17rem 2rem 0;
   `,
 };

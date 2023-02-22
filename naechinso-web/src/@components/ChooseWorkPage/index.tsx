@@ -18,6 +18,9 @@ export default function ChooseWorkPage() {
         <St.ChooseWorkButton type="button" onClick={() => navigate(routePaths.Edu)}>
           공부 중인 학생이야
         </St.ChooseWorkButton>
+        <St.ChooseWorkButton type="button" onClick={() => navigate(routePaths.PrepareWork)}>
+          일을 쉬고 있어 / 준비 중이야
+        </St.ChooseWorkButton>
       </St.ButtonWrapper>
     </St.ChooseWork>
   );
