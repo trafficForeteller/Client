@@ -1,5 +1,7 @@
 // eslint-disable-next-line
-import {  IGetMemberStatus, IPostPolicy, IPostRecommender, IPostReissue } from "../types/member";
+import { AxiosError } from "axios";
+import { IGetMemberStatus, IPostPolicy, IPostRecommender, IPostReissue } from "../types/member";
+
 import { serverAxios } from ".";
 
 const PREFIX_URL = "/member";
@@ -42,6 +44,7 @@ export async function postMemberJoinRecommender(
   accessToken: string | null,
   onSuccess: () => void,
   onFail: (errorMessage: string) => void,
+  onReissue: () => void,
 ): Promise<void | null> {
   try {
     await serverAxios.post(`${PREFIX_URL}/join/recommender`, recommenderData, {
@@ -49,8 +52,9 @@ export async function postMemberJoinRecommender(
     });
     onSuccess();
   } catch (err) {
-    if (err instanceof Error) {
-      onFail(err.message);
+    if (err instanceof AxiosError) {
+      if (err.response?.data.status === 401) onReissue();
+      else onFail(err.message);
     }
   }
 }
@@ -60,6 +64,7 @@ export async function patchMemberEdu(
   accessToken: string | null,
   onSuccess: () => void,
   onFail: (errorMessage: string) => void,
+  onReissue: () => void,
 ): Promise<void | null> {
   try {
     await serverAxios.patch(`${PREFIX_URL}/edu`, eduData, {
@@ -67,8 +72,9 @@ export async function patchMemberEdu(
     });
     onSuccess();
   } catch (err) {
-    if (err instanceof Error) {
-      onFail(err.message);
+    if (err instanceof AxiosError) {
+      if (err.response?.data.status === 401) onReissue();
+      else onFail(err.message);
     }
   }
 }
@@ -78,6 +84,7 @@ export async function patchMemberJob(
   accessToken: string | null,
   onSuccess: () => void,
   onFail: (errorMessage: string) => void,
+  onReissue: () => void,
 ): Promise<void | null> {
   try {
     await serverAxios.patch(`${PREFIX_URL}/job`, jobData, {
@@ -85,8 +92,9 @@ export async function patchMemberJob(
     });
     onSuccess();
   } catch (err) {
-    if (err instanceof Error) {
-      onFail(err.message);
+    if (err instanceof AxiosError) {
+      if (err.response?.data.status === 401) onReissue();
+      else onFail(err.message);
     }
   }
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { patchMemberJob } from "../../apis/member.api";
+import { patchMemberJob, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IJobType } from "../../types/member";
 import { FixedHeader, MoveNextPageBtn, ShortInputBox } from "../@common";
@@ -38,10 +38,25 @@ export default function FreelancePage() {
     setJob({ ...job, jobPart: e.target.value });
   };
 
-  const handlePatchJobData = async () => {
+  const patchJobData = async () => {
     if (job.jobPart !== "")
-      await patchMemberJob(job, localStorage.getItem("accessToken"), handleSuccessRequest, handleFailRequest);
-    console.log(job);
+      await patchMemberJob(
+        job,
+        localStorage.getItem("accessToken"),
+        handleSuccessRequest,
+        handleFailRequest,
+        handleReissuePatchCertifiedData,
+      );
+  };
+
+  const handleReissuePatchCertifiedData = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    patchJobData();
   };
 
   const handleSuccessRequest = () => {
@@ -64,7 +79,7 @@ export default function FreelancePage() {
         onChange={handleJobPartInput}
         step={1}
       />
-      <MoveNextPageBtn disabled={!activeBtn} title="다음" handleState={handlePatchJobData} />
+      <MoveNextPageBtn disabled={!activeBtn} title="다음" handleState={patchJobData} />
     </St.FreelancePage>
   );
 }

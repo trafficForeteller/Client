@@ -68,13 +68,7 @@ export default function JobPage() {
 
   return (
     <St.JobPage>
-      <FixedHeader
-        header="추천인 소개"
-        progressRate={60}
-        title1="💼"
-        title2="어떤 일을 해?"
-        subTitle1="프리랜서는 프리랜서라고 적어주면 돼!"
-      />
+      <FixedHeader header="추천인 소개" progressRate={60} title1="💼" title2="어떤 일을 해?" />
 
       <St.SheildBox>
         <IcSheild />

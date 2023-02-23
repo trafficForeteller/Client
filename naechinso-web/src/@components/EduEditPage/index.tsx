@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { patchMemberEdu } from "../../apis/member.api";
+import { patchMemberEdu, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IPatchEdu } from "../../types/member";
 import { EditHeader, EditImageBox, EditInput, EditTitleBox, EditToggleInputBox, MoveNextPageBtn } from "../@common";
@@ -62,7 +62,23 @@ export default function EduEditPage() {
   };
 
   const patchEditEduData = async () => {
-    await patchMemberEdu(patchEdu, localStorage.getItem("accessToken"), handleSuccessRequest, handleFailRequest);
+    await patchMemberEdu(
+      patchEdu,
+      localStorage.getItem("accessToken"),
+      handleSuccessRequest,
+      handleFailRequest,
+      handleReissuePatchCertifiedData,
+    );
+  };
+
+  const handleReissuePatchCertifiedData = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    patchEditEduData();
   };
 
   const handleSuccessRequest = () => {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { postMemberJoinRecommender } from "../../apis/member.api";
+import { postMemberJoinRecommender, postMemberReissue } from "../../apis/member.api";
 import { IcCheckedMen, IcCheckedWomen, IcUnCheckedMen, IcUnCheckedWomen } from "../../asset/icons";
 import { genderTypeList, genderTypeProps } from "../../core/member/member";
 import { RecommenderInfoList } from "../../core/recommend/recommend";
@@ -55,7 +55,18 @@ export default function RecommenderInfoPage() {
       localStorage.getItem("accessToken"),
       handleSuccessPostMemberJoin,
       handleFailPostMemberJoin,
+      handleReissuePostRecommender,
     );
+  };
+
+  const handleReissuePostRecommender = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    handlePostRecommender();
   };
 
   const handleSuccessPostMemberJoin = () => {

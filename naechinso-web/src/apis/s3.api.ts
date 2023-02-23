@@ -1,3 +1,5 @@
+import { AxiosError } from "axios";
+
 import { serverAxios } from ".";
 
 const PREFIX_URL = "/s3";
@@ -8,6 +10,7 @@ export async function postCertifiedImg(
   dir: string,
   onSuccess: (userData: string) => void,
   onFail: (errorMessage: string) => void,
+  onReissue: (formData: FormData) => void,
 ): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/image/${dir}`, formData, {
@@ -15,8 +18,9 @@ export async function postCertifiedImg(
     });
     onSuccess(data.data[0]);
   } catch (err) {
-    if (err instanceof Error) {
-      onFail(err.message);
+    if (err instanceof AxiosError) {
+      if (err.response?.data.status === 401) onReissue(formData);
+      else onFail(err.message);
     }
   }
 }

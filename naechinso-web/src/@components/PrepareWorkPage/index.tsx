@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { patchMemberJob } from "../../apis/member.api";
+import { patchMemberJob, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IJobType } from "../../types/member";
 import { FixedHeader, MoveNextPageBtn } from "../@common";
@@ -43,9 +43,25 @@ export default function PrepareWorkPage() {
     setJob({ ...job, jobPart: e.target.value });
   };
 
-  const handlePatchJobData = async () => {
+  const patchJobData = async () => {
     if (job.jobPart !== "")
-      await patchMemberJob(patchData, localStorage.getItem("accessToken"), handleSuccessRequest, handleFailRequest);
+      await patchMemberJob(
+        patchData,
+        localStorage.getItem("accessToken"),
+        handleSuccessRequest,
+        handleFailRequest,
+        handleReissuePatchMemberJob,
+      );
+  };
+
+  const handleReissuePatchMemberJob = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    patchJobData();
   };
 
   const handleSuccessRequest = () => {
@@ -67,7 +83,7 @@ export default function PrepareWorkPage() {
           <St.Ready>준비 중</St.Ready>
         </St.InputWrapper>
       </St.InputBox>
-      <MoveNextPageBtn disabled={!activeBtn} title="다음" handleState={handlePatchJobData} />
+      <MoveNextPageBtn disabled={!activeBtn} title="다음" handleState={patchJobData} />
     </St.PrepareWorkPage>
   );
 }

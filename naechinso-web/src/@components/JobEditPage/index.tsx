@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { patchMemberJob } from "../../apis/member.api";
+import { patchMemberJob, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IPatchJob } from "../../types/member";
 import { EditHeader, EditImageBox, EditInput, EditTitleBox, MoveNextPageBtn } from "../@common";
@@ -49,7 +49,23 @@ export default function JobEditPage() {
   };
 
   const patchEditJobData = async () => {
-    await patchMemberJob(patchJob, localStorage.getItem("accessToken"), handleSuccessRequest, handleFailRequest);
+    await patchMemberJob(
+      patchJob,
+      localStorage.getItem("accessToken"),
+      handleSuccessRequest,
+      handleFailRequest,
+      handleReissuePatchEditJobData,
+    );
+  };
+
+  const handleReissuePatchEditJobData = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    patchEditJobData();
   };
 
   const handleSuccessRequest = () => {

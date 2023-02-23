@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { patchMemberEdu, patchMemberJob } from "../../apis/member.api";
+import { patchMemberEdu, patchMemberJob, postMemberReissue } from "../../apis/member.api";
 import { postCertifiedImg } from "../../apis/s3.api";
 import { IcPlus } from "../../asset/icons";
 import { ImgConsultantNaechinso } from "../../asset/image";
@@ -55,9 +55,31 @@ export default function WorkCertified(props: WorkCertifiedProps) {
 
   const patchCertifiedData = async () => {
     if (dir === "edu")
-      await patchMemberEdu(patchData, localStorage.getItem("accessToken"), handleSuccessRequest, handleFailRequest);
+      await patchMemberEdu(
+        patchData,
+        localStorage.getItem("accessToken"),
+        handleSuccessRequest,
+        handleFailRequest,
+        handleReissuePatchCertifiedData,
+      );
     else if (dir === "job")
-      await patchMemberJob(patchData, localStorage.getItem("accessToken"), handleSuccessRequest, handleFailRequest);
+      await patchMemberJob(
+        patchData,
+        localStorage.getItem("accessToken"),
+        handleSuccessRequest,
+        handleFailRequest,
+        handleReissuePatchCertifiedData,
+      );
+  };
+
+  const handleReissuePatchCertifiedData = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    patchCertifiedData();
   };
 
   const handleSuccessRequest = () => {
@@ -73,7 +95,24 @@ export default function WorkCertified(props: WorkCertifiedProps) {
 
   const handlePostImgFile = async (formData: FormData) => {
     // s3에 이미지 POST
-    await postCertifiedImg(formData, localStorage.getItem("accessToken"), dir, handleSuccessPostImg, handleFailRequest);
+    await postCertifiedImg(
+      formData,
+      localStorage.getItem("accessToken"),
+      dir,
+      handleSuccessPostImg,
+      handleFailRequest,
+      handleReissuePostImgFile,
+    );
+  };
+
+  const handleReissuePostImgFile = async (formData: FormData) => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    handlePostImgFile(formData);
   };
 
   const handleSuccessPostImg = (userData: string) => {

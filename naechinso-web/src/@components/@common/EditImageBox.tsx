@@ -2,6 +2,7 @@ import { SetStateAction, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { postMemberReissue } from "../../apis/member.api";
 import { postCertifiedImg } from "../../apis/s3.api";
 import { IcPlusWhite } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
@@ -20,7 +21,24 @@ export default function EditImageBox(props: EditImageBoxProps) {
 
   const handlePostImgFile = async (formData: FormData) => {
     // s3에 이미지 POST
-    await postCertifiedImg(formData, localStorage.getItem("accessToken"), dir, handleSuccessPostImg, handleFailPostImg);
+    await postCertifiedImg(
+      formData,
+      localStorage.getItem("accessToken"),
+      dir,
+      handleSuccessPostImg,
+      handleFailPostImg,
+      handleReissuePostImgFile,
+    );
+  };
+
+  const handleReissuePostImgFile = async (formData: FormData) => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    handlePostImgFile(formData);
   };
 
   const handleSuccessPostImg = (userData: string) => {
