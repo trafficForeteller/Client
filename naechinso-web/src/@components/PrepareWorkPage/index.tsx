@@ -14,7 +14,6 @@ export default function PrepareWorkPage() {
     jobLocation: null,
     jobImage: null,
   });
-  const [patchData, setPatchData] = useState({});
   const [activeBtn, setActiveBtn] = useState(false);
   const navigate = useNavigate();
 
@@ -27,10 +26,6 @@ export default function PrepareWorkPage() {
       setActiveBtn(true);
     }
   }, []);
-
-  useEffect(() => {
-    setPatchData({ ...job, jobPart: job.jobPart + " 준비 중" });
-  }, [job]);
 
   useEffect(() => {
     //  ActiveButton 활성화
@@ -46,7 +41,7 @@ export default function PrepareWorkPage() {
   const patchJobData = async () => {
     if (job.jobPart !== "")
       await patchMemberJob(
-        patchData,
+        job,
         localStorage.getItem("accessToken"),
         handleSuccessRequest,
         handleFailRequest,
