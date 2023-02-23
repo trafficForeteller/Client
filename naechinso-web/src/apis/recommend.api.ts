@@ -53,6 +53,7 @@ export async function patchRecommendFriendDetail(
   uuid: string | null,
   onSuccess: () => void,
   onFail: (errorMessage: string) => void,
+  onReissue: () => void,
 ): Promise<void | null> {
   try {
     await serverAxios.patch(`${PREFIX_URL}/${uuid}/accept`, friendDetail, {
@@ -60,8 +61,9 @@ export async function patchRecommendFriendDetail(
     });
     onSuccess();
   } catch (err) {
-    if (err instanceof Error) {
-      onFail(err.message);
+    if (err instanceof AxiosError) {
+      if (err.response?.data.status === 401) onReissue();
+      else onFail(err.message);
     }
   }
 }

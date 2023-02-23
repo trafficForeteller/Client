@@ -19,15 +19,12 @@ export default function AppealDetailPage() {
 
   useEffect(() => {
     handleTextCheck();
+    localStorage.setItem("appealDetail", text);
   }, [text]);
 
   const handleTextCheck = () => {
     if (text.length > 19) setTextCheck(true);
     else setTextCheck(false);
-  };
-
-  const saveTextInLocal = () => {
-    localStorage.setItem("appealDetail", text);
   };
 
   return (
@@ -50,7 +47,7 @@ export default function AppealDetailPage() {
         />
       </St.TextWrapper>
 
-      <MoveNextPageBtn nextPage={routePaths.DontGo} title="다음" disabled={!textCheck} handleState={saveTextInLocal} />
+      <MoveNextPageBtn nextPage={routePaths.DontGo} title="다음" disabled={!textCheck} />
     </St.AppealDetail>
   );
 }

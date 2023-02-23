@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { postMemberReissue } from "../../apis/member.api";
 import { patchRecommendFriendDetail } from "../../apis/recommend.api";
 import { IcDontGo } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
@@ -45,8 +46,20 @@ export default function DontGoPage() {
       localStorage.getItem("uuid"),
       handleSuccessPatchRecommend,
       handleFailRequest,
+      handleReissuePatchRecommend,
     );
   };
+
+  const handleReissuePatchRecommend = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    handlePatchRecommend();
+  };
+
   const handleFailRequest = (errorMessage: string) => {
     // keyword, appealDetail, dontG POST 실패할 시
     console.log(errorMessage);
