@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -25,8 +25,11 @@ export default function EditPage() {
     localStorage.removeItem("postRecommender");
     localStorage.removeItem("genderTypeList");
     localStorage.removeItem("uuid");
+    localStorage.removeItem("edit");
 
-    location.pathname !== "/" && localStorage.setItem("member-uuid", location.pathname);
+    if (location.pathname.length === 37) localStorage.setItem("member-uuid", location.pathname);
+    else if (location.pathname === "/edit") localStorage.setItem("edit", "edit");
+    else localStorage.removeItem("member-uuid");
   }, [location]);
 
   useEffect(() => {

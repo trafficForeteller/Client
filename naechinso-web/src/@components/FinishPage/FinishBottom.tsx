@@ -23,6 +23,8 @@ export default function FinishBottom() {
     localStorage.removeItem("postRecommender");
     localStorage.removeItem("genderTypeList");
     localStorage.removeItem("uuid");
+    localStorage.removeItem("edit");
+    localStorage.removeItem("member-uuid");
   };
 
   return (

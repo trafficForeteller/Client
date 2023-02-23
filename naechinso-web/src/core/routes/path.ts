@@ -23,6 +23,7 @@ export const routePaths = {
   RecommendLanding: "/recommend",
   Edit: "/landing",
   // Edit: "/edit",
+  // /edit 뒤에 머가 와도 Edit으로 가도록 처리
   JobEdit: "/edit/job",
   EduEdit: "/edit/edu",
   Pending: "/pending",
