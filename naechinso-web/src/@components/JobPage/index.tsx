@@ -109,7 +109,7 @@ export default function JobPage() {
 
 const St = {
   JobPage: styled.main`
-    padding: 20rem 2rem 0;
+    padding: 19rem 2rem 0;
   `,
   SheildBox: styled.section`
     width: 32.7rem;
