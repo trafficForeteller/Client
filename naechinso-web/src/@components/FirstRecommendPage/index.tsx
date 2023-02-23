@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { postMemberReissue } from "../../apis/member.api";
 import { postRecommendation } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
 import { IPostRecommendQuestion } from "../../types/recommend";
@@ -77,7 +78,18 @@ export default function FirstRecommendPage() {
       localStorage.getItem("uuid"),
       handleSuccessPostRecommendation,
       handleFailRequest,
+      handleReissuePostRecommendation,
     );
+  };
+
+  const handleReissuePostRecommendation = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    handleRegisterRecommender();
   };
 
   const handleSuccessPostRecommendation = async () => {

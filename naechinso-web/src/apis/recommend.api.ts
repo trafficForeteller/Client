@@ -1,5 +1,7 @@
 // eslint-disable-next-line
+import { AxiosError } from "axios";
 import { IGetReommend, IPatchFriendDetail, IPostFriendInfo, IPostRecommend, IUuid } from "../types/recommend";
+
 import { serverAxios } from ".";
 
 const PREFIX_URL = "/recommend";
@@ -9,6 +11,7 @@ export async function postRecommendFriendInfo(
   accessToken: string | null,
   onSuccess: (userData: IUuid) => void,
   onFail: (errorMessage: string) => void,
+  onReissue: () => void,
 ): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/request-uuid`, friendsInfo, {
@@ -16,8 +19,9 @@ export async function postRecommendFriendInfo(
     });
     onSuccess(data.data);
   } catch (err) {
-    if (err instanceof Error) {
-      onFail(err.message);
+    if (err instanceof AxiosError) {
+      if (err.response?.data.status === 401) onReissue();
+      else onFail(err.message);
     }
   }
 }
@@ -28,6 +32,7 @@ export async function postMagicRecommendFriendInfo(
   memberUuid: string | null,
   onSuccess: (userData: IUuid) => void,
   onFail: (errorMessage: string) => void,
+  onReissue: () => void,
 ): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/request-uuid${memberUuid}`, friendsInfo, {
@@ -35,8 +40,9 @@ export async function postMagicRecommendFriendInfo(
     });
     onSuccess(data.data);
   } catch (err) {
-    if (err instanceof Error) {
-      onFail(err.message);
+    if (err instanceof AxiosError) {
+      if (err.response?.data.status === 401) onReissue();
+      else onFail(err.message);
     }
   }
 }
@@ -66,6 +72,7 @@ export async function postRecommendation(
   uuid: string | null,
   onSuccess: () => void,
   onFail: (errorMessage: string) => void,
+  onReissue: () => void,
 ): Promise<void | null> {
   try {
     await serverAxios.post(`${PREFIX_URL}/question/${uuid}`, recommend, {
@@ -73,8 +80,9 @@ export async function postRecommendation(
     });
     onSuccess();
   } catch (err) {
-    if (err instanceof Error) {
-      onFail(err.message);
+    if (err instanceof AxiosError) {
+      if (err.response?.data.status === 401) onReissue();
+      else onFail(err.message);
     }
   }
 }

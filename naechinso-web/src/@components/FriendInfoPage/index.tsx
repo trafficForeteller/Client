@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { postMemberReissue } from "../../apis/member.api";
 import { getRecommend, postMagicRecommendFriendInfo, postRecommendFriendInfo } from "../../apis/recommend.api";
 import {
   keywordList,
@@ -135,6 +136,7 @@ export default function FriendInfoPage() {
       localStorage.getItem("member-uuid"),
       handleSuccessPostFriendInfo,
       handleFailPostFriendInfo,
+      handleReissuePostFriendInfo,
     );
   };
 
@@ -145,7 +147,22 @@ export default function FriendInfoPage() {
       localStorage.getItem("accessToken"),
       handleSuccessPostFriendInfo,
       handleFailPostFriendInfo,
+      handleReissuePostFriendInfo,
     );
+  };
+
+  const handleReissuePostFriendInfo = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    if (step === 4 && localStorage.getItem("member-uuid")) {
+      handleMagicFriendInfo();
+    } else if (step === 5) {
+      handleFriendInfo();
+    }
   };
 
   const handleSuccessPostFriendInfo = async (userData: IUuid) => {
