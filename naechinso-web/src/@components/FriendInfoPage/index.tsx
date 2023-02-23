@@ -91,15 +91,12 @@ export default function FriendInfoPage() {
     }
   }, []);
 
-  const resetListChecked = (list: relationTypeProps[]) => {
-    // list checked가 모두 되지 않은 상태로 수정하기
-    list.map((el) => {
-      el.checked = false;
-      return el;
-    });
-    return list;
-  };
-
+  useEffect(() => {
+    // step에 따른 ActiveButton 활성화
+    if (step === 1 && name.length >= 2) setActiveBtn(true);
+    else if (step === 2 && name.length >= 2 && relationType) setActiveBtn(true);
+    else if (step === 3 && name.length >= 2 && relationType && relationDuration) setActiveBtn(true);
+  }, [name, relationType, relationDuration]);
   useEffect(() => {
     checkIsModalOpened();
   }, [isTypeModalOpened, isDurationModalOpened]);
@@ -115,6 +112,15 @@ export default function FriendInfoPage() {
       handleFriendInfo();
     }
   }, [step]);
+
+  const resetListChecked = (list: relationTypeProps[]) => {
+    // list checked가 모두 되지 않은 상태로 수정하기
+    list.map((el) => {
+      el.checked = false;
+      return el;
+    });
+    return list;
+  };
 
   const saveFriendInfoInLocal = (friendInfo: IPostFriendInfo) => {
     // 로컬스토리지에 저장
@@ -200,13 +206,6 @@ export default function FriendInfoPage() {
     console.log(errorMessage);
     navigate(routePaths.Error);
   };
-
-  useEffect(() => {
-    // step에 따른 ActiveButton 활성화
-    if (step === 1 && name.length >= 2) setActiveBtn(true);
-    else if (step === 2 && name.length >= 2 && relationType) setActiveBtn(true);
-    else if (step === 3 && name.length >= 2 && relationType && relationDuration) setActiveBtn(true);
-  }, [name, relationType, relationDuration]);
 
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 친구 이름을 관리하는 함수
