@@ -50,14 +50,8 @@ export default function WorkCertified(props: WorkCertifiedProps) {
     // 새로운 창에서 약관 열기
     window.open("https://naechinso.channel.io/lounge", "_blank", "noopener, noreferrer");
   };
-
-  const handleFileChecked = () => {
-    // 이미지 파일 유무 확인하기
-    if (certifiedImg) {
-      patchCertifiedData();
-      setFileChecked(true);
-    } else setFileChecked(false);
-  };
+  // 이미지 파일 유무 확인하기
+  const handleFileChecked = () => certifiedImg && patchCertifiedData();
 
   const patchCertifiedData = async () => {
     if (dir === "edu")
@@ -67,13 +61,13 @@ export default function WorkCertified(props: WorkCertifiedProps) {
   };
 
   const handleSuccessRequest = () => {
-    if (localStorage.getItem("member-uuid") === "/edit") navigate(routePaths.Finish);
-    else navigate(routePaths.RecommendLanding);
+    setFileChecked(true);
   };
 
   const handleFailRequest = (errorMessage: string) => {
     // 서버 요청 실패 시
     console.log(errorMessage);
+    setFileChecked(false);
     navigate(routePaths.Error);
   };
 
@@ -143,7 +137,11 @@ export default function WorkCertified(props: WorkCertifiedProps) {
         <St.ConsultantNaechinso src={ImgConsultantNaechinso} alt="상담원 내친소 아이콘" />
       </St.ConsultantBtn>
 
-      <MoveNextPageBtn nextPage={routePaths.RecommendLanding} title="다음" disabled={!fileChecked} />
+      <MoveNextPageBtn
+        nextPage={localStorage.getItem("member-uuid") === "/edit" ? routePaths.Finish : routePaths.RecommendLanding}
+        title="다음"
+        disabled={!fileChecked}
+      />
     </St.WorkCertified>
   );
 }
