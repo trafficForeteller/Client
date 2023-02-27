@@ -32,7 +32,7 @@ export default function LandingBox(props: LandingBoxProps) {
     localStorage.removeItem("edit");
 
     if (location.pathname.length === 37) localStorage.setItem("member-uuid", location.pathname);
-    else if (location.pathname === "/edit") localStorage.setItem("edit", "edit");
+    else if (location.pathname.startsWith("/edit")) localStorage.setItem("edit", "edit");
     else localStorage.removeItem("member-uuid");
     localStorage.getItem("accessToken") && setAccessToken(true);
   }, [location]);

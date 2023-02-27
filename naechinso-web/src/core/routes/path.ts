@@ -21,8 +21,7 @@ export const routePaths = {
   Finish: "/finish",
   RecommenderLanding: "/recommender",
   RecommendLanding: "/recommend",
-  Edit: "/edit",
-  // /edit 뒤에 머가 와도 Edit으로 가도록 처리
+  Edit: "/edit/*",
   JobEdit: "/edit/job",
   EduEdit: "/edit/edu",
   Pending: "/pending",
