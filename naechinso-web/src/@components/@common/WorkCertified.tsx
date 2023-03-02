@@ -177,7 +177,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
       </St.ConsultantBtn>
 
       <MoveNextPageBtn
-        nextPage={localStorage.getItem("edit") ? routePaths.Finish : routePaths.RecommendLanding}
+        nextPage={localStorage.getItem("landingUrl") === "edit" ? routePaths.Finish : routePaths.RecommendLanding}
         title="다음"
         disabled={!fileChecked}
       />

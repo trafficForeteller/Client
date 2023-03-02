@@ -6,6 +6,7 @@ import {
   ArriveRecommendPage,
   CertifiedPage,
   ChooseFirstQuestionPage,
+  ChooseGiftPage,
   ChooseJobPage,
   ChooseWorkPage,
   DontGoPage,
@@ -166,6 +167,10 @@ export default function Router() {
         <Route
           path={routePaths.PrepareWork}
           element={localStorage.getItem("accessToken") ? <PrepareWorkPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.ChooseGift}
+          element={localStorage.getItem("accessToken") ? <ChooseGiftPage /> : <Navigate to="/" replace />}
         />
         <Route path={routePaths.Arrive} element={<ArriveRecommendPage />} />
       </Routes>

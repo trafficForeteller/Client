@@ -68,7 +68,8 @@ export default function DontGoPage() {
 
   const handleSuccessPatchRecommend = () => {
     // 추천사 PATCH 성공할 시
-    navigate(routePaths.Finish);
+    if (localStorage.getItem("landingUrl") === "landing") navigate(routePaths.ChooseGift);
+    else navigate(routePaths.Finish);
   };
 
   const handleTextCheck = () => {
@@ -102,12 +103,7 @@ export default function DontGoPage() {
         />
       </St.TextWrapper>
 
-      <MoveNextPageBtn
-        nextPage={routePaths.Finish}
-        title="완료"
-        disabled={!textCheck}
-        handleState={handlePatchRecommend}
-      />
+      <MoveNextPageBtn title="완료" disabled={!textCheck} handleState={handlePatchRecommend} />
     </St.DontGo>
   );
 }
