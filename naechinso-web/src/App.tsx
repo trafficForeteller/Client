@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import styled from "styled-components";
 
 import Router from "./Router";
@@ -11,6 +12,12 @@ export default function App() {
 
   return (
     <St.MobileContainer>
+      <Helmet>
+        <meta property="og:title" content="내친소, 내 친구를 소개합니다" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://recommend.naechinso.com/" />
+        <meta property="og:description" content="친구를 소개해준다구? 어떤 친구야?👀" />
+      </Helmet>
       <Router />
     </St.MobileContainer>
   );
