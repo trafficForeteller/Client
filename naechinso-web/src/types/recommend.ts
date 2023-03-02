@@ -9,6 +9,7 @@ export interface IPatchFriendDetail {
   appealDetail: string | null;
   appeals: string[] | null;
   dontGo: string | null;
+  priceType: string | null;
 }
 
 export interface IPostRecommendElement {

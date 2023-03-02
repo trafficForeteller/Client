@@ -118,7 +118,7 @@ export async function getCheckPrice(
   accessToken: string | null,
   uuid: string | null,
   onSuccess: (userData: IGetCheckPrice) => void,
-  onFail: () => void,
+  onFail: (errorMessage: string) => void,
   onReissue: () => void,
 ): Promise<void | null> {
   try {
@@ -129,7 +129,7 @@ export async function getCheckPrice(
   } catch (err) {
     if (err instanceof AxiosError) {
       if (err.response?.data.status === 401) onReissue();
-      else onFail();
+      else onFail(err.message);
     }
   }
 }

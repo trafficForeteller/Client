@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postMemberReissue } from "../../apis/member.api";
-import { patchRecommendFriendDetail } from "../../apis/recommend.api";
+import { getCheckPrice, patchRecommendFriendDetail } from "../../apis/recommend.api";
 import { IcDontGo } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
-import { IPatchFriendDetail } from "../../types/recommend";
+import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
 import { FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
 
 export default function DontGoPage() {
@@ -16,6 +16,7 @@ export default function DontGoPage() {
     appealDetail: "",
     appeals: [],
     dontGo: "",
+    priceType: "",
   });
   const navigate = useNavigate();
 
@@ -37,6 +38,47 @@ export default function DontGoPage() {
       dontGo: localStorage.getItem("dontGo"),
     });
   }, [text]);
+
+  useEffect(() => {
+    if (patchRecommend.priceType !== "") handlePatchRecommend();
+  }, [patchRecommend]);
+
+  const handleGetCheckPrice = async () => {
+    // 상품을 받을 수 있는 추천사인지 확인
+    await getCheckPrice(
+      localStorage.getItem("accessToken"),
+      localStorage.getItem("uuid"),
+      handleSuccessGetCheckPrice,
+      handleFailRequest,
+      handleReissueGetCheckPrice,
+    );
+  };
+
+  const handleSuccessGetCheckPrice = (userData: IGetCheckPrice) => {
+    if (userData.isPrice === false) {
+      setPatchRecommend({
+        ...patchRecommend,
+        priceType: "NONE",
+      });
+    } else if (userData.isPrice === true && userData.isShowRecommend === true) {
+      setPatchRecommend({
+        ...patchRecommend,
+        priceType: "SUNGURI",
+      });
+    } else if (userData.isPrice === true && userData.isShowRecommend === false) {
+      navigate(routePaths.ChooseGift, { state: { patchRecommend } });
+    }
+  };
+
+  const handleReissueGetCheckPrice = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    handleGetCheckPrice();
+  };
 
   const handlePatchRecommend = async () => {
     // keyword, appealDetail, dontGo POST 성공할 시
@@ -68,8 +110,7 @@ export default function DontGoPage() {
 
   const handleSuccessPatchRecommend = () => {
     // 추천사 PATCH 성공할 시
-    if (localStorage.getItem("landingUrl") === "landing") navigate(routePaths.ChooseGift);
-    else navigate(routePaths.Finish);
+    navigate(routePaths.Finish);
   };
 
   const handleTextCheck = () => {
@@ -103,7 +144,7 @@ export default function DontGoPage() {
         />
       </St.TextWrapper>
 
-      <MoveNextPageBtn title="완료" disabled={!textCheck} handleState={handlePatchRecommend} />
+      <MoveNextPageBtn title="완료" disabled={!textCheck} handleState={handleGetCheckPrice} />
     </St.DontGo>
   );
 }
@@ -125,7 +166,7 @@ const St = {
     align-items: center;
   `,
   TextWrapper: styled.section`
-    margin-top: 21rem;
+    margin-top: 23rem;
     padding: 0 2rem;
   `,
 };
