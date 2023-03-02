@@ -42,3 +42,8 @@ export interface IGetReommend {
   dontGo: string;
   recommendQuestion: IPostRecommendElement[];
 }
+
+export interface IGetCheckPrice {
+  isPrice: boolean;
+  isShowRecommend: boolean;
+}
