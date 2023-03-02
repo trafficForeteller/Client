@@ -1,6 +1,13 @@
 // eslint-disable-next-line
 import { AxiosError } from "axios";
-import { IGetReommend, IPatchFriendDetail, IPostFriendInfo, IPostRecommend, IUuid } from "../types/recommend";
+import {
+  IGetCheckPrice,
+  IGetReommend,
+  IPatchFriendDetail,
+  IPostFriendInfo,
+  IPostRecommend,
+  IUuid,
+} from "../types/recommend";
 
 import { serverAxios } from ".";
 
@@ -103,6 +110,26 @@ export async function getRecommend(
   } catch (err) {
     if (err instanceof Error) {
       onFail();
+    }
+  }
+}
+
+export async function getCheckPrice(
+  accessToken: string | null,
+  uuid: string | null,
+  onSuccess: (userData: IGetCheckPrice) => void,
+  onFail: (errorMessage: string) => void,
+  onReissue: () => void,
+): Promise<void | null> {
+  try {
+    const { data } = await serverAxios.get(`${PREFIX_URL}/${uuid}/check-price`, {
+      headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
+    });
+    onSuccess(data.data);
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      if (err.response?.data.status === 401) onReissue();
+      else onFail(err.message);
     }
   }
 }

@@ -92,7 +92,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
 
   const isPendingStatus = async () => {
     // 펜딩 상태 GET
-    if (localStorage.getItem("edit")) {
+    if (localStorage.getItem("landingUrl") === "edit") {
       const userData = await getPendingStatus(localStorage.getItem("accessToken"));
       if (userData[0]) {
         if (userData[0].pendingStatus === "reject" && userData[0].type === "JOB") {

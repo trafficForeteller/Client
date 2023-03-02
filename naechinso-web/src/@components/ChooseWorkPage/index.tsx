@@ -8,7 +8,7 @@ export default function ChooseWorkPage() {
   const navigate = useNavigate();
 
   return (
-    <St.ChooseWork>
+    <St.ChooseWorkPage>
       <FixedHeader header="추천인 소개" progressRate={50} title1="😎" title2="일을 하고 있어?" />
 
       <St.ButtonWrapper>
@@ -22,12 +22,12 @@ export default function ChooseWorkPage() {
           일을 쉬고 있어 / 준비 중이야
         </St.ChooseWorkButton>
       </St.ButtonWrapper>
-    </St.ChooseWork>
+    </St.ChooseWorkPage>
   );
 }
 
 const St = {
-  ChooseWork: styled.main`
+  ChooseWorkPage: styled.main`
     padding: 19rem 2rem 0;
   `,
   ButtonWrapper: styled.section`

@@ -9,6 +9,7 @@ export interface IPatchFriendDetail {
   appealDetail: string | null;
   appeals: string[] | null;
   dontGo: string | null;
+  priceType: string | null;
 }
 
 export interface IPostRecommendElement {
@@ -41,4 +42,9 @@ export interface IGetReommend {
   appealDetail: string;
   dontGo: string;
   recommendQuestion: IPostRecommendElement[];
+}
+
+export interface IGetCheckPrice {
+  isPrice: boolean;
+  isShowRecommend: boolean;
 }
