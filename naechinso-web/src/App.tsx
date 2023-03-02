@@ -17,6 +17,7 @@ export default function App() {
         <meta name="description" content="친구를 소개해준다구? 어떤 친구야?👀" />
         <meta property="og:title" content="내친소, 내 친구를 소개합니다" />
         <meta property="og:description" content="친구를 소개해준다구? 어떤 친구야?👀" />
+        <meta property="og:url" content="https://recommend.naechinso.com/" />
       </Helmet>
       <Router />
     </St.MobileContainer>
