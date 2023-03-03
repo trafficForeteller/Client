@@ -82,13 +82,7 @@ export default function ChooseGiftPage() {
 
   return (
     <St.ChooseGiftPage>
-      <FixedHeader
-        header="추천인 보상"
-        progressRate={98}
-        title1="🎁"
-        title2="친구를 추천해서"
-        title3="받고 싶은 선물은 뭐야?"
-      />
+      <FixedHeader header="추천인 보상" progressRate={98} title1="🎁" title2="받고 싶은 선물을 선택해줘!" />
 
       <St.ButtonWrapper>
         <St.ChooseWorkButton type="button" onClick={handleChooseSunguri}>
