@@ -263,7 +263,7 @@ export default function FriendInfoPage() {
 
       {localStorage.getItem("member-uuid") === null && step >= 4 ? (
         <PhoneNumInputBox
-          label="친구의 휴대폰 번호"
+          label="내 친구의 휴대폰 번호"
           placeholder="0000 0000"
           phoneNum={phoneNum}
           setPhoneNum={setPhoneNum}
@@ -310,8 +310,8 @@ export default function FriendInfoPage() {
       )}
 
       <ShortInputBox
-        label="친구 이름"
-        placeholder="실명을 적어줘. 이름 가운데는 *처리돼"
+        label="내 친구 이름"
+        placeholder="친구 이름을 실명으로 적어줘"
         value={name}
         onChange={handleNameInput}
         isModalOpened={isModalOpened}

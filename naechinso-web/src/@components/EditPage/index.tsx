@@ -26,6 +26,7 @@ export default function EditPage() {
     localStorage.removeItem("genderTypeList");
     localStorage.removeItem("uuid");
     localStorage.removeItem("landingUrl");
+    localStorage.removeItem("recommenderName");
 
     if (location.pathname.length === 37) localStorage.setItem("member-uuid", location.pathname);
     else if (location.pathname.startsWith("/edit")) localStorage.setItem("landingUrl", "edit");

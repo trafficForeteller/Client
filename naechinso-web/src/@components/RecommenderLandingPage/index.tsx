@@ -23,7 +23,7 @@ export default function RecommenderLandingPage() {
           <St.Title>
             딱 <St.Highlight>5분</St.Highlight>만 투자해서
           </St.Title>
-          <St.Title>소중한 친구를 자랑해줘!</St.Title>
+          <St.Title>소중한 친구를 소개해줘!</St.Title>
         </St.TitleWrapper>
 
         <St.Desc>
@@ -32,7 +32,7 @@ export default function RecommenderLandingPage() {
         <St.Desc> {RecommendLandingList[0].desc2}</St.Desc>
         <St.Desc> {RecommendLandingList[0].desc3}</St.Desc>
       </St.Bottom>
-      <MoveNextPageBtn nextPage={routePaths.RecommenderInfo} title="추천사 작성 시작하기" disabled={false} />
+      <MoveNextPageBtn nextPage={routePaths.RecommenderInfo} title="내 소개 하기" disabled={false} />
     </St.RecommendLandingPage>
   );
 }

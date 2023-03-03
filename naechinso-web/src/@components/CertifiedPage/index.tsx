@@ -109,7 +109,10 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     const userData = await getMemberStatus(localStorage.getItem("accessToken"));
     if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE")
       navigate(routePaths.RecommenderLanding);
-    else navigate(routePaths.RecommendLanding);
+    else {
+      userData && localStorage.setItem("recommenderName", userData.name);
+      navigate(routePaths.RecommendLanding);
+    }
   };
 
   const verifyAuthNum = async (postAuthNum: IPostVerifyPhoneNumber) => {
@@ -165,7 +168,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
 
       <St.ButtonWrapper inputActive={inputActive}>
         <St.Button onClick={() => navigate(routePaths.RecommenderLanding)} disabled={inputActive} type="button">
-          완료
+          인증하기
         </St.Button>
       </St.ButtonWrapper>
 

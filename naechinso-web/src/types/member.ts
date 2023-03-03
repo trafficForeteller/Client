@@ -53,4 +53,5 @@ export interface IPatchJob {
 export interface IGetMemberStatus {
   jobAccepted: string;
   eduAccepted: string;
+  name: string;
 }

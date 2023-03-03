@@ -67,7 +67,7 @@
       "--disable-setuid-sandbox"
     ],
     "include": [
-      "/naechinso-app","/"
+      "/naechinso-app","/arrive","/"
     ]
   }
 }

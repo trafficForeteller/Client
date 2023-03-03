@@ -9,7 +9,7 @@ export default function NameInputBox(props: ShortInputProps) {
   const { name, handleNameInput } = props;
   return (
     <St.NameInputBox>
-      <St.Label>이름</St.Label>
+      <St.Label>내 이름</St.Label>
       <St.Input placeholder="실명을 적어줘(중간 자리는 *처리돼)" onChange={(e) => handleNameInput(e)} value={name} />
     </St.NameInputBox>
   );

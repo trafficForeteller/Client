@@ -31,7 +31,7 @@ export default function SecondRecommendPage() {
     setPostRecommend({
       recommendQuestions: [
         {
-          recommendQuestion: "친구에 대해 더 자랑하고 싶은 점을 자유롭게 적어줘😃",
+          recommendQuestion: "친구에 대해 더 소개하고 싶은 점을 자유롭게 적어줘😃",
           recommendAnswer: secondRecommend,
         },
       ],

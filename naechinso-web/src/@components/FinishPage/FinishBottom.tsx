@@ -25,12 +25,13 @@ export default function FinishBottom() {
     localStorage.removeItem("uuid");
     localStorage.removeItem("member-uuid");
     localStorage.removeItem("landingUrl");
+    localStorage.removeItem("recommenderName");
   };
 
   return (
     <St.FinishBottom>
       <St.Title>
-        <St.HighLight>다른 친구</St.HighLight>도 소개해보는 건 어때?
+        <St.HighLight>다른 친구</St.HighLight>도 소개해 볼래?👀
       </St.Title>
       <St.Title>자기소개는 입력하지 않아도 돼😀</St.Title>
       <St.NextStepBtn type="button" onClick={handleMoveRecommendLanding}>

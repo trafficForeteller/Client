@@ -21,7 +21,10 @@ export default function LandingPage() {
       const userData = await getMemberStatus(localStorage.getItem("accessToken"));
       if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE")
         navigate(routePaths.RecommenderLanding);
-      else navigate(routePaths.RecommendLanding);
+      else {
+        userData && localStorage.setItem("recommenderName", userData.name);
+        navigate(routePaths.RecommendLanding);
+      }
     } else navigate(routePaths.PhoneNum);
   };
 

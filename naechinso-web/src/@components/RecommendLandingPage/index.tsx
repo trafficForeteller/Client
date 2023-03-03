@@ -5,12 +5,14 @@ import { routePaths } from "../../core/routes/path";
 import { MoveNextPageBtn } from "../@common";
 
 export default function RecommenderLandingPage() {
+  const recommenderName = localStorage.getItem("recommenderName");
+
   return (
     <St.RecommendLandingPage>
       <St.CommentBox>
         <St.Naechinso src={ImgCommentNaechinso} alt="내친소" />
         <St.CommentWrapper>
-          <St.Comment>네 친구라면...</St.Comment>
+          <St.Comment>{recommenderName}의 친구라면...</St.Comment>
           <St.Comment>분명 멋있겠지? 😘</St.Comment>
           <St.Comment>너무 기대된다!</St.Comment>
           <St.Comment>
@@ -23,13 +25,15 @@ export default function RecommenderLandingPage() {
 
       <St.Bottom>
         <St.TitleWrapper>
-          <St.Title>이제 친구를 자랑해볼까?</St.Title>
+          <St.Title>이제 친구를 소개해볼까?</St.Title>
         </St.TitleWrapper>
 
-        <St.Desc>잠깐만 시간내서 친구에 대해</St.Desc>
-        <St.Desc> 소개해줄 수 있을까?</St.Desc>
+        <St.Desc>
+          지금은 수도권에 거주하는 <St.Highlight>89~99년도생</St.Highlight>만
+        </St.Desc>
+        <St.Desc>내친소를 이용할 수 있어!</St.Desc>
       </St.Bottom>
-      <MoveNextPageBtn nextPage={routePaths.FriendInfo} title="추천사 작성 시작하기" disabled={false} />
+      <MoveNextPageBtn nextPage={routePaths.FriendInfo} title="내 친구 추천하기" disabled={false} />
     </St.RecommendLandingPage>
   );
 }

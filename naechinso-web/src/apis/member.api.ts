@@ -105,7 +105,7 @@ export async function getMemberStatus(accessToken: string | null): Promise<IGetM
       headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
     if (data.status === 200) {
-      return { jobAccepted: data.data.jobAccepted, eduAccepted: data.data.eduAccepted };
+      return { jobAccepted: data.data.jobAccepted, eduAccepted: data.data.eduAccepted, name: data.data.name };
     }
   } catch (err) {
     console.log(err);
