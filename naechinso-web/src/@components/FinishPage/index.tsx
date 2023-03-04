@@ -11,38 +11,19 @@ export default function FinishPage() {
     }
   }, []);
 
-  const handleCopyClipBoard = async () => {
-    try {
-      await navigator.clipboard.writeText("https://naechinso.page.link/dynamic");
-      alert("클립보드에 링크가 복사되었습니다.");
-    } catch (e) {
-      alert("복사에 실패하였습니다");
-    }
-  };
+  const shareRecommendLinnk = () => {
+    const recommenderName = localStorage.getItem("recommenderName");
 
-  const shareKakaoMessage = () => {
-    // 카카오톡 메시지 공유하기
-    window.Kakao.Share.sendDefault({
-      objectType: "feed",
-      content: {
-        title: "내친소 자기소개 쓰러 갈래?",
-        description: "내 친구가 작성한 추천사가 도착했어!🎉",
-        imageUrl: "https://naechinso.s3.ap-northeast-2.amazonaws.com/static/letter_chinso.png",
-        link: {
-          mobileWebUrl: "https://recommend.naechinso.com/arrive",
-          webUrl: "https://recommend.naechinso.com/arrive",
-        },
-      },
-      buttons: [
-        {
-          title: "내친소 시작하기",
-          link: {
-            mobileWebUrl: "https://recommend.naechinso.com/arrive",
-            webUrl: "https://recommend.naechinso.com/arrive",
-          },
-        },
-      ],
-    });
+    if (navigator.share) {
+      navigator
+        .share({
+          title: `${recommenderName} 친구가 너를 추천했어!`,
+          text: `${recommenderName} 친구가 너에 대한 추천사 작성을 완료했어!🎉내친소는 너처럼 실제 친구에게 추천을 받은, 주변에서 신뢰받고 애정받은 사람들만 가입할 수 있는 지인소개팅 서비스야! (너는 복받았다! 이런 좋은 친구를 두다니!) 이제 너가 할 일은 간단한 자기소개만 하면 끝!😎 내친소에서 너만큼 멋진 친구들을 만나러 가볼까?`,
+          url: "https://recommend.naechinso.com/arrive",
+        })
+        .then(() => console.log("공유 성공"))
+        .catch((error) => console.log("공유 실패", error));
+    }
   };
 
   return (
@@ -62,8 +43,8 @@ export default function FinishPage() {
       </St.ImgWrapper>
 
       <St.ShareBtnWrapper>
-        <St.ShareBtnLabel> 🔗 친구에게 링크를 보내봐</St.ShareBtnLabel>
-        <St.ShareBtn type="button" onClick={shareKakaoMessage}>
+        <St.ShareBtnLabel>🔗 친구에게 링크를 보내봐</St.ShareBtnLabel>
+        <St.ShareBtn type="button" onClick={shareRecommendLinnk}>
           초대 링크 공유하기
         </St.ShareBtn>
       </St.ShareBtnWrapper>
