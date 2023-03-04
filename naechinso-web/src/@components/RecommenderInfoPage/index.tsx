@@ -119,7 +119,7 @@ export default function RecommenderInfoPage() {
 
       <SheildBox desc="이름 가운데는 *처리 되니 안심해! (ex. 김*민, 박*)" />
       <NameInputBox name={name} handleNameInput={handleNameInput} />
-
+      <St.NameWarning>소개해 주고 싶은 친구 이름이 아니라 너의 이름을 적어줘</St.NameWarning>
       <St.ChooseGender>
         <St.GenderWrapper
           type="button"
@@ -149,6 +149,11 @@ export default function RecommenderInfoPage() {
 const St = {
   RecommenderInfo: styled.main<{ index: number }>`
     padding: ${({ index }) => (index === 0 ? "26rem" : "23rem")} 2rem 0;
+  `,
+  NameWarning: styled.article`
+    color: ${({ theme }) => theme.colors.gray50};
+    ${({ theme }) => theme.fonts.caption5}
+    margin: 0.2rem 1rem 0;
   `,
   ChooseGender: styled.section`
     display: flex;
