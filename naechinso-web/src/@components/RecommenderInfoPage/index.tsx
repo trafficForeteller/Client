@@ -106,7 +106,7 @@ export default function RecommenderInfoPage() {
   };
 
   return (
-    <St.RecommenderInfo index={index}>
+    <St.RecommenderInfo>
       <FixedHeader
         header="추천인 소개"
         progressRate={20}
@@ -147,8 +147,8 @@ export default function RecommenderInfoPage() {
 }
 
 const St = {
-  RecommenderInfo: styled.main<{ index: number }>`
-    padding: ${({ index }) => (index === 0 ? "26rem" : "23rem")} 2rem 0;
+  RecommenderInfo: styled.main`
+    padding: 23rem 2rem 0;
   `,
   NameWarning: styled.article`
     color: ${({ theme }) => theme.colors.gray50};
