@@ -110,6 +110,7 @@ export default function DontGoPage() {
 
   const handleSuccessPatchRecommend = () => {
     // 추천사 PATCH 성공할 시
+    localStorage.setItem("priceType", patchRecommend.priceType);
     navigate(routePaths.Finish);
   };
 

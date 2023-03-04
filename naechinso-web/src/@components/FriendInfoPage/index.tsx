@@ -215,6 +215,7 @@ export default function FriendInfoPage() {
     localStorage.removeItem("keywordList");
     localStorage.removeItem("checkedQ1");
     localStorage.removeItem("questionList");
+    localStorage.removeItem("priceType");
     navigate(routePaths.Keyword);
   };
 

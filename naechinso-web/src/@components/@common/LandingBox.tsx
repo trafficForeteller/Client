@@ -31,6 +31,7 @@ export default function LandingBox(props: LandingBoxProps) {
     localStorage.removeItem("uuid");
     localStorage.removeItem("landingUrl");
     localStorage.removeItem("recommenderName");
+    localStorage.removeItem("priceType");
 
     if (location.pathname.length === 37) localStorage.setItem("member-uuid", location.pathname);
     else if (location.pathname.startsWith("/edit")) localStorage.setItem("landingUrl", "edit");
