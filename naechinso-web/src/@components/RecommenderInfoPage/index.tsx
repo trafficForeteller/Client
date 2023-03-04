@@ -113,8 +113,8 @@ export default function RecommenderInfoPage() {
         title1={RecommenderInfoList[index].title1}
         title2={RecommenderInfoList[index].title2}
         title3={index === 0 ? RecommenderInfoList[index].title3 : ""}
-        subTitle1="추천인 정보를 밝히며 친구를 추천하면"
-        subTitle2="친구의 매칭률에 더 도움될 거야"
+        subTitle1="네 정보를 밝히며 친구를 추천하면"
+        subTitle2="이 친구에게 엄청난 신뢰가 더해질거야"
       />
 
       <SheildBox desc="이름 가운데는 *처리 되니 안심해! (ex. 김*민, 박*)" />
