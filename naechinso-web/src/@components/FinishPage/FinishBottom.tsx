@@ -33,7 +33,6 @@ export default function FinishBottom() {
       <St.Title>
         <St.HighLight>다른 친구</St.HighLight>도 소개해 볼래?👀
       </St.Title>
-      <St.Title>자기소개는 입력하지 않아도 돼😀</St.Title>
       <St.NextStepBtn type="button" onClick={handleMoveRecommendLanding}>
         다른 친구 소개하러 가기
       </St.NextStepBtn>
@@ -48,6 +47,7 @@ const St = {
   FinishBottom: styled.footer`
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 20px 20px 0px 0px;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.15);
 
     position: fixed;
     margin: 0 auto;
@@ -75,11 +75,11 @@ const St = {
     ${({ theme }) => theme.fonts.sub2};
   `,
   NextStepBtn: styled.button`
-    background-color: ${({ theme }) => theme.colors.orange};
-    color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
+    background-color: ${({ theme }) => theme.colors.orange20};
+    color: ${({ theme }) => theme.colors.orange};
+    ${({ theme }) => theme.fonts.body3};
     width: 100%;
-    height: 5.6rem;
+    height: 4.4rem;
     border-radius: 1.6rem;
 
     display: flex;
@@ -91,6 +91,6 @@ const St = {
   `,
   MoveLandingBtn: styled.button`
     color: ${({ theme }) => theme.colors.gray70};
-    ${({ theme }) => theme.fonts.body2};
+    ${({ theme }) => theme.fonts.body9};
   `,
 };

@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 
-import { IcCopy, IcKakaotalk } from "../../asset/icons";
-import { ImgFinishNaechinso } from "../../asset/image";
+import { IcFinishSunguri } from "../../asset/icons";
 import FinishBottom from "./FinishBottom";
 
 export default function Finish() {
@@ -49,25 +48,19 @@ export default function Finish() {
   return (
     <St.Finish>
       <St.TitleWrapper>
-        <St.Naechinso src={ImgFinishNaechinso} alt="내친소" />
-        <St.Title>추천사 작성이 완료됐어!🙌</St.Title>
+        <St.Title>추천사 너무 좋다😉</St.Title>
+        <St.Title>이제 링크를 친구에게 전달해 봐! </St.Title>
       </St.TitleWrapper>
-      <St.DescWrapper>
-        <St.Desc>아래의 링크를 친구에게 전달해봐!</St.Desc>
-        <St.Desc>친구가 자기소개를 할 수 있을 거야.</St.Desc>
-      </St.DescWrapper>
+      <St.ImgWrapper>
+        <IcFinishSunguri />
+      </St.ImgWrapper>
 
-      <St.CopyLinkBox type="button" onClick={handleCopyClipBoard}>
-        <St.Label>초대링크</St.Label>
-        <St.CopyLinkWrapper>
-          <St.CopyLink>https://naechinso.page.link...</St.CopyLink>
-          <IcCopy />
-        </St.CopyLinkWrapper>
-      </St.CopyLinkBox>
-      <St.ShareKakaotalkBtn type="button" onClick={shareKakaoMessage}>
-        <IcKakaotalk />
-        카카오톡으로 공유
-      </St.ShareKakaotalkBtn>
+      <St.ShareBtnWrapper>
+        <St.ShareBtnLabel> 🔗 친구에게 링크를 보내봐</St.ShareBtnLabel>
+        <St.ShareBtn type="button" onClick={shareKakaoMessage}>
+          초대 링크 공유하기
+        </St.ShareBtn>
+      </St.ShareBtnWrapper>
 
       <FinishBottom />
     </St.Finish>
@@ -78,7 +71,6 @@ const St = {
   Finish: styled.main`
     width: 100%;
     height: 100%;
-    background-color: ${({ theme }) => theme.colors.neural};
 
     display: flex;
     flex-direction: column;
@@ -92,64 +84,49 @@ const St = {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
-  `,
-  Naechinso: styled.img`
-    width: 4rem;
-    height: 4rem;
   `,
   Title: styled.h2`
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.head1};
   `,
-  DescWrapper: styled.section`
+  ImgWrapper: styled.section`
     width: 100%;
-    margin-top: 2rem;
-    margin-bottom: 1.6rem;
+    height: 13rem;
+    background-color: ${({ theme }) => theme.colors.neural};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+
+    margin: 2rem 0 1.6rem;
   `,
-  Desc: styled.p`
-    color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.body2};
-  `,
-  CopyLinkBox: styled.button`
+  ShareBtnWrapper: styled.section`
     width: 100%;
-    height: 8rem;
-    background-color: #e5e2da;
-    padding: 1.2rem 1.6rem 1.6rem 1.6rem;
+    border: 0.5px solid #cccccc;
+    border-radius: 16px;
+    padding: 1.8rem 1.2rem 1.6rem;
+    gap: 1.6rem;
+
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    border-radius: 16px;
-    cursor: pointer;
+    align-items: center;
   `,
-  Label: styled.label`
-    color: ${({ theme }) => theme.colors.gray50};
+  ShareBtnLabel: styled.p`
+    color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.body2};
   `,
-  CopyLinkWrapper: styled.div`
-    color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.sub4};
+  ShareBtn: styled.button`
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  `,
-  CopyLink: styled.p``,
-  ShareKakaotalkBtn: styled.button`
-    width: 100%;
-    height: 5.6rem;
-    background-color: #fee500;
-    color: #391b1b;
-    ${({ theme }) => theme.fonts.sub4};
+    height: 5.2rem;
+    background-color: ${({ theme }) => theme.colors.orange};
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.body1};
 
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1.2rem;
 
     border-radius: 16px;
     cursor: pointer;
-
-    margin-top: 1.2rem;
   `,
 };
