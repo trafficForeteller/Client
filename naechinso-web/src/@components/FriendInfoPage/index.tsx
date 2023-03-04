@@ -13,7 +13,7 @@ import {
 } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IGetReommend, IPostFriendInfo, IUuid } from "../../types/recommend";
-import { ShortInputBox, Title } from "../@common";
+import { ShortInputBox } from "../@common";
 import FriendInfoHeader from "./FriendInfoHeader";
 import PhoneNumInputBox from "./PhoneNumInput";
 import RelationTypeInput from "./RecommendTypeInput";
@@ -35,6 +35,7 @@ export default function FriendInfoPage() {
   const [relationDuration, setRelationDuration] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
   const [postPhoneNum, setPostPhoneNum] = useState({ phoneNumber: "" });
+  const memberName = localStorage.getItem("memberName");
 
   const [postFriendInfo, setPostFriendInfo] = useState<IPostFriendInfo>({
     phone: "",
@@ -43,7 +44,6 @@ export default function FriendInfoPage() {
     period: "",
   });
   const [postMagicFriendInfo, setPostMagicFriendInfo] = useState<IPostFriendInfo>({
-    name: "",
     meet: "",
     period: "",
   });
@@ -89,15 +89,24 @@ export default function FriendInfoPage() {
     } else {
       resetListChecked(relationTypeList);
       resetListChecked(relationDurationList);
+      if (memberName) {
+        setStep(2);
+      }
     }
   }, []);
 
   useEffect(() => {
     // step에 따른 ActiveButton 활성화
-    if (step === 1 && name.length >= 2) setActiveBtn(true);
-    else if (step === 2 && name.length >= 2 && relationType) setActiveBtn(true);
-    else if (step === 3 && name.length >= 2 && relationType && relationDuration) setActiveBtn(true);
+    if (memberName) {
+      if (step === 2 && relationType) setActiveBtn(true);
+      else if (step === 3 && relationType && relationDuration) setActiveBtn(true);
+    } else {
+      if (step === 1 && name.length >= 2) setActiveBtn(true);
+      else if (step === 2 && name.length >= 2 && relationType) setActiveBtn(true);
+      else if (step === 3 && name.length >= 2 && relationType && relationDuration) setActiveBtn(true);
+    }
   }, [name, relationType, relationDuration]);
+
   useEffect(() => {
     checkIsModalOpened();
   }, [isTypeModalOpened, isDurationModalOpened]);
@@ -107,7 +116,7 @@ export default function FriendInfoPage() {
     window.scrollTo(0, 0);
     if (step === 2) setIsTypeModalOpened(true);
     else if (step === 3) setIsDurationModalOpened(true);
-    else if (step === 4 && localStorage.getItem("member-uuid")) {
+    else if (step === 4 && memberName) {
       handleMagicFriendInfo();
     } else if (step === 5) {
       handleFriendInfo();
@@ -216,6 +225,8 @@ export default function FriendInfoPage() {
     localStorage.removeItem("checkedQ1");
     localStorage.removeItem("questionList");
     localStorage.removeItem("priceType");
+    localStorage.removeItem("memberName");
+
     navigate(routePaths.Keyword);
   };
 
@@ -257,10 +268,21 @@ export default function FriendInfoPage() {
   return (
     <St.FriendInfoPage isModalOpened={isModalOpened}>
       <FriendInfoHeader setIsModalOpened={setIsModalOpened} />
-      <St.TitleWrapper>
-        <Title title="어떤 친구를 소개해줄거야?" />
-        <Title title="너무 궁금해!👀" />
-      </St.TitleWrapper>
+      <St.Title>
+        {memberName !== null ? (
+          <>
+            🤭
+            <br />
+            너는 {memberName}(이)랑은
+            <br /> 어떤 사이야?
+          </>
+        ) : (
+          <>
+            어떤 친구를 소개해줄거야? <br />
+            너무 궁금해!👀
+          </>
+        )}
+      </St.Title>
 
       {localStorage.getItem("member-uuid") === null && step >= 4 ? (
         <PhoneNumInputBox
@@ -310,15 +332,17 @@ export default function FriendInfoPage() {
         <></>
       )}
 
-      <ShortInputBox
-        label="내 친구 이름"
-        placeholder="친구 이름을 실명으로 적어줘"
-        value={name}
-        onChange={handleNameInput}
-        isModalOpened={isModalOpened}
-        step={step}
-        handleStep={handleStep}
-      />
+      {!memberName && (
+        <ShortInputBox
+          label="내 친구 이름"
+          placeholder="친구 이름을 실명으로 적어줘"
+          value={name}
+          onChange={handleNameInput}
+          isModalOpened={isModalOpened}
+          step={step}
+          handleStep={handleStep}
+        />
+      )}
       <St.Blank></St.Blank>
       <St.NextStepBtnWrapper>
         <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep} isModalOpened={isModalOpened}>
@@ -339,10 +363,13 @@ const St = {
     height: 100%;
     padding: 9rem 2rem;
   `,
-  TitleWrapper: styled.hgroup`
+  Title: styled.h1`
     margin-bottom: 2.4rem;
     position: relative;
     z-index: -1;
+
+    ${({ theme }) => theme.fonts.head1};
+    color: ${({ theme }) => theme.colors.black};
   `,
   Blank: styled.div`
     height: 13rem;

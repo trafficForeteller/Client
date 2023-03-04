@@ -1,11 +1,40 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 
+import { getUserName, postMemberReissue } from "../../apis/member.api";
 import { ImgCommentNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { MoveNextPageBtn } from "../@common";
 
 export default function RecommenderLandingPage() {
   const recommenderName = localStorage.getItem("recommenderName");
+
+  useEffect(() => {
+    localStorage.getItem("member-uuid") && handleGetUserName();
+  }, []);
+
+  const handleGetUserName = async () => {
+    await getUserName(
+      localStorage.getItem("accessToken"),
+      localStorage.getItem("member-uuid"),
+      handleSuccessGetUserName,
+      handleReissueGetUserName,
+    );
+  };
+
+  const handleSuccessGetUserName = (userName: string) => {
+    localStorage.setItem("memberName", userName);
+  };
+
+  const handleReissueGetUserName = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    handleGetUserName();
+  };
 
   return (
     <St.RecommendLandingPage>

@@ -27,6 +27,7 @@ export default function FinishBottom() {
     localStorage.removeItem("landingUrl");
     localStorage.removeItem("recommenderName");
     localStorage.removeItem("priceType");
+    localStorage.removeItem("memberName");
   };
 
   return (

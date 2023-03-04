@@ -112,3 +112,21 @@ export async function getMemberStatus(accessToken: string | null): Promise<IGetM
     throw new Error("Failed to post job Data");
   }
 }
+
+export async function getUserName(
+  accessToken: string | null,
+  memberUuid: string | null,
+  onSuccess: (userData: string) => void,
+  onReissue: () => void,
+): Promise<void | undefined> {
+  try {
+    const { data } = await serverAxios.get(`${PREFIX_URL}/name/${memberUuid}`, {
+      headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
+    });
+    onSuccess(data.data.name);
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      if (err.response?.data.status === 401) onReissue();
+    }
+  }
+}
