@@ -11,4 +11,5 @@ export { default as ImgLandingNaechinso } from "./landingNaechinso.png";
 export { default as ImgPendingNaechinso } from "./pendingNaechinso.png";
 export { default as ImgRecommenderLanding } from "./recommenderLanding.png";
 export { default as ImgRecommendLanding } from "./recommendLanding.png";
+export { default as ImgSelfIntroNaechinso } from "./selfIntroNaechinso.png";
 export { default as ImgWarningNaechinso } from "./warningNaechinso.png";

@@ -120,7 +120,7 @@ export async function getUserName(
   onReissue: () => void,
 ): Promise<void | undefined> {
   try {
-    const { data } = await serverAxios.get(`${PREFIX_URL}/name/${memberUuid}`, {
+    const { data } = await serverAxios.get(`${PREFIX_URL}/name${memberUuid}`, {
       headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
     onSuccess(data.data.name);
