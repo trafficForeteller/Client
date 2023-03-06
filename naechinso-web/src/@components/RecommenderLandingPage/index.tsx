@@ -15,7 +15,7 @@ export default function RecommenderLandingPage() {
 
   return (
     <>
-      <St.RecommendLandingPage isModalOpened={isModalOpened}>
+      <St.RecommendLandingPage>
         <St.CommentBox>
           <St.Naechinso src={ImgCommentNaechinso} alt="내친소" />
           <St.CommentWrapper>
@@ -43,19 +43,22 @@ export default function RecommenderLandingPage() {
         <MoveNextPageBtn title="추천사 작성 시작하기" disabled={false} handleState={handleModalOpen} />
       </St.RecommendLandingPage>
 
-      {isModalOpened && <AgreeSelfIntroModal />}
+      {isModalOpened && (
+        <>
+          <AgreeSelfIntroModal />
+          <St.BackDrop />
+        </>
+      )}
     </>
   );
 }
 
 const St = {
-  RecommendLandingPage: styled.main<{ isModalOpened: boolean }>`
+  RecommendLandingPage: styled.main`
     width: 100%;
     height: 100%;
-    /* background-color: rgba(${({ isModalOpened }) => (isModalOpened ? "0, 0, 0, 0.64" : "229, 229, 229, 0.3")});
-    position: ${({ isModalOpened }) => (isModalOpened ? "absolute" : "")};
-    top: ${({ isModalOpened }) => (isModalOpened ? "0" : "")};
-    left: ${({ isModalOpened }) => (isModalOpened ? "0" : "")}; */
+    background-color: ${({ theme }) => theme.colors.neural};
+    z-index: 2;
 
     padding-top: 30%;
     @media only screen and (max-height: 680px) {
@@ -119,5 +122,13 @@ const St = {
   `,
   Highlight: styled.b`
     color: ${({ theme }) => theme.colors.orange};
+  `,
+  BackDrop: styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.64);
+    position: absolute;
+    top: 0;
+    left: 0;
   `,
 };
