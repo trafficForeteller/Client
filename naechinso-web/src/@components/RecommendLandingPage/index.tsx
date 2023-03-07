@@ -6,7 +6,7 @@ import { ImgCommentNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { MoveNextPageBtn } from "../@common";
 
-export default function RecommenderLandingPage() {
+export default function RecommendLandingPage() {
   const recommenderName = localStorage.getItem("recommenderName");
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function RecommenderLandingPage() {
       <St.CommentBox>
         <St.Naechinso src={ImgCommentNaechinso} alt="내친소" />
         <St.CommentWrapper>
-          <St.Comment>{recommenderName}의 친구라면...</St.Comment>
+          <St.Comment>{recommenderName ? recommenderName : "너"}의 친구라면...</St.Comment>
           <St.Comment>분명 멋있겠지? 😘</St.Comment>
           <St.Comment>너무 기대된다!</St.Comment>
           <St.Comment>
