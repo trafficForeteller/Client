@@ -159,7 +159,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
           <St.UploadImage src={certifiedImg} alt="인증사진" />
         ) : (
           <>
-            <IcPlus />
+            <IcPlus aria-label="사진 업로드" />
             사진 인증하기
           </>
         )}

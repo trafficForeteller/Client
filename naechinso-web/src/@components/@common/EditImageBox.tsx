@@ -81,7 +81,7 @@ export default function EditImageBox(props: EditImageBoxProps) {
           <></>
         ) : (
           <St.DarkImg>
-            <IcPlusWhite />
+            <IcPlusWhite aria-label="사진 추가 버튼" />
             사진 변경하기
           </St.DarkImg>
         )}

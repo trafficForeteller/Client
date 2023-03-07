@@ -18,7 +18,7 @@ export default function RelationToggle(props: RelationToggleProps) {
       <St.Label>{label}</St.Label>
       <St.InputWrapper>
         <St.Input placeholder={placeholder} value={value} readOnly />
-        <IcToggleArrow />
+        <IcToggleArrow aria-label="항목 더보기" />
       </St.InputWrapper>
     </St.RelationToggle>
   );

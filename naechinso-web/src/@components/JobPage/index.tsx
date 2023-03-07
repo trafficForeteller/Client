@@ -71,7 +71,7 @@ export default function JobPage() {
       <FixedHeader header="추천인 소개" progressRate={60} title1="💼" title2="어떤 일을 해?" />
 
       <St.SheildBox>
-        <IcSheild />
+        <IcSheild aria-label="확인 문구" />
         <St.SheildWrapper>
           <St.SheildDesc>만약 회사명을 밝히고 싶지 않다면 업종으로 적어줘</St.SheildDesc>
           <St.SheildExample>ex. 한국은행 =&gt; 금융공기업 / 당근마켓 =&gt; 중고거래 스타트업</St.SheildExample>

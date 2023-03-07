@@ -11,7 +11,7 @@ export default function SheildBox(props: SheildBoxProps) {
 
   return (
     <St.SheildBox>
-      <IcSheild />
+      <IcSheild aria-label="확인 문구" />
       <St.SheildDesc>{desc}</St.SheildDesc>
     </St.SheildBox>
   );

@@ -130,7 +130,7 @@ export default function DontGoPage() {
       />
 
       <St.CardWrapper>
-        <IcDontGo />
+        <IcDontGo aria-label="한 마디 발언 미리보기" />
       </St.CardWrapper>
 
       <St.TextWrapper>

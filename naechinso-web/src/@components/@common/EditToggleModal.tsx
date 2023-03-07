@@ -30,7 +30,9 @@ export default function EditToggleModal(props: EditToggleModalProps) {
         return (
           <St.Relation type="button" key={el.id} onClick={() => toggleCheck(el)}>
             {el.eduLevel}
-            <St.CheckedWrapper>{el.checked ? <IcRelationChecked /> : <></>}</St.CheckedWrapper>
+            <St.CheckedWrapper>
+              {el.checked ? <IcRelationChecked aria-label="항목 체크 표시" /> : <></>}
+            </St.CheckedWrapper>
           </St.Relation>
         );
       })}

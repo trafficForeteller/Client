@@ -11,7 +11,7 @@ export default function WarningBox(props: WarningBoxProps) {
 
   return (
     <St.WarningBox>
-      <IcWarning />
+      <IcWarning aria-label="경고" />
       <St.WarningDesc>{desc}</St.WarningDesc>
     </St.WarningBox>
   );

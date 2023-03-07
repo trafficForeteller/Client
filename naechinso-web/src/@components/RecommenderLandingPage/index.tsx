@@ -59,7 +59,6 @@ const St = {
     height: 100%;
     background-color: ${({ theme }) => theme.colors.neural};
     z-index: 2;
-
     padding-top: 30%;
     @media only screen and (max-height: 680px) {
       padding-top: 8%;

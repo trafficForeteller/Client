@@ -40,11 +40,11 @@ export default function FinishPage() {
       </St.TitleWrapper>
       <St.ImgWrapper>
         {localStorage.getItem("priceType") === "MY_REC" ? (
-          <IcFinishRecommend />
+          <IcFinishRecommend ria-label="추천사 보기 혜택" />
         ) : localStorage.getItem("priceType") === "SUNGURI" ? (
-          <IcFinishSunguri />
+          <IcFinishSunguri aria-label="썬구리 혜택" />
         ) : (
-          <IcFinishNone />
+          <IcFinishNone ria-label="혜택 없음" />
         )}
       </St.ImgWrapper>
 

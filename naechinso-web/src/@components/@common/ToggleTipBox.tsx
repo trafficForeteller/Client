@@ -19,7 +19,7 @@ export default function ToggleTipBox() {
         {TipList.map((tip) => {
           return (
             <St.TipWrapper key={tip.id}>
-              <IcTipCheck />
+              <IcTipCheck aria-label="강조" />
               <St.TipDescWrapper>
                 <St.TipDesc>{tip.desc1}</St.TipDesc>
                 <St.TipHighlight>{tip.highlight}</St.TipHighlight>

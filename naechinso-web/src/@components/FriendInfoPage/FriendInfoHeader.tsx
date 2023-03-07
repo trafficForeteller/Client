@@ -25,7 +25,7 @@ export default function FriendInfoHeader(props: FriendInfoHeaderProps) {
       <St.BasicHeader>
         <St.Header>
           <St.Button onClick={movePreviousPage} type="button">
-            <IcPreviousBtn />
+            <IcPreviousBtn aria-label="이전 페이지로 이동" />
           </St.Button>
           친구 정보
         </St.Header>

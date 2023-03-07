@@ -14,7 +14,7 @@ export default function EditRecommenderLandingPage() {
       </St.TitleWrapper>
 
       <St.ImgWrapper>
-        <IcRecommenderLanding />
+        <IcRecommenderLanding aria-label="내친소" />
       </St.ImgWrapper>
 
       <St.Bottom>

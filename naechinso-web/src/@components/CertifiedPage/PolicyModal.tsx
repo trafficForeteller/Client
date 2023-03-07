@@ -122,7 +122,9 @@ export default function PolicyModal(props: PolicyModalProps) {
           return (
             <St.CheckBox key={i.policyName}>
               <St.CheckWrapper type="button" onClick={() => toggleCheck(idx)}>
-                <St.IcCheckWrapper>{i.checked ? <IcChecked /> : <IcUnChecked />}</St.IcCheckWrapper>
+                <St.IcCheckWrapper>
+                  {i.checked ? <IcChecked aria-label="체크 표시" /> : <IcUnChecked aria-label="체크 해제" />}
+                </St.IcCheckWrapper>
                 <St.Check checked={i.checked}>{i.title}</St.Check>
               </St.CheckWrapper>
               <St.SeePolicy type="button" checked={i.checked} onClick={() => handleOpenPolicy(i.url)}>

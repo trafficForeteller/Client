@@ -14,7 +14,7 @@ export default function MovePreviousPageBtn() {
 
   return (
     <St.Button onClick={movePreviousPage} type="button">
-      <IcPreviousBtn />
+      <IcPreviousBtn aria-label="이전 페이지 이동" />
     </St.Button>
   );
 }

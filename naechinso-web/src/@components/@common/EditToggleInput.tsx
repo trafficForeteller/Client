@@ -17,7 +17,7 @@ export default function EditToggleInput(props: EditToggleInputProps) {
       <St.Label>{label}</St.Label>
       <St.InputWrapper>
         <St.Input value={value} readOnly />
-        <IcToggleArrow />
+        <IcToggleArrow aria-label="항목 더보기" />
       </St.InputWrapper>
     </St.EditToggleInput>
   );

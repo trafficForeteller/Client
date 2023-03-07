@@ -125,14 +125,22 @@ export default function RecommenderInfoPage() {
           type="button"
           onClick={() => toggleChecked(genderTypeArr[0])}
           checked={genderTypeArr[0].checked}>
-          {genderTypeArr[0].checked ? <IcCheckedMen /> : <IcUnCheckedMen />}
+          {genderTypeArr[0].checked ? (
+            <IcCheckedMen aria-label="남자 체크 표시" />
+          ) : (
+            <IcUnCheckedMen aria-label="남자 체크 해제" />
+          )}
           <St.Gender>{genderTypeArr[0].gender}</St.Gender>
         </St.GenderWrapper>
         <St.GenderWrapper
           type="button"
           onClick={() => toggleChecked(genderTypeArr[1])}
           checked={genderTypeArr[1].checked}>
-          {genderTypeArr[1].checked ? <IcCheckedWomen /> : <IcUnCheckedWomen />}
+          {genderTypeArr[1].checked ? (
+            <IcCheckedWomen aria-label="여자 체크 표시" />
+          ) : (
+            <IcUnCheckedWomen aria-label="여자 체크 해제" />
+          )}
           <St.Gender>{genderTypeArr[1].gender}</St.Gender>
         </St.GenderWrapper>
       </St.ChooseGender>
