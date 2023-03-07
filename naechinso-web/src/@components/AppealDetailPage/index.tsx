@@ -29,7 +29,12 @@ export default function AppealDetailPage() {
 
   return (
     <St.AppealDetail>
-      <FixedHeader header="추천사" progressRate={75} title1="거의 다 왔어!" title2="내 친구를 한 줄로 소개한다면?" />
+      <FixedHeader
+        header="추천사"
+        progressRate={75}
+        title1="추천사 완성 30초 전 🎉"
+        title2="내 친구를 한 줄로 소개한다면?"
+      />
 
       <St.CardWrapper>
         <IcAppealDetail aria-label="한 줄 소개 미리보기" />
