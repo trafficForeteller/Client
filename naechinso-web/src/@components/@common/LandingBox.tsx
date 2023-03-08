@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { postMemberReissue } from "../../apis/member.api";
 import { ImgLandingNaechinso } from "../../asset/image";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 
 interface LandingBoxProps {
   setAccessToken: React.Dispatch<React.SetStateAction<boolean>>;
@@ -63,7 +64,7 @@ export default function LandingBox(props: LandingBoxProps) {
         <St.Title>친구를 소개하러 온 걸</St.Title>
         <St.Title>환영해!🧡</St.Title>
       </St.TitleWrapper>
-      <St.Button onClick={handleMoveLandingPage} type="button">
+      <St.Button onClick={handleMoveLandingPage} type="button" className={GTM_CLASS_NAME.startAccess}>
         내 친구 소개하기
       </St.Button>
     </St.LandingBox>

@@ -7,6 +7,7 @@ import { postCertifiedImg } from "../../apis/s3.api";
 import { IcPlus } from "../../asset/icons";
 import { ImgConsultantNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import FixedHeader from "./FixedHeader";
 import MoveNextPageBtn from "./MoveNextPageBtn";
 import SheildBox from "./SheildBox";
@@ -176,11 +177,21 @@ export default function WorkCertified(props: WorkCertifiedProps) {
         <St.ConsultantNaechinso src={ImgConsultantNaechinso} alt="상담원 내친소 아이콘" />
       </St.ConsultantBtn>
 
-      <MoveNextPageBtn
-        nextPage={localStorage.getItem("landingUrl") === "edit" ? routePaths.Finish : routePaths.RecommendLanding}
-        title="다음"
-        disabled={!fileChecked}
-      />
+      {dir === "edu" ? (
+        <MoveNextPageBtn
+          nextPage={localStorage.getItem("landingUrl") === "edit" ? routePaths.Finish : routePaths.RecommendLanding}
+          title="다음"
+          disabled={!fileChecked}
+          className={GTM_CLASS_NAME.recommenderSuccessJob}
+        />
+      ) : (
+        <MoveNextPageBtn
+          nextPage={localStorage.getItem("landingUrl") === "edit" ? routePaths.Finish : routePaths.RecommendLanding}
+          title="다음"
+          disabled={!fileChecked}
+          className={GTM_CLASS_NAME.recommenderSuccessEdu}
+        />
+      )}
     </St.WorkCertified>
   );
 }

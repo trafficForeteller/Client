@@ -6,6 +6,7 @@ import { postMemberJoin } from "../../apis/member.api";
 import { IcAllChecked, IcAllUnChecked, IcChecked, IcUnChecked } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { ITokenType } from "../../types/member";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { MoveNextPageBtn } from "../@common";
 
 export interface PolicyModalProps {
@@ -140,6 +141,7 @@ export default function PolicyModal(props: PolicyModalProps) {
         title="내친소 시작하기"
         disabled={startActive}
         handleState={handlePolicy}
+        className={GTM_CLASS_NAME.signupSuccess}
       />
     </St.Modal>
   );

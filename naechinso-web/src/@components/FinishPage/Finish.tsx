@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 import { IcFinishNone, IcFinishRecommend, IcFinishSunguri } from "../../asset/icons";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import FinishBottom from "./FinishBottom";
 
 export default function Finish() {
@@ -50,7 +51,7 @@ export default function Finish() {
 
       <St.ShareBtnWrapper>
         <St.ShareBtnLabel>🔗 친구에게 링크를 보내봐</St.ShareBtnLabel>
-        <St.ShareBtn type="button" onClick={shareRecommendLink}>
+        <St.ShareBtn type="button" onClick={shareRecommendLink} className={GTM_CLASS_NAME.viralUrl}>
           초대 링크 공유하기
         </St.ShareBtn>
       </St.ShareBtnWrapper>

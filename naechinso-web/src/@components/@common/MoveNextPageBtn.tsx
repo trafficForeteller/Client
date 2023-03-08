@@ -7,10 +7,11 @@ export interface NextPageBtnProps {
   disabled: boolean;
   state?: number;
   handleState?: () => Promise<void> | void;
+  className?: string;
 }
 
 export default function MoveNextPageBtn(props: NextPageBtnProps) {
-  const { nextPage, title, disabled, handleState, state } = props;
+  const { nextPage, title, disabled, handleState, state, className } = props;
   const navigate = useNavigate();
 
   const goNextPage = () => {
@@ -20,9 +21,15 @@ export default function MoveNextPageBtn(props: NextPageBtnProps) {
 
   return (
     <St.ButtonWrapper>
-      <St.Button onClick={goNextPage} disabled={disabled} type="button">
-        {title}
-      </St.Button>
+      {className ? (
+        <St.Button onClick={goNextPage} disabled={disabled} type="button" className={className}>
+          {title}
+        </St.Button>
+      ) : (
+        <St.Button onClick={goNextPage} disabled={disabled} type="button">
+          {title}
+        </St.Button>
+      )}
     </St.ButtonWrapper>
   );
 }

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { routePaths } from "../../core/routes/path";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 
 export default function FinishBottom() {
   const navigate = useNavigate();
@@ -35,10 +36,13 @@ export default function FinishBottom() {
       <St.Title>
         <St.HighLight>다른 친구</St.HighLight>도 소개해 볼래?👀
       </St.Title>
-      <St.NextStepBtn type="button" onClick={handleMoveRecommendLanding}>
+      <St.NextStepBtn type="button" onClick={handleMoveRecommendLanding} className={GTM_CLASS_NAME.referral}>
         다른 친구 소개하러 가기
       </St.NextStepBtn>
-      <St.MoveLandingBtn type="button" onClick={() => navigate(routePaths.Landing)}>
+      <St.MoveLandingBtn
+        type="button"
+        onClick={() => navigate(routePaths.Landing)}
+        className={GTM_CLASS_NAME.landingView}>
         홈 화면으로 이동
       </St.MoveLandingBtn>
     </St.FinishBottom>

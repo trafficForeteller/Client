@@ -7,6 +7,7 @@ import { getCheckPrice, patchRecommendFriendDetail } from "../../apis/recommend.
 import { IcDontGo } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
 
 export default function DontGoPage() {
@@ -145,7 +146,12 @@ export default function DontGoPage() {
         />
       </St.TextWrapper>
 
-      <MoveNextPageBtn title="완료" disabled={!textCheck} handleState={handleGetCheckPrice} />
+      <MoveNextPageBtn
+        title="완료"
+        disabled={!textCheck}
+        handleState={handleGetCheckPrice}
+        className={GTM_CLASS_NAME.recommendSuccess}
+      />
     </St.DontGo>
   );
 }

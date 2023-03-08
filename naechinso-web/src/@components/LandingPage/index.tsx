@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { getMemberStatus } from "../../apis/member.api";
 import { IcAppStore, IcPlayStore } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { LandingBox } from "../@common";
 
 export default function LandingPage() {
@@ -39,10 +40,16 @@ export default function LandingPage() {
             <St.Line></St.Line>
           </St.DescWrapper>
           <St.InstallBtnWrapper>
-            <St.InstallBtn type="button" onClick={() => navigate(routePaths.InstallApp)}>
+            <St.InstallBtn
+              type="button"
+              onClick={() => navigate(routePaths.InstallApp)}
+              className={GTM_CLASS_NAME.acquisitionPlayStore}>
               <IcPlayStore aria-label="플레이스토어 이동" />
             </St.InstallBtn>
-            <St.InstallBtn type="button" onClick={() => navigate(routePaths.InstallApp)}>
+            <St.InstallBtn
+              type="button"
+              onClick={() => navigate(routePaths.InstallApp)}
+              className={GTM_CLASS_NAME.acquisitionAppStore}>
               <IcAppStore aria-label="앱스토어 이동" />
             </St.InstallBtn>
           </St.InstallBtnWrapper>
