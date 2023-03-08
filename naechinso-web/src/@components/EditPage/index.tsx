@@ -30,8 +30,10 @@ export default function EditPage() {
     localStorage.removeItem("priceType");
     localStorage.removeItem("memberName");
 
-    if (location.pathname.length === 37) localStorage.setItem("member-uuid", location.pathname);
-    else if (location.pathname.startsWith("/edit")) localStorage.setItem("landingUrl", "edit");
+    if (location.pathname.startsWith("/landing")) {
+      const memberUuid = location.pathname.substring(8);
+      memberUuid.length === 37 && localStorage.setItem("member-uuid", memberUuid);
+    } else if (location.pathname.startsWith("/edit")) localStorage.setItem("landingUrl", "edit");
     else localStorage.removeItem("member-uuid");
   }, [location]);
 

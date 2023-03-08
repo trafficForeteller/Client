@@ -57,7 +57,7 @@ export default function Router() {
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path={routePaths.MagicLink} element={<LandingPage />} />
+        <Route path={routePaths.MagicLink} element={<InAppLandingPage />} />
         <Route path={routePaths.Landing} element={<LandingPage />} />
         <Route path={routePaths.InAppLanding} element={<InAppLandingPage />} />
         <Route path={routePaths.InstallApp} element={<InstallAppPage />} />
