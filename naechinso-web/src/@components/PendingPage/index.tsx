@@ -1,8 +1,16 @@
+import { useEffect } from "react";
+import TagManager from "react-gtm-module";
 import styled from "styled-components";
 
 import { ImgCommentNaechinso, ImgHandsUp } from "../../asset/image";
 
 export default function PendingPage() {
+  useEffect(() => {
+    TagManager.dataLayer({
+      dataLayer: { event: "page_path", customParameter: "/pending" },
+    });
+  }, []);
+
   return (
     <St.PendingPage>
       <St.Naechinso src={ImgCommentNaechinso} alt="내친소" />

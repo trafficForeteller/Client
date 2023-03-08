@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import TagManager from "react-gtm-module";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -9,6 +10,12 @@ import { LandingBox } from "../@common";
 export default function InAppLandingPage() {
   const navigate = useNavigate();
   const [accessToken, setAccessToken] = useState(false);
+
+  useEffect(() => {
+    TagManager.dataLayer({
+      dataLayer: { event: "page_path", customParameter: "/landing" },
+    });
+  }, []);
 
   const onEnterKeyUp = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === "Enter") handleMemberStatus();

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import TagManager from "react-gtm-module";
 import styled from "styled-components";
 
 import { routePaths } from "../../core/routes/path";
@@ -12,8 +13,13 @@ export interface PhoneNumberPageProps {
 
 export default function PhoneNumberPage(props: PhoneNumberPageProps) {
   const { setPostPhoneNum, sendSms } = props;
-
   const [inputActive, setInputActive] = useState(true);
+
+  useEffect(() => {
+    TagManager.dataLayer({
+      dataLayer: { event: "page_path", customParameter: "/join" },
+    });
+  }, []);
 
   return (
     <St.PhoneNumberPage>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import TagManager from "react-gtm-module";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -24,6 +25,10 @@ export default function EduPage() {
   });
 
   useEffect(() => {
+    TagManager.dataLayer({
+      dataLayer: { event: "page_path", customParameter: "/recommender/edu" },
+    });
+
     // 새로고침 시 이전에 local에 저장된 eduInfo 초기값으로 세팅
     const eduInfoOfLocal = localStorage.getItem("eduInfo") as string;
     const eduInfo = JSON.parse(eduInfoOfLocal);

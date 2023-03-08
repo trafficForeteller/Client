@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import TagManager from "react-gtm-module";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -6,6 +8,12 @@ import { FixedHeader } from "../@common";
 
 export default function ChooseJobPage() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    TagManager.dataLayer({
+      dataLayer: { event: "page_path", customParameter: "/recommender/chooseJob" },
+    });
+  }, []);
 
   return (
     <St.ChooseJobPage>

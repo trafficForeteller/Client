@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import TagManager from "react-gtm-module";
 import styled from "styled-components";
 
 import { WorkCertified } from "../@common";
 
 export default function JobCertifiedPage() {
   const [jobImg, setJobImg] = useState("");
+
+  useEffect(() => {
+    TagManager.dataLayer({
+      dataLayer: { event: "page_path", customParameter: "/recommender/job/certified" },
+    });
+  }, []);
 
   return (
     <St.JobCertifiedPage>

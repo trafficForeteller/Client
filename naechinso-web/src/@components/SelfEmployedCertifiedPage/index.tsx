@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import TagManager from "react-gtm-module";
 import styled from "styled-components";
 
 import { WorkCertified } from "../@common";
 export default function SelfEmployedCertifiedPage() {
   const [jobImg, setJobImg] = useState("");
+
+  useEffect(() => {
+    TagManager.dataLayer({
+      dataLayer: { event: "page_path", customParameter: "/recommender/selfEmployed/certified" },
+    });
+  }, []);
 
   return (
     <St.SelfEmployedCertifiedPage>

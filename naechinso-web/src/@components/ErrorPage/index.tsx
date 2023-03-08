@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import TagManager from "react-gtm-module";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -11,6 +13,12 @@ export default function ErrorPage() {
     window.scrollTo(0, 0);
     navigate(-1);
   };
+
+  useEffect(() => {
+    TagManager.dataLayer({
+      dataLayer: { event: "page_path", customParameter: "/error" },
+    });
+  }, []);
 
   return (
     <St.ErrorPage>

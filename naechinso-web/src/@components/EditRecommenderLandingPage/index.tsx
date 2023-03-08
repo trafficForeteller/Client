@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import TagManager from "react-gtm-module";
 import styled from "styled-components";
 
 import { IcRecommenderLanding } from "../../asset/icons";
@@ -5,6 +7,12 @@ import { routePaths } from "../../core/routes/path";
 import { MoveNextPageBtn, Title } from "../@common";
 
 export default function EditRecommenderLandingPage() {
+  useEffect(() => {
+    TagManager.dataLayer({
+      dataLayer: { event: "page_path", customParameter: "/edit/landing" },
+    });
+  }, []);
+
   return (
     <St.EditRecommenderLandingPage>
       <St.TitleWrapper>

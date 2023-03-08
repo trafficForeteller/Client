@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import TagManager from "react-gtm-module";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -49,6 +50,10 @@ export default function FriendInfoPage() {
   });
 
   useEffect(() => {
+    TagManager.dataLayer({
+      dataLayer: { event: "page_path", customParameter: "/recommend/friendInfo" },
+    });
+
     // 새로고침 시 이전에 local에 저장된 friendInfo 초기값으로 세팅
     const friendInfoOfLocal = localStorage.getItem("friendInfo") as string;
     const friendInfo = JSON.parse(friendInfoOfLocal);

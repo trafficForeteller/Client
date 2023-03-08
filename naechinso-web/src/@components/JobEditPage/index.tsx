@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import TagManager from "react-gtm-module";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -24,6 +25,10 @@ export default function JobEditPage() {
   });
 
   useEffect(() => {
+    TagManager.dataLayer({
+      dataLayer: { event: "page_path", customParameter: "/edit/job" },
+    });
+
     if (jobGetData.content.jobImage.startsWith("https://elasticbeanstalk")) setJobImage(jobImage);
     else
       setJobImage(

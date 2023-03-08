@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import TagManager from "react-gtm-module";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -19,6 +20,10 @@ export default function JobPage() {
   });
 
   useEffect(() => {
+    TagManager.dataLayer({
+      dataLayer: { event: "page_path", customParameter: "/recommender/job" },
+    });
+
     // 새로고침 시 이전에 local에 저장된 jobInfo 초기값으로 세팅
     const jobInfoOfLocal = localStorage.getItem("jobInfo") as string;
     const jobInfo = JSON.parse(jobInfoOfLocal);

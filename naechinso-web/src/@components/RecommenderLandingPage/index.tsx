@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import TagManager from "react-gtm-module";
 import styled from "styled-components";
 
 import { ImgCommentNaechinso } from "../../asset/image";
@@ -12,6 +13,12 @@ export default function RecommenderLandingPage() {
   const handleModalOpen = () => {
     setIsModalOpened(true);
   };
+
+  useEffect(() => {
+    TagManager.dataLayer({
+      dataLayer: { event: "page_path", customParameter: "/recommender" },
+    });
+  }, []);
 
   return (
     <>
