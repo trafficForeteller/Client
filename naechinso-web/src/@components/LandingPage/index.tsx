@@ -31,21 +31,23 @@ export default function LandingPage() {
   return (
     <St.LandingPage onKeyUp={onEnterKeyUp}>
       <LandingBox setAccessToken={setAccessToken} handleMoveLandingPage={handleMemberStatus} />
-      <St.Bottom>
-        <St.DescWrapper>
-          <St.Line></St.Line>
-          <St.Desc>내친소를 시작하고 싶다면?</St.Desc>
-          <St.Line></St.Line>
-        </St.DescWrapper>
-        <St.InstallBtnWrapper>
-          <St.InstallBtn type="button" onClick={() => navigate(routePaths.InstallApp)}>
-            <IcPlayStore aria-label="플레이스토어 이동" />
-          </St.InstallBtn>
-          <St.InstallBtn type="button" onClick={() => navigate(routePaths.InstallApp)}>
-            <IcAppStore aria-label="앱스토어 이동" />
-          </St.InstallBtn>
-        </St.InstallBtnWrapper>
-      </St.Bottom>
+      {!localStorage.getItem("member-uuid") && (
+        <St.Bottom>
+          <St.DescWrapper>
+            <St.Line></St.Line>
+            <St.Desc>내친소를 시작하고 싶다면?</St.Desc>
+            <St.Line></St.Line>
+          </St.DescWrapper>
+          <St.InstallBtnWrapper>
+            <St.InstallBtn type="button" onClick={() => navigate(routePaths.InstallApp)}>
+              <IcPlayStore aria-label="플레이스토어 이동" />
+            </St.InstallBtn>
+            <St.InstallBtn type="button" onClick={() => navigate(routePaths.InstallApp)}>
+              <IcAppStore aria-label="앱스토어 이동" />
+            </St.InstallBtn>
+          </St.InstallBtnWrapper>
+        </St.Bottom>
+      )}
     </St.LandingPage>
   );
 }
