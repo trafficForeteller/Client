@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 
-import { IcFinishNone, IcFinishRecommend, IcFinishSunguri } from "../../asset/icons";
+import { ImgFinishNone, ImgFinishRecommend, ImgFinishSunguri } from "../../asset/image";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import FinishBottom from "./FinishBottom";
 
@@ -39,15 +39,15 @@ export default function Finish() {
         <St.Title>추천사 너무 좋다😉</St.Title>
         <St.Title>이제 링크를 친구에게 전달해 봐! </St.Title>
       </St.TitleWrapper>
-      <St.ImgWrapper>
+      <St.GiftWrapper>
         {localStorage.getItem("priceType") === "MY_REC" ? (
-          <IcFinishRecommend ria-label="추천사 보기 혜택" />
+          <St.Gift src={ImgFinishRecommend} alt="추천사 보기 혜택" />
         ) : localStorage.getItem("priceType") === "SUNGURI" ? (
-          <IcFinishSunguri aria-label="썬구리 혜택" />
+          <St.Gift src={ImgFinishSunguri} alt="썬구리 혜택" />
         ) : (
-          <IcFinishNone ria-label="혜택 없음" />
+          <St.Gift src={ImgFinishNone} alt="혜택 없음" />
         )}
-      </St.ImgWrapper>
+      </St.GiftWrapper>
 
       <St.ShareBtnWrapper>
         <St.ShareBtnLabel>🔗 친구에게 링크를 보내봐</St.ShareBtnLabel>
@@ -83,7 +83,7 @@ const St = {
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.head1};
   `,
-  ImgWrapper: styled.section`
+  GiftWrapper: styled.section`
     width: 100%;
     height: 13rem;
     background-color: ${({ theme }) => theme.colors.neural};
@@ -94,6 +94,7 @@ const St = {
 
     margin: 2rem 0 1.6rem;
   `,
+  Gift: styled.img``,
   ShareBtnWrapper: styled.section`
     width: 100%;
     border: 0.5px solid #cccccc;
