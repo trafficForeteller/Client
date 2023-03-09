@@ -94,7 +94,10 @@ const St = {
 
     margin: 2rem 0 1.6rem;
   `,
-  Gift: styled.img``,
+  Gift: styled.img`
+    width: 32.7rem;
+    height: 13rem;
+  `,
   ShareBtnWrapper: styled.section`
     width: 100%;
     border: 0.5px solid #cccccc;
