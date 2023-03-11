@@ -25,7 +25,6 @@ export default function Finish() {
 이제 너가 할 일은 간단한 자기소개만 하면 끝!😎 내친소에서 너만큼 멋진 친구들을 만나러 가볼까?
 
 앱 다운로드: https://recommend.naechinso.com/arrive`,
-          url: "https://recommend.naechinso.com/arrive",
         })
         .then(() => console.log("공유 성공"))
         .catch((error) => console.log("공유 실패", error));
