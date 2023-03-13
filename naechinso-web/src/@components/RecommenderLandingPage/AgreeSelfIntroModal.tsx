@@ -64,7 +64,7 @@ const St = {
     ${({ theme }) => theme.fonts.sub4};
     display: flex;
   `,
-  Highlight: styled.p`
+  Highlight: styled.b`
     color: ${({ theme }) => theme.colors.orange};
   `,
   Desc: styled.p`
