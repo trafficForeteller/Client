@@ -194,8 +194,10 @@ export default function FriendInfoPage() {
 
   const handleSuccessGetRecommend = (userData: IGetReommend) => {
     // 추천사 이전에 작성한 거 성공할 시 userData를 localStorage에 넣어주기
-    localStorage.setItem("firstRecommend", userData.recommendQuestion[0].recommendAnswer);
-    localStorage.setItem("secondRecommend", userData.recommendQuestion[1].recommendAnswer);
+
+    const recommendLength = userData.customQuestion.length;
+    localStorage.setItem("firstRecommend", userData.customQuestion[recommendLength - 2].recommendAnswer);
+    localStorage.setItem("secondRecommend", userData.customQuestion[recommendLength - 1].recommendAnswer);
     localStorage.setItem("appealDetail", userData.appealDetail);
     localStorage.setItem("dontGo", userData.dontGo);
     localStorage.setItem("appeals", JSON.stringify(userData.appeals));
@@ -209,7 +211,7 @@ export default function FriendInfoPage() {
 
     const newQuestionList = questionList.map((question) => {
       const newQuestion = `${question.question1}` + `${question.question2}`;
-      if (userData.recommendQuestion[0].recommendQuestion === newQuestion) {
+      if (userData.customQuestion[0].recommendQuestion === newQuestion) {
         question.checked = true;
         localStorage.setItem("checkedQ1", JSON.stringify(question));
       } else question.checked = false;

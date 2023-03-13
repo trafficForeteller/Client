@@ -41,7 +41,7 @@ export interface IGetReommend {
   appeals: string[];
   appealDetail: string;
   dontGo: string;
-  recommendQuestion: IPostRecommendElement[];
+  customQuestion: IPostRecommendElement[];
 }
 
 export interface IGetCheckPrice {
