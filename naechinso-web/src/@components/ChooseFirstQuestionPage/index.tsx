@@ -13,9 +13,9 @@ export default function ChooseFirstQuestionPage() {
   const [checkedQuestion, setCheckedQuestion] = useState<questionProps>();
 
   useEffect(() => {
-    TagManager.dataLayer({
-      dataLayer: { event: "page_path", customParameter: "/recommend/question/1" },
-    });
+    // TagManager.dataLayer({
+    //   dataLayer: { event: "page_path", customParameter: "/recommend/question/1" },
+    // });
 
     // 새로고침 시 이전에 local에 저장된 questionList 초기값으로 세팅
     const questionListOfLocal = localStorage.getItem("questionList") as string;
