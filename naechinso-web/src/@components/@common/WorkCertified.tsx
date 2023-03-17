@@ -182,14 +182,14 @@ export default function WorkCertified(props: WorkCertifiedProps) {
           nextPage={localStorage.getItem("landingUrl") === "edit" ? routePaths.Finish : routePaths.RecommendLanding}
           title="다음"
           disabled={!fileChecked}
-          className={GTM_CLASS_NAME.recommenderSuccessJob}
+          className={GTM_CLASS_NAME.recommenderSuccessEdu}
         />
       ) : (
         <MoveNextPageBtn
           nextPage={localStorage.getItem("landingUrl") === "edit" ? routePaths.Finish : routePaths.RecommendLanding}
           title="다음"
           disabled={!fileChecked}
-          className={GTM_CLASS_NAME.recommenderSuccessEdu}
+          className={GTM_CLASS_NAME.recommenderSuccessJob}
         />
       )}
     </St.WorkCertified>
