@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import TagManager from "react-gtm-module";
 import styled from "styled-components";
 
 import { IcAppealDetail } from "../../asset/icons";
@@ -11,10 +10,6 @@ export default function AppealDetailPage() {
   const [textCheck, setTextCheck] = useState(false);
 
   useEffect(() => {
-    TagManager.dataLayer({
-      dataLayer: { event: "page_path", customParameter: "/recommend/appealDetail" },
-    });
-
     if (localStorage.getItem("appealDetail")) {
       const appealDetail = localStorage.getItem("appealDetail") as string;
       setText(appealDetail);

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import TagManager from "react-gtm-module";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -34,10 +33,6 @@ export default function FirstRecommendPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    TagManager.dataLayer({
-      dataLayer: { event: "page_path", customParameter: "/recommend/answer/1" },
-    });
-
     const checkedQ1 = parseLocalStorage("checkedQ1");
     setQuestionData(checkedQ1);
     if (localStorage.getItem("firstRecommend")) {

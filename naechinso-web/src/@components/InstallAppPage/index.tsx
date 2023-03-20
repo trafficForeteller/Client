@@ -1,16 +1,8 @@
-import { useEffect } from "react";
-import TagManager from "react-gtm-module";
 import { Helmet } from "react-helmet-async";
 
 import { InstallNaechinso } from "../@common";
 
 export default function InstallAppPage() {
-  useEffect(() => {
-    TagManager.dataLayer({
-      dataLayer: { event: "page_path", customParameter: "/naechinso-app" },
-    });
-  }, []);
-
   return (
     <main>
       <Helmet>

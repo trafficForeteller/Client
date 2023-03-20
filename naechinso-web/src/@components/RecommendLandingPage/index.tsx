@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import TagManager from "react-gtm-module";
 import styled from "styled-components";
 
 import { getUserName, postMemberReissue } from "../../apis/member.api";
@@ -11,10 +10,6 @@ export default function RecommendLandingPage() {
   const recommenderName = localStorage.getItem("recommenderName");
 
   useEffect(() => {
-    TagManager.dataLayer({
-      dataLayer: { event: "page_path", customParameter: "/recommend" },
-    });
-
     localStorage.getItem("member-uuid") && handleGetUserName();
   }, []);
 

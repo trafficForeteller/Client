@@ -1,17 +1,10 @@
-import { useEffect, useState } from "react";
-import TagManager from "react-gtm-module";
+import { useState } from "react";
 import styled from "styled-components";
 
 import { WorkCertified } from "../@common";
 
 export default function EduCertifiedPage() {
   const [eduImg, setEduImg] = useState("");
-
-  useEffect(() => {
-    TagManager.dataLayer({
-      dataLayer: { event: "page_path", customParameter: "/recommender/edu/certified" },
-    });
-  }, []);
 
   return (
     <St.EduCertifiedPage>

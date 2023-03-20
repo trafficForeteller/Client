@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import TagManager from "react-gtm-module";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -24,10 +23,6 @@ export default function RecommenderInfoPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    TagManager.dataLayer({
-      dataLayer: { event: "page_path", customParameter: "/recommender/info" },
-    });
-
     // 새로고침 시 이전에 local에 저장된 postRecommender 초기값으로 세팅
     const postRecommenderOfLocal = localStorage.getItem("postRecommender") as string;
     const postRecommender = JSON.parse(postRecommenderOfLocal);

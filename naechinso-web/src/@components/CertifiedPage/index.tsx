@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import TagManager from "react-gtm-module";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -45,10 +44,6 @@ export default function CertifiedPage(props: CertifiedPageProps) {
 
   useEffect(() => {
     window.addEventListener("beforeunload", preventClose);
-
-    TagManager.dataLayer({
-      dataLayer: { event: "page_path", customParameter: "/join/autorize" },
-    });
 
     return () => {
       window.removeEventListener("beforeunload", preventClose);

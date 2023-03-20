@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import TagManager from "react-gtm-module";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -21,10 +20,6 @@ export default function SecondRecommendPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    TagManager.dataLayer({
-      dataLayer: { event: "page_path", customParameter: "/recommend/answer/2" },
-    });
-
     if (localStorage.getItem("secondRecommend")) {
       const recommendInLocal = localStorage.getItem("secondRecommend") as string;
       setSecondRecommend(recommendInLocal);

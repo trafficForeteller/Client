@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import TagManager from "react-gtm-module";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -28,10 +27,6 @@ export default function EduEditPage() {
   });
 
   useEffect(() => {
-    TagManager.dataLayer({
-      dataLayer: { event: "page_path", customParameter: "/edit/edu" },
-    });
-
     if (eduGetData.content.eduImage.startsWith("https://elasticbeanstalk")) setEduImage(eduImage);
     else
       setEduImage(

@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import TagManager from "react-gtm-module";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -41,10 +40,6 @@ export default function EditPage() {
   }, [location]);
 
   useEffect(() => {
-    TagManager.dataLayer({
-      dataLayer: { event: "page_path", customParameter: "/edit" },
-    });
-
     localStorage.getItem("accessToken") && handlePostMemberReissue();
   }, []);
 

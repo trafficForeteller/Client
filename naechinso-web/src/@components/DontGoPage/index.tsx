@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import TagManager from "react-gtm-module";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -23,10 +22,6 @@ export default function DontGoPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    TagManager.dataLayer({
-      dataLayer: { event: "page_path", customParameter: "/recommend/dontGo" },
-    });
-
     if (localStorage.getItem("dontGo")) {
       const dontGo = localStorage.getItem("dontGo") as string;
       setText(dontGo);

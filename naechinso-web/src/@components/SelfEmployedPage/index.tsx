@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import TagManager from "react-gtm-module";
 import styled from "styled-components";
 
 import { routePaths } from "../../core/routes/path";
@@ -15,10 +14,6 @@ export default function SelfEmployedPage() {
   const [activeBtn, setActiveBtn] = useState(false);
 
   useEffect(() => {
-    TagManager.dataLayer({
-      dataLayer: { event: "page_path", customParameter: "/recommender/selfEmployed" },
-    });
-
     // 새로고침 시 이전에 local에 저장된 jobInfo 초기값으로 세팅
     const jobInfoOfLocal = localStorage.getItem("jobInfo") as string;
     const jobInfo = JSON.parse(jobInfoOfLocal);

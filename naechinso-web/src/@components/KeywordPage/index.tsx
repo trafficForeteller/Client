@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import TagManager from "react-gtm-module";
 import styled from "styled-components";
 
 import { keywordList, keywordProps } from "../../core/recommend/recommend";
@@ -12,10 +11,6 @@ export default function KeywordPage() {
   const [checkedAppeals, setCheckedAppeals] = useState<string[]>([]);
 
   useEffect(() => {
-    TagManager.dataLayer({
-      dataLayer: { event: "page_path", customParameter: "/recommend/keyword" },
-    });
-
     // 새로고침 시 이전에 local에 저장된 keywordList 초기값으로 세팅
     const keywordListOfLocal = localStorage.getItem("keywordList") as string;
     const newKeywordList = JSON.parse(keywordListOfLocal);
