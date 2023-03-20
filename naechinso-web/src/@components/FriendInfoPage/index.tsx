@@ -67,7 +67,7 @@ export default function FriendInfoPage() {
         meetOfLocal === "친족" ||
         meetOfLocal === "초/중/고 친구" ||
         meetOfLocal === "대학교 친구" ||
-        meetOfLocal === "회사친구"
+        meetOfLocal === "회사 친구"
       ) {
         setRelationType(meetOfLocal);
       } else {
