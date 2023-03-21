@@ -117,6 +117,7 @@ export async function getUserName(
   accessToken: string | null,
   memberUuid: string | null,
   onSuccess: (userData: string) => void,
+  onFail: () => void,
   onReissue: () => void,
 ): Promise<void | undefined> {
   try {
@@ -127,6 +128,7 @@ export async function getUserName(
   } catch (err) {
     if (err instanceof AxiosError) {
       if (err.response?.data.status === 401) onReissue();
+      else onFail();
     }
   }
 }

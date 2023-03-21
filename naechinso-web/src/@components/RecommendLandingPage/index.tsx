@@ -18,12 +18,17 @@ export default function RecommendLandingPage() {
       localStorage.getItem("accessToken"),
       localStorage.getItem("member-uuid"),
       handleSuccessGetUserName,
+      handleFailGetUserName,
       handleReissueGetUserName,
     );
   };
 
   const handleSuccessGetUserName = (userName: string) => {
     localStorage.setItem("memberName", userName);
+  };
+
+  const handleFailGetUserName = () => {
+    localStorage.removeItem("member-uuid");
   };
 
   const handleReissueGetUserName = async () => {
