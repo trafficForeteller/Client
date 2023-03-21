@@ -26,7 +26,11 @@ export default function RecommendationPage() {
 
   return (
     <St.RecommendationPage>
-      <St.RecommendationImage src={recommendationImg} alt="추천사 사진 " />
+      {recommendationImg ? (
+        <St.RecommendationImage src={recommendationImg} alt="추천사 사진 " />
+      ) : (
+        <St.Blank></St.Blank>
+      )}
       <St.ButtonWrapper>
         <St.MoveMagicLinkBtn onClick={handleMagicLink}>나도 추천사 써주기</St.MoveMagicLinkBtn>
         <St.MoveInstallBtn onClick={handleInstall}>나도 받기</St.MoveInstallBtn>
@@ -38,6 +42,11 @@ export default function RecommendationPage() {
 const St = {
   RecommendationPage: styled.main``,
   RecommendationImage: styled.img`
+    width: 100%;
+    margin-bottom: 8rem;
+    background-color: ${({ theme }) => theme.colors.white};
+  `,
+  Blank: styled.div`
     width: 100%;
     margin-bottom: 8rem;
     background-color: ${({ theme }) => theme.colors.white};
