@@ -1,7 +1,6 @@
 export const routePaths = {
   Recommendation: "/recommendation/*",
   MagicLink: "/landing/*",
-  Landing: "/*",
   InAppLanding: "/landing",
   InstallApp: "/naechinso-app",
   PhoneNum: "/join",
@@ -35,6 +34,7 @@ export const routePaths = {
   SelfEmployedCertified: "/recommender/selfEmployed/certified",
   PrepareWork: "/recommender/prepareWork",
   ChooseGift: "/recommender/chooseGift",
+  Landing: "/",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];

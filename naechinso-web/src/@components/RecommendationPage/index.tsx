@@ -40,6 +40,7 @@ const St = {
   RecommendationImage: styled.img`
     width: 100%;
     margin-bottom: 8rem;
+    background-color: ${({ theme }) => theme.colors.white};
   `,
   ButtonWrapper: styled.section`
     display: flex;
