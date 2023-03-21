@@ -30,6 +30,7 @@ import {
   PendingPage,
   PhoneNumberPage,
   PrepareWorkPage,
+  RecommendationPage,
   RecommenderInfoPage,
   RecommenderLandingPage,
   RecommendLandingPage,
@@ -63,6 +64,7 @@ export default function Router() {
         <Route path={routePaths.InstallApp} element={<InstallAppPage />} />
         <Route path={routePaths.Edit} element={<EditPage />} />
         <Route path={routePaths.Error} element={<ErrorPage />} />
+        <Route path={routePaths.Recommendation} element={<RecommendationPage />} />
         <Route
           path={routePaths.PhoneNum}
           element={<PhoneNumberPage setPostPhoneNum={setPostPhoneNum} sendSms={sendSms} />}
