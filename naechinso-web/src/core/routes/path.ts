@@ -34,6 +34,7 @@ export const routePaths = {
   SelfEmployedCertified: "/recommender/selfEmployed/certified",
   PrepareWork: "/recommender/prepareWork",
   ChooseGift: "/recommender/chooseGift",
+  Recommendation: "/recommendation",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];
