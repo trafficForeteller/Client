@@ -59,7 +59,6 @@ export default function Router() {
       <ScrollToTop />
       <Routes>
         <Route path={routePaths.MagicLink} element={<InAppLandingPage />} />
-        <Route path={routePaths.Landing} element={<LandingPage />} />
         <Route path={routePaths.InAppLanding} element={<InAppLandingPage />} />
         <Route path={routePaths.InstallApp} element={<InstallAppPage />} />
         <Route path={routePaths.Edit} element={<EditPage />} />
@@ -175,6 +174,7 @@ export default function Router() {
           element={localStorage.getItem("accessToken") ? <ChooseGiftPage /> : <Navigate to="/" replace />}
         />
         <Route path={routePaths.Arrive} element={<ArriveRecommendPage />} />
+        <Route path={routePaths.Landing} element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
   );

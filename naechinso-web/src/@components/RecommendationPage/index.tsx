@@ -5,17 +5,17 @@ import styled from "styled-components";
 import { routePaths } from "../../core/routes/path";
 
 export default function RecommendationPage() {
-  const memberUuid = location.pathname.substring(15, 52);
-  const recommendationImgUrl = location.pathname.substring(52);
   const [recommendationImg, setRecommendationImg] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
+    const recommendationImgUrl = location.pathname.substring(52);
     setRecommendationImg("https://k.kakaocdn.net/dn" + recommendationImgUrl + ".png");
   }, []);
 
   const handleMagicLink = () => {
     // 매직링크로 이동
+    const memberUuid = location.pathname.substring(15, 52);
     navigate(`/landing${memberUuid}`);
   };
 
