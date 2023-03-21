@@ -1,17 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { routePaths } from "../../core/routes/path";
 
 export default function RecommendationPage() {
-  const [recommendationImg, setRecommendationImg] = useState(
-    "https://k.kakaocdn.net/dn/nKNae/bl347eCzFfa/LOMw2Qq41cRI2wt3fB3Zs0/kakaolink40_original.png",
-  );
+  const memberUuid = location.pathname.substring(15, 52);
+  const recommendationImgUrl = location.pathname.substring(52);
+  const [recommendationImg, setRecommendationImg] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setRecommendationImg("https://k.kakaocdn.net/dn" + recommendationImgUrl + ".png");
+  }, []);
 
   const handleMagicLink = () => {
     // 매직링크로 이동
+    navigate(`/landing${memberUuid}`);
   };
 
   const handleInstall = () => {
