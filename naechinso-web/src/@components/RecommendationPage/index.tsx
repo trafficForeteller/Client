@@ -62,7 +62,7 @@ const St = {
     ${({ theme }) => theme.fonts.sub3};
     border-radius: 16px;
     width: fit-content;
-    padding: 0 3rem;
+    padding: 0 2rem;
     height: 5.6rem;
     display: flex;
     justify-content: center;
