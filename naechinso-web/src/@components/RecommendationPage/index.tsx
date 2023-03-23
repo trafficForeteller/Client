@@ -41,7 +41,11 @@ export default function RecommendationPage() {
 }
 
 const St = {
-  RecommendationPage: styled.main``,
+  RecommendationPage: styled.main`
+    width: 100%;
+    height: 100%;
+    background-color: ${({ theme }) => theme.colors.white};
+  `,
   RecommendationImage: styled.img`
     width: 100%;
     margin-bottom: 8rem;
