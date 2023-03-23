@@ -227,7 +227,6 @@ export default function FriendInfoPage() {
     localStorage.removeItem("checkedQ1");
     localStorage.removeItem("questionList");
     localStorage.removeItem("priceType");
-    localStorage.removeItem("memberName");
 
     navigate(routePaths.Keyword);
   };
@@ -334,7 +333,17 @@ export default function FriendInfoPage() {
         <></>
       )}
 
-      {!memberName && (
+      {memberName ? (
+        <ShortInputBox
+          label="내 친구 이름"
+          placeholder="친구 이름을 실명으로 적어줘"
+          value={memberName}
+          onChange={handleNameInput}
+          isModalOpened={isModalOpened}
+          step={step}
+          handleStep={handleStep}
+        />
+      ) : (
         <ShortInputBox
           label="내 친구 이름"
           placeholder="친구 이름을 실명으로 적어줘"
