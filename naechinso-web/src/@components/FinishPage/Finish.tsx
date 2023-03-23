@@ -15,7 +15,7 @@ export default function Finish() {
   const shareRecommendLink = () => {
     const recommenderName = localStorage.getItem("recommenderName");
 
-    if (navigator.share) {
+    if (Mobile() && navigator.share) {
       navigator
         .share({
           title: `${recommenderName} 친구가 너를 추천했어!`,
@@ -35,7 +35,12 @@ export default function Finish() {
 이제 너가 할 일은 간단한 자기소개만 하면 끝!😎 내친소에서 너만큼 멋진 친구들을 만나러 가볼까?
       
 앱 다운로드: https://recommend.naechinso.com/arrive`);
+      alert("클립보드에 초대링크를 복사했어요!");
     }
+  };
+
+  const Mobile = () => {
+    return /Mobi/i.test(window.navigator.userAgent);
   };
 
   return (

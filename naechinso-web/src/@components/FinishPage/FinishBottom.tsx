@@ -26,7 +26,6 @@ export default function FinishBottom() {
     localStorage.removeItem("uuid");
     localStorage.removeItem("member-uuid");
     localStorage.removeItem("landingUrl");
-    localStorage.removeItem("recommenderName");
     localStorage.removeItem("priceType");
     localStorage.removeItem("memberName");
   };
