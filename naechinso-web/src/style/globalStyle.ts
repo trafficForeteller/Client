@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
   :root {
     --vh: 100vh;
+    background-color: #FFFFFF;
    }
 
   html, body, div, span, applet, object, iframe,
