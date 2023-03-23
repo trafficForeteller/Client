@@ -34,9 +34,9 @@ export default function DontGoPage() {
     localStorage.setItem("dontGo", text);
     setPatchRecommend({
       ...patchRecommend,
-      appealDetail: localStorage.getItem("appealDetail"),
+      appealDetail: localStorage.getItem("appealDetail") || "",
       appeals: JSON.parse(localStorage.getItem("appeals") || "[]"),
-      dontGo: localStorage.getItem("dontGo"),
+      dontGo: localStorage.getItem("dontGo") || "",
     });
   }, [text]);
 
