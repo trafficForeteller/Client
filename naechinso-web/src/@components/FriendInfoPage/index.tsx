@@ -333,17 +333,7 @@ export default function FriendInfoPage() {
         <></>
       )}
 
-      {memberName ? (
-        <ShortInputBox
-          label="내 친구 이름"
-          placeholder="친구 이름을 실명으로 적어줘"
-          value={memberName}
-          onChange={handleNameInput}
-          isModalOpened={isModalOpened}
-          step={step}
-          handleStep={handleStep}
-        />
-      ) : (
+      {memberName && (
         <ShortInputBox
           label="내 친구 이름"
           placeholder="친구 이름을 실명으로 적어줘"
