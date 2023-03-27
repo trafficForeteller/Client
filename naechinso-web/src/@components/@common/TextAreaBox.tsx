@@ -28,7 +28,6 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
           maxLength={maxLength}
           value={text && text}
           onChange={(e) => handleText(e)}
-          // onKeyup={onEnterKeyUp}
           dir="auto"
           rows={1}
           style={{

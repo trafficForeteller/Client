@@ -12,7 +12,6 @@ import { FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
 
 export default function DontGoPage() {
   const [text, setText] = useState("");
-  const [textCheck, setTextCheck] = useState(false);
   const [patchRecommend, setPatchRecommend] = useState<IPatchFriendDetail>({
     appealDetail: "",
     appeals: [],
@@ -25,12 +24,10 @@ export default function DontGoPage() {
     if (localStorage.getItem("dontGo")) {
       const dontGo = localStorage.getItem("dontGo") as string;
       setText(dontGo);
-      setTextCheck(true);
     }
   }, []);
 
   useEffect(() => {
-    handleTextCheck();
     localStorage.setItem("dontGo", text);
     setPatchRecommend({
       ...patchRecommend,
@@ -115,10 +112,7 @@ export default function DontGoPage() {
     navigate(routePaths.Finish);
   };
 
-  const handleTextCheck = () => {
-    if (text.length > 19) setTextCheck(true);
-    else setTextCheck(false);
-  };
+  const isButtonDisabled = !text || text.length < 20;
 
   return (
     <St.DontGo>
@@ -148,7 +142,7 @@ export default function DontGoPage() {
 
       <MoveNextPageBtn
         title="완료"
-        disabled={!textCheck}
+        disabled={isButtonDisabled}
         handleState={handleGetCheckPrice}
         className={GTM_CLASS_NAME.recommendSuccess}
       />

@@ -45,16 +45,17 @@ export default function SecondRecommendPage() {
 
   const handleRegisterRecommender = async () => {
     // 추천사 등록하기
-    secondRecommend !== "" &&
-      (await postRecommendation(
-        postRecommend,
-        localStorage.getItem("accessToken"),
-        localStorage.getItem("uuid"),
-        handleSuccessPostRecommendation,
-        handleFailRequest,
-        handleReissuePostRecommendation,
-      ));
+    await postRecommendation(
+      postRecommend,
+      localStorage.getItem("accessToken"),
+      localStorage.getItem("uuid"),
+      handleSuccessPostRecommendation,
+      handleFailRequest,
+      handleReissuePostRecommendation,
+    );
   };
+
+  const isButtonDisabled = !secondRecommend || secondRecommend.length === 0;
 
   const handleReissuePostRecommendation = async () => {
     // 액세스 토큰 만료 응답인지 확인
@@ -99,7 +100,7 @@ export default function SecondRecommendPage() {
         <St.SkipButton onClick={handleSkipButton} type="button">
           건너뛰기
         </St.SkipButton>
-        <St.NextButton onClick={handleRegisterRecommender} type="button">
+        <St.NextButton onClick={handleRegisterRecommender} type="button" disabled={isButtonDisabled}>
           다음
         </St.NextButton>
       </St.MoveBtnWrapper>

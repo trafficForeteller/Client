@@ -7,25 +7,19 @@ import { FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
 
 export default function AppealDetailPage() {
   const [text, setText] = useState("");
-  const [textCheck, setTextCheck] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("appealDetail")) {
       const appealDetail = localStorage.getItem("appealDetail") as string;
       setText(appealDetail);
-      setTextCheck(true);
     }
   }, []);
 
   useEffect(() => {
-    handleTextCheck();
     localStorage.setItem("appealDetail", text);
   }, [text]);
 
-  const handleTextCheck = () => {
-    if (text.length > 19) setTextCheck(true);
-    else setTextCheck(false);
-  };
+  const isButtonDisabled = !text || text.length < 20;
 
   return (
     <St.AppealDetail>
@@ -52,7 +46,7 @@ export default function AppealDetailPage() {
         />
       </St.TextWrapper>
 
-      <MoveNextPageBtn nextPage={routePaths.DontGo} title="다음" disabled={!textCheck} />
+      <MoveNextPageBtn nextPage={routePaths.DontGo} title="다음" disabled={isButtonDisabled} />
     </St.AppealDetail>
   );
 }

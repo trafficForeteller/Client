@@ -9,7 +9,6 @@ import { IPostRecommendQuestion } from "../../types/recommend";
 import { FixedHeader, MoveNextPageBtn, TextAreaBox, ToggleTipBox } from "../@common";
 
 export default function FirstRecommendPage() {
-  const [textCheck, setTextCheck] = useState(false);
   const [firstRecommend, setFirstRecommend] = useState("");
   const [questionData, setQuestionData] = useState<IPostRecommendQuestion>({
     id: 0,
@@ -38,12 +37,10 @@ export default function FirstRecommendPage() {
     if (localStorage.getItem("firstRecommend")) {
       const recommendInLocal = localStorage.getItem("firstRecommend") as string;
       setFirstRecommend(recommendInLocal);
-      setTextCheck(true);
     }
   }, []);
 
   useEffect(() => {
-    handleEnteredText(firstRecommend);
     localStorage.setItem("firstRecommend", firstRecommend);
     setPostRecommend({
       recommendQuestions: [
@@ -55,13 +52,7 @@ export default function FirstRecommendPage() {
     });
   }, [firstRecommend]);
 
-  const handleEnteredText = (text: string) => {
-    // 글자수 확인
-    if (text) {
-      if (text.length >= 50) setTextCheck(true);
-      else setTextCheck(false);
-    }
-  };
+  const isButtonDisabled = !firstRecommend || firstRecommend.length < 50;
 
   const parseLocalStorage = (item: string) => {
     //  localStorage에 저장된 친구가 배열 혹은 object일 때 JSON.parse하는 함수
@@ -123,7 +114,7 @@ export default function FirstRecommendPage() {
         letterLimit="50자 이상 150자 이내"
       />
 
-      <MoveNextPageBtn title="다음" disabled={!textCheck} handleState={handleRegisterRecommender} />
+      <MoveNextPageBtn title="다음" disabled={isButtonDisabled} handleState={handleRegisterRecommender} />
     </St.FirstRecommendPage>
   );
 }
