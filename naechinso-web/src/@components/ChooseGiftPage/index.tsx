@@ -87,7 +87,7 @@ export default function ChooseGiftPage() {
 
       <St.ButtonWrapper>
         <St.ChooseWorkButton type="button" onClick={handleChooseSunguri}>
-          썬구라 20개
+          썬구리 20개
         </St.ChooseWorkButton>
         <St.ChooseWorkButton type="button" onClick={handleChooseMyRecommend}>
           내 추천사 보기
