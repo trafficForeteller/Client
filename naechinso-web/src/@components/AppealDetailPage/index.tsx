@@ -49,6 +49,7 @@ export default function AppealDetailPage() {
           setText={setText}
           height={5}
           letterLimit="20자 이상 40자 이내"
+          isModalOpened={false}
         />
       </St.TextWrapper>
 

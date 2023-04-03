@@ -21,15 +21,9 @@ export default function MoveNextPageBtn(props: NextPageBtnProps) {
 
   return (
     <St.ButtonWrapper>
-      {className ? (
-        <St.Button onClick={goNextPage} disabled={disabled} type="button" className={className}>
-          {title}
-        </St.Button>
-      ) : (
-        <St.Button onClick={goNextPage} disabled={disabled} type="button">
-          {title}
-        </St.Button>
-      )}
+      <St.Button onClick={goNextPage} disabled={disabled} type="button" className={className && className}>
+        {title}
+      </St.Button>
     </St.ButtonWrapper>
   );
 }

@@ -9,7 +9,7 @@ import { IcDontGo } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
-import { FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
+import { FixedHeader, MoveNextPageBtn, TextAreaBox, WarningModal } from "../@common";
 
 export default function DontGoPage() {
   const [text, setText] = useState("");
@@ -20,6 +20,8 @@ export default function DontGoPage() {
     dontGo: "",
     priceType: "",
   });
+  const [isWarningModalOpened, setIsWarningModalOpened] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -108,11 +110,17 @@ export default function DontGoPage() {
     }
     handlePatchRecommend();
   };
+
   const handleFailPatchRecommend = (err: AxiosError) => {
     // keyword, appealDetail, dontG POST 실패할 시
-    console.log(err);
-    err.response && console.log(err.response.data);
-    navigate(routePaths.Error);
+    const errData = err.response && (err.response.data as Error);
+    const errorMessage = errData && (errData.message as string);
+    console.log(errorMessage);
+
+    if (errorMessage === "비속어가 포함되어 있습니다") {
+      setIsWarningModalOpened(true);
+      navigate(routePaths.DontGo);
+    } else navigate(routePaths.Error);
   };
 
   const handleSuccessPatchRecommend = () => {
@@ -127,44 +135,60 @@ export default function DontGoPage() {
   };
 
   return (
-    <St.DontGo>
-      <FixedHeader
-        header="추천사"
-        progressRate={100}
-        title1="마지막이야!"
-        title2="친구를 거절한 상대방의"
-        title3="마음을 돌릴 한마디?"
-      />
-
-      <St.CardWrapper>
-        <IcDontGo aria-label="한 마디 발언 미리보기" />
-      </St.CardWrapper>
-
-      <St.TextWrapper>
-        <TextAreaBox
-          placeholder="미래의 형수님 한번만 다시 생각해보십쇼. 이 친구가 겉 보기엔 끌리지 않을 수 있어도, 저와 주변 친구들이 그랬듯 제 친구의 매력에 한 번 빠지면 헤어나올 수 없거든요!"
-          minLength={19}
-          maxLength={100}
-          text={text}
-          setText={setText}
-          height={7.8}
-          letterLimit="20자 이상 100자 이내"
+    <>
+      <St.DontGo isWarningModalOpened={isWarningModalOpened}>
+        <FixedHeader
+          header="추천사"
+          progressRate={100}
+          title1="마지막이야!"
+          title2="친구를 거절한 상대방의"
+          title3="마음을 돌릴 한마디?"
+          isModalOpened={isWarningModalOpened}
         />
-      </St.TextWrapper>
-
-      <MoveNextPageBtn
-        title="완료"
-        disabled={!textCheck}
-        handleState={handleGetCheckPrice}
-        className={GTM_CLASS_NAME.recommendSuccess}
-      />
-    </St.DontGo>
+        <St.CardWrapper>
+          <IcDontGo aria-label="한 마디 발언 미리보기" />
+        </St.CardWrapper>
+        <St.TextWrapper>
+          <TextAreaBox
+            placeholder="미래의 형수님 한번만 다시 생각해보십쇼. 이 친구가 겉 보기엔 끌리지 않을 수 있어도, 저와 주변 친구들이 그랬듯 제 친구의 매력에 한 번 빠지면 헤어나올 수 없거든요!"
+            minLength={19}
+            maxLength={100}
+            text={text}
+            setText={setText}
+            height={7.8}
+            letterLimit="20자 이상 100자 이내"
+            isModalOpened={isWarningModalOpened}
+          />
+        </St.TextWrapper>
+        <MoveNextPageBtn
+          title="완료"
+          disabled={!textCheck}
+          handleState={handleGetCheckPrice}
+          className={GTM_CLASS_NAME.recommendSuccess}
+        />
+        {isWarningModalOpened && (
+          <WarningModal
+            title1="상대방의 마음을 돌릴"
+            title2="한 마디를 다시 작성해줘🥺"
+            desc="비속어가 포함되어 있는지 확인해줘!"
+            buttonTitle="응 수정할게!"
+            setIsWarningModalOpened={setIsWarningModalOpened}
+          />
+        )}
+      </St.DontGo>
+    </>
   );
 }
 
 const St = {
-  DontGo: styled.main`
+  DontGo: styled.main<{ isWarningModalOpened: boolean }>`
+    background-color: rgba(${({ isWarningModalOpened }) => (isWarningModalOpened ? "0, 0, 0, 0.64" : "")});
     padding-top: 18rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
   `,
   CardWrapper: styled.section`
     width: 100%;
@@ -177,6 +201,7 @@ const St = {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: -1;
   `,
   TextWrapper: styled.section`
     margin-top: 23rem;

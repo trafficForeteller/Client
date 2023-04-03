@@ -121,6 +121,7 @@ export default function FirstRecommendPage() {
         setText={setFirstRecommend}
         height={13}
         letterLimit="50자 이상 150자 이내"
+        isModalOpened={false}
       />
 
       <MoveNextPageBtn title="다음" disabled={!textCheck} handleState={handleRegisterRecommender} />

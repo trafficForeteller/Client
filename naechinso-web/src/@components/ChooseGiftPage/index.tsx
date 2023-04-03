@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -49,9 +50,9 @@ export default function ChooseGiftPage() {
     navigate(routePaths.Finish);
   };
 
-  const handleFailRequest = (errorMessage: string) => {
+  const handleFailRequest = (err: AxiosError) => {
     // keyword, appealDetail, dontG POST 실패할 시
-    console.log(errorMessage);
+    err.response && console.log(err.response.data);
     navigate(routePaths.Error);
   };
 

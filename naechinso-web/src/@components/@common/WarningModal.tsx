@@ -2,17 +2,25 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { ImgWarningNaechinso } from "../../asset/image";
+import { routePaths } from "../../core/routes/path";
 
 export interface WarningModalProps {
   title1: string;
   title2: string;
   desc: string;
   buttonTitle: string;
+  setIsWarningModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function WarningModal(props: WarningModalProps) {
-  const { title1, title2, desc, buttonTitle } = props;
+  const { title1, title2, desc, buttonTitle, setIsWarningModalOpened } = props;
   const navigate = useNavigate();
+
+  const closeModal = () => {
+    setIsWarningModalOpened(false);
+    if (buttonTitle === "응 수정할게!") navigate(routePaths.DontGo);
+    else navigate(routePaths.RecommendLanding);
+  };
 
   return (
     <St.WarningModal>
@@ -23,7 +31,7 @@ export default function WarningModal(props: WarningModalProps) {
       </St.TitleWrapper>
       <St.Desc>{desc}</St.Desc>
       <St.ButtonWrapper>
-        <St.Button onClick={() => navigate(-1)} type="button">
+        <St.Button onClick={closeModal} type="button">
           {buttonTitle}
         </St.Button>
       </St.ButtonWrapper>

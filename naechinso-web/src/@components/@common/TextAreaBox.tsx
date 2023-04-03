@@ -9,17 +9,18 @@ export interface TextAreaBoxProps {
   setText: React.Dispatch<React.SetStateAction<string>>;
   height: number;
   letterLimit: string;
+  isModalOpened: boolean;
 }
 
 export default function TextAreaBox(props: TextAreaBoxProps) {
-  const { placeholder, minLength, maxLength, text, setText, height, letterLimit } = props;
+  const { placeholder, minLength, maxLength, text, setText, height, letterLimit, isModalOpened } = props;
 
   const handleText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
 
   return (
-    <St.TextAreaBox>
+    <St.TextAreaBox isModalOpened={isModalOpened}>
       <St.TextAreaWrapper height={height}>
         :
         <TextareaAutosize
@@ -60,9 +61,10 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
 }
 
 const St = {
-  TextAreaBox: styled.section`
+  TextAreaBox: styled.section<{ isModalOpened: boolean }>`
     padding-bottom: 15rem;
     height: fit-content;
+    z-index: ${({ isModalOpened }) => (isModalOpened === true ? "-1" : "")};
   `,
   TextAreaWrapper: styled.article<{ height: number }>`
     width: 100%;

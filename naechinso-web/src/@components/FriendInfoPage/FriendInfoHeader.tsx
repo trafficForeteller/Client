@@ -36,6 +36,7 @@ export default function FriendInfoHeader(props: FriendInfoHeaderProps) {
           title2="추천사는 제출되지 않아🥺"
           desc="모든 문항을 완성해줘!"
           buttonTitle="응 확인했어!"
+          setIsWarningModalOpened={setIsWarningModalOpened}
         />
       )}
     </>
