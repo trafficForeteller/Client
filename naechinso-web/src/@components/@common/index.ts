@@ -26,4 +26,5 @@ export { default as ToggleInputBox } from "./ToggleInputBox";
 export { default as ToggleModal } from "./ToggleModal";
 export { default as ToggleTipBox } from "./ToggleTipBox";
 export { default as WarningBox } from "./WarningBox";
+export { default as WarningModal } from "./WarningModal";
 export { default as WorkCertified } from "./WorkCertified";

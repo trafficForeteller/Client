@@ -2,8 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { IcPreviousBtn } from "../../asset/icons";
-import { ProgressBar } from "../@common";
-import WarningModal from "./WarningModal";
+import { ProgressBar, WarningModal } from "../@common";
 
 export interface FriendInfoHeaderProps {
   setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
@@ -31,7 +30,14 @@ export default function FriendInfoHeader(props: FriendInfoHeaderProps) {
         </St.Header>
         <ProgressBar progressRate={20} />
       </St.BasicHeader>
-      {isWarningModalOpened && <WarningModal />}
+      {isWarningModalOpened && (
+        <WarningModal
+          title1="이 페이지를 나가면"
+          title2="추천사는 제출되지 않아🥺"
+          desc="모든 문항을 완성해줘!"
+          buttonTitle="응 확인했어!"
+        />
+      )}
     </>
   );
 }

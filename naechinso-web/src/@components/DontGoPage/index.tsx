@@ -94,7 +94,7 @@ export default function DontGoPage() {
       localStorage.getItem("accessToken"),
       localStorage.getItem("uuid"),
       handleSuccessPatchRecommend,
-      handleFailRequest,
+      handleFailPatchRecommend,
       handleReissuePatchRecommend,
     );
   };
@@ -108,7 +108,7 @@ export default function DontGoPage() {
     }
     handlePatchRecommend();
   };
-  const handleFailRequest = (err: AxiosError) => {
+  const handleFailPatchRecommend = (err: AxiosError) => {
     // keyword, appealDetail, dontG POST 실패할 시
     console.log(err);
     err.response && console.log(err.response.data);

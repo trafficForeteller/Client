@@ -3,20 +3,28 @@ import styled from "styled-components";
 
 import { ImgWarningNaechinso } from "../../asset/image";
 
-export default function WarningModal() {
+export interface WarningModalProps {
+  title1: string;
+  title2: string;
+  desc: string;
+  buttonTitle: string;
+}
+
+export default function WarningModal(props: WarningModalProps) {
+  const { title1, title2, desc, buttonTitle } = props;
   const navigate = useNavigate();
 
   return (
     <St.WarningModal>
       <St.Naechinso src={ImgWarningNaechinso} alt="내친소" />
       <St.TitleWrapper>
-        <St.Title>이 페이지를 나가면</St.Title>
-        <St.Title>추천사는 제출되지 않아🥺</St.Title>
+        <St.Title>{title1}</St.Title>
+        <St.Title>{title2}</St.Title>
       </St.TitleWrapper>
-      <St.Desc>모든 문항을 완성해줘!</St.Desc>
+      <St.Desc>{desc}</St.Desc>
       <St.ButtonWrapper>
         <St.Button onClick={() => navigate(-1)} type="button">
-          응 확인했어!
+          {buttonTitle}
         </St.Button>
       </St.ButtonWrapper>
     </St.WarningModal>
