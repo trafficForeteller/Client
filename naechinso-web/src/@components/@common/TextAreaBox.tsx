@@ -29,7 +29,6 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
           maxLength={maxLength}
           value={text && text}
           onChange={(e) => handleText(e)}
-          // onKeyup={onEnterKeyUp}
           dir="auto"
           rows={1}
           style={{
@@ -47,12 +46,13 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
             border: "none",
             display: "flex",
             flexWrap: "wrap",
+            zIndex: isModalOpened === true ? "-1" : "",
           }}
         />
       </St.TextAreaWrapper>
       <St.TextLength>
-        <St.TextLimit>{letterLimit}</St.TextLimit>
-        <St.TextCountWrapper>
+        <St.TextLimit isModalOpened={isModalOpened}>{letterLimit}</St.TextLimit>
+        <St.TextCountWrapper isModalOpened={isModalOpened}>
           <St.TextCount>{text ? text.length : 0}</St.TextCount>/{maxLength}
         </St.TextCountWrapper>
       </St.TextLength>
@@ -86,12 +86,15 @@ const St = {
     color: ${({ theme }) => theme.colors.gray40};
     ${({ theme }) => theme.fonts.caption5}
   `,
-  TextLimit: styled.span`
+  TextLimit: styled.span<{ isModalOpened: boolean }>`
     margin-left: 1.5rem;
     color: ${({ theme }) => theme.colors.orange};
+    z-index: ${({ isModalOpened }) => (isModalOpened === true ? "-1" : "")};
   `,
   TextCount: styled.b`
     color: ${({ theme }) => theme.colors.orange};
   `,
-  TextCountWrapper: styled.p``,
+  TextCountWrapper: styled.p<{ isModalOpened: boolean }>`
+    z-index: ${({ isModalOpened }) => (isModalOpened === true ? "-1" : "")};
+  `,
 };

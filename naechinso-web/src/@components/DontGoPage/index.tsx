@@ -9,7 +9,7 @@ import { IcDontGo } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
-import { FixedHeader, MoveNextPageBtn, TextAreaBox, WarningModal } from "../@common";
+import { FixedHeader, TextAreaBox, WarningModal } from "../@common";
 
 export default function DontGoPage() {
   const [text, setText] = useState("");
@@ -160,12 +160,16 @@ export default function DontGoPage() {
             isModalOpened={isWarningModalOpened}
           />
         </St.TextWrapper>
-        <MoveNextPageBtn
-          title="완료"
-          disabled={!textCheck}
-          handleState={handleGetCheckPrice}
-          className={GTM_CLASS_NAME.recommendSuccess}
-        />
+        <St.NextStepBtnWrapper>
+          <St.NextStepBtn
+            type="button"
+            disabled={!textCheck}
+            onClick={handleGetCheckPrice}
+            isWarningModalOpened={isWarningModalOpened}
+            className={GTM_CLASS_NAME.recommendSuccess}>
+            완료
+          </St.NextStepBtn>
+        </St.NextStepBtnWrapper>
         {isWarningModalOpened && (
           <WarningModal
             title1="상대방의 마음을 돌릴"
@@ -206,5 +210,36 @@ const St = {
   TextWrapper: styled.section`
     margin-top: 23rem;
     padding: 0 2rem;
+  `,
+  NextStepBtnWrapper: styled.section`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: fixed;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 2rem;
+    height: 11rem;
+  `,
+  NextStepBtn: styled.button<{ isWarningModalOpened: boolean }>`
+    visibility: ${({ isWarningModalOpened }) => (isWarningModalOpened ? "hidden" : "")};
+
+    bottom: 3.5rem;
+    background-color: ${({ theme }) => theme.colors.orange};
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+    width: 33.5rem;
+    height: 5.6rem;
+    border-radius: 1.6rem;
+
+    &:disabled {
+      background-color: ${({ theme }) => theme.colors.orange20};
+      cursor: default;
+    }
+    @media only screen and (min-width: 375px) and (max-width: 600px) {
+      width: 100%;
+    }
   `,
 };
