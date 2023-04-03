@@ -13,7 +13,6 @@ import { FixedHeader, TextAreaBox, WarningModal } from "../@common";
 
 export default function DontGoPage() {
   const [text, setText] = useState("");
-  const [textCheck, setTextCheck] = useState(false);
   const [patchRecommend, setPatchRecommend] = useState<IPatchFriendDetail>({
     appealDetail: "",
     appeals: [],
@@ -28,12 +27,10 @@ export default function DontGoPage() {
     if (localStorage.getItem("dontGo")) {
       const dontGo = localStorage.getItem("dontGo") as string;
       setText(dontGo);
-      setTextCheck(true);
     }
   }, []);
 
   useEffect(() => {
-    handleTextCheck();
     localStorage.setItem("dontGo", text);
     setPatchRecommend({
       ...patchRecommend,
@@ -44,6 +41,12 @@ export default function DontGoPage() {
   }, [text]);
 
   useEffect(() => {
+    // 경고모달뜨면 priceType 다시 비워주기! cuz priceType있을 때 handlePatchRecommend 실행되게 해놨기 때문!
+    isWarningModalOpened === true && setPatchRecommend({ ...patchRecommend, priceType: "" });
+  }, [isWarningModalOpened]);
+
+  useEffect(() => {
+    // patchRecommend 성공 시
     if (patchRecommend.priceType !== "") handlePatchRecommend();
   }, [patchRecommend]);
 
@@ -72,6 +75,7 @@ export default function DontGoPage() {
     } else if (userData.isPrice === true && userData.isShowRecommend === false) {
       navigate(routePaths.ChooseGift, { state: { patchRecommend } });
     }
+    // handlePatchRecommend();
   };
 
   const handleFailGetCheckPrice = (errorMessage: string) => {
@@ -129,10 +133,7 @@ export default function DontGoPage() {
     navigate(routePaths.Finish);
   };
 
-  const handleTextCheck = () => {
-    if (text.length > 19) setTextCheck(true);
-    else setTextCheck(false);
-  };
+  const isButtonDisabled = () => !text || text.length < 20;
 
   return (
     <>
@@ -163,7 +164,7 @@ export default function DontGoPage() {
         <St.NextStepBtnWrapper>
           <St.NextStepBtn
             type="button"
-            disabled={!textCheck}
+            disabled={isButtonDisabled()}
             onClick={handleGetCheckPrice}
             isWarningModalOpened={isWarningModalOpened}
             className={GTM_CLASS_NAME.recommendSuccess}>
@@ -232,7 +233,7 @@ const St = {
     ${({ theme }) => theme.fonts.sub3};
     width: 33.5rem;
     height: 5.6rem;
-    border-radius: 1.6rem;
+    border-radius: 16px;
 
     &:disabled {
       background-color: ${({ theme }) => theme.colors.orange20};

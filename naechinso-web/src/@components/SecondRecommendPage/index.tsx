@@ -45,16 +45,17 @@ export default function SecondRecommendPage() {
 
   const handleRegisterRecommender = async () => {
     // 추천사 등록하기
-    secondRecommend !== "" &&
-      (await postRecommendation(
-        postRecommend,
-        localStorage.getItem("accessToken"),
-        localStorage.getItem("uuid"),
-        handleSuccessPostRecommendation,
-        handleFailRequest,
-        handleReissuePostRecommendation,
-      ));
+    await postRecommendation(
+      postRecommend,
+      localStorage.getItem("accessToken"),
+      localStorage.getItem("uuid"),
+      handleSuccessPostRecommendation,
+      handleFailRequest,
+      handleReissuePostRecommendation,
+    );
   };
+
+  const isButtonDisabled = !secondRecommend || secondRecommend.length === 0;
 
   const handleReissuePostRecommendation = async () => {
     // 액세스 토큰 만료 응답인지 확인
@@ -100,7 +101,7 @@ export default function SecondRecommendPage() {
         <St.SkipButton onClick={handleSkipButton} type="button">
           건너뛰기
         </St.SkipButton>
-        <St.NextButton onClick={handleRegisterRecommender} type="button">
+        <St.NextButton onClick={handleRegisterRecommender} type="button" disabled={isButtonDisabled}>
           다음
         </St.NextButton>
       </St.MoveBtnWrapper>
@@ -110,9 +111,7 @@ export default function SecondRecommendPage() {
 
 const St = {
   SecondRecommendPage: styled.main`
-    padding-top: 21rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding: 21rem 2rem 2rem;
   `,
   MoveBtnWrapper: styled.section`
     display: flex;
@@ -123,8 +122,9 @@ const St = {
     margin: 0 auto;
     left: 0;
     right: 0;
-    bottom: 3.6rem;
+    bottom: 4rem;
     padding: 0 2rem;
+    margin-bottom: 1rem;
 
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%);
     width: 37.5rem;
