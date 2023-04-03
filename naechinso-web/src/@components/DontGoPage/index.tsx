@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -50,7 +51,7 @@ export default function DontGoPage() {
       localStorage.getItem("accessToken"),
       localStorage.getItem("uuid"),
       handleSuccessGetCheckPrice,
-      handleFailRequest,
+      handleFailGetCheckPrice,
       handleReissueGetCheckPrice,
     );
   };
@@ -69,6 +70,11 @@ export default function DontGoPage() {
     } else if (userData.isPrice === true && userData.isShowRecommend === false) {
       navigate(routePaths.ChooseGift, { state: { patchRecommend } });
     }
+  };
+
+  const handleFailGetCheckPrice = (errorMessage: string) => {
+    console.log(errorMessage);
+    navigate(routePaths.Error);
   };
 
   const handleReissueGetCheckPrice = async () => {
@@ -102,10 +108,10 @@ export default function DontGoPage() {
     }
     handlePatchRecommend();
   };
-
-  const handleFailRequest = (errorMessage: string) => {
+  const handleFailRequest = (err: AxiosError) => {
     // keyword, appealDetail, dontG POST 실패할 시
-    console.log(errorMessage);
+    console.log(err);
+    err.response && console.log(err.response.data);
     navigate(routePaths.Error);
   };
 

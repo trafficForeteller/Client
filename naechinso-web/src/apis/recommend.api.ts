@@ -59,7 +59,7 @@ export async function patchRecommendFriendDetail(
   accessToken: string | null,
   uuid: string | null,
   onSuccess: () => void,
-  onFail: (errorMessage: string) => void,
+  onFail: (err: AxiosError) => void,
   onReissue: () => void,
 ): Promise<void | null> {
   try {
@@ -70,7 +70,7 @@ export async function patchRecommendFriendDetail(
   } catch (err) {
     if (err instanceof AxiosError) {
       if (err.response?.data.status === 401) onReissue();
-      else onFail(err.message);
+      else onFail(err);
     }
   }
 }
