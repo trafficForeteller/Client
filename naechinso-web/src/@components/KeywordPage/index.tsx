@@ -114,5 +114,6 @@ const St = {
     ${({ theme }) => theme.fonts.sub3};
     background: ${({ theme, checked }) => (checked ? theme.colors.brown : theme.colors.neural)};
     border-radius: 16px;
+    transition: all 0.2s ease;
   `,
 };

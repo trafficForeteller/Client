@@ -90,8 +90,10 @@ export default function ChooseFirstQuestionPage() {
               <St.QuestionWrapper disabled={question.disabled}>
                 <St.Icon>{question.icon}</St.Icon>
                 <St.TitleWrapper checked={question.checked}>
-                  <St.Title>{question.title1}</St.Title>
-                  <St.Title>{question.title2}</St.Title>
+                  <St.Title>
+                    {question.title1}
+                    {question.title2}
+                  </St.Title>
                 </St.TitleWrapper>
               </St.QuestionWrapper>
             </St.QuestionBox>
@@ -120,11 +122,9 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
-    align-content: start;
 
     width: 33.5rem;
-    height: 66rem;
+    height: 100%;
     padding-top: 1.6rem;
 
     gap: 1.5rem;
@@ -132,8 +132,9 @@ const St = {
   `,
   QuestionBox: styled.button<{ checked: boolean }>`
     padding: 1.2rem;
-    width: 16rem;
-    height: fit-content;
+    width: 100%;
+    height: 8.8rem;
+    transition: all 0.2s ease;
 
     background-color: ${({ theme, checked }) => (checked ? theme.colors.brown : theme.colors.neural)};
     border-radius: 16px;

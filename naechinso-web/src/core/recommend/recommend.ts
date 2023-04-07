@@ -74,8 +74,8 @@ export const questionList: questionProps[] = [
   {
     id: 0,
     icon: "✨",
-    title1: "내 친구에게",
-    title2: "본받고 싶은 점",
+    title1: "내 친구에게 ",
+    title2: "본받고 싶은 점은?",
     question1: "내 친구에게 ",
     question2: "어떤 점을 본받고 싶어?",
     placeholder:
@@ -86,8 +86,8 @@ export const questionList: questionProps[] = [
   {
     id: 1,
     icon: "😍",
-    title1: "내 친구의",
-    title2: "이성적 매력",
+    title1: "내 친구의 ",
+    title2: "이성적인 매력은?",
     question1: "내 친구의 가장 큰 ",
     question2: "이성적 매력은 뭐라고 생각해?",
     placeholder:
@@ -98,7 +98,7 @@ export const questionList: questionProps[] = [
   {
     id: 2,
     icon: "👍🏻",
-    title1: "내 친구의 장점",
+    title1: "내 친구의 가장 큰 장점은?",
     question1: "내 친구의 성격 중 ",
     question2: "가장 큰 장점은?",
     placeholder:
@@ -109,8 +109,8 @@ export const questionList: questionProps[] = [
   {
     id: 3,
     icon: "🎨",
-    title1: "내 친구의",
-    title2: "3가지 TMI",
+    title1: "내 친구의 ",
+    title2: "3가지 TMI가 있다면?",
     question1: "친해져야만 알 수 있는 ",
     question2: "내 친구의 3가지 TMI는?",
     placeholder:
@@ -121,8 +121,8 @@ export const questionList: questionProps[] = [
   {
     id: 4,
     icon: "💬",
-    title1: "친구와",
-    title2: "자주 하는 대화",
+    title1: "친구와 ",
+    title2: "자주 하는 대화 주제는?",
     question1: "친구랑 어떤 주제로 ",
     question2: "자주 대화해?",
     placeholder:
@@ -133,8 +133,8 @@ export const questionList: questionProps[] = [
   {
     id: 5,
     icon: "😭",
-    title1: "내 친구의",
-    title2: "감동 모먼트",
+    title1: "내 친구의 ",
+    title2: "감동 모먼트는?",
     question1: "내 친구한테 ",
     question2: "감동받은 일화가 있다면?",
     placeholder:
@@ -145,7 +145,7 @@ export const questionList: questionProps[] = [
   {
     id: 6,
     icon: "😎",
-    title1: "멋진 점",
+    title1: "내 친구의 멋진 점은?",
     question1: "내 친구가 ",
     question2: "멋져보일 때는 언제야?",
     placeholder:
@@ -156,8 +156,8 @@ export const questionList: questionProps[] = [
   {
     id: 7,
     icon: "👀",
-    title1: "내 친구와의",
-    title2: "에피소드",
+    title1: "내 친구와의 ",
+    title2: "기억남는 에피소드는?",
     question1: "앞서 선택한 키워드에 관해 ",
     question2: "에피소드가 있을까?",
     placeholder:
@@ -168,7 +168,7 @@ export const questionList: questionProps[] = [
   {
     id: 8,
     icon: "📷",
-    title1: "내 친구의 이미지",
+    title1: "나에게 내 친구의 이미지는?",
     question1: "친구는 그룹 내에서 ",
     question2: "어떤 이미지야?",
     placeholder:
@@ -180,7 +180,7 @@ export const questionList: questionProps[] = [
     id: 9,
     icon: "👭🏻",
     title1: "친구와",
-    title2: "친해진 계기",
+    title2: "친해진 계기는?",
     question1: "친구랑 친해진 ",
     question2: "계기가 뭐야?",
     placeholder:
