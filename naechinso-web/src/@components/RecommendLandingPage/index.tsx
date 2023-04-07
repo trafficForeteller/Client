@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { getUserName, postMemberReissue } from "../../apis/member.api";
 import { ImgCommentNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
-import { MoveNextPageBtn } from "../@common";
+import { MoveNextPageBtn, ToolTipBox } from "../@common";
 
 export default function RecommendLandingPage() {
   const recommenderName = localStorage.getItem("recommenderName");
@@ -57,11 +57,12 @@ export default function RecommendLandingPage() {
         </St.CommentWrapper>
       </St.CommentBox>
 
+      <ToolTipBox text="공들인 추천사는 추첨해서 친소가 매주 커피쏜다 😘" />
+
       <St.Bottom>
         <St.TitleWrapper>
           <St.Title>이제 친구를 소개해볼까?</St.Title>
         </St.TitleWrapper>
-
         <St.Desc>
           지금은 수도권에 거주하는 <St.Highlight>89~99년도생</St.Highlight>만
         </St.Desc>
@@ -79,7 +80,7 @@ const St = {
     background-color: ${({ theme }) => theme.colors.neural};
     padding-top: 10%;
     @media only screen and (min-height: 720px) {
-      padding-top: 39%;
+      padding-top: 30%;
     }
   `,
   CommentBox: styled.section`
