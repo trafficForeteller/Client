@@ -10,10 +10,12 @@ export interface TextAreaBoxProps {
   height: number;
   letterLimit: string;
   isModalOpened: boolean;
+  textareaScroll?: boolean;
 }
 
 export default function TextAreaBox(props: TextAreaBoxProps) {
-  const { placeholder, minLength, maxLength, text, setText, height, letterLimit, isModalOpened } = props;
+  const { placeholder, minLength, maxLength, text, setText, height, letterLimit, isModalOpened, textareaScroll } =
+    props;
 
   const handleText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -23,32 +25,37 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
     <St.TextAreaBox isModalOpened={isModalOpened}>
       <St.TextAreaWrapper height={height}>
         :
-        <TextareaAutosize
-          placeholder={placeholder}
-          minLength={minLength}
-          maxLength={maxLength}
-          value={text && text}
-          onChange={(e) => handleText(e)}
-          dir="auto"
-          rows={1}
-          style={{
-            width: "100%",
-            resize: "none",
-            outline: "none",
-            overflow: "hidden",
-            color: "#111111",
+        {textareaScroll === true ? (
+          <St.TextArea placeholder={placeholder} value={text} onChange={(e) => handleText(e)}></St.TextArea>
+        ) : (
+          <TextareaAutosize
+            aria-label="주관식 추천사"
+            placeholder={placeholder}
+            minLength={minLength}
+            maxLength={maxLength}
+            value={text && text}
+            onChange={(e) => handleText(e)}
+            dir="auto"
+            rows={1}
+            style={{
+              width: "100%",
+              resize: "none",
+              outline: "none",
+              overflow: "hidden",
+              color: "#111111",
 
-            fontFamily: "Pretendard",
-            fontWeight: "500",
-            fontSize: "1.8rem",
-            lineHeight: "2.6rem",
+              fontFamily: "Pretendard",
+              fontWeight: "500",
+              fontSize: "1.8rem",
+              lineHeight: "2.6rem",
 
-            border: "none",
-            display: "flex",
-            flexWrap: "wrap",
-            zIndex: isModalOpened === true ? "-1" : "",
-          }}
-        />
+              border: "none",
+              display: "flex",
+              flexWrap: "wrap",
+              zIndex: isModalOpened === true ? "-1" : "",
+            }}
+          />
+        )}
       </St.TextAreaWrapper>
       <St.TextLength>
         <St.TextLimit isModalOpened={isModalOpened}>{letterLimit}</St.TextLimit>
@@ -62,7 +69,6 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
 
 const St = {
   TextAreaBox: styled.section<{ isModalOpened: boolean }>`
-    padding-bottom: 15rem;
     height: fit-content;
     z-index: ${({ isModalOpened }) => (isModalOpened === true ? "-1" : "")};
   `,
@@ -76,7 +82,20 @@ const St = {
     ${({ theme }) => theme.fonts.sub3}
     color: ${({ theme }) => theme.colors.brown}
   `,
+  TextArea: styled.textarea`
+    width: 100%;
+    border-radius: 8px;
+    padding: 1rem;
+    border: none;
+    resize: none;
+    display: flex;
+    ${({ theme }) => theme.fonts.sub3};
+    color: ${({ theme }) => theme.colors.black};
 
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.black20};
+    }
+  `,
   TextLength: styled.div`
     margin-top: 0.8rem;
     width: 100%;

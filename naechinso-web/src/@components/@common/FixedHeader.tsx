@@ -9,7 +9,7 @@ export interface FixedHeaderProps {
   header: string;
   progressRate: number;
   title1: string;
-  title2: string;
+  title2?: string;
   title3?: string;
   subTitle1?: string;
   subTitle2?: string;
@@ -38,7 +38,7 @@ export default function FixedHeader(props: FixedHeaderProps) {
           <BasicHeader header={header} progressRate={progressRate} />
           <St.TitleWrapper checkSubTitle={checkSubTitle}>
             <Title title={title1} />
-            <Title title={title2} />
+            {title2 && <Title title={title2} />}
             {title3 && <Title title={title3} />}
           </St.TitleWrapper>
           <St.SubTitleWrapper>
@@ -52,7 +52,7 @@ export default function FixedHeader(props: FixedHeaderProps) {
           <St.TitleWrapper checkSubTitle={checkSubTitle}>
             {selection && <St.Selection>(선택)</St.Selection>}
             <Title title={title1} />
-            <Title title={title2} />
+            {title2 && <Title title={title2} />}
             {title3 && <Title title={title3} />}
           </St.TitleWrapper>
           <St.SubTitleWrapper>

@@ -204,8 +204,7 @@ export default function FriendInfoPage() {
     localStorage.setItem("keywordList", JSON.stringify(newKeywordList));
 
     const newQuestionList = questionList.map((question) => {
-      const newQuestion = `${question.question1}` + `${question.question2}`;
-      if (userData.customQuestion[userData.customQuestion.length - 1].recommendQuestion === newQuestion) {
+      if (userData.customQuestion[userData.customQuestion.length - 1].recommendQuestion === question.question) {
         question.checked = true;
         localStorage.setItem("checkedQ1", JSON.stringify(question));
       } else question.checked = false;
