@@ -112,14 +112,15 @@ export default function ChooseFirstQuestionPage() {
             );
           })}
         </St.CheckedKeywordContainer>
-        {keywordArr.map((keyword) => {
+        {keywordArr.map((keyword, idx) => {
           return (
             <St.QuestionBox
               checked={keyword.checked}
               key={keyword.id}
               onClick={() => toggleCheck(keyword.id, "keyword")}>
+              <St.QuestionNumber>{idx + 1}</St.QuestionNumber>
               <St.QuestionWrapper>
-                <St.Icon>{keyword.keyword[0]}</St.Icon>
+                <St.Icon>{keyword.icon}</St.Icon>
                 <St.TitleWrapper checked={keyword.checked}>
                   <St.Title>{keyword.question}</St.Title>
                 </St.TitleWrapper>
@@ -237,11 +238,27 @@ const St = {
       color: ${({ theme }) => theme.colors.neural};
     }
   `,
+  QuestionNumber: styled.div`
+    background-color: ${({ theme }) => theme.colors.orange50};
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.body8};
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `,
   QuestionWrapper: styled.hgroup`
     display: flex;
     flex-direction: column;
   `,
-  Icon: styled.h3`
+  Icon: styled.p`
     ${({ theme }) => theme.fonts.sub2};
     color: ${({ theme }) => theme.colors.black};
     width: fit-content;
