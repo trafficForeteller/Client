@@ -25,6 +25,7 @@ export type keywordProps = {
   question: string;
   placeholder: string;
   checked: boolean;
+  keywordChecked: boolean;
 };
 
 export const keywordList: keywordProps[] = [
@@ -32,6 +33,7 @@ export const keywordList: keywordProps[] = [
     id: 0,
     keyword: "사랑꾼💗",
     checked: false,
+    keywordChecked: false,
     question: "최수종도 한 수 접는 친구의 사랑꾼 모먼트는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -40,6 +42,7 @@ export const keywordList: keywordProps[] = [
     id: 1,
     keyword: "유머러스😜",
     checked: false,
+    keywordChecked: false,
     question: "내 친구 때문에 배꼽이 달아난 사연은?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -48,6 +51,7 @@ export const keywordList: keywordProps[] = [
     id: 2,
     keyword: "활발해🤗",
     checked: false,
+    keywordChecked: false,
     question: "텐션 높은 내 친구! 기분까지 끌어올린 적은?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -56,6 +60,7 @@ export const keywordList: keywordProps[] = [
     id: 3,
     keyword: "차분해🍵",
     checked: false,
+    keywordChecked: false,
     question: "내 친구 덕에 나까지 차분해졌던 때는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -64,6 +69,7 @@ export const keywordList: keywordProps[] = [
     id: 4,
     keyword: "귀여워🐹",
     checked: false,
+    keywordChecked: false,
     question: "친구가 가장 귀여워보일 때는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -72,6 +78,7 @@ export const keywordList: keywordProps[] = [
     id: 5,
     keyword: "다정해🍭",
     checked: false,
+    keywordChecked: false,
     question: "내 친구의 다정다감 포인트는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -80,6 +87,7 @@ export const keywordList: keywordProps[] = [
     id: 6,
     keyword: "섬세해💐",
     checked: false,
+    keywordChecked: false,
     question: "섬세한 내 친구에게 속 깊다 여긴 적은?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -88,6 +96,7 @@ export const keywordList: keywordProps[] = [
     id: 7,
     keyword: "천사야😇",
     checked: false,
+    keywordChecked: false,
     question: "내 친구가 착하고 좋은 사람이구나 느낀 때는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -96,6 +105,7 @@ export const keywordList: keywordProps[] = [
     id: 8,
     keyword: "똑똑해🧠",
     checked: false,
+    keywordChecked: false,
     question: "뇌가 섹시한 내 친구에게 놀란 적은?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -104,6 +114,7 @@ export const keywordList: keywordProps[] = [
     id: 9,
     keyword: "일잘러🤓",
     checked: false,
+    keywordChecked: false,
     question: "내 친구의 본업 천재 모먼트는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -112,6 +123,7 @@ export const keywordList: keywordProps[] = [
     id: 10,
     keyword: "꿀성대🍯",
     checked: false,
+    keywordChecked: false,
     question: "친구의 감미로운 목소리가 매력적인 적은?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -120,6 +132,7 @@ export const keywordList: keywordProps[] = [
     id: 11,
     keyword: "실물파👀",
     checked: false,
+    keywordChecked: false,
     question: "실물이 훨씬 나아서 신기했던 썰은?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -128,6 +141,7 @@ export const keywordList: keywordProps[] = [
     id: 12,
     keyword: "패션센스🧥",
     checked: false,
+    keywordChecked: false,
     question: "패셔니스타 친구! 가장 멋져보일 때는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -136,6 +150,7 @@ export const keywordList: keywordProps[] = [
     id: 13,
     keyword: "핫바디💪🏻",
     checked: false,
+    keywordChecked: false,
     question: "몸짱인 내 친구에게 감탄했던 때는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -144,6 +159,7 @@ export const keywordList: keywordProps[] = [
     id: 14,
     keyword: "차가 있어🚗",
     checked: false,
+    keywordChecked: false,
     question: "베스트드라이버 친구 덕에 좋았던 순간은?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -152,6 +168,7 @@ export const keywordList: keywordProps[] = [
     id: 15,
     keyword: "자기관리🏊🏻‍",
     checked: false,
+    keywordChecked: false,
     question: "하루도 빠짐없이 하는 친구만의 생활루틴은?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -160,6 +177,7 @@ export const keywordList: keywordProps[] = [
     id: 16,
     keyword: "화목한가정‍👩‍👦",
     checked: false,
+    keywordChecked: false,
     question: "유달리 가족과 친한 친구의 기억남는 일화는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -168,6 +186,7 @@ export const keywordList: keywordProps[] = [
     id: 17,
     keyword: "여유있지💰",
     checked: false,
+    keywordChecked: false,
     question: "내 친구의 부유함이 느껴진 모먼트는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -176,6 +195,7 @@ export const keywordList: keywordProps[] = [
     id: 18,
     keyword: "요리왕👨‍🍳",
     checked: false,
+    keywordChecked: false,
     question: "친구가 해준 요리 중 가장 기억에 남는 것은?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -184,6 +204,7 @@ export const keywordList: keywordProps[] = [
     id: 19,
     keyword: "다독왕📚",
     checked: false,
+    keywordChecked: false,
     question: "독서왕 친구가 남다른 영감을 줄 때는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -192,6 +213,7 @@ export const keywordList: keywordProps[] = [
     id: 20,
     keyword: "꿀피부🥚",
     checked: false,
+    keywordChecked: false,
     question: "피부미인이라 생긴 친구의 재밌는 일화는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -200,6 +222,7 @@ export const keywordList: keywordProps[] = [
     id: 21,
     keyword: "리더십👍",
     checked: false,
+    keywordChecked: false,
     question: "사람들을 이끄는 친구만이 가진 리더십은?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -208,6 +231,7 @@ export const keywordList: keywordProps[] = [
     id: 22,
     keyword: "바른 인성⚖",
     checked: false,
+    keywordChecked: false,
     question: "생활 습관에서 감탄했던 바람직한 친구의 모습은?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -216,6 +240,7 @@ export const keywordList: keywordProps[] = [
     id: 23,
     keyword: "재주왕🤸‍♀️",
     checked: false,
+    keywordChecked: false,
     question: "무엇이든 잘하는 내 친구의 재주왕 모먼트는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -224,6 +249,7 @@ export const keywordList: keywordProps[] = [
     id: 24,
     keyword: "애교쟁이😘",
     checked: false,
+    keywordChecked: false,
     question: "사르르 녹게 하는 기억남는 친구의 애교는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -232,6 +258,7 @@ export const keywordList: keywordProps[] = [
     id: 25,
     keyword: "외모출중✨",
     checked: false,
+    keywordChecked: false,
     question: "아름다운 내 친구 용안때문에 생긴 일화는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -240,6 +267,7 @@ export const keywordList: keywordProps[] = [
     id: 26,
     keyword: "배려심🌊",
     checked: false,
+    keywordChecked: false,
     question: "공감 잘하는 친구 덕에 감동받은 때는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -248,6 +276,7 @@ export const keywordList: keywordProps[] = [
     id: 27,
     keyword: "긍정적🐥",
     checked: false,
+    keywordChecked: false,
     question: "긍정적인 친구덕에 나까지 행복해진 일화는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -256,6 +285,7 @@ export const keywordList: keywordProps[] = [
     id: 28,
     keyword: "예의바름🙇🏻‍♀️",
     checked: false,
+    keywordChecked: false,
     question: "상대를 존중하는 내 친구의 매너있는 포인트는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",
@@ -264,6 +294,7 @@ export const keywordList: keywordProps[] = [
     id: 29,
     keyword: "배울점많아👏🏻",
     checked: false,
+    keywordChecked: false,
     question: "친구지만 배우고 싶은 태도는?",
     placeholder:
       "내 친구랑 같이 있으면 말을 재밌게 해서 정말 즐겁고 시간이 5배속으로 가는 거 같아. 또 별명이 남무위키였던 적이 있을 정도로 박학다식해. 아는게 정말 많고 세상에 대해 호기심이 많아서 매사에 열심히 사는 친구라서 본받고 싶은 점들이 너무 많아",

@@ -10,7 +10,6 @@ export default function ChooseFirstQuestionPage() {
   const [nextBtnActive, setNextBtnActive] = useState(false);
   const [checkedQuestion, setCheckedQuestion] = useState("");
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
-  const [appealsArr, setAppealsArr] = useState<string[]>([]);
   const [keywordArr, setKeywordArr] = useState<keywordProps[]>([]);
 
   useEffect(() => {
@@ -33,14 +32,10 @@ export default function ChooseFirstQuestionPage() {
         }),
       );
     }
-    // 선택한 매력 키워드
-    const appealsOfLocal = localStorage.getItem("appeals") as string;
-    const appeals = JSON.parse(appealsOfLocal);
-    appeals && setAppealsArr(appeals);
     // 매력 키워드 배열
     const keywordListOfLocal = localStorage.getItem("keywordList") as string;
     const newKeywordList = JSON.parse(keywordListOfLocal) as keywordProps[];
-    newKeywordList && setKeywordArr(newKeywordList.filter((newKeyword) => newKeyword.checked === true));
+    newKeywordList && setKeywordArr(newKeywordList.filter((newKeyword) => newKeyword.keywordChecked === true));
   }, []);
 
   useEffect(() => {
@@ -108,11 +103,11 @@ export default function ChooseFirstQuestionPage() {
       <St.QuestionContainer>
         <St.Label>내가 고른 키워드 관련 질문이야</St.Label>
         <St.CheckedKeywordContainer>
-          {appealsArr.map((appeals, idx) => {
+          {keywordArr.map((keyword, idx) => {
             return (
               <St.CheckedKeywordWrapper key={idx}>
                 <St.CheckedKeywordNumber>{idx + 1}</St.CheckedKeywordNumber>
-                <St.CheckedKeyword>{appeals}</St.CheckedKeyword>
+                <St.CheckedKeyword>{keyword.keyword}</St.CheckedKeyword>
               </St.CheckedKeywordWrapper>
             );
           })}
@@ -124,7 +119,7 @@ export default function ChooseFirstQuestionPage() {
               key={keyword.id}
               onClick={() => toggleCheck(keyword.id, "keyword")}>
               <St.QuestionWrapper>
-                <St.Icon>{keyword.keyword[keyword.keyword.length - 1]}</St.Icon>
+                <St.Icon>{keyword.keyword[0]}</St.Icon>
                 <St.TitleWrapper checked={keyword.checked}>
                   <St.Title>{keyword.question}</St.Title>
                 </St.TitleWrapper>
