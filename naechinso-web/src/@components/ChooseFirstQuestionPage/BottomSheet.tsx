@@ -6,7 +6,6 @@ import { postMemberReissue } from "../../apis/member.api";
 import { postRecommendation } from "../../apis/recommend.api";
 import { IcPreviousBtn } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
-import { IPostRecommendQuestion } from "../../types/recommend";
 import { MoveNextPageBtn, TextAreaBox, ToggleTipBox } from "../@common";
 
 interface BottomSheetProps {
@@ -18,12 +17,6 @@ export default function BottomSheet(props: BottomSheetProps) {
   const { isBottomSheetOpened, closeModal } = props;
 
   const [firstRecommend, setFirstRecommend] = useState("");
-  const [questionData, setQuestionData] = useState<IPostRecommendQuestion>({
-    id: 0,
-    question: "",
-    placeholder: "",
-    checked: true,
-  });
   const [postRecommend, setPostRecommend] = useState({
     recommendQuestions: [
       {
@@ -35,8 +28,6 @@ export default function BottomSheet(props: BottomSheetProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const checkedQ1 = parseLocalStorage("checkedQ1");
-    setQuestionData(checkedQ1);
     if (localStorage.getItem("firstRecommend")) {
       const recommendInLocal = localStorage.getItem("firstRecommend") as string;
       setFirstRecommend(recommendInLocal);
@@ -104,12 +95,12 @@ export default function BottomSheet(props: BottomSheetProps) {
         <St.MovePrevButton onClick={closeModal} type="button">
           <IcPreviousBtn aria-label="모달 닫기" />
         </St.MovePrevButton>
-        <St.Title>{questionData.question}</St.Title>
+        <St.Title>{parseLocalStorage("checkedQ1").question}</St.Title>
 
         <ToggleTipBox />
 
         <TextAreaBox
-          placeholder={questionData.placeholder}
+          placeholder={parseLocalStorage("checkedQ1").placeholder}
           minLength={49}
           maxLength={150}
           text={firstRecommend}

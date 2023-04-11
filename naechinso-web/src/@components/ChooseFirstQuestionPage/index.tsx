@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { keywordProps, questionList, questionProps } from "../../core/recommend/recommend";
-import { FixedHeader, MoveNextPageBtn } from "../@common";
+import { MoveNextPageBtn } from "../@common";
 import BottomSheet from "./BottomSheet";
+import RecommendFixedHeader from "./RecommendFixedHeader";
 
 export default function ChooseFirstQuestionPage() {
   const [questionArr, setQuestionArr] = useState<questionProps[]>(questionList);
@@ -25,7 +26,6 @@ export default function ChooseFirstQuestionPage() {
     if (newQuestionList) {
       const checkedQ1 = parseLocalStorage("checkedQ1");
       checkedQ1 && handleCheckedQuestion(checkedQ1);
-      setIsBottomSheetOpened(true);
     } else {
       setQuestionArr(
         questionList.map((question) => {
@@ -34,6 +34,8 @@ export default function ChooseFirstQuestionPage() {
         }),
       );
     }
+
+    localStorage.getItem("secondRecommend") && setIsBottomSheetOpened(true);
   }, []);
 
   useEffect(() => {
@@ -106,12 +108,7 @@ export default function ChooseFirstQuestionPage() {
 
   return (
     <St.ChooseFirstQuestionPage isBottomSheetOpened={isBottomSheetOpened}>
-      <FixedHeader
-        header="추천사"
-        progressRate={55}
-        title1="친구를 어필할 수 있는"
-        title2="질문을 하나 골라 답해보자!"
-      />
+      <RecommendFixedHeader />
       <St.QuestionContainer>
         <St.Label>내가 고른 키워드 관련 질문이야</St.Label>
         <St.CheckedKeywordContainer>
