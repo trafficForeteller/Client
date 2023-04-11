@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { postMemberReissue } from "../../apis/member.api";
 import { postRecommendation } from "../../apis/recommend.api";
@@ -10,11 +10,12 @@ import { IPostRecommendQuestion } from "../../types/recommend";
 import { MoveNextPageBtn, TextAreaBox, ToggleTipBox } from "../@common";
 
 interface BottomSheetProps {
+  isBottomSheetOpened: boolean;
   closeModal: () => void;
 }
 
 export default function BottomSheet(props: BottomSheetProps) {
-  const { closeModal } = props;
+  const { isBottomSheetOpened, closeModal } = props;
 
   const [firstRecommend, setFirstRecommend] = useState("");
   const [questionData, setQuestionData] = useState<IPostRecommendQuestion>({
@@ -98,7 +99,7 @@ export default function BottomSheet(props: BottomSheetProps) {
   return (
     <>
       <St.ModalBackground />
-      <St.BottomSheet>
+      <St.BottomSheet isBottomSheetOpened={isBottomSheetOpened}>
         <St.Button onClick={closeModal} type="button">
           <IcPreviousBtn aria-label="모달 닫기" />
         </St.Button>
@@ -123,6 +124,24 @@ export default function BottomSheet(props: BottomSheetProps) {
   );
 }
 
+const slideIn = keyframes`
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%)
+  }
+`;
+
+const slideOut = keyframes`
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(100%)
+  }
+`;
+
 const St = {
   ModalBackground: styled.div`
     background-color: rgba(0, 0, 0, 0.64);
@@ -133,7 +152,7 @@ const St = {
     height: 100%;
     z-index: 98;
   `,
-  BottomSheet: styled.main`
+  BottomSheet: styled.main<{ isBottomSheetOpened: boolean }>`
     padding: 0 2rem 11rem;
     width: 100%;
     height: 90%;
@@ -144,6 +163,8 @@ const St = {
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 32px 32px 0px 0px;
 
+    animation: ${({ isBottomSheetOpened }) => (isBottomSheetOpened ? slideIn : slideOut)} 0.7s ease-in-out;
+
     z-index: 99;
     @media only screen and (min-width: 600px) {
       width: 37.5rem;
@@ -151,7 +172,7 @@ const St = {
   `,
   Button: styled.button`
     cursor: pointer;
-    padding: 3rem 0 2rem;
+    padding: 2rem 0;
   `,
   Title: styled.h1`
     ${({ theme }) => theme.fonts.sub2};

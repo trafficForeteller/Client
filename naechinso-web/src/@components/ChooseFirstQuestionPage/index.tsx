@@ -164,7 +164,9 @@ export default function ChooseFirstQuestionPage() {
 
       <MoveNextPageBtn title="다음" disabled={!nextBtnActive} handleState={saveCheckedQuestion} />
 
-      {isBottomSheetOpened && <BottomSheet closeModal={() => setIsBottomSheetOpened(false)} />}
+      {isBottomSheetOpened && (
+        <BottomSheet isBottomSheetOpened={isBottomSheetOpened} closeModal={() => setIsBottomSheetOpened(false)} />
+      )}
     </St.ChooseFirstQuestionPage>
   );
 }
