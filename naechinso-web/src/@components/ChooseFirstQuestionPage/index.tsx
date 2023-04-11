@@ -25,10 +25,8 @@ export default function ChooseFirstQuestionPage() {
     const newQuestionList = JSON.parse(questionListOfLocal);
     if (newQuestionList) {
       const checkedQ1 = parseLocalStorage("checkedQ1");
-      if (checkedQ1) {
-        handleCheckedQuestion(checkedQ1);
-        setIsBottomSheetOpened(true);
-      }
+      if (checkedQ1) handleCheckedQuestion(checkedQ1);
+      setIsBottomSheetOpened(true);
     } else {
       setQuestionArr(
         questionList.map((question) => {
@@ -44,7 +42,7 @@ export default function ChooseFirstQuestionPage() {
   }, [questionArr, keywordArr]);
 
   const handleCheckedQuestion = (checkedQ: string) => {
-    // 선택된 질문이 있을 때 질문 답고, 다음 버튼 활성화
+    // 선택된 질문이 있을 때 질문 담고, 다음 버튼 활성화
     setCheckedQuestion(checkedQ);
     setNextBtnActive(true);
   };
@@ -56,7 +54,7 @@ export default function ChooseFirstQuestionPage() {
       const newQuestionArr = tempQuestionArr.map((q, index) => {
         if (idx === index) {
           q.checked = !q.checked;
-          q.checked === true && setCheckedQuestion(q.question);
+          q.checked === true && setCheckedQuestion(q);
         } else q.checked = false;
         return q;
       });
@@ -72,7 +70,7 @@ export default function ChooseFirstQuestionPage() {
       const newKeywordArr = tempKeywordArr.map((q, index) => {
         if (idx === index) {
           q.keywordChecked = !q.keywordChecked;
-          q.keywordChecked === true && setCheckedQuestion(q.question);
+          q.keywordChecked === true && setCheckedQuestion(q);
         } else q.keywordChecked = false;
         return q;
       });
