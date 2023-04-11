@@ -8,13 +8,18 @@ import BottomSheet from "./BottomSheet";
 export default function ChooseFirstQuestionPage() {
   const [questionArr, setQuestionArr] = useState<questionProps[]>(questionList);
   const [nextBtnActive, setNextBtnActive] = useState(false);
-  const [checkedQuestion, setCheckedQuestion] = useState("");
+  const [checkedQuestion, setCheckedQuestion] = useState({});
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
   const [keywordArr, setKeywordArr] = useState<keywordProps[]>([]);
 
   useEffect(() => {
     // 새로고침 시 이전에 local에 저장된 questionList 초기값으로 세팅
     window.scrollTo(0, 0);
+
+    // 매력 키워드 배열
+    const keywordListOfLocal = localStorage.getItem("keywordList") as string;
+    const newKeywordList = JSON.parse(keywordListOfLocal) as keywordProps[];
+    newKeywordList && setKeywordArr(newKeywordList.filter((newKeyword) => newKeyword.checked === true));
 
     const questionListOfLocal = localStorage.getItem("questionList") as string;
     const newQuestionList = JSON.parse(questionListOfLocal);
@@ -32,15 +37,11 @@ export default function ChooseFirstQuestionPage() {
         }),
       );
     }
-    // 매력 키워드 배열
-    const keywordListOfLocal = localStorage.getItem("keywordList") as string;
-    const newKeywordList = JSON.parse(keywordListOfLocal) as keywordProps[];
-    newKeywordList && setKeywordArr(newKeywordList.filter((newKeyword) => newKeyword.keywordChecked === true));
   }, []);
 
   useEffect(() => {
     chosenQuestion();
-  }, [questionArr]);
+  }, [questionArr, keywordArr]);
 
   const handleCheckedQuestion = (checkedQ: string) => {
     // 선택된 질문이 있을 때 질문 답고, 다음 버튼 활성화
@@ -60,27 +61,41 @@ export default function ChooseFirstQuestionPage() {
         return q;
       });
       setQuestionArr(newQuestionArr);
-    } else {
-      const tempQuestionArr = keywordArr;
-      const newQuestionArr = tempQuestionArr.map((q, index) => {
-        if (idx === index) {
-          q.checked = !q.checked;
-          q.checked === true && setCheckedQuestion(q.question);
-        } else q.checked = false;
+
+      const newKeywordArr = keywordArr.map((q) => {
+        q.keywordChecked = false;
         return q;
       });
-      setKeywordArr(newQuestionArr);
+      setKeywordArr(newKeywordArr);
+    } else {
+      const tempKeywordArr = keywordArr;
+      const newKeywordArr = tempKeywordArr.map((q, index) => {
+        if (idx === index) {
+          q.keywordChecked = !q.keywordChecked;
+          q.keywordChecked === true && setCheckedQuestion(q.question);
+        } else q.keywordChecked = false;
+        return q;
+      });
+      setKeywordArr(newKeywordArr);
+
+      const newQuestionArr = questionArr.map((q) => {
+        q.checked = false;
+        return q;
+      });
+      setQuestionArr(newQuestionArr);
     }
   };
 
   const chosenQuestion = () => {
     // 하나라도 checked true면 버튼 활성화
+    const isKeywordChecked = (item: { keywordChecked: boolean }) => item.keywordChecked === true;
     const isQuestionChecked = (item: { checked: boolean }) => item.checked === true;
-    setNextBtnActive(questionArr.some(isQuestionChecked));
+    setNextBtnActive(keywordArr.some(isKeywordChecked) || questionArr.some(isQuestionChecked));
   };
 
   const saveCheckedQuestion = () => {
     localStorage.setItem("questionList", JSON.stringify(questionArr));
+    localStorage.setItem("checkedKeywordList", JSON.stringify(keywordArr));
     localStorage.setItem("checkedQ1", JSON.stringify(checkedQuestion));
     setIsBottomSheetOpened(true);
   };
@@ -115,13 +130,13 @@ export default function ChooseFirstQuestionPage() {
         {keywordArr.map((keyword, idx) => {
           return (
             <St.QuestionBox
-              checked={keyword.checked}
+              checked={keyword.keywordChecked}
               key={keyword.id}
-              onClick={() => toggleCheck(keyword.id, "keyword")}>
+              onClick={() => toggleCheck(idx, "keyword")}>
               <St.QuestionNumber>{idx + 1}</St.QuestionNumber>
               <St.QuestionWrapper>
                 <St.Icon>{keyword.icon}</St.Icon>
-                <St.TitleWrapper checked={keyword.checked}>
+                <St.TitleWrapper checked={keyword.keywordChecked}>
                   <St.Title>{keyword.question}</St.Title>
                 </St.TitleWrapper>
               </St.QuestionWrapper>

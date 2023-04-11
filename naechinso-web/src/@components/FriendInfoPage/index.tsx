@@ -205,6 +205,7 @@ export default function FriendInfoPage() {
 
     const newQuestionList = questionList.map((question) => {
       if (userData.customQuestion[userData.customQuestion.length - 1].recommendQuestion === question.question) {
+        // 해결해야해~ 이전 추천사의 checkedQ1 어케 들고올건쥐
         question.checked = true;
         localStorage.setItem("checkedQ1", JSON.stringify(question));
       } else question.checked = false;
@@ -225,6 +226,7 @@ export default function FriendInfoPage() {
     localStorage.removeItem("checkedQ1");
     localStorage.removeItem("questionList");
     localStorage.removeItem("priceType");
+    localStorage.removeItem("checkedKeywordList");
 
     navigate(routePaths.Keyword);
   };

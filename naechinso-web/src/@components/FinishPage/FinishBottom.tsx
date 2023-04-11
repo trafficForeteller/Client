@@ -28,6 +28,7 @@ export default function FinishBottom() {
     localStorage.removeItem("landingUrl");
     localStorage.removeItem("priceType");
     localStorage.removeItem("memberName");
+    localStorage.removeItem("checkedKeywordList");
   };
 
   return (

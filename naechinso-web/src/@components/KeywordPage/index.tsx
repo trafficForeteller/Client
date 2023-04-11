@@ -25,7 +25,7 @@ export default function KeywordPage() {
     } else {
       setKeywordArr(
         keywordList.map((keyword) => {
-          keyword.keywordChecked = false;
+          keyword.checked = false;
           return keyword;
         }),
       );
@@ -42,8 +42,8 @@ export default function KeywordPage() {
     const tempKeywordArr = keywordArr;
     const newKeywordList = tempKeywordArr.map((keyword, index) => {
       if (el.id === index) {
-        if (checkedAppeals.length < 3) keyword.keywordChecked = !keyword.keywordChecked;
-        else if (el.keywordChecked) keyword.keywordChecked = !keyword.keywordChecked;
+        if (checkedAppeals.length < 3) keyword.checked = !keyword.checked;
+        else if (el.checked) keyword.checked = !keyword.checked;
       }
       return keyword;
     });
@@ -53,7 +53,7 @@ export default function KeywordPage() {
 
   const countCheckedNum = (el: keywordProps) => {
     // 체크된 tag 배열에 담기
-    if (el.keywordChecked) setCheckedAppeals([...checkedAppeals, el.keyword]);
+    if (el.checked) setCheckedAppeals([...checkedAppeals, el.keyword]);
     else setCheckedAppeals(checkedAppeals.filter((appeal) => appeal !== el.keyword));
   };
 
@@ -74,7 +74,7 @@ export default function KeywordPage() {
       <St.KeywordListWrapper>
         {keywordArr.map((el) => {
           return (
-            <St.KeywordWrapper type="button" key={el.id} onClick={() => toggleChecked(el)} checked={el.keywordChecked}>
+            <St.KeywordWrapper type="button" key={el.id} onClick={() => toggleChecked(el)} checked={el.checked}>
               {el.keyword}
             </St.KeywordWrapper>
           );
