@@ -45,14 +45,15 @@ export default function BottomSheet(props: BottomSheetProps) {
 
   useEffect(() => {
     localStorage.setItem("firstRecommend", firstRecommend);
-    setPostRecommend({
-      recommendQuestions: [
-        {
-          recommendQuestion: parseLocalStorage("checkedQ1").question,
-          recommendAnswer: firstRecommend,
-        },
-      ],
-    });
+    parseLocalStorage("checkedQ1") &&
+      setPostRecommend({
+        recommendQuestions: [
+          {
+            recommendQuestion: parseLocalStorage("checkedQ1").question,
+            recommendAnswer: firstRecommend,
+          },
+        ],
+      });
   }, [firstRecommend]);
 
   const isButtonDisabled = !firstRecommend || firstRecommend.length < 50;
@@ -100,9 +101,9 @@ export default function BottomSheet(props: BottomSheetProps) {
     <>
       <St.ModalBackground />
       <St.BottomSheet isBottomSheetOpened={isBottomSheetOpened}>
-        <St.Button onClick={closeModal} type="button">
+        <St.MovePrevButton onClick={closeModal} type="button">
           <IcPreviousBtn aria-label="모달 닫기" />
-        </St.Button>
+        </St.MovePrevButton>
         <St.Title>{questionData.question}</St.Title>
 
         <ToggleTipBox />
@@ -126,7 +127,7 @@ export default function BottomSheet(props: BottomSheetProps) {
 
 const slideIn = keyframes`
   from {
-    transform: translateY(100%);
+    transform: translateY(70%);
   }
   to {
     transform: translateY(0%)
@@ -156,21 +157,20 @@ const St = {
     padding: 0 2rem 11rem;
     width: 100%;
     height: 90%;
-    transition: transform 0.2s ease;
 
     position: fixed;
     bottom: 0;
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 32px 32px 0px 0px;
 
-    animation: ${({ isBottomSheetOpened }) => (isBottomSheetOpened ? slideIn : slideOut)} 0.7s ease-in-out;
+    animation: ${({ isBottomSheetOpened }) => (isBottomSheetOpened ? slideIn : slideOut)} 0.6s ease-in-out;
 
     z-index: 99;
     @media only screen and (min-width: 600px) {
       width: 37.5rem;
     }
   `,
-  Button: styled.button`
+  MovePrevButton: styled.button`
     cursor: pointer;
     padding: 2rem 0;
   `,

@@ -203,6 +203,7 @@ export default function FriendInfoPage() {
     });
     localStorage.setItem("keywordList", JSON.stringify(newKeywordList));
 
+    console.log(userData);
     const newQuestionList = questionList.map((question) => {
       if (userData.customQuestion[userData.customQuestion.length - 1].recommendQuestion === question.question) {
         // 해결해야해~ 이전 추천사의 checkedQ1 어케 들고올건쥐
@@ -212,6 +213,21 @@ export default function FriendInfoPage() {
       return question;
     });
     localStorage.setItem("questionList", JSON.stringify(newQuestionList));
+
+    if (!localStorage.getItem("checkedQ1")) {
+      const newCheckedKeywordList = newKeywordList
+        .filter((newKeyword) => newKeyword.checked === true)
+        .map((keyword) => {
+          if (userData.customQuestion[userData.customQuestion.length - 1].recommendQuestion === keyword.question) {
+            // 해결해야해~ 이전 추천사의 checkedQ1 어케 들고올건쥐
+            keyword.keywordChecked = true;
+            localStorage.setItem("checkedQ1", JSON.stringify(keyword));
+          } else keyword.keywordChecked = false;
+          return keyword;
+        });
+      localStorage.setItem("checkedKeywordList", JSON.stringify(newCheckedKeywordList));
+    }
+
     navigate(routePaths.Keyword);
   };
 

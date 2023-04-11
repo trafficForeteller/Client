@@ -17,15 +17,14 @@ export default function ChooseFirstQuestionPage() {
     window.scrollTo(0, 0);
 
     // 매력 키워드 배열
-    const keywordListOfLocal = localStorage.getItem("keywordList") as string;
-    const newKeywordList = JSON.parse(keywordListOfLocal) as keywordProps[];
-    newKeywordList && setKeywordArr(newKeywordList.filter((newKeyword) => newKeyword.checked === true));
+    const newCheckedKeywordList = JSON.parse(localStorage.getItem("checkedKeywordList") as string) as keywordProps[];
+    newCheckedKeywordList && setKeywordArr(newCheckedKeywordList);
 
     const questionListOfLocal = localStorage.getItem("questionList") as string;
     const newQuestionList = JSON.parse(questionListOfLocal);
     if (newQuestionList) {
       const checkedQ1 = parseLocalStorage("checkedQ1");
-      if (checkedQ1) handleCheckedQuestion(checkedQ1);
+      checkedQ1 && handleCheckedQuestion(checkedQ1);
       setIsBottomSheetOpened(true);
     } else {
       setQuestionArr(

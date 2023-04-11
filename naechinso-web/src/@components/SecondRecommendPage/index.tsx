@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { postMemberReissue } from "../../apis/member.api";
 import { postRecommendation } from "../../apis/recommend.api";
+import { IcPreviousBtn } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
-import { FixedHeader, TextAreaBox } from "../@common";
+import { FixedHeader, TextAreaBox, ToggleTipBox } from "../@common";
 
 export default function SecondRecommendPage() {
   const [secondRecommend, setSecondRecommend] = useState("");
@@ -18,12 +19,14 @@ export default function SecondRecommendPage() {
     ],
   });
   const navigate = useNavigate();
+  const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("secondRecommend")) {
       const recommendInLocal = localStorage.getItem("secondRecommend") as string;
       setSecondRecommend(recommendInLocal);
     }
+    setIsBottomSheetOpened(true);
   }, []);
 
   useEffect(() => {
@@ -77,41 +80,105 @@ export default function SecondRecommendPage() {
   };
 
   return (
-    <St.SecondRecommendPage>
+    <>
       <FixedHeader
         header="추천사"
         progressRate={55}
-        title1="친구에 대해 더 자랑하고 "
-        title2="싶은 점을 자유롭게 적어줘😃"
-        selection={true}
+        title1="친구에 대해 더 자랑하고"
+        title2="싶은 점을 자유롭게 적어보자!"
       />
 
-      <TextAreaBox
-        placeholder="내 친구는 전 직장 동기야! 자기 일을 진짜 책임감 있게 잘하고 주변을 늘 먼저 생각하는 친구야. 사람한테 치이는 일이 힘들 텐데 내색하지 않고 밝게 웃는 친구를 보면 존경스럽기까지 해!💕"
-        minLength={0}
-        maxLength={300}
-        text={secondRecommend}
-        setText={setSecondRecommend}
-        height={13}
-        letterLimit="300자 이내"
-        isModalOpened={false}
-      />
+      <St.ModalBackground />
+      <St.SecondRecommendPage isBottomSheetOpened={isBottomSheetOpened}>
+        <St.MovePrevButton onClick={() => navigate(routePaths.ChooseFirstQuestion)} type="button">
+          <IcPreviousBtn aria-label="모달 닫기" />
+        </St.MovePrevButton>
+        <St.TitleWrapper>
+          <St.Title>친구에 대해 더 자랑하고</St.Title>
+          <St.Title>싶은 점을 자유롭게 적어줘😃</St.Title>{" "}
+        </St.TitleWrapper>
 
-      <St.MoveBtnWrapper>
-        <St.SkipButton onClick={handleSkipButton} type="button">
-          건너뛰기
-        </St.SkipButton>
-        <St.NextButton onClick={handleRegisterRecommender} type="button" disabled={isButtonDisabled}>
-          다음
-        </St.NextButton>
-      </St.MoveBtnWrapper>
-    </St.SecondRecommendPage>
+        <ToggleTipBox />
+
+        <TextAreaBox
+          placeholder="내 친구는 전 직장 동기야! 자기 일을 진짜 책임감 있게 잘하고 주변을 늘 먼저 생각하는 친구야. 사람한테 치이는 일이 힘들 텐데 내색하지 않고 밝게 웃는 친구를 보면 존경스럽기까지 해!💕"
+          minLength={0}
+          maxLength={300}
+          text={secondRecommend}
+          setText={setSecondRecommend}
+          height={13}
+          letterLimit="300자 이내"
+          isModalOpened={false}
+        />
+
+        <St.MoveBtnWrapper>
+          <St.SkipButton onClick={handleSkipButton} type="button">
+            건너뛰기
+          </St.SkipButton>
+          <St.NextButton onClick={handleRegisterRecommender} type="button" disabled={isButtonDisabled}>
+            다음
+          </St.NextButton>
+        </St.MoveBtnWrapper>
+      </St.SecondRecommendPage>
+    </>
   );
 }
 
+const slideIn = keyframes`
+  from {
+    transform: translateY(30%);
+  }
+  to {
+    transform: translateY(0%)
+  }
+`;
+
+const slideOut = keyframes`
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(100%)
+  }
+`;
+
 const St = {
-  SecondRecommendPage: styled.main`
-    padding: 21rem 2rem 2rem;
+  ModalBackground: styled.div`
+    background-color: rgba(0, 0, 0, 0.64);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 98;
+  `,
+  SecondRecommendPage: styled.main<{ isBottomSheetOpened: boolean }>`
+    padding: 0 2rem 2rem;
+    width: 100%;
+    height: 90%;
+
+    position: fixed;
+    bottom: 0;
+    background-color: ${({ theme }) => theme.colors.white};
+    border-radius: 32px 32px 0px 0px;
+
+    animation: ${({ isBottomSheetOpened }) => (isBottomSheetOpened ? slideIn : slideOut)} 0.3s ease-in-out;
+
+    z-index: 99;
+    @media only screen and (min-width: 600px) {
+      width: 37.5rem;
+    }
+  `,
+  MovePrevButton: styled.button`
+    cursor: pointer;
+    padding: 2rem 0;
+  `,
+  TitleWrapper: styled.hgroup`
+    margin-bottom: 1.8rem;
+  `,
+  Title: styled.h1`
+    ${({ theme }) => theme.fonts.sub2};
+    color: ${({ theme }) => theme.colors.black};
   `,
   MoveBtnWrapper: styled.section`
     display: flex;
