@@ -2,16 +2,17 @@ import styled from "styled-components";
 
 interface ToolTipBoxProps {
   text: string;
+  bottom: number;
 }
 
 export default function ToolTipBox(props: ToolTipBoxProps) {
-  const { text } = props;
+  const { text, bottom } = props;
 
-  return <St.ToolTipBox>{text}</St.ToolTipBox>;
+  return <St.ToolTipBox bottom={bottom}>{text}</St.ToolTipBox>;
 }
 
 const St = {
-  ToolTipBox: styled.article`
+  ToolTipBox: styled.article<{ bottom: number }>`
     width: fit-content;
     padding: 1.3rem 2.1rem;
     height: 5rem;
@@ -28,6 +29,6 @@ const St = {
     margin: 0 auto;
     left: 0;
     right: 0;
-    bottom: 26.4rem;
+    bottom: ${({ bottom }) => bottom}rem;
   `,
 };

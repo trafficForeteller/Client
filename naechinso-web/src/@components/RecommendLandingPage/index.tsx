@@ -57,7 +57,7 @@ export default function RecommendLandingPage() {
         </St.CommentWrapper>
       </St.CommentBox>
 
-      <ToolTipBox text="공들인 추천사는 추첨해서 친소가 매주 커피쏜다 😘" />
+      <ToolTipBox text="공들인 추천사는 추첨해서 친소가 매주 커피쏜다 😘" bottom={26.4} />
 
       <St.Bottom>
         <St.TitleWrapper>

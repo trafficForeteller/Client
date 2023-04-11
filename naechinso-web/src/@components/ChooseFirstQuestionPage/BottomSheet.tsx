@@ -6,7 +6,7 @@ import { postMemberReissue } from "../../apis/member.api";
 import { postRecommendation } from "../../apis/recommend.api";
 import { IcPreviousBtn } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
-import { MoveNextPageBtn, TextAreaBox, ToggleTipBox } from "../@common";
+import { MoveNextPageBtn, TextAreaBox, ToggleTipBox, ToolTipBox } from "../@common";
 
 interface BottomSheetProps {
   isBottomSheetOpened: boolean;
@@ -15,7 +15,6 @@ interface BottomSheetProps {
 
 export default function BottomSheet(props: BottomSheetProps) {
   const { isBottomSheetOpened, closeModal } = props;
-
   const [firstRecommend, setFirstRecommend] = useState("");
   const [postRecommend, setPostRecommend] = useState({
     recommendQuestions: [
@@ -26,6 +25,7 @@ export default function BottomSheet(props: BottomSheetProps) {
     ],
   });
   const navigate = useNavigate();
+  const [isToolTipOpened, setIsToolTipOpened] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("firstRecommend")) {
@@ -58,6 +58,7 @@ export default function BottomSheet(props: BottomSheetProps) {
 
   const handleRegisterRecommender = async () => {
     // 추천사 등록하기
+    localStorage.getItem("seconedRecommend") === null && setIsToolTipOpened(true);
     await postRecommendation(
       postRecommend,
       localStorage.getItem("accessToken"),
@@ -79,7 +80,9 @@ export default function BottomSheet(props: BottomSheetProps) {
   };
 
   const handleSuccessPostRecommendation = async () => {
-    navigate(routePaths.SecondRecommend);
+    setTimeout(() => {
+      navigate(routePaths.SecondRecommend);
+    }, 1500);
   };
 
   const handleFailRequest = (errorMessage: string) => {
@@ -110,6 +113,8 @@ export default function BottomSheet(props: BottomSheetProps) {
           isModalOpened={false}
           textareaScroll={true}
         />
+
+        {isToolTipOpened && <ToolTipBox text="잘했어! 얼마나 괜찮은 친구인지 궁금한데?" bottom={13} />}
         <MoveNextPageBtn title="다음" disabled={isButtonDisabled} handleState={handleRegisterRecommender} />
       </St.BottomSheet>
     </>
