@@ -60,6 +60,10 @@ export default function KeywordPage() {
   const saveCheckedAppealsInLocal = () => {
     localStorage.setItem("appeals", JSON.stringify(checkedAppeals));
     localStorage.setItem("keywordList", JSON.stringify(keywordArr));
+    localStorage.setItem(
+      "checkedKeywordList",
+      JSON.stringify(keywordArr.filter((newKeyword) => newKeyword.checked === true)),
+    );
   };
 
   return (
