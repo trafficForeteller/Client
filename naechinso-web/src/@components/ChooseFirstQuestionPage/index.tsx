@@ -195,17 +195,21 @@ const St = {
     margin: 0 auto 2rem;
   `,
   CheckedKeywordContainer: styled.ul`
-    width: 100%;
+    width: 110%;
     display: flex;
     gap: 1rem;
     align-items: center;
-    flex-grow: 1;
+    justify-content: space-evenly;
+    @media only screen and (max-width: 600px) {
+      gap: 0.5rem;
+    }
   `,
   CheckedKeywordWrapper: styled.li`
     border: 1px solid ${({ theme }) => theme.colors.orange50};
     padding: 0.8rem 1.5rem;
     border-radius: 12px;
     position: relative;
+    height: 3.6rem;
   `,
   CheckedKeywordNumber: styled.div`
     background-color: ${({ theme }) => theme.colors.orange50};

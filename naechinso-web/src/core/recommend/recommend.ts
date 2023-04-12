@@ -176,7 +176,7 @@ export const keywordList: keywordProps[] = [
     keyword: "차가 있어🚗",
     checked: false,
     keywordChecked: false,
-    question: "베스트 드라이버 친구! 고마웠던 순간은?",
+    question: "Best Driver 친구! 고마웠던 순간은?",
     placeholder:
       "내 친구는 운전할 때 가장 멋있는 것 같아🤩 내가 한때 갑자기 근무지 변경으로 이사를 하야 하는 상황이 와서 곤란한 상황이 있었는데 왕복 8시간 거리를 그냥 나를 위해 직접 운전해서 데리러 오고 데려다 주더라고… 진짜 그만큼 너무 착하고 의리있는 친구야🙇‍♂️",
   },

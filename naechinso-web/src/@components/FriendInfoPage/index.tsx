@@ -235,8 +235,6 @@ export default function FriendInfoPage() {
       });
     localStorage.setItem("checkedKeywordList", JSON.stringify(newCheckedKeywordList));
 
-    console.log(userData);
-
     navigate(routePaths.Keyword);
   };
 
