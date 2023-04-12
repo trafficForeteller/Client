@@ -1,3 +1,4 @@
+export { default as AdressingFixedHeader } from "./AdressingFixedHeader";
 export { default as BasicHeader } from "./BasicHeader";
 export { default as EditHeader } from "./EditHeader";
 export { default as EditImageBox } from "./EditImageBox";

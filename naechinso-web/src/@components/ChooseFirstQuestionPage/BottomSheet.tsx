@@ -114,7 +114,9 @@ export default function BottomSheet(props: BottomSheetProps) {
           textareaScroll={true}
         />
 
-        {isToolTipOpened && <ToolTipBox text="잘했어! 얼마나 괜찮은 친구인지 궁금한데?" bottom={13} />}
+        {isToolTipOpened && !localStorage.getItem("secondRecommend") && (
+          <ToolTipBox text="네 친구 정말 멋지다!👏🏻" bottom={13} />
+        )}
         <MoveNextPageBtn title="다음" disabled={isButtonDisabled} handleState={handleRegisterRecommender} />
       </St.BottomSheet>
     </>
@@ -152,7 +154,7 @@ const St = {
   BottomSheet: styled.main<{ isBottomSheetOpened: boolean }>`
     padding: 0 2rem 11rem;
     width: 100%;
-    height: 90%;
+    height: 95%;
 
     position: fixed;
     bottom: 0;

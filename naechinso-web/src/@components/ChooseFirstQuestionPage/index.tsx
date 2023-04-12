@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { keywordProps, questionList, questionProps } from "../../core/recommend/recommend";
-import { MoveNextPageBtn } from "../@common";
+import { AdressingFixedHeader, MoveNextPageBtn } from "../@common";
 import BottomSheet from "./BottomSheet";
-import RecommendFixedHeader from "./RecommendFixedHeader";
 
 export default function ChooseFirstQuestionPage() {
   const [questionArr, setQuestionArr] = useState<questionProps[]>(questionList);
@@ -108,7 +107,13 @@ export default function ChooseFirstQuestionPage() {
 
   return (
     <St.ChooseFirstQuestionPage isBottomSheetOpened={isBottomSheetOpened}>
-      <RecommendFixedHeader />
+      <AdressingFixedHeader
+        header="추천사"
+        navigatePath="/recommend/keyword"
+        progressRate={55}
+        title1="친구를 어필할 수 있는"
+        title2="질문을 하나 골라 답해보자!"
+      />
       <St.QuestionContainer>
         <St.Label>내가 고른 키워드 관련 질문이야</St.Label>
         <St.CheckedKeywordContainer>

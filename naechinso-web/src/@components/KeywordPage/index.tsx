@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { keywordList, keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { FixedHeader, MoveNextPageBtn } from "../@common";
+import { AdressingFixedHeader, FixedHeader, MoveNextPageBtn } from "../@common";
 
 export default function KeywordPage() {
   const [activeNextBtn, setActiveNextBtn] = useState(false);
@@ -68,8 +68,9 @@ export default function KeywordPage() {
 
   return (
     <St.KeywordPage>
-      <FixedHeader
+      <AdressingFixedHeader
         header="친구 정보"
+        navigatePath="/recommend/friendInfo"
         progressRate={40}
         title1="네가 생각하는"
         title2="친구의 매력을 딱 3개만 골라봐!"

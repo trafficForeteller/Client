@@ -126,7 +126,7 @@ export default function SecondRecommendPage() {
 
 const slideIn = keyframes`
   from {
-    transform: translateY(30%);
+    transform: translateY(35%);
   }
   to {
     transform: translateY(0%)
@@ -155,7 +155,7 @@ const St = {
   SecondRecommendPage: styled.main<{ isBottomSheetOpened: boolean }>`
     padding: 0 2rem 2rem;
     width: 100%;
-    height: 90%;
+    height: 95%;
 
     position: fixed;
     bottom: 0;

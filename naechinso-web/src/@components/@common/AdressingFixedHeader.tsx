@@ -1,38 +1,48 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+// eslint-disable-next-line
 import { IcPreviousBtn } from "../../asset/icons";
-import { routePaths } from "../../core/routes/path";
-import { ProgressBar, Title } from "../@common";
+import { ProgressBar, Title } from ".";
 
-export default function RecommendFixedHeader() {
+interface AdressingFixedHeader {
+  header: string;
+  navigatePath: string;
+  progressRate: number;
+  title1: string;
+  title2: string;
+}
+
+export default function AdressingFixedHeader(props: AdressingFixedHeader) {
+  const { header, navigatePath, progressRate, title1, title2 } = props;
+
   const navigate = useNavigate();
 
   const movePreviousPage = () => {
     //이전페이지로 이동
     window.scrollTo(0, 0);
-    navigate(routePaths.Keyword);
+    navigate(`${navigatePath}`);
   };
 
   return (
-    <St.RecommendFixedHeader>
+    <St.AdressingFixedHeader>
       <St.Header>
         <St.MovePressButton onClick={movePreviousPage} type="button">
           <IcPreviousBtn aria-label="이전 페이지 이동" />
         </St.MovePressButton>
-        추천사
+        {header}
       </St.Header>
-      <ProgressBar progressRate={55} />
+      <ProgressBar progressRate={progressRate} />
       <St.TitleWrapper>
-        <Title title="친구를 어필할 수 있는" />
-        <Title title="질문을 하나 골라 답해보자!" />
+        <Title title={title1} />
+        <Title title={title2} />
       </St.TitleWrapper>
-    </St.RecommendFixedHeader>
+    </St.AdressingFixedHeader>
   );
 }
 
 const St = {
-  RecommendFixedHeader: styled.section`
+  AdressingFixedHeader: styled.section`
     width: 37.5rem;
     position: fixed;
     margin: 0 auto;
