@@ -46,7 +46,7 @@ export const keywordList: keywordProps[] = [
     keyword: "유머러스😜",
     checked: false,
     keywordChecked: false,
-    question: "친구로 인해 배꼽이 달아난 사연은?",
+    question: "친구랑 가장 크게 웃은 적은?",
     placeholder:
       "내 친구는 진짜 웃겨! 예의 바른 성격이라 처음에는 진중해보일 수 있는데, 친해지고 나면 하루종일 드립 생각만 하고 있나? 라는 생각이 들정도로 입만 열면 드립쳐ㅋㅋ🤪 만나고 집가면 너무 웃어서 배가 아플정도야ㅋㅋㅋ",
   },
@@ -106,7 +106,7 @@ export const keywordList: keywordProps[] = [
     keyword: "천사야😇",
     checked: false,
     keywordChecked: false,
-    question: "천사 내 친구구나 느꼈던 일화는?",
+    question: "천사같은 내 친구! 도움을 받은 적은?",
     placeholder:
       "내 친구는 예스맨이야! 아주 긍정적이고 화도 잘 안내는 천사 그 자체지..다른 사람의 기분을 상하지 않게 하고 도와줄 일에는 두 팔 걷어 나서는 의리파야 그만큼 자신의 연인에게도 한없는 사랑꾼이겠지? 유하지만 자신의 강단은 있는 친구야",
   },
@@ -206,7 +206,7 @@ export const keywordList: keywordProps[] = [
     keyword: "여유있지💰",
     checked: false,
     keywordChecked: false,
-    question: "내 친구의 부유함이 느껴진 모먼트는?",
+    question: "내 친구의 경제관념이 느껴진 모먼트는?",
     placeholder:
       "내 친구는 연합 투자 동아리에서 만난 친구야! 이 친구는 경제적으로 되게 여유로워서 이 친구와 만난다면 평소에 쉽게 할 수 없는 다양한 경험들을 할 수 있어~ 이 친구는 인생에서의 다양한 경험 덕분에 지식도, 입담도 갖춘 친구가 된 것 같아!",
   },
@@ -246,7 +246,7 @@ export const keywordList: keywordProps[] = [
     keyword: "리더십👍",
     checked: false,
     keywordChecked: false,
-    question: "친구만이 가진 리더십 스타일은?",
+    question: "친구만이 가진 리더십 특징은?",
     placeholder:
       "내 친구는 매사 성실해 놀땐 놀고 일할땐 확실하게 일하는 느낌! 리더십도 좋고 대학에서 같이 학생회를 했었는데 같이 일하면서 든든하고 의지가 많이 됐어 매번 일을 벌리는 것 같은데 보다보면 끝까지 매듭을 잘지어서 결국 뭔가를 이뤄내는 리더십을 가졌어!",
   },
@@ -256,7 +256,7 @@ export const keywordList: keywordProps[] = [
     keyword: "바른 인성⚖",
     checked: false,
     keywordChecked: false,
-    question: "친구의 인성이 느껴진 적은?",
+    question: "내 친구의 바른 신념이 드러날 때는?",
     placeholder:
       "내 친구는 즐길 땐 즐길 줄 알고, 고민을 들어 줄 때는 진중하게 들어주는 친구야! 지금까지도 매주마다 만나서 같이 노는데 미래에 대해서 같이 얘기도 하는 미래지향적인 친구야 :) 어른들에게 예의도 바르고 주변 평판도 엄청 좋아서 한마디로 표현하면 젠틀몬스터 그 자체야 👀",
   },
@@ -266,7 +266,7 @@ export const keywordList: keywordProps[] = [
     keyword: "재주왕🤸‍♀️",
     checked: false,
     keywordChecked: false,
-    question: "내 친구는 OO까지 잘한다면?",
+    question: "재주왕 내친구! 가장 잘하는 것은?",
     placeholder:
       "내 친구는 같이 있으면 진짜 재밌어. 술을 마셔도 안 마셔도 항상 재밌는 이야깃거리가 쏟아져 나오고, 별 거 아닌 이야기도 재밌게 전달하는 재주가 있어서 같이 있으면 시간 가는 줄 몰라. 요리도 잘하고, 운전도 잘하고, 손재주가 좋은 일등 신랑감이야!",
   },
@@ -306,7 +306,7 @@ export const keywordList: keywordProps[] = [
     keyword: "긍정적🐥",
     checked: false,
     keywordChecked: false,
-    question: "긍정적인 친구로 나도 행복해진 일화는?",
+    question: "긍정적인 친구로 같이 행복해진 일화는?",
     placeholder:
       "내 친구랑 같이 유럽으로 여행 간 적이 있는데 그때 확실히 이 친구가 정말 다정하고 배려심 넘치고 착하다는 걸 느꼈어👏 둘다 처음 유럽에 가는 거라 시행착오도 많고 바가지도 당하고 했는데 그때마다 친구는 상대방의 기분을 먼저 살피면서 긍정적으로 분위기를 풀어주더라구😽",
   },
@@ -327,7 +327,8 @@ export const keywordList: keywordProps[] = [
     checked: false,
     keywordChecked: false,
     question: "친구지만 배우고 싶은 삶의 태도는?",
-    placeholder: "내 친구랑 같이 있으면 말을 재밌게 해서 정말 ",
+    placeholder:
+      "내 친구는 맡은 일은 처음부터 허투루하는 법이 없이 끝까지 완벽하게 책임지는 듬직하고 집념이 있는 사람이야. 모르는 게 있는 걸 싫어해서 바쁜 와중에도 꾸준히 다독하는 모습이 멋지고 박학다식해서 배울 점이 아주 많아! 작은 것도 지나치지 않고 인사이트를 얻어내더라구",
   },
 ];
 
