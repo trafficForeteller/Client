@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { getUserName, postMemberReissue } from "../../apis/member.api";
@@ -7,10 +7,12 @@ import { routePaths } from "../../core/routes/path";
 import { MoveNextPageBtn, ToolTipBox } from "../@common";
 
 export default function RecommendLandingPage() {
-  const recommenderName = localStorage.getItem("recommenderName");
+  const recommenderName = localStorage.getItem("recommenderName") || "너";
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
   useEffect(() => {
-    localStorage.getItem("member-uuid") && handleGetUserName();
+    if (localStorage.getItem("member-uuid")) handleGetUserName();
+    else setButtonDisabled(false);
   }, []);
 
   const handleGetUserName = async () => {
@@ -25,10 +27,12 @@ export default function RecommendLandingPage() {
 
   const handleSuccessGetUserName = (userName: string) => {
     localStorage.setItem("memberName", userName);
+    setButtonDisabled(false);
   };
 
   const handleFailGetUserName = () => {
     localStorage.removeItem("member-uuid");
+    setButtonDisabled(false);
   };
 
   const handleReissueGetUserName = async () => {
@@ -46,7 +50,7 @@ export default function RecommendLandingPage() {
       <St.CommentBox>
         <St.Naechinso src={ImgCommentNaechinso} alt="내친소" />
         <St.CommentWrapper>
-          <St.Comment>{recommenderName ? recommenderName : "너"}의 친구라면...</St.Comment>
+          <St.Comment>{recommenderName}의 친구라면...</St.Comment>
           <St.Comment>분명 멋있겠지? 😘</St.Comment>
           <St.Comment>너무 기대된다!</St.Comment>
           <St.Comment>
@@ -68,7 +72,7 @@ export default function RecommendLandingPage() {
         </St.Desc>
         <St.Desc>내친소를 이용할 수 있어!</St.Desc>
       </St.Bottom>
-      <MoveNextPageBtn nextPage={routePaths.FriendInfo} title="내 친구 추천하기" disabled={false} />
+      <MoveNextPageBtn nextPage={routePaths.FriendInfo} title="내 친구 추천하기" disabled={buttonDisabled} />
     </St.RecommendLandingPage>
   );
 }
