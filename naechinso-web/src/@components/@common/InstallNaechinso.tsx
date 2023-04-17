@@ -19,14 +19,18 @@ export default function InstallNaechinso(props: InstallNaechinsoProps) {
   };
 
   return (
-    <St.InstallNaechinso>
-      <St.TalkBallon>
-        <St.Title>{title}</St.Title>
-        <St.Desc>모바일에서 내친소를 확인해줘😊</St.Desc>
-        <St.QrCode src={ImgInstallAppQrCode} alt="내친소 앱 설치 큐알코드" />
-      </St.TalkBallon>
-      <St.Naechinso src={ImgInstallNaechinso} alt="내친소" />
-    </St.InstallNaechinso>
+    <>
+      {!Mobile() && (
+        <St.InstallNaechinso>
+          <St.TalkBallon>
+            <St.Title>{title}</St.Title>
+            <St.Desc>모바일에서 내친소를 확인해줘😊</St.Desc>
+            <St.QrCode src={ImgInstallAppQrCode} alt="내친소 앱 설치 큐알코드" />
+          </St.TalkBallon>
+          <St.Naechinso src={ImgInstallNaechinso} alt="내친소" />
+        </St.InstallNaechinso>
+      )}
+    </>
   );
 }
 
