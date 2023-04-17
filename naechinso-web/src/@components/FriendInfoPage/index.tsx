@@ -196,22 +196,61 @@ export default function FriendInfoPage() {
     localStorage.setItem("dontGo", userData.dontGo);
     localStorage.setItem("appeals", JSON.stringify(userData.appeals));
 
-    const newKeywordList = keywordList.filter((keyword) => {
-      if (userData.appeals.includes(keyword.keyword)) keyword.checked = true;
-      else keyword.checked = false;
+    const tempKeywordList = keywordList;
+    const newKeywordList = tempKeywordList.map((keyword) => {
+      // keywordList에서 일치하는 keyword를 찾음
+      const matchingKeyword = userData.appeals.includes(keyword.keyword);
+      // 일치하는 keyword가 있으면 checked 값을 true로 변경하여 반환
+      if (matchingKeyword) return { ...keyword, checked: true };
+      // 일치하는 keyword가 없으면 원래 값을 그대로 반환
       return keyword;
     });
+
+    // const newKeywordList = userData.appeals.map((appeal) => {
+    //   // keywordList에서 일치하는 keyword를 찾음
+    //   const matchingKeyword = tempKeywordList.find((keyword) => keyword.keyword === appeal);
+    //   // 일치하는 keyword가 있으면 checked 값을 true로 변경하여 반환
+    //   if (matchingKeyword) {
+    //     return { keyword: matchingKeyword.keyword, checked: true };
+    //   }
+    //   // 일치하는 keyword가 없으면 원래 값을 그대로 반환
+    //   return { keyword: appeal, checked: false };
+    // });
     localStorage.setItem("keywordList", JSON.stringify(newKeywordList));
 
-    const newQuestionList = questionList.map((question) => {
-      const newQuestion = `${question.question1}` + `${question.question2}`;
-      if (userData.customQuestion[userData.customQuestion.length - 1].recommendQuestion === newQuestion) {
+    const tempQuestionList = questionList;
+    const newQuestionList = tempQuestionList.map((question) => {
+      if (userData.customQuestion[userData.customQuestion.length - 1].recommendQuestion === question.question) {
+        // 해결해야해~ 이전 추천사의 checkedQ1 어케 들고올건쥐
         question.checked = true;
         localStorage.setItem("checkedQ1", JSON.stringify(question));
       } else question.checked = false;
       return question;
     });
     localStorage.setItem("questionList", JSON.stringify(newQuestionList));
+
+    const newCheckedKeywordList = newKeywordList
+      .filter((newKeyword) => newKeyword.checked === true)
+      .map((keyword) => {
+        if (
+          userData.customQuestion[userData.customQuestion.length - 1].recommendQuestion ===
+          "친구에 대해 더 소개하고 싶은 점을 자유롭게 적어줘😃"
+        ) {
+          if (userData.customQuestion[userData.customQuestion.length - 2].recommendQuestion === keyword.question) {
+            keyword.keywordChecked = true;
+            localStorage.setItem("checkedQ1", JSON.stringify(keyword));
+          } else keyword.keywordChecked = false;
+          return keyword;
+        } else {
+          if (userData.customQuestion[userData.customQuestion.length - 1].recommendQuestion === keyword.question) {
+            keyword.keywordChecked = true;
+            localStorage.setItem("checkedQ1", JSON.stringify(keyword));
+          } else keyword.keywordChecked = false;
+          return keyword;
+        }
+      });
+    localStorage.setItem("checkedKeywordList", JSON.stringify(newCheckedKeywordList));
+
     navigate(routePaths.Keyword);
   };
 
@@ -226,6 +265,7 @@ export default function FriendInfoPage() {
     localStorage.removeItem("checkedQ1");
     localStorage.removeItem("questionList");
     localStorage.removeItem("priceType");
+    localStorage.removeItem("checkedKeywordList");
 
     navigate(routePaths.Keyword);
   };

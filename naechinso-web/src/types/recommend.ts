@@ -23,14 +23,9 @@ export interface IPostRecommend {
 
 export interface IPostRecommendQuestion {
   id: number;
-  icon: string;
-  title1: string;
-  title2?: string;
-  question1: string;
-  question2: string;
+  question: string;
   placeholder: string;
   checked: boolean;
-  disabled: boolean;
 }
 
 export interface IUuid {

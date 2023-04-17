@@ -5,7 +5,7 @@ import { IcTipCheck, IcToggleArrow } from "../../asset/icons";
 import { TipList } from "../../core/recommend/recommend";
 
 export default function ToggleTipBox() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <St.ToggleTipBox>
@@ -35,7 +35,7 @@ export default function ToggleTipBox() {
 
 const St = {
   ToggleTipBox: styled.section`
-    margin: 0 auto 3.2rem;
+    margin: 0 auto 2rem;
     width: 100%;
     background-color: ${({ theme }) => theme.colors.neural};
     border-radius: 16px;

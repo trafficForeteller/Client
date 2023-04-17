@@ -12,14 +12,9 @@ export default function FirstRecommendPage() {
   const [firstRecommend, setFirstRecommend] = useState("");
   const [questionData, setQuestionData] = useState<IPostRecommendQuestion>({
     id: 0,
-    icon: "",
-    title1: "",
-    title2: "",
-    question1: "",
-    question2: "",
+    question: "",
     placeholder: "",
     checked: true,
-    disabled: false,
   });
   const [postRecommend, setPostRecommend] = useState({
     recommendQuestions: [
@@ -45,7 +40,7 @@ export default function FirstRecommendPage() {
     setPostRecommend({
       recommendQuestions: [
         {
-          recommendQuestion: handleRecommendQuestion(parseLocalStorage("checkedQ1")),
+          recommendQuestion: parseLocalStorage("checkedQ1").question,
           recommendAnswer: firstRecommend,
         },
       ],
@@ -57,7 +52,7 @@ export default function FirstRecommendPage() {
   const parseLocalStorage = (item: string) => {
     //  localStorage에 저장된 친구가 배열 혹은 object일 때 JSON.parse하는 함수
     const itemInLocal = localStorage.getItem(`${item}`) as string;
-    const parseItem = JSON.parse(itemInLocal);
+    const parseItem = JSON.parse(itemInLocal) as IPostRecommendQuestion;
     return parseItem;
   };
 
@@ -93,15 +88,9 @@ export default function FirstRecommendPage() {
     navigate(routePaths.Error);
   };
 
-  const handleRecommendQuestion = (recommendQ: IPostRecommendQuestion) => {
-    // 질문 공백 없이 합치기
-    const recommendQuestion = `${recommendQ.question1}` + `${recommendQ.question2}`;
-    return recommendQuestion as string;
-  };
-
   return (
     <St.FirstRecommendPage>
-      <FixedHeader header="추천사" progressRate={65} title1={questionData.question1} title2={questionData.question2} />
+      <FixedHeader header="추천사" progressRate={65} title1={questionData.question} />
       <ToggleTipBox />
 
       <TextAreaBox

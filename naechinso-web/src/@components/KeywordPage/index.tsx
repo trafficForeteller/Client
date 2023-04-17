@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { keywordList, keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { FixedHeader, MoveNextPageBtn } from "../@common";
+import { AdressingFixedHeader, MoveNextPageBtn } from "../@common";
 
 export default function KeywordPage() {
   const [activeNextBtn, setActiveNextBtn] = useState(false);
@@ -35,6 +35,7 @@ export default function KeywordPage() {
   useEffect(() => {
     if (checkedAppeals.length === 3) setActiveNextBtn(true);
     else setActiveNextBtn(false);
+    console.log(checkedAppeals);
   }, [checkedAppeals]);
 
   const toggleChecked = (el: keywordProps) => {
@@ -60,12 +61,17 @@ export default function KeywordPage() {
   const saveCheckedAppealsInLocal = () => {
     localStorage.setItem("appeals", JSON.stringify(checkedAppeals));
     localStorage.setItem("keywordList", JSON.stringify(keywordArr));
+    localStorage.setItem(
+      "checkedKeywordList",
+      JSON.stringify(keywordArr.filter((newKeyword) => newKeyword.checked === true)),
+    );
   };
 
   return (
     <St.KeywordPage>
-      <FixedHeader
+      <AdressingFixedHeader
         header="친구 정보"
+        navigatePath="/recommend/friendInfo"
         progressRate={40}
         title1="네가 생각하는"
         title2="친구의 매력을 딱 3개만 골라봐!"
@@ -114,5 +120,6 @@ const St = {
     ${({ theme }) => theme.fonts.sub3};
     background: ${({ theme, checked }) => (checked ? theme.colors.brown : theme.colors.neural)};
     border-radius: 16px;
+    transition: all 0.2s ease;
   `,
 };

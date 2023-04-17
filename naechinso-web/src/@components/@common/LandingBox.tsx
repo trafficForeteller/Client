@@ -34,6 +34,7 @@ export default function LandingBox(props: LandingBoxProps) {
     localStorage.removeItem("recommenderName");
     localStorage.removeItem("priceType");
     localStorage.removeItem("memberName");
+    localStorage.removeItem("checkedKeywordList");
 
     if (location.pathname.startsWith("/landing")) {
       const memberUuid = location.pathname.substring(8);
