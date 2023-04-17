@@ -34,7 +34,7 @@ export default function ChooseFirstQuestionPage() {
       );
     }
 
-    localStorage.getItem("secondRecommend") && setIsBottomSheetOpened(true);
+    localStorage.getItem("checkedQ1") && setIsBottomSheetOpened(true);
   }, []);
 
   useEffect(() => {

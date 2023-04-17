@@ -196,14 +196,30 @@ export default function FriendInfoPage() {
     localStorage.setItem("dontGo", userData.dontGo);
     localStorage.setItem("appeals", JSON.stringify(userData.appeals));
 
-    const newKeywordList = keywordList.filter((keyword) => {
-      if (userData.appeals.includes(keyword.keyword)) keyword.checked = true;
-      else keyword.checked = false;
+    const tempKeywordList = keywordList;
+    const newKeywordList = tempKeywordList.map((keyword) => {
+      // keywordList에서 일치하는 keyword를 찾음
+      const matchingKeyword = userData.appeals.includes(keyword.keyword);
+      // 일치하는 keyword가 있으면 checked 값을 true로 변경하여 반환
+      if (matchingKeyword) return { ...keyword, checked: true };
+      // 일치하는 keyword가 없으면 원래 값을 그대로 반환
       return keyword;
     });
+
+    // const newKeywordList = userData.appeals.map((appeal) => {
+    //   // keywordList에서 일치하는 keyword를 찾음
+    //   const matchingKeyword = tempKeywordList.find((keyword) => keyword.keyword === appeal);
+    //   // 일치하는 keyword가 있으면 checked 값을 true로 변경하여 반환
+    //   if (matchingKeyword) {
+    //     return { keyword: matchingKeyword.keyword, checked: true };
+    //   }
+    //   // 일치하는 keyword가 없으면 원래 값을 그대로 반환
+    //   return { keyword: appeal, checked: false };
+    // });
     localStorage.setItem("keywordList", JSON.stringify(newKeywordList));
 
-    const newQuestionList = questionList.map((question) => {
+    const tempQuestionList = questionList;
+    const newQuestionList = tempQuestionList.map((question) => {
       if (userData.customQuestion[userData.customQuestion.length - 1].recommendQuestion === question.question) {
         // 해결해야해~ 이전 추천사의 checkedQ1 어케 들고올건쥐
         question.checked = true;

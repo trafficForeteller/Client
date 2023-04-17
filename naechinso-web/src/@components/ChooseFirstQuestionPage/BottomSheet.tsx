@@ -93,32 +93,36 @@ export default function BottomSheet(props: BottomSheetProps) {
 
   return (
     <>
-      <St.ModalBackground />
-      <St.BottomSheet isBottomSheetOpened={isBottomSheetOpened}>
-        <St.MovePrevButton onClick={closeModal} type="button">
-          <IcPreviousBtn aria-label="모달 닫기" />
-        </St.MovePrevButton>
-        <St.Title>{parseLocalStorage("checkedQ1").question}</St.Title>
+      {parseLocalStorage("checkedQ1") && (
+        <>
+          <St.ModalBackground />
+          <St.BottomSheet isBottomSheetOpened={isBottomSheetOpened}>
+            <St.MovePrevButton onClick={closeModal} type="button">
+              <IcPreviousBtn aria-label="모달 닫기" />
+            </St.MovePrevButton>
+            <St.Title>{parseLocalStorage("checkedQ1").question || ""}</St.Title>
 
-        <ToggleTipBox />
+            <ToggleTipBox />
 
-        <TextAreaBox
-          placeholder={parseLocalStorage("checkedQ1").placeholder}
-          minLength={49}
-          maxLength={150}
-          text={firstRecommend}
-          setText={setFirstRecommend}
-          height={13}
-          letterLimit="50자 이상 150자 이내"
-          isModalOpened={false}
-          textareaScroll={true}
-        />
+            <TextAreaBox
+              placeholder={parseLocalStorage("checkedQ1").placeholder || ""}
+              minLength={49}
+              maxLength={150}
+              text={firstRecommend}
+              setText={setFirstRecommend}
+              height={13}
+              letterLimit="50자 이상 150자 이내"
+              isModalOpened={false}
+              textareaScroll={true}
+            />
 
-        {isToolTipOpened && !localStorage.getItem("secondRecommend") && (
-          <ToolTipBox text="네 친구 정말 멋지다!👏🏻" bottom={13} />
-        )}
-        <MoveNextPageBtn title="다음" disabled={isButtonDisabled} handleState={handleRegisterRecommender} />
-      </St.BottomSheet>
+            {isToolTipOpened && !localStorage.getItem("secondRecommend") && (
+              <ToolTipBox text="네 친구 정말 멋지다!👏🏻" bottom={13} />
+            )}
+            <MoveNextPageBtn title="다음" disabled={isButtonDisabled} handleState={handleRegisterRecommender} />
+          </St.BottomSheet>
+        </>
+      )}
     </>
   );
 }

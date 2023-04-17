@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { keywordList, keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { AdressingFixedHeader, FixedHeader, MoveNextPageBtn } from "../@common";
+import { AdressingFixedHeader, MoveNextPageBtn } from "../@common";
 
 export default function KeywordPage() {
   const [activeNextBtn, setActiveNextBtn] = useState(false);
@@ -35,6 +35,7 @@ export default function KeywordPage() {
   useEffect(() => {
     if (checkedAppeals.length === 3) setActiveNextBtn(true);
     else setActiveNextBtn(false);
+    console.log(checkedAppeals);
   }, [checkedAppeals]);
 
   const toggleChecked = (el: keywordProps) => {

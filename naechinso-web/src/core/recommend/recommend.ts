@@ -322,8 +322,8 @@ export const keywordList: keywordProps[] = [
   },
   {
     id: 29,
-    icon: "🙇🏻🤓",
-    keyword: "배울점많아🤓",
+    icon: "👏🏻",
+    keyword: "배울점많아👏🏻",
     checked: false,
     keywordChecked: false,
     question: "친구지만 배우고 싶은 삶의 태도는?",
