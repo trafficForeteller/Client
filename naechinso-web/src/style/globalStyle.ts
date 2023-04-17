@@ -100,17 +100,13 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     caret-color: "#FF7A00";
     font-family: "Pretendard";
-    
-    &:focus {
-      outline: none;
-    }
+  }
   textarea {
     border: none;
     resize: none;
-    &:focus {
-      outline: none;
-    }
   }
+  input:focus, textarea:focus {
+    outline: none;
   }
   /*위에는 styled-reset 내용*/
   @font-face {
