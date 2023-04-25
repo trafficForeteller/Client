@@ -35,7 +35,6 @@ export default function KeywordPage() {
   useEffect(() => {
     if (checkedAppeals.length === 3) setActiveNextBtn(true);
     else setActiveNextBtn(false);
-    console.log(checkedAppeals);
   }, [checkedAppeals]);
 
   const toggleChecked = (el: keywordProps) => {

@@ -26,7 +26,6 @@ export default function Finish() {
     if (Mobile() && navigator.share) {
       navigator
         .share({
-          title: `${recommenderName} 친구가 너를 추천했어!`,
           text: copyText,
         })
         .then(() => console.log("공유 성공"))
