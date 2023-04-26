@@ -8,7 +8,7 @@ import { postSmsVerify } from "../../apis/sms.api";
 import { routePaths } from "../../core/routes/path";
 import { ITokenType } from "../../types/member";
 import { IPostPhoneNumber, IPostVerifyPhoneNumber, IToken } from "../../types/sms";
-import { JoinHeader, Title } from "../@common";
+import { ConsultantTextBtn, JoinHeader, Title } from "../@common";
 import AuthenticationNumInput from "./AuthenticationNumInput";
 import AuthModal from "./AuthModal";
 import ResendAuthNumBtn from "./ResendAuthNumBtn";
@@ -163,6 +163,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
         <ResendAuthNumBtn resendAuthNum={resendAuthNum} inputActive={inputActive} />
         <St.ResendMessage>{resendMessage}</St.ResendMessage>
       </St.AuthNumWrapper>
+      <ConsultantTextBtn />
 
       <St.ButtonWrapper inputActive={inputActive}>
         <St.Button onClick={() => navigate(routePaths.RecommenderLanding)} disabled={inputActive} type="button">

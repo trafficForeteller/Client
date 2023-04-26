@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { routePaths } from "../../core/routes/path";
-import { FixedHeader } from "../@common";
+import { ConsultantIconBtn, FixedHeader } from "../@common";
 
 export default function ChooseWorkPage() {
   const navigate = useNavigate();
@@ -22,6 +22,7 @@ export default function ChooseWorkPage() {
           일을 쉬고 있어 / 준비 중이야
         </St.ChooseWorkButton>
       </St.ButtonWrapper>
+      <ConsultantIconBtn />
     </St.ChooseWorkPage>
   );
 }

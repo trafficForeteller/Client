@@ -1,6 +1,7 @@
 export { default as AdressingFixedHeader } from "./AdressingFixedHeader";
 export { default as BasicHeader } from "./BasicHeader";
-export { default as ContactBtn } from "./ContactBtn";
+export { default as ConsultantIconBtn } from "./ConsultantIconBtn";
+export { default as ConsultantTextBtn } from "./ConsultantTextBtn";
 export { default as EditHeader } from "./EditHeader";
 export { default as EditImageBox } from "./EditImageBox";
 export { default as EditInput } from "./EditInput";

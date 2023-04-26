@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function ContactBtn() {
+export default function ConsultantTextBtn() {
   const goChannelTalk = () => {
     if (Mobile()) window.location.href = "https://naechinso.channel.io/lounge";
     else window.open("https://naechinso.channel.io/lounge");
@@ -11,14 +11,14 @@ export default function ContactBtn() {
   };
 
   return (
-    <St.ContactBtn type="button" onClick={goChannelTalk}>
+    <St.ConsultantTextBtn type="button" onClick={goChannelTalk}>
       문의하기
-    </St.ContactBtn>
+    </St.ConsultantTextBtn>
   );
 }
 
 const St = {
-  ContactBtn: styled.button`
+  ConsultantTextBtn: styled.button`
     color: ${({ theme }) => theme.colors.gray40};
     ${({ theme }) => theme.fonts.caption7};
     float: right;

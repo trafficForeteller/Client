@@ -453,7 +453,7 @@ export const RecommendLandingList: RecommendLandingProps[] = [
     comment1: "네 친구라면...",
     comment2: "분명 멋있겠지? 😘",
     comment3: "너무 기대된다!",
-    highlight: "89~99년도생만",
+    highlight: "04~95년도생만",
     desc1: "지금은 수도권에 거주하는",
     desc2: "내친소를 이용할 수 있어!",
     desc3: "추천하는 사람의 나이는 상관 없으니 걱정하지 마",

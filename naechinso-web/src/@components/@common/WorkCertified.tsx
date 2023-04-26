@@ -5,9 +5,9 @@ import styled from "styled-components";
 import { patchMemberEdu, patchMemberJob, postMemberReissue } from "../../apis/member.api";
 import { postCertifiedImg } from "../../apis/s3.api";
 import { IcPlus } from "../../asset/icons";
-import { ImgConsultantNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
+import ConsultantIconBtn from "./ConsultantIconBtn";
 import FixedHeader from "./FixedHeader";
 import MoveNextPageBtn from "./MoveNextPageBtn";
 import SheildBox from "./SheildBox";
@@ -47,10 +47,6 @@ export default function WorkCertified(props: WorkCertifiedProps) {
     handleFileChecked();
   }, [patchData]);
 
-  const handleOpenChannel = () => {
-    // 새로운 창에서 약관 열기
-    window.open("https://naechinso.channel.io/lounge", "_blank", "noopener, noreferrer");
-  };
   // 이미지 파일 유무 확인하기
   const handleFileChecked = () => certifiedImg && patchCertifiedData();
 
@@ -172,10 +168,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
         onChange={previewImgFile}
         ref={imgRef}
       />
-
-      <St.ConsultantBtn type="button" onClick={handleOpenChannel}>
-        <St.ConsultantNaechinso src={ImgConsultantNaechinso} alt="상담원 내친소 아이콘" />
-      </St.ConsultantBtn>
+      <ConsultantIconBtn />
 
       {dir === "edu" ? (
         <MoveNextPageBtn
@@ -224,10 +217,4 @@ const St = {
     height: 100%;
     border-radius: 16px;
   `,
-  ConsultantBtn: styled.button`
-    position: absolute;
-    right: 2.4rem;
-    bottom: 12.4rem;
-  `,
-  ConsultantNaechinso: styled.img``,
 };

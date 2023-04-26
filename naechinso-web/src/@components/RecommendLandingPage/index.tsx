@@ -68,7 +68,7 @@ export default function RecommendLandingPage() {
           <St.Title>이제 친구를 소개해볼까?</St.Title>
         </St.TitleWrapper>
         <St.Desc>
-          지금은 수도권에 거주하는 <St.Highlight>89~99년도생</St.Highlight>만
+          지금은 수도권에 거주하는 <St.Highlight>04~95년도생</St.Highlight>만
         </St.Desc>
         <St.Desc>내친소를 이용할 수 있어!</St.Desc>
       </St.Bottom>

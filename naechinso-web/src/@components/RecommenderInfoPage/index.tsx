@@ -7,7 +7,7 @@ import { IcCheckedMen, IcCheckedWomen, IcUnCheckedMen, IcUnCheckedWomen } from "
 import { genderTypeList, genderTypeProps } from "../../core/member/member";
 import { RecommenderInfoList } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { FixedHeader, MoveNextPageBtn, SheildBox } from "../@common";
+import { ConsultantTextBtn, FixedHeader, MoveNextPageBtn, SheildBox } from "../@common";
 import NameInputBox from "./NameInputBox";
 
 export default function RecommenderInfoPage() {
@@ -144,6 +144,7 @@ export default function RecommenderInfoPage() {
           <St.Gender>{genderTypeArr[1].gender}</St.Gender>
         </St.GenderWrapper>
       </St.ChooseGender>
+      <ConsultantTextBtn />
 
       <MoveNextPageBtn
         title="다음"
