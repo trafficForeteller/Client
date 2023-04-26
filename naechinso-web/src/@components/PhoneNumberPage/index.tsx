@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { routePaths } from "../../core/routes/path";
 import { IPostPhoneNumber } from "../../types/sms";
-import { JoinHeader, MoveNextPageBtn, PhoneNumInput, Title } from "../@common";
+import { ContactBtn, JoinHeader, MoveNextPageBtn, PhoneNumInput, Title } from "../@common";
 
 export interface PhoneNumberPageProps {
   setPostPhoneNum: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
@@ -31,6 +31,7 @@ export default function PhoneNumberPage(props: PhoneNumberPageProps) {
         setPostPhoneNum={setPostPhoneNum}
         handleState={sendSms}
       />
+      <ContactBtn />
 
       <MoveNextPageBtn
         nextPage={routePaths.Certified}
