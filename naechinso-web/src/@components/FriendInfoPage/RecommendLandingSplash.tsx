@@ -10,7 +10,7 @@ export default function RecommendLandingSplash() {
         <Title title="네 친구라면 분명 멋있겠지?" />
       </St.TitleWrapper>
       <St.SubTitleWrapper>
-        <SubTitle subTitle="현재는 수도권에 거주하는 04~95년도생만 내친소를 이용할 수 있어!" />
+        <SubTitle subTitle="현재는 수도권에 거주하는 85~04년도생만 내친소를 이용할 수 있어!" />
         <SubTitle subTitle="(추천하는 사람의 나이는 상관없어)" />
       </St.SubTitleWrapper>
       <St.BackgroundColor></St.BackgroundColor>
