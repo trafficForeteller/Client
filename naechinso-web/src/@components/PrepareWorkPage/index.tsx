@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { patchMemberJob, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IJobType } from "../../types/member";
-import { FixedHeader, MoveNextPageBtn } from "../@common";
+import { ConsultantTextBtn, FixedHeader, MoveNextPageBtn } from "../@common";
 
 export default function PrepareWorkPage() {
   const [job, setJob] = useState<IJobType>({
@@ -78,6 +78,7 @@ export default function PrepareWorkPage() {
           <St.Ready>준비 중</St.Ready>
         </St.InputWrapper>
       </St.InputBox>
+      <ConsultantTextBtn />
       <MoveNextPageBtn disabled={!activeBtn} title="다음" handleState={patchJobData} />
     </St.PrepareWorkPage>
   );

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { ImgErrorNaechinso } from "../../asset/image";
-import { MovePreviousPageBtn } from "../@common";
+import { ConsultantTextBtn, MovePreviousPageBtn } from "../@common";
 
 export default function ErrorPage() {
   const navigate = useNavigate();
@@ -27,6 +27,7 @@ export default function ErrorPage() {
           새로고침
         </St.RefreshButton>
       </St.MainBox>
+      <ConsultantTextBtn />
     </St.ErrorPage>
   );
 }

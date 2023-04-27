@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { keywordList, keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { AdressingFixedHeader, MoveNextPageBtn } from "../@common";
+import { AdressingFixedHeader, ConsultantTextBtn, MoveNextPageBtn } from "../@common";
 
 export default function KeywordPage() {
   const [activeNextBtn, setActiveNextBtn] = useState(false);
@@ -85,7 +85,7 @@ export default function KeywordPage() {
           );
         })}
       </St.KeywordListWrapper>
-
+      <ConsultantTextBtn />
       <MoveNextPageBtn
         nextPage={routePaths.ChooseFirstQuestion}
         title="다음"

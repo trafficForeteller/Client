@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { patchMemberJob, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IJobType } from "../../types/member";
-import { FixedHeader, MoveNextPageBtn, ShortInputBox } from "../@common";
+import { ConsultantIconBtn, FixedHeader, MoveNextPageBtn, ShortInputBox } from "../@common";
 
 export default function FreelancePage() {
   const [job, setJob] = useState<IJobType>({
@@ -79,6 +79,7 @@ export default function FreelancePage() {
         onChange={handleJobPartInput}
         step={1}
       />
+      <ConsultantIconBtn />
       <MoveNextPageBtn disabled={!activeBtn} title="다음" handleState={patchJobData} />
     </St.FreelancePage>
   );

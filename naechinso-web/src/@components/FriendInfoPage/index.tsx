@@ -13,7 +13,7 @@ import {
 } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IGetReommend, IPostFriendInfo, IUuid } from "../../types/recommend";
-import { ShortInputBox } from "../@common";
+import { ConsultantIconBtn, ShortInputBox } from "../@common";
 import FriendInfoHeader from "./FriendInfoHeader";
 import PhoneNumInputBox from "./PhoneNumInput";
 import RelationTypeInput from "./RecommendTypeInput";
@@ -373,6 +373,8 @@ export default function FriendInfoPage() {
         />
       )}
       <St.Blank></St.Blank>
+
+      <ConsultantIconBtn />
       <St.NextStepBtnWrapper>
         <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep} isModalOpened={isModalOpened}>
           다음

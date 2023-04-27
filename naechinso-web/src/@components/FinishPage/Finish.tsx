@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { ImgFinishNone, ImgFinishRecommend, ImgFinishSunguri } from "../../asset/image";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
+import { ConsultantTextBtn } from "../@common";
 import FinishBottom from "./FinishBottom";
 
 export default function Finish() {
@@ -64,6 +65,10 @@ export default function Finish() {
           </St.ShareBtn>
         </CopyToClipboard>
       </St.ShareBtnWrapper>
+
+      <St.ConsultantBtnWrapper>
+        <ConsultantTextBtn />
+      </St.ConsultantBtnWrapper>
 
       <FinishBottom />
     </St.Finish>
@@ -135,5 +140,9 @@ const St = {
 
     border-radius: 16px;
     cursor: pointer;
+  `,
+  ConsultantBtnWrapper: styled.article`
+    width: 100%;
+    float: right;
   `,
 };

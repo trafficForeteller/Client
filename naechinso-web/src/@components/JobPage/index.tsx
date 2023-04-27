@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { IcSheild } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { IJobType } from "../../types/member";
-import { FixedHeader, ShortInputBox } from "../@common";
+import { ConsultantIconBtn, FixedHeader, ShortInputBox } from "../@common";
 
 export default function JobPage() {
   const [step, setStep] = useState(1);
@@ -98,6 +98,7 @@ export default function JobPage() {
         step={step}
       />
 
+      <ConsultantIconBtn />
       <St.NextStepBtnWrapper>
         <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep}>
           다음

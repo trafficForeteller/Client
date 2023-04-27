@@ -6,7 +6,7 @@ import { postMemberReissue } from "../../apis/member.api";
 import { postRecommendation } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
 import { IPostRecommendQuestion } from "../../types/recommend";
-import { FixedHeader, MoveNextPageBtn, TextAreaBox, ToggleTipBox } from "../@common";
+import { ConsultantTextBtn, FixedHeader, MoveNextPageBtn, TextAreaBox, ToggleTipBox } from "../@common";
 
 export default function FirstRecommendPage() {
   const [firstRecommend, setFirstRecommend] = useState("");
@@ -103,7 +103,7 @@ export default function FirstRecommendPage() {
         letterLimit="50자 이상 150자 이내"
         isModalOpened={false}
       />
-
+      <ConsultantTextBtn />
       <MoveNextPageBtn title="다음" disabled={isButtonDisabled} handleState={handleRegisterRecommender} />
     </St.FirstRecommendPage>
   );

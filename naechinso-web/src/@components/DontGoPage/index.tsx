@@ -9,7 +9,7 @@ import { IcDontGo } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
-import { FixedHeader, TextAreaBox, WarningModal } from "../@common";
+import { ConsultantIconBtn, FixedHeader, TextAreaBox, WarningModal } from "../@common";
 
 export default function DontGoPage() {
   const [text, setText] = useState("");
@@ -161,6 +161,8 @@ export default function DontGoPage() {
             isModalOpened={isWarningModalOpened}
           />
         </St.TextWrapper>
+
+        <ConsultantIconBtn />
         <St.NextStepBtnWrapper>
           <St.NextStepBtn
             type="button"

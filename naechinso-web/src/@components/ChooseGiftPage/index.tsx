@@ -7,7 +7,7 @@ import { postMemberReissue } from "../../apis/member.api";
 import { patchRecommendFriendDetail } from "../../apis/recommend.api";
 import { routePaths } from "../../core/routes/path";
 import { IPatchFriendDetail } from "../../types/recommend";
-import { FixedHeader } from "../@common";
+import { ConsultantIconBtn, FixedHeader } from "../@common";
 
 export default function ChooseGiftPage() {
   const navigate = useNavigate();
@@ -94,6 +94,8 @@ export default function ChooseGiftPage() {
           내 추천사 보기
         </St.ChooseWorkButton>
       </St.ButtonWrapper>
+
+      <ConsultantIconBtn />
     </St.ChooseGiftPage>
   );
 }

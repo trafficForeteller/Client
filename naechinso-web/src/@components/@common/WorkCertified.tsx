@@ -7,7 +7,7 @@ import { postCertifiedImg } from "../../apis/s3.api";
 import { IcPlus } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
-import ConsultantIconBtn from "./ConsultantIconBtn";
+import ConsultantTextBtn from "./ConsultantTextBtn";
 import FixedHeader from "./FixedHeader";
 import MoveNextPageBtn from "./MoveNextPageBtn";
 import SheildBox from "./SheildBox";
@@ -168,7 +168,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
         onChange={previewImgFile}
         ref={imgRef}
       />
-      <ConsultantIconBtn />
+      <ConsultantTextBtn />
 
       {dir === "edu" ? (
         <MoveNextPageBtn

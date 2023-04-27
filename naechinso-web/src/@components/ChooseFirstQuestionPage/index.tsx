@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { keywordProps, questionList, questionProps } from "../../core/recommend/recommend";
-import { AdressingFixedHeader, MoveNextPageBtn } from "../@common";
+import { AdressingFixedHeader, ConsultantIconBtn, MoveNextPageBtn } from "../@common";
 import BottomSheet from "./BottomSheet";
 
 export default function ChooseFirstQuestionPage() {
@@ -163,6 +163,7 @@ export default function ChooseFirstQuestionPage() {
         })}
       </St.QuestionContainer>
 
+      <ConsultantIconBtn />
       <MoveNextPageBtn title="다음" disabled={!nextBtnActive} handleState={saveCheckedQuestion} />
 
       {isBottomSheetOpened && (

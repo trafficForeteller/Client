@@ -5,7 +5,15 @@ import styled from "styled-components";
 import { patchMemberEdu, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IPatchEdu } from "../../types/member";
-import { EditHeader, EditImageBox, EditInput, EditTitleBox, EditToggleInputBox, MoveNextPageBtn } from "../@common";
+import {
+  ConsultantIconBtn,
+  EditHeader,
+  EditImageBox,
+  EditInput,
+  EditTitleBox,
+  EditToggleInputBox,
+  MoveNextPageBtn,
+} from "../@common";
 
 export default function EduEditPage() {
   const location = useLocation();
@@ -133,6 +141,7 @@ export default function EduEditPage() {
         </St.EditWrapper>
       </St.EditBox>
 
+      <ConsultantIconBtn />
       <MoveNextPageBtn title="수정 완료" disabled={false} handleState={patchEditEduData} />
     </St.EduEditPage>
   );

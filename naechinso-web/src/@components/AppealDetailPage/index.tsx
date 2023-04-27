@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { IcAppealDetail } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
-import { FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
+import { ConsultantIconBtn, FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
 
 export default function AppealDetailPage() {
   const [text, setText] = useState("");
@@ -47,6 +47,7 @@ export default function AppealDetailPage() {
         />
       </St.TextWrapper>
 
+      <ConsultantIconBtn />
       <MoveNextPageBtn nextPage={routePaths.DontGo} title="다음" disabled={isButtonDisabled} />
     </St.AppealDetail>
   );
