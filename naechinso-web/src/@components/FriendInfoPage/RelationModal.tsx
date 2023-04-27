@@ -49,6 +49,7 @@ const St = {
     left: 0;
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 32px 32px 0 0;
+    z-index: 99;
   `,
   Question: styled.h2`
     display: flex;
