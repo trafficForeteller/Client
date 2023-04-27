@@ -109,6 +109,7 @@ export default function SecondRecommendPage() {
           height={13}
           letterLimit="300자 이내"
           isModalOpened={false}
+          textareaScroll={true}
         />
 
         <St.MoveBtnWrapper>
