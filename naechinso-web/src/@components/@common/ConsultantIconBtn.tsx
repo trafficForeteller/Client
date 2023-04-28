@@ -21,7 +21,7 @@ export default function ConsultantIconBtn() {
 
 const St = {
   ConsultantIconBtn: styled.button`
-    position: absolute;
+    position: fixed;
     right: 2.4rem;
     bottom: 12.4rem;
     width: 6.4rem;
