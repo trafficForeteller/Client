@@ -101,7 +101,7 @@ export default function JobEditPage() {
           <EditTitleBox
             question="✔️ 회사 인증을 해볼까?"
             desc1="내친소는 신뢰 기반의 서비스라 인증이 필요해."
-            desc2="사원증, 명함 또는 사업자등록증을 첨부해줘!"
+            desc2="사원증, 명함 또는 회사슬랙 캡쳐를 첨부해줘!"
             isModalOpened={false}
           />
           <EditImageBox image={jobImage} setImage={setJobImage} dir={jobGetData.type.toLowerCase()} />
