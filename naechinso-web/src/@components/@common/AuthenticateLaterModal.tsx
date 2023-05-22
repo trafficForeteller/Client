@@ -92,11 +92,12 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 100;
+
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 100;
   `,
   Naechinso: styled.img`
     width: 8.6rem;
