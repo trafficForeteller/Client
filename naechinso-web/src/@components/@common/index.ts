@@ -1,4 +1,5 @@
 export { default as AdressingFixedHeader } from "./AdressingFixedHeader";
+export { default as AuthenticateLaterBtn } from "./AuthenticateLaterBtn";
 export { default as BasicHeader } from "./BasicHeader";
 export { default as ConsultantIconBtn } from "./ConsultantIconBtn";
 export { default as ConsultantTextBtn } from "./ConsultantTextBtn";

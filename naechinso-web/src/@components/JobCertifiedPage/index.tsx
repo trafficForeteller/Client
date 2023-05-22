@@ -22,5 +22,12 @@ export default function JobCertifiedPage() {
 }
 
 const St = {
-  JobCertifiedPage: styled.main``,
+  JobCertifiedPage: styled.main`
+    z-index: 99;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  `,
 };

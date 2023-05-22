@@ -4,48 +4,55 @@ import styled from "styled-components";
 import { ImgWarningNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 
-export interface WarningModalProps {
+export interface AuthenticateLaterModalProps {
   title1: string;
-  title2?: string;
+  highlight: string;
   desc1: string;
   desc2?: string;
   buttonTitle: string;
-  setIsWarningModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsAuthenticateLaterModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function WarningModal(props: WarningModalProps) {
-  const { title1, title2, desc1, desc2, buttonTitle, setIsWarningModalOpened } = props;
+export default function AuthenticateLaterModal(props: AuthenticateLaterModalProps) {
+  const { title1, highlight, desc1, desc2, buttonTitle, setIsAuthenticateLaterModalOpened } = props;
   const navigate = useNavigate();
 
+  const sendAuthAddress = () => {
+    console.log("first");
+  };
+
   const closeModal = () => {
-    setIsWarningModalOpened(false);
-    if (buttonTitle === "응 수정할게!") navigate(routePaths.DontGo);
-    else navigate(routePaths.RecommendLanding);
+    setIsAuthenticateLaterModalOpened(false);
   };
 
   return (
-    <St.WarningModal>
+    <St.AuthenticateLaterModal>
       <St.Naechinso src={ImgWarningNaechinso} alt="내친소" />
       <St.TitleWrapper>
         <St.Title>{title1}</St.Title>
-        <St.Title>{title2}</St.Title>
       </St.TitleWrapper>
       <St.DescWrapper>
-        <St.Desc>{desc1}</St.Desc>
+        <St.Desc>
+          <St.Hightlight>{highlight}</St.Hightlight>
+          {desc1}
+        </St.Desc>
         <St.Desc>{desc2}</St.Desc>
       </St.DescWrapper>
 
       <St.ButtonWrapper>
-        <St.Button onClick={closeModal} type="button">
+        <St.AuthLaterBtn onClick={sendAuthAddress} type="button">
+          나중에 하기
+        </St.AuthLaterBtn>
+        <St.CloseModalBtn onClick={closeModal} type="button">
           {buttonTitle}
-        </St.Button>
+        </St.CloseModalBtn>
       </St.ButtonWrapper>
-    </St.WarningModal>
+    </St.AuthenticateLaterModal>
   );
 }
 
 const St = {
-  WarningModal: styled.section`
+  AuthenticateLaterModal: styled.section`
     padding: 5.6rem 2rem 1.8rem;
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 16px;
@@ -88,13 +95,29 @@ const St = {
     color: ${({ theme }) => theme.colors.gray50};
     ${({ theme }) => theme.fonts.sub3};
   `,
-  ButtonWrapper: styled.article``,
-  Button: styled.button`
+  Hightlight: styled.b`
+    color: ${({ theme }) => theme.colors.orange};
+    ${({ theme }) => theme.fonts.sub4};
+  `,
+  ButtonWrapper: styled.article`
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+  `,
+  AuthLaterBtn: styled.button`
+    color: ${({ theme }) => theme.colors.orange};
+    ${({ theme }) => theme.fonts.body3};
+    height: 4.4rem;
+    padding: 1.2rem 1.6rem;
+    width: 50%;
+  `,
+  CloseModalBtn: styled.button`
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.body3};
-    width: 27.1rem;
     height: 4.4rem;
     border-radius: 12px;
+    padding: 1.2rem 1.6rem;
+    width: 50%;
   `,
 };
