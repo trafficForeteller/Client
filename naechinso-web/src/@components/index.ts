@@ -28,6 +28,8 @@ export { default as PendingPage } from "./PendingPage";
 export { default as PhoneNumberPage } from "./PhoneNumberPage";
 export { default as PrepareWorkPage } from "./PrepareWorkPage";
 export { default as RecommendationPage } from "./RecommendationPage";
+export { default as RecommenderAuthLandingPage } from "./RecommenderAuthLandingPage";
+export { default as RecommenderAuthPage } from "./RecommenderAuthPage";
 export { default as RecommenderInfoPage } from "./RecommenderInfoPage";
 export { default as RecommenderLandingPage } from "./RecommenderLandingPage";
 export { default as RecommendLandingPage } from "./RecommendLandingPage";

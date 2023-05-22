@@ -173,14 +173,22 @@ export default function WorkCertified(props: WorkCertifiedProps) {
 
       {dir === "edu" ? (
         <MoveNextPageBtn
-          nextPage={localStorage.getItem("landingUrl") === "edit" ? routePaths.Finish : routePaths.RecommendLanding}
+          nextPage={
+            localStorage.getItem("landingUrl") === "edit" || localStorage.getItem("landingUrl") === "auth"
+              ? routePaths.EditFinish
+              : routePaths.RecommendLanding
+          }
           title="다음"
           disabled={!fileChecked}
           className={GTM_CLASS_NAME.recommenderSuccessEdu}
         />
       ) : (
         <MoveNextPageBtn
-          nextPage={localStorage.getItem("landingUrl") === "edit" ? routePaths.Finish : routePaths.RecommendLanding}
+          nextPage={
+            localStorage.getItem("landingUrl") === "edit" || localStorage.getItem("landingUrl") === "auth"
+              ? routePaths.EditFinish
+              : routePaths.RecommendLanding
+          }
           title="다음"
           disabled={!fileChecked}
           className={GTM_CLASS_NAME.recommenderSuccessJob}

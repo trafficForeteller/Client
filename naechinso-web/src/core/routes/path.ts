@@ -27,6 +27,8 @@ export const routePaths = {
   Pending: "/pending",
   Arrive: "/arrive",
   EditRecommender: "/edit/landing",
+  RecommenderAuth: "/recommender/auth",
+  RecommenderAuthLanding: "/recommender/auth/landing",
   EditFinish: "/edit/finish",
   Error: "/error",
   ChooseJob: "/recommender/chooseJob",

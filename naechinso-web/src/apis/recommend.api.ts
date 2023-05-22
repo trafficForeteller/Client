@@ -136,15 +136,15 @@ export async function getCheckPrice(
 
 export async function postSendRecommendSms(
   accessToken: string | null,
-  onSuccess: (userData: IUuid) => void,
+  onSuccess: () => void,
   onFail: (errorMessage: string) => void,
   onReissue: () => void,
 ): Promise<void | null> {
   try {
-    const { data } = await serverAxios.post(`${PREFIX_URL}/sms/send`, {
+    await serverAxios.post(`${PREFIX_URL}/sms/send`, "", {
       headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
-    onSuccess(data.data);
+    onSuccess();
   } catch (err) {
     if (err instanceof AxiosError) {
       if (err.response?.data.status === 401) onReissue();

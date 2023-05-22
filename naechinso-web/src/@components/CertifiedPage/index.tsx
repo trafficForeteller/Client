@@ -99,6 +99,8 @@ export default function CertifiedPage(props: CertifiedPageProps) {
           navigate(routePaths.EduEdit, { state: userData[0] });
         } else navigate(routePaths.EditRecommender);
       } else navigate(routePaths.EditRecommender);
+    } else if (localStorage.getItem("landingUrl") === "auth") {
+      navigate(routePaths.RecommenderAuthLanding);
     } else handleMemberStatus();
   };
 

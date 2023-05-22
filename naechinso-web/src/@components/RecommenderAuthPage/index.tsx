@@ -3,10 +3,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postMemberReissue } from "../../apis/member.api";
-import { ImgEditNaechinso } from "../../asset/image";
+import { ImgRecommenderAuthNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 
-export default function EditPage() {
+export default function RecommenderAuthPage() {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ export default function EditPage() {
     localStorage.removeItem("memberName");
     localStorage.removeItem("checkedKeywordList");
 
-    localStorage.setItem("landingUrl", "edit");
+    localStorage.setItem("landingUrl", "auth");
   }, [location]);
 
   useEffect(() => {
@@ -48,21 +48,21 @@ export default function EditPage() {
   };
 
   return (
-    <St.EditPage>
-      <St.Naechinso src={ImgEditNaechinso} alt="내친소" />
+    <St.RecommenderAuthPage>
+      <St.Naechinso src={ImgRecommenderAuthNaechinso} alt="내친소" />
       <St.TitleWrapper>
-        <St.Title>소속인증에 문제가 있었어😥 </St.Title>
-        <St.Title>다시 인증해줄 수 있어?</St.Title>
+        <St.Title>널 기다리고 있었어!</St.Title>
+        <St.Title>소속 인증하러 가보자고🏃‍♀</St.Title>
       </St.TitleWrapper>
       <St.Button onClick={() => navigate(routePaths.PhoneNum)} type="button">
-        인증 다시 하기
+        소속 인증 하기
       </St.Button>
-    </St.EditPage>
+    </St.RecommenderAuthPage>
   );
 }
 
 const St = {
-  EditPage: styled.main`
+  RecommenderAuthPage: styled.main`
     width: 100%;
     height: 100%;
     background-color: ${({ theme }) => theme.colors.neural};

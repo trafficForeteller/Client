@@ -12,6 +12,7 @@ export { default as ImgInstallAppQrCode } from "./installAppQrCode.png";
 export { default as ImgInstallNaechinso } from "./installNaechinso.png";
 export { default as ImgLandingNaechinso } from "./landingNaechinso.png";
 export { default as ImgPendingNaechinso } from "./pendingNaechinso.png";
+export { default as ImgRecommenderAuthNaechinso } from "./recommenderAuthNaechinso.png";
 export { default as ImgRecommenderLanding } from "./recommenderLanding.png";
 export { default as ImgRecommendLanding } from "./recommendLanding.png";
 export { default as ImgSelfIntroNaechinso } from "./selfIntroNaechinso.png";

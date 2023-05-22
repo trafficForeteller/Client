@@ -9,7 +9,9 @@ export default function EditFinish() {
       <St.CommentBox>
         <St.Naechinso src={ImgCommentNaechinso} alt="내친소" />
         <St.CommentWrapper>
-          <St.Comment>네 소개 잘 받았어😊</St.Comment>
+          <St.Comment>
+            {localStorage.getItem("landingUrl") === "edit" ? "네 소개 잘 받았어" : "소속인증 잘 받았어"}😊
+          </St.Comment>
           <St.Comment>친구가 가입하면</St.Comment>
           <St.Comment>
             추천사와 함께 <br /> 썬구리도 선물할게😎
