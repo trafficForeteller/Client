@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { postMemberReissue } from "../../apis/member.api";
+import { postSendRecommendSms } from "../../apis/recommend.api";
 import { ImgWarningNaechinso } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 
@@ -17,8 +19,34 @@ export default function AuthenticateLaterModal(props: AuthenticateLaterModalProp
   const { title1, highlight, desc1, desc2, buttonTitle, setIsAuthenticateLaterModalOpened } = props;
   const navigate = useNavigate();
 
-  const sendAuthAddress = () => {
-    console.log("first");
+  const handleSendRecommendSms = async () => {
+    // 나중에 하기 누르면 1.문자보내기 api 호출
+    await postSendRecommendSms(
+      localStorage.getItem("accessToken"),
+      handleSuccessPostSendRecommendSms,
+      handleFailPostSendRecommendSms,
+      handleReissuePostSendRecommendSms,
+    );
+  };
+
+  const handleSuccessPostSendRecommendSms = () => {
+    //2.문자보내기 성공 시 모달창 닫히면서 다음 페이지 이동
+    closeModal();
+    navigate(routePaths.RecommendLanding);
+  };
+
+  const handleFailPostSendRecommendSms = (errorMessage: string) => {
+    console.log(errorMessage);
+    navigate(routePaths.Error);
+  };
+
+  const handleReissuePostSendRecommendSms = async () => {
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    handleSendRecommendSms();
   };
 
   const closeModal = () => {
@@ -40,7 +68,7 @@ export default function AuthenticateLaterModal(props: AuthenticateLaterModalProp
       </St.DescWrapper>
 
       <St.ButtonWrapper>
-        <St.AuthLaterBtn onClick={sendAuthAddress} type="button">
+        <St.AuthLaterBtn onClick={handleSendRecommendSms} type="button">
           나중에 하기
         </St.AuthLaterBtn>
         <St.CloseModalBtn onClick={closeModal} type="button">

@@ -6,6 +6,7 @@ export { default as ChooseGiftPage } from "./ChooseGiftPage";
 export { default as ChooseJobPage } from "./ChooseJobPage";
 export { default as ChooseWorkPage } from "./ChooseWorkPage";
 export { default as DontGoPage } from "./DontGoPage";
+export { default as EditFinishPage } from "./EditFinishPage";
 export { default as EditPage } from "./EditPage";
 export { default as EditRecommenderLandingPage } from "./EditRecommenderLandingPage";
 export { default as EduCertifiedPage } from "./EduCertifiedPage";

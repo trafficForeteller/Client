@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { ImgFinishNone, ImgFinishRecommend, ImgFinishSunguri } from "../../asset/image";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { ConsultantTextBtn } from "../@common";
-import FinishBottom from "./FinishBottom";
+import FinishBottom from "../@common/FinishBottom";
 
 export default function Finish() {
   const recommenderName = localStorage.getItem("recommenderName") || "친한";

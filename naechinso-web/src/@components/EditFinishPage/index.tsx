@@ -2,30 +2,33 @@ import styled from "styled-components";
 
 import { ImgCommentNaechinso } from "../../asset/image";
 import { FinishBottom } from "../@common";
-export default function MagicFinish() {
+
+export default function EditFinish() {
   return (
-    <St.MagicFinish>
+    <St.EditFinish>
       <St.CommentBox>
         <St.Naechinso src={ImgCommentNaechinso} alt="내친소" />
         <St.CommentWrapper>
-          <St.Comment>추천사는 제출됐어😊</St.Comment>
-          <St.Comment>친구를 추천해줘서</St.Comment>
-          <St.Comment>정말 고마워!💕</St.Comment>
+          <St.Comment>네 소개 잘 받았어😊</St.Comment>
+          <St.Comment>친구가 가입하면</St.Comment>
           <St.Comment>
-            친구의 가입이 승인되면
+            추천사와 함께 <br /> 썬구리도 선물할게😎
+          </St.Comment>
+          <St.Comment>
+            좋은 친구 추천해줘서
             <br />
-            {localStorage.getItem("priceType") === "SUNGURI" ? "썬구리가 지급될 거야!" : "네 추천사를 볼 수 있어!"}
+            너무 고마워!!💕
           </St.Comment>
         </St.CommentWrapper>
       </St.CommentBox>
 
       <FinishBottom />
-    </St.MagicFinish>
+    </St.EditFinish>
   );
 }
 
 const St = {
-  MagicFinish: styled.main`
+  EditFinish: styled.main`
     width: 100%;
     height: 100%;
     background-color: ${({ theme }) => theme.colors.neural};
