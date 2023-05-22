@@ -7,6 +7,7 @@ import { postCertifiedImg } from "../../apis/s3.api";
 import { IcPlus } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
+import AuthenticateLaterBtn from "./AuthenticateLaterBtn";
 import ConsultantTextBtn from "./ConsultantTextBtn";
 import FixedHeader from "./FixedHeader";
 import MoveNextPageBtn from "./MoveNextPageBtn";
@@ -185,6 +186,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
           className={GTM_CLASS_NAME.recommenderSuccessJob}
         />
       )}
+      <AuthenticateLaterBtn />
     </St.WorkCertified>
   );
 }
