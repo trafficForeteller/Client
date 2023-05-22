@@ -6,14 +6,15 @@ import { routePaths } from "../../core/routes/path";
 
 export interface WarningModalProps {
   title1: string;
-  title2: string;
-  desc: string;
+  title2?: string;
+  desc1: string;
+  desc2?: string;
   buttonTitle: string;
   setIsWarningModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function WarningModal(props: WarningModalProps) {
-  const { title1, title2, desc, buttonTitle, setIsWarningModalOpened } = props;
+  const { title1, title2, desc1, desc2, buttonTitle, setIsWarningModalOpened } = props;
   const navigate = useNavigate();
 
   const closeModal = () => {
@@ -29,7 +30,11 @@ export default function WarningModal(props: WarningModalProps) {
         <St.Title>{title1}</St.Title>
         <St.Title>{title2}</St.Title>
       </St.TitleWrapper>
-      <St.Desc>{desc}</St.Desc>
+      <St.DescWrapper>
+        <St.Desc>{desc1}</St.Desc>
+        <St.Desc>{desc2}</St.Desc>
+      </St.DescWrapper>
+
       <St.ButtonWrapper>
         <St.Button onClick={closeModal} type="button">
           {buttonTitle}
@@ -52,7 +57,7 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 5;
+    z-index: 100;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -76,10 +81,12 @@ const St = {
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.sub2};
   `,
+  DescWrapper: styled.article`
+    margin: 0.6rem 0 3.6rem;
+  `,
   Desc: styled.p`
     color: ${({ theme }) => theme.colors.gray50};
     ${({ theme }) => theme.fonts.sub3};
-    margin: 0.6rem 0 3.6rem;
   `,
   ButtonWrapper: styled.article``,
   Button: styled.button`

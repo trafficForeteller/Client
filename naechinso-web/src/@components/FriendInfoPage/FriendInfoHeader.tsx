@@ -12,12 +12,12 @@ export default function FriendInfoHeader(props: FriendInfoHeaderProps) {
   const { setIsModalOpened } = props;
   const [isWarningModalOpened, setIsWarningModalOpened] = useState(false);
 
-  function movePreviousPage() {
+  const movePreviousPage = () => {
     //이전페이지로 이동
     setIsModalOpened(true);
     setIsWarningModalOpened(true);
     window.scrollTo(0, 0);
-  }
+  };
 
   return (
     <>
@@ -34,7 +34,7 @@ export default function FriendInfoHeader(props: FriendInfoHeaderProps) {
         <WarningModal
           title1="이 페이지를 나가면"
           title2="추천사는 제출되지 않아🥺"
-          desc="모든 문항을 완성해줘!"
+          desc1="모든 문항을 완성해줘!"
           buttonTitle="응 확인했어!"
           setIsWarningModalOpened={setIsWarningModalOpened}
         />

@@ -10,6 +10,7 @@ import {
   ChooseJobPage,
   ChooseWorkPage,
   DontGoPage,
+  EditFinishPage,
   EditPage,
   EditRecommenderLandingPage,
   EduCertifiedPage,
@@ -31,6 +32,8 @@ import {
   PhoneNumberPage,
   PrepareWorkPage,
   RecommendationPage,
+  RecommenderAuthLandingPage,
+  RecommenderAuthPage,
   RecommenderInfoPage,
   RecommenderLandingPage,
   RecommendLandingPage,
@@ -64,6 +67,13 @@ export default function Router() {
         <Route path={routePaths.Edit} element={<EditPage />} />
         <Route path={routePaths.Error} element={<ErrorPage />} />
         <Route path={routePaths.Recommendation} element={<RecommendationPage />} />
+
+        <Route path={routePaths.RecommenderAuth} element={<RecommenderAuthPage />} />
+        <Route
+          path={routePaths.RecommenderAuthLanding}
+          element={localStorage.getItem("accessToken") ? <RecommenderAuthLandingPage /> : <Navigate to="/" replace />}
+        />
+
         <Route
           path={routePaths.PhoneNum}
           element={<PhoneNumberPage setPostPhoneNum={setPostPhoneNum} sendSms={sendSms} />}
@@ -73,16 +83,20 @@ export default function Router() {
           element={<CertifiedPage sendSms={sendSms} postPhoneNum={postPhoneNum} token={token} setToken={setToken} />}
         />
         <Route
-          path={routePaths.JobEdit}
-          element={localStorage.getItem("accessToken") ? <JobEditPage /> : <Navigate to="/" replace />}
-        />
-        <Route
           path={routePaths.EditRecommender}
           element={localStorage.getItem("accessToken") ? <EditRecommenderLandingPage /> : <Navigate to="/" replace />}
         />
         <Route
+          path={routePaths.JobEdit}
+          element={localStorage.getItem("accessToken") ? <JobEditPage /> : <Navigate to="/" replace />}
+        />
+        <Route
           path={routePaths.EduEdit}
           element={localStorage.getItem("accessToken") ? <EduEditPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.EditFinish}
+          element={localStorage.getItem("accessToken") ? <EditFinishPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.Pending}

@@ -34,10 +34,10 @@ export default function FinishBottom() {
   return (
     <St.FinishBottom>
       <St.Title>
-        <St.HighLight>다른 친구</St.HighLight>도 소개해 볼래?👀
+        <St.HighLight>다른 친구</St.HighLight>도 소개해볼래!😎
       </St.Title>
       <St.NextStepBtn type="button" onClick={handleMoveRecommendLanding} className={GTM_CLASS_NAME.referral}>
-        다른 친구 소개하러 가기
+        다른 친구 소개하기
       </St.NextStepBtn>
       <St.MoveLandingBtn
         type="button"

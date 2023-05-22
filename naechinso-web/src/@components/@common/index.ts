@@ -1,4 +1,5 @@
 export { default as AdressingFixedHeader } from "./AdressingFixedHeader";
+export { default as AuthenticateLaterBtn } from "./AuthenticateLaterBtn";
 export { default as BasicHeader } from "./BasicHeader";
 export { default as ConsultantIconBtn } from "./ConsultantIconBtn";
 export { default as ConsultantTextBtn } from "./ConsultantTextBtn";
@@ -9,6 +10,7 @@ export { default as EditTitleBox } from "./EditTitleBox";
 export { default as EditToggleInput } from "./EditToggleInput";
 export { default as EditToggleInputBox } from "./EditToggleInputBox";
 export { default as EditToggleModal } from "./EditToggleModal";
+export { default as FinishBottom } from "./FinishBottom";
 export { default as FixedHeader } from "./FixedHeader";
 export { default as InstallNaechinso } from "./InstallNaechinso";
 export { default as JoinHeader } from "./JoinHeader";
