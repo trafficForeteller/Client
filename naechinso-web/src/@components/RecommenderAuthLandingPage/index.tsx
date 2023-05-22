@@ -8,9 +8,9 @@ export default function EditRecommenderAuthLandingPage() {
   return (
     <St.EditRecommenderAuthLandingPage>
       <St.TitleWrapper>
-        <Title title="😎" />
-        <Title title="널 기다리고 있었어!" />
-        <Title title="소속 인증 부탁할게🧡" />
+        <Title title="🥳" />
+        <Title title="소속 인증만 하면" />
+        <Title title="친구에게 추천사가 갈 거야" />
       </St.TitleWrapper>
 
       <St.ImgWrapper>
