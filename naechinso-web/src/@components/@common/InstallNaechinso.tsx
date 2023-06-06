@@ -11,7 +11,7 @@ export default function InstallNaechinso(props: InstallNaechinsoProps) {
   const { title } = props;
 
   useEffect(() => {
-    if (Mobile()) window.location.href = "https://naechinso.page.link/dynamic";
+    if (Mobile()) window.location.href = "https://naechinso.page.link/app";
   }, []);
 
   const Mobile = () => {

@@ -194,7 +194,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
           className={GTM_CLASS_NAME.recommenderSuccessJob}
         />
       )}
-      <AuthenticateLaterBtn />
+      {localStorage.getItem("landingUrl") === "auth" ? <></> : <AuthenticateLaterBtn />}
     </St.WorkCertified>
   );
 }
