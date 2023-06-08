@@ -133,34 +133,35 @@ export default function DontGoPage() {
     navigate(routePaths.Finish);
   };
 
-  const isButtonDisabled = () => !text || text.length < 20;
+  const isButtonDisabled = () => !text || text.length < 15;
 
   return (
     <>
       <St.DontGo isWarningModalOpened={isWarningModalOpened}>
         <FixedHeader
           header="추천사"
-          progressRate={100}
-          title1="마지막이야!"
-          title2="친구를 거절한 상대방의"
-          title3="마음을 돌릴 한마디?"
+          progressRate={90}
+          questionKind="필수질문 4"
+          title1="😥 친구를 거절한 상대에게 한 마디!"
           isModalOpened={isWarningModalOpened}
         />
-        <St.CardWrapper>
-          <IcDontGo aria-label="한 마디 발언 미리보기" />
-        </St.CardWrapper>
+
         <St.TextWrapper>
           <TextAreaBox
             placeholder="미래의 형수님 한번만 다시 생각해보십쇼. 이 친구가 겉 보기엔 끌리지 않을 수 있어도, 저와 주변 친구들이 그랬듯 제 친구의 매력에 한 번 빠지면 헤어나올 수 없거든요!"
-            minLength={19}
+            minLength={14}
             maxLength={100}
             text={text}
             setText={setText}
             height={7.8}
-            letterLimit="20자 이상 100자 이내"
+            letterLimit="15자 이상 100자 이내"
             isModalOpened={isWarningModalOpened}
           />
         </St.TextWrapper>
+
+        <St.CardWrapper>
+          <IcDontGo aria-label="한 마디 발언 미리보기" />
+        </St.CardWrapper>
 
         <ConsultantIconBtn />
         <St.NextStepBtnWrapper>
@@ -200,8 +201,7 @@ const St = {
   CardWrapper: styled.section`
     width: 100%;
     height: 18.6rem;
-    position: absolute;
-    top: 21rem;
+
     background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 10%);
     border-radius: 16px;
 
@@ -211,7 +211,6 @@ const St = {
     z-index: -1;
   `,
   TextWrapper: styled.section`
-    margin-top: 23rem;
     padding: 0 2rem;
   `,
   NextStepBtnWrapper: styled.section`

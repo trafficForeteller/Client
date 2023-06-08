@@ -12,7 +12,7 @@ export default function Title(props: TitleProps) {
 
 const St = {
   Title: styled.h1`
-    ${({ theme }) => theme.fonts.head1};
+    ${({ theme }) => theme.fonts.head2};
     color: ${({ theme }) => theme.colors.black};
   `,
 };

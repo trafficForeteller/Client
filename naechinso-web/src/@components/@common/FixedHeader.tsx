@@ -10,16 +10,16 @@ export interface FixedHeaderProps {
   progressRate: number;
   title1: string;
   title2?: string;
-  title3?: string;
   subTitle1?: string;
   subTitle2?: string;
   isModalOpened?: boolean;
   step?: number;
   selection?: boolean;
+  questionKind?: string;
 }
 
 export default function FixedHeader(props: FixedHeaderProps) {
-  const { header, progressRate, title1, title2, title3, subTitle1, subTitle2, isModalOpened, selection } = props;
+  const { header, progressRate, title1, title2, subTitle1, subTitle2, isModalOpened, selection, questionKind } = props;
   const [checkSubTitle, setCheckSubTitle] = useState(false);
 
   useEffect(() => {
@@ -37,9 +37,9 @@ export default function FixedHeader(props: FixedHeaderProps) {
         <St.FixedHeaderWithModal>
           <BasicHeader header={header} progressRate={progressRate} />
           <St.TitleWrapper checkSubTitle={checkSubTitle}>
+            <St.QuestionKind>{questionKind}</St.QuestionKind>
             <Title title={title1} />
             {title2 && <Title title={title2} />}
-            {title3 && <Title title={title3} />}
           </St.TitleWrapper>
           <St.SubTitleWrapper>
             {subTitle1 && <SubTitle subTitle={subTitle1} />}
@@ -51,9 +51,9 @@ export default function FixedHeader(props: FixedHeaderProps) {
           <BasicHeader header={header} progressRate={progressRate} />
           <St.TitleWrapper checkSubTitle={checkSubTitle}>
             {selection && <St.Selection>(선택)</St.Selection>}
+            <St.QuestionKind>{questionKind}</St.QuestionKind>
             <Title title={title1} />
             {title2 && <Title title={title2} />}
-            {title3 && <Title title={title3} />}
           </St.TitleWrapper>
           <St.SubTitleWrapper>
             {subTitle1 && <SubTitle subTitle={subTitle1} />}
@@ -107,6 +107,11 @@ const St = {
     margin-bottom: ${({ checkSubTitle }) => (checkSubTitle ? "0.6rem" : "2.4rem")};
     position: relative;
     padding: 9rem 2rem 0;
+  `,
+  QuestionKind: styled.p`
+    ${({ theme }) => theme.fonts.body3};
+    color: ${({ theme }) => theme.colors.orange};
+    margin-bottom: 0.8rem;
   `,
   SubTitleWrapper: styled.section`
     padding-right: 2rem;
