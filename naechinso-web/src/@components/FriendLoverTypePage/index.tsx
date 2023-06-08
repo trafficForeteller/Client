@@ -10,12 +10,7 @@ export default function FriendLoverTypePage() {
   const [friendLoverTypeArr, setFriendLoverTypeArr] = useState(friendLoverTypeList);
 
   useEffect(() => {
-    // 키워드 클릭했을 때 실행되는 함수
-    localStorage.setItem("friendLoverTypeList", JSON.stringify(friendLoverTypeArr));
-    //friendLoverTypeArr checked가 true인 것 중에 keyword 가져오기
-    const checkedKeyword = friendLoverTypeArr.find((item) => item.checked)?.keyword as string;
-    localStorage.setItem("friendLoverType", checkedKeyword);
-    // checked항목이 하나라도 true면 버튼 활성화
+    // 키워드 클릭했을 때 실행되는 함수&& checked항목이 하나라도 true면 버튼 활성화
     setActiveNextBtn(friendLoverTypeArr.some((item) => item.checked === true));
   }, [friendLoverTypeArr]);
 
@@ -37,6 +32,14 @@ export default function FriendLoverTypePage() {
     }
   }, []);
 
+  const saveCheckedFriendLoverTypeInLocal = () => {
+    // 다음 버튼 누를 때 localStorage에 저장되면 state랑 노상관
+    localStorage.setItem("friendLoverTypeList", JSON.stringify(friendLoverTypeArr));
+    //friendLoverTypeArr checked가 true인 것 중에 keyword 가져오기
+    const checkedKeyword = friendLoverTypeArr.find((item) => item.checked)?.keyword as string;
+    localStorage.setItem("friendLoverType", checkedKeyword);
+  };
+
   return (
     <St.FriendLoverType>
       <AdressingFixedHeader
@@ -49,7 +52,12 @@ export default function FriendLoverTypePage() {
 
       <SelectOneKeyword keywordList={friendLoverTypeArr} setKeywordList={setFriendLoverTypeArr} />
       <ConsultantTextBtn />
-      <MoveNextPageBtn nextPage={routePaths.DontGo} title="다음" disabled={!activeNextBtn} />
+      <MoveNextPageBtn
+        nextPage={routePaths.DontGo}
+        title="다음"
+        disabled={!activeNextBtn}
+        handleState={saveCheckedFriendLoverTypeInLocal}
+      />
     </St.FriendLoverType>
   );
 }

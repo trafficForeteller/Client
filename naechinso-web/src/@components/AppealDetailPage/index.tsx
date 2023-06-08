@@ -11,11 +11,6 @@ export default function AppealDetailPage() {
   const [appealDetailArr, setAppealDetailArr] = useState(appealDetailList);
 
   useEffect(() => {
-    // 키워드 클릭했을 때 실행되는 함수
-    localStorage.setItem("appealDetailList", JSON.stringify(appealDetailArr));
-    //appealDetailArr checked가 true인 것 중에 keyword 가져오기
-    const checkedKeyword = appealDetailArr.find((item) => item.checked)?.keyword as string;
-    localStorage.setItem("appealDetail", checkedKeyword);
     // checked항목이 하나라도 true면 버튼 활성화
     setActiveNextBtn(appealDetailArr.some((item) => item.checked === true));
   }, [appealDetailArr]);
@@ -27,10 +22,7 @@ export default function AppealDetailPage() {
     if (newAppealDetailList) {
       setAppealDetailArr(newAppealDetailList);
       const appealDetail = localStorage.getItem("appealDetail") as string;
-      if (appealDetail) {
-        if (checkKeyword(appealDetail)) setActiveNextBtn(true);
-        else localStorage.removeItem("appealDetail");
-      }
+      appealDetail && checkKeyword(appealDetail) && setActiveNextBtn(true);
     } else {
       setAppealDetailArr(
         appealDetailList.map((appealDetail) => {
@@ -47,6 +39,13 @@ export default function AppealDetailPage() {
     return appealDetailArr.some((item) => item.keyword === appealDetail);
   };
 
+  const saveCheckedAppealDetailInLocal = () => {
+    localStorage.setItem("appealDetailList", JSON.stringify(appealDetailArr));
+    //appealDetailArr checked가 true인 것 중에 keyword 가져오기
+    const checkedKeyword = appealDetailArr.find((item) => item.checked)?.keyword as string;
+    localStorage.setItem("appealDetail", checkedKeyword);
+  };
+
   return (
     <St.AppealDetail>
       <AdressingFixedHeader
@@ -59,7 +58,12 @@ export default function AppealDetailPage() {
 
       <SelectOneKeyword keywordList={appealDetailArr} setKeywordList={setAppealDetailArr} />
       <ConsultantTextBtn />
-      <MoveNextPageBtn nextPage={routePaths.FriendLoverType} title="다음" disabled={!activeNextBtn} />
+      <MoveNextPageBtn
+        nextPage={routePaths.FriendLoverType}
+        title="다음"
+        disabled={!activeNextBtn}
+        handleState={saveCheckedAppealDetailInLocal}
+      />
     </St.AppealDetail>
   );
 }
