@@ -9,12 +9,13 @@ interface AdressingFixedHeader {
   header: string;
   navigatePath: string;
   progressRate: number;
+  questionKind?: string;
   title1: string;
-  title2: string;
+  title2?: string;
 }
 
 export default function AdressingFixedHeader(props: AdressingFixedHeader) {
-  const { header, navigatePath, progressRate, title1, title2 } = props;
+  const { header, navigatePath, progressRate, title1, title2, questionKind } = props;
 
   const navigate = useNavigate();
 
@@ -34,8 +35,9 @@ export default function AdressingFixedHeader(props: AdressingFixedHeader) {
       </St.Header>
       <ProgressBar progressRate={progressRate} />
       <St.TitleWrapper>
+        <St.SubTitle>{questionKind}</St.SubTitle>
         <Title title={title1} />
-        <Title title={title2} />
+        {title2 && <Title title={title2} />}
       </St.TitleWrapper>
     </St.AdressingFixedHeader>
   );
@@ -50,7 +52,7 @@ const St = {
     right: 0;
     top: 0;
 
-    padding-bottom: 1rem;
+    padding-bottom: 2.7rem;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #ffffff 10%);
     z-index: 2;
 
@@ -74,7 +76,7 @@ const St = {
 
     position: absolute;
     width: 100%;
-    height: 5.6rem;
+    height: 5.4rem;
     top: 0;
     left: 0;
   `,
@@ -86,8 +88,12 @@ const St = {
   TitleWrapper: styled.hgroup`
     position: relative;
     padding: 9rem 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
   `,
-  SubTitleWrapper: styled.section`
-    padding-right: 2rem;
+  SubTitle: styled.p`
+    ${({ theme }) => theme.fonts.body3};
+    color: ${({ theme }) => theme.colors.orange};
   `,
 };
