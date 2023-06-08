@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-import { appealDetailProps } from "../../core/recommend/recommend";
+import { keywordProps } from "../../core/recommend/recommend";
 
 interface SelectOneKeywordProps {
-  setKeywordList: React.Dispatch<React.SetStateAction<appealDetailProps[]>>;
-  keywordList: appealDetailProps[];
+  setKeywordList: React.Dispatch<React.SetStateAction<keywordProps[]>>;
+  keywordList: keywordProps[];
 }
 
 export default function SelectOneKeyword(props: SelectOneKeywordProps) {
@@ -13,7 +13,7 @@ export default function SelectOneKeyword(props: SelectOneKeywordProps) {
   const { setKeywordList, keywordList } = props;
   // 체크되면 바로 localStorage에 저장
 
-  const toggleChecked = (el: appealDetailProps) => {
+  const toggleChecked = (el: keywordProps) => {
     // 1개만 체크, 다른 거 체크하면 선택된 거 외에 다 취소
     const tempKeywordArr = keywordList;
     const newKeywordList = tempKeywordArr.map((keyword, index) => {

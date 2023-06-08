@@ -29,9 +29,7 @@ export default function AppealDetailPage() {
       const appealDetail = localStorage.getItem("appealDetail") as string;
       if (appealDetail) {
         if (checkKeyword(appealDetail)) setActiveNextBtn(true);
-        else {
-          localStorage.removeItem("appealDetail");
-        }
+        else localStorage.removeItem("appealDetail");
       }
     } else {
       setAppealDetailArr(
@@ -61,7 +59,7 @@ export default function AppealDetailPage() {
 
       <SelectOneKeyword keywordList={appealDetailArr} setKeywordList={setAppealDetailArr} />
       <ConsultantTextBtn />
-      <MoveNextPageBtn nextPage={routePaths.DontGo} title="다음" disabled={!activeNextBtn} />
+      <MoveNextPageBtn nextPage={routePaths.FriendLoverType} title="다음" disabled={!activeNextBtn} />
     </St.AppealDetail>
   );
 }

@@ -178,13 +178,7 @@ export const keywordList: keywordProps[] = [
   },
 ];
 
-export type appealDetailProps = {
-  id: number;
-  keyword: string;
-  checked: boolean;
-};
-
-export const appealDetailList: appealDetailProps[] = [
+export const appealDetailList: keywordProps[] = [
   { id: 0, keyword: "감동을 주는💦", checked: false },
   {
     id: 1,
@@ -254,6 +248,65 @@ export const appealDetailList: appealDetailProps[] = [
   {
     id: 14,
     keyword: "웃음을 많이 주는😄",
+    checked: false,
+  },
+];
+
+export const friendLoverTypeList: keywordProps[] = [
+  { id: 0, keyword: "취향 비슷한🎶", checked: false },
+  {
+    id: 1,
+    keyword: "가장 오래된👵",
+    checked: false,
+  },
+  {
+    id: 2,
+    keyword: "제일 잘맞는🙌",
+    checked: false,
+  },
+  {
+    id: 3,
+    keyword: "무인도에 떨어져도 잘 살거 같은🏝",
+    checked: false,
+  },
+  {
+    id: 4,
+    keyword: "일을 잘하는💼",
+    checked: false,
+  },
+  {
+    id: 5,
+    keyword: "고민을 제일 잘 들어주는👂",
+    checked: false,
+  },
+  {
+    id: 6,
+    keyword: "리액션이 좋은🎉",
+    checked: false,
+  },
+  {
+    id: 7,
+    keyword: "자기계발 열심히 하는💪",
+    checked: false,
+  },
+  {
+    id: 8,
+    keyword: "알잘딱깔센 적극적인😉",
+    checked: false,
+  },
+  {
+    id: 9,
+    keyword: "도전과 성장을 즐기는🚀",
+    checked: false,
+  },
+  {
+    id: 10,
+    keyword: "리더십이 뛰어난📢",
+    checked: false,
+  },
+  {
+    id: 11,
+    keyword: "가장 생각이 깊은✨",
     checked: false,
   },
 ];
