@@ -11,6 +11,7 @@ export const routePaths = {
   FirstRecommend: "/recommend/answer/1",
   SecondRecommend: "/recommend/answer/2",
   AppealDetail: "/recommend/appealDetail",
+  FriendLoverType: "/recommend/friendLoverType",
   DontGo: "/recommend/dontGo",
   RecommenderInfo: "/recommender/info",
   ChooseWork: "/recommender/chooseWork",

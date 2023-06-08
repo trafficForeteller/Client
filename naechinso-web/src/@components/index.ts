@@ -15,6 +15,7 @@ export { default as ErrorPage } from "./ErrorPage";
 export { default as FinishPage } from "./FinishPage";
 export { default as FreelancePage } from "./FreelancePage";
 export { default as FriendInfoPage } from "./FriendInfoPage";
+export { default as FriendLoverTypePage } from "./FriendLoverTypePage";
 export { default as InAppLandingPage } from "./InAppLandingPage";
 export { default as InstallAppPage } from "./InstallAppPage";
 export { default as JobCertifiedPage } from "./JobCertifiedPage";

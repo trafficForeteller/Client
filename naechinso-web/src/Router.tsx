@@ -19,6 +19,7 @@ import {
   FinishPage,
   FreelancePage,
   FriendInfoPage,
+  FriendLoverTypePage,
   InAppLandingPage,
   InstallAppPage,
   JobCertifiedPage,
@@ -120,6 +121,10 @@ export default function Router() {
         <Route
           path={routePaths.AppealDetail}
           element={localStorage.getItem("accessToken") ? <AppealDetailPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.FriendLoverType}
+          element={localStorage.getItem("accessToken") ? <FriendLoverTypePage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.DontGo}
