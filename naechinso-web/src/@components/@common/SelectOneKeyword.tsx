@@ -1,31 +1,33 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 import { appealDetailProps } from "../../core/recommend/recommend";
 
 interface SelectOneKeywordProps {
+  setKeywordList: React.Dispatch<React.SetStateAction<appealDetailProps[]>>;
   keywordList: appealDetailProps[];
 }
 
 export default function SelectOneKeyword(props: SelectOneKeywordProps) {
-  const { keywordList } = props;
+  // 키워드 리스트를 보여주는 역할만 하는 common component
 
-  const [keywordArr, setKeywordArr] = useState(keywordList);
+  const { setKeywordList, keywordList } = props;
+  // 체크되면 바로 localStorage에 저장
 
   const toggleChecked = (el: appealDetailProps) => {
     // 1개만 체크, 다른 거 체크하면 선택된 거 외에 다 취소
-    const tempKeywordArr = keywordArr;
+    const tempKeywordArr = keywordList;
     const newKeywordList = tempKeywordArr.map((keyword, index) => {
-      if (el.id === index) keyword.checked = !keyword.checked;
-      else keyword.checked = false;
+      if (el.id === index) {
+        keyword.checked = !keyword.checked;
+      } else keyword.checked = false;
       return keyword;
     });
-    setKeywordArr(newKeywordList);
+    setKeywordList(newKeywordList);
   };
 
   return (
     <St.SelectOneKeyword>
-      {keywordArr.map((el) => {
+      {keywordList.map((el) => {
         return (
           <St.KeywordWrapper type="button" key={el.id} onClick={() => toggleChecked(el)} checked={el.checked}>
             {el.keyword}
@@ -53,7 +55,7 @@ const St = {
     background: ${({ theme, checked }) => (checked ? theme.colors.orange : theme.colors.neural)};
     border-radius: 10px;
     transition: all 0.2s ease;
-
+    cursor: pointer;
     padding: 1rem 1.2rem;
   `,
 };
