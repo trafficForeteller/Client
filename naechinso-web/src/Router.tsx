@@ -5,7 +5,6 @@ import {
   AppealDetailPage,
   ArriveRecommendPage,
   CertifiedPage,
-  ChooseFirstQuestionPage,
   ChooseGiftPage,
   ChooseJobPage,
   ChooseWorkPage,
@@ -18,7 +17,6 @@ import {
   EduPage,
   ErrorPage,
   FinishPage,
-  FirstRecommendPage,
   FreelancePage,
   FriendInfoPage,
   InAppLandingPage,
@@ -114,14 +112,6 @@ export default function Router() {
         <Route
           path={routePaths.RecommenderInfo}
           element={localStorage.getItem("accessToken") ? <RecommenderInfoPage /> : <Navigate to="/" replace />}
-        />
-        <Route
-          path={routePaths.ChooseFirstQuestion}
-          element={localStorage.getItem("accessToken") ? <ChooseFirstQuestionPage /> : <Navigate to="/" replace />}
-        />
-        <Route
-          path={routePaths.FirstRecommend}
-          element={localStorage.getItem("accessToken") ? <FirstRecommendPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.SecondRecommend}

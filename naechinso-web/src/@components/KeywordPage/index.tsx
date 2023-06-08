@@ -87,7 +87,7 @@ export default function KeywordPage() {
       </St.KeywordListWrapper>
       <ConsultantTextBtn />
       <MoveNextPageBtn
-        nextPage={routePaths.ChooseFirstQuestion}
+        nextPage={routePaths.AppealDetail}
         title="다음"
         disabled={!activeNextBtn}
         handleState={saveCheckedAppealsInLocal}
@@ -117,7 +117,7 @@ const St = {
     height: 3.9rem;
     color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.brown)};
     ${({ theme }) => theme.fonts.caption7};
-    background: ${({ theme, checked }) => (checked ? theme.colors.brown : theme.colors.neural)};
+    background: ${({ theme, checked }) => (checked ? theme.colors.orange : theme.colors.neural)};
     border-radius: 10px;
     transition: all 0.2s ease;
   `,

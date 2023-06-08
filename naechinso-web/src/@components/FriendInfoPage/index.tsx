@@ -4,13 +4,7 @@ import styled from "styled-components";
 
 import { postMemberReissue } from "../../apis/member.api";
 import { getRecommend, postMagicRecommendFriendInfo, postRecommendFriendInfo } from "../../apis/recommend.api";
-import {
-  keywordList,
-  questionList,
-  relationDurationList,
-  relationTypeList,
-  relationTypeProps,
-} from "../../core/recommend/recommend";
+import { keywordList, relationDurationList, relationTypeList, relationTypeProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IGetReommend, IPostFriendInfo, IUuid } from "../../types/recommend";
 import { ConsultantIconBtn, ShortInputBox } from "../@common";
@@ -207,37 +201,8 @@ export default function FriendInfoPage() {
     });
     localStorage.setItem("keywordList", JSON.stringify(newKeywordList));
 
-    const tempQuestionList = questionList;
-    const newQuestionList = tempQuestionList.map((question) => {
-      if (userData.customQuestion[userData.customQuestion.length - 1].recommendQuestion === question.question) {
-        // 해결해야해~ 이전 추천사의 checkedQ1 어케 들고올건쥐
-        question.checked = true;
-        localStorage.setItem("checkedQ1", JSON.stringify(question));
-      } else question.checked = false;
-      return question;
-    });
-    localStorage.setItem("questionList", JSON.stringify(newQuestionList));
+    const newCheckedKeywordList = newKeywordList.filter((newKeyword) => newKeyword.checked === true);
 
-    const newCheckedKeywordList = newKeywordList
-      .filter((newKeyword) => newKeyword.checked === true)
-      .map((keyword) => {
-        if (
-          userData.customQuestion[userData.customQuestion.length - 1].recommendQuestion ===
-          "친구에 대해 더 소개하고 싶은 점을 자유롭게 적어줘😃"
-        ) {
-          if (userData.customQuestion[userData.customQuestion.length - 2].recommendQuestion === keyword.question) {
-            keyword.keywordChecked = true;
-            localStorage.setItem("checkedQ1", JSON.stringify(keyword));
-          } else keyword.keywordChecked = false;
-          return keyword;
-        } else {
-          if (userData.customQuestion[userData.customQuestion.length - 1].recommendQuestion === keyword.question) {
-            keyword.keywordChecked = true;
-            localStorage.setItem("checkedQ1", JSON.stringify(keyword));
-          } else keyword.keywordChecked = false;
-          return keyword;
-        }
-      });
     localStorage.setItem("checkedKeywordList", JSON.stringify(newCheckedKeywordList));
 
     navigate(routePaths.Keyword);

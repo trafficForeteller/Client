@@ -1,7 +1,6 @@
 export { default as AppealDetailPage } from "./AppealDetailPage";
 export { default as ArriveRecommendPage } from "./ArriveRecommendPage";
 export { default as CertifiedPage } from "./CertifiedPage";
-export { default as ChooseFirstQuestionPage } from "./ChooseFirstQuestionPage";
 export { default as ChooseGiftPage } from "./ChooseGiftPage";
 export { default as ChooseJobPage } from "./ChooseJobPage";
 export { default as ChooseWorkPage } from "./ChooseWorkPage";
@@ -14,7 +13,6 @@ export { default as EduEditPage } from "./EduEditPage";
 export { default as EduPage } from "./EduPage";
 export { default as ErrorPage } from "./ErrorPage";
 export { default as FinishPage } from "./FinishPage";
-export { default as FirstRecommendPage } from "./FirstRecommendPage";
 export { default as FreelancePage } from "./FreelancePage";
 export { default as FriendInfoPage } from "./FriendInfoPage";
 export { default as InAppLandingPage } from "./InAppLandingPage";
