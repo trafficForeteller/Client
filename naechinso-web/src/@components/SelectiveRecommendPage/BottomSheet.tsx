@@ -18,15 +18,8 @@ interface BottomSheetProps {
 
 export default function BottomSheet(props: BottomSheetProps) {
   const { isBottomSheetOpened, closeModal } = props;
-  const [patchRecommend, setPatchRecommend] = useState<IPatchFriendDetail>({
-    appealDetail: "",
-    appeals: [],
-    dontGo: "",
-    priceType: "",
-  });
-  const [selectiveRecommend, setSelectiveRecommend] = useState("");
   const [isWarningModalOpened, setIsWarningModalOpened] = useState(false);
-  const [placeholder, setPlaceholder] = useState("");
+
   const [postRecommend, setPostRecommend] = useState({
     recommendQuestions: [
       {
@@ -35,12 +28,25 @@ export default function BottomSheet(props: BottomSheetProps) {
       },
     ],
   });
+
+  const [patchRecommend, setPatchRecommend] = useState<IPatchFriendDetail>({
+    appealDetail: "",
+    appeals: [],
+    dontGo: "",
+    priceType: "",
+  });
   const navigate = useNavigate();
+
+  const [selectiveRecommend, setSelectiveRecommend] = useState("");
+  const [placeholder, setPlaceholder] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("selectiveRecommend")) {
       const selectiveRecommendInLocal = localStorage.getItem("selectiveRecommend") as string;
       setSelectiveRecommend(selectiveRecommendInLocal);
+    } else if (localStorage.getItem("firstRecommend")) {
+      const firstRecommendInLocal = localStorage.getItem("firstRecommend") as string;
+      setSelectiveRecommend(firstRecommendInLocal);
     }
     // selectiveRecommendList 배열에서 question의 맨 앞 문자열을 제거한 문자열과 일치하는 title을 가진 객체의 placeholder를 가져오는 방법
     const questionSubstring = localStorage.getItem("checkedSelectiveQ")?.substring(1);
@@ -59,18 +65,30 @@ export default function BottomSheet(props: BottomSheetProps) {
 
   useEffect(() => {
     localStorage.setItem("selectiveRecommend", selectiveRecommend);
-    (localStorage.getItem("checkedSelectiveQ") as string) &&
-      setPostRecommend({
-        recommendQuestions: [
-          {
-            recommendQuestion: localStorage.getItem("checkedSelectiveQ") as string,
-            recommendAnswer: selectiveRecommend,
-          },
-        ],
-      });
   }, [selectiveRecommend]);
 
   const isButtonDisabled = !selectiveRecommend || selectiveRecommend.length < 10;
+
+  const handleSubmit = () => {
+    // 제출하기 선택 시  postRecommend 채우기
+    const modifiedFriendLoverType = `내 친구는 ${localStorage.getItem("friendLoverType")} 애인이랑 만났음 해!`;
+    setPostRecommend({
+      recommendQuestions: [
+        {
+          recommendQuestion: "친구는 어떤 사람이랑 어울릴 것 같아?",
+          recommendAnswer: modifiedFriendLoverType,
+        },
+        {
+          recommendQuestion: localStorage.getItem("checkedSelectiveQ") as string,
+          recommendAnswer: selectiveRecommend,
+        },
+      ],
+    });
+  };
+
+  useEffect(() => {
+    if (postRecommend.recommendQuestions.length > 1) handleRegisterRecommender();
+  }, [postRecommend]);
 
   const handleRegisterRecommender = async () => {
     // 추천사 등록하기
@@ -84,25 +102,9 @@ export default function BottomSheet(props: BottomSheetProps) {
     );
   };
 
-  const handleReissuePostRecommendation = async () => {
-    // 액세스 토큰 만료 응답인지 확인
-    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
-    if (userData) {
-      localStorage.setItem("accessToken", userData["accessToken"]);
-      localStorage.setItem("refreshToken", userData["refreshToken"]);
-    }
-    //  handleRegisterRecommender();
-  };
-
   const handleSuccessPostRecommendation = async () => {
-    // 선물 주는 페이지 이동
-    navigate(routePaths.SecondRecommend);
-  };
-
-  const handleFailRequest = (errorMessage: string) => {
-    //  postRecommendation 실패할 시
-    console.log(errorMessage);
-    navigate(routePaths.Error);
+    // 상품을 받을 수 있는 추천사인지 확인하는 함수 실행
+    handleGetCheckPrice();
   };
 
   const handleGetCheckPrice = async () => {
@@ -111,7 +113,7 @@ export default function BottomSheet(props: BottomSheetProps) {
       localStorage.getItem("accessToken"),
       localStorage.getItem("uuid"),
       handleSuccessGetCheckPrice,
-      handleFailGetCheckPrice,
+      handleFailRequest,
       handleReissueGetCheckPrice,
     );
   };
@@ -130,22 +132,6 @@ export default function BottomSheet(props: BottomSheetProps) {
     } else if (userData.isPrice === true && userData.isShowRecommend === false) {
       navigate(routePaths.ChooseGift, { state: { patchRecommend } });
     }
-    // handlePatchRecommend();
-  };
-
-  const handleFailGetCheckPrice = (errorMessage: string) => {
-    console.log(errorMessage);
-    navigate(routePaths.Error);
-  };
-
-  const handleReissueGetCheckPrice = async () => {
-    // 액세스 토큰 만료 응답인지 확인
-    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
-    if (userData) {
-      localStorage.setItem("accessToken", userData["accessToken"]);
-      localStorage.setItem("refreshToken", userData["refreshToken"]);
-    }
-    handleGetCheckPrice();
   };
 
   useEffect(() => {
@@ -154,7 +140,7 @@ export default function BottomSheet(props: BottomSheetProps) {
   }, [patchRecommend]);
 
   const handlePatchRecommend = async () => {
-    // keyword, appealDetail, dontGo POST 성공할 시
+    // keyword, appealDetail, dontGo POST
     await patchRecommendFriendDetail(
       patchRecommend,
       localStorage.getItem("accessToken"),
@@ -165,14 +151,10 @@ export default function BottomSheet(props: BottomSheetProps) {
     );
   };
 
-  const handleReissuePatchRecommend = async () => {
-    // 액세스 토큰 만료 응답인지 확인
-    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
-    if (userData) {
-      localStorage.setItem("accessToken", userData["accessToken"]);
-      localStorage.setItem("refreshToken", userData["refreshToken"]);
-    }
-    handlePatchRecommend();
+  const handleSuccessPatchRecommend = () => {
+    // 추천사 PATCH 성공할 시
+    localStorage.setItem("priceType", patchRecommend.priceType);
+    navigate(routePaths.Finish);
   };
 
   const handleFailPatchRecommend = (err: AxiosError) => {
@@ -187,10 +169,40 @@ export default function BottomSheet(props: BottomSheetProps) {
     } else navigate(routePaths.Error);
   };
 
-  const handleSuccessPatchRecommend = () => {
-    // 추천사 PATCH 성공할 시
-    localStorage.setItem("priceType", patchRecommend.priceType);
-    navigate(routePaths.SelectiveRecommend);
+  const handleReissuePatchRecommend = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    handlePatchRecommend();
+  };
+
+  const handleReissueGetCheckPrice = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    handleGetCheckPrice();
+  };
+
+  const handleFailRequest = (errorMessage: string) => {
+    //  postRecommendation 실패할 시
+    console.log(errorMessage);
+    navigate(routePaths.Error);
+  };
+
+  const handleReissuePostRecommendation = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    handleRegisterRecommender();
   };
 
   return (
@@ -220,7 +232,7 @@ export default function BottomSheet(props: BottomSheetProps) {
               <St.CloseBtn type="button" onClick={closeModal}>
                 닫기
               </St.CloseBtn>
-              <St.NextStepBtn type="button" disabled={isButtonDisabled} onClick={handleGetCheckPrice}>
+              <St.NextStepBtn type="button" disabled={isButtonDisabled} onClick={handleSubmit}>
                 완성하기
               </St.NextStepBtn>
             </St.ButtonWrapper>
@@ -242,7 +254,7 @@ export default function BottomSheet(props: BottomSheetProps) {
 
 const slideIn = keyframes`
   from {
-    transform: translateY(70%);
+    transform: translateY(35%);
   }
   to {
     transform: translateY(0%)
