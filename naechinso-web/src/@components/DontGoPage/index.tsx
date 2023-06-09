@@ -3,24 +3,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { postMemberReissue } from "../../apis/member.api";
-import { getCheckPrice, patchRecommendFriendDetail } from "../../apis/recommend.api";
 import { IcDontGo } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
-import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
-import { ConsultantIconBtn, FixedHeader, TextAreaBox, WarningModal } from "../@common";
+import { ConsultantIconBtn, FixedHeader, TextAreaBox } from "../@common";
 
 export default function DontGoPage() {
   const [text, setText] = useState("");
-  const [patchRecommend, setPatchRecommend] = useState<IPatchFriendDetail>({
-    appealDetail: "",
-    appeals: [],
-    dontGo: "",
-    priceType: "",
-  });
   const [isWarningModalOpened, setIsWarningModalOpened] = useState(false);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,106 +22,7 @@ export default function DontGoPage() {
 
   useEffect(() => {
     localStorage.setItem("dontGo", text);
-    setPatchRecommend({
-      ...patchRecommend,
-      appealDetail: localStorage.getItem("appealDetail") || "",
-      appeals: JSON.parse(localStorage.getItem("appeals") || "[]"),
-      dontGo: localStorage.getItem("dontGo") || "",
-    });
   }, [text]);
-
-  useEffect(() => {
-    // 경고모달뜨면 priceType 다시 비워주기! cuz priceType있을 때 handlePatchRecommend 실행되게 해놨기 때문!
-    isWarningModalOpened === true && setPatchRecommend({ ...patchRecommend, priceType: "" });
-  }, [isWarningModalOpened]);
-
-  useEffect(() => {
-    // patchRecommend 성공 시
-    if (patchRecommend.priceType !== "") handlePatchRecommend();
-  }, [patchRecommend]);
-
-  const handleGetCheckPrice = async () => {
-    // 상품을 받을 수 있는 추천사인지 확인
-    await getCheckPrice(
-      localStorage.getItem("accessToken"),
-      localStorage.getItem("uuid"),
-      handleSuccessGetCheckPrice,
-      handleFailGetCheckPrice,
-      handleReissueGetCheckPrice,
-    );
-  };
-
-  const handleSuccessGetCheckPrice = (userData: IGetCheckPrice) => {
-    if (userData.isPrice === false) {
-      setPatchRecommend({
-        ...patchRecommend,
-        priceType: "NONE",
-      });
-    } else if (userData.isPrice === true && userData.isShowRecommend === true) {
-      setPatchRecommend({
-        ...patchRecommend,
-        priceType: "SUNGURI",
-      });
-    } else if (userData.isPrice === true && userData.isShowRecommend === false) {
-      navigate(routePaths.ChooseGift, { state: { patchRecommend } });
-    }
-    // handlePatchRecommend();
-  };
-
-  const handleFailGetCheckPrice = (errorMessage: string) => {
-    console.log(errorMessage);
-    navigate(routePaths.Error);
-  };
-
-  const handleReissueGetCheckPrice = async () => {
-    // 액세스 토큰 만료 응답인지 확인
-    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
-    if (userData) {
-      localStorage.setItem("accessToken", userData["accessToken"]);
-      localStorage.setItem("refreshToken", userData["refreshToken"]);
-    }
-    handleGetCheckPrice();
-  };
-
-  const handlePatchRecommend = async () => {
-    // keyword, appealDetail, dontGo POST 성공할 시
-    await patchRecommendFriendDetail(
-      patchRecommend,
-      localStorage.getItem("accessToken"),
-      localStorage.getItem("uuid"),
-      handleSuccessPatchRecommend,
-      handleFailPatchRecommend,
-      handleReissuePatchRecommend,
-    );
-  };
-
-  const handleReissuePatchRecommend = async () => {
-    // 액세스 토큰 만료 응답인지 확인
-    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
-    if (userData) {
-      localStorage.setItem("accessToken", userData["accessToken"]);
-      localStorage.setItem("refreshToken", userData["refreshToken"]);
-    }
-    handlePatchRecommend();
-  };
-
-  const handleFailPatchRecommend = (err: AxiosError) => {
-    // keyword, appealDetail, dontG POST 실패할 시
-    const errData = err.response && (err.response.data as Error);
-    const errorMessage = errData && (errData.message as string);
-    console.log(errorMessage);
-
-    if (errorMessage === "비속어가 포함되어 있습니다") {
-      setIsWarningModalOpened(true);
-      navigate(routePaths.DontGo);
-    } else navigate(routePaths.Error);
-  };
-
-  const handleSuccessPatchRecommend = () => {
-    // 추천사 PATCH 성공할 시
-    localStorage.setItem("priceType", patchRecommend.priceType);
-    navigate(routePaths.Finish);
-  };
 
   const isButtonDisabled = () => !text || text.length < 15;
 
@@ -168,21 +59,12 @@ export default function DontGoPage() {
           <St.NextStepBtn
             type="button"
             disabled={isButtonDisabled()}
-            onClick={handleGetCheckPrice}
+            onClick={() => navigate(routePaths.SelectiveRecommend)}
             isWarningModalOpened={isWarningModalOpened}
             className={GTM_CLASS_NAME.recommendSuccess}>
             완료
           </St.NextStepBtn>
         </St.NextStepBtnWrapper>
-        {isWarningModalOpened && (
-          <WarningModal
-            title1="상대방의 마음을 돌릴"
-            title2="한 마디를 다시 작성해줘🥺"
-            desc1="비속어가 포함되어 있는지 확인해줘!"
-            buttonTitle="응 수정할게!"
-            setIsWarningModalOpened={setIsWarningModalOpened}
-          />
-        )}
       </St.DontGo>
     </>
   );

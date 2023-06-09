@@ -388,7 +388,7 @@ export const RecommenderInfoList: RecommenderInfoProps[] = [
   },
 ];
 
-export type selectiveQuestionProps = {
+export type selectiveRecommendProps = {
   id: number;
   icon: string;
   subTitle: string;
@@ -396,7 +396,7 @@ export type selectiveQuestionProps = {
   placeholder: string;
 };
 
-export const selectiveQuestionList: selectiveQuestionProps[] = [
+export const selectiveRecommendList: selectiveRecommendProps[] = [
   {
     id: 0,
     icon: "🧚",
@@ -415,7 +415,7 @@ export const selectiveQuestionList: selectiveQuestionProps[] = [
     id: 2,
     icon: "🎁",
     subTitle: "세심한 내 친구",
-    title: "내 친구한테 감동 받은 적 있다면?",
+    title: "내 친구한테 감동 받은 순간은?",
     placeholder: "세심한 무거운 짐 땜에 낑낑 대는데 혼자 한 손으로 들 때 그의 전완근에 반했어.",
   },
 ];

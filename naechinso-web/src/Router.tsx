@@ -37,7 +37,7 @@ import {
   RecommenderLandingPage,
   RecommendLandingPage,
   SecondRecommendPage,
-  SelectiveQuestionPage,
+  SelectiveRecommendPage,
   SelfEmployedCertifiedPage,
   SelfEmployedPage,
 } from "./@components";
@@ -132,8 +132,8 @@ export default function Router() {
           element={localStorage.getItem("accessToken") ? <DontGoPage /> : <Navigate to="/" replace />}
         />
         <Route
-          path={routePaths.SelectiveQuestion}
-          element={localStorage.getItem("accessToken") ? <SelectiveQuestionPage /> : <Navigate to="/" replace />}
+          path={routePaths.SelectiveRecommend}
+          element={localStorage.getItem("accessToken") ? <SelectiveRecommendPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.ChooseWork}
