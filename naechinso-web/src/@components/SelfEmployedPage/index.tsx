@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { patchMemberJob, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
-import { IJobType } from "../../types/member";
+import { IPatchJob } from "../../types/member";
 import { ConsultantIconBtn, FixedHeader, MoveNextPageBtn, ShortInputBox } from "../@common";
 
 export default function SelfEmployedPage() {
-  const [job, setJob] = useState<IJobType>({
+  const [job, setJob] = useState<IPatchJob>({
     jobName: "자영업자",
     jobPart: "",
     jobLocation: "강남구",
+    jobImage: null,
   });
   const [activeBtn, setActiveBtn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 새로고침 시 이전에 local에 저장된 jobInfo 초기값으로 세팅
@@ -37,6 +41,37 @@ export default function SelfEmployedPage() {
   const saveJobInfoInLocal = () => {
     // 로컬스토리지에 저장
     localStorage.setItem("jobInfo", JSON.stringify(job));
+    patchCertifiedData();
+  };
+
+  const patchCertifiedData = async () => {
+    await patchMemberJob(
+      job,
+      localStorage.getItem("accessToken"),
+      handleSuccessRequest,
+      handleFailRequest,
+      handleReissuePatchCertifiedData,
+    );
+  };
+
+  const handleSuccessRequest = () => {
+    navigate(routePaths.RecommendLanding);
+  };
+
+  const handleFailRequest = (errorMessage: string) => {
+    // 서버 요청 실패 시
+    console.log(errorMessage);
+    navigate(routePaths.Error);
+  };
+
+  const handleReissuePatchCertifiedData = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    patchCertifiedData();
   };
 
   return (
@@ -51,12 +86,7 @@ export default function SelfEmployedPage() {
       />
 
       <ConsultantIconBtn />
-      <MoveNextPageBtn
-        nextPage={routePaths.SelfEmployedCertified}
-        disabled={!activeBtn}
-        title="다음"
-        handleState={saveJobInfoInLocal}
-      />
+      <MoveNextPageBtn disabled={!activeBtn} title="다음" handleState={saveJobInfoInLocal} />
     </St.SelfEmployedPage>
   );
 }
