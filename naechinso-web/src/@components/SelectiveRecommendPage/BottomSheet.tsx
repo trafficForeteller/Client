@@ -14,10 +14,11 @@ import { TextAreaBox, WarningModal } from "../@common";
 interface BottomSheetProps {
   isBottomSheetOpened: boolean;
   closeModal: () => void;
+  placeholder: string;
 }
 
 export default function BottomSheet(props: BottomSheetProps) {
-  const { isBottomSheetOpened, closeModal } = props;
+  const { isBottomSheetOpened, closeModal, placeholder } = props;
   const [isWarningModalOpened, setIsWarningModalOpened] = useState(false);
 
   const [postRecommend, setPostRecommend] = useState({
@@ -38,7 +39,6 @@ export default function BottomSheet(props: BottomSheetProps) {
   const navigate = useNavigate();
 
   const [selectiveRecommend, setSelectiveRecommend] = useState("");
-  const [placeholder, setPlaceholder] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("selectiveRecommend")) {
@@ -48,10 +48,6 @@ export default function BottomSheet(props: BottomSheetProps) {
       const firstRecommendInLocal = localStorage.getItem("firstRecommend") as string;
       setSelectiveRecommend(firstRecommendInLocal);
     }
-    // selectiveRecommendList 배열에서 question의 맨 앞 문자열을 제거한 문자열과 일치하는 title을 가진 객체의 placeholder를 가져오는 방법
-    const questionSubstring = localStorage.getItem("checkedSelectiveQ")?.substring(1);
-    const foundRecommendation = selectiveRecommendList.find(({ title }) => title === questionSubstring);
-    setPlaceholder(foundRecommendation?.placeholder as string);
 
     // 한꺼번에 서버에 전송
     const modifiedAppealDetail = `내 친구는 ${localStorage.getItem("appealDetail")} 친구야!`;

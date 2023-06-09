@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 
-import { selectiveRecommendList } from "../../core/recommend/recommend";
+import { selectiveRecommendList, selectiveRecommendProps } from "../../core/recommend/recommend";
 import { AdressingFixedHeader } from "../@common";
 import BottomSheet from "./BottomSheet";
 import SkipBottomSheet from "./SkipBottomModal";
@@ -9,16 +9,18 @@ import SkipBottomSheet from "./SkipBottomModal";
 export default function SelectiveRecommendPage() {
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
   const [isSkipBottomSheetOpened, setIsSkipBottomSheetOpened] = useState(false);
+  const [placeholder, setPlaceholder] = useState("");
 
   const handleSkipButton = () => {
     // 한 번 막는 모달 떠야해
     setIsSkipBottomSheetOpened(true);
   };
 
-  const handleSelectQuestion = (icon: string, question: string) => {
+  const handleSelectQuestion = (question: selectiveRecommendProps) => {
     // 질문 골랐을 대
     setIsBottomSheetOpened(true);
-    localStorage.setItem("checkedSelectiveQ", icon + question);
+    localStorage.setItem("checkedSelectiveQ", question.icon + question.title);
+    setPlaceholder(question.placeholder);
   };
 
   const closeModal = () => setIsBottomSheetOpened(false);
@@ -32,7 +34,10 @@ export default function SelectiveRecommendPage() {
         questionKind="선택질문"
         title1="🤔 원하는 질문 1개에 답해주면 돼!"
       />
-      {isBottomSheetOpened && <BottomSheet isBottomSheetOpened={isBottomSheetOpened} closeModal={closeModal} />}
+
+      {isBottomSheetOpened && (
+        <BottomSheet isBottomSheetOpened={isBottomSheetOpened} closeModal={closeModal} placeholder={placeholder} />
+      )}
       <St.SelectiveRecommendPage>
         <St.QuestionListWrapper>
           {selectiveRecommendList.map((question) => {
@@ -41,7 +46,7 @@ export default function SelectiveRecommendPage() {
                 type="button"
                 key={question.id}
                 idx={question.id}
-                onClick={() => handleSelectQuestion(question.icon, question.title)}>
+                onClick={() => handleSelectQuestion(question)}>
                 <St.SubTitleWrapper>
                   <St.Icon>{question.icon}</St.Icon>
                   <St.SubTitle idx={question.id}>{question.subTitle}</St.SubTitle>
