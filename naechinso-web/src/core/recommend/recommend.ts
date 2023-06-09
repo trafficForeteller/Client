@@ -387,3 +387,35 @@ export const RecommenderInfoList: RecommenderInfoProps[] = [
     title2: "너에 대해 소개해줄래?",
   },
 ];
+
+export type selectiveQuestionProps = {
+  id: number;
+  icon: string;
+  subTitle: string;
+  title: string;
+  placeholder: string;
+};
+
+export const selectiveQuestionList: selectiveQuestionProps[] = [
+  {
+    id: 0,
+    icon: "🧚",
+    subTitle: "기억남는 순간",
+    title: "내 친구가 멋있을 때는?",
+    placeholder: "사람들이 무거운 짐 땜에 낑낑 대는데 혼자 한 손으로 들 때 그의 전완근에 반했어.",
+  },
+  {
+    id: 1,
+    icon: "🖐🏻",
+    subTitle: "찐친만 아는 모습",
+    title: "내 친구 자랑하고 싶은 점?",
+    placeholder: "찐친 무거운 짐 땜에 낑낑 대는데 혼자 한 손으로 들 때 그의 전완근에 반했어.",
+  },
+  {
+    id: 2,
+    icon: "🎁",
+    subTitle: "세심한 내 친구",
+    title: "내 친구한테 감동 받은 적 있다면?",
+    placeholder: "세심한 무거운 짐 땜에 낑낑 대는데 혼자 한 손으로 들 때 그의 전완근에 반했어.",
+  },
+];

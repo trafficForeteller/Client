@@ -13,6 +13,7 @@ export const routePaths = {
   AppealDetail: "/recommend/appealDetail",
   FriendLoverType: "/recommend/friendLoverType",
   DontGo: "/recommend/dontGo",
+  SelectiveQuestion: "/recommend/selectiveQuestion",
   RecommenderInfo: "/recommender/info",
   ChooseWork: "/recommender/chooseWork",
   Edu: "/recommender/edu",
