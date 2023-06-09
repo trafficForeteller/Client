@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 import { selectiveRecommendList, selectiveRecommendProps } from "../../core/recommend/recommend";
 import { AdressingFixedHeader } from "../@common";

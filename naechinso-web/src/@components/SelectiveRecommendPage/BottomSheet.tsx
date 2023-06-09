@@ -159,10 +159,8 @@ export default function BottomSheet(props: BottomSheetProps) {
     const errorMessage = errData && (errData.message as string);
     console.log(errorMessage);
 
-    if (errorMessage === "비속어가 포함되어 있습니다") {
-      setIsWarningModalOpened(true);
-      navigate(routePaths.DontGo);
-    } else navigate(routePaths.Error);
+    if (errorMessage === "비속어가 포함되어 있습니다") setIsWarningModalOpened(true);
+    else navigate(routePaths.Error);
   };
 
   const handleReissuePatchRecommend = async () => {
@@ -232,16 +230,16 @@ export default function BottomSheet(props: BottomSheetProps) {
                 완성하기
               </St.NextStepBtn>
             </St.ButtonWrapper>
-            {isWarningModalOpened && (
-              <WarningModal
-                title1="상대방의 마음을 돌릴"
-                title2="한 마디를 다시 작성해줘🥺"
-                desc1="비속어가 포함되어 있는지 확인해줘!"
-                buttonTitle="응 수정할게!"
-                setIsWarningModalOpened={setIsWarningModalOpened}
-              />
-            )}
           </St.BottomSheet>
+          {isWarningModalOpened && (
+            <WarningModal
+              title1="상대방의 마음을 돌릴"
+              title2="한 마디를 다시 작성해줘🥺"
+              desc1="비속어가 포함되어 있는지 확인해줘!"
+              buttonTitle="응 수정할게!"
+              setIsWarningModalOpened={setIsWarningModalOpened}
+            />
+          )}
         </>
       )}
     </>
