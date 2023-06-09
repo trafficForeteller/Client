@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { patchMemberEdu, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
-import { IEduType } from "../../types/member";
+import { IEduType, IPatchEdu } from "../../types/member";
 import { ConsultantIconBtn, FixedHeader, ShortInputBox, ToggleInputBox } from "../@common";
 
 export default function EduPage() {
@@ -17,7 +18,8 @@ export default function EduPage() {
 
   const navigate = useNavigate();
 
-  const [edu, setEdu] = useState<IEduType>({
+  const [edu, setEdu] = useState<IPatchEdu>({
+    eduImage: null,
     eduName: "",
     eduLevel: "",
     eduMajor: "",
@@ -32,19 +34,48 @@ export default function EduPage() {
       setEduName(eduInfo.eduName);
       setEduMajor(eduInfo.eduMajor);
       setEduLevel(eduInfo.eduLevel);
-      setEdu({ eduName: eduInfo.eduName, eduLevel: eduInfo.eduLevel, eduMajor: eduInfo.eduMajor });
+      setEdu({ ...edu, eduName: eduInfo.eduName, eduLevel: eduInfo.eduLevel, eduMajor: eduInfo.eduMajor });
       setActiveBtn(true);
     }
   }, []);
 
   useEffect(() => {
     // step 4일 때 페이지 이동
-    window.scrollTo(0, 0);
     if (step === 4) {
       saveEduInfoInLocal();
-      navigate(`${routePaths.EduCertified}`);
+      patchCertifiedData();
     }
   }, [step]);
+
+  const patchCertifiedData = async () => {
+    await patchMemberEdu(
+      edu,
+      localStorage.getItem("accessToken"),
+      handleSuccessRequest,
+      handleFailRequest,
+      handleReissuePatchCertifiedData,
+    );
+  };
+
+  const handleSuccessRequest = () => {
+    navigate(routePaths.RecommendLanding);
+  };
+
+  const handleFailRequest = (errorMessage: string) => {
+    // 서버 요청 실패 시
+    console.log(errorMessage);
+    navigate(routePaths.Error);
+  };
+
+  const handleReissuePatchCertifiedData = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    patchCertifiedData();
+  };
 
   useEffect(() => {
     // step에 따른 ActiveButton 활성화

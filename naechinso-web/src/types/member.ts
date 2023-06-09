@@ -30,7 +30,7 @@ export interface IEduType {
 }
 
 export interface IPatchEdu {
-  eduImage: string;
+  eduImage: string | null;
   eduName: string;
   eduLevel: string;
   eduMajor: string;
