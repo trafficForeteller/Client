@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { selectiveRecommendList, selectiveRecommendProps } from "../../core/recommend/recommend";
-import { AdressingFixedHeader } from "../@common";
+import { AdressingFixedHeader, ConsultantTextBtn } from "../@common";
 import BottomSheet from "./BottomSheet";
 import SkipBottomSheet from "./SkipBottomModal";
 
@@ -56,6 +56,7 @@ export default function SelectiveRecommendPage() {
             );
           })}
         </St.QuestionListWrapper>
+        <ConsultantTextBtn />
 
         <St.SkipButton onClick={handleSkipButton} type="button">
           건너뛰기

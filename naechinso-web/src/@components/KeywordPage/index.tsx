@@ -86,12 +86,17 @@ export default function KeywordPage() {
         })}
       </St.KeywordListWrapper>
       <ConsultantTextBtn />
+
       <MoveNextPageBtn
         nextPage={routePaths.AppealDetail}
         title="다음"
         disabled={!activeNextBtn}
         handleState={saveCheckedAppealsInLocal}
       />
+      <St.StepWrapper>
+        <St.CurrentStep>1/</St.CurrentStep>
+        <St.TotalStep>4</St.TotalStep>
+      </St.StepWrapper>
     </St.KeywordPage>
   );
 }
@@ -120,5 +125,21 @@ const St = {
     background: ${({ theme, checked }) => (checked ? theme.colors.orange : theme.colors.neural)};
     border-radius: 10px;
     transition: all 0.2s ease;
+  `,
+  StepWrapper: styled.article`
+    position: fixed;
+    right: 4rem;
+    bottom: 7rem;
+
+    display: flex;
+  `,
+  CurrentStep: styled.p`
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+  `,
+  TotalStep: styled.p`
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+    opacity: 0.4;
   `,
 };

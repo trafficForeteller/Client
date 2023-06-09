@@ -23,6 +23,7 @@ const St = {
     ${({ theme }) => theme.fonts.caption7};
     float: right;
     margin-top: 1.3rem;
+    margin-right: 2rem;
     border-bottom: 1px solid ${({ theme }) => theme.colors.gray40};
 
     line-height: 1.4rem;

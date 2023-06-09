@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -28,13 +27,12 @@ export default function DontGoPage() {
 
   return (
     <>
-      <St.DontGo isWarningModalOpened={isWarningModalOpened}>
+      <St.DontGo>
         <FixedHeader
           header="추천사"
           progressRate={90}
           questionKind="필수질문 4"
           title1="😥 친구를 거절한 상대에게 한 마디!"
-          isModalOpened={isWarningModalOpened}
         />
 
         <St.TextWrapper>
@@ -60,19 +58,19 @@ export default function DontGoPage() {
             type="button"
             disabled={isButtonDisabled()}
             onClick={() => navigate(routePaths.SelectiveRecommend)}
-            isWarningModalOpened={isWarningModalOpened}
             className={GTM_CLASS_NAME.recommendSuccess}>
             완료
           </St.NextStepBtn>
         </St.NextStepBtnWrapper>
       </St.DontGo>
+
+      <St.CurrentStep>4/4</St.CurrentStep>
     </>
   );
 }
 
 const St = {
-  DontGo: styled.main<{ isWarningModalOpened: boolean }>`
-    background-color: rgba(${({ isWarningModalOpened }) => (isWarningModalOpened ? "0, 0, 0, 0.64" : "")});
+  DontGo: styled.main`
     padding-top: 18rem;
     position: absolute;
     left: 0;
@@ -107,9 +105,7 @@ const St = {
     padding: 0 2rem;
     height: 11rem;
   `,
-  NextStepBtn: styled.button<{ isWarningModalOpened: boolean }>`
-    visibility: ${({ isWarningModalOpened }) => (isWarningModalOpened ? "hidden" : "")};
-
+  NextStepBtn: styled.button`
     bottom: 3.5rem;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
@@ -125,5 +121,13 @@ const St = {
     @media only screen and (min-width: 375px) and (max-width: 600px) {
       width: 100%;
     }
+  `,
+  CurrentStep: styled.p`
+    position: fixed;
+    right: 4rem;
+    bottom: 7rem;
+
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
   `,
 };

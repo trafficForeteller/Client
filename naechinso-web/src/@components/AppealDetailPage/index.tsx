@@ -64,6 +64,10 @@ export default function AppealDetailPage() {
         disabled={!activeNextBtn}
         handleState={saveCheckedAppealDetailInLocal}
       />
+      <St.StepWrapper>
+        <St.CurrentStep>2/</St.CurrentStep>
+        <St.TotalStep>4</St.TotalStep>
+      </St.StepWrapper>
     </St.AppealDetail>
   );
 }
@@ -71,5 +75,21 @@ export default function AppealDetailPage() {
 const St = {
   AppealDetail: styled.main`
     padding: 18rem 2rem 15rem;
+  `,
+  StepWrapper: styled.article`
+    position: fixed;
+    right: 4rem;
+    bottom: 7rem;
+
+    display: flex;
+  `,
+  CurrentStep: styled.p`
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+  `,
+  TotalStep: styled.p`
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+    opacity: 0.4;
   `,
 };

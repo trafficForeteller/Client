@@ -58,6 +58,10 @@ export default function FriendLoverTypePage() {
         disabled={!activeNextBtn}
         handleState={saveCheckedFriendLoverTypeInLocal}
       />
+      <St.StepWrapper>
+        <St.CurrentStep>3/</St.CurrentStep>
+        <St.TotalStep>4</St.TotalStep>
+      </St.StepWrapper>
     </St.FriendLoverType>
   );
 }
@@ -65,5 +69,21 @@ export default function FriendLoverTypePage() {
 const St = {
   FriendLoverType: styled.main`
     padding: 18rem 2rem 15rem;
+  `,
+  StepWrapper: styled.article`
+    position: fixed;
+    right: 4rem;
+    bottom: 7rem;
+
+    display: flex;
+  `,
+  CurrentStep: styled.p`
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+  `,
+  TotalStep: styled.p`
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+    opacity: 0.4;
   `,
 };
