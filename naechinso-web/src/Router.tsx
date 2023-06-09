@@ -12,7 +12,6 @@ import {
   EditFinishPage,
   EditPage,
   EditRecommenderLandingPage,
-  EduCertifiedPage,
   EduEditPage,
   EduPage,
   ErrorPage,
@@ -22,7 +21,6 @@ import {
   FriendLoverTypePage,
   InAppLandingPage,
   InstallAppPage,
-  JobCertifiedPage,
   JobEditPage,
   JobPage,
   KeywordPage,
@@ -38,7 +36,6 @@ import {
   RecommendLandingPage,
   SecondRecommendPage,
   SelectiveRecommendPage,
-  SelfEmployedCertifiedPage,
   SelfEmployedPage,
 } from "./@components";
 import { ScrollToTop } from "./@components/@common";
@@ -148,14 +145,6 @@ export default function Router() {
           element={localStorage.getItem("accessToken") ? <EduPage /> : <Navigate to="/" replace />}
         />
         <Route
-          path={routePaths.JobCertified}
-          element={localStorage.getItem("accessToken") ? <JobCertifiedPage /> : <Navigate to="/" replace />}
-        />
-        <Route
-          path={routePaths.EduCertified}
-          element={localStorage.getItem("accessToken") ? <EduCertifiedPage /> : <Navigate to="/" replace />}
-        />
-        <Route
           path={routePaths.Finish}
           element={localStorage.getItem("accessToken") ? <FinishPage /> : <Navigate to="/" replace />}
         />
@@ -174,10 +163,6 @@ export default function Router() {
         <Route
           path={routePaths.SelfEmployed}
           element={localStorage.getItem("accessToken") ? <SelfEmployedPage /> : <Navigate to="/" replace />}
-        />
-        <Route
-          path={routePaths.SelfEmployedCertified}
-          element={localStorage.getItem("accessToken") ? <SelfEmployedCertifiedPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.PrepareWork}
