@@ -44,7 +44,7 @@ export interface IJobType {
 }
 
 export interface IPatchJob {
-  jobImage: string;
+  jobImage: string | null;
   jobName: string;
   jobPart: string;
   jobLocation: string;

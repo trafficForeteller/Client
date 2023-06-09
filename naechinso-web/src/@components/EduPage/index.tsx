@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { patchMemberEdu, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
-import { IEduType, IPatchEdu } from "../../types/member";
+import { IPatchEdu } from "../../types/member";
 import { ConsultantIconBtn, FixedHeader, ShortInputBox, ToggleInputBox } from "../@common";
 
 export default function EduPage() {
