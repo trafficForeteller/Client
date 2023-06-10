@@ -280,7 +280,9 @@ const St = {
     height: 60%;
 
     position: fixed;
+    margin: 0 auto;
     left: 0;
+    right: 0;
     bottom: 0;
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 32px 32px 0px 0px;

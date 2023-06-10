@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -13,7 +14,7 @@ import {
   relationTypeProps,
 } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { IGetReommend, IPostFriendInfo, IUuid } from "../../types/recommend";
+import { IGetReommend, IPostFriendInfo, IPostRecommendElement, IUuid } from "../../types/recommend";
 import { ConsultantIconBtn, ShortInputBox } from "../@common";
 import FriendInfoHeader from "./FriendInfoHeader";
 import PhoneNumInputBox from "./PhoneNumInput";
@@ -190,10 +191,6 @@ export default function FriendInfoPage() {
 
   const handleSuccessGetRecommend = (userData: IGetReommend) => {
     // 추천사 이전에 작성한 거 성공할 시 userData를 localStorage에 넣어주기
-    const recommendLength = userData.customQuestion.length;
-    console.log(userData.customQuestion);
-    localStorage.setItem("firstRecommend", userData.customQuestion[recommendLength - 2].recommendAnswer);
-    localStorage.setItem("secondRecommend", userData.customQuestion[recommendLength - 1].recommendAnswer);
     localStorage.setItem("dontGo", userData.dontGo);
     localStorage.setItem("appeals", JSON.stringify(userData.appeals));
     if (isValidAppealDetail(userData.appealDetail)) processAppealDetail(userData.appealDetail);
@@ -251,6 +248,26 @@ export default function FriendInfoPage() {
     if (matchedType) {
       localStorage.setItem("friendLoverTypeList", JSON.stringify(updatedList));
       localStorage.setItem("friendLoverType", matchedType.keyword);
+    }
+  };
+
+  const processSelectiveRecommend = (questionToServer: IPostRecommendElement[]) => {
+    const filteredQuestions = questionToServer.filter(
+      (item) =>
+        item.recommendQuestion.startsWith("🧚") ||
+        item.recommendQuestion.startsWith("🖐🏻") ||
+        item.recommendQuestion.startsWith("🎁"),
+    );
+
+    const question =
+      filteredQuestions.length === 1
+        ? filteredQuestions[0]
+        : filteredQuestions.length > 1
+          ? filteredQuestions[filteredQuestions.length - 1]
+          : questionToServer[questionToServer.length - 1];
+    if (question) {
+      localStorage.setItem("checkedSelectiveQ", question.recommendQuestion);
+      localStorage.setItem("selectiveRecommend", question.recommendAnswer);
     }
   };
 
