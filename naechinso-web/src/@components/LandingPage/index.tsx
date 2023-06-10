@@ -52,9 +52,9 @@ const St = {
     width: 100%;
     height: 100%;
     background-color: ${({ theme }) => theme.colors.neural};
-    padding-top: 25%;
+    padding-top: 40%;
     @media only screen and (min-height: 680px) {
-      padding-top: 50%;
+      padding-top: 60%;
     }
   `,
   DescWrapper: styled.article`
