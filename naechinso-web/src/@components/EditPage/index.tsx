@@ -30,6 +30,12 @@ export default function EditPage() {
     localStorage.removeItem("priceType");
     localStorage.removeItem("memberName");
     localStorage.removeItem("checkedKeywordList");
+    localStorage.removeItem("checkedSelectiveQ");
+    localStorage.removeItem("selectiveRecommend");
+    localStorage.removeItem("friendLoverType");
+    localStorage.removeItem("friendLoverTypeList");
+    localStorage.removeItem("appealDetail");
+    localStorage.removeItem("appealDetailList");
 
     localStorage.setItem("landingUrl", "edit");
   }, [location]);

@@ -220,6 +220,12 @@ export default function FriendInfoPage() {
     localStorage.removeItem("questionList");
     localStorage.removeItem("priceType");
     localStorage.removeItem("checkedKeywordList");
+    localStorage.removeItem("checkedSelectiveQ");
+    localStorage.removeItem("selectiveRecommend");
+    localStorage.removeItem("friendLoverType");
+    localStorage.removeItem("friendLoverTypeList");
+    localStorage.removeItem("appealDetail");
+    localStorage.removeItem("appealDetailList");
 
     navigate(routePaths.Keyword);
   };
