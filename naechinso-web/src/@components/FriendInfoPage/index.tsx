@@ -4,7 +4,13 @@ import styled from "styled-components";
 
 import { postMemberReissue } from "../../apis/member.api";
 import { getRecommend, postMagicRecommendFriendInfo, postRecommendFriendInfo } from "../../apis/recommend.api";
-import { keywordList, relationDurationList, relationTypeList, relationTypeProps } from "../../core/recommend/recommend";
+import {
+  appealDetailList,
+  keywordList,
+  relationDurationList,
+  relationTypeList,
+  relationTypeProps,
+} from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IGetReommend, IPostFriendInfo, IUuid } from "../../types/recommend";
 import { ConsultantIconBtn, ShortInputBox } from "../@common";
@@ -184,9 +190,12 @@ export default function FriendInfoPage() {
   const handleSuccessGetRecommend = (userData: IGetReommend) => {
     // 추천사 이전에 작성한 거 성공할 시 userData를 localStorage에 넣어주기
     const recommendLength = userData.customQuestion.length;
+    console.log(userData.customQuestion);
     localStorage.setItem("firstRecommend", userData.customQuestion[recommendLength - 2].recommendAnswer);
     localStorage.setItem("secondRecommend", userData.customQuestion[recommendLength - 1].recommendAnswer);
-    localStorage.setItem("appealDetail", userData.appealDetail);
+
+    if (isValidAppealDetail(userData.appealDetail)) processAppealDetail(userData.appealDetail);
+
     localStorage.setItem("dontGo", userData.dontGo);
     localStorage.setItem("appeals", JSON.stringify(userData.appeals));
 
@@ -206,6 +215,18 @@ export default function FriendInfoPage() {
     localStorage.setItem("checkedKeywordList", JSON.stringify(newCheckedKeywordList));
 
     navigate(routePaths.Keyword);
+  };
+
+  const isValidAppealDetail = (appealDetailToServer: string) => {
+    return appealDetailToServer.startsWith("내 친구는") && appealDetailToServer.endsWith("친구야!");
+  };
+
+  const processAppealDetail = (appealDetailToServer: string) => {
+    const keyword = appealDetailToServer.slice("내 친구는".length, -"친구야!".length);
+    const updatedList = appealDetailList.map((item) => (item.keyword === keyword ? { ...item, checked: true } : item));
+
+    localStorage.setItem("appealDetailList", JSON.stringify(updatedList));
+    localStorage.setItem("appeatlDetail", keyword);
   };
 
   const handleFailGetRecommend = () => {
