@@ -203,6 +203,8 @@ export default function FriendInfoPage() {
       if (isValidRecommendAnswer(lastQuestion.recommendAnswer)) processRecommendAnswer(lastQuestion.recommendAnswer);
     }
 
+    processSelectiveRecommend(userData.customQuestion);
+
     const tempKeywordList = keywordList;
     const newKeywordList = tempKeywordList.map((keyword) => {
       // keywordList에서 일치하는 keyword를 찾음
@@ -258,7 +260,6 @@ export default function FriendInfoPage() {
         item.recommendQuestion.startsWith("🖐🏻") ||
         item.recommendQuestion.startsWith("🎁"),
     );
-
     const question =
       filteredQuestions.length === 1
         ? filteredQuestions[0]
