@@ -1,12 +1,10 @@
 export { ReactComponent as IcAllChecked } from "./allChecked.svg";
 export { ReactComponent as IcAllUnChecked } from "./allUnChecked.svg";
 export { ReactComponent as IcAppealDetail } from "./appealDetail.svg";
-export { ReactComponent as IcAppStore } from "./appStore.svg";
 export { ReactComponent as IcChecked } from "./checked.svg";
 export { ReactComponent as IcCheckedMen } from "./checkedMen.svg";
 export { ReactComponent as IcCheckedWomen } from "./checkedWomen.svg";
 export { ReactComponent as IcDontGo } from "./dontGo.svg";
-export { ReactComponent as IcPlayStore } from "./playStore.svg";
 export { ReactComponent as IcPlus } from "./plus.svg";
 export { ReactComponent as IcPlusWhite } from "./plusWhite.svg";
 export { ReactComponent as IcPreviousBtn } from "./previousBtn.svg";
@@ -19,3 +17,4 @@ export { ReactComponent as IcUnChecked } from "./unChecked.svg";
 export { ReactComponent as IcUnCheckedMen } from "./unCheckedMen.svg";
 export { ReactComponent as IcUnCheckedWomen } from "./unCheckedWomen.svg";
 export { ReactComponent as IcWarning } from "./warning.svg";
+export { ReactComponent as IcWriting } from "./writing.svg";

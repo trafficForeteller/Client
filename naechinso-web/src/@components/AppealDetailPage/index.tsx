@@ -1,76 +1,95 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { IcAppealDetail } from "../../asset/icons";
+import { appealDetailList } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { ConsultantIconBtn, FixedHeader, MoveNextPageBtn, TextAreaBox } from "../@common";
+import { AdressingFixedHeader, ConsultantTextBtn, MoveNextPageBtn, SelectOneKeyword } from "../@common";
 
 export default function AppealDetailPage() {
-  const [text, setText] = useState("");
+  //dontgo에서 "내 친구는 ~한 친구야" 붙여주기
+  const [activeNextBtn, setActiveNextBtn] = useState(false);
+  const [appealDetailArr, setAppealDetailArr] = useState(appealDetailList);
 
   useEffect(() => {
-    if (localStorage.getItem("appealDetail")) {
+    // checked항목이 하나라도 true면 버튼 활성화
+    setActiveNextBtn(appealDetailArr.some((item) => item.checked === true));
+  }, [appealDetailArr]);
+
+  useEffect(() => {
+    // 새로고침 전에 local에 저장된 appealDetailList 초기값으로 세팅
+    const appealDetailListOfLocal = localStorage.getItem("appealDetailList") as string;
+    const newAppealDetailList = JSON.parse(appealDetailListOfLocal);
+    if (newAppealDetailList) {
+      setAppealDetailArr(newAppealDetailList);
       const appealDetail = localStorage.getItem("appealDetail") as string;
-      setText(appealDetail);
+      appealDetail && checkKeyword(appealDetail) && setActiveNextBtn(true);
+    } else {
+      setAppealDetailArr(
+        appealDetailList.map((appealDetail) => {
+          appealDetail.checked = false;
+          return appealDetail;
+        }),
+      );
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("appealDetail", text);
-  }, [text]);
+  const checkKeyword = (appealDetail: string): boolean => {
+    //newAppealDetailList의 객체들 중에  keyword가 변수 appealDetail랑 같은지 확인하는 함수
+    // 이전 추천사의 appealDetail과 겹칠수도 있을까봐
+    return appealDetailArr.some((item) => item.keyword === appealDetail);
+  };
 
-  const isButtonDisabled = !text || text.length < 20;
+  const saveCheckedAppealDetailInLocal = () => {
+    localStorage.setItem("appealDetailList", JSON.stringify(appealDetailArr));
+    //appealDetailArr checked가 true인 것 중에 keyword 가져오기
+    const checkedKeyword = appealDetailArr.find((item) => item.checked)?.keyword as string;
+    localStorage.setItem("appealDetail", checkedKeyword);
+  };
 
   return (
     <St.AppealDetail>
-      <FixedHeader
+      <AdressingFixedHeader
         header="추천사"
-        progressRate={75}
-        title1="추천사 완성 30초 전 🎉"
-        title2="내 친구를 한 줄로 소개한다면?"
+        navigatePath="/recommend/keyword"
+        progressRate={60}
+        questionKind="필수질문 2"
+        title1="🎈 내 친구는 OO한 친구야!"
       />
 
-      <St.CardWrapper>
-        <IcAppealDetail aria-label="한 줄 소개 미리보기" />
-      </St.CardWrapper>
-
-      <St.TextWrapper>
-        <TextAreaBox
-          placeholder="미친듯이 유쾌한 친구야! 함께 있으면 누구보다 행복해질 수 있어!!💕"
-          minLength={19}
-          maxLength={40}
-          text={text}
-          setText={setText}
-          height={5}
-          letterLimit="20자 이상 40자 이내"
-          isModalOpened={false}
-        />
-      </St.TextWrapper>
-
-      <ConsultantIconBtn />
-      <MoveNextPageBtn nextPage={routePaths.DontGo} title="다음" disabled={isButtonDisabled} />
+      <SelectOneKeyword keywordList={appealDetailArr} setKeywordList={setAppealDetailArr} />
+      <ConsultantTextBtn />
+      <MoveNextPageBtn
+        nextPage={routePaths.FriendLoverType}
+        title="다음"
+        disabled={!activeNextBtn}
+        handleState={saveCheckedAppealDetailInLocal}
+      />
+      <St.StepWrapper>
+        <St.CurrentStep>2/</St.CurrentStep>
+        <St.TotalStep>4</St.TotalStep>
+      </St.StepWrapper>
     </St.AppealDetail>
   );
 }
 
 const St = {
   AppealDetail: styled.main`
-    padding-top: 18rem;
+    padding: 18rem 2rem 15rem;
   `,
-  CardWrapper: styled.section`
-    width: 100%;
-    height: 22rem;
-    position: absolute;
-    top: 17rem;
-    background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 10%);
-    border-radius: 16px;
+  StepWrapper: styled.article`
+    position: fixed;
+    right: 4rem;
+    bottom: 7rem;
 
     display: flex;
-    justify-content: center;
-    align-items: center;
   `,
-  TextWrapper: styled.section`
-    margin-top: 23.2rem;
-    padding: 0 2rem;
+  CurrentStep: styled.p`
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+  `,
+  TotalStep: styled.p`
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+    opacity: 0.4;
   `,
 };

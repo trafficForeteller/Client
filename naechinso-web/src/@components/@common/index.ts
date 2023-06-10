@@ -21,6 +21,7 @@ export { default as MovePreviousPageBtn } from "./MovePreviousPageBtn";
 export { default as PhoneNumInput } from "./PhoneNumInput";
 export { default as ProgressBar } from "./ProgressBar";
 export { default as ScrollToTop } from "./ScrollToTop";
+export { default as SelectOneKeyword } from "./SelectOneKeyword";
 export { default as SheildBox } from "./SheildBox";
 export { default as ShortInputBox } from "./ShortInputBox";
 export { default as SubTitle } from "./SubTitle";

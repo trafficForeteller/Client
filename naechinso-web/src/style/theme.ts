@@ -28,7 +28,7 @@ const colors = {
 } as const;
 
 interface Font {
-  weight: 400 | 500 | 600 | 700;
+  weight: 400 | 500 | 600 | 700 | 800;
   size: number;
   lineHeight: number;
 }
@@ -45,6 +45,7 @@ function FONT({ weight, size, lineHeight }: Font): string {
 const fonts = {
   head1: FONT({ weight: 700, size: 2.5, lineHeight: 3.4 }),
   head2: FONT({ weight: 700, size: 2.2, lineHeight: 2.6 }),
+  head3: FONT({ weight: 800, size: 2.4, lineHeight: 3 }),
   sub1: FONT({ weight: 500, size: 2, lineHeight: 3 }),
   sub2: FONT({ weight: 700, size: 2, lineHeight: 3 }),
   sub3: FONT({ weight: 500, size: 1.8, lineHeight: 2.6 }),

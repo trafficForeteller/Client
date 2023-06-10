@@ -69,11 +69,11 @@ export default function KeywordPage() {
   return (
     <St.KeywordPage>
       <AdressingFixedHeader
-        header="친구 정보"
+        header="추천사"
         navigatePath="/recommend/friendInfo"
         progressRate={40}
-        title1="네가 생각하는"
-        title2="친구의 매력을 딱 3개만 골라봐!"
+        questionKind="필수질문 1"
+        title1="😘 친구의 매력 3개만 알려줘!"
       />
 
       <St.KeywordListWrapper>
@@ -86,12 +86,17 @@ export default function KeywordPage() {
         })}
       </St.KeywordListWrapper>
       <ConsultantTextBtn />
+
       <MoveNextPageBtn
-        nextPage={routePaths.ChooseFirstQuestion}
+        nextPage={routePaths.AppealDetail}
         title="다음"
         disabled={!activeNextBtn}
         handleState={saveCheckedAppealsInLocal}
       />
+      <St.StepWrapper>
+        <St.CurrentStep>1/</St.CurrentStep>
+        <St.TotalStep>4</St.TotalStep>
+      </St.StepWrapper>
     </St.KeywordPage>
   );
 }
@@ -99,7 +104,7 @@ export default function KeywordPage() {
 const St = {
   KeywordPage: styled.main`
     width: 100%;
-    padding-bottom: 10rem;
+    padding-bottom: 15rem;
   `,
   KeywordListWrapper: styled.section`
     margin: 0 auto;
@@ -110,15 +115,31 @@ const St = {
     gap: 1.5rem;
     padding-top: 19rem;
     overflow-y: scroll;
-    padding-bottom: 3rem;
+    padding-bottom: 1rem;
   `,
   KeywordWrapper: styled.button<{ checked: boolean }>`
-    width: 16rem;
-    height: 5.8rem;
+    width: 10.51rem;
+    height: 3.9rem;
     color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.brown)};
-    ${({ theme }) => theme.fonts.sub3};
-    background: ${({ theme, checked }) => (checked ? theme.colors.brown : theme.colors.neural)};
-    border-radius: 16px;
+    ${({ theme }) => theme.fonts.caption7};
+    background: ${({ theme, checked }) => (checked ? theme.colors.orange : theme.colors.neural)};
+    border-radius: 10px;
     transition: all 0.2s ease;
+  `,
+  StepWrapper: styled.article`
+    position: fixed;
+    right: 4rem;
+    bottom: 7rem;
+
+    display: flex;
+  `,
+  CurrentStep: styled.p`
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+  `,
+  TotalStep: styled.p`
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+    opacity: 0.4;
   `,
 };

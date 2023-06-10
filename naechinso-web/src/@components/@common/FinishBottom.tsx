@@ -29,6 +29,12 @@ export default function FinishBottom() {
     localStorage.removeItem("priceType");
     localStorage.removeItem("memberName");
     localStorage.removeItem("checkedKeywordList");
+    localStorage.removeItem("checkedSelectiveQ");
+    localStorage.removeItem("selectiveRecommend");
+    localStorage.removeItem("friendLoverType");
+    localStorage.removeItem("friendLoverTypeList");
+    localStorage.removeItem("appealDetail");
+    localStorage.removeItem("appealDetailList");
   };
 
   return (

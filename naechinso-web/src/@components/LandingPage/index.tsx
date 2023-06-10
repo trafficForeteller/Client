@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { getMemberStatus } from "../../apis/member.api";
-import { IcAppStore, IcPlayStore } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { LandingBox } from "../@common";
@@ -33,27 +32,16 @@ export default function LandingPage() {
     <St.LandingPage onKeyUp={onEnterKeyUp}>
       <LandingBox setAccessToken={setAccessToken} handleMoveLandingPage={handleMemberStatus} />
       {!localStorage.getItem("member-uuid") && (
-        <St.Bottom>
-          <St.DescWrapper>
-            <St.Line></St.Line>
-            <St.Desc>내친소를 시작하고 싶다면?</St.Desc>
-            <St.Line></St.Line>
-          </St.DescWrapper>
-          <St.InstallBtnWrapper>
-            <St.InstallBtn
-              type="button"
-              onClick={() => navigate(routePaths.InstallApp)}
-              className={GTM_CLASS_NAME.acquisitionPlayStore}>
-              <IcPlayStore aria-label="플레이스토어 이동" />
-            </St.InstallBtn>
-            <St.InstallBtn
-              type="button"
-              onClick={() => navigate(routePaths.InstallApp)}
-              className={GTM_CLASS_NAME.acquisitionAppStore}>
-              <IcAppStore aria-label="앱스토어 이동" />
-            </St.InstallBtn>
-          </St.InstallBtnWrapper>
-        </St.Bottom>
+        <St.DescWrapper>
+          <St.Desc>내친소를 직접 사용하고 싶다면? </St.Desc>
+          {/* GTM이름 바꿔야 됨 */}
+          <St.InstallBtn
+            type="button"
+            onClick={() => navigate(routePaths.InstallApp)}
+            className={GTM_CLASS_NAME.acquisitionAppStore}>
+            여기로✨
+          </St.InstallBtn>
+        </St.DescWrapper>
       )}
     </St.LandingPage>
   );
@@ -69,50 +57,24 @@ const St = {
       padding-top: 50%;
     }
   `,
-  Bottom: styled.article`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 2rem 6.3rem;
-
-    position: absolute;
-    bottom: 0;
-  `,
-  DescWrapper: styled.div`
-    width: 100%;
+  DescWrapper: styled.article`
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-  `,
-  Line: styled.div`
-    border: 1px solid ${({ theme }) => theme.colors.gray30};
-    width: 20%;
-    height: 1px;
-    width: calc(100% - 294px);
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.6rem;
   `,
   Desc: styled.p`
     color: ${({ theme }) => theme.colors.gray50};
     ${({ theme }) => theme.fonts.body7};
-    width: 14.7rem;
-  `,
-
-  InstallBtnWrapper: styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    margin-top: 2.8rem;
   `,
   InstallBtn: styled.button`
-    width: 16rem;
-    height: 4.8rem;
-    background-color: ${({ theme }) => theme.colors.gray80};
-    border-radius: 8px;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    color: ${({ theme }) => theme.colors.gray50};
+    ${({ theme }) => theme.fonts.body3};
+    cursor: pointer;
+    text-decoration: underline;
   `,
 };

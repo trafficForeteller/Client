@@ -24,27 +24,39 @@ export default function WarningModal(props: WarningModalProps) {
   };
 
   return (
-    <St.WarningModal>
-      <St.Naechinso src={ImgWarningNaechinso} alt="내친소" />
-      <St.TitleWrapper>
-        <St.Title>{title1}</St.Title>
-        <St.Title>{title2}</St.Title>
-      </St.TitleWrapper>
-      <St.DescWrapper>
-        <St.Desc>{desc1}</St.Desc>
-        <St.Desc>{desc2}</St.Desc>
-      </St.DescWrapper>
+    <>
+      <St.ModalBackground />
+      <St.WarningModal>
+        <St.Naechinso src={ImgWarningNaechinso} alt="내친소" />
+        <St.TitleWrapper>
+          <St.Title>{title1}</St.Title>
+          <St.Title>{title2}</St.Title>
+        </St.TitleWrapper>
+        <St.DescWrapper>
+          <St.Desc>{desc1}</St.Desc>
+          <St.Desc>{desc2}</St.Desc>
+        </St.DescWrapper>
 
-      <St.ButtonWrapper>
-        <St.Button onClick={closeModal} type="button">
-          {buttonTitle}
-        </St.Button>
-      </St.ButtonWrapper>
-    </St.WarningModal>
+        <St.ButtonWrapper>
+          <St.Button onClick={closeModal} type="button">
+            {buttonTitle}
+          </St.Button>
+        </St.ButtonWrapper>
+      </St.WarningModal>
+    </>
   );
 }
 
 const St = {
+  ModalBackground: styled.div`
+    background-color: rgba(0, 0, 0, 0.64);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+  `,
   WarningModal: styled.section`
     padding: 5.6rem 2rem 1.8rem;
     background-color: ${({ theme }) => theme.colors.white};
@@ -57,7 +69,7 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 100;
+    z-index: 1000;
     position: absolute;
     top: 50%;
     left: 50%;

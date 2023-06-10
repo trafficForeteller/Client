@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { patchMemberJob, postMemberReissue } from "../../apis/member.api";
 import { IcSheild } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
-import { IJobType } from "../../types/member";
+import { IPatchJob } from "../../types/member";
 import { ConsultantIconBtn, FixedHeader, ShortInputBox } from "../@common";
 
 export default function JobPage() {
@@ -12,7 +13,8 @@ export default function JobPage() {
   const [activeBtn, setActiveBtn] = useState(false);
   const navigate = useNavigate();
 
-  const [job, setJob] = useState<IJobType>({
+  const [job, setJob] = useState<IPatchJob>({
+    jobImage: null,
     jobName: "",
     jobPart: "",
     jobLocation: "강남구",
@@ -31,12 +33,41 @@ export default function JobPage() {
 
   useEffect(() => {
     // step에 따라 페이지 이동
-    window.scrollTo(0, 0);
     if (step === 3) {
       saveJobInfoInLocal();
-      navigate(routePaths.JobCertified);
+      patchCertifiedData();
     }
   }, [step]);
+
+  const patchCertifiedData = async () => {
+    await patchMemberJob(
+      job,
+      localStorage.getItem("accessToken"),
+      handleSuccessRequest,
+      handleFailRequest,
+      handleReissuePatchCertifiedData,
+    );
+  };
+
+  const handleSuccessRequest = () => {
+    navigate(routePaths.RecommendLanding);
+  };
+
+  const handleFailRequest = (errorMessage: string) => {
+    // 서버 요청 실패 시
+    console.log(errorMessage);
+    navigate(routePaths.Error);
+  };
+
+  const handleReissuePatchCertifiedData = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    patchCertifiedData();
+  };
 
   useEffect(() => {
     // step에 따른 ActiveButton 활성화

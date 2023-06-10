@@ -5,7 +5,6 @@ import {
   AppealDetailPage,
   ArriveRecommendPage,
   CertifiedPage,
-  ChooseFirstQuestionPage,
   ChooseGiftPage,
   ChooseJobPage,
   ChooseWorkPage,
@@ -13,17 +12,15 @@ import {
   EditFinishPage,
   EditPage,
   EditRecommenderLandingPage,
-  EduCertifiedPage,
   EduEditPage,
   EduPage,
   ErrorPage,
   FinishPage,
-  FirstRecommendPage,
   FreelancePage,
   FriendInfoPage,
+  FriendLoverTypePage,
   InAppLandingPage,
   InstallAppPage,
-  JobCertifiedPage,
   JobEditPage,
   JobPage,
   KeywordPage,
@@ -38,7 +35,7 @@ import {
   RecommenderLandingPage,
   RecommendLandingPage,
   SecondRecommendPage,
-  SelfEmployedCertifiedPage,
+  SelectiveRecommendPage,
   SelfEmployedPage,
 } from "./@components";
 import { ScrollToTop } from "./@components/@common";
@@ -116,14 +113,6 @@ export default function Router() {
           element={localStorage.getItem("accessToken") ? <RecommenderInfoPage /> : <Navigate to="/" replace />}
         />
         <Route
-          path={routePaths.ChooseFirstQuestion}
-          element={localStorage.getItem("accessToken") ? <ChooseFirstQuestionPage /> : <Navigate to="/" replace />}
-        />
-        <Route
-          path={routePaths.FirstRecommend}
-          element={localStorage.getItem("accessToken") ? <FirstRecommendPage /> : <Navigate to="/" replace />}
-        />
-        <Route
           path={routePaths.SecondRecommend}
           element={localStorage.getItem("accessToken") ? <SecondRecommendPage /> : <Navigate to="/" replace />}
         />
@@ -132,8 +121,16 @@ export default function Router() {
           element={localStorage.getItem("accessToken") ? <AppealDetailPage /> : <Navigate to="/" replace />}
         />
         <Route
+          path={routePaths.FriendLoverType}
+          element={localStorage.getItem("accessToken") ? <FriendLoverTypePage /> : <Navigate to="/" replace />}
+        />
+        <Route
           path={routePaths.DontGo}
           element={localStorage.getItem("accessToken") ? <DontGoPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path={routePaths.SelectiveRecommend}
+          element={localStorage.getItem("accessToken") ? <SelectiveRecommendPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.ChooseWork}
@@ -146,14 +143,6 @@ export default function Router() {
         <Route
           path={routePaths.Edu}
           element={localStorage.getItem("accessToken") ? <EduPage /> : <Navigate to="/" replace />}
-        />
-        <Route
-          path={routePaths.JobCertified}
-          element={localStorage.getItem("accessToken") ? <JobCertifiedPage /> : <Navigate to="/" replace />}
-        />
-        <Route
-          path={routePaths.EduCertified}
-          element={localStorage.getItem("accessToken") ? <EduCertifiedPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.Finish}
@@ -174,10 +163,6 @@ export default function Router() {
         <Route
           path={routePaths.SelfEmployed}
           element={localStorage.getItem("accessToken") ? <SelfEmployedPage /> : <Navigate to="/" replace />}
-        />
-        <Route
-          path={routePaths.SelfEmployedCertified}
-          element={localStorage.getItem("accessToken") ? <SelfEmployedCertifiedPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.PrepareWork}

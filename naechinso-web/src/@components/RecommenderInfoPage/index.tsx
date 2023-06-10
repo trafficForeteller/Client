@@ -112,7 +112,6 @@ export default function RecommenderInfoPage() {
         progressRate={20}
         title1={RecommenderInfoList[index].title1}
         title2={RecommenderInfoList[index].title2}
-        title3={index === 0 ? RecommenderInfoList[index].title3 : ""}
         subTitle1="네 정보를 밝히며 친구를 추천하면"
         subTitle2="이 친구에게 엄청난 신뢰가 더해질거야"
       />
