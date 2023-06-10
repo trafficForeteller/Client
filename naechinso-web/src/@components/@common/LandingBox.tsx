@@ -72,7 +72,7 @@ export default function LandingBox(props: LandingBoxProps) {
         <St.Title>환영해!🧡</St.Title>
       </St.TitleWrapper>
       <St.Button onClick={handleMoveLandingPage} type="button" className={GTM_CLASS_NAME.startAccess}>
-        내 친구 소개하기
+        5분 추천사 작성하기
       </St.Button>
     </St.LandingBox>
   );
