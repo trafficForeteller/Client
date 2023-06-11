@@ -38,7 +38,7 @@ export default function LandingPage() {
           <St.InstallBtn
             type="button"
             onClick={() => navigate(routePaths.InstallApp)}
-            className={GTM_CLASS_NAME.acquisitionAppStore}>
+            className={GTM_CLASS_NAME.acquisitionInstallApp}>
             여기로✨
           </St.InstallBtn>
         </St.DescWrapper>

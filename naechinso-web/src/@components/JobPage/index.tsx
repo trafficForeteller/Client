@@ -6,6 +6,7 @@ import { patchMemberJob, postMemberReissue } from "../../apis/member.api";
 import { IcSheild } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { IPatchJob } from "../../types/member";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { ConsultantIconBtn, FixedHeader, ShortInputBox } from "../@common";
 
 export default function JobPage() {
@@ -131,7 +132,11 @@ export default function JobPage() {
 
       <ConsultantIconBtn />
       <St.NextStepBtnWrapper>
-        <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep}>
+        <St.NextStepBtn
+          type="button"
+          disabled={!activeBtn}
+          onClick={handleStep}
+          className={step === 2 ? GTM_CLASS_NAME.recommenderSuccessJob : ""}>
           다음
         </St.NextStepBtn>
       </St.NextStepBtnWrapper>

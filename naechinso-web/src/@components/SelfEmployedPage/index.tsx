@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { patchMemberJob, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IPatchJob } from "../../types/member";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { ConsultantIconBtn, FixedHeader, MoveNextPageBtn, ShortInputBox } from "../@common";
 
 export default function SelfEmployedPage() {
@@ -86,7 +87,12 @@ export default function SelfEmployedPage() {
       />
 
       <ConsultantIconBtn />
-      <MoveNextPageBtn disabled={!activeBtn} title="다음" handleState={saveJobInfoInLocal} />
+      <MoveNextPageBtn
+        disabled={!activeBtn}
+        title="다음"
+        handleState={saveJobInfoInLocal}
+        className={GTM_CLASS_NAME.recommenderSuccessSelfEmployed}
+      />
     </St.SelfEmployedPage>
   );
 }

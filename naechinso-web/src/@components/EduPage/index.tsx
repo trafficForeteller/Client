@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { patchMemberEdu, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IPatchEdu } from "../../types/member";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { ConsultantIconBtn, FixedHeader, ShortInputBox, ToggleInputBox } from "../@common";
 
 export default function EduPage() {
@@ -171,7 +172,12 @@ export default function EduPage() {
       />
       <ConsultantIconBtn />
       <St.NextStepBtnWrapper>
-        <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep} isModalOpened={isModalOpened}>
+        <St.NextStepBtn
+          type="button"
+          disabled={!activeBtn}
+          onClick={handleStep}
+          isModalOpened={isModalOpened}
+          className={step === 3 ? GTM_CLASS_NAME.recommenderSuccessEdu : ""}>
           다음
         </St.NextStepBtn>
       </St.NextStepBtnWrapper>

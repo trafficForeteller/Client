@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { patchMemberJob, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IJobType } from "../../types/member";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { ConsultantTextBtn, FixedHeader, MoveNextPageBtn } from "../@common";
 
 export default function PrepareWorkPage() {
@@ -79,7 +80,12 @@ export default function PrepareWorkPage() {
         </St.InputWrapper>
       </St.InputBox>
       <ConsultantTextBtn />
-      <MoveNextPageBtn disabled={!activeBtn} title="다음" handleState={patchJobData} />
+      <MoveNextPageBtn
+        disabled={!activeBtn}
+        title="다음"
+        handleState={patchJobData}
+        className={GTM_CLASS_NAME.recommenderSuccessPrepareWork}
+      />
     </St.PrepareWorkPage>
   );
 }
