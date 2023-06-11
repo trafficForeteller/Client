@@ -8,7 +8,10 @@ type GtmClassName = {
   recommenderSuccessSelfEmployed: string;
   recommenderSuccessEdu: string;
   recommenderSuccessPrepareWork: string;
-  recommendSuccess: string;
+  recommendSkipSelectiveQuestion: string;
+  recommendRewriteSelectiveQuestion: string;
+  recommendSuccessNoSelectiveQuestion: string;
+  recommendSuccessWithSelectiveQuestion: string;
   viralUrl: string;
   referral: string;
   landingView: string;
@@ -23,7 +26,10 @@ export const GTM_CLASS_NAME: GtmClassName = {
   recommenderSuccessSelfEmployed: "web_recommender_success_selfEmployed",
   recommenderSuccessEdu: "web_recommender_success_edu",
   recommenderSuccessPrepareWork: "web_recommender_success_prepareWork",
-  recommendSuccess: "web_recommend_success",
+  recommendSkipSelectiveQuestion: "web_recommend_skip_selectiveQuestion",
+  recommendRewriteSelectiveQuestion: "web_recommend_rewrite_selectiveQuestion",
+  recommendSuccessNoSelectiveQuestion: "web_recommend_success_noSelectiveQuestion",
+  recommendSuccessWithSelectiveQuestion: "web_recommend_success_withSelectiveQuestion",
   viralUrl: "web_viral_url",
   referral: "web_referral",
   landingView: "web_landing_view",

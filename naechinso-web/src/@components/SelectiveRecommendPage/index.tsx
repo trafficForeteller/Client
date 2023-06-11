@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { selectiveRecommendList, selectiveRecommendProps } from "../../core/recommend/recommend";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { AdressingFixedHeader, ConsultantTextBtn } from "../@common";
 import BottomSheet from "./BottomSheet";
 import SkipBottomSheet from "./SkipBottomModal";
@@ -58,7 +59,10 @@ export default function SelectiveRecommendPage() {
         </St.QuestionListWrapper>
         <ConsultantTextBtn />
 
-        <St.SkipButton onClick={handleSkipButton} type="button">
+        <St.SkipButton
+          onClick={handleSkipButton}
+          type="button"
+          className={GTM_CLASS_NAME.recommendSkipSelectiveQuestion}>
           건너뛰기
         </St.SkipButton>
         {isSkipBottomSheetOpened && (

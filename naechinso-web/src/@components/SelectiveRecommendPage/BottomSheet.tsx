@@ -9,6 +9,7 @@ import { IcPreviousBtn } from "../../asset/icons";
 import { selectiveRecommendList } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { TextAreaBox, WarningModal } from "../@common";
 
 interface BottomSheetProps {
@@ -226,7 +227,11 @@ export default function BottomSheet(props: BottomSheetProps) {
               <St.CloseBtn type="button" onClick={closeModal}>
                 닫기
               </St.CloseBtn>
-              <St.NextStepBtn type="button" disabled={isButtonDisabled} onClick={handleSubmit}>
+              <St.NextStepBtn
+                type="button"
+                disabled={isButtonDisabled}
+                onClick={handleSubmit}
+                className={GTM_CLASS_NAME.recommendSuccessWithSelectiveQuestion}>
                 완성하기
               </St.NextStepBtn>
             </St.ButtonWrapper>

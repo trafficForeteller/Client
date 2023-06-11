@@ -8,6 +8,7 @@ import { getCheckPrice, patchRecommendFriendDetail, postRecommendation } from ".
 import { IcWriting } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { WarningModal } from "../@common";
 
 interface SkipBottomSheetProps {
@@ -188,10 +189,13 @@ export default function SkipBottomSheet(props: SkipBottomSheetProps) {
         </St.TitleWrapper>
 
         <St.ButtonWrapper>
-          <St.CloseBtn type="button" onClick={closeModal}>
+          <St.CloseBtn type="button" onClick={closeModal} className={GTM_CLASS_NAME.recommendRewriteSelectiveQuestion}>
             작성할래
           </St.CloseBtn>
-          <St.NextStepBtn type="button" onClick={handleSkip}>
+          <St.NextStepBtn
+            type="button"
+            onClick={handleSkip}
+            className={GTM_CLASS_NAME.recommendSuccessNoSelectiveQuestion}>
             건너 뛰기
           </St.NextStepBtn>
         </St.ButtonWrapper>

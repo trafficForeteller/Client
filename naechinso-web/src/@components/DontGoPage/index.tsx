@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 import { IcDontGo } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
-import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { ConsultantIconBtn, FixedHeader, TextAreaBox } from "../@common";
 
 export default function DontGoPage() {
@@ -57,8 +56,7 @@ export default function DontGoPage() {
           <St.NextStepBtn
             type="button"
             disabled={isButtonDisabled()}
-            onClick={() => navigate(routePaths.SelectiveRecommend)}
-            className={GTM_CLASS_NAME.recommendSuccess}>
+            onClick={() => navigate(routePaths.SelectiveRecommend)}>
             완료
           </St.NextStepBtn>
         </St.NextStepBtnWrapper>
