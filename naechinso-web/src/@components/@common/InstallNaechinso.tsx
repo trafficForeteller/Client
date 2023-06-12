@@ -15,7 +15,7 @@ export default function InstallNaechinso(props: InstallNaechinsoProps) {
   }, []);
 
   const Mobile = () => {
-    return /Mobi/i.test(window.navigator.userAgent);
+    return window.innerWidth <= 768;
   };
 
   return (

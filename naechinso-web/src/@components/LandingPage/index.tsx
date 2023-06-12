@@ -34,7 +34,6 @@ export default function LandingPage() {
       {!localStorage.getItem("member-uuid") && (
         <St.DescWrapper>
           <St.Desc>내친소를 직접 사용하고 싶다면? </St.Desc>
-          {/* GTM이름 바꿔야 됨 */}
           <St.InstallBtn
             type="button"
             onClick={() => navigate(routePaths.InstallApp)}
