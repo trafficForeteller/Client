@@ -13,7 +13,8 @@ export default function InstallNaechinso(props: InstallNaechinsoProps) {
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   useEffect(() => {
-    if (isMobile) window.location.href = "https://naechinso.page.link/app";
+    // if (isMobile)
+    window.location.href = "https://naechinso.page.link/app";
   }, []);
 
   return (
