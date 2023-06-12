@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 
 import { ImgInstallAppQrCode, ImgInstallNaechinso } from "../../asset/image";
@@ -9,18 +10,15 @@ interface InstallNaechinsoProps {
 
 export default function InstallNaechinso(props: InstallNaechinsoProps) {
   const { title } = props;
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   useEffect(() => {
-    if (Mobile()) window.location.href = "https://naechinso.page.link/app";
+    if (isMobile) window.location.href = "https://naechinso.page.link/app";
   }, []);
-
-  const Mobile = () => {
-    return window.innerWidth <= 768;
-  };
 
   return (
     <>
-      {!Mobile() && (
+      {!isMobile && (
         <St.InstallNaechinso>
           <St.TalkBallon>
             <St.Title>{title}</St.Title>
