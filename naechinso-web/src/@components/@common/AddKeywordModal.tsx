@@ -21,8 +21,7 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
     }
   };
 
-  const checkMinLength = () => text.length > 0;
-
+  const isButtonDisabled = text.length < 1;
   return (
     <>
       <St.ModalBackground />
@@ -51,7 +50,7 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
         </St.AddKeywordBox>
 
         <St.NextStepBtnWrapper>
-          <St.NextStepBtn type="button" disabled={!checkMinLength}>
+          <St.NextStepBtn type="button" disabled={isButtonDisabled}>
             완료
           </St.NextStepBtn>
         </St.NextStepBtnWrapper>
