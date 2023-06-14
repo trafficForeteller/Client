@@ -1,13 +1,23 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 import { IcAddKeyword } from "../../asset/icons";
+import AddKeywordModal from "./AddKeywordModal";
 
 export default function AddKeywordBtn() {
+  const [isOpenKeywordModal, setIsOpenKeywordModal] = useState(false);
+
+  const openModal = () => setIsOpenKeywordModal(true);
+  const closeModal = () => setIsOpenKeywordModal(false);
+
   return (
-    <St.AddKeywordBtn type="button">
-      키워드 추가
-      <IcAddKeyword />
-    </St.AddKeywordBtn>
+    <>
+      <St.AddKeywordBtn type="button" onClick={openModal}>
+        키워드 추가
+        <IcAddKeyword />
+      </St.AddKeywordBtn>
+      {isOpenKeywordModal && <AddKeywordModal closeModal={closeModal} isOpenKeywordModal={isOpenKeywordModal} />}
+    </>
   );
 }
 

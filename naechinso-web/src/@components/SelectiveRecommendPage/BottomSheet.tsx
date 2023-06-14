@@ -6,7 +6,6 @@ import styled, { keyframes } from "styled-components";
 import { postMemberReissue } from "../../apis/member.api";
 import { getCheckPrice, patchRecommendFriendDetail, postRecommendation } from "../../apis/recommend.api";
 import { IcPreviousBtn } from "../../asset/icons";
-import { selectiveRecommendList } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
