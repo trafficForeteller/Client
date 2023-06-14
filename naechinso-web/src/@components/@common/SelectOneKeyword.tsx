@@ -40,11 +40,10 @@ export default function SelectOneKeyword(props: SelectOneKeywordProps) {
 
 const St = {
   SelectOneKeyword: styled.section`
-    margin: 0 auto;
-    width: 37.5rem;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 1rem;
     //    overflow-y: scroll;
   `,
   KeywordWrapper: styled.button<{ checked: boolean }>`
