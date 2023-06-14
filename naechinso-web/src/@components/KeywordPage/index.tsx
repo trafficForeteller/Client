@@ -84,7 +84,7 @@ export default function KeywordPage() {
             </St.KeywordWrapper>
           );
         })}
-        <AddKeywordBtn />
+        <AddKeywordBtn keywordArr={keywordArr} setKeywordArr={setKeywordArr} />
       </St.KeywordListWrapper>
       <ConsultantTextBtn />
 

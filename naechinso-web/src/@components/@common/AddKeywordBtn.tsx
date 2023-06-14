@@ -2,9 +2,16 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { IcAddKeyword } from "../../asset/icons";
+import { keywordProps } from "../../core/recommend/recommend";
 import AddKeywordModal from "./AddKeywordModal";
 
-export default function AddKeywordBtn() {
+interface AddKeywordBtnProps {
+  keywordArr: keywordProps[];
+  setKeywordArr: React.Dispatch<React.SetStateAction<keywordProps[]>>;
+}
+
+export default function AddKeywordBtn(props: AddKeywordBtnProps) {
+  const { keywordArr, setKeywordArr } = props;
   const [isOpenKeywordModal, setIsOpenKeywordModal] = useState(false);
 
   const openModal = () => setIsOpenKeywordModal(true);
@@ -16,7 +23,14 @@ export default function AddKeywordBtn() {
         키워드 추가
         <IcAddKeyword />
       </St.AddKeywordBtn>
-      {isOpenKeywordModal && <AddKeywordModal closeModal={closeModal} isOpenKeywordModal={isOpenKeywordModal} />}
+      {isOpenKeywordModal && (
+        <AddKeywordModal
+          closeModal={closeModal}
+          isOpenKeywordModal={isOpenKeywordModal}
+          keywordArr={keywordArr}
+          setKeywordArr={setKeywordArr}
+        />
+      )}
     </>
   );
 }

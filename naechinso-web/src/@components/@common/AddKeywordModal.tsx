@@ -2,14 +2,17 @@ import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 import { IcClose } from "../../asset/icons";
+import { keywordProps } from "../../core/recommend/recommend";
 
 interface AddKeywordModalProps {
   closeModal: () => void;
   isOpenKeywordModal: boolean;
+  keywordArr: keywordProps[];
+  setKeywordArr: React.Dispatch<React.SetStateAction<keywordProps[]>>;
 }
 
 export default function AddKeywordModal(props: AddKeywordModalProps) {
-  const { closeModal, isOpenKeywordModal } = props;
+  const { closeModal, isOpenKeywordModal, keywordArr, setKeywordArr } = props;
   const [text, setText] = useState("");
 
   const handleText = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +24,18 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
     }
   };
 
-  const isButtonDisabled = text.length < 1;
+  const handleAddKeywordModal = () => {
+    const newKeyword = {
+      id: keywordArr.length,
+      keyword: text,
+      checked: false,
+    };
+    setKeywordArr([...keywordArr, newKeyword]);
+    closeModal();
+    setText("");
+  };
+
+  const isButtonDisabled = text.length < 1 && text.length > 7;
   return (
     <>
       <St.ModalBackground />
@@ -50,7 +64,7 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
         </St.AddKeywordBox>
 
         <St.NextStepBtnWrapper>
-          <St.NextStepBtn type="button" disabled={isButtonDisabled}>
+          <St.NextStepBtn type="button" disabled={isButtonDisabled} onClick={handleAddKeywordModal}>
             완료
           </St.NextStepBtn>
         </St.NextStepBtnWrapper>
