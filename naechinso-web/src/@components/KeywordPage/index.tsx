@@ -111,7 +111,6 @@ const St = {
     margin: 0 auto;
     width: 37.5rem;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     gap: 1.5rem;
     padding-top: 19rem;

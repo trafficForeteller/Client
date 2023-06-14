@@ -21,6 +21,8 @@ const St = {
     border-radius: 10px;
 
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 0.4rem;
   `,
 };
