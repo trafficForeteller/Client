@@ -565,22 +565,22 @@ export const selectiveRecommendList: selectiveRecommendProps[] = [
   {
     id: 0,
     icon: "🧚",
-    subTitle: "기억남는 순간",
-    title: "내 친구가 멋있을 때는?",
+    subTitle: "이성적으로나 친구로써의 매력",
+    title: "내 친구가 멋져보일 때는 언제야?",
     placeholder: "사람들이 무거운 짐 땜에 낑낑 대는데 혼자 한 손으로 들 때 그의 전완근에 반했어.",
   },
   {
     id: 1,
     icon: "🖐🏻",
-    subTitle: "찐친만 아는 모습",
-    title: "내 친구 자랑하고 싶은 점?",
+    subTitle: "친구에게 본받고 싶은 점",
+    title: "내 친구 자랑하고 싶은 점을 말해줘!",
     placeholder: "찐친 무거운 짐 땜에 낑낑 대는데 혼자 한 손으로 들 때 그의 전완근에 반했어.",
   },
   {
     id: 2,
     icon: "🎁",
-    subTitle: "세심한 내 친구",
-    title: "내 친구한테 감동 받은 순간은?",
+    subTitle: "세심한 내 친구에게",
+    title: "친구한테 감동 받았던 일화가 있어?",
     placeholder: "세심한 무거운 짐 땜에 낑낑 대는데 혼자 한 손으로 들 때 그의 전완근에 반했어.",
   },
 ];
