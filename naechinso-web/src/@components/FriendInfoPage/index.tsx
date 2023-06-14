@@ -331,7 +331,7 @@ export default function FriendInfoPage() {
 
   return (
     <St.FriendInfoPage isModalOpened={isModalOpened}>
-      <FriendInfoHeader setIsModalOpened={setIsModalOpened} />
+      <FriendInfoHeader  />
       <St.Title>
         {memberName !== null ? (
           <>

@@ -3,18 +3,11 @@ import styled from "styled-components";
 
 import { IcPreviousBtn } from "../../asset/icons";
 import { ProgressBar, WarningModal } from "../@common";
-
-export interface FriendInfoHeaderProps {
-  setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export default function FriendInfoHeader(props: FriendInfoHeaderProps) {
-  const { setIsModalOpened } = props;
+export default function FriendInfoHeader() {
   const [isWarningModalOpened, setIsWarningModalOpened] = useState(false);
 
   const movePreviousPage = () => {
     //이전페이지로 이동
-    setIsModalOpened(true);
     setIsWarningModalOpened(true);
     window.scrollTo(0, 0);
   };

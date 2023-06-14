@@ -1,3 +1,4 @@
+export { ReactComponent as IcAddKeyword } from "./addKeyword.svg";
 export { ReactComponent as IcAllChecked } from "./allChecked.svg";
 export { ReactComponent as IcAllUnChecked } from "./allUnChecked.svg";
 export { ReactComponent as IcAppealDetail } from "./appealDetail.svg";
