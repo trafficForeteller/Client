@@ -25,12 +25,21 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
   };
 
   const handleAddKeywordModal = () => {
-    const newKeyword = {
-      id: keywordArr.length,
-      keyword: text,
-      checked: false,
-    };
-    setKeywordArr([...keywordArr, newKeyword]);
+    const exists = keywordArr.some((keyword) => keyword.keyword === text);
+    if (!exists) {
+      const newKeyword = {
+        id: keywordArr.length,
+        keyword: text,
+        checked: true,
+      };
+      setKeywordArr([...keywordArr, newKeyword]);
+    } else {
+      const updatedKeywordArr = keywordArr.map((keyword) => {
+        if (keyword.keyword === text) return { ...keyword, checked: true };
+        return keyword;
+      });
+      setKeywordArr(updatedKeywordArr);
+    }
     closeModal();
     setText("");
   };

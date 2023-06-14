@@ -33,9 +33,28 @@ export default function KeywordPage() {
   }, []);
 
   useEffect(() => {
-    if (checkedAppeals.length === 3) setActiveNextBtn(true);
+    const newCheckedAppeals: string[] = keywordArr
+      .filter((keyword) => keyword.checked)
+      .map((keyword) => keyword.keyword);
+
+    setCheckedAppeals(newCheckedAppeals);
+  }, [keywordArr]);
+
+  useEffect(() => {
+    if (checkedAppeals.length > 3) handleUpdateKeyword();
+    else if (checkedAppeals.length === 3) setActiveNextBtn(true);
     else setActiveNextBtn(false);
   }, [checkedAppeals]);
+
+  const handleUpdateKeyword = () => {
+    setCheckedAppeals((prevAppeals) => prevAppeals.slice(1));
+    keywordArr.forEach((keyword) => {
+      if (keyword.keyword === checkedAppeals[0]) {
+        keyword.checked = false;
+      }
+    });
+    setKeywordArr([...keywordArr]);
+  };
 
   const toggleChecked = (el: keywordProps) => {
     // 항목별 체크 && 3개 이상 시 체크 불가
