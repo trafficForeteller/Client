@@ -1,77 +1,57 @@
-import { useEffect } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { ImgFinishNone, ImgFinishRecommend, ImgFinishSunguri } from "../../asset/image";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { ConsultantTextBtn } from "../@common";
 import FinishBottom from "../@common/FinishBottom";
+import FinishModal from "./FinishModal";
 
 export default function Finish() {
-  const recommenderName = localStorage.getItem("recommenderName") || "친한";
-  const copyText = `${recommenderName} 친구가 너에 대한 추천사 작성을 완료했어!🎉 
-
-내친소는 너처럼 실제 친구에게 추천을 받은, 주변에서 신뢰받고 애정받은 사람들만 가입할 수 있는 지인소개팅 서비스야! (너는 복받았다! 이런 좋은 친구를 두다니!) 
-      
-이제 너가 할 일은 간단한 자기소개만 하면 끝!😎 내친소에서 너만큼 멋진 친구들을 만나러 가볼까?
-      
-앱 다운로드: https://naechinso.page.link/app`;
+  const [isModalOpened, setIsModalOpened] = useState(true);
+  const [modalTitle, setModalTitle] = useState("");
 
   useEffect(() => {
-    if (!window.Kakao.isInitialized()) {
-      window.Kakao.init(`${process.env.REACT_APP_JS_KEY}`);
-    }
+    if (localStorage.getItem("priceType") === "MY_REC") setModalTitle("이제 너의 추천사를 확인해봐");
+    else if (localStorage.getItem("priceType") === "SUNGURI") setModalTitle("친구가 가입하면 썬구리가 지급돼");
+    else setModalTitle("친구를 추천해줘서 고마워");
   }, []);
 
-  const shareRecommendLink = () => {
-    if (Mobile() && navigator.share) {
-      navigator
-        .share({
-          text: copyText,
-        })
-        .then(() => console.log("공유 성공"))
-        .catch((error) => console.log("공유 실패", error));
-    } else {
-      navigator.clipboard.writeText(copyText);
-      alert("클립보드에 초대링크를 복사했어!");
-    }
-  };
-
-  const Mobile = () => {
-    return /Mobi/i.test(window.navigator.userAgent);
-  };
+  const closeModal = () => setIsModalOpened(false);
 
   return (
-    <St.Finish>
-      <St.TitleWrapper>
-        <St.Title>추천사 너무 좋다😉</St.Title>
-        <St.Title>이제 링크를 친구에게 전달해 봐! </St.Title>
-      </St.TitleWrapper>
-      <St.GiftWrapper>
-        {localStorage.getItem("priceType") === "MY_REC" ? (
-          <St.Gift src={ImgFinishRecommend} alt="추천사 보기 혜택" />
-        ) : localStorage.getItem("priceType") === "SUNGURI" ? (
-          <St.Gift src={ImgFinishSunguri} alt="썬구리 혜택" />
-        ) : (
-          <St.Gift src={ImgFinishNone} alt="혜택 없음" />
-        )}
-      </St.GiftWrapper>
+    <>
+      {isModalOpened && <FinishModal title={modalTitle} closeModal={closeModal} />}
+      <St.Finish>
+        <St.TitleWrapper>
+          <St.Title>추천사 너무 좋다😉</St.Title>
+          <St.Title>이제 링크를 친구에게 전달해 봐! </St.Title>
+        </St.TitleWrapper>
+        <St.GiftWrapper>
+          {localStorage.getItem("priceType") === "MY_REC" ? (
+            <St.Gift src={ImgFinishRecommend} alt="추천사 보기 혜택" />
+          ) : localStorage.getItem("priceType") === "SUNGURI" ? (
+            <St.Gift src={ImgFinishSunguri} alt="썬구리 혜택" />
+          ) : (
+            <St.Gift src={ImgFinishNone} alt="혜택 없음" />
+          )}
+        </St.GiftWrapper>
 
-      <St.ShareBtnWrapper>
-        <St.ShareBtnLabel>🔗 친구에게 링크를 보내봐</St.ShareBtnLabel>
-        <CopyToClipboard text={copyText} onCopy={shareRecommendLink}>
+        <St.ShareBtnWrapper>
+          <St.ShareBtnLabel>🔗 친구에게 링크를 보내봐</St.ShareBtnLabel>
+
           <St.ShareBtn type="button" className={GTM_CLASS_NAME.viralUrl}>
             초대 링크 공유하기
           </St.ShareBtn>
-        </CopyToClipboard>
-      </St.ShareBtnWrapper>
+        </St.ShareBtnWrapper>
 
-      <St.ConsultantBtnWrapper>
-        <ConsultantTextBtn />
-      </St.ConsultantBtnWrapper>
+        <St.ConsultantBtnWrapper>
+          <ConsultantTextBtn />
+        </St.ConsultantBtnWrapper>
 
-      <FinishBottom />
-    </St.Finish>
+        <FinishBottom />
+      </St.Finish>
+    </>
   );
 }
 

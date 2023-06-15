@@ -4,6 +4,7 @@ export { default as ImgConsultantNaechinso } from "./consultantNaechinso.png";
 export { default as ImgDontGo } from "./dontGo.png";
 export { default as ImgEditNaechinso } from "./editNaechinso.png";
 export { default as ImgErrorNaechinso } from "./errorNaechinso.png";
+export { default as ImgFinishModalNaechinso } from "./finishModalNaechinso.png";
 export { default as ImgFinishNone } from "./finishNone.png";
 export { default as ImgFinishRecommend } from "./finishRecommend.png";
 export { default as ImgFinishSunguri } from "./finishSunguri.png";
