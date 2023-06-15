@@ -3,6 +3,7 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import styled from "styled-components";
 
 import { ImgFinishModalNaechinso } from "../../asset/image";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 
 interface FinishModalProps {
   title: string;
@@ -63,7 +64,9 @@ export default function FinishModal(props: FinishModalProps) {
         </St.DescWrapper>
         <CopyToClipboard text={copyText} onCopy={shareRecommendLink}>
           <St.ButtonWrapper>
-            <St.Button type="button">초대 링크 공유하기</St.Button>
+            <St.Button type="button" className={GTM_CLASS_NAME.viralUrl}>
+              초대 링크 공유하기
+            </St.Button>
           </St.ButtonWrapper>
         </CopyToClipboard>
       </St.FinishModal>
