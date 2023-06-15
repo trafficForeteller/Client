@@ -33,7 +33,7 @@ export default function SelectiveRecommendPage() {
         navigatePath="/recommend/dontGo"
         progressRate={98}
         questionKind="선택질문"
-        title1="🤔 원하는 질문 1개에 답해주면 돼!"
+        title1="😘 마지막이야! 질문 하나만 골라줘"
       />
 
       {isBottomSheetOpened && (

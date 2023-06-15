@@ -466,7 +466,7 @@ export const friendLoverTypeList: keywordProps[] = [
   },
   {
     id: 15,
-    keyword: "친한친구처럼🤼‍",
+    keyword: "친한친구같은🤼‍",
     checked: false,
   },
   {
