@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import { ImgCommentNaechinso } from "../../asset/image";
-import { FinishBottom } from "../@common";
+import FinishBottom from "./FinishBottom";
 
 export default function EditFinish() {
   return (

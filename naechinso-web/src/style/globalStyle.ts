@@ -115,4 +115,10 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     font-style: normal;
   }
+  @font-face {
+  font-family: 'PilseungGothic';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/PilseungGothic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 `;

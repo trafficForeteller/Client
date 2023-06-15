@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { IcNaechinsoLogo } from "../../asset/icons";
+import { ImgFinishBackground } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
-import { ConsultantTextBtn } from "../@common";
+import Roulette from "./Roulette";
+import RouletteGauge from "./RouletteGauge";
 
 export default function Finish() {
   const navigate = useNavigate();
@@ -40,10 +43,25 @@ export default function Finish() {
 
   return (
     <St.Finish>
-      <St.Title>
-        <St.HighLight>다른 친구</St.HighLight>도 소개해볼래!😎
-      </St.Title>
-      <ConsultantTextBtn />
+      <St.FinishBackground src={ImgFinishBackground} alt="주황 배경" />
+      <St.HeaderWrapper>
+        <St.NaechinsoLogo>
+          <IcNaechinsoLogo />
+        </St.NaechinsoLogo>
+        <St.NaechinsoWeb href="https://www.naechinso.com/">내친소란?</St.NaechinsoWeb>
+      </St.HeaderWrapper>
+      <St.TitleWrapper>
+        <St.Title>
+          친구 <St.HighLight>3명</St.HighLight>을 초대하고
+        </St.Title>
+        <St.Title>
+          대박 <St.HighLight>룰렛</St.HighLight>을 돌려보자!
+        </St.Title>
+      </St.TitleWrapper>
+
+      <RouletteGauge />
+      <Roulette />
+
       <St.MoveLandingBtn type="button" onClick={handleMoveRecommendLanding} className={GTM_CLASS_NAME.referral}>
         다른 친구 소개하고 룰렛 돌리기
       </St.MoveLandingBtn>
@@ -53,40 +71,70 @@ export default function Finish() {
 
 const St = {
   Finish: styled.main`
-    background-color: ${({ theme }) => theme.colors.white};
-    border-radius: 20px 20px 0px 0px;
-    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.15);
-
-    position: fixed;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    background-color: ${({ theme }) => theme.colors.black};
 
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2.8rem 2rem 3.6rem;
 
-    width: 37.5rem;
-    @media only screen and (min-width: 375px) and (max-width: 600px) {
-      width: 100%;
-    }
+    width: 100%;
+    height: 100vh;
+
+    position: relative;
+  `,
+  FinishBackground: styled.img`
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  `,
+  HeaderWrapper: styled.header`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    z-index: 2;
+  `,
+  NaechinsoLogo: styled.span`
+    width: 5.6rem;
+    height: 3.6rem;
+  `,
+  NaechinsoWeb: styled.a`
+    color: ${({ theme }) => theme.colors.orange};
+    ${({ theme }) => theme.fonts.caption6};
+  `,
+  TitleWrapper: styled.hgroup`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+    margin: 2.4rem 0 1.2rem;
   `,
   Title: styled.h2`
-    color: ${({ theme }) => theme.colors.gray100};
-    ${({ theme }) => theme.fonts.sub2};
-    display: flex;
+    color: ${({ theme }) => theme.colors.white};
+
+    font-family: "PilseungGothic";
+    font-size: 3.8rem;
+    line-height: 116%;
   `,
   HighLight: styled.b`
-    color: ${({ theme }) => theme.colors.orange};
-    ${({ theme }) => theme.fonts.sub2};
+    color: #ffb700;
+
+    font-family: PilseungGothic;
+    font-size: 3.8rem;
+    line-height: 116%;
+    text-align: center;
+    letter-spacing: -0.01em;
   `,
   MoveLandingBtn: styled.button`
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.body3};
-    width: 100%;
     height: 4.4rem;
     border-radius: 1.6rem;
 
@@ -94,7 +142,12 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    margin-top: 2.8rem;
-    margin-bottom: 2rem;
+    position: absolute;
+    bottom: 4.4rem;
+
+    width: 33.5rem;
+    @media only screen and (min-width: 375px) and (max-width: 600px) {
+      width: 90%;
+    }
   `,
 };
