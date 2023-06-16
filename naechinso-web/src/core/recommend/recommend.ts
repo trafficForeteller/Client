@@ -182,7 +182,7 @@ export const appealDetailList: keywordProps[] = [
   { id: 0, keyword: "감동을 주는💦", checked: false },
   {
     id: 1,
-    keyword: "가장 오래된🗿",
+    keyword: "인생 열심히 사는🔥",
     checked: false,
   },
   {
@@ -192,12 +192,12 @@ export const appealDetailList: keywordProps[] = [
   },
   {
     id: 3,
-    keyword: "무인도에 떨어져도 잘 살거 같은🏝",
+    keyword: "감정기복 없이 평온한🍵",
     checked: false,
   },
   {
     id: 4,
-    keyword: "일을 잘하는💼",
+    keyword: "유쾌한 개그맨인🥴",
     checked: false,
   },
   {
@@ -217,7 +217,7 @@ export const appealDetailList: keywordProps[] = [
   },
   {
     id: 8,
-    keyword: "적극적인😉",
+    keyword: "기댈 수 있는 진국의",
     checked: false,
   },
   {
@@ -252,142 +252,42 @@ export const appealDetailList: keywordProps[] = [
   },
   {
     id: 15,
-    keyword: "인생 열심히 사는🔥",
-    checked: false,
-  },
-  {
-    id: 16,
-    keyword: "감정기복 없는🍵",
-    checked: false,
-  },
-  {
-    id: 17,
-    keyword: "유쾌한 개그맨인🥴",
-    checked: false,
-  },
-  {
-    id: 18,
-    keyword: "기댈 수 있는 진국의",
-    checked: false,
-  },
-  {
-    id: 19,
     keyword: "귀여운 사랑둥이❤️",
     checked: false,
   },
   {
-    id: 20,
-    keyword: " 해피바이러스🌻️",
+    id: 16,
+    keyword: "해피바이러스🌻️",
     checked: false,
   },
   {
-    id: 21,
-    keyword: "알잘딱깔센✨",
-    checked: false,
-  },
-  {
-    id: 22,
+    id: 17,
     keyword: "육각형 매력이 꽉찬💎",
     checked: false,
   },
   {
-    id: 23,
-    keyword: "왜 솔로인지 모르겠는🤷‍♀️",
-    checked: false,
-  },
-  {
-    id: 24,
+    id: 18,
     keyword: "주위에서 예쁨받는💞",
     checked: false,
   },
   {
-    id: 25,
+    id: 19,
     keyword: "모든 걸 갖춘 엄친아🤓",
     checked: false,
   },
   {
-    id: 26,
-    keyword: "지덕체를 겸비한🎓",
+    id: 20,
+    keyword: "여유있는 집안을 가진",
     checked: false,
   },
   {
-    id: 27,
-    keyword: "한다면 하는👊",
+    id: 21,
+    keyword: "영앤리치의 표본인💰",
     checked: false,
   },
   {
-    id: 28,
-    keyword: "연예인 닮은🎀",
-    checked: false,
-  },
-  {
-    id: 29,
-    keyword: "두부상의 매력적인🤍",
-    checked: false,
-  },
-  {
-    id: 30,
-    keyword: "인상이 뚜렷한👦",
-    checked: false,
-  },
-  {
-    id: 31,
-    keyword: "유복한 집안인👨‍👩‍👧‍👧",
-    checked: false,
-  },
-  {
-    id: 32,
-    keyword: "팔뚝이 굵은💪",
-    checked: false,
-  },
-  {
-    id: 33,
-    keyword: "영앤 리치인💰",
-    checked: false,
-  },
-  {
-    id: 34,
-    keyword: "차가 가장 멋진🚗",
-    checked: false,
-  },
-  {
-    id: 35,
-    keyword: "주위에서 존경받는🕶",
-    checked: false,
-  },
-  {
-    id: 36,
-    keyword: "일잘러인📈",
-    checked: false,
-  },
-  {
-    id: 37,
-    keyword: "태평양 어깨를 가진⛵",
-    checked: false,
-  },
-  {
-    id: 38,
-    keyword: "3개 국어를 하는🔠",
-    checked: false,
-  },
-  {
-    id: 39,
-    keyword: "춤을 잘추는💃",
-    checked: false,
-  },
-  {
-    id: 40,
-    keyword: "노래도 잘하는🎶",
-    checked: false,
-  },
-  {
-    id: 41,
-    keyword: "운동을 제일 잘하는⚽",
-    checked: false,
-  },
-  {
-    id: 42,
-    keyword: "몸매가 가장 좋은🧜‍♀️",
+    id: 22,
+    keyword: "자기 일에 능력있는🕶",
     checked: false,
   },
 ];
