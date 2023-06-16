@@ -336,10 +336,6 @@ const St = {
       background-color: ${({ theme }) => theme.colors.orange20};
       cursor: default;
     }
-
-    @media only screen and (min-width: 600px) {
-      width: 16.2rem;
-    }
   `,
   CurrentStep: styled.p`
     position: fixed;
