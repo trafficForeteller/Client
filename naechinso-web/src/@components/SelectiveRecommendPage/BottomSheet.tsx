@@ -230,9 +230,8 @@ export default function BottomSheet(props: BottomSheetProps) {
                 className={GTM_CLASS_NAME.recommendSuccessWithSelectiveQuestion}>
                 완성하기
               </St.NextStepBtn>
+              <St.CurrentStep>5/5</St.CurrentStep>
             </St.ButtonWrapper>
-
-            <St.CurrentStep>5/5</St.CurrentStep>
           </St.BottomSheet>
           {isWarningModalOpened && (
             <WarningModal
@@ -270,7 +269,7 @@ const slideOut = keyframes`
 const St = {
   ModalBackground: styled.div`
     background-color: rgba(0, 0, 0, 0.64);
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
     width: 100%;
@@ -308,7 +307,6 @@ const St = {
   `,
   ButtonWrapper: styled.section`
     display: flex;
-    justify-content: center;
     width: 37.5rem;
     position: fixed;
     margin: 0 auto;
@@ -338,7 +336,7 @@ const St = {
     }
   `,
   CurrentStep: styled.p`
-    position: fixed;
+    position: absolute;
     right: 4rem;
     bottom: 7rem;
 
