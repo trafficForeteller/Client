@@ -2,21 +2,12 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { selectiveRecommendList, selectiveRecommendProps } from "../../core/recommend/recommend";
-import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { AdressingFixedHeader, ConsultantTextBtn } from "../@common";
 import BottomSheet from "./BottomSheet";
-import SkipBottomSheet from "./SkipBottomModal";
 
 export default function SelectiveRecommendPage() {
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
-  const [isSkipBottomSheetOpened, setIsSkipBottomSheetOpened] = useState(false);
   const [placeholder, setPlaceholder] = useState("");
-
-  const handleSkipButton = () => {
-    // 한 번 막는 모달 떠야해
-    setIsSkipBottomSheetOpened(true);
-  };
-
   const handleSelectQuestion = (question: selectiveRecommendProps) => {
     // 질문 골랐을 대
     setIsBottomSheetOpened(true);
@@ -25,21 +16,21 @@ export default function SelectiveRecommendPage() {
   };
 
   const closeModal = () => setIsBottomSheetOpened(false);
-  const closeSkipBottomSheet = () => setIsSkipBottomSheetOpened(false);
+
   return (
-    <>
+    <St.SelectiveRecommendPage isBottomSheetOpened={isBottomSheetOpened}>
       <AdressingFixedHeader
         header="추천사"
         navigatePath="/recommend/dontGo"
         progressRate={98}
-        questionKind="선택질문"
+        questionKind="필수질문 5"
         title1="😘 마지막이야! 질문 하나만 골라줘"
       />
 
       {isBottomSheetOpened && (
         <BottomSheet isBottomSheetOpened={isBottomSheetOpened} closeModal={closeModal} placeholder={placeholder} />
       )}
-      <St.SelectiveRecommendPage>
+      <St.SelectiveRecommend>
         <St.QuestionListWrapper>
           {selectiveRecommendList.map((question) => {
             return (
@@ -58,37 +49,26 @@ export default function SelectiveRecommendPage() {
           })}
         </St.QuestionListWrapper>
         <ConsultantTextBtn />
-
-        <St.SkipButton
-          onClick={handleSkipButton}
-          type="button"
-          className={GTM_CLASS_NAME.recommendSkipSelectiveQuestion}>
-          건너뛰기
-        </St.SkipButton>
-        {isSkipBottomSheetOpened && (
-          <SkipBottomSheet isBottomSheetOpened={isSkipBottomSheetOpened} closeModal={closeSkipBottomSheet} />
-        )}
-      </St.SelectiveRecommendPage>
-    </>
+      </St.SelectiveRecommend>
+    </St.SelectiveRecommendPage>
   );
 }
 
 const St = {
-  ModalBackground: styled.div`
-    background-color: rgba(0, 0, 0, 0.64);
-    position: absolute;
-    left: 0;
-    top: 0;
+  SelectiveRecommendPage: styled.main<{ isBottomSheetOpened: boolean }>`
+    position: relative;
     width: 100%;
-    height: 100%;
-    z-index: 9;
+    height: 100vh;
+    overflow: ${({ isBottomSheetOpened }) => (isBottomSheetOpened ? "hidden" : "auto")};
   `,
-  SelectiveRecommendPage: styled.main`
+
+  SelectiveRecommend: styled.section`
     width: 100%;
-    height: 100%;
-    padding: 18rem 2rem 15rem;
+    height: 100vh;
+    padding: 18rem 2rem 0;
+    margin-bottom: 3.5rem;
   `,
-  QuestionListWrapper: styled.section`
+  QuestionListWrapper: styled.article`
     margin: 0 auto;
     width: 100%;
     display: flex;

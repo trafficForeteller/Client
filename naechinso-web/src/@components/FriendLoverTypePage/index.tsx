@@ -60,7 +60,7 @@ export default function FriendLoverTypePage() {
       />
       <St.StepWrapper>
         <St.CurrentStep>3/</St.CurrentStep>
-        <St.TotalStep>4</St.TotalStep>
+        <St.TotalStep>5</St.TotalStep>
       </St.StepWrapper>
     </St.FriendLoverType>
   );

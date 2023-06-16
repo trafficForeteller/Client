@@ -50,11 +50,11 @@ export default function WarningModal(props: WarningModalProps) {
 const St = {
   ModalBackground: styled.div`
     background-color: rgba(0, 0, 0, 0.64);
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     z-index: 999;
   `,
   WarningModal: styled.section`
