@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { IcDontGo } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
-import { ConsultantIconBtn, FixedHeader, TextAreaBox } from "../@common";
+import { AdressingFixedHeader, ConsultantIconBtn, TextAreaBox } from "../@common";
 
 export default function DontGoPage() {
   const [text, setText] = useState("");
@@ -27,11 +27,12 @@ export default function DontGoPage() {
   return (
     <>
       <St.DontGo>
-        <FixedHeader
+        <AdressingFixedHeader
           header="추천사"
+          navigatePath="/recommend/friendLoverType"
           progressRate={90}
           questionKind="필수질문 4"
-          title1="😥 친구를 거절한 상대에게 한 마디!"
+          title1="😥 친구를 거절한 상대에게 한 마디! "
         />
 
         <St.TextWrapper>
@@ -62,7 +63,10 @@ export default function DontGoPage() {
         </St.NextStepBtnWrapper>
       </St.DontGo>
 
-      <St.CurrentStep>4/4</St.CurrentStep>
+      <St.StepWrapper>
+        <St.CurrentStep>4/</St.CurrentStep>
+        <St.TotalStep>5</St.TotalStep>
+      </St.StepWrapper>
     </>
   );
 }
@@ -120,12 +124,20 @@ const St = {
       width: 100%;
     }
   `,
-  CurrentStep: styled.p`
+  StepWrapper: styled.article`
     position: fixed;
     right: 4rem;
     bottom: 7rem;
 
+    display: flex;
+  `,
+  CurrentStep: styled.p`
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.sub3};
+  `,
+  TotalStep: styled.p`
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+    opacity: 0.4;
   `,
 };

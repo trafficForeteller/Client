@@ -6,7 +6,6 @@ import styled, { keyframes } from "styled-components";
 import { postMemberReissue } from "../../apis/member.api";
 import { getCheckPrice, patchRecommendFriendDetail, postRecommendation } from "../../apis/recommend.api";
 import { IcPreviousBtn } from "../../asset/icons";
-import { selectiveRecommendList } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
@@ -217,16 +216,13 @@ export default function BottomSheet(props: BottomSheetProps) {
               maxLength={150}
               text={selectiveRecommend}
               setText={setSelectiveRecommend}
-              height={8}
+              height={15}
               letterLimit="10자 이상 150자 이내"
               isModalOpened={false}
               textareaScroll={true}
             />
 
             <St.ButtonWrapper>
-              <St.CloseBtn type="button" onClick={closeModal}>
-                닫기
-              </St.CloseBtn>
               <St.NextStepBtn
                 type="button"
                 disabled={isButtonDisabled}
@@ -234,6 +230,7 @@ export default function BottomSheet(props: BottomSheetProps) {
                 className={GTM_CLASS_NAME.recommendSuccessWithSelectiveQuestion}>
                 완성하기
               </St.NextStepBtn>
+              <St.CurrentStep>5/5</St.CurrentStep>
             </St.ButtonWrapper>
           </St.BottomSheet>
           {isWarningModalOpened && (
@@ -276,13 +273,13 @@ const St = {
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     z-index: 98;
   `,
   BottomSheet: styled.main<{ isBottomSheetOpened: boolean }>`
     padding: 0 2rem 11rem;
     width: 100%;
-    height: 60%;
+    height: 75%;
 
     position: fixed;
     margin: 0 auto;
@@ -310,7 +307,6 @@ const St = {
   `,
   ButtonWrapper: styled.section`
     display: flex;
-    justify-content: center;
     width: 37.5rem;
     position: fixed;
     margin: 0 auto;
@@ -324,25 +320,12 @@ const St = {
     justify-content: space-between;
     gap: 1.1rem;
   `,
-  CloseBtn: styled.button`
-    bottom: 3.5rem;
-    background-color: ${({ theme }) => theme.colors.neural};
-    color: ${({ theme }) => theme.colors.gray40};
-    ${({ theme }) => theme.fonts.sub3};
-    width: 47%;
-    height: 5.6rem;
-    border-radius: 16px;
-    cursor: pointer;
-    @media only screen and (min-width: 600px) {
-      width: 16.2rem;
-    }
-  `,
   NextStepBtn: styled.button`
     bottom: 3.5rem;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.sub3};
-    width: 47%;
+    width: 100%;
     height: 5.6rem;
     border-radius: 16px;
     cursor: pointer;
@@ -351,9 +334,14 @@ const St = {
       background-color: ${({ theme }) => theme.colors.orange20};
       cursor: default;
     }
+  `,
+  CurrentStep: styled.p`
+    position: absolute;
+    right: 4rem;
+    bottom: 7rem;
 
-    @media only screen and (min-width: 600px) {
-      width: 16.2rem;
-    }
+    display: flex;
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
   `,
 };
