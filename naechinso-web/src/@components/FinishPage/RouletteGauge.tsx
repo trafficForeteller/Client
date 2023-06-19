@@ -99,7 +99,7 @@ const St = {
   `,
   HighLightOrange: styled.b`
     color: ${({ theme }) => theme.colors.orange};
-    ${({ theme }) => theme.fonts.body8};
+    ${({ theme }) => theme.fonts.body9};
   `,
   RouletteGaugeBox: styled.ul`
     display: flex;
