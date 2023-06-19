@@ -47,7 +47,7 @@ export default function FriendLoverTypePage() {
         navigatePath="/recommend/appealDetail"
         progressRate={80}
         questionKind="필수질문 3"
-        title1="🧡 친구와 어울릴 것 같은 애인 유형 "
+        title1="🧡 친구와 어울릴 것 같은 애인 유형"
       />
 
       <SelectOneKeyword keywordList={friendLoverTypeArr} setKeywordList={setFriendLoverTypeArr} />
