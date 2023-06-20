@@ -5,8 +5,7 @@ import { IcNaechinsoLogo } from "../../asset/icons";
 import { ImgFinishBackground } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
-import Roulette from "./Roulette";
-import RouletteGauge from "./RouletteGauge";
+import { Roulette, RouletteGauge } from "../@common";
 
 export default function Finish() {
   const navigate = useNavigate();
