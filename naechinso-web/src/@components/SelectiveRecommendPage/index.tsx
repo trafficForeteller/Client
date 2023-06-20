@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { selectiveRecommendList, selectiveRecommendProps } from "../../core/recommend/recommend";
@@ -17,6 +17,12 @@ export default function SelectiveRecommendPage() {
 
   const closeModal = () => setIsBottomSheetOpened(false);
 
+  useEffect(() => {
+    localStorage.getItem("checkedSelectiveQ") !== null &&
+      localStorage.getItem("selectiveRecommend") !== null &&
+      setIsBottomSheetOpened(true);
+  }, []);
+
   return (
     <St.SelectiveRecommendPage isBottomSheetOpened={isBottomSheetOpened}>
       <AdressingFixedHeader
@@ -34,15 +40,8 @@ export default function SelectiveRecommendPage() {
         <St.QuestionListWrapper>
           {selectiveRecommendList.map((question) => {
             return (
-              <St.QuestionBox
-                type="button"
-                key={question.id}
-                idx={question.id}
-                onClick={() => handleSelectQuestion(question)}>
-                <St.SubTitleWrapper>
-                  <St.Icon>{question.icon}</St.Icon>
-                  <St.SubTitle idx={question.id}>{question.subTitle}</St.SubTitle>
-                </St.SubTitleWrapper>
+              <St.QuestionBox type="button" key={question.id} onClick={() => handleSelectQuestion(question)}>
+                <St.Icon>{question.icon}</St.Icon>
                 <St.Title>{question.title}</St.Title>
               </St.QuestionBox>
             );
@@ -58,15 +57,15 @@ const St = {
   SelectiveRecommendPage: styled.main<{ isBottomSheetOpened: boolean }>`
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     overflow: ${({ isBottomSheetOpened }) => (isBottomSheetOpened ? "hidden" : "auto")};
+    margin-bottom: 3.5rem;
   `,
 
   SelectiveRecommend: styled.section`
     width: 100%;
     height: 100vh;
     padding: 18rem 2rem 0;
-    margin-bottom: 3.5rem;
   `,
   QuestionListWrapper: styled.article`
     margin: 0 auto;
@@ -77,32 +76,23 @@ const St = {
     gap: 1.2rem;
     //  overflow-y: scroll;
   `,
-  QuestionBox: styled.button<{ idx: number }>`
+  QuestionBox: styled.button`
     width: 100%;
-    height: 10.6rem;
-    padding: 2rem 2rem 2.8rem;
+    height: 8.8rem;
+    padding: 1.28rem;
 
     display: flex;
     flex-direction: column;
+    gap: 0.4rem;
     // id에 따라 배경색과 글자색깔 구분
-    background: ${({ idx }) => (idx % 3 === 0 ? "#D0F4FF" : idx % 3 === 1 ? "#FFEFC2" : "#FFE4CC")};
-    border: 0.5px solid ${({ idx }) => (idx % 3 === 0 ? "#00C2FF" : idx % 3 === 1 ? "#FFBB00" : "#FF7A00")};
-    border-radius: 1.2rem;
+    background: ${({ theme }) => theme.colors.neural};
+    border-radius: 16px;
     @media only screen and (min-width: 375px) and (max-width: 600px) {
-      width: 32.7rem;
+      width: 33.5rem;
     }
-  `,
-  SubTitleWrapper: styled.article`
-    display: flex;
-    gap: 0.6rem;
-    align-items: center;
   `,
   Icon: styled.p`
     ${({ theme }) => theme.fonts.sub2};
-  `,
-  SubTitle: styled.p<{ idx: number }>`
-    color: ${({ theme, idx }) => (idx % 3 === 0 ? "#2D8AA8" : theme.colors.orange)};
-    ${({ theme }) => theme.fonts.body3};
   `,
   Title: styled.h3`
     color: ${({ theme }) => theme.colors.black};

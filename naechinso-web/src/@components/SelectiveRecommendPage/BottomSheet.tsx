@@ -273,7 +273,7 @@ const St = {
     left: 0;
     top: 0;
     width: 100%;
-    height: 100vh;
+    height: 200vh;
     z-index: 98;
   `,
   BottomSheet: styled.main<{ isBottomSheetOpened: boolean }>`
