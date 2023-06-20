@@ -20,6 +20,7 @@ export { default as ImgRecommenderLanding } from "./recommenderLanding.png";
 export { default as ImgRecommendLanding } from "./recommendLanding.png";
 export { default as ImgRoulette } from "./roulette.png";
 export { default as ImgRouletteGaugeNaechinso } from "./rouletteGaugeNaechinso.png";
+export { default as ImgRoulettePicker } from "./roulettePicker.png";
 export { default as ImgSelfIntroNaechinso } from "./selfIntroNaechinso.png";
 export { default as ImgWarningNaechinso } from "./warningNaechinso.png";
 export { default as ImgYetGauge } from "./yetGauge.png";

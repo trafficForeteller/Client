@@ -76,10 +76,10 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2.8rem 2rem 3.6rem;
+    padding: 2.8rem 2rem 12rem;
 
     width: 100%;
-    height: 100vh;
+    height: auto;
 
     position: relative;
   `,
@@ -137,12 +137,13 @@ const St = {
     ${({ theme }) => theme.fonts.sub3};
     height: 5.6rem;
     border-radius: 16px;
+    z-index: 4;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    position: absolute;
+    position: fixed;
     bottom: 4.4rem;
 
     width: 33.5rem;
