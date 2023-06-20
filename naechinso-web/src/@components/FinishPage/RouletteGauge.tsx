@@ -25,7 +25,7 @@ export default function RouletteGauge() {
         <St.Naechinso src={ImgRouletteGaugeNaechinso} alt="내친소" />
         <St.Desc>
           <St.HighLightOrange>친구가 가입</St.HighLightOrange>하면
-          <St.HighLightOrange> 100% 당첨룰렛 추첨권</St.HighLightOrange>을 문자로 보내줄게!
+          <St.HighLightOrange> 100% 당첨룰렛</St.HighLightOrange> 추첨권을 문자로 보내줄게!
         </St.Desc>
       </St.DescWrapper>
       <St.RouletteGaugeBox>
@@ -80,9 +80,6 @@ const St = {
     width: 33.5rem;
     height: 11rem;
     padding: 1.6rem 1.6rem 1.5rem;
-    @media only screen and (min-width: 375px) and (max-width: 600px) {
-      width: 90%;
-    }
   `,
   DescWrapper: styled.div`
     display: flex;
@@ -96,10 +93,12 @@ const St = {
   Desc: styled.p`
     color: ${({ theme }) => theme.colors.gray20};
     ${({ theme }) => theme.fonts.body9};
+    letter-spacing: -0.01em;
   `,
   HighLightOrange: styled.b`
     color: ${({ theme }) => theme.colors.orange};
     ${({ theme }) => theme.fonts.body9};
+    letter-spacing: -0.01em;
   `,
   RouletteGaugeBox: styled.ul`
     display: flex;
