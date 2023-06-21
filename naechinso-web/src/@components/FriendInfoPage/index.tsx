@@ -51,12 +51,10 @@ export default function FriendInfoPage() {
             .replace(/ /g, "");
         setPostPhoneNum && setPostPhoneNum({ phoneNumber: postPhoneNum });
         setPostFriendInfo({name: friendInfo.name, phone: postPhoneNum});
+        setStep(2);
       }
       setActiveBtn(true);
-      setStep(2);
-    } else {
-      memberName && setStep(2);
-    }
+    } 
   }, []);
 
   useEffect(() => {
@@ -173,7 +171,7 @@ export default function FriendInfoPage() {
     const updatedList = appealDetailList.map((item) => (item.keyword === keyword ? { ...item, checked: true } : item));
 
     localStorage.setItem("appealDetailList", JSON.stringify(updatedList));
-    localStorage.setItem("appeatlDetail", keyword);
+    localStorage.setItem("appealDetail", keyword);
   };
 
   const isValidRecommendAnswer = (recommendAnswer: string) => {
@@ -265,24 +263,14 @@ export default function FriendInfoPage() {
     <St.FriendInfoPage>
       <FriendInfoHeader/>
       <St.Title>
-        {memberName !== null ? (
-          <>
-            🤭
-            <br />
-            너는 {memberName}(이)랑은
-            <br /> 어떤 사이야?
-          </>
-        ) : (
-          <>
-            어떤 친구를 소개해줄거야? <br />
-            너무 궁금해!👀
-          </>
-        )}
+        👀<br/>
+        어떤 친구를 소개해줄거야? <br/>
+        너무 궁금해!
       </St.Title>
 
 
 
-      {localStorage.getItem("member-uuid") === null &&step >= 2 ? (
+      {localStorage.getItem("member-uuid") === null && step >= 2 ? (
        <PhoneNumInputBox
        label="내 친구의 휴대폰 번호"
        placeholder="0000 0000"
@@ -297,7 +285,7 @@ export default function FriendInfoPage() {
         <></>
       )}
 
-      {!memberName && (
+      
         <ShortInputBox
           label="내 친구 이름"
           placeholder="친구 이름을 실명으로 적어줘"
@@ -307,7 +295,6 @@ export default function FriendInfoPage() {
           step={step}
           handleStep={handleStep}
         />
-      )}
       <St.Blank></St.Blank>
 
       <ConsultantIconBtn />
