@@ -5,21 +5,12 @@ import styled from "styled-components";
 
 import { postMemberReissue } from "../../apis/member.api";
 import { getRecommend, postMagicRecommendFriendInfo, postRecommendFriendInfo } from "../../apis/recommend.api";
-import {
-  appealDetailList,
-  friendLoverTypeList,
-  keywordList,
-  relationDurationList,
-  relationTypeList,
-  relationTypeProps,
-} from "../../core/recommend/recommend";
+import { appealDetailList, friendLoverTypeList, keywordList } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IGetReommend, IPostFriendInfo, IPostRecommendElement, IUuid } from "../../types/recommend";
 import { ConsultantIconBtn, ShortInputBox } from "../@common";
 import FriendInfoHeader from "./FriendInfoHeader";
 import PhoneNumInputBox from "./PhoneNumInput";
-import RelationTypeInput from "./RecommendTypeInput";
-import RelationDurationInput from "./RelationDurationInput";
 
 export default function FriendInfoPage() {
   const [step, setStep] = useState(1);
@@ -27,14 +18,8 @@ export default function FriendInfoPage() {
   const navigate = useNavigate();
 
   const [isModalOpened, setIsModalOpened] = useState(false);
-  const [isTypeModalOpened, setIsTypeModalOpened] = useState(false);
-  const [isDurationModalOpened, setIsDurationModalOpened] = useState(false);
 
   const [name, setName] = useState("");
-  const [relationType, setRelationType] = useState("");
-  const [relationEtc, setRelationEtc] = useState("");
-  const [postRelationType, setPostRelationType] = useState("");
-  const [relationDuration, setRelationDuration] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
   const [postPhoneNum, setPostPhoneNum] = useState({ phoneNumber: "" });
   const memberName = localStorage.getItem("memberName");
@@ -42,12 +27,9 @@ export default function FriendInfoPage() {
   const [postFriendInfo, setPostFriendInfo] = useState<IPostFriendInfo>({
     phone: "",
     name: "",
-    meet: "",
-    period: "",
   });
   const [postMagicFriendInfo, setPostMagicFriendInfo] = useState<IPostFriendInfo>({
-    meet: "",
-    period: "",
+    name: "",
   });
 
   useEffect(() => {
@@ -57,27 +39,12 @@ export default function FriendInfoPage() {
 
     if (friendInfo) {
       setName(friendInfo.name);
-      setRelationDuration(friendInfo.period);
       friendInfo.phone && setPhoneNum(friendInfo.phone.replace("010", "").replace(/^(\d{3,4})(\d{4})$/g, "$1 $2"));
-      const meetOfLocal = friendInfo.meet as string;
-      if (
-        meetOfLocal === "친족" ||
-        meetOfLocal === "초/중/고 친구" ||
-        meetOfLocal === "대학교 친구" ||
-        meetOfLocal === "회사 친구"
-      ) {
-        setRelationType(meetOfLocal);
-      } else {
-        setRelationType("기타");
-        setRelationEtc(meetOfLocal);
-      }
 
       if (localStorage.getItem("member-uuid")) {
-        setStep(3);
-        setPostMagicFriendInfo(friendInfo);
+        setPostMagicFriendInfo({name: friendInfo.name});
       } else {
         // friendInfo.phone 여부 확인해 step과 postPhoneNum에 다른 값 넣어주기
-        setStep(4);
         const postPhoneNum =
           "010" +
           friendInfo.phone
@@ -85,54 +52,29 @@ export default function FriendInfoPage() {
             .replace(/^(\d{3,4})(\d{4})$/g, "$1 $2")
             .replace(/ /g, "");
         setPostPhoneNum && setPostPhoneNum({ phoneNumber: postPhoneNum });
-        setPostFriendInfo(friendInfo);
+        setPostFriendInfo({name: friendInfo.name, phone: postPhoneNum});
       }
       setActiveBtn(true);
+      setStep(2);
     } else {
-      resetListChecked(relationTypeList);
-      resetListChecked(relationDurationList);
-      if (memberName) {
-        setStep(2);
-      }
+      memberName && setStep(2);
     }
   }, []);
 
   useEffect(() => {
     // step에 따른 ActiveButton 활성화
-    if (memberName) {
-      if (step === 2 && relationType) setActiveBtn(true);
-      else if (step === 3 && relationType && relationDuration) setActiveBtn(true);
-    } else {
-      if (step === 1 && name.length >= 2) setActiveBtn(true);
-      else if (step === 2 && name.length >= 2 && relationType) setActiveBtn(true);
-      else if (step === 3 && name.length >= 2 && relationType && relationDuration) setActiveBtn(true);
-    }
-  }, [name, relationType, relationDuration]);
-
-  useEffect(() => {
-    checkIsModalOpened();
-  }, [isTypeModalOpened, isDurationModalOpened]);
+    if (step === 1 && name.length >= 2) setActiveBtn(true);   
+  }, [name,phoneNum]);
 
   useEffect(() => {
     // step에 따라 다른 모달 open
     window.scrollTo(0, 0);
-    if (step === 2) setIsTypeModalOpened(true);
-    else if (step === 3) setIsDurationModalOpened(true);
-    else if (step === 4 && memberName) {
+    if (step === 2 && memberName) {
       handleMagicFriendInfo();
-    } else if (step === 5) {
+    } else if (step === 3) {
       handleFriendInfo();
     }
   }, [step]);
-
-  const resetListChecked = (list: relationTypeProps[]) => {
-    // list checked가 모두 되지 않은 상태로 수정하기
-    list.map((el) => {
-      el.checked = false;
-      return el;
-    });
-    return list;
-  };
 
   const saveFriendInfoInLocal = (friendInfo: IPostFriendInfo) => {
     // 로컬스토리지에 저장
@@ -169,9 +111,9 @@ export default function FriendInfoPage() {
       localStorage.setItem("accessToken", userData["accessToken"]);
       localStorage.setItem("refreshToken", userData["refreshToken"]);
     }
-    if (step === 4 && localStorage.getItem("member-uuid")) {
+    if (step === 2 && localStorage.getItem("member-uuid")) {
       handleMagicFriendInfo();
-    } else if (step === 5) {
+    } else if (step === 3) {
       handleFriendInfo();
     }
   };
@@ -254,6 +196,7 @@ export default function FriendInfoPage() {
   };
 
   const processSelectiveRecommend = (questionToServer: IPostRecommendElement[]) => {
+    // 아이콘 많아져서 수정해야함
     const filteredQuestions = questionToServer.filter(
       (item) =>
         item.recommendQuestion.startsWith("🧚") ||
@@ -305,25 +248,16 @@ export default function FriendInfoPage() {
     setName(e.target.value);
   };
 
-  const checkIsModalOpened = () => {
-    if (isTypeModalOpened || isDurationModalOpened) return setIsModalOpened(true);
-    else return setIsModalOpened(false);
-  };
-
   const handleStep = () => {
     // 친구정보 step을 관리하는 함수
     setPostFriendInfo({
       ...postFriendInfo,
       name: name,
-      meet: postRelationType,
-      period: relationDuration,
       phone: postPhoneNum.phoneNumber,
     });
     setPostMagicFriendInfo({
       ...postMagicFriendInfo,
       name: name,
-      meet: postRelationType,
-      period: relationDuration,
     });
     setStep(step + 1);
     setActiveBtn(false);
@@ -348,50 +282,19 @@ export default function FriendInfoPage() {
         )}
       </St.Title>
 
-      {localStorage.getItem("member-uuid") === null && step >= 4 ? (
-        <PhoneNumInputBox
-          label="내 친구의 휴대폰 번호"
-          placeholder="0000 0000"
-          phoneNum={phoneNum}
-          setPhoneNum={setPhoneNum}
-          activeBtn={activeBtn}
-          setActiveBtn={setActiveBtn}
-          isModalOpened={isModalOpened}
-          setPostPhoneNum={setPostPhoneNum}
-          handleStep={handleStep}
-        />
-      ) : (
-        <></>
-      )}
 
-      {step >= 3 ? (
-        <RelationDurationInput
-          label="알고 지낸 기간"
-          placeholder="알고 지낸 기간을 선택해줘"
-          question="친구와 어떤 관계야?"
-          step={step}
-          relationDuration={relationDuration}
-          isDurationModalOpened={isDurationModalOpened}
-          setRelationDuration={setRelationDuration}
-          setIsDurationModalOpened={setIsDurationModalOpened}
-          isModalOpened={isModalOpened}
-        />
-      ) : (
-        <></>
-      )}
 
-      {step >= 2 ? (
-        <RelationTypeInput
-          step={step}
-          relationType={relationType}
-          isTypeModalOpened={isTypeModalOpened}
-          setIsTypeModalOpened={setIsTypeModalOpened}
-          setRelationType={setRelationType}
-          isModalOpened={isModalOpened}
-          relationEtc={relationEtc}
-          setRelationEtc={setRelationEtc}
-          setPostRelationType={setPostRelationType}
-        />
+      {localStorage.getItem("member-uuid") === null &&step >= 2 ? (
+       <PhoneNumInputBox
+       label="내 친구의 휴대폰 번호"
+       placeholder="0000 0000"
+       phoneNum={phoneNum}
+       setPhoneNum={setPhoneNum}
+       activeBtn={activeBtn}
+       setActiveBtn={setActiveBtn}
+       setPostPhoneNum={setPostPhoneNum}
+       handleStep={handleStep}
+     />
       ) : (
         <></>
       )}
@@ -402,7 +305,7 @@ export default function FriendInfoPage() {
           placeholder="친구 이름을 실명으로 적어줘"
           value={name}
           onChange={handleNameInput}
-          isModalOpened={isModalOpened}
+    
           step={step}
           handleStep={handleStep}
         />
@@ -411,7 +314,7 @@ export default function FriendInfoPage() {
 
       <ConsultantIconBtn />
       <St.NextStepBtnWrapper>
-        <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep} isModalOpened={isModalOpened}>
+        <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep}>
           다음
         </St.NextStepBtn>
       </St.NextStepBtnWrapper>
@@ -452,9 +355,7 @@ const St = {
     padding: 0 2rem;
     height: 11rem;
   `,
-  NextStepBtn: styled.button<{ isModalOpened: boolean }>`
-    visibility: ${({ isModalOpened }) => (isModalOpened ? "hidden" : "")};
-
+  NextStepBtn: styled.button`
     bottom: 3.5rem;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
