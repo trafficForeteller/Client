@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { getCheckRoulette } from "../../apis/recommend.api";
 import { IcNullRecommendMember, IcRecommendMember } from "../../asset/icons";
 import {
   ImgFullGauge,
@@ -11,13 +12,26 @@ import {
   ImgYetGauge,
   ImgYetLastGauge,
 } from "../../asset/image";
+import { IGetCheckRoulette, IRecommendReceiverList } from "../../types/recommend";
 
 export default function RouletteGauge() {
-  const [recommendMember, setRecommendMember] = useState([
-    { id: 0, friendName: "김지수", joinStatus: true },
-    { id: 1, friendName: "코딱지", joinStatus: false },
-    { id: 2, friendName: null, joinStatus: false },
-  ]);
+  const [recommendMember, setRecommendMember] = useState<IRecommendReceiverList[]>([]);
+
+  useEffect(() => {
+    if (location.pathname.startsWith("/roulette")) {
+      const memberUuid = location.pathname.substring(9);
+      memberUuid.length === 37 && localStorage.setItem("member-uuid", memberUuid);
+      // handleGetCheckRoulette();
+    }
+  }, []);
+
+  // const handleGetCheckRoulette = async () => {
+  //   const userData = await getCheckRoulette(localStorage.getItem("member-uuid"));
+  // };
+
+  // const handleSuccessGetCheckRoulette = (userData: IGetCheckRoulette) => {
+  //   setRecommendMember(userData.recommendReceiverList);
+  // };
 
   return (
     <St.RouletteGauge>
@@ -29,37 +43,37 @@ export default function RouletteGauge() {
         </St.Desc>
       </St.DescWrapper>
       <St.RouletteGaugeBox>
-        {recommendMember.map((member) => {
+        {recommendMember.map((member, idx) => {
           return (
-            <St.RouletteGaugeWrapper key={member.id}>
+            <St.RouletteGaugeWrapper key={idx}>
               <St.RouletteGaugeSvg
-                idx={member.id}
+                idx={idx}
                 alt="추천사 게이지"
                 src={
-                  member.id === 2 && member.friendName === null
+                  idx === 2 && member.name === null
                     ? ImgNullLastGauge
-                    : member.id === 2 && member.joinStatus === false
+                    : idx === 2 && member.status === "NONE"
                     ? ImgYetLastGauge
-                    : member.id === 2 && member.joinStatus === true
+                    : idx === 2 && member.status === "ACCEPT"
                     ? ImgFullLastGauge
-                    : member.friendName === null
+                    : member.name === null
                     ? ImgNullGauge
-                    : member.joinStatus === false
+                    : member.status === "NONE"
                     ? ImgYetGauge
                     : ImgFullGauge
                 }
               />
               <St.RecommendMemberWrapper>
-                {member.friendName === null ? ( // 추천한 친구가 없을 때
+                {member.name === null ? ( // 추천한 친구가 없을 때
                   <IcNullRecommendMember />
                 ) : (
                   // 추천한 친구가 있을 때
                   <>
                     <IcRecommendMember />
-                    <St.RecommendMemberName>{member.friendName}</St.RecommendMemberName>
-                    <St.RecommendMemberJoinStatus joinStatus={member.joinStatus}>
-                      {member.joinStatus ? "완료" : "가입 전"}
-                    </St.RecommendMemberJoinStatus>
+                    <St.RecommendMemberName>{member.name}</St.RecommendMemberName>
+                    <St.RecommendMemberstatus status={member.status}>
+                      {member.status ? "완료" : "가입 전"}
+                    </St.RecommendMemberstatus>
                   </>
                 )}
               </St.RecommendMemberWrapper>
@@ -145,8 +159,8 @@ const St = {
     margin-left: 0.4rem;
     margin-right: 0.2rem;
   `,
-  RecommendMemberJoinStatus: styled.p<{ joinStatus: boolean }>`
-    color: ${({ theme, joinStatus }) => (joinStatus ? theme.colors.orange : theme.colors.gray50)};
+  RecommendMemberstatus: styled.p<{ status: string }>`
+    color: ${({ theme, status }) => (status === "ACCEPT" ? theme.colors.orange : theme.colors.gray50)};
     ${({ theme }) => theme.fonts.caption9};
   `,
 };

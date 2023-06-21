@@ -9,8 +9,8 @@ import { Roulette, RouletteGauge } from "../@common";
 export default function RoulettePage() {
   const navigate = useNavigate();
 
-  const handleMoveRecommendLanding = () => {
-    navigate(routePaths.RecommendLanding);
+  const handleMovePhoneNumPage = () => {
+    navigate(routePaths.PhoneNum);
 
     localStorage.removeItem("questionList");
     localStorage.removeItem("checkedQ1");
@@ -60,7 +60,7 @@ export default function RoulettePage() {
       <RouletteGauge />
       <Roulette />
       {/* GTM 새로 달아야함 */}
-      <St.MoveLandingBtn type="button" onClick={handleMoveRecommendLanding}>
+      <St.MoveLandingBtn type="button" onClick={handleMovePhoneNumPage}>
         다른 친구 소개하고 룰렛 돌리기
       </St.MoveLandingBtn>
     </St.RoulettePage>
