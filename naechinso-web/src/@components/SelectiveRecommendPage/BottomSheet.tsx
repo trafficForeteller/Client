@@ -239,7 +239,6 @@ export default function BottomSheet(props: BottomSheetProps) {
               title2="한 마디를 다시 작성해줘🥺"
               desc1="비속어가 포함되어 있는지 확인해줘!"
               buttonTitle="응 수정할게!"
-              setIsWarningModalOpened={setIsWarningModalOpened}
             />
           )}
         </>
