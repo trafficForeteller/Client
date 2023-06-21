@@ -4,17 +4,11 @@ import styled from "styled-components";
 import { IcPreviousBtn } from "../../asset/icons";
 import { ProgressBar, WarningModal } from "../@common";
 
-export interface FriendInfoHeaderProps {
-  setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export default function FriendInfoHeader(props: FriendInfoHeaderProps) {
-  const { setIsModalOpened } = props;
+export default function FriendInfoHeader() {
   const [isWarningModalOpened, setIsWarningModalOpened] = useState(false);
 
   const movePreviousPage = () => {
     //이전페이지로 이동
-    setIsModalOpened(true);
     setIsWarningModalOpened(true);
     window.scrollTo(0, 0);
   };
@@ -36,7 +30,6 @@ export default function FriendInfoHeader(props: FriendInfoHeaderProps) {
           title2="추천사는 제출되지 않아🥺"
           desc1="모든 문항을 완성해줘!"
           buttonTitle="응 확인했어!"
-          setIsWarningModalOpened={setIsWarningModalOpened}
         />
       )}
     </>

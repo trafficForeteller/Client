@@ -17,8 +17,6 @@ export default function FriendInfoPage() {
   const [activeBtn, setActiveBtn] = useState(false);
   const navigate = useNavigate();
 
-  const [isModalOpened, setIsModalOpened] = useState(false);
-
   const [name, setName] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
   const [postPhoneNum, setPostPhoneNum] = useState({ phoneNumber: "" });
@@ -264,8 +262,8 @@ export default function FriendInfoPage() {
   };
 
   return (
-    <St.FriendInfoPage isModalOpened={isModalOpened}>
-      <FriendInfoHeader setIsModalOpened={setIsModalOpened} />
+    <St.FriendInfoPage>
+      <FriendInfoHeader/>
       <St.Title>
         {memberName !== null ? (
           <>
@@ -323,8 +321,7 @@ export default function FriendInfoPage() {
 }
 
 const St = {
-  FriendInfoPage: styled.main<{ isModalOpened: boolean }>`
-    background-color: rgba(${({ isModalOpened }) => (isModalOpened ? "0, 0, 0, 0.64" : "")});
+  FriendInfoPage: styled.main`
     position: absolute;
     left: 0;
     top: 0;
