@@ -192,19 +192,8 @@ export default function FriendInfoPage() {
   };
 
   const processSelectiveRecommend = (questionToServer: IPostRecommendElement[]) => {
-    // 아이콘 많아져서 수정해야함
-    const filteredQuestions = questionToServer.filter(
-      (item) =>
-        item.recommendQuestion.startsWith("🧚") ||
-        item.recommendQuestion.startsWith("🖐🏻") ||
-        item.recommendQuestion.startsWith("🎁"),
-    );
-    const question =
-      filteredQuestions.length === 1
-        ? filteredQuestions[0]
-        : filteredQuestions.length > 1
-          ? filteredQuestions[filteredQuestions.length - 1]
-          : questionToServer[questionToServer.length - 1];
+    const filteredQuestions = questionToServer.filter((question) => question.recommendQuestion !== "친구는 어떤 사람이랑 어울릴 것 같아?");
+    const question = filteredQuestions.length > 0 && filteredQuestions[filteredQuestions.length - 1];
     if (question) {
       localStorage.setItem("checkedSelectiveQ", question.recommendQuestion);
       localStorage.setItem("selectiveRecommend", question.recommendAnswer);

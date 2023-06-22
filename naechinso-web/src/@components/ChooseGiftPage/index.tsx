@@ -102,7 +102,7 @@ export default function ChooseGiftPage() {
 
 const St = {
   ChooseGiftPage: styled.main`
-    padding: 22rem 2rem 0;
+    padding: 18rem 2rem 0;
   `,
   ButtonWrapper: styled.section`
     display: flex;
