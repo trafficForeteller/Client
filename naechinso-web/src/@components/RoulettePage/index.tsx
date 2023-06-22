@@ -1,14 +1,20 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { IcNaechinsoLogo } from "../../asset/icons";
 import { ImgFinishBackground } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
+import { IRouletteGauge } from "../../types/recommend";
 import { Roulette, RouletteGauge } from "../@common";
 
 export default function RoulettePage() {
   const navigate = useNavigate();
-
+  const [rouletteGauge, setRouletteGauge] = useState<IRouletteGauge[]>([
+    { id: 0, name: "", status: "" },
+    { id: 1, name: "", status: "" },
+    { id: 2, name: "", status: "" },
+  ]);
   const handleMovePhoneNumPage = () => {
     navigate(routePaths.PhoneNum);
 
@@ -57,8 +63,8 @@ export default function RoulettePage() {
         </St.Title>
       </St.TitleWrapper>
 
-      <RouletteGauge />
-      <Roulette />
+      <RouletteGauge rouletteGauge={rouletteGauge} setRouletteGauge={setRouletteGauge} />
+      <Roulette setRouletteGauge={setRouletteGauge} />
       {/* GTM 새로 달아야함 */}
       <St.MoveLandingBtn type="button" onClick={handleMovePhoneNumPage}>
         다른 친구 소개하고 룰렛 돌리기

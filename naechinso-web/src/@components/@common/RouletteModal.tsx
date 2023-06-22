@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 
 import { IGiftInfo } from "../../types/recommend";
@@ -10,11 +11,15 @@ interface RouletteModalProps {
 export default function RouletteModal(props: RouletteModalProps) {
   const { closeModal, giftInfo } = props;
 
+  useEffect(() => {
+    console.log(giftInfo);
+  }, []);
+
   return (
     <>
       <St.ModalBackground />
       <St.FinishModal>
-        <St.Naechinso src={giftInfo.src} alt="내친소" />
+        <St.Naechinso src={giftInfo.src} alt="내친소 상품" />
         <St.TitleWrapper>
           <St.HighLightTitle>{giftInfo.name}</St.HighLightTitle>
           <St.Title>에 당첨됐어! 🎉🎉</St.Title>
@@ -23,9 +28,8 @@ export default function RouletteModal(props: RouletteModalProps) {
           <St.Desc>축하해🧡 당첨된 대박 선물은</St.Desc>
           <St.Desc>
             친소가
-            {giftInfo.name.includes("썬구리")
-              ? "<St.Highlight>바로 지급</St.Highlight>할게💌"
-              : "<St.Highlight>3일 내에 문자</St.Highlight>로 보낼게💌"}
+            <St.Highlight> {giftInfo.name.includes("썬구리") ? "바로 지급" : "3일 내에 문자"}</St.Highlight>
+            {giftInfo.name.includes("썬구리") ? " 할게💌" : "로 보낼게💌"}
           </St.Desc>
         </St.DescWrapper>
 

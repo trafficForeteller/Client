@@ -63,3 +63,9 @@ export interface IGiftInfo {
   name: string;
   src: string;
 }
+
+export interface IRouletteGauge {
+  id: number;
+  name: string;
+  status: string;
+}

@@ -5,11 +5,17 @@ import styled from "styled-components";
 import { IcNaechinsoLogo } from "../../asset/icons";
 import { ImgFinishBackground } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
+import { IRouletteGauge } from "../../types/recommend";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { Roulette, RouletteGauge } from "../@common";
 
 export default function Finish() {
   const navigate = useNavigate();
+  const [rouletteGauge, setRouletteGauge] = useState<IRouletteGauge[]>([
+    { id: 0, name: "", status: "" },
+    { id: 1, name: "", status: "" },
+    { id: 2, name: "", status: "" },
+  ]);
 
   const handleMoveRecommendLanding = () => {
     navigate(routePaths.RecommendLanding);
@@ -59,8 +65,8 @@ export default function Finish() {
         </St.Title>
       </St.TitleWrapper>
 
-      <RouletteGauge />
-      <Roulette />
+      <RouletteGauge rouletteGauge={rouletteGauge} setRouletteGauge={setRouletteGauge} />
+      <Roulette setRouletteGauge={setRouletteGauge} />
 
       <St.MoveLandingBtn type="button" onClick={handleMoveRecommendLanding} className={GTM_CLASS_NAME.referral}>
         다른 친구 소개하고 룰렛 돌리기

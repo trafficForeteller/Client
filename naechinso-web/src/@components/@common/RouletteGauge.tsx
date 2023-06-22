@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -14,15 +14,16 @@ import {
   ImgYetLastGauge,
 } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
-import { IGetCheckRoulette } from "../../types/recommend";
+import { IGetCheckRoulette, IRouletteGauge } from "../../types/recommend";
 
-export default function RouletteGauge() {
+interface RouletteGaugeProps {
+  rouletteGauge: IRouletteGauge[];
+  setRouletteGauge: React.Dispatch<React.SetStateAction<IRouletteGauge[]>>;
+}
+
+export default function RouletteGauge(props: RouletteGaugeProps) {
+  const { rouletteGauge, setRouletteGauge } = props;
   const navigate = useNavigate();
-  const [rouletteGauge, setRouletteGauge] = useState([
-    { id: 0, name: "", status: "" },
-    { id: 1, name: "", status: "" },
-    { id: 2, name: "", status: "" },
-  ]);
 
   useEffect(() => {
     if (location.pathname.startsWith("/roulette")) {
@@ -31,10 +32,6 @@ export default function RouletteGauge() {
     }
     handleGetCheckRoulette(localStorage.getItem("roulette-uuid") as string);
   }, []);
-
-  useEffect(() => {
-    console.log(rouletteGauge);
-  }, [rouletteGauge]);
 
   const handleGetCheckRoulette = async (uuid: string) => {
     await getCheckRoulette(uuid, handleSuccessGetCheckRoulette, handleFailGetCheckRoulette);
@@ -53,6 +50,7 @@ export default function RouletteGauge() {
         });
       });
     });
+    console.log(userData.recommendReceiverList);
   };
 
   const handleFailGetCheckRoulette = (errorMessage: string) => {
@@ -78,15 +76,15 @@ export default function RouletteGauge() {
                 idx={idx}
                 alt="추천사 게이지"
                 src={
-                  idx === 2 && member.status === "NONE"
+                  idx === 2 && member.name !== null && member.status === "NONE"
                     ? ImgYetLastGauge
-                    : idx === 2 && member.status === "ACCEPT"
+                    : idx === 2 && member.name !== null && member.status === "ACCEPT"
                     ? ImgFullLastGauge
                     : idx === 2
                     ? ImgNullLastGauge
-                    : member.status === "NONE"
+                    : member.name !== null && member.status === "NONE"
                     ? ImgYetGauge
-                    : member.status === "NONE"
+                    : member.name !== null && member.status === "ACCEPT"
                     ? ImgFullGauge
                     : ImgNullGauge
                 }

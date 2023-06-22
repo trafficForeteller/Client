@@ -3,12 +3,17 @@ import { useNavigate } from "react-router-dom";
 import styled, { css, keyframes } from "styled-components";
 
 import { postCheckRoulette } from "../../apis/recommend.api";
-import { ImgRoulette, ImgRoulettePicker } from "../../asset/image";
+import { ImgConsultantNaechinso, ImgRoulette, ImgRoulettePicker } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
-import { IGiftInfo, IPostCheckRoulette } from "../../types/recommend";
+import { IGiftInfo, IPostCheckRoulette, IRouletteGauge } from "../../types/recommend";
 import RouletteModal from "./RouletteModal";
 
-export default function Roulette() {
+interface RouletteProps {
+  setRouletteGauge: React.Dispatch<React.SetStateAction<IRouletteGauge[]>>;
+}
+
+export default function Roulette(props: RouletteProps) {
+  const { setRouletteGauge } = props;
   const [rotating, setRotating] = useState(false);
   const [isModalOpen, setISModalOpen] = useState(false);
   const [giftInfo, setGiftInfo] = useState<IGiftInfo>({ name: "", src: "" });
@@ -39,19 +44,26 @@ export default function Roulette() {
   const handleSuccessPostCheckRoulette = (userData: IPostCheckRoulette) => {
     // 추천인 상품 확정하기
     if (userData.price.startsWith("SUNGURI")) {
-      if (userData.price.includes("20")) setGiftInfo({ name: "썬구리 20개", src: "../../asset/image/giftSunguri.png" });
-      else if (userData.price.includes("30"))
-        setGiftInfo({ name: "썬구리 30개", src: "../../asset/image/giftSunguri.png" });
-      else if (userData.price.includes("50"))
-        setGiftInfo({ name: "썬구리 50개", src: "../../asset/image/giftSunguri.png" });
+      if (userData.price.includes("20")) setGiftInfo({ name: "썬구리 20개", src: ImgConsultantNaechinso });
+      else if (userData.price.includes("30")) setGiftInfo({ name: "썬구리 30개", src: ImgConsultantNaechinso });
+      else if (userData.price.includes("50")) setGiftInfo({ name: "썬구리 50개", src: ImgConsultantNaechinso });
     } else if (userData.price.startsWith("BANANA_MILK"))
-      setGiftInfo({ name: "바나나우유", src: "../../asset/image/giftBananaMilk.png" });
-    else if (userData.price.startsWith("PERERO"))
-      setGiftInfo({ name: "페레로로쉐", src: "../../asset/image/giftPerero.png" });
+      setGiftInfo({ name: "바나나우유", src: ImgConsultantNaechinso });
+    else if (userData.price.startsWith("PERERO")) setGiftInfo({ name: "페레로로쉐", src: ImgConsultantNaechinso });
     else if (userData.price.startsWith("STARBUCKS"))
-      setGiftInfo({ name: "스타벅스 아이스 아메리카노", src: "../../asset/image/giftStarbucks.png" });
+      setGiftInfo({ name: "스타벅스 아이스 아메리카노", src: ImgConsultantNaechinso });
     else if (userData.price.startsWith("MEGACOFFEE"))
-      setGiftInfo({ name: "메가커피 아이스 아메리카노", src: "../../asset/image/giftMegaCoffee.png" });
+      setGiftInfo({ name: "메가커피 아이스 아메리카노", src: ImgConsultantNaechinso });
+
+    //post recommendReceiverList에 따른 추천한 사람 수정
+    userData.recommendReceiverList.forEach((receiver, idx) => {
+      setRouletteGauge((prevGauge) => {
+        return prevGauge.map((gauge) => {
+          if (gauge.id === idx) return { ...gauge, name: receiver.name, status: receiver.status };
+          return gauge;
+        });
+      });
+    });
   };
 
   const handleFailPostCheckRoulette = (errorMessage: string) => {
