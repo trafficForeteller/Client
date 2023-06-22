@@ -58,3 +58,8 @@ export interface IPostCheckRoulette {
   price: string;
   recommendReceiverList: IRecommendReceiverList[];
 }
+
+export interface IGiftInfo {
+  name: string;
+  src: string;
+}

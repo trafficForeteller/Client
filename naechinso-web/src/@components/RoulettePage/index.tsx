@@ -76,7 +76,7 @@ const St = {
     padding: 2.8rem 2rem 12rem;
 
     width: 100%;
-    height: auto;
+    height: 100vh;
 
     position: relative;
   `,

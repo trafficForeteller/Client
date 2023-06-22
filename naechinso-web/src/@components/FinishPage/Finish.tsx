@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -5,7 +6,7 @@ import { IcNaechinsoLogo } from "../../asset/icons";
 import { ImgFinishBackground } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
-import { ConsultantTextBtn, Roulette, RouletteGauge } from "../@common";
+import { Roulette, RouletteGauge } from "../@common";
 
 export default function Finish() {
   const navigate = useNavigate();
@@ -60,7 +61,6 @@ export default function Finish() {
 
       <RouletteGauge />
       <Roulette />
-      <ConsultantTextBtn />
 
       <St.MoveLandingBtn type="button" onClick={handleMoveRecommendLanding} className={GTM_CLASS_NAME.referral}>
         다른 친구 소개하고 룰렛 돌리기
@@ -79,7 +79,7 @@ const St = {
     padding: 2.8rem 2rem 12rem;
 
     width: 100%;
-    height: auto;
+    height: 100vh;
 
     position: relative;
   `,

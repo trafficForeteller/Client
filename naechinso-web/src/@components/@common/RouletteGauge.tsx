@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { getCheckRoulette } from "../../apis/recommend.api";
@@ -12,26 +13,52 @@ import {
   ImgYetGauge,
   ImgYetLastGauge,
 } from "../../asset/image";
-import { IGetCheckRoulette, IRecommendReceiverList } from "../../types/recommend";
+import { routePaths } from "../../core/routes/path";
+import { IGetCheckRoulette } from "../../types/recommend";
 
 export default function RouletteGauge() {
-  const [recommendMember, setRecommendMember] = useState<IRecommendReceiverList[]>([]);
+  const navigate = useNavigate();
+  const [rouletteGauge, setRouletteGauge] = useState([
+    { id: 0, name: "", status: "" },
+    { id: 1, name: "", status: "" },
+    { id: 2, name: "", status: "" },
+  ]);
 
   useEffect(() => {
     if (location.pathname.startsWith("/roulette")) {
-      const memberUuid = location.pathname.substring(9);
-      memberUuid.length === 37 && localStorage.setItem("member-uuid", memberUuid);
-      // handleGetCheckRoulette();
+      const memberUuid = location.pathname.substring(10);
+      memberUuid.length === 36 && localStorage.setItem("roulette-uuid", memberUuid);
     }
+    handleGetCheckRoulette(localStorage.getItem("roulette-uuid") as string);
   }, []);
 
-  // const handleGetCheckRoulette = async () => {
-  //   const userData = await getCheckRoulette(localStorage.getItem("member-uuid"));
-  // };
+  useEffect(() => {
+    console.log(rouletteGauge);
+  }, [rouletteGauge]);
 
-  // const handleSuccessGetCheckRoulette = (userData: IGetCheckRoulette) => {
-  //   setRecommendMember(userData.recommendReceiverList);
-  // };
+  const handleGetCheckRoulette = async (uuid: string) => {
+    await getCheckRoulette(uuid, handleSuccessGetCheckRoulette, handleFailGetCheckRoulette);
+  };
+
+  const handleSuccessGetCheckRoulette = (userData: IGetCheckRoulette) => {
+    // 몇 명 추천했는지 룰렛에 넘기기
+    const recommendedNum = userData.recommendReceiverList.length;
+    localStorage.setItem("recommendedNum", recommendedNum.toString());
+    // 추천한 수에 따라 게이지 바꿔주기
+    userData.recommendReceiverList.forEach((receiver, idx) => {
+      setRouletteGauge((prevGauge) => {
+        return prevGauge.map((gauge) => {
+          if (gauge.id === idx) return { ...gauge, name: receiver.name, status: receiver.status };
+          return gauge;
+        });
+      });
+    });
+  };
+
+  const handleFailGetCheckRoulette = (errorMessage: string) => {
+    console.log(errorMessage);
+    navigate(routePaths.Error);
+  };
 
   return (
     <St.RouletteGauge>
@@ -43,24 +70,25 @@ export default function RouletteGauge() {
         </St.Desc>
       </St.DescWrapper>
       <St.RouletteGaugeBox>
-        {recommendMember.map((member, idx) => {
+        {rouletteGauge.map((member, idx) => {
           return (
             <St.RouletteGaugeWrapper key={idx}>
+              {/* 게이지 이미지 변경 */}
               <St.RouletteGaugeSvg
                 idx={idx}
                 alt="추천사 게이지"
                 src={
-                  idx === 2 && member.name === null
-                    ? ImgNullLastGauge
-                    : idx === 2 && member.status === "NONE"
+                  idx === 2 && member.status === "NONE"
                     ? ImgYetLastGauge
                     : idx === 2 && member.status === "ACCEPT"
                     ? ImgFullLastGauge
-                    : member.name === null
-                    ? ImgNullGauge
+                    : idx === 2
+                    ? ImgNullLastGauge
                     : member.status === "NONE"
                     ? ImgYetGauge
-                    : ImgFullGauge
+                    : member.status === "NONE"
+                    ? ImgFullGauge
+                    : ImgNullGauge
                 }
               />
               <St.RecommendMemberWrapper>

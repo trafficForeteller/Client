@@ -161,7 +161,7 @@ export async function getCheckRoulette(
   onFail: (errorMessage: string) => void,
 ): Promise<void | null> {
   try {
-    const { data } = await serverAxios.get(`${PREFIX_URL}/price${memberUuid}`, {
+    const { data } = await serverAxios.get(`${PREFIX_URL}/price/${memberUuid}`, {
       headers: { "Content-Type": "application/json" },
     });
     onSuccess(data.data);
@@ -178,7 +178,7 @@ export async function postCheckRoulette(
   onFail: (errorMessage: string) => void,
 ): Promise<void | null> {
   try {
-    const { data } = await serverAxios.post(`${PREFIX_URL}/price${memberUuid}`, {
+    const { data } = await serverAxios.post(`${PREFIX_URL}/price/${memberUuid}`, {
       headers: { "Content-Type": "application/json" },
     });
     onSuccess(data.data);
