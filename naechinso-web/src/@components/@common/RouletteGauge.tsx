@@ -70,7 +70,6 @@ export default function RouletteGauge(props: RouletteGaugeProps) {
         {rouletteGauge.map((member, idx) => {
           return (
             <St.RouletteGaugeWrapper key={idx}>
-              {/* 게이지 이미지 변경 */}
               <St.RouletteGaugeSvg
                 idx={idx}
                 alt="추천사 게이지"
@@ -169,7 +168,6 @@ const St = {
       position: absolute;
       top: -15px;
       left: 8px;
-      /* margin-top: -10px; */
       border-style: solid;
       border-width: 8px 8px 8px 8px;
       border-color: transparent transparent transparent ${({ theme }) => theme.colors.gray80};
@@ -183,6 +181,11 @@ const St = {
     ${({ theme }) => theme.fonts.caption9};
     margin-left: 0.4rem;
     margin-right: 0.2rem;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 4.5rem;
   `,
   RecommendMemberstatus: styled.p<{ status: string }>`
     color: ${({ theme, status }) => (status === "ACCEPT" ? theme.colors.orange : theme.colors.gray50)};
