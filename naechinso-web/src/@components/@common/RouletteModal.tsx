@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 
 import { IGiftInfo } from "../../types/recommend";
@@ -10,10 +9,6 @@ interface RouletteModalProps {
 
 export default function RouletteModal(props: RouletteModalProps) {
   const { closeModal, giftInfo } = props;
-
-  useEffect(() => {
-    console.log(giftInfo);
-  }, []);
 
   return (
     <>
@@ -86,6 +81,8 @@ const St = {
     color: ${({ theme }) => theme.colors.orange};
     ${({ theme }) => theme.fonts.sub4};
     background-color: ${({ theme }) => theme.colors.gray10};
+    padding: 0.2rem 0.8rem;
+    border-radius: 8px;
   `,
   Title: styled.h2`
     color: ${({ theme }) => theme.colors.black};

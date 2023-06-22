@@ -50,7 +50,6 @@ export default function RouletteGauge(props: RouletteGaugeProps) {
         });
       });
     });
-    console.log(userData.recommendReceiverList);
   };
 
   const handleFailGetCheckRoulette = (errorMessage: string) => {
