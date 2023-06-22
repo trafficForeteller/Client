@@ -1,8 +1,6 @@
 export interface IPostFriendInfo {
   phone?: string;
-  name?: string;
-  period: string;
-  meet: string;
+  name: string;
 }
 
 export interface IPatchFriendDetail {

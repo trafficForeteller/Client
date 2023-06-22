@@ -12,22 +12,11 @@ export interface PhoneNumInputProps {
   phoneNum: string;
   setPhoneNum: React.Dispatch<React.SetStateAction<string>>;
   setPostPhoneNum: React.Dispatch<React.SetStateAction<IPostPhoneNumber>>;
-  isModalOpened: boolean;
   handleStep?: () => void;
 }
 
 export default function PhoneNumInputBox(props: PhoneNumInputProps) {
-  const {
-    label,
-    placeholder,
-    activeBtn,
-    setActiveBtn,
-    phoneNum,
-    setPhoneNum,
-    setPostPhoneNum,
-    isModalOpened,
-    handleStep,
-  } = props;
+  const { label, placeholder, activeBtn, setActiveBtn, phoneNum, setPhoneNum, setPostPhoneNum, handleStep } = props;
 
   const onEnterKeyUp = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === "Enter") handleStep && handleStep();
@@ -58,7 +47,7 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
   };
 
   return (
-    <St.PhoneNumInputBox isModalOpened={isModalOpened}>
+    <St.PhoneNumInputBox>
       <St.Label activeBtn={activeBtn}>{label}</St.Label>
       <St.InputWrapper>
         <St.FrontPhoneNum>010</St.FrontPhoneNum>
@@ -84,7 +73,7 @@ export default function PhoneNumInputBox(props: PhoneNumInputProps) {
 }
 
 const St = {
-  PhoneNumInputBox: styled.section<{ isModalOpened: boolean }>`
+  PhoneNumInputBox: styled.section`
     width: 33.5rem;
     height: 8rem;
 
@@ -94,7 +83,6 @@ const St = {
     margin: 0 auto;
 
     position: relative;
-    z-index: ${({ isModalOpened }) => (isModalOpened ? "-1" : "")};
     @media only screen and (min-width: 375px) and (max-width: 600px) {
       width: 100%;
     }
