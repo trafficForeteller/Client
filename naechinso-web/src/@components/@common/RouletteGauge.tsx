@@ -90,10 +90,7 @@ export default function RouletteGauge(props: RouletteGaugeProps) {
                 }
               />
               <St.RecommendMemberWrapper>
-                {member.name === null ? ( // 추천한 친구가 없을 때
-                  <IcNullRecommendMember />
-                ) : (
-                  // 추천한 친구가 있을 때
+                {member.name !== null && member.name !== undefined && member.name.length > 0 ? ( // 추천한 친구가 있을 때
                   <>
                     <IcRecommendMember />
                     <St.RecommendMemberName>{member.name}</St.RecommendMemberName>
@@ -101,6 +98,9 @@ export default function RouletteGauge(props: RouletteGaugeProps) {
                       {member.status ? "완료" : "가입 전"}
                     </St.RecommendMemberstatus>
                   </>
+                ) : (
+                  // 추천한 친구가 없을 때
+                  <IcNullRecommendMember />
                 )}
               </St.RecommendMemberWrapper>
             </St.RouletteGaugeWrapper>

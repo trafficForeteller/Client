@@ -85,6 +85,7 @@ const St = {
   HighLightTitle: styled.h2`
     color: ${({ theme }) => theme.colors.orange};
     ${({ theme }) => theme.fonts.sub4};
+    background-color: ${({ theme }) => theme.colors.gray10};
   `,
   Title: styled.h2`
     color: ${({ theme }) => theme.colors.black};

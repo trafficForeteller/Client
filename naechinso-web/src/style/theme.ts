@@ -18,6 +18,7 @@ const colors = {
   blue: "#6B9AFF",
   blue_bac: "#EAF1FF",
   old_gray: "#EBEBF0",
+  gray10: "#E8EAED",
   gray30: "#C5C5C9",
   gray40: "#ABABAE",
   gray50: "#8F8F92",

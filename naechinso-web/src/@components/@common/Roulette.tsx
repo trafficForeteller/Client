@@ -3,7 +3,15 @@ import { useNavigate } from "react-router-dom";
 import styled, { css, keyframes } from "styled-components";
 
 import { postCheckRoulette } from "../../apis/recommend.api";
-import { ImgConsultantNaechinso, ImgRoulette, ImgRoulettePicker } from "../../asset/image";
+import {
+  ImgGiftBananaMilk,
+  ImgGiftMegaCoffee,
+  ImgGiftPerero,
+  ImgGiftStarbucks,
+  ImgGiftSunguri,
+  ImgRoulette,
+  ImgRoulettePicker,
+} from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { IGiftInfo, IPostCheckRoulette, IRouletteGauge } from "../../types/recommend";
 import RouletteModal from "./RouletteModal";
@@ -44,16 +52,15 @@ export default function Roulette(props: RouletteProps) {
   const handleSuccessPostCheckRoulette = (userData: IPostCheckRoulette) => {
     // 추천인 상품 확정하기
     if (userData.price.startsWith("SUNGURI")) {
-      if (userData.price.includes("20")) setGiftInfo({ name: "썬구리 20개", src: ImgConsultantNaechinso });
-      else if (userData.price.includes("30")) setGiftInfo({ name: "썬구리 30개", src: ImgConsultantNaechinso });
-      else if (userData.price.includes("50")) setGiftInfo({ name: "썬구리 50개", src: ImgConsultantNaechinso });
-    } else if (userData.price.startsWith("BANANA_MILK"))
-      setGiftInfo({ name: "바나나우유", src: ImgConsultantNaechinso });
-    else if (userData.price.startsWith("PERERO")) setGiftInfo({ name: "페레로로쉐", src: ImgConsultantNaechinso });
+      if (userData.price.includes("20")) setGiftInfo({ name: "썬구리 20개", src: ImgGiftSunguri });
+      else if (userData.price.includes("30")) setGiftInfo({ name: "썬구리 30개", src: ImgGiftSunguri });
+      else if (userData.price.includes("50")) setGiftInfo({ name: "썬구리 50개", src: ImgGiftSunguri });
+    } else if (userData.price.startsWith("BANANA_MILK")) setGiftInfo({ name: "바나나우유", src: ImgGiftBananaMilk });
+    else if (userData.price.startsWith("PERERO")) setGiftInfo({ name: "페레로로쉐", src: ImgGiftPerero });
     else if (userData.price.startsWith("STARBUCKS"))
-      setGiftInfo({ name: "스타벅스 아이스 아메리카노", src: ImgConsultantNaechinso });
+      setGiftInfo({ name: "스타벅스 아이스 아메리카노", src: ImgGiftStarbucks });
     else if (userData.price.startsWith("MEGACOFFEE"))
-      setGiftInfo({ name: "메가커피 아이스 아메리카노", src: ImgConsultantNaechinso });
+      setGiftInfo({ name: "메가커피 아이스 아메리카노", src: ImgGiftMegaCoffee });
 
     //post recommendReceiverList에 따른 추천한 사람 수정
     userData.recommendReceiverList.forEach((receiver, idx) => {
@@ -73,7 +80,12 @@ export default function Roulette(props: RouletteProps) {
 
   return (
     <>
-      {isModalOpen && <RouletteModal closeModal={closeModal} giftInfo={giftInfo} />}
+      {isModalOpen && (
+        <RouletteModal
+          closeModal={closeModal}
+          giftInfo={{ name: "스타벅스 아이스 아메리카노", src: ImgGiftStarbucks }}
+        />
+      )}
       <St.Roulette>
         <St.RouletteBoard src={ImgRoulette} alt="룰렛 원판" rotating={rotating} />
         <St.RoulettePicker src={ImgRoulettePicker} alt="룰렛 피커" />
