@@ -24,7 +24,7 @@ export default function RouletteModal(props: RouletteModalProps) {
           <St.Desc>
             친소가
             <St.Highlight> {giftInfo.name.includes("썬구리") ? "바로 지급" : "3일 내에 문자"}</St.Highlight>
-            {giftInfo.name.includes("썬구리") ? " 할게💌" : "로 보낼게💌"}
+            {giftInfo.name.includes("썬구리") ? "할게💌" : "로 보낼게💌"}
           </St.Desc>
         </St.DescWrapper>
 

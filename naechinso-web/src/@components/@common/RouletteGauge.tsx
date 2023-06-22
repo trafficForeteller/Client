@@ -93,7 +93,7 @@ export default function RouletteGauge(props: RouletteGaugeProps) {
                     <IcRecommendMember />
                     <St.RecommendMemberName>{member.name}</St.RecommendMemberName>
                     <St.RecommendMemberstatus status={member.status}>
-                      {member.status ? "완료" : "가입 전"}
+                      {member.status === "ACCEPT" ? "완료" : "가입 전"}
                     </St.RecommendMemberstatus>
                   </>
                 ) : (
@@ -185,7 +185,7 @@ const St = {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 4.5rem;
+    max-width: 3.3rem;
   `,
   RecommendMemberstatus: styled.p<{ status: string }>`
     color: ${({ theme, status }) => (status === "ACCEPT" ? theme.colors.orange : theme.colors.gray50)};
