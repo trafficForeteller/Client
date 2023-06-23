@@ -32,11 +32,14 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
         keyword: text,
         checked: true,
       };
-      setKeywordArr([...keywordArr, newKeyword]);
+      const updatedKeywordArr = keywordArr.map((keyword) => {
+        return { ...keyword, checked: false };
+      });
+      setKeywordArr([...updatedKeywordArr, newKeyword]);
     } else {
       const updatedKeywordArr = keywordArr.map((keyword) => {
         if (keyword.keyword === text) return { ...keyword, checked: true };
-        return keyword;
+        else return { ...keyword, checked: false };
       });
       setKeywordArr(updatedKeywordArr);
     }
