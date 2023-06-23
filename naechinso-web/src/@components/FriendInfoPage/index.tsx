@@ -168,7 +168,17 @@ export default function FriendInfoPage() {
   const processAppealDetail = (appealDetailToServer: string) => {
     // 서버에서 받아온 appealDetail이 appealDetailList에 있다면 로컬에 추가
     const keyword = appealDetailToServer.slice("내 친구는 ".length, -" 친구야!".length);
-    const updatedList = appealDetailList.map((item) => (item.keyword === keyword ? { ...item, checked: true } : item));
+    const updatedList = [...appealDetailList];
+    const matchedTypeIndex = updatedList.findIndex((item) => item.keyword === keyword);
+    updatedList.forEach((item) => {
+      if (item.keyword !== keyword) {
+        item.checked = false;
+      }
+    });
+
+    if (matchedTypeIndex !== -1) {
+      updatedList[matchedTypeIndex].checked = true;
+    } else updatedList.push({ id: updatedList.length, keyword:keyword, checked:true });
 
     localStorage.setItem("appealDetailList", JSON.stringify(updatedList));
     localStorage.setItem("appealDetail", keyword);
@@ -178,17 +188,25 @@ export default function FriendInfoPage() {
     // recommendAnswer이 내 친구는 으로 시작하고, 애인이랑 만났음 해!로 끝나는지 확인
     return recommendAnswer.startsWith("내 친구는") && recommendAnswer.endsWith(" 애인이랑 만났음 해!");
   };
+
   const processRecommendAnswer = (recommendAnswer: string) => {
     // recommendAnser에서 키워드 부분을 자르고, 해당 객체의 checked를 true로 바꾸고, 그 아이템의 keyword를 찾아 로컬에 list와 keyword 넣기
     const keyword = recommendAnswer.slice("내 친구는 ".length, -" 애인이랑 만났음 해!".length);
-    const updatedList = friendLoverTypeList.map((item) =>
-      item.keyword === keyword ? { ...item, checked: true } : item,
-    );
-    const matchedType = updatedList.find((item) => item.keyword === keyword);
-    if (matchedType) {
+    const updatedList = [...friendLoverTypeList];
+    const matchedTypeIndex = updatedList.findIndex((item) => item.keyword === keyword);
+    updatedList.forEach((item) => {
+      if (item.keyword !== keyword) {
+        item.checked = false;
+      }
+    });
+
+    if (matchedTypeIndex !== -1) {
+      updatedList[matchedTypeIndex].checked = true;
+    } else updatedList.push({ id: updatedList.length, keyword:keyword, checked:true });
+
       localStorage.setItem("friendLoverTypeList", JSON.stringify(updatedList));
-      localStorage.setItem("friendLoverType", matchedType.keyword);
-    }
+      localStorage.setItem("friendLoverType", keyword);
+    
   };
 
   const processSelectiveRecommend = (questionToServer: IPostRecommendElement[]) => {
@@ -267,8 +285,6 @@ export default function FriendInfoPage() {
         어떤 친구를 소개해줄거야? <br/>
         너무 궁금해!
       </St.Title>
-
-
 
       {localStorage.getItem("member-uuid") === null && step >= 2 ? (
        <PhoneNumInputBox

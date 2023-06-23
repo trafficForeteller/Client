@@ -33,9 +33,28 @@ export default function KeywordPage() {
   }, []);
 
   useEffect(() => {
-    if (checkedAppeals.length === 3) setActiveNextBtn(true);
+    const newCheckedAppeals: string[] = keywordArr
+      .filter((keyword) => keyword.checked)
+      .map((keyword) => keyword.keyword);
+
+    setCheckedAppeals(newCheckedAppeals);
+  }, [keywordArr]);
+
+  useEffect(() => {
+    if (checkedAppeals.length > 3) handleUpdateKeyword();
+    else if (checkedAppeals.length === 3) setActiveNextBtn(true);
     else setActiveNextBtn(false);
   }, [checkedAppeals]);
+
+  const handleUpdateKeyword = () => {
+    setCheckedAppeals((prevAppeals) => prevAppeals.slice(1));
+    keywordArr.forEach((keyword) => {
+      if (keyword.keyword === checkedAppeals[0]) {
+        keyword.checked = false;
+      }
+    });
+    setKeywordArr([...keywordArr]);
+  };
 
   const toggleChecked = (el: keywordProps) => {
     // 항목별 체크 && 3개 이상 시 체크 불가
@@ -110,12 +129,10 @@ const St = {
     margin: 0 auto;
     width: 37.5rem;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    gap: 1.5rem;
-    padding-top: 19rem;
-    overflow-y: scroll;
-    padding-bottom: 1rem;
+    gap: 1rem;
+    padding: 19rem 1.5rem 1rem;
+    /* overflow-y: scroll; */
   `,
   KeywordWrapper: styled.button<{ checked: boolean }>`
     width: 10.51rem;

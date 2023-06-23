@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { keywordProps } from "../../core/recommend/recommend";
+import AddKeywordBtn from "./AddKeywordBtn";
 
 interface SelectOneKeywordProps {
   setKeywordList: React.Dispatch<React.SetStateAction<keywordProps[]>>;
@@ -34,6 +35,7 @@ export default function SelectOneKeyword(props: SelectOneKeywordProps) {
           </St.KeywordWrapper>
         );
       })}
+      <AddKeywordBtn keywordArr={keywordList} setKeywordArr={setKeywordList} />
     </St.SelectOneKeyword>
   );
 }
