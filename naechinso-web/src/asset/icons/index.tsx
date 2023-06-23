@@ -5,8 +5,6 @@ export { ReactComponent as IcAppealDetail } from "./appealDetail.svg";
 export { ReactComponent as IcChecked } from "./checked.svg";
 export { ReactComponent as IcCheckedMen } from "./checkedMen.svg";
 export { ReactComponent as IcCheckedWomen } from "./checkedWomen.svg";
-export { ReactComponent as IcClose } from "./close.svg";
-export { ReactComponent as IcDontGo } from "./dontGo.svg";
 export { ReactComponent as IcPlus } from "./plus.svg";
 export { ReactComponent as IcPlusWhite } from "./plusWhite.svg";
 export { ReactComponent as IcPreviousBtn } from "./previousBtn.svg";

@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { IcPreviousBtn } from "../../asset/icons";
 import { ProgressBar, WarningModal } from "../@common";
+
 export default function FriendInfoHeader() {
   const [isWarningModalOpened, setIsWarningModalOpened] = useState(false);
 
@@ -29,7 +30,6 @@ export default function FriendInfoHeader() {
           title2="추천사는 제출되지 않아🥺"
           desc1="모든 문항을 완성해줘!"
           buttonTitle="응 확인했어!"
-          setIsWarningModalOpened={setIsWarningModalOpened}
         />
       )}
     </>

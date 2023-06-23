@@ -71,8 +71,12 @@ export default function LandingBox(props: LandingBoxProps) {
         <St.Title>친구를 소개하러 온 걸</St.Title>
         <St.Title>환영해!🧡</St.Title>
       </St.TitleWrapper>
+      <St.DescWrapper>
+        <St.Desc>친구가 가입 완료할 때</St.Desc>
+        <St.Desc>썬구리 20개 또는 추천사를 열람할 수 있어</St.Desc>
+      </St.DescWrapper>
       <St.Button onClick={handleMoveLandingPage} type="button" className={GTM_CLASS_NAME.startAccess}>
-        5분 추천사 작성하기
+        1분컷 추천사 작성하기
       </St.Button>
     </St.LandingBox>
   );
@@ -91,19 +95,30 @@ const St = {
     width: 12.1rem;
     height: 12.1rem;
   `,
-  TitleWrapper: styled.article`
+  TitleWrapper: styled.hgroup`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     letter-spacing: -0.01em;
     margin-top: 1.6rem;
-    margin-bottom: 3.6rem;
   `,
   Title: styled.p`
     width: fit-content;
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.head1};
+  `,
+  DescWrapper: styled.div`
+    margin: 0.7rem 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  `,
+  Desc: styled.p`
+    color: ${({ theme }) => theme.colors.orange};
+    ${({ theme }) => theme.fonts.body7};
   `,
   Button: styled.button`
     bottom: 3.5rem;

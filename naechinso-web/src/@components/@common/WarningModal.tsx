@@ -10,15 +10,13 @@ export interface WarningModalProps {
   desc1: string;
   desc2?: string;
   buttonTitle: string;
-  setIsWarningModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function WarningModal(props: WarningModalProps) {
-  const { title1, title2, desc1, desc2, buttonTitle, setIsWarningModalOpened } = props;
+  const { title1, title2, desc1, desc2, buttonTitle } = props;
   const navigate = useNavigate();
 
   const closeModal = () => {
-    setIsWarningModalOpened(false);
     if (buttonTitle === "응 수정할게!") navigate(routePaths.DontGo);
     else navigate(routePaths.RecommendLanding);
   };
@@ -54,7 +52,7 @@ const St = {
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     z-index: 999;
   `,
   WarningModal: styled.section`

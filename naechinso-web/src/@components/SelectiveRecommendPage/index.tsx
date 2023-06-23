@@ -1,22 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { selectiveRecommendList, selectiveRecommendProps } from "../../core/recommend/recommend";
-import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { AdressingFixedHeader, ConsultantTextBtn } from "../@common";
 import BottomSheet from "./BottomSheet";
-import SkipBottomSheet from "./SkipBottomModal";
 
 export default function SelectiveRecommendPage() {
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
-  const [isSkipBottomSheetOpened, setIsSkipBottomSheetOpened] = useState(false);
   const [placeholder, setPlaceholder] = useState("");
-
-  const handleSkipButton = () => {
-    // 한 번 막는 모달 떠야해
-    setIsSkipBottomSheetOpened(true);
-  };
-
   const handleSelectQuestion = (question: selectiveRecommendProps) => {
     // 질문 골랐을 대
     setIsBottomSheetOpened(true);
@@ -25,70 +16,58 @@ export default function SelectiveRecommendPage() {
   };
 
   const closeModal = () => setIsBottomSheetOpened(false);
-  const closeSkipBottomSheet = () => setIsSkipBottomSheetOpened(false);
+
+  useEffect(() => {
+    localStorage.getItem("checkedSelectiveQ") !== null &&
+      localStorage.getItem("selectiveRecommend") !== null &&
+      setIsBottomSheetOpened(true);
+  }, []);
+
   return (
-    <>
+    <St.SelectiveRecommendPage isBottomSheetOpened={isBottomSheetOpened}>
       <AdressingFixedHeader
         header="추천사"
         navigatePath="/recommend/dontGo"
         progressRate={98}
-        questionKind="선택질문"
-        title1="🤔 원하는 질문 1개에 답해주면 돼!"
+        questionKind="필수질문 5"
+        title1="😘 마지막이야! 질문 하나만 골라줘"
       />
 
       {isBottomSheetOpened && (
         <BottomSheet isBottomSheetOpened={isBottomSheetOpened} closeModal={closeModal} placeholder={placeholder} />
       )}
-      <St.SelectiveRecommendPage>
+      <St.SelectiveRecommend>
         <St.QuestionListWrapper>
           {selectiveRecommendList.map((question) => {
             return (
-              <St.QuestionBox
-                type="button"
-                key={question.id}
-                idx={question.id}
-                onClick={() => handleSelectQuestion(question)}>
-                <St.SubTitleWrapper>
-                  <St.Icon>{question.icon}</St.Icon>
-                  <St.SubTitle idx={question.id}>{question.subTitle}</St.SubTitle>
-                </St.SubTitleWrapper>
+              <St.QuestionBox type="button" key={question.id} onClick={() => handleSelectQuestion(question)}>
+                <St.Icon>{question.icon}</St.Icon>
                 <St.Title>{question.title}</St.Title>
               </St.QuestionBox>
             );
           })}
         </St.QuestionListWrapper>
         <ConsultantTextBtn />
-
-        <St.SkipButton
-          onClick={handleSkipButton}
-          type="button"
-          className={GTM_CLASS_NAME.recommendSkipSelectiveQuestion}>
-          건너뛰기
-        </St.SkipButton>
-        {isSkipBottomSheetOpened && (
-          <SkipBottomSheet isBottomSheetOpened={isSkipBottomSheetOpened} closeModal={closeSkipBottomSheet} />
-        )}
-      </St.SelectiveRecommendPage>
-    </>
+      </St.SelectiveRecommend>
+    </St.SelectiveRecommendPage>
   );
 }
 
 const St = {
-  ModalBackground: styled.div`
-    background-color: rgba(0, 0, 0, 0.64);
-    position: absolute;
-    left: 0;
-    top: 0;
+  SelectiveRecommendPage: styled.main<{ isBottomSheetOpened: boolean }>`
+    position: relative;
     width: 100%;
     height: 100%;
-    z-index: 9;
+    overflow: ${({ isBottomSheetOpened }) => (isBottomSheetOpened ? "hidden" : "auto")};
+    margin-bottom: 3.5rem;
   `,
-  SelectiveRecommendPage: styled.main`
+
+  SelectiveRecommend: styled.section`
     width: 100%;
-    height: 100%;
-    padding: 18rem 2rem 15rem;
+    height: 100vh;
+    padding: 18rem 2rem 0;
   `,
-  QuestionListWrapper: styled.section`
+  QuestionListWrapper: styled.article`
     margin: 0 auto;
     width: 100%;
     display: flex;
@@ -97,32 +76,23 @@ const St = {
     gap: 1.2rem;
     //  overflow-y: scroll;
   `,
-  QuestionBox: styled.button<{ idx: number }>`
+  QuestionBox: styled.button`
     width: 100%;
-    height: 10.6rem;
-    padding: 2rem 2rem 2.8rem;
+    height: 8.8rem;
+    padding: 1.28rem;
 
     display: flex;
     flex-direction: column;
+    gap: 0.4rem;
     // id에 따라 배경색과 글자색깔 구분
-    background: ${({ idx }) => (idx % 3 === 0 ? "#D0F4FF" : idx % 3 === 1 ? "#FFEFC2" : "#FFE4CC")};
-    border: 0.5px solid ${({ idx }) => (idx % 3 === 0 ? "#00C2FF" : idx % 3 === 1 ? "#FFBB00" : "#FF7A00")};
-    border-radius: 1.2rem;
+    background: ${({ theme }) => theme.colors.neural};
+    border-radius: 16px;
     @media only screen and (min-width: 375px) and (max-width: 600px) {
-      width: 32.7rem;
+      width: 33.5rem;
     }
-  `,
-  SubTitleWrapper: styled.article`
-    display: flex;
-    gap: 0.6rem;
-    align-items: center;
   `,
   Icon: styled.p`
     ${({ theme }) => theme.fonts.sub2};
-  `,
-  SubTitle: styled.p<{ idx: number }>`
-    color: ${({ theme, idx }) => (idx % 3 === 0 ? "#2D8AA8" : theme.colors.orange)};
-    ${({ theme }) => theme.fonts.body3};
   `,
   Title: styled.h3`
     color: ${({ theme }) => theme.colors.black};

@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { IcDontGo } from "../../asset/icons";
+import { ImgDontGo } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
-import { ConsultantIconBtn, FixedHeader, TextAreaBox } from "../@common";
+import { AdressingFixedHeader, ConsultantTextBtn, SheildBox, TextAreaBox } from "../@common";
 
 export default function DontGoPage() {
   const [text, setText] = useState("");
@@ -27,12 +27,18 @@ export default function DontGoPage() {
   return (
     <>
       <St.DontGo>
-        <FixedHeader
+        <AdressingFixedHeader
           header="추천사"
+          navigatePath="/recommend/friendLoverType"
           progressRate={90}
           questionKind="필수질문 4"
-          title1="😥 친구를 거절한 상대에게 한 마디!"
+          title1="😥 친구를 거절한 상대에게 한 마디! "
         />
+        <SheildBox desc="친구의 이성적 매력을 한번 더 어필해봐!" />
+        <St.CardWrapper>
+          <St.Card src={ImgDontGo} alt="한 마디 발언 미리보기" />
+          <St.CardGradient></St.CardGradient>
+        </St.CardWrapper>
 
         <St.TextWrapper>
           <TextAreaBox
@@ -47,11 +53,7 @@ export default function DontGoPage() {
           />
         </St.TextWrapper>
 
-        <St.CardWrapper>
-          <IcDontGo aria-label="한 마디 발언 미리보기" />
-        </St.CardWrapper>
-
-        <ConsultantIconBtn />
+        <ConsultantTextBtn />
         <St.NextStepBtnWrapper>
           <St.NextStepBtn
             type="button"
@@ -62,31 +64,46 @@ export default function DontGoPage() {
         </St.NextStepBtnWrapper>
       </St.DontGo>
 
-      <St.CurrentStep>4/4</St.CurrentStep>
+      <St.StepWrapper>
+        <St.CurrentStep>4/</St.CurrentStep>
+        <St.TotalStep>5</St.TotalStep>
+      </St.StepWrapper>
     </>
   );
 }
 
 const St = {
   DontGo: styled.main`
-    padding-top: 18rem;
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
+    padding: 18rem 0 0;
   `,
   CardWrapper: styled.section`
     width: 100%;
     height: 18.6rem;
 
-    background: linear-gradient(3600deg, #ffffff 0%, #f6f5f2 10%);
-    border-radius: 16px;
-
+    background: linear-gradient(180deg, #ffffff 0%, #f6f5f2 20%);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: -1;
+
+    position: relative;
+  `,
+  Card: styled.img`
+    width: 37.5rem;
+    height: 18.6rem;
+  `,
+  CardGradient: styled.div`
+    width: 100%;
+    height: 1.8rem;
+    background: linear-gradient(transparent, #ffffff);
+    position: absolute;
+    bottom: 0;
   `,
   TextWrapper: styled.section`
     padding: 0 2rem;
@@ -120,12 +137,20 @@ const St = {
       width: 100%;
     }
   `,
-  CurrentStep: styled.p`
+  StepWrapper: styled.article`
     position: fixed;
     right: 4rem;
     bottom: 7rem;
 
+    display: flex;
+  `,
+  CurrentStep: styled.p`
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.sub3};
+  `,
+  TotalStep: styled.p`
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.sub3};
+    opacity: 0.4;
   `,
 };

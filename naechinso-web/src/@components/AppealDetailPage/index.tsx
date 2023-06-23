@@ -66,7 +66,7 @@ export default function AppealDetailPage() {
       />
       <St.StepWrapper>
         <St.CurrentStep>2/</St.CurrentStep>
-        <St.TotalStep>4</St.TotalStep>
+        <St.TotalStep>5</St.TotalStep>
       </St.StepWrapper>
     </St.AppealDetail>
   );
