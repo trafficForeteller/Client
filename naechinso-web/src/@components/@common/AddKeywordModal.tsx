@@ -25,6 +25,12 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
   };
 
   const handleAddKeywordModal = () => {
+    if (text.trim() === "") {
+      closeModal();
+      setText("");
+      return; // 추가되지 않도록 함수 종료
+    }
+
     const exists = keywordArr.some((keyword) => keyword.keyword === text);
     if (!exists) {
       const newKeyword = {
