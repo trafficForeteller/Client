@@ -15,6 +15,8 @@ export default function RoulettePage() {
     { id: 1, name: "", status: "" },
     { id: 2, name: "", status: "" },
   ]);
+  const [recommendNumber, setRecommendNumber] = useState(0);
+
   const handleMovePhoneNumPage = () => {
     navigate(routePaths.PhoneNum);
 
@@ -43,7 +45,6 @@ export default function RoulettePage() {
     localStorage.removeItem("friendLoverTypeList");
     localStorage.removeItem("appealDetail");
     localStorage.removeItem("appealDetailList");
-    localStorage.removeItem("recommendedNum");
   };
 
   return (
@@ -64,8 +65,17 @@ export default function RoulettePage() {
         </St.Title>
       </St.TitleWrapper>
 
-      <RouletteGauge rouletteGauge={rouletteGauge} setRouletteGauge={setRouletteGauge} />
-      <Roulette setRouletteGauge={setRouletteGauge} />
+      <RouletteGauge
+        rouletteGauge={rouletteGauge}
+        setRouletteGauge={setRouletteGauge}
+        setRecommendNumber={setRecommendNumber}
+      />
+      <Roulette
+        rouletteGauge={rouletteGauge}
+        recommendNumber={recommendNumber}
+        setRecommendNumber={setRecommendNumber}
+        setRouletteGauge={setRouletteGauge}
+      />
       {/* GTM 새로 달아야함 */}
       <St.MoveLandingBtn type="button" onClick={handleMovePhoneNumPage}>
         다른 친구 소개하고 룰렛 돌리기

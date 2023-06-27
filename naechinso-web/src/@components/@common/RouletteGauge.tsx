@@ -19,10 +19,11 @@ import { IGetCheckRoulette, IRouletteGauge } from "../../types/recommend";
 interface RouletteGaugeProps {
   rouletteGauge: IRouletteGauge[];
   setRouletteGauge: React.Dispatch<React.SetStateAction<IRouletteGauge[]>>;
+  setRecommendNumber: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function RouletteGauge(props: RouletteGaugeProps) {
-  const { rouletteGauge, setRouletteGauge } = props;
+  const { rouletteGauge, setRouletteGauge, setRecommendNumber } = props;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,7 +41,8 @@ export default function RouletteGauge(props: RouletteGaugeProps) {
   const handleSuccessGetCheckRoulette = (userData: IGetCheckRoulette) => {
     // 몇 명 추천했는지 룰렛에 넘기기
     const recommendedNum = userData.recommendReceiverList.filter((receiver) => receiver.status === "ACCEPT").length;
-    localStorage.setItem("recommendedNum", recommendedNum.toString());
+    setRecommendNumber(recommendedNum);
+
     // 추천한 수에 따라 게이지 바꿔주기
     userData.recommendReceiverList.forEach((receiver, idx) => {
       setRouletteGauge((prevGauge) => {
@@ -50,6 +52,8 @@ export default function RouletteGauge(props: RouletteGaugeProps) {
         });
       });
     });
+
+    console.log("GetCheckRoulette", userData);
   };
 
   const handleFailGetCheckRoulette = (errorMessage: string) => {

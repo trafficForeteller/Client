@@ -36,7 +36,6 @@ export default function RecommenderAuthPage() {
     localStorage.removeItem("friendLoverTypeList");
     localStorage.removeItem("appealDetail");
     localStorage.removeItem("appealDetailList");
-    localStorage.removeItem("recommendedNum");
 
     localStorage.setItem("landingUrl", "auth");
   }, [location]);

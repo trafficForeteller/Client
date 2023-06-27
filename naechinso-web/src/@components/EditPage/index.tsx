@@ -36,7 +36,6 @@ export default function EditPage() {
     localStorage.removeItem("friendLoverTypeList");
     localStorage.removeItem("appealDetail");
     localStorage.removeItem("appealDetailList");
-    localStorage.removeItem("recommendedNum");
 
     localStorage.setItem("landingUrl", "edit");
   }, [location]);

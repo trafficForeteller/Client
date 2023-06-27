@@ -9,13 +9,20 @@ import { IRouletteGauge } from "../../types/recommend";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { Roulette, RouletteGauge } from "../@common";
 
-export default function Finish() {
+interface FinishProps {
+  setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Finish(props: FinishProps) {
+  const { setIsModalOpened } = props;
+
   const navigate = useNavigate();
   const [rouletteGauge, setRouletteGauge] = useState<IRouletteGauge[]>([
     { id: 0, name: "", status: "" },
     { id: 1, name: "", status: "" },
     { id: 2, name: "", status: "" },
   ]);
+  const [recommendNumber, setRecommendNumber] = useState(0);
 
   const handleMoveRecommendLanding = () => {
     navigate(routePaths.RecommendLanding);
@@ -45,7 +52,6 @@ export default function Finish() {
     localStorage.removeItem("friendLoverTypeList");
     localStorage.removeItem("appealDetail");
     localStorage.removeItem("appealDetailList");
-    localStorage.removeItem("recommendedNum");
   };
 
   return (
@@ -66,8 +72,18 @@ export default function Finish() {
         </St.Title>
       </St.TitleWrapper>
 
-      <RouletteGauge rouletteGauge={rouletteGauge} setRouletteGauge={setRouletteGauge} />
-      <Roulette setRouletteGauge={setRouletteGauge} />
+      <RouletteGauge
+        rouletteGauge={rouletteGauge}
+        setRouletteGauge={setRouletteGauge}
+        setRecommendNumber={setRecommendNumber}
+      />
+      <Roulette
+        rouletteGauge={rouletteGauge}
+        recommendNumber={recommendNumber}
+        setRecommendNumber={setRecommendNumber}
+        setRouletteGauge={setRouletteGauge}
+        setIsModalOpened={setIsModalOpened}
+      />
 
       <St.MoveLandingBtn type="button" onClick={handleMoveRecommendLanding} className={GTM_CLASS_NAME.referral}>
         다른 친구 소개하고 룰렛 돌리기

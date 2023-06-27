@@ -17,16 +17,19 @@ import { IGiftInfo, IPostCheckRoulette, IRouletteGauge } from "../../types/recom
 import RouletteModal from "./RouletteModal";
 
 interface RouletteProps {
+  rouletteGauge: IRouletteGauge[];
   setRouletteGauge: React.Dispatch<React.SetStateAction<IRouletteGauge[]>>;
+  recommendNumber: number;
+  setRecommendNumber: React.Dispatch<React.SetStateAction<number>>;
+  setIsModalOpened?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function Roulette(props: RouletteProps) {
-  const { setRouletteGauge } = props;
+  const { rouletteGauge, setRouletteGauge, recommendNumber, setRecommendNumber, setIsModalOpened } = props;
   const [rotating, setRotating] = useState(false);
   const [isModalOpen, setISModalOpen] = useState(false);
   const [giftInfo, setGiftInfo] = useState<IGiftInfo>({ name: "", src: "" });
   const navigate = useNavigate();
-  const recommendNumber = +(localStorage.getItem("recommendedNum") as string) || 0;
 
   const handleClick = () => {
     setRotating(true);
@@ -39,6 +42,7 @@ export default function Roulette(props: RouletteProps) {
 
   const closeModal = () => {
     setISModalOpen(false);
+    // window.location.reload();
   };
 
   const handlePostCheckRoulette = async () => {
@@ -63,12 +67,32 @@ export default function Roulette(props: RouletteProps) {
       setGiftInfo({ name: "메가커피 아이스 아메리카노", src: ImgGiftMegaCoffee });
 
     //post recommendReceiverList에 따른 추천한 사람 수정
-    userData.recommendReceiverList.forEach((receiver, idx) => {
-      setRouletteGauge((prevGauge) => {
-        return prevGauge.map((gauge) => {
-          if (gauge.id === idx) return { ...gauge, name: receiver.name, status: receiver.status };
-          return gauge;
-        });
+    initializeRouletteGauge();
+    updateRouletteGauge(userData);
+
+    const recommendedNum = userData.recommendReceiverList.filter((receiver) => receiver.status === "ACCEPT").length;
+    setRecommendNumber(recommendedNum);
+
+    console.log("PostCheckRoulette", userData);
+  };
+
+  const initializeRouletteGauge = () => {
+    const initialGauge: IRouletteGauge[] = [
+      { id: 0, name: "", status: "" },
+      { id: 1, name: "", status: "" },
+      { id: 2, name: "", status: "" },
+    ];
+    setRouletteGauge(initialGauge);
+  };
+
+  const updateRouletteGauge = (userData: IPostCheckRoulette) => {
+    setRouletteGauge((prevGauge) => {
+      return prevGauge.map((gauge) => {
+        const matchingReceiver = userData.recommendReceiverList.find((receiver, idx) => idx === gauge.id);
+        if (matchingReceiver) {
+          return { ...gauge, name: matchingReceiver.name, status: matchingReceiver.status };
+        }
+        return gauge;
       });
     });
   };

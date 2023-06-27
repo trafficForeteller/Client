@@ -218,7 +218,6 @@ export default function FriendInfoPage() {
     localStorage.removeItem("friendLoverTypeList");
     localStorage.removeItem("appealDetail");
     localStorage.removeItem("appealDetailList");
-    localStorage.removeItem("recommendedNum");
 
     navigate(routePaths.Keyword);
   };
