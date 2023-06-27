@@ -39,7 +39,7 @@ export default function RouletteGauge(props: RouletteGaugeProps) {
 
   const handleSuccessGetCheckRoulette = (userData: IGetCheckRoulette) => {
     // 몇 명 추천했는지 룰렛에 넘기기
-    const recommendedNum = userData.recommendReceiverList.length;
+    const recommendedNum = userData.recommendReceiverList.filter((receiver) => receiver.status === "ACCEPT").length;
     localStorage.setItem("recommendedNum", recommendedNum.toString());
     // 추천한 수에 따라 게이지 바꿔주기
     userData.recommendReceiverList.forEach((receiver, idx) => {

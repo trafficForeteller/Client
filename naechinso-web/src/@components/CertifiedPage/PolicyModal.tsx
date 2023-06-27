@@ -106,6 +106,7 @@ export default function PolicyModal(props: PolicyModalProps) {
     if (userData) {
       localStorage.setItem("accessToken", userData["accessToken"]);
       localStorage.setItem("refreshToken", userData["refreshToken"]);
+      localStorage.setItem("roulette-uuid", userData["uuid"]);
       setToken({ accessToken: userData["accessToken"] });
       navigate(routePaths.RecommenderLanding);
     }
