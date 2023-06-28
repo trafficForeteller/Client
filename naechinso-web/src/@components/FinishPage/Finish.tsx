@@ -1,148 +1,177 @@
-import { useEffect } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { ImgFinishNone, ImgFinishRecommend, ImgFinishSunguri } from "../../asset/image";
+import { IcNaechinsoLogo } from "../../asset/icons";
+import { ImgFinishBackground } from "../../asset/image";
+import { routePaths } from "../../core/routes/path";
+import { IRouletteGauge } from "../../types/recommend";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
-import { ConsultantTextBtn } from "../@common";
-import FinishBottom from "../@common/FinishBottom";
+import { Roulette, RouletteGauge } from "../@common";
 
-export default function Finish() {
-  const recommenderName = localStorage.getItem("recommenderName") || "친한";
-  const copyText = `${recommenderName} 친구가 너에 대한 추천사 작성을 완료했어!🎉 
+interface FinishProps {
+  setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-내친소는 너처럼 실제 친구에게 추천을 받은, 주변에서 신뢰받고 애정받은 사람들만 가입할 수 있는 지인소개팅 서비스야! (너는 복받았다! 이런 좋은 친구를 두다니!) 
-      
-이제 너가 할 일은 간단한 자기소개만 하면 끝!😎 내친소에서 너만큼 멋진 친구들을 만나러 가볼까?
-      
-앱 다운로드: https://naechinso.page.link/dynamic`;
+export default function Finish(props: FinishProps) {
+  const { setIsModalOpened } = props;
 
-  useEffect(() => {
-    if (!window.Kakao.isInitialized()) {
-      window.Kakao.init(`${process.env.REACT_APP_JS_KEY}`);
-    }
-  }, []);
+  const navigate = useNavigate();
+  const [rouletteGauge, setRouletteGauge] = useState<IRouletteGauge[]>([
+    { id: 0, name: "", status: "" },
+    { id: 1, name: "", status: "" },
+    { id: 2, name: "", status: "" },
+  ]);
+  const [recommendNumber, setRecommendNumber] = useState(0);
 
-  const shareRecommendLink = () => {
-    if (Mobile() && navigator.share) {
-      navigator
-        .share({
-          text: copyText,
-        })
-        .then(() => console.log("공유 성공"))
-        .catch((error) => console.log("공유 실패", error));
-    } else {
-      navigator.clipboard.writeText(copyText);
-      alert("클립보드에 초대링크를 복사했어!");
-    }
-  };
+  const handleMoveRecommendLanding = () => {
+    navigate(routePaths.RecommendLanding);
 
-  const Mobile = () => {
-    return /Mobi/i.test(window.navigator.userAgent);
+    localStorage.removeItem("questionList");
+    localStorage.removeItem("checkedQ1");
+    localStorage.removeItem("firstRecommend");
+    localStorage.removeItem("secondRecommend");
+    localStorage.removeItem("eduInfo");
+    localStorage.removeItem("jobInfo");
+    localStorage.removeItem("appealDetail");
+    localStorage.removeItem("dontGo");
+    localStorage.removeItem("appeals");
+    localStorage.removeItem("friendInfo");
+    localStorage.removeItem("keywordList");
+    localStorage.removeItem("postRecommender");
+    localStorage.removeItem("genderTypeList");
+    localStorage.removeItem("uuid");
+    localStorage.removeItem("member-uuid");
+    localStorage.removeItem("landingUrl");
+    localStorage.removeItem("priceType");
+    localStorage.removeItem("memberName");
+    localStorage.removeItem("checkedKeywordList");
+    localStorage.removeItem("checkedSelectiveQ");
+    localStorage.removeItem("selectiveRecommend");
+    localStorage.removeItem("friendLoverType");
+    localStorage.removeItem("friendLoverTypeList");
+    localStorage.removeItem("appealDetail");
+    localStorage.removeItem("appealDetailList");
   };
 
   return (
     <St.Finish>
+      <St.FinishBackground src={ImgFinishBackground} alt="주황 배경" />
+      <St.HeaderWrapper>
+        <St.NaechinsoLogo>
+          <IcNaechinsoLogo />
+        </St.NaechinsoLogo>
+        <St.NaechinsoWeb href="https://www.naechinso.com/">내친소란?</St.NaechinsoWeb>
+      </St.HeaderWrapper>
       <St.TitleWrapper>
-        <St.Title>추천사 너무 좋다😉</St.Title>
-        <St.Title>이제 링크를 친구에게 전달해 봐! </St.Title>
+        <St.Title>
+          친구 <St.HighLight>3명</St.HighLight>을 초대하고
+        </St.Title>
+        <St.Title>
+          대박 <St.HighLight>룰렛</St.HighLight>을 돌려보자!
+        </St.Title>
       </St.TitleWrapper>
-      <St.GiftWrapper>
-        {localStorage.getItem("priceType") === "MY_REC" ? (
-          <St.Gift src={ImgFinishRecommend} alt="추천사 보기 혜택" />
-        ) : localStorage.getItem("priceType") === "SUNGURI" ? (
-          <St.Gift src={ImgFinishSunguri} alt="썬구리 혜택" />
-        ) : (
-          <St.Gift src={ImgFinishNone} alt="혜택 없음" />
-        )}
-      </St.GiftWrapper>
 
-      <St.ShareBtnWrapper>
-        <St.ShareBtnLabel>🔗 친구에게 링크를 보내봐</St.ShareBtnLabel>
-        <CopyToClipboard text={copyText} onCopy={shareRecommendLink}>
-          <St.ShareBtn type="button" className={GTM_CLASS_NAME.viralUrl}>
-            초대 링크 공유하기
-          </St.ShareBtn>
-        </CopyToClipboard>
-      </St.ShareBtnWrapper>
+      <RouletteGauge
+        rouletteGauge={rouletteGauge}
+        setRouletteGauge={setRouletteGauge}
+        setRecommendNumber={setRecommendNumber}
+      />
+      <Roulette
+        rouletteGauge={rouletteGauge}
+        recommendNumber={recommendNumber}
+        setRecommendNumber={setRecommendNumber}
+        setRouletteGauge={setRouletteGauge}
+        setIsModalOpened={setIsModalOpened}
+      />
 
-      <St.ConsultantBtnWrapper>
-        <ConsultantTextBtn />
-      </St.ConsultantBtnWrapper>
-
-      <FinishBottom />
+      <St.MoveLandingBtn type="button" onClick={handleMoveRecommendLanding} className={GTM_CLASS_NAME.referral}>
+        다른 친구 소개하고 룰렛 돌리기
+      </St.MoveLandingBtn>
     </St.Finish>
   );
 }
 
 const St = {
   Finish: styled.main`
-    width: 100%;
-    height: 100%;
+    background-color: ${({ theme }) => theme.colors.black};
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10% 2rem 0;
-    @media only screen and (min-height: 680px) {
-      padding-top: 30%;
-    }
-  `,
-  TitleWrapper: styled.header`
+    padding: 2.8rem 2rem 12rem;
+
     width: 100%;
+    height: 100vh;
+
+    position: relative;
+  `,
+  FinishBackground: styled.img`
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  `,
+  HeaderWrapper: styled.header`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    z-index: 2;
+  `,
+  NaechinsoLogo: styled.span`
+    width: 5.6rem;
+    height: 3.6rem;
+  `,
+  NaechinsoWeb: styled.a`
+    color: ${({ theme }) => theme.colors.orange};
+    ${({ theme }) => theme.fonts.caption6};
+  `,
+  TitleWrapper: styled.hgroup`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+    margin: 2.4rem 0 1.2rem;
   `,
   Title: styled.h2`
-    color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.head1};
-  `,
-  GiftWrapper: styled.section`
-    width: 100%;
-    height: 13rem;
-    background-color: ${({ theme }) => theme.colors.neural};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 16px;
+    color: ${({ theme }) => theme.colors.white};
 
-    margin: 2rem 0 1.6rem;
+    font-family: "PilseungGothic";
+    font-size: 3.8rem;
+    line-height: 116%;
   `,
-  Gift: styled.img`
-    width: 32.7rem;
-    height: 13rem;
-  `,
-  ShareBtnWrapper: styled.section`
-    width: 100%;
-    border: 0.5px solid #cccccc;
-    border-radius: 16px;
-    padding: 1.8rem 1.2rem 1.6rem;
-    gap: 1.6rem;
+  HighLight: styled.b`
+    color: #ffb700;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-family: PilseungGothic;
+    font-size: 3.8rem;
+    line-height: 116%;
+    text-align: center;
+    letter-spacing: -0.01em;
   `,
-  ShareBtnLabel: styled.p`
-    color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.body2};
-  `,
-  ShareBtn: styled.button`
-    width: 100%;
-    height: 5.2rem;
+  MoveLandingBtn: styled.button`
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.body1};
+    ${({ theme }) => theme.fonts.sub3};
+    height: 5.6rem;
+    border-radius: 16px;
+    z-index: 4;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    border-radius: 16px;
-    cursor: pointer;
-  `,
-  ConsultantBtnWrapper: styled.article`
-    width: 100%;
-    float: right;
+    position: fixed;
+    bottom: 4.4rem;
+
+    width: 33.5rem;
+    @media only screen and (min-width: 375px) and (max-width: 600px) {
+      width: 90%;
+    }
   `,
 };

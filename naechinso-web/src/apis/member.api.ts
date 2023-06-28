@@ -105,7 +105,12 @@ export async function getMemberStatus(accessToken: string | null): Promise<IGetM
       headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
     if (data.status === 200) {
-      return { jobAccepted: data.data.jobAccepted, eduAccepted: data.data.eduAccepted, name: data.data.name };
+      return {
+        rouletteUuid: data.data.uuid,
+        jobAccepted: data.data.jobAccepted,
+        eduAccepted: data.data.eduAccepted,
+        name: data.data.name,
+      };
     }
   } catch (err) {
     console.log(err);

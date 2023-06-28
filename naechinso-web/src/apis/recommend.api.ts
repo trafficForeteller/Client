@@ -2,8 +2,10 @@
 import { AxiosError } from "axios";
 import {
   IGetCheckPrice,
+  IGetCheckRoulette,
   IGetReommend,
   IPatchFriendDetail,
+  IPostCheckRoulette,
   IPostFriendInfo,
   IPostRecommend,
   IUuid,
@@ -149,6 +151,40 @@ export async function postSendRecommendSms(
     if (err instanceof AxiosError) {
       if (err.response?.data.status === 401) onReissue();
       else onFail(err.message);
+    }
+  }
+}
+
+export async function getCheckRoulette(
+  memberUuid: string | null,
+  onSuccess: (userData: IGetCheckRoulette) => void,
+  onFail: (errorMessage: string) => void,
+): Promise<void | null> {
+  try {
+    const { data } = await serverAxios.get(`${PREFIX_URL}/price/${memberUuid}`, {
+      headers: { "Content-Type": "application/json" },
+    });
+    onSuccess(data.data);
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      onFail(err.message);
+    }
+  }
+}
+
+export async function postCheckRoulette(
+  memberUuid: string | null,
+  onSuccess: (userData: IPostCheckRoulette) => void,
+  onFail: (errorMessage: string) => void,
+): Promise<void | null> {
+  try {
+    const { data } = await serverAxios.post(`${PREFIX_URL}/price/${memberUuid}`, {
+      headers: { "Content-Type": "application/json" },
+    });
+    onSuccess(data.data);
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      onFail(err.message);
     }
   }
 }

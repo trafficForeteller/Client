@@ -68,8 +68,8 @@ export default function LandingBox(props: LandingBoxProps) {
     <St.LandingBox>
       <St.Naechinso src={ImgLandingNaechinso} alt="내친소" />
       <St.TitleWrapper>
-        <St.Title>친구를 소개하러 온 걸</St.Title>
-        <St.Title>환영해!🧡</St.Title>
+        <St.Title>친구를 소개하러 온 걸 환영해🧡</St.Title>
+        <St.Title></St.Title>
       </St.TitleWrapper>
       <St.DescWrapper>
         <St.Desc>친구가 가입 완료할 때</St.Desc>

@@ -18,6 +18,7 @@ const colors = {
   blue: "#6B9AFF",
   blue_bac: "#EAF1FF",
   old_gray: "#EBEBF0",
+  gray10: "#E8EAED",
   gray30: "#C5C5C9",
   gray40: "#ABABAE",
   gray50: "#8F8F92",
@@ -25,6 +26,7 @@ const colors = {
   gray80: "#33333C",
   gray100: "#121213",
   blue40: "#EAF1FF",
+  gray20: "#D8D8DB",
 } as const;
 
 interface Font {
@@ -67,6 +69,7 @@ const fonts = {
   caption6: FONT({ weight: 500, size: 1.2, lineHeight: 1.6 }),
   caption7: FONT({ weight: 400, size: 1.3, lineHeight: 2 }),
   caption8: FONT({ weight: 700, size: 1.3, lineHeight: 2 }),
+  caption9: FONT({ weight: 400, size: 1, lineHeight: 1.4 }),
 } as const;
 
 type BackQuoteArgs = string[];

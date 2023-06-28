@@ -41,3 +41,29 @@ export interface IGetCheckPrice {
   isPrice: boolean;
   isShowRecommend: boolean;
 }
+
+export interface IRecommendReceiverList {
+  name: string;
+  status: string;
+}
+
+export interface IGetCheckRoulette {
+  recommendReceiverList: IRecommendReceiverList[];
+  isRoullete: boolean;
+}
+
+export interface IPostCheckRoulette {
+  price: string;
+  recommendReceiverList: IRecommendReceiverList[];
+}
+
+export interface IGiftInfo {
+  name: string;
+  src: string;
+}
+
+export interface IRouletteGauge {
+  id: number;
+  name: string;
+  status: string;
+}
