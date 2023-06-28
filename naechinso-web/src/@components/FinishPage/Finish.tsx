@@ -95,7 +95,6 @@ export default function Finish(props: FinishProps) {
 const St = {
   Finish: styled.main`
     background-color: ${({ theme }) => theme.colors.black};
-
     display: flex;
     flex-direction: column;
     align-items: center;
