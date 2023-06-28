@@ -63,7 +63,7 @@ export default function BottomSheet(props: BottomSheetProps) {
     localStorage.setItem("selectiveRecommend", selectiveRecommend);
   }, [selectiveRecommend]);
 
-  const isButtonDisabled = !selectiveRecommend || selectiveRecommend.length < 10;
+  const isButtonDisabled = !selectiveRecommend || selectiveRecommend.length < 30;
 
   const handleSubmit = () => {
     // 제출하기 선택 시  postRecommend 채우기
@@ -212,12 +212,12 @@ export default function BottomSheet(props: BottomSheetProps) {
 
             <TextAreaBox
               placeholder={placeholder}
-              minLength={9}
+              minLength={29}
               maxLength={150}
               text={selectiveRecommend}
               setText={setSelectiveRecommend}
               height={15}
-              letterLimit="10자 이상 150자 이내"
+              letterLimit="30자 이상 150자 이내"
               isModalOpened={false}
               textareaScroll={true}
             />
