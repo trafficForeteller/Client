@@ -19,7 +19,7 @@ export const routePaths = {
   Edu: "/recommender/edu",
   Job: "/recommender/job",
   Finish: "/finish",
-  Roulette: "/roulette",
+  Roulette: "/roulette/*",
   RecommenderLanding: "/recommender",
   RecommendLanding: "/recommend",
   Edit: "/edit/*",
