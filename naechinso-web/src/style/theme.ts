@@ -70,6 +70,9 @@ const fonts = {
   caption7: FONT({ weight: 400, size: 1.3, lineHeight: 2 }),
   caption8: FONT({ weight: 700, size: 1.3, lineHeight: 2 }),
   caption9: FONT({ weight: 400, size: 1, lineHeight: 1.4 }),
+
+  bold_25: FONT({ weight: 700, size: 2.5, lineHeight: 3.4 }),
+  reg_15: FONT({ weight: 400, size: 1.5, lineHeight: 2 }),
 } as const;
 
 type BackQuoteArgs = string[];

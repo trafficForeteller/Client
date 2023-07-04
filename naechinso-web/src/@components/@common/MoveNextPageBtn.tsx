@@ -48,8 +48,8 @@ const St = {
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.sub3};
-    width: 33.5rem;
-    height: 5.6rem;
+    width: 34.3rem;
+    height: 4.8rem;
     border-radius: 16px;
 
     &:disabled {

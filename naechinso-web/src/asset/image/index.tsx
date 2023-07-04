@@ -1,4 +1,6 @@
 export { default as ImgAppealDetail } from "./appealDetail.png";
+export { default as ImgBackgroundCloud } from "./backgroundCloud.png";
+export { default as ImgBackgroundGift } from "./backgroundGift.png";
 export { default as ImgCommentNaechinso } from "./commentNaechinso.png";
 export { default as ImgConsultantNaechinso } from "./consultantNaechinso.png";
 export { default as ImgDontGo } from "./dontGo.png";

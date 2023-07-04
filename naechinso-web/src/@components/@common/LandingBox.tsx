@@ -3,8 +3,9 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import { postMemberReissue } from "../../apis/member.api";
-import { ImgLandingNaechinso } from "../../asset/image";
+import { ImgBackgroundCloud, ImgBackgroundGift, ImgLandingNaechinso } from "../../asset/image";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
+import MoveNextPageBtn from "./MoveNextPageBtn";
 
 interface LandingBoxProps {
   setAccessToken: React.Dispatch<React.SetStateAction<boolean>>;
@@ -68,16 +69,21 @@ export default function LandingBox(props: LandingBoxProps) {
     <St.LandingBox>
       <St.Naechinso src={ImgLandingNaechinso} alt="내친소" />
       <St.TitleWrapper>
-        <St.Title>친구를 소개하러 온 걸 환영해🧡</St.Title>
-        <St.Title></St.Title>
+        <St.Title>친구를 소개하러 온 걸 환영해!</St.Title>
       </St.TitleWrapper>
       <St.DescWrapper>
-        <St.Desc>친구가 가입 완료할 때</St.Desc>
-        <St.Desc>썬구리 20개 또는 추천사를 열람할 수 있어</St.Desc>
+        <St.Desc>내친소는 현실의 지인소개를 온라인화했어</St.Desc>
+        <St.Desc>내친소의 유저가 아니어도 추천사를 쓸 수 있어😉</St.Desc>
       </St.DescWrapper>
-      <St.Button onClick={handleMoveLandingPage} type="button" className={GTM_CLASS_NAME.startAccess}>
-        1분컷 추천사 작성하기
-      </St.Button>
+
+      <St.BackGroundGift src={ImgBackgroundGift} alt="선물배경" />
+      <St.BackGroundCloud src={ImgBackgroundCloud} alt="구름배경" />
+      <MoveNextPageBtn
+        title="1분컷 추천사 작성하기"
+        disabled={false}
+        className={GTM_CLASS_NAME.startAccess}
+        handleState={handleMoveLandingPage}
+      />
     </St.LandingBox>
   );
 }
@@ -89,11 +95,10 @@ const St = {
     align-items: center;
 
     width: 100%;
-    padding: 0 2rem;
   `,
   Naechinso: styled.img`
-    width: 12.1rem;
-    height: 12.1rem;
+    width: 6rem;
+    height: 6rem;
   `,
   TitleWrapper: styled.hgroup`
     display: flex;
@@ -105,8 +110,8 @@ const St = {
   `,
   Title: styled.p`
     width: fit-content;
-    color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.head1};
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.bold_25};
   `,
   DescWrapper: styled.div`
     margin: 0.7rem 0;
@@ -117,20 +122,25 @@ const St = {
     align-items: center;
   `,
   Desc: styled.p`
-    color: ${({ theme }) => theme.colors.orange};
-    ${({ theme }) => theme.fonts.body7};
-  `,
-  Button: styled.button`
-    bottom: 3.5rem;
-    background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
+    ${({ theme }) => theme.fonts.reg_15};
+  `,
+  BackGroundCloud: styled.img`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: fixed;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-    width: 33.5rem;
-    height: 5.6rem;
-    border-radius: 1.6rem;
-    @media only screen and (min-width: 375px) and (max-width: 600px) {
-      width: 100%;
+    @media only screen and (min-width: 600px) {
+      width: 37.5rem;
     }
+  `,
+  BackGroundGift: styled.img`
+    width: 100%;
+    z-index: 2;
   `,
 };

@@ -39,10 +39,10 @@ const St = {
   LandingPage: styled.main`
     width: 100%;
     height: 100%;
-    background-color: ${({ theme }) => theme.colors.neural};
-    padding-top: 35%;
+    background-color: ${({ theme }) => theme.colors.orange};
+    padding-top: 15%;
     @media only screen and (min-height: 680px) {
-      padding-top: 55%;
+      padding-top: 30%;
     }
   `,
 };
