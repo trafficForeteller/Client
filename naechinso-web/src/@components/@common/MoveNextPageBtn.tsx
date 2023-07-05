@@ -39,7 +39,8 @@ const St = {
     right: 0;
     bottom: 0;
     padding: 0 2rem;
-    height: 11rem;
+    height: 8rem;
+    z-index: 99;
 
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%);
   `,
