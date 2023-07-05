@@ -8,10 +8,11 @@ export interface NextPageBtnProps {
   state?: number;
   handleState?: () => Promise<void> | void;
   className?: string;
+  isNoBackground?: boolean;
 }
 
 export default function MoveNextPageBtn(props: NextPageBtnProps) {
-  const { nextPage, title, disabled, handleState, state, className } = props;
+  const { nextPage, title, disabled, handleState, state, className, isNoBackground } = props;
   const navigate = useNavigate();
 
   const goNextPage = () => {
@@ -20,7 +21,7 @@ export default function MoveNextPageBtn(props: NextPageBtnProps) {
   };
 
   return (
-    <St.ButtonWrapper>
+    <St.ButtonWrapper isNoBackground={isNoBackground === true && isNoBackground}>
       <St.Button onClick={goNextPage} disabled={disabled} type="button" className={className && className}>
         {title}
       </St.Button>
@@ -29,7 +30,7 @@ export default function MoveNextPageBtn(props: NextPageBtnProps) {
 }
 
 const St = {
-  ButtonWrapper: styled.section`
+  ButtonWrapper: styled.section<{ isNoBackground: boolean }>`
     display: flex;
     justify-content: center;
     width: 100%;
@@ -42,16 +43,17 @@ const St = {
     height: 8rem;
     z-index: 99;
 
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%);
+    background: ${({ isNoBackground }) =>
+      isNoBackground ? "" : "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%)"};
   `,
   Button: styled.button`
-    bottom: 3.5rem;
+    bottom: 3.2rem;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.sub3};
     width: 34.3rem;
     height: 4.8rem;
-    border-radius: 16px;
+    border-radius: 12px;
 
     &:disabled {
       background-color: ${({ theme }) => theme.colors.orange20};

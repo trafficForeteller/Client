@@ -7,7 +7,7 @@ import { ImgFinishBackground } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { IRouletteGauge } from "../../types/recommend";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
-import { Roulette, RouletteGauge } from "../@common";
+import { MoveNextPageBtn, Roulette, RouletteGauge } from "../@common";
 
 interface FinishProps {
   setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
@@ -85,9 +85,13 @@ export default function Finish(props: FinishProps) {
         setIsModalOpened={setIsModalOpened}
       />
 
-      <St.MoveLandingBtn type="button" onClick={handleMoveRecommendLanding} className={GTM_CLASS_NAME.referral}>
-        다른 친구 소개하고 룰렛 돌리기
-      </St.MoveLandingBtn>
+      <MoveNextPageBtn
+        title="다른 친구 소개하고 룰렛 돌리기"
+        disabled={false}
+        handleState={handleMoveRecommendLanding}
+        className={GTM_CLASS_NAME.referral}
+        isNoBackground={true}
+      />
     </St.Finish>
   );
 }
@@ -152,25 +156,5 @@ const St = {
     line-height: 116%;
     text-align: center;
     letter-spacing: -0.01em;
-  `,
-  MoveLandingBtn: styled.button`
-    background-color: ${({ theme }) => theme.colors.orange};
-    color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
-    height: 5.6rem;
-    border-radius: 16px;
-    z-index: 4;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: fixed;
-    bottom: 4.4rem;
-
-    width: 33.5rem;
-    @media only screen and (min-width: 375px) and (max-width: 600px) {
-      width: 90%;
-    }
   `,
 };
