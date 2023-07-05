@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 
 import { IcClose } from "../../asset/icons";
 import { keywordProps } from "../../core/recommend/recommend";
+import MoveNextPageBtn from "./MoveNextPageBtn";
 
 interface AddKeywordModalProps {
   closeModal: () => void;
@@ -81,11 +82,12 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
           </St.InputCaptionWrapper>
         </St.AddKeywordBox>
 
-        <St.NextStepBtnWrapper>
+        {/* <St.NextStepBtnWrapper>
           <St.NextStepBtn type="button" disabled={isButtonDisabled} onClick={handleAddKeywordModal}>
             완료
           </St.NextStepBtn>
-        </St.NextStepBtnWrapper>
+        </St.NextStepBtnWrapper> */}
+        <MoveNextPageBtn title="완료" disabled={isButtonDisabled} handleState={handleAddKeywordModal} />
       </St.AddKeywordModal>
     </>
   );

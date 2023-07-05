@@ -230,7 +230,6 @@ export default function BottomSheet(props: BottomSheetProps) {
                 className={GTM_CLASS_NAME.recommendSuccessWithSelectiveQuestion}>
                 완성하기
               </St.NextStepBtn>
-              <St.CurrentStep>5/5</St.CurrentStep>
             </St.ButtonWrapper>
           </St.BottomSheet>
           {isWarningModalOpened && (
@@ -306,41 +305,28 @@ const St = {
   `,
   ButtonWrapper: styled.section`
     display: flex;
+    justify-content: center;
     width: 37.5rem;
     position: fixed;
     margin: 0 auto;
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 0 2rem;
-    height: 11rem;
-
-    display: flex;
-    justify-content: space-between;
-    gap: 1.1rem;
+    height: 8rem;
   `,
   NextStepBtn: styled.button`
-    bottom: 3.5rem;
+    bottom: 3.2rem;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.sub3};
-    width: 100%;
-    height: 5.6rem;
-    border-radius: 16px;
+    width: 34.3rem;
+    height: 4.8rem;
+    border-radius: 12px;
     cursor: pointer;
 
     &:disabled {
       background-color: ${({ theme }) => theme.colors.orange20};
       cursor: default;
     }
-  `,
-  CurrentStep: styled.p`
-    position: absolute;
-    right: 4rem;
-    bottom: 7rem;
-
-    display: flex;
-    color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
   `,
 };

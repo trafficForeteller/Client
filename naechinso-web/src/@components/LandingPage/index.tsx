@@ -32,7 +32,7 @@ export default function LandingPage() {
   return (
     <St.LandingPage onKeyUp={onEnterKeyUp}>
       <LandingBox setAccessToken={setAccessToken} handleMoveLandingPage={handleMemberStatus} />
-      {!localStorage.getItem("member-uuid") && (
+      {/* {!localStorage.getItem("member-uuid") && (
         <St.DescWrapper>
           <St.Desc>내친소를 직접 사용하고 싶다면? </St.Desc>
           <St.InstallBtn
@@ -42,7 +42,7 @@ export default function LandingPage() {
             여기로✨
           </St.InstallBtn>
         </St.DescWrapper>
-      )}
+      )} */}
     </St.LandingPage>
   );
 }
@@ -51,10 +51,10 @@ const St = {
   LandingPage: styled.div`
     width: 100%;
     height: 100%;
-    background-color: ${({ theme }) => theme.colors.neural};
-    padding-top: 35%;
+    background-color: ${({ theme }) => theme.colors.orange};
+    padding-top: 15%;
     @media only screen and (min-height: 680px) {
-      padding-top: 60%;
+      padding-top: 30%;
     }
   `,
   DescWrapper: styled.article`

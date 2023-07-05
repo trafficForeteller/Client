@@ -342,16 +342,16 @@ const St = {
     right: 0;
     bottom: 0;
     padding: 0 2rem;
-    height: 11rem;
+    height: 8rem;
   `,
   NextStepBtn: styled.button`
-    bottom: 3.5rem;
+    bottom: 3.2rem;
+    width: 34.3rem;
+    height: 4.8rem;
+    border-radius: 12px;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.sub3};
-    width: 33.5rem;
-    height: 5.6rem;
-    border-radius: 1.6rem;
 
     &:disabled {
       background-color: ${({ theme }) => theme.colors.orange20};
