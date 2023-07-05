@@ -74,7 +74,7 @@ const St = {
   MoveMagicLinkBtn: styled.button`
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
+    ${({ theme }) => theme.fonts.bold_16};
     border-radius: 16px;
     width: fit-content;
     padding: 0 2rem;
@@ -86,7 +86,7 @@ const St = {
   MoveInstallBtn: styled.button`
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
+    ${({ theme }) => theme.fonts.bold_16};
     border-radius: 16px;
     width: fit-content;
     padding: 0 3rem;

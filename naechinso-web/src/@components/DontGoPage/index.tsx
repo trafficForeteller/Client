@@ -119,7 +119,7 @@ const St = {
     bottom: 3.2rem;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
+    ${({ theme }) => theme.fonts.bold_16};
     width: 34.3rem;
     height: 4.8rem;
     border-radius: 12px;

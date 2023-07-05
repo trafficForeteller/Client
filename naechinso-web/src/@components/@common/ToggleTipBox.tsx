@@ -37,7 +37,7 @@ const St = {
   ToggleTipBox: styled.section`
     margin: 0 auto 2rem;
     width: 100%;
-    background-color: ${({ theme }) => theme.colors.neural};
+    background-color: ${({ theme }) => theme.colors.orange10};
     border-radius: 16px;
     padding: 1rem;
   `,
@@ -62,7 +62,7 @@ const St = {
     display: ${({ open }) => (open ? "flex" : "none")};
     flex-direction: column;
     gap: 0.4rem;
-    margin-top: 1.6rem;
+    margin-top: 0.8rem;
   `,
   TipWrapper: styled.div`
     display: flex;

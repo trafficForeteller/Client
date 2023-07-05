@@ -68,7 +68,7 @@ const St = {
   `,
   RefreshButton: styled.button`
     color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
+    ${({ theme }) => theme.fonts.bold_16};
     background-color: ${({ theme }) => theme.colors.orange};
     padding: 1.2rem 2.4rem;
     border-radius: 16px;

@@ -31,7 +31,7 @@ const St = {
     background-color: ${({ theme }) => theme.colors.white};
     border: 1px solid ${({ theme }) => theme.colors.black20};
     color: ${({ theme }) => theme.colors.black40};
-    ${({ theme }) => theme.fonts.sub3};
+    ${({ theme }) => theme.fonts.bold_16};
     width: 33.5rem;
     height: 5.6rem;
     border-radius: 1.6rem;

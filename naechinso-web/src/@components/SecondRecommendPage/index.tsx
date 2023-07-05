@@ -203,7 +203,7 @@ const St = {
   SkipButton: styled.button`
     background-color: ${({ theme }) => theme.colors.neural};
     color: ${({ theme }) => theme.colors.gray40};
-    ${({ theme }) => theme.fonts.sub3};
+    ${({ theme }) => theme.fonts.bold_16};
     width: 100%;
     height: 5.6rem;
     border-radius: 16px;
@@ -211,7 +211,7 @@ const St = {
   NextButton: styled.button`
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
+    ${({ theme }) => theme.fonts.bold_16};
     width: 100%;
     height: 5.6rem;
     border-radius: 16px;

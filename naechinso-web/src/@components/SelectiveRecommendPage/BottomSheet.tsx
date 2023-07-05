@@ -9,7 +9,7 @@ import { IcPreviousBtn } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
-import { TextAreaBox, WarningModal } from "../@common";
+import { TextAreaBox, ToggleTipBox, WarningModal } from "../@common";
 
 interface BottomSheetProps {
   isBottomSheetOpened: boolean;
@@ -208,6 +208,8 @@ export default function BottomSheet(props: BottomSheetProps) {
             <St.MovePrevButton onClick={closeModal} type="button">
               <IcPreviousBtn aria-label="모달 닫기" />
             </St.MovePrevButton>
+            <ToggleTipBox />
+
             <St.Title>{localStorage.getItem("checkedSelectiveQ")}</St.Title>
 
             <TextAreaBox
@@ -221,7 +223,7 @@ export default function BottomSheet(props: BottomSheetProps) {
               isModalOpened={false}
               textareaScroll={true}
             />
-
+            <St.Blank></St.Blank>
             <St.ButtonWrapper>
               <St.NextStepBtn
                 type="button"
@@ -286,6 +288,7 @@ const St = {
     bottom: 0;
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 32px 32px 0px 0px;
+    overflow-y: auto;
 
     animation: ${({ isBottomSheetOpened }) => (isBottomSheetOpened ? slideIn : slideOut)} 0.6s ease-in-out;
 
@@ -318,7 +321,7 @@ const St = {
     bottom: 3.2rem;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
+    ${({ theme }) => theme.fonts.bold_16};
     width: 34.3rem;
     height: 4.8rem;
     border-radius: 12px;
@@ -328,5 +331,9 @@ const St = {
       background-color: ${({ theme }) => theme.colors.orange20};
       cursor: default;
     }
+  `,
+  Blank: styled.div`
+    width: 100%;
+    margin-bottom: 3rem;
   `,
 };

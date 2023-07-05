@@ -8,6 +8,7 @@ const colors = {
   neural: "#F6F5F2",
   black64: "#595857",
   orange: "#FF7A00",
+  orange10: "#FFF2E6",
   orange20: "#FFE4CC",
   orange50: "#FF922E",
   brown: "#A58E79",

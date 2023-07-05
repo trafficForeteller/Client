@@ -351,7 +351,7 @@ const St = {
     border-radius: 12px;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
+    ${({ theme }) => theme.fonts.bold_16};
 
     &:disabled {
       background-color: ${({ theme }) => theme.colors.orange20};

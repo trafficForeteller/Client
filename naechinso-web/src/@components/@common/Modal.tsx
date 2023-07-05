@@ -77,7 +77,7 @@ const St = {
     padding: 1rem;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
+    ${({ theme }) => theme.fonts.bold_16};
     width: 33.5rem;
     height: 5.6rem;
     border-radius: 1.6rem;

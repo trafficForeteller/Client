@@ -148,7 +148,7 @@ const St = {
   MoveLandingBtn: styled.button`
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.sub3};
+    ${({ theme }) => theme.fonts.bold_16};
     height: 5.6rem;
     border-radius: 16px;
     z-index: 4;
