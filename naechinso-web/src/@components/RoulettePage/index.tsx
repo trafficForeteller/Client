@@ -6,7 +6,7 @@ import { IcNaechinsoLogo } from "../../asset/icons";
 import { ImgFinishBackground } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { IRouletteGauge } from "../../types/recommend";
-import { Roulette, RouletteGauge } from "../@common";
+import { MoveNextPageBtn, Roulette, RouletteGauge } from "../@common";
 
 export default function RoulettePage() {
   const navigate = useNavigate();
@@ -77,9 +77,12 @@ export default function RoulettePage() {
         setRouletteGauge={setRouletteGauge}
       />
       {/* GTM 새로 달아야함 */}
-      <St.MoveLandingBtn type="button" onClick={handleMovePhoneNumPage}>
-        다른 친구 소개하고 룰렛 돌리기
-      </St.MoveLandingBtn>
+      <MoveNextPageBtn
+        title="다른 친구 소개하고 룰렛 돌리기"
+        disabled={false}
+        handleState={handleMovePhoneNumPage}
+        isNoBackground={true}
+      />
     </St.RoulettePage>
   );
 }
@@ -144,25 +147,5 @@ const St = {
     line-height: 116%;
     text-align: center;
     letter-spacing: -0.01em;
-  `,
-  MoveLandingBtn: styled.button`
-    background-color: ${({ theme }) => theme.colors.orange};
-    color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.bold_16};
-    height: 5.6rem;
-    border-radius: 16px;
-    z-index: 4;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: fixed;
-    bottom: 4.4rem;
-
-    width: 33.5rem;
-    @media only screen and (min-width: 375px) and (max-width: 600px) {
-      width: 90%;
-    }
   `,
 };
