@@ -6,7 +6,7 @@ import { patchMemberEdu, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IPatchEdu } from "../../types/member";
 import {
-  ConsultantIconBtn,
+  ConsultantTextBtn,
   EditHeader,
   EditImageBox,
   EditInput,
@@ -141,7 +141,7 @@ export default function EduEditPage() {
         </St.EditWrapper>
       </St.EditBox>
 
-      <ConsultantIconBtn />
+      <ConsultantTextBtn />
       <MoveNextPageBtn title="수정 완료" disabled={false} handleState={patchEditEduData} />
     </St.EduEditPage>
   );

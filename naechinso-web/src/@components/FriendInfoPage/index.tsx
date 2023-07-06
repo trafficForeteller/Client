@@ -8,7 +8,7 @@ import { getRecommend, postMagicRecommendFriendInfo, postRecommendFriendInfo } f
 import { appealDetailList, friendLoverTypeList, keywordList } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IGetReommend, IPostFriendInfo, IPostRecommendElement, IUuid } from "../../types/recommend";
-import { ConsultantIconBtn, ShortInputBox } from "../@common";
+import { ConsultantTextBtn, ShortInputBox } from "../@common";
 import FriendInfoHeader from "./FriendInfoHeader";
 import PhoneNumInputBox from "./PhoneNumInput";
 
@@ -302,7 +302,7 @@ export default function FriendInfoPage() {
         />
       <St.Blank></St.Blank>
 
-      <ConsultantIconBtn />
+      <ConsultantTextBtn />
       <St.NextStepBtnWrapper>
         <St.NextStepBtn type="button" disabled={!activeBtn} onClick={handleStep}>
           다음

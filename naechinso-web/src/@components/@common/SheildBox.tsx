@@ -21,7 +21,7 @@ const St = {
   SheildBox: styled.article`
     width: calc(100%-4rem);
     border-radius: 8px;
-    margin: 0 2rem 1rem;
+    margin-bottom: 1rem;
     padding: 1.2rem 1.8rem 1.2rem 0.8rem;
     background-color: ${({ theme }) => theme.colors.blue40};
 

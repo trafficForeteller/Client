@@ -6,7 +6,7 @@ import { patchMemberEdu, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IPatchEdu } from "../../types/member";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
-import { ConsultantIconBtn, FixedHeader, ShortInputBox, ToggleInputBox } from "../@common";
+import { ConsultantTextBtn, FixedHeader, ShortInputBox, ToggleInputBox } from "../@common";
 
 export default function EduPage() {
   const [step, setStep] = useState(1);
@@ -170,7 +170,7 @@ export default function EduPage() {
         setIsSelectionModalOpened={setIsSelectionModalOpened}
         isModalOpened={isModalOpened}
       />
-      <ConsultantIconBtn />
+      <ConsultantTextBtn />
       <St.NextStepBtnWrapper>
         <St.NextStepBtn
           type="button"

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { patchMemberJob, postMemberReissue } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
 import { IPatchJob } from "../../types/member";
-import { ConsultantIconBtn, EditHeader, EditImageBox, EditInput, EditTitleBox, MoveNextPageBtn } from "../@common";
+import { ConsultantTextBtn, EditHeader, EditImageBox, EditInput, EditTitleBox, MoveNextPageBtn } from "../@common";
 
 export default function JobEditPage() {
   const location = useLocation();
@@ -108,7 +108,7 @@ export default function JobEditPage() {
         </St.EditWrapper>
       </St.EditBox>
 
-      <ConsultantIconBtn />
+      <ConsultantTextBtn />
       <MoveNextPageBtn title="수정 완료" disabled={false} handleState={patchEditJobData} />
     </St.JobEditPage>
   );

@@ -21,11 +21,13 @@ const St = {
   ConsultantTextBtn: styled.button`
     color: ${({ theme }) => theme.colors.gray40};
     ${({ theme }) => theme.fonts.caption7};
-    float: right;
-    margin-top: 1.3rem;
-    margin-right: 2rem;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.gray40};
 
+    width: fit-content;
+
+    border-bottom: 1px solid ${({ theme }) => theme.colors.gray40};
     line-height: 1.4rem;
+    position: fixed;
+    right: 2.4rem;
+    bottom: 9.2rem;
   `,
 };

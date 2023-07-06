@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { routePaths } from "../../core/routes/path";
-import { ConsultantIconBtn, FixedHeader } from "../@common";
+import { FixedHeader } from "../@common";
 
 export default function ChooseJobPage() {
   const navigate = useNavigate();
@@ -22,7 +22,6 @@ export default function ChooseJobPage() {
           자영업자야
         </St.ChooseWorkButton>
       </St.ButtonWrapper>
-      <ConsultantIconBtn />
     </St.ChooseJobPage>
   );
 }

@@ -31,6 +31,7 @@ export default function AgreeSelfIntroModal() {
 
 const St = {
   AgreeSelfIntroModal: styled.section`
+    z-index: 101;
     padding: 2.8rem 2rem 1.6rem;
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 16px;
@@ -42,7 +43,6 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 5;
     position: absolute;
     top: 50%;
     left: 50%;

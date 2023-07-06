@@ -7,7 +7,7 @@ import { IcSheild } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { IPatchJob } from "../../types/member";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
-import { ConsultantIconBtn, FixedHeader, ShortInputBox } from "../@common";
+import { ConsultantTextBtn, FixedHeader, ShortInputBox } from "../@common";
 
 export default function JobPage() {
   const [step, setStep] = useState(1);
@@ -130,7 +130,7 @@ export default function JobPage() {
         step={step}
       />
 
-      <ConsultantIconBtn />
+      <ConsultantTextBtn />
       <St.NextStepBtnWrapper>
         <St.NextStepBtn
           type="button"
