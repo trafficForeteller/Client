@@ -28,13 +28,12 @@ const St = {
   `,
   Button: styled.button`
     padding: 1rem;
-    background-color: ${({ theme }) => theme.colors.white};
-    border: 1px solid ${({ theme }) => theme.colors.black20};
-    color: ${({ theme }) => theme.colors.black40};
-    ${({ theme }) => theme.fonts.bold_16};
+    border: 1px solid ${({ theme }) => theme.colors.gray30};
+    color: ${({ theme }) => theme.colors.gray40};
+    ${({ theme }) => theme.fonts.bold_15};
     width: 33.5rem;
-    height: 5.6rem;
-    border-radius: 1.6rem;
+    height: 4.8rem;
+    border-radius: 12px;
     @media only screen and (min-width: 375px) and (max-width: 600px) {
       width: 100%;
     }
