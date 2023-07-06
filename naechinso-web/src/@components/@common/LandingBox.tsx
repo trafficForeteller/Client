@@ -100,7 +100,7 @@ export default function LandingBox(props: LandingBoxProps) {
 
       <St.LandingBackGround src={ImgLandingBackground} alt="랜딩페이지 배경" />
       <MoveNextPageBtn
-        title="1분컷 추천사 작성하기"
+        title="3분 추천사 작성하기"
         disabled={false}
         className={GTM_CLASS_NAME.startAccess}
         handleState={handleMoveLandingPage}
