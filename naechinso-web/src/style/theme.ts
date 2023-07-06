@@ -19,6 +19,7 @@ const colors = {
   blue: "#6B9AFF",
   blue_bac: "#EAF1FF",
   old_gray: "#EBEBF0",
+  old_gray20: "#CCC",
   gray10: "#E8EAED",
   gray30: "#C5C5C9",
   gray40: "#ABABAE",
@@ -73,9 +74,11 @@ const fonts = {
   caption9: FONT({ weight: 400, size: 1, lineHeight: 1.4 }),
 
   bold_25: FONT({ weight: 700, size: 2.5, lineHeight: 3.4 }),
+  bold_20: FONT({ weight: 700, size: 2, lineHeight: 3 }),
   bold_16: FONT({ weight: 700, size: 1.6, lineHeight: 2.4 }),
   bold_15: FONT({ weight: 700, size: 1.5, lineHeight: 2 }),
   bold_13: FONT({ weight: 700, size: 1.3, lineHeight: 2 }),
+  mid_16: FONT({ weight: 500, size: 1.6, lineHeight: 2.4 }),
   reg_15: FONT({ weight: 400, size: 1.5, lineHeight: 2 }),
   reg_13: FONT({ weight: 400, size: 1.3, lineHeight: 2 }),
 } as const;

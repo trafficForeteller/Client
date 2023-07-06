@@ -25,7 +25,7 @@ const St = {
     left: 0;
 
     color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.body1};
+    ${({ theme }) => theme.fonts.bold_16};
   `,
   Header: styled.header`
     display: flex;

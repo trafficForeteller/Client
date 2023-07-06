@@ -105,7 +105,7 @@ const St = {
   `,
   Label: styled.p<{ inputActive: boolean }>`
     color: ${({ theme, inputActive }) => (inputActive ? theme.colors.orange : theme.colors.black40)};
-    ${({ theme }) => theme.fonts.body2};
+    ${({ theme }) => theme.fonts.mid_16};
   `,
   InputWrapper: styled.article`
     display: flex;
@@ -117,14 +117,14 @@ const St = {
   FrontPhoneNum: styled.span``,
   Input: styled.input`
     color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.sub2};
+    ${({ theme }) => theme.fonts.bold_20};
     display: flex;
     justify-content: center;
     width: 100%;
     margin-left: 0.2rem;
 
     &::placeholder {
-      color: ${({ theme }) => theme.colors.black20};
+      color: ${({ theme }) => theme.colors.old_gray20};
     }
   `,
 };
