@@ -57,7 +57,7 @@ const St = {
     position: relative;
     width: 100%;
     overflow: ${({ isBottomSheetOpened }) => (isBottomSheetOpened ? "hidden" : "auto")};
-    padding: 20rem 2rem 0;
+    padding: 18rem 2rem 0;
   `,
 
   SelectiveRecommend: styled.section`

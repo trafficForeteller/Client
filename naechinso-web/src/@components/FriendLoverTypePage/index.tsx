@@ -65,6 +65,6 @@ export default function FriendLoverTypePage() {
 const St = {
   FriendLoverType: styled.main`
     width: 100%;
-    padding: 20rem 2rem 13rem;
+    padding: 18rem 2rem 13rem;
   `,
 };
