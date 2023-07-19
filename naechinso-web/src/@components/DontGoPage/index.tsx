@@ -73,7 +73,7 @@ const St = {
     left: 0;
     top: 0;
     width: 100%;
-    padding: 18rem 0 0;
+    padding: 20rem 0 0;
   `,
   CardWrapper: styled.section`
     width: 100%;
