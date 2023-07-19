@@ -47,7 +47,6 @@ export default function SelectiveRecommendPage() {
             );
           })}
         </St.QuestionListWrapper>
-        <ConsultantTextBtn />
       </St.SelectiveRecommend>
     </St.SelectiveRecommendPage>
   );
@@ -57,15 +56,13 @@ const St = {
   SelectiveRecommendPage: styled.main<{ isBottomSheetOpened: boolean }>`
     position: relative;
     width: 100%;
-    height: 100%;
     overflow: ${({ isBottomSheetOpened }) => (isBottomSheetOpened ? "hidden" : "auto")};
-    margin-bottom: 3.5rem;
+    padding: 20rem 2rem 0;
   `,
 
   SelectiveRecommend: styled.section`
     width: 100%;
     height: 100vh;
-    padding: 18rem 2rem 0;
   `,
   QuestionListWrapper: styled.article`
     margin: 0 auto;
@@ -74,7 +71,7 @@ const St = {
     flex-direction: column;
     align-items: center;
     gap: 1.2rem;
-    //  overflow-y: scroll;
+    padding-bottom: 3.5rem;
   `,
   QuestionBox: styled.button`
     width: 100%;
