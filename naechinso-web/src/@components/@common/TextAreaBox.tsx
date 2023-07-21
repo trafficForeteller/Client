@@ -85,7 +85,6 @@ const St = {
   TextArea: styled.textarea`
     width: 100%;
     border-radius: 8px;
-    padding: 1rem;
     border: none;
     resize: none;
     display: flex;
