@@ -221,7 +221,6 @@ export default function BottomSheet(props: BottomSheetProps) {
               height={15}
               letterLimit="30자 이상 150자 이내"
               isModalOpened={false}
-              textareaScroll={true}
             />
             <St.Blank></St.Blank>
             <St.ButtonWrapper>
