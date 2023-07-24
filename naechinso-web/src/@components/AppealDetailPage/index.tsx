@@ -56,7 +56,7 @@ export default function AppealDetailPage() {
         title1="🎈 내 친구는 OO한 친구야!"
       />
 
-      <SelectOneKeyword keywordList={appealDetailArr} setKeywordList={setAppealDetailArr} />
+      <SelectOneKeyword questionNum={2} keywordList={appealDetailArr} setKeywordList={setAppealDetailArr} />
       <ConsultantTextBtn />
       <MoveNextPageBtn
         nextPage={routePaths.FriendLoverType}

@@ -6,12 +6,13 @@ import AddKeywordBtn from "./AddKeywordBtn";
 interface SelectOneKeywordProps {
   setKeywordList: React.Dispatch<React.SetStateAction<keywordProps[]>>;
   keywordList: keywordProps[];
+  questionNum: number;
 }
 
 export default function SelectOneKeyword(props: SelectOneKeywordProps) {
   // 키워드 리스트를 보여주는 역할만 하는 common component
 
-  const { setKeywordList, keywordList } = props;
+  const { setKeywordList, keywordList, questionNum } = props;
   // 체크되면 바로 localStorage에 저장
 
   const toggleChecked = (el: keywordProps) => {
@@ -35,7 +36,7 @@ export default function SelectOneKeyword(props: SelectOneKeywordProps) {
           </St.KeywordWrapper>
         );
       })}
-      <AddKeywordBtn keywordArr={keywordList} setKeywordArr={setKeywordList} />
+      <AddKeywordBtn keywordArr={keywordList} setKeywordArr={setKeywordList} questionNum={questionNum} />
     </St.SelectOneKeyword>
   );
 }

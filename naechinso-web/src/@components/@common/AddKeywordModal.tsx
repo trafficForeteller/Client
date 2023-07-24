@@ -10,18 +10,19 @@ interface AddKeywordModalProps {
   isOpenKeywordModal: boolean;
   keywordArr: keywordProps[];
   setKeywordArr: React.Dispatch<React.SetStateAction<keywordProps[]>>;
+  questionNum: number;
 }
 
 export default function AddKeywordModal(props: AddKeywordModalProps) {
-  const { closeModal, isOpenKeywordModal, keywordArr, setKeywordArr } = props;
+  const { closeModal, isOpenKeywordModal, keywordArr, setKeywordArr, questionNum } = props;
   const [text, setText] = useState("");
 
   const handleText = (e: React.ChangeEvent<HTMLInputElement>) => {
     const byteLength = new TextEncoder().encode(e.target.value).length;
-    if (byteLength <= 6) {
+    if (byteLength <= 15) {
       setText(e.target.value);
     } else {
-      setText(e.target.value.slice(0, 6)); // 최대 길이를 6으로 제한
+      setText(e.target.value.slice(0, 15)); // 최대 길이를 6으로 제한
     }
   };
 
@@ -54,7 +55,7 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
     setText("");
   };
 
-  const isButtonDisabled = text.length < 1 && text.length > 7;
+  const isButtonDisabled = text.length < 1 && text.length > 15;
   return (
     <>
       <St.ModalBackground />
@@ -71,22 +72,17 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
             value={text}
             onChange={handleText}
             minLength={1}
-            maxLength={6}
-            placeholder="ex)사랑스러워🎀"
+            maxLength={15}
+            placeholder={questionNum === 2 ? "ex) 책을 많이 읽는📖" : "ex)사랑스러워🎀"}
           />
           <St.InputCaptionWrapper>
-            <St.Maximum>최대 6자</St.Maximum>
+            <St.Maximum>최대 15자</St.Maximum>
             <St.TextCountWrapper>
-              <St.TextCount>{text ? text.length : 0}</St.TextCount>/6
+              <St.TextCount>{text ? text.length : 0}</St.TextCount>/15
             </St.TextCountWrapper>
           </St.InputCaptionWrapper>
         </St.AddKeywordBox>
 
-        {/* <St.NextStepBtnWrapper>
-          <St.NextStepBtn type="button" disabled={isButtonDisabled} onClick={handleAddKeywordModal}>
-            완료
-          </St.NextStepBtn>
-        </St.NextStepBtnWrapper> */}
         <MoveNextPageBtn title="완료" disabled={isButtonDisabled} handleState={handleAddKeywordModal} />
       </St.AddKeywordModal>
     </>

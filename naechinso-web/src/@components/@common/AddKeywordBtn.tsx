@@ -8,10 +8,11 @@ import AddKeywordModal from "./AddKeywordModal";
 interface AddKeywordBtnProps {
   keywordArr: keywordProps[];
   setKeywordArr: React.Dispatch<React.SetStateAction<keywordProps[]>>;
+  questionNum: number;
 }
 
 export default function AddKeywordBtn(props: AddKeywordBtnProps) {
-  const { keywordArr, setKeywordArr } = props;
+  const { keywordArr, setKeywordArr, questionNum } = props;
   const [isOpenKeywordModal, setIsOpenKeywordModal] = useState(false);
 
   const openModal = () => setIsOpenKeywordModal(true);
@@ -29,6 +30,7 @@ export default function AddKeywordBtn(props: AddKeywordBtnProps) {
           isOpenKeywordModal={isOpenKeywordModal}
           keywordArr={keywordArr}
           setKeywordArr={setKeywordArr}
+          questionNum={questionNum}
         />
       )}
     </>

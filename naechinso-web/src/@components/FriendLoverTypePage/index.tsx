@@ -50,7 +50,7 @@ export default function FriendLoverTypePage() {
         title1="🧡 친구와 어울릴 것 같은 애인 유형"
       />
 
-      <SelectOneKeyword keywordList={friendLoverTypeArr} setKeywordList={setFriendLoverTypeArr} />
+      <SelectOneKeyword questionNum={3} keywordList={friendLoverTypeArr} setKeywordList={setFriendLoverTypeArr} />
       <ConsultantTextBtn />
       <MoveNextPageBtn
         nextPage={routePaths.DontGo}
