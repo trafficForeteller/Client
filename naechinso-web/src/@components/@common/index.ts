@@ -34,7 +34,6 @@ export { default as ToggleInput } from "./ToggleInput";
 export { default as ToggleInputBox } from "./ToggleInputBox";
 export { default as ToggleModal } from "./ToggleModal";
 export { default as ToggleTipBox } from "./ToggleTipBox";
-export { default as ToolTipBox } from "./ToolTipBox";
 export { default as WarningBox } from "./WarningBox";
 export { default as WarningModal } from "./WarningModal";
 export { default as WorkCertified } from "./WorkCertified";

@@ -1,6 +1,7 @@
 export { default as ImgAppealDetail } from "./appealDetail.png";
 export { default as ImgChickenIcon } from "./chickenIcon.png";
 export { default as ImgCommentNaechinso } from "./commentNaechinso.png";
+export { default as ImgCongratulateIcon } from "./congratulateIcon.png";
 export { default as ImgDontGo } from "./dontGo.png";
 export { default as ImgEditNaechinso } from "./editNaechinso.png";
 export { default as ImgErrorNaechinso } from "./errorNaechinso.png";
@@ -23,7 +24,7 @@ export { default as ImgNullGauge } from "./nullGauge.png";
 export { default as ImgNullLastGauge } from "./nullLastGauge.png";
 export { default as ImgPendingNaechinso } from "./pendingNaechinso.png";
 export { default as ImgRecommenderAuthNaechinso } from "./recommenderAuthNaechinso.png";
-export { default as ImgRecommendLanding } from "./recommendLanding.png";
+export { default as ImgRecommendLandingBackground } from "./recommendLandingBackground.png";
 export { default as ImgRoulette } from "./roulette.png";
 export { default as ImgRouletteGaugeNaechinso } from "./rouletteGaugeNaechinso.png";
 export { default as ImgRouletteIcon } from "./rouletteIcon.png";

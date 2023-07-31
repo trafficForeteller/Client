@@ -50,7 +50,7 @@ const St = {
     bottom: 3.2rem;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.bold_16};
+    ${({ theme }) => theme.fonts.bold_15};
     width: 34.3rem;
     height: 4.8rem;
     border-radius: 12px;
