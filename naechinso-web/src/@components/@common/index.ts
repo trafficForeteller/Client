@@ -20,7 +20,6 @@ export { default as Modal } from "./Modal";
 export { default as MoveNextPageBtn } from "./MoveNextPageBtn";
 export { default as MovePreviousPageBtn } from "./MovePreviousPageBtn";
 export { default as PhoneNumInput } from "./PhoneNumInput";
-export { default as ProgressBar } from "./ProgressBar";
 export { default as Roulette } from "./Roulette";
 export { default as RouletteGauge } from "./RouletteGauge";
 export { default as RouletteModal } from "./RouletteModal";

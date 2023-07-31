@@ -20,7 +20,6 @@ export const routePaths = {
   Job: "/recommender/job",
   Finish: "/finish",
   Roulette: "/roulette/*",
-  RecommenderLanding: "/recommender",
   RecommendLanding: "/recommend",
   Edit: "/edit/*",
   JobEdit: "/edit/job",

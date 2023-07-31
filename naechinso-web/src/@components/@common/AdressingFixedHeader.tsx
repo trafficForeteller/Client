@@ -3,19 +3,18 @@ import styled from "styled-components";
 
 // eslint-disable-next-line
 import { IcPreviousBtn } from "../../asset/icons";
-import { ProgressBar, Title } from ".";
+import { Title } from ".";
 
 interface AdressingFixedHeader {
   header: string;
   navigatePath: string;
-  progressRate: number;
   questionKind?: string;
   title1: string;
   title2?: string;
 }
 
 export default function AdressingFixedHeader(props: AdressingFixedHeader) {
-  const { header, navigatePath, progressRate, title1, title2, questionKind } = props;
+  const { header, navigatePath, title1, title2, questionKind } = props;
 
   const navigate = useNavigate();
 
@@ -33,7 +32,6 @@ export default function AdressingFixedHeader(props: AdressingFixedHeader) {
         </St.MovePressButton>
         {header}
       </St.Header>
-      <ProgressBar progressRate={progressRate} />
       <St.TitleWrapper>
         <St.SubTitle>{questionKind}</St.SubTitle>
         <Title title={title1} />

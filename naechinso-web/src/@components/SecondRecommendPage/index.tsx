@@ -81,12 +81,7 @@ export default function SecondRecommendPage() {
 
   return (
     <>
-      <FixedHeader
-        header="추천사"
-        progressRate={55}
-        title1="친구에 대해 더 자랑하고"
-        title2="싶은 점을 자유롭게 적어보자!"
-      />
+      <FixedHeader header="추천사" title1="친구에 대해 더 자랑하고" title2="싶은 점을 자유롭게 적어보자!" />
 
       <St.ModalBackground />
       <St.SecondRecommendPage isBottomSheetOpened={isBottomSheetOpened}>

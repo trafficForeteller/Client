@@ -30,7 +30,6 @@ export default function DontGoPage() {
         <AdressingFixedHeader
           header="추천사"
           navigatePath="/recommend/friendLoverType"
-          progressRate={90}
           questionKind="필수질문 4"
           title1="😥 친구를 거절한 상대에게 한 마디! "
         />

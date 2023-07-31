@@ -90,7 +90,6 @@ export default function KeywordPage() {
       <AdressingFixedHeader
         header="추천사"
         navigatePath="/recommend/friendInfo"
-        progressRate={40}
         questionKind="필수질문 1"
         title1="😘 친구의 매력 3개만 알려줘!"
       />

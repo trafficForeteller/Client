@@ -28,7 +28,6 @@ export default function SelectiveRecommendPage() {
       <AdressingFixedHeader
         header="추천사"
         navigatePath="/recommend/dontGo"
-        progressRate={98}
         questionKind="필수질문 5"
         title1="😘 마지막이야! 질문 하나만 골라줘"
       />

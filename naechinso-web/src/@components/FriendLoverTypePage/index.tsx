@@ -45,7 +45,6 @@ export default function FriendLoverTypePage() {
       <AdressingFixedHeader
         header="추천사"
         navigatePath="/recommend/appealDetail"
-        progressRate={80}
         questionKind="필수질문 3"
         title1="🧡 친구와 어울릴 것 같은 애인 유형"
       />

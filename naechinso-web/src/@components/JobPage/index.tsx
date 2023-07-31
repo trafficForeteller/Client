@@ -100,7 +100,7 @@ export default function JobPage() {
 
   return (
     <St.JobPage>
-      <FixedHeader header="추천인 소개" progressRate={60} title1="💼" title2="어떤 일을 해?" />
+      <FixedHeader header="추천인 소개" title1="💼" title2="어떤 일을 해?" />
 
       <St.SheildBox>
         <IcSheild aria-label="확인 문구" />

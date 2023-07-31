@@ -1,15 +1,13 @@
 import styled from "styled-components";
 
 import MovePreviousPageBtn from "./MovePreviousPageBtn";
-import ProgressBar from "./ProgressBar";
 
 export interface BasicHeaderProps {
   header: string;
-  progressRate: number;
 }
 
 export default function BasicHeader(props: BasicHeaderProps) {
-  const { header, progressRate } = props;
+  const { header } = props;
 
   return (
     <St.BasicHeader>
@@ -17,7 +15,6 @@ export default function BasicHeader(props: BasicHeaderProps) {
         <MovePreviousPageBtn />
         {header}
       </St.Header>
-      <ProgressBar progressRate={progressRate} />
     </St.BasicHeader>
   );
 }

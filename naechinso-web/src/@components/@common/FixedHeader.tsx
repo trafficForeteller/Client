@@ -7,7 +7,6 @@ import Title from "./Title";
 
 export interface FixedHeaderProps {
   header: string;
-  progressRate: number;
   title1: string;
   title2?: string;
   subTitle1?: string;
@@ -19,7 +18,7 @@ export interface FixedHeaderProps {
 }
 
 export default function FixedHeader(props: FixedHeaderProps) {
-  const { header, progressRate, title1, title2, subTitle1, subTitle2, isModalOpened, selection, questionKind } = props;
+  const { header, title1, title2, subTitle1, subTitle2, isModalOpened, selection, questionKind } = props;
   const [checkSubTitle, setCheckSubTitle] = useState(false);
 
   useEffect(() => {
@@ -35,7 +34,7 @@ export default function FixedHeader(props: FixedHeaderProps) {
     <>
       {isModalOpened ? (
         <St.FixedHeaderWithModal>
-          <BasicHeader header={header} progressRate={progressRate} />
+          <BasicHeader header={header} />
           <St.TitleWrapper checkSubTitle={checkSubTitle}>
             <St.QuestionKind>{questionKind}</St.QuestionKind>
             <Title title={title1} />
@@ -48,7 +47,7 @@ export default function FixedHeader(props: FixedHeaderProps) {
         </St.FixedHeaderWithModal>
       ) : (
         <St.FixedHeader>
-          <BasicHeader header={header} progressRate={progressRate} />
+          <BasicHeader header={header} />
           <St.TitleWrapper checkSubTitle={checkSubTitle}>
             {selection && <St.Selection>(선택)</St.Selection>}
             <St.QuestionKind>{questionKind}</St.QuestionKind>

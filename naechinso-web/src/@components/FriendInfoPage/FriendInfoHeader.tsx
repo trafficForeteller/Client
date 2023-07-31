@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { IcPreviousBtn } from "../../asset/icons";
-import { ProgressBar, WarningModal } from "../@common";
+import { WarningModal } from "../@common";
 
 export default function FriendInfoHeader() {
   const [isWarningModalOpened, setIsWarningModalOpened] = useState(false);
@@ -22,7 +22,6 @@ export default function FriendInfoHeader() {
           </St.Button>
           친구 정보
         </St.Header>
-        <ProgressBar progressRate={20} />
       </St.BasicHeader>
       {isWarningModalOpened && (
         <WarningModal

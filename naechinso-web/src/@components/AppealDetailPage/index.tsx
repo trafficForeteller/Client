@@ -51,7 +51,6 @@ export default function AppealDetailPage() {
       <AdressingFixedHeader
         header="추천사"
         navigatePath="/recommend/keyword"
-        progressRate={60}
         questionKind="필수질문 2"
         title1="🎈 내 친구는 OO한 친구야!"
       />

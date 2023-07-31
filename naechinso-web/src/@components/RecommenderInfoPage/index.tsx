@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { postMemberJoinRecommender, postMemberReissue } from "../../apis/member.api";
 import { IcCheckedMen, IcCheckedWomen, IcUnCheckedMen, IcUnCheckedWomen } from "../../asset/icons";
 import { genderTypeList, genderTypeProps } from "../../core/member/member";
-import { RecommenderInfoList } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { ConsultantTextBtn, FixedHeader, MoveNextPageBtn, SheildBox } from "../@common";
 import NameInputBox from "./NameInputBox";
@@ -108,10 +107,9 @@ export default function RecommenderInfoPage() {
   return (
     <St.RecommenderInfo>
       <FixedHeader
-        header="추천인 소개"
-        progressRate={20}
-        title1={RecommenderInfoList[index].title1}
-        title2={RecommenderInfoList[index].title2}
+        header="자기 소개"
+        title1="😆"
+        title2="이제 간단히 너를 소개해줘!"
         subTitle1="네 정보를 밝히며 친구를 추천하면"
         subTitle2="이 친구에게 엄청난 신뢰가 더해질거야"
       />

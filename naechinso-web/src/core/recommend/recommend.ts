@@ -413,25 +413,6 @@ export const RecommendStepMessage: RecommendStepMessageProps[] = [
   { id: 1, questionChoiceMessage: "두 번째 질문을 선택해줘", recommendStepMessage: "질문 2" },
 ];
 
-export type RecommenderInfoProps = {
-  id: number;
-  title1: string;
-  title2: string;
-};
-
-export const RecommenderInfoList: RecommenderInfoProps[] = [
-  {
-    id: 0,
-    title1: "👀",
-    title2: "간단히 너를 소개해줘!",
-  },
-  {
-    id: 1,
-    title1: "😆",
-    title2: "너에 대해 소개해줄래?",
-  },
-];
-
 export type selectiveRecommendProps = {
   id: number;
   icon: string;

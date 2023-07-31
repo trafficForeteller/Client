@@ -9,7 +9,7 @@ export default function ChooseWorkPage() {
 
   return (
     <St.ChooseWorkPage>
-      <FixedHeader header="추천인 소개" progressRate={50} title1="😎" title2="일을 하고 있어?" />
+      <FixedHeader header="추천인 소개" title1="😎" title2="일을 하고 있어?" />
 
       <St.ButtonWrapper>
         <St.ChooseWorkButton type="button" onClick={() => navigate(routePaths.ChooseJob)}>
