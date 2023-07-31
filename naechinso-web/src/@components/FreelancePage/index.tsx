@@ -72,7 +72,7 @@ export default function FreelancePage() {
 
   return (
     <St.FreelancePage>
-      <FixedHeader header="자기 소개" title1="💼" title2="어떤 영역에서 활동하고 있어?" />
+      <FixedHeader header="자기 소개" title1="💼" title2="어떤 분야에서 활동하고 있어?" />
       <ShortInputBox
         label="활동 영역"
         placeholder="ex. 디자인, 작곡 등"
@@ -93,6 +93,6 @@ export default function FreelancePage() {
 
 const St = {
   FreelancePage: styled.main`
-    padding: 17rem 2rem 0;
+    padding: 15rem 2rem 0;
   `,
 };

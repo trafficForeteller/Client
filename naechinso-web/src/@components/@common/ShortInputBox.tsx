@@ -69,7 +69,7 @@ const St = {
   Input: styled.input`
     width: 100%;
     color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.sub2};
+    ${({ theme }) => theme.fonts.bold_20};
     display: flex;
     justify-content: center;
     align-items: center;
