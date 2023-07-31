@@ -77,7 +77,7 @@ export default function SelfEmployedPage() {
 
   return (
     <St.SelfEmployedPage>
-      <FixedHeader header="추천인 소개" title1="💼" title2="어떤 일을 해?" />
+      <FixedHeader header="자기 소개" title1="💼" title2="어떤 일을 해?" />
       <ShortInputBox
         label="분류"
         placeholder="ex. 프렌치 레스토랑, 꽃집 등"

@@ -122,7 +122,7 @@ export default function EduPage() {
 
   return (
     <St.EduPage isModalOpened={isModalOpened}>
-      <FixedHeader header="추천인 소개" title1="🏫" title2="학교는 어디 다녀?" isModalOpened={isModalOpened} />
+      <FixedHeader header="자기 소개" title1="🏫" title2="학교는 어디 다녀?" isModalOpened={isModalOpened} />
 
       {step >= 3 ? (
         <>

@@ -71,7 +71,7 @@ export default function PrepareWorkPage() {
 
   return (
     <St.PrepareWorkPage>
-      <FixedHeader header="추천인 소개" title1="💼" title2="준비 중인 일을 알려줘!" />
+      <FixedHeader header="자기 소개" title1="💼" title2="준비 중인 일을 알려줘!" />
       <St.InputBox>
         <St.Label>분야</St.Label>
         <St.InputWrapper>

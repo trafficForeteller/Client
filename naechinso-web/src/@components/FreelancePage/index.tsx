@@ -72,7 +72,7 @@ export default function FreelancePage() {
 
   return (
     <St.FreelancePage>
-      <FixedHeader header="추천인 소개" title1="💼" title2="어떤 영역에서 활동하고 있어?" />
+      <FixedHeader header="자기 소개" title1="💼" title2="어떤 영역에서 활동하고 있어?" />
       <ShortInputBox
         label="활동 영역"
         placeholder="ex. 디자인, 작곡 등"

@@ -142,7 +142,7 @@ export default function WorkCertified(props: WorkCertifiedProps) {
 
   return (
     <St.WorkCertified>
-      <FixedHeader header="추천인 소개" title1={title1} title2={title2} subTitle1={subTitle1} subTitle2={subTitle2} />
+      <FixedHeader header="자기 소개" title1={title1} title2={title2} subTitle1={subTitle1} subTitle2={subTitle2} />
       <SheildBox desc="인증자료는 절대로 외부에 공개되지 않으니 안심해 :)" />
 
       <St.ImageUploadBox htmlFor="input-file">
