@@ -165,6 +165,7 @@ export default function FriendInfoPage() {
     //서버에서 받아온 appealDetail이 내 친구는으로 시작하는지, 친구야!로 끝나는 지 확인
     return appealDetailToServer.startsWith("내 친구는") && appealDetailToServer.endsWith("친구야!");
   };
+
   const processAppealDetail = (appealDetailToServer: string) => {
     // 서버에서 받아온 appealDetail이 appealDetailList에 있다면 로컬에 추가
     const keyword = appealDetailToServer.slice("내 친구는 ".length, -" 친구야!".length);
@@ -195,18 +196,13 @@ export default function FriendInfoPage() {
     const updatedList = [...friendLoverTypeList];
     const matchedTypeIndex = updatedList.findIndex((item) => item.keyword === keyword);
     updatedList.forEach((item) => {
-      if (item.keyword !== keyword) {
-        item.checked = false;
-      }
+      if (item.keyword !== keyword) item.checked = false;
     });
-
     if (matchedTypeIndex !== -1) {
       updatedList[matchedTypeIndex].checked = true;
     } else updatedList.push({ id: updatedList.length, keyword:keyword, checked:true });
-
       localStorage.setItem("friendLoverTypeList", JSON.stringify(updatedList));
       localStorage.setItem("friendLoverType", keyword);
-    
   };
 
   const processSelectiveRecommend = (questionToServer: IPostRecommendElement[]) => {

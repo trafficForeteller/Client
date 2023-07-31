@@ -1,3 +1,4 @@
+export { default as ImgAnonymousIcon } from "./anonymousIcon.png";
 export { default as ImgAppealDetail } from "./appealDetail.png";
 export { default as ImgChickenIcon } from "./chickenIcon.png";
 export { default as ImgCommentNaechinso } from "./commentNaechinso.png";

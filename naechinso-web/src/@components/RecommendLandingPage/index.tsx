@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { getUserName, postMemberReissue } from "../../apis/member.api";
 import { ImgCongratulateIcon, ImgRecommendLandingBackground } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
+import CheckFriendBox from "./CheckFriendBox";
 
 export default function RecommendLandingPage() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -25,8 +26,9 @@ export default function RecommendLandingPage() {
     );
   };
 
-  const handleSuccessGetUserName = (userName: string) => {
+  const handleSuccessGetUserName = (userName: string, userPhoneNum: string) => {
     localStorage.setItem("memberName", userName);
+    localStorage.setItem("memberPhoneNum", userPhoneNum);
     setButtonDisabled(false);
   };
 
@@ -55,13 +57,16 @@ export default function RecommendLandingPage() {
           <St.Desc> 내친소를 이용할 수 있어!</St.Desc>
         </St.DescWrapper>
       </St.DescBox>
-
       <St.LandingBackGround src={ImgRecommendLandingBackground} alt="랜딩페이지 배경" />
-      <St.ButtonWrapper>
-        <St.Button onClick={() => navigate(routePaths.FriendInfo)} disabled={buttonDisabled} type="button">
-          내 친구 추천하기
-        </St.Button>
-      </St.ButtonWrapper>
+      {!localStorage.getItem("member-uuid") ? (
+        <CheckFriendBox />
+      ) : (
+        <St.NextStepButtonWrapper>
+          <St.NextStepButton onClick={() => navigate(routePaths.FriendInfo)} disabled={buttonDisabled} type="button">
+            내 친구 추천하기
+          </St.NextStepButton>
+        </St.NextStepButtonWrapper>
+      )}
     </St.RecommendLandingPage>
   );
 }
@@ -70,7 +75,7 @@ const St = {
   RecommendLandingPage: styled.main`
     width: 100%;
     height: 100%;
-    padding-top: 25%;
+    padding-top: 20%;
     @media only screen and (min-height: 720px) {
       padding-top: 30%;
     }
@@ -107,14 +112,17 @@ const St = {
     margin: 0 auto;
     left: 0;
     right: 0;
-    top: -10%;
+    top: -15%;
     z-index: -1;
 
     @media only screen and (min-width: 600px) {
       width: 37.5rem;
     }
+    @media only screen and (min-height: 720px) {
+      top: -5%;
+    }
   `,
-  ButtonWrapper: styled.section`
+  NextStepButtonWrapper: styled.section`
     display: flex;
     justify-content: center;
     width: 100%;
@@ -122,7 +130,7 @@ const St = {
     margin: 0 auto;
     left: 0;
     right: 0;
-    bottom: 35%;
+    bottom: 30%;
     padding: 0 2rem;
     height: 8rem;
     z-index: 99;
@@ -130,7 +138,7 @@ const St = {
       bottom: 25%;
     }
   `,
-  Button: styled.button`
+  NextStepButton: styled.button`
     bottom: 3.2rem;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};

@@ -121,7 +121,7 @@ export async function getMemberStatus(accessToken: string | null): Promise<IGetM
 export async function getUserName(
   accessToken: string | null,
   memberUuid: string | null,
-  onSuccess: (userData: string) => void,
+  onSuccess: (userName: string, userPhoneNum: string) => void,
   onFail: () => void,
   onReissue: () => void,
 ): Promise<void | undefined> {
@@ -129,7 +129,7 @@ export async function getUserName(
     const { data } = await serverAxios.get(`${PREFIX_URL}/name${memberUuid}`, {
       headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
     });
-    onSuccess(data.data.name);
+    onSuccess(data.data.name, data.data.phone);
   } catch (err) {
     if (err instanceof AxiosError) {
       if (err.response?.data.status === 401) onReissue();
