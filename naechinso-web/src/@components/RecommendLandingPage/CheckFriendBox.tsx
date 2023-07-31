@@ -16,6 +16,12 @@ export default function CheckFriendBox() {
 
   const formatPhoneNumber = (phoneNumber: string): string => phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, "$1 $2 $3");
 
+  const WrongMemberData = () => {
+    localStorage.removeItem("memberName");
+    localStorage.removeItem("memberPhoneNum");
+    navigate(routePaths.FriendInfo);
+  };
+
   const handleMagicFriendInfo = async () => {
     // 매직링크 가진 친구의 기본정보 POST
     await postMagicRecommendFriendInfo(
@@ -112,6 +118,8 @@ export default function CheckFriendBox() {
     localStorage.removeItem("friendLoverTypeList");
     localStorage.removeItem("appealDetail");
     localStorage.removeItem("appealDetailList");
+    localStorage.removeItem("memberName");
+    localStorage.removeItem("memberPhoneNum");
 
     navigate(routePaths.Keyword);
   };
@@ -185,10 +193,10 @@ export default function CheckFriendBox() {
         </St.FriendWrapper>
       </St.FriendBox>
       <St.ButtonWrapper>
-        <St.WrongButton type="button" onClick={() => navigate(routePaths.FriendInfo)}>
+        <St.WrongButton type="button" onClick={WrongMemberData}>
           아니야
         </St.WrongButton>
-        <St.RightButton type="button" onClick={() => handleMagicFriendInfo()}>
+        <St.RightButton type="button" onClick={handleMagicFriendInfo}>
           이 친구가 맞아!
         </St.RightButton>
       </St.ButtonWrapper>

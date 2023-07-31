@@ -37,6 +37,7 @@ export default function LandingBox(props: LandingBoxProps) {
     localStorage.removeItem("recommenderName");
     localStorage.removeItem("priceType");
     localStorage.removeItem("memberName");
+    localStorage.removeItem("memberPhoneNum");
     localStorage.removeItem("checkedKeywordList");
     localStorage.removeItem("checkedSelectiveQ");
     localStorage.removeItem("selectiveRecommend");

@@ -29,6 +29,7 @@ export default function RecommenderAuthPage() {
     localStorage.removeItem("recommenderName");
     localStorage.removeItem("priceType");
     localStorage.removeItem("memberName");
+    localStorage.removeItem("memberPhoneNum");
     localStorage.removeItem("checkedKeywordList");
     localStorage.removeItem("checkedSelectiveQ");
     localStorage.removeItem("selectiveRecommend");

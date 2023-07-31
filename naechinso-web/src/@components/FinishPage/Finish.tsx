@@ -45,6 +45,7 @@ export default function Finish(props: FinishProps) {
     localStorage.removeItem("landingUrl");
     localStorage.removeItem("priceType");
     localStorage.removeItem("memberName");
+    localStorage.removeItem("memberPhoneNum");
     localStorage.removeItem("checkedKeywordList");
     localStorage.removeItem("checkedSelectiveQ");
     localStorage.removeItem("selectiveRecommend");
