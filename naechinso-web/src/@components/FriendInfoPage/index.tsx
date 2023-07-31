@@ -314,7 +314,7 @@ const St = {
     top: 0;
     width: 100%;
     height: 100%;
-    padding: 9rem 2rem;
+    padding: 5.8rem 2rem;
   `,
   Title: styled.h1`
     margin-bottom: 2.4rem;

@@ -15,14 +15,12 @@ export default function FriendInfoHeader() {
 
   return (
     <>
-      <St.BasicHeader>
-        <St.Header>
-          <St.Button onClick={movePreviousPage} type="button">
-            <IcPreviousBtn aria-label="이전 페이지로 이동" />
-          </St.Button>
-          친구 정보
-        </St.Header>
-      </St.BasicHeader>
+      <St.Header>
+        <St.Button onClick={movePreviousPage} type="button">
+          <IcPreviousBtn aria-label="이전 페이지로 이동" />
+        </St.Button>
+        친구 정보
+      </St.Header>
       {isWarningModalOpened && (
         <WarningModal
           title1="이 페이지를 나가면"
@@ -36,7 +34,6 @@ export default function FriendInfoHeader() {
 }
 
 const St = {
-  BasicHeader: styled.article``,
   Header: styled.header`
     display: flex;
     align-items: center;
