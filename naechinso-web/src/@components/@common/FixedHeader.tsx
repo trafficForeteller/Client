@@ -69,7 +69,6 @@ const St = {
     top: 0;
 
     padding-bottom: 1.2rem;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #ffffff 10%);
     z-index: -1;
 
     @media only screen and (min-width: 375px) and (max-width: 600px) {
@@ -85,7 +84,6 @@ const St = {
     top: 0;
 
     padding-bottom: 1.2rem;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #ffffff 10%);
     z-index: 2;
 
     @media only screen and (min-width: 375px) and (max-width: 600px) {
@@ -93,7 +91,6 @@ const St = {
     }
   `,
   TitleWrapper: styled.hgroup<{ checkSubTitle: boolean }>`
-    margin-bottom: ${({ checkSubTitle }) => (checkSubTitle ? "0.6rem" : "2.4rem")};
     position: relative;
     padding: 6.8rem 2rem 0;
   `,

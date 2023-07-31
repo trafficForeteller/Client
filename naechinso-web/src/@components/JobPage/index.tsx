@@ -146,15 +146,15 @@ export default function JobPage() {
 
 const St = {
   JobPage: styled.main`
-    padding: 19rem 2rem 0;
+    padding: 14.8rem 2rem 0;
   `,
   SheildBox: styled.section`
-    width: 32.7rem;
+    width: 33.5rem;
     height: 6.4rem;
     border-radius: 8px;
     margin: 0 auto;
     margin-bottom: 2.4rem;
-    padding: 1.2rem 0.5rem;
+    padding: 1.2rem 0.8rem;
     background-color: ${({ theme }) => theme.colors.blue40};
 
     display: flex;
@@ -167,11 +167,11 @@ const St = {
   SheildWrapper: styled.article``,
   SheildDesc: styled.p`
     color: ${({ theme }) => theme.colors.blue};
-    ${({ theme }) => theme.fonts.body3}
+    ${({ theme }) => theme.fonts.mid_14}
   `,
   SheildExample: styled.p`
     color: ${({ theme }) => theme.colors.gray40};
-    ${({ theme }) => theme.fonts.caption3}
+    ${({ theme }) => theme.fonts.mid_12}
   `,
   NextStepBtnWrapper: styled.section`
     display: flex;

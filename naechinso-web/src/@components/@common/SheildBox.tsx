@@ -32,6 +32,6 @@ const St = {
   `,
   SheildDesc: styled.p`
     color: ${({ theme }) => theme.colors.blue};
-    ${({ theme }) => theme.fonts.caption4}
+    ${({ theme }) => theme.fonts.mid_14}
   `,
 };
