@@ -139,19 +139,19 @@ export default function RecommenderInfoPage() {
 
 const St = {
   RecommenderInfo: styled.main`
-    padding: 23rem 2rem 0;
+    padding: 19rem 2rem 0;
   `,
   NameWarning: styled.article`
-    color: ${({ theme }) => theme.colors.gray50};
+    color: ${({ theme }) => theme.colors.brown};
     ${({ theme }) => theme.fonts.caption5}
-    margin: 0.2rem 1rem 0;
+    margin: 0.4rem 1.2rem 0;
   `,
   ChooseGender: styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
-    margin: 1.6rem auto 0;
+    margin: 1.2rem auto 0;
     width: 100%;
   `,
   GenderWrapper: styled.button<{ checked: boolean }>`
@@ -163,10 +163,10 @@ const St = {
     justify-content: center;
     gap: 0.4rem;
     width: 100%;
-    height: 6.2rem;
+    height: 5.8rem;
 
-    color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.gray40)};
-    ${({ theme }) => theme.fonts.sub2}
+    color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.brown)};
+    ${({ theme }) => theme.fonts.reg_18}
     cursor: pointer;
   `,
   Gender: styled.p``,
