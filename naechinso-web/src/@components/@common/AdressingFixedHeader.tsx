@@ -8,13 +8,12 @@ import { Title } from ".";
 interface AdressingFixedHeader {
   header: string;
   navigatePath: string;
-  questionKind?: string;
   title1: string;
   title2?: string;
 }
 
 export default function AdressingFixedHeader(props: AdressingFixedHeader) {
-  const { header, navigatePath, title1, title2, questionKind } = props;
+  const { header, navigatePath, title1, title2 } = props;
 
   const navigate = useNavigate();
 
@@ -33,7 +32,6 @@ export default function AdressingFixedHeader(props: AdressingFixedHeader) {
         {header}
       </St.Header>
       <St.TitleWrapper>
-        <St.SubTitle>{questionKind}</St.SubTitle>
         <Title title={title1} />
         {title2 && <Title title={title2} />}
       </St.TitleWrapper>
@@ -89,9 +87,5 @@ const St = {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-  `,
-  SubTitle: styled.p`
-    ${({ theme }) => theme.fonts.body3};
-    color: ${({ theme }) => theme.colors.orange};
   `,
 };

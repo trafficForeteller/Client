@@ -49,9 +49,8 @@ export default function AppealDetailPage() {
   return (
     <St.AppealDetail>
       <AdressingFixedHeader
-        header="추천사"
+        header="내 친구 자랑"
         navigatePath="/recommend/keyword"
-        questionKind="필수질문 2"
         title1="🎈 내 친구는 OO한 친구야!"
       />
 

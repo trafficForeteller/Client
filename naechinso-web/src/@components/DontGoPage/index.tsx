@@ -28,9 +28,8 @@ export default function DontGoPage() {
     <>
       <St.DontGo>
         <AdressingFixedHeader
-          header="추천사"
+          header="내 친구 자랑"
           navigatePath="/recommend/friendLoverType"
-          questionKind="필수질문 4"
           title1="😥 친구를 거절한 상대에게 한 마디! "
         />
         <SheildBox desc="친구의 이성적 매력을 한번 더 어필해봐!" />

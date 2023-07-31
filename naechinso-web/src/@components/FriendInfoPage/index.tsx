@@ -285,7 +285,6 @@ export default function FriendInfoPage() {
       ) : (
         <></>
       )}
-
       
         <ShortInputBox
           label="내 친구 이름"
