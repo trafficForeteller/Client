@@ -14,6 +14,7 @@ export { default as ImgGiftPerero } from "./giftPerero.png";
 export { default as ImgGiftStarbucks } from "./giftStarbucks.png";
 export { default as ImgGiftSunguri } from "./giftSunguri.png";
 export { default as ImgHandsUp } from "./handsUp.png";
+export { default as ImgHeartIcon } from "./heartIcon.png";
 export { default as ImgInstallAppQrCode } from "./installAppQrCode.png";
 export { default as ImgInstallNaechinso } from "./installNaechinso.png";
 export { default as ImgLandingBackground } from "./landingBackground.png";

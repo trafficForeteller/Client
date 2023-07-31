@@ -75,8 +75,10 @@ const fonts = {
 
   bold_25: FONT({ weight: 700, size: 2.5, lineHeight: 3.4 }),
   bold_20: FONT({ weight: 700, size: 2, lineHeight: 3 }),
+  bold_18: FONT({ weight: 700, size: 1.8, lineHeight: 2.6 }),
   bold_16: FONT({ weight: 700, size: 1.6, lineHeight: 2.4 }),
   bold_15: FONT({ weight: 700, size: 1.5, lineHeight: 2 }),
+  bold_14: FONT({ weight: 700, size: 1.4, lineHeight: 2 }),
   bold_13: FONT({ weight: 700, size: 1.3, lineHeight: 2 }),
   mid_16: FONT({ weight: 500, size: 1.6, lineHeight: 2.4 }),
   reg_15: FONT({ weight: 400, size: 1.5, lineHeight: 2 }),

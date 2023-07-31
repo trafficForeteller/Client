@@ -5,15 +5,17 @@ import styled from "styled-components";
 import { postMemberReissue } from "../../apis/member.api";
 import { ImgChickenIcon, ImgLandingBackground, ImgLandingNaechinso, ImgRouletteIcon } from "../../asset/image";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
+import AgreeSelfIntroModal from "./AgreeSelfIntroModal";
 import MoveNextPageBtn from "./MoveNextPageBtn";
 
 interface LandingBoxProps {
   setAccessToken: React.Dispatch<React.SetStateAction<boolean>>;
   handleMoveLandingPage: () => void;
+  isRecommenderModalOpened: boolean;
 }
 
 export default function LandingBox(props: LandingBoxProps) {
-  const { setAccessToken, handleMoveLandingPage } = props;
+  const { setAccessToken, handleMoveLandingPage, isRecommenderModalOpened } = props;
   const location = useLocation();
 
   useEffect(() => {
@@ -66,46 +68,54 @@ export default function LandingBox(props: LandingBoxProps) {
   };
 
   return (
-    <St.LandingBox>
-      <St.Naechinso src={ImgLandingNaechinso} alt="내친소" />
-      <St.TitleWrapper>
-        <St.Title>친구를 소개하러 온 걸 환영해!</St.Title>
-      </St.TitleWrapper>
-      <St.DescWrapper>
-        <St.Desc>내친소는 현실의 지인소개를 온라인화했어</St.Desc>
-        <St.Desc>내친소의 유저가 아니어도 추천사를 쓸 수 있어😉</St.Desc>
-      </St.DescWrapper>
+    <>
+      <St.LandingBox>
+        <St.Naechinso src={ImgLandingNaechinso} alt="내친소" />
+        <St.TitleWrapper>
+          <St.Title>친구를 소개하러 온 걸 환영해!</St.Title>
+        </St.TitleWrapper>
+        <St.DescWrapper>
+          <St.Desc>내친소는 현실의 지인소개를 온라인화했어</St.Desc>
+          <St.Desc>내친소의 유저가 아니어도 추천사를 쓸 수 있어😉</St.Desc>
+        </St.DescWrapper>
 
-      <St.LandingExplainBox>
-        <St.LandingExplainWrapper>
-          <St.Icon src={ImgRouletteIcon} alt="룰렛 아이콘" />
-          <St.LandingExplainDescWrapper>
-            <St.LandingExplainTitle>100% 당첨 룰렛 기회</St.LandingExplainTitle>
-            <St.LandingExplainDesc>
-              친구를 3명 추천하고 <St.Bold>100% 당첨 룰렛</St.Bold>을 돌려봐
-            </St.LandingExplainDesc>
-          </St.LandingExplainDescWrapper>
-        </St.LandingExplainWrapper>
-        <St.LandingExplainWrapper>
-          <St.Icon src={ImgChickenIcon} alt="치킨 아이콘" />
-          <St.LandingExplainDescWrapper>
-            <St.LandingExplainTitle>커플이 되면 치킨을 쏠게!</St.LandingExplainTitle>
-            <St.LandingExplainDesc>
-              네가 소개해준 친구가 내친소를 통해 연애한다면 <br />
-              네게 <St.Bold>치킨 기프티콘 100%</St.Bold> 발송! 🎁
-            </St.LandingExplainDesc>
-          </St.LandingExplainDescWrapper>
-        </St.LandingExplainWrapper>
-      </St.LandingExplainBox>
+        <St.LandingExplainBox>
+          <St.LandingExplainWrapper>
+            <St.Icon src={ImgRouletteIcon} alt="룰렛 아이콘" />
+            <St.LandingExplainDescWrapper>
+              <St.LandingExplainTitle>100% 당첨 룰렛 기회</St.LandingExplainTitle>
+              <St.LandingExplainDesc>
+                친구를 3명 추천하고 <St.Bold>100% 당첨 룰렛</St.Bold>을 돌려봐
+              </St.LandingExplainDesc>
+            </St.LandingExplainDescWrapper>
+          </St.LandingExplainWrapper>
+          <St.LandingExplainWrapper>
+            <St.Icon src={ImgChickenIcon} alt="치킨 아이콘" />
+            <St.LandingExplainDescWrapper>
+              <St.LandingExplainTitle>커플이 되면 치킨을 쏠게!</St.LandingExplainTitle>
+              <St.LandingExplainDesc>
+                네가 소개해준 친구가 내친소를 통해 연애한다면 <br />
+                네게 <St.Bold>치킨 기프티콘 100%</St.Bold> 발송! 🎁
+              </St.LandingExplainDesc>
+            </St.LandingExplainDescWrapper>
+          </St.LandingExplainWrapper>
+        </St.LandingExplainBox>
 
-      <St.LandingBackGround src={ImgLandingBackground} alt="랜딩페이지 배경" />
-      <MoveNextPageBtn
-        title="3분 추천사 작성하기"
-        disabled={false}
-        className={GTM_CLASS_NAME.startAccess}
-        handleState={handleMoveLandingPage}
-      />
-    </St.LandingBox>
+        <St.LandingBackGround src={ImgLandingBackground} alt="랜딩페이지 배경" />
+        <MoveNextPageBtn
+          title="3분 추천사 작성하기"
+          disabled={false}
+          className={GTM_CLASS_NAME.startAccess}
+          handleState={handleMoveLandingPage}
+        />
+      </St.LandingBox>
+      {isRecommenderModalOpened && (
+        <>
+          <AgreeSelfIntroModal />
+          <St.BackDrop />
+        </>
+      )}
+    </>
   );
 }
 
@@ -205,5 +215,14 @@ const St = {
   `,
   Bold: styled.b`
     ${({ theme }) => theme.fonts.bold_13};
+  `,
+  BackDrop: styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.64);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
   `,
 };

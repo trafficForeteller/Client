@@ -10,6 +10,7 @@ import { LandingBox } from "../@common";
 export default function LandingPage() {
   const navigate = useNavigate();
   const [accessToken, setAccessToken] = useState(false);
+  const [isRecommenderModalOpened, setIsRecommenderModalOpened] = useState(false);
 
   const onEnterKeyUp = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === "Enter") handleMemberStatus();
@@ -21,7 +22,7 @@ export default function LandingPage() {
       const userData = await getMemberStatus(localStorage.getItem("accessToken"));
       userData && userData.rouletteUuid && localStorage.setItem("roulette-uuid", userData.rouletteUuid);
       if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE")
-        navigate(routePaths.RecommenderLanding);
+        setIsRecommenderModalOpened(true);
       else {
         userData && localStorage.setItem("recommenderName", userData.name);
         navigate(routePaths.RecommendLanding);
@@ -31,7 +32,11 @@ export default function LandingPage() {
 
   return (
     <St.LandingPage onKeyUp={onEnterKeyUp}>
-      <LandingBox setAccessToken={setAccessToken} handleMoveLandingPage={handleMemberStatus} />
+      <LandingBox
+        setAccessToken={setAccessToken}
+        handleMoveLandingPage={handleMemberStatus}
+        isRecommenderModalOpened={isRecommenderModalOpened}
+      />
       {/* {!localStorage.getItem("member-uuid") && (
         <St.DescWrapper>
           <St.Desc>내친소를 직접 사용하고 싶다면? </St.Desc>

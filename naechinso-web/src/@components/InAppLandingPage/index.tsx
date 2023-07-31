@@ -9,6 +9,7 @@ import { LandingBox } from "../@common";
 export default function InAppLandingPage() {
   const navigate = useNavigate();
   const [accessToken, setAccessToken] = useState(false);
+  const [isRecommenderModalOpened, setIsRecommenderModalOpened] = useState(false);
 
   const onEnterKeyUp = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === "Enter") handleMemberStatus();
@@ -20,7 +21,7 @@ export default function InAppLandingPage() {
       const userData = await getMemberStatus(localStorage.getItem("accessToken"));
       userData && userData.rouletteUuid && localStorage.setItem("roulette-uuid", userData.rouletteUuid);
       if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE")
-        navigate(routePaths.RecommenderLanding);
+        setIsRecommenderModalOpened(true);
       else {
         userData && localStorage.setItem("recommenderName", userData.name);
         navigate(routePaths.RecommendLanding);
@@ -30,7 +31,11 @@ export default function InAppLandingPage() {
 
   return (
     <St.LandingPage onKeyUp={onEnterKeyUp}>
-      <LandingBox setAccessToken={setAccessToken} handleMoveLandingPage={handleMemberStatus} />
+      <LandingBox
+        setAccessToken={setAccessToken}
+        handleMoveLandingPage={handleMemberStatus}
+        isRecommenderModalOpened={isRecommenderModalOpened}
+      />
     </St.LandingPage>
   );
 }

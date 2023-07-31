@@ -1,18 +1,10 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 import { ImgCommentNaechinso } from "../../asset/image";
 import { RecommendLandingList } from "../../core/recommend/recommend";
 import { MoveNextPageBtn } from "../@common";
-import AgreeSelfIntroModal from "./AgreeSelfIntroModal";
 
 export default function RecommenderLandingPage() {
-  const [isModalOpened, setIsModalOpened] = useState(false);
-
-  const handleModalOpen = () => {
-    setIsModalOpened(true);
-  };
-
   return (
     <>
       <St.RecommendLandingPage>
@@ -29,7 +21,7 @@ export default function RecommenderLandingPage() {
         <St.Bottom index={0}>
           <St.TitleWrapper>
             <St.Title>
-              딱 <St.Highlight>5분</St.Highlight>만 투자해서
+              딱 <St.Highlight>3분</St.Highlight>만 투자해서
             </St.Title>
             <St.Title>소중한 친구를 소개해줘!</St.Title>
           </St.TitleWrapper>
@@ -40,15 +32,8 @@ export default function RecommenderLandingPage() {
           <St.Desc> {RecommendLandingList[0].desc2}</St.Desc>
           <St.Desc> {RecommendLandingList[0].desc3}</St.Desc>
         </St.Bottom>
-        <MoveNextPageBtn title="추천사 작성 시작하기" disabled={false} handleState={handleModalOpen} />
+        <MoveNextPageBtn title="추천사 작성 시작하기" disabled={false} />
       </St.RecommendLandingPage>
-
-      {isModalOpened && (
-        <>
-          <AgreeSelfIntroModal />
-          <St.BackDrop />
-        </>
-      )}
     </>
   );
 }
@@ -121,14 +106,5 @@ const St = {
   `,
   Highlight: styled.b`
     color: ${({ theme }) => theme.colors.orange};
-  `,
-  BackDrop: styled.div`
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.64);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 100;
   `,
 };
