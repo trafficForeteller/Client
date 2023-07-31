@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { postMemberJoinRecommender, postMemberReissue } from "../../apis/member.api";
-import { IcCheckedMen, IcCheckedWomen, IcUnCheckedMen, IcUnCheckedWomen } from "../../asset/icons";
 import { genderTypeList, genderTypeProps } from "../../core/member/member";
 import { routePaths } from "../../core/routes/path";
 import { ConsultantTextBtn, FixedHeader, MoveNextPageBtn, SheildBox } from "../@common";
@@ -17,7 +16,6 @@ export default function RecommenderInfoPage() {
     gender: "",
     name: "",
   });
-  const [index, setIndex] = useState(0);
 
   const navigate = useNavigate();
 
@@ -39,9 +37,6 @@ export default function RecommenderInfoPage() {
         }),
       );
     }
-
-    if (localStorage.getItem("member-uuid")) setIndex(1);
-    else setIndex(0);
   }, []);
 
   useEffect(() => {
@@ -110,8 +105,8 @@ export default function RecommenderInfoPage() {
         header="자기 소개"
         title1="😆"
         title2="이제 간단히 너를 소개해줘!"
-        subTitle1="네 정보를 밝히며 친구를 추천하면"
-        subTitle2="이 친구에게 엄청난 신뢰가 더해질거야"
+        subTitle1="네 정보를 밝히며 친구를 추천하면 이 친구에게 엄청난"
+        subTitle2=" 신뢰가 더해질거야✌"
       />
 
       <SheildBox desc="이름 가운데는 *처리 되니 안심해! (ex. 김*민, 박*)" />
@@ -122,22 +117,12 @@ export default function RecommenderInfoPage() {
           type="button"
           onClick={() => toggleChecked(genderTypeArr[0])}
           checked={genderTypeArr[0].checked}>
-          {genderTypeArr[0].checked ? (
-            <IcCheckedMen aria-label="남자 체크 표시" />
-          ) : (
-            <IcUnCheckedMen aria-label="남자 체크 해제" />
-          )}
           <St.Gender>{genderTypeArr[0].gender}</St.Gender>
         </St.GenderWrapper>
         <St.GenderWrapper
           type="button"
           onClick={() => toggleChecked(genderTypeArr[1])}
           checked={genderTypeArr[1].checked}>
-          {genderTypeArr[1].checked ? (
-            <IcCheckedWomen aria-label="여자 체크 표시" />
-          ) : (
-            <IcUnCheckedWomen aria-label="여자 체크 해제" />
-          )}
           <St.Gender>{genderTypeArr[1].gender}</St.Gender>
         </St.GenderWrapper>
       </St.ChooseGender>
@@ -185,7 +170,4 @@ const St = {
     cursor: pointer;
   `,
   Gender: styled.p``,
-  GenderIcon: styled.img`
-    width: 2.4rem;
-  `,
 };

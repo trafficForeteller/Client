@@ -13,12 +13,10 @@ export interface FixedHeaderProps {
   subTitle2?: string;
   isModalOpened?: boolean;
   step?: number;
-  selection?: boolean;
-  questionKind?: string;
 }
 
 export default function FixedHeader(props: FixedHeaderProps) {
-  const { header, title1, title2, subTitle1, subTitle2, isModalOpened, selection, questionKind } = props;
+  const { header, title1, title2, subTitle1, subTitle2, isModalOpened } = props;
   const [checkSubTitle, setCheckSubTitle] = useState(false);
 
   useEffect(() => {
@@ -36,7 +34,6 @@ export default function FixedHeader(props: FixedHeaderProps) {
         <St.FixedHeaderWithModal>
           <BasicHeader header={header} />
           <St.TitleWrapper checkSubTitle={checkSubTitle}>
-            <St.QuestionKind>{questionKind}</St.QuestionKind>
             <Title title={title1} />
             {title2 && <Title title={title2} />}
           </St.TitleWrapper>
@@ -49,8 +46,6 @@ export default function FixedHeader(props: FixedHeaderProps) {
         <St.FixedHeader>
           <BasicHeader header={header} />
           <St.TitleWrapper checkSubTitle={checkSubTitle}>
-            {selection && <St.Selection>(선택)</St.Selection>}
-            <St.QuestionKind>{questionKind}</St.QuestionKind>
             <Title title={title1} />
             {title2 && <Title title={title2} />}
           </St.TitleWrapper>
@@ -73,7 +68,7 @@ const St = {
     right: 0;
     top: 0;
 
-    padding-bottom: 1rem;
+    padding-bottom: 1.2rem;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #ffffff 10%);
     z-index: -1;
 
@@ -89,7 +84,7 @@ const St = {
     right: 0;
     top: 0;
 
-    padding-bottom: 1rem;
+    padding-bottom: 1.2rem;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #ffffff 10%);
     z-index: 2;
 
@@ -97,20 +92,10 @@ const St = {
       width: 100%;
     }
   `,
-  Selection: styled.div`
-    ${({ theme }) => theme.fonts.body1};
-    color: ${({ theme }) => theme.colors.gray40};
-    margin-bottom: 0.4rem;
-  `,
   TitleWrapper: styled.hgroup<{ checkSubTitle: boolean }>`
     margin-bottom: ${({ checkSubTitle }) => (checkSubTitle ? "0.6rem" : "2.4rem")};
     position: relative;
-    padding: 9rem 2rem 0;
-  `,
-  QuestionKind: styled.p`
-    ${({ theme }) => theme.fonts.body3};
-    color: ${({ theme }) => theme.colors.orange};
-    margin-bottom: 0.8rem;
+    padding: 6.8rem 2rem 0;
   `,
   SubTitleWrapper: styled.section`
     padding-right: 2rem;
