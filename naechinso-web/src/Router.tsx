@@ -32,7 +32,6 @@ import {
   RecommenderAuthLandingPage,
   RecommenderAuthPage,
   RecommenderInfoPage,
-  RecommenderLandingPage,
   RecommendLandingPage,
   RoulettePage,
   SecondRecommendPage,
@@ -149,11 +148,6 @@ export default function Router() {
         <Route
           path={routePaths.Finish}
           element={localStorage.getItem("accessToken") ? <FinishPage /> : <Navigate to="/" replace />}
-        />
-
-        <Route
-          path={routePaths.RecommenderLanding}
-          element={localStorage.getItem("accessToken") ? <RecommenderLandingPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.ChooseJob}

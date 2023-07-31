@@ -109,7 +109,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     const userData = await getMemberStatus(localStorage.getItem("accessToken"));
     userData && userData.rouletteUuid && localStorage.setItem("roulette-uuid", userData.rouletteUuid);
     if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE")
-      navigate(routePaths.RecommenderLanding);
+      navigate(routePaths.RecommenderInfo);
     else {
       userData && localStorage.setItem("recommenderName", userData.name);
       navigate(routePaths.RecommendLanding);
@@ -169,7 +169,7 @@ export default function CertifiedPage(props: CertifiedPageProps) {
       <ConsultantTextBtn />
 
       <St.ButtonWrapper inputActive={inputActive}>
-        <St.Button onClick={() => navigate(routePaths.RecommenderLanding)} disabled={inputActive} type="button">
+        <St.Button onClick={() => navigate(routePaths.RecommenderInfo)} disabled={inputActive} type="button">
           인증하기
         </St.Button>
       </St.ButtonWrapper>

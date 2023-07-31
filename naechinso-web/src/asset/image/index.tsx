@@ -23,7 +23,6 @@ export { default as ImgNullGauge } from "./nullGauge.png";
 export { default as ImgNullLastGauge } from "./nullLastGauge.png";
 export { default as ImgPendingNaechinso } from "./pendingNaechinso.png";
 export { default as ImgRecommenderAuthNaechinso } from "./recommenderAuthNaechinso.png";
-export { default as ImgRecommenderLanding } from "./recommenderLanding.png";
 export { default as ImgRecommendLanding } from "./recommendLanding.png";
 export { default as ImgRoulette } from "./roulette.png";
 export { default as ImgRouletteGaugeNaechinso } from "./rouletteGaugeNaechinso.png";

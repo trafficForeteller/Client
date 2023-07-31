@@ -28,7 +28,6 @@ export { default as RecommendationPage } from "./RecommendationPage";
 export { default as RecommenderAuthLandingPage } from "./RecommenderAuthLandingPage";
 export { default as RecommenderAuthPage } from "./RecommenderAuthPage";
 export { default as RecommenderInfoPage } from "./RecommenderInfoPage";
-export { default as RecommenderLandingPage } from "./RecommenderLandingPage";
 export { default as RecommendLandingPage } from "./RecommendLandingPage";
 export { default as RoulettePage } from "./RoulettePage";
 export { default as SecondRecommendPage } from "./SecondRecommendPage";

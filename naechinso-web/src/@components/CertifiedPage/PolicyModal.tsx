@@ -108,7 +108,7 @@ export default function PolicyModal(props: PolicyModalProps) {
       localStorage.setItem("refreshToken", userData["refreshToken"]);
       localStorage.setItem("roulette-uuid", userData["uuid"]);
       setToken({ accessToken: userData["accessToken"] });
-      navigate(routePaths.RecommenderLanding);
+      navigate(routePaths.RecommenderInfo);
     }
   };
 
@@ -138,7 +138,7 @@ export default function PolicyModal(props: PolicyModalProps) {
       </St.CheckContainer>
 
       <MoveNextPageBtn
-        nextPage={routePaths.RecommenderLanding}
+        nextPage={routePaths.RecommenderInfo}
         title="내친소 시작하기"
         disabled={startActive}
         handleState={handlePolicy}
