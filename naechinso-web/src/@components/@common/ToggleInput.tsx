@@ -26,7 +26,7 @@ export default function ToggleInput(props: ToggleInputProps) {
 
 const St = {
   ToggleInput: styled.section<{ isModalOpened: boolean }>`
-    width: 33.5rem;
+    width: 14rem;
     height: 8rem;
 
     border-radius: 1.6rem;

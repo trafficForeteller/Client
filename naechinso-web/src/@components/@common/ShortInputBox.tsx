@@ -6,7 +6,7 @@ export interface ShortInputProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isModalOpened?: boolean;
-  step: number;
+  step?: number;
   handleStep?: () => void;
 }
 
@@ -36,7 +36,7 @@ export default function ShortInputBox(props: ShortInputProps) {
 
 const St = {
   InputBoxWithModal: styled.section<{ isModalOpened: boolean | null }>`
-    width: 33.5rem;
+    width: 100%;
     height: 8rem;
 
     border-radius: 16px;
@@ -50,7 +50,7 @@ const St = {
     }
   `,
   InputBox: styled.section`
-    width: 33.5rem;
+    width: 100%;
     height: 8rem;
 
     border-radius: 16px;
@@ -62,9 +62,9 @@ const St = {
       width: 100%;
     }
   `,
-  Label: styled.p<{ step: number }>`
+  Label: styled.p<{ step: number | undefined }>`
     color: ${({ theme, step }) => (step === 1 ? theme.colors.orange : theme.colors.gray40)};
-    ${({ theme }) => theme.fonts.body2};
+    ${({ theme }) => theme.fonts.reg_16};
   `,
   Input: styled.input`
     width: 100%;

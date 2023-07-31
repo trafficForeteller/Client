@@ -73,10 +73,13 @@ export default function PrepareWorkPage() {
     <St.PrepareWorkPage>
       <FixedHeader header="자기 소개" title1="💼" title2="준비 중인 일을 알려줘!" />
       <St.InputBox>
-        <St.Label>분야</St.Label>
+        <St.Label>준비 중인 일</St.Label>
         <St.InputWrapper>
-          <St.Input placeholder="ex. 디자인, 임용고시 등" value={job.jobPart} onChange={(e) => handleJobPartInput(e)} />
-          <St.Ready>준비 중</St.Ready>
+          <St.Input
+            placeholder="ex. 아나운서, 7급 공무원 등"
+            value={job.jobPart}
+            onChange={(e) => handleJobPartInput(e)}
+          />
         </St.InputWrapper>
       </St.InputBox>
       <ConsultantTextBtn />
@@ -92,7 +95,7 @@ export default function PrepareWorkPage() {
 
 const St = {
   PrepareWorkPage: styled.main`
-    padding: 17rem 2rem 0;
+    padding: 15rem 2rem 0;
   `,
   InputBox: styled.section`
     width: 33.5rem;
@@ -109,7 +112,7 @@ const St = {
   `,
   Label: styled.p`
     color: ${({ theme }) => theme.colors.gray40};
-    ${({ theme }) => theme.fonts.body2};
+    ${({ theme }) => theme.fonts.reg_16};
   `,
   InputWrapper: styled.article`
     display: flex;
@@ -118,7 +121,7 @@ const St = {
   Input: styled.input`
     width: 100%;
     color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.sub2};
+    ${({ theme }) => theme.fonts.bold_20};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -126,10 +129,5 @@ const St = {
     &::placeholder {
       color: ${({ theme }) => theme.colors.black20};
     }
-  `,
-  Ready: styled.p`
-    color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.body1};
-    width: 5.5rem;
   `,
 };

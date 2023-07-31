@@ -78,7 +78,6 @@ export default function FreelancePage() {
         placeholder="ex. 디자인, 작곡 등"
         value={job.jobPart}
         onChange={handleJobPartInput}
-        step={1}
       />
       <ConsultantTextBtn />
       <MoveNextPageBtn

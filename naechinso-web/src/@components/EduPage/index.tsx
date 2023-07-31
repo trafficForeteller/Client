@@ -9,7 +9,6 @@ import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { ConsultantTextBtn, FixedHeader, ShortInputBox, ToggleInputBox } from "../@common";
 
 export default function EduPage() {
-  const [step, setStep] = useState(1);
   const [eduLevel, setEduLevel] = useState("");
   const [eduName, setEduName] = useState("");
   const [eduMajor, setEduMajor] = useState("");
@@ -31,7 +30,6 @@ export default function EduPage() {
     const eduInfoOfLocal = localStorage.getItem("eduInfo") as string;
     const eduInfo = JSON.parse(eduInfoOfLocal);
     if (eduInfo) {
-      setStep(3);
       setEduName(eduInfo.eduName);
       setEduMajor(eduInfo.eduMajor);
       setEduLevel(eduInfo.eduLevel);
@@ -39,14 +37,6 @@ export default function EduPage() {
       setActiveBtn(true);
     }
   }, []);
-
-  useEffect(() => {
-    // step 4일 때 페이지 이동
-    if (step === 4) {
-      saveEduInfoInLocal();
-      patchCertifiedData();
-    }
-  }, [step]);
 
   const patchCertifiedData = async () => {
     await patchMemberEdu(
@@ -80,9 +70,7 @@ export default function EduPage() {
 
   useEffect(() => {
     // step에 따른 ActiveButton 활성화
-    if (step === 1 && eduLevel.length >= 2) setActiveBtn(true);
-    else if (step === 2 && eduLevel.length >= 2 && eduName.length >= 2) setActiveBtn(true);
-    else if (step === 3 && eduLevel.length >= 2 && eduName.length >= 2 && eduMajor.length >= 2) setActiveBtn(true);
+    if (eduLevel.length >= 2 && eduName.length >= 2 && eduMajor.length >= 2) setActiveBtn(true);
     else setActiveBtn(false);
   }, [eduLevel, eduName, eduMajor]);
 
@@ -103,7 +91,7 @@ export default function EduPage() {
     setState(e.target.value);
   };
 
-  const handleStep = () => {
+  const handleEduData = () => {
     // 친구정보 step을 관리하는 함수
     setEdu({
       ...edu,
@@ -111,8 +99,10 @@ export default function EduPage() {
       eduLevel: eduLevel,
       eduMajor: eduMajor,
     });
-    setStep(step + 1);
-    setActiveBtn(false);
+    if (eduLevel.length >= 2 && eduName.length >= 2 && eduMajor.length >= 2) {
+      saveEduInfoInLocal();
+      patchCertifiedData();
+    }
   };
 
   const saveEduInfoInLocal = () => {
@@ -124,54 +114,43 @@ export default function EduPage() {
     <St.EduPage isModalOpened={isModalOpened}>
       <FixedHeader header="자기 소개" title1="🏫" title2="학교는 어디 다녀?" isModalOpened={isModalOpened} />
 
-      {step >= 3 ? (
-        <>
-          <ShortInputBox
-            label="전공"
-            placeholder="전공을 적어줘"
-            value={eduMajor}
-            onChange={(e) => handleNameInput(e, setEduMajor)}
-            isModalOpened={isModalOpened}
-            step={step}
-          />
-        </>
-      ) : (
-        <></>
-      )}
-
-      {step >= 2 ? (
-        <>
+      <St.EduWrapper>
+        <ToggleInputBox
+          label="학위"
+          placeholder="학위"
+          state={eduLevel}
+          setState={setEduLevel}
+          isSelectionModalOpened={isSelectionModalOpened}
+          setIsSelectionModalOpened={setIsSelectionModalOpened}
+          isModalOpened={isModalOpened}
+        />
+        <St.SchoolWrapper>
           <ShortInputBox
             label="학교명"
-            placeholder="학교 이름을 적어줘"
+            placeholder="학교 이름"
             value={eduName}
             onChange={(e) => handleNameInput(e, setEduName)}
             isModalOpened={isModalOpened}
-            step={step}
           />
           <St.EduNameEx>ex. 연세(X) 연대(X) 연세대학교(O)</St.EduNameEx>
-        </>
-      ) : (
-        <></>
-      )}
-
-      <ToggleInputBox
-        label="학위"
-        placeholder="학위를 선택해줘"
-        state={eduLevel}
-        setState={setEduLevel}
-        isSelectionModalOpened={isSelectionModalOpened}
-        setIsSelectionModalOpened={setIsSelectionModalOpened}
+        </St.SchoolWrapper>
+      </St.EduWrapper>
+      <ShortInputBox
+        label="전공"
+        placeholder="전공을 적어줘"
+        value={eduMajor}
+        onChange={(e) => handleNameInput(e, setEduMajor)}
         isModalOpened={isModalOpened}
       />
+      <St.EduNameEx>고졸은 전공에 ‘없음’이라고 적어줘도 돼</St.EduNameEx>
       <ConsultantTextBtn />
       <St.NextStepBtnWrapper>
         <St.NextStepBtn
           type="button"
           disabled={!activeBtn}
-          onClick={handleStep}
+          onClick={handleEduData}
           isModalOpened={isModalOpened}
-          className={step === 3 ? GTM_CLASS_NAME.recommenderSuccessEdu : ""}>
+          className={GTM_CLASS_NAME.recommenderSuccessEdu}>
           다음
         </St.NextStepBtn>
       </St.NextStepBtnWrapper>
@@ -182,16 +161,23 @@ export default function EduPage() {
 const St = {
   EduPage: styled.main<{ isModalOpened: boolean }>`
     background-color: rgba(${({ isModalOpened }) => (isModalOpened ? "0, 0, 0, 0.64" : "")});
-    padding: 17rem 2rem 0;
+    padding: 15rem 2rem 0;
     height: 100%;
     z-index: 2;
 
     overflow: ${({ isModalOpened }) => (isModalOpened ? "hidden" : "")};
   `,
-  EduNameEx: styled.article`
-    margin: 0.6rem 2.1rem 0.9rem;
+  EduWrapper: styled.section`
+    display: flex;
+    gap: 1.2rem;
+  `,
+  SchoolWrapper: styled.span``,
+  EduNameEx: styled.p`
+    margin-top: 0.8rem;
+    position: relative;
+    z-index: -1;
     width: 100%;
-    color: ${({ theme }) => theme.colors.gray40};
+    color: ${({ theme }) => theme.colors.brown};
     ${({ theme }) => theme.fonts.caption6};
   `,
   NextStepBtnWrapper: styled.section`

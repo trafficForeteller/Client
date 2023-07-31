@@ -83,7 +83,6 @@ export default function SelfEmployedPage() {
         placeholder="ex. 프렌치 레스토랑, 꽃집 등"
         value={job.jobPart}
         onChange={handleJobPartInput}
-        step={1}
       />
 
       <ConsultantTextBtn />
