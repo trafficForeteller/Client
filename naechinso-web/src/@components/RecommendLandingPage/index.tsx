@@ -58,7 +58,7 @@ export default function RecommendLandingPage() {
         </St.DescWrapper>
       </St.DescBox>
       <St.LandingBackGround src={ImgRecommendLandingBackground} alt="랜딩페이지 배경" />
-      {!localStorage.getItem("member-uuid") ? (
+      {localStorage.getItem("member-uuid") ? (
         <CheckFriendBox />
       ) : (
         <St.NextStepButtonWrapper>
