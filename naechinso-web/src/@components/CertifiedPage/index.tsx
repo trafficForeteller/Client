@@ -108,9 +108,9 @@ export default function CertifiedPage(props: CertifiedPageProps) {
     // 이미 가입된 유저인지 확인
     const userData = await getMemberStatus(localStorage.getItem("accessToken"));
     userData && userData.rouletteUuid && localStorage.setItem("roulette-uuid", userData.rouletteUuid);
-    if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE")
+    if (userData && userData.eduName === null && userData.jobName === null) {
       navigate(routePaths.RecommenderInfo);
-    else {
+    } else {
       userData && localStorage.setItem("recommenderName", userData.name);
       navigate(routePaths.RecommendLanding);
     }

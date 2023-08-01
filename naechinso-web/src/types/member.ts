@@ -52,7 +52,7 @@ export interface IPatchJob {
 
 export interface IGetMemberStatus {
   rouletteUuid: string;
-  jobAccepted: string;
-  eduAccepted: string;
+  eduName: string;
+  jobName: string;
   name: string;
 }

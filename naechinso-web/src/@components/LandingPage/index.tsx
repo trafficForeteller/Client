@@ -21,9 +21,9 @@ export default function LandingPage() {
     if (accessToken && localStorage.getItem("accessToken")) {
       const userData = await getMemberStatus(localStorage.getItem("accessToken"));
       userData && userData.rouletteUuid && localStorage.setItem("roulette-uuid", userData.rouletteUuid);
-      console.log(userData);
-      if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE") {
+      if (userData && userData.eduName === null && userData.jobName === null) {
         setIsRecommenderModalOpened(true);
+        navigate(routePaths.RecommenderInfo);
       } else {
         userData && localStorage.setItem("recommenderName", userData.name);
         navigate(routePaths.RecommendLanding);
