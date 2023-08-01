@@ -19,8 +19,7 @@ export default function InAppLandingPage() {
     if (accessToken && localStorage.getItem("accessToken")) {
       const userData = await getMemberStatus(localStorage.getItem("accessToken"));
       userData && userData.rouletteUuid && localStorage.setItem("roulette-uuid", userData.rouletteUuid);
-      if (userData && userData.jobAccepted === "NONE" && userData.eduAccepted === "NONE")
-        navigate(routePaths.RecommenderLanding);
+      if (userData && userData.eduName === null && userData.jobName === null) navigate(routePaths.RecommenderLanding);
       else {
         userData && localStorage.setItem("recommenderName", userData.name);
         navigate(routePaths.RecommendLanding);
