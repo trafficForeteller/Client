@@ -233,13 +233,13 @@ const St = {
     z-index: ${({ inputActive }) => (inputActive ? "" : "-1")};
   `,
   Button: styled.button`
-    bottom: 3.5rem;
+    bottom: 3.2rem;
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
-    ${({ theme }) => theme.fonts.bold_16};
-    width: 33.5rem;
-    height: 5.6rem;
-    border-radius: 1.6rem;
+    ${({ theme }) => theme.fonts.bold_15};
+    width: 34.3rem;
+    height: 4.8rem;
+    border-radius: 12px;
 
     &:disabled {
       background-color: ${({ theme }) => theme.colors.orange20};
