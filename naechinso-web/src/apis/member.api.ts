@@ -107,8 +107,8 @@ export async function getMemberStatus(accessToken: string | null): Promise<IGetM
     if (data.status === 200) {
       return {
         rouletteUuid: data.data.uuid,
-        jobAccepted: data.data.jobAccepted,
-        eduAccepted: data.data.eduAccepted,
+        jobName: data.data.jobName,
+        eduName: data.data.eduName,
         name: data.data.name,
       };
     }
