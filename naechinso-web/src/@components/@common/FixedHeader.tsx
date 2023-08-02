@@ -67,6 +67,7 @@ const St = {
     left: 0;
     right: 0;
     top: 0;
+    background-color: ${({ theme }) => theme.colors.white};
 
     padding-bottom: 1.2rem;
     z-index: -1;
@@ -82,7 +83,7 @@ const St = {
     left: 0;
     right: 0;
     top: 0;
-
+    background-color: ${({ theme }) => theme.colors.white};
     padding-bottom: 1.2rem;
     z-index: 2;
 

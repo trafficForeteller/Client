@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-// eslint-disable-next-line
 import { IcPreviousBtn } from "../../asset/icons";
+// eslint-disable-next-line
+import { ImgCircleBlack, ImgCircleGray } from "../../asset/image";
 import { Title } from ".";
 
 interface AdressingFixedHeader {
@@ -10,10 +11,11 @@ interface AdressingFixedHeader {
   navigatePath: string;
   title1: string;
   title2?: string;
+  currentRequiredPage: number;
 }
 
 export default function AdressingFixedHeader(props: AdressingFixedHeader) {
-  const { header, navigatePath, title1, title2 } = props;
+  const { header, navigatePath, title1, title2, currentRequiredPage } = props;
 
   const navigate = useNavigate();
 
@@ -31,6 +33,17 @@ export default function AdressingFixedHeader(props: AdressingFixedHeader) {
         </St.MovePressButton>
         {header}
       </St.Header>
+
+      <St.DotWrapper>
+        {[1, 2, 3, 4, 5].map((page) => (
+          <St.Dot
+            key={page}
+            src={currentRequiredPage === page ? ImgCircleBlack : ImgCircleGray}
+            alt={`${currentRequiredPage}번째 필수질문`}
+          />
+        ))}
+      </St.DotWrapper>
+
       <St.TitleWrapper>
         <Title title={title1} />
         {title2 && <Title title={title2} />}
@@ -68,7 +81,7 @@ const St = {
     align-items: center;
     justify-content: center;
     color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.body1};
+    ${({ theme }) => theme.fonts.bold_16};
 
     position: absolute;
     width: 100%;
@@ -83,9 +96,21 @@ const St = {
   `,
   TitleWrapper: styled.hgroup`
     position: relative;
-    padding: 9rem 2rem 0;
+    padding: 1.6rem 2rem 0;
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
+  `,
+  DotWrapper: styled.section`
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    position: relative;
+    padding: 6.4rem 2rem 0;
+  `,
+  Dot: styled.img`
+    width: 0.6rem;
+    height: 0.6rem;
   `,
 };

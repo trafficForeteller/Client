@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { keywordList, keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { ConsultantTextBtn, FixedHeader, MoveNextPageBtn } from "../@common";
+import { AdressingFixedHeader, ConsultantTextBtn, MoveNextPageBtn } from "../@common";
 
 export default function KeywordPage() {
   const [activeNextBtn, setActiveNextBtn] = useState(false);
@@ -87,7 +87,13 @@ export default function KeywordPage() {
 
   return (
     <St.KeywordPage>
-      <FixedHeader header="내 친구 자랑" title1="😘" title2="친구의 매력 3개만 알려줘!" />
+      <AdressingFixedHeader
+        currentRequiredPage={1}
+        header="내 친구 자랑"
+        navigatePath={localStorage.getItem("member-uuid") ? "/recommend" : "/recommend/friendInfo"}
+        title1="😘"
+        title2="친구의 매력 3개만 알려줘!"
+      />
 
       <St.KeywordListWrapper>
         {keywordArr.map((el) => {

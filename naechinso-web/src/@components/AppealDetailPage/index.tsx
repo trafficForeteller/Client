@@ -49,6 +49,7 @@ export default function AppealDetailPage() {
   return (
     <St.AppealDetail>
       <AdressingFixedHeader
+        currentRequiredPage={2}
         header="내 친구 자랑"
         navigatePath="/recommend/keyword"
         title1="🎈 내 친구는 OO한 친구야!"

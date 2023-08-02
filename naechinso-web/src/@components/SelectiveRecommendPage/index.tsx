@@ -26,6 +26,7 @@ export default function SelectiveRecommendPage() {
   return (
     <St.SelectiveRecommendPage isBottomSheetOpened={isBottomSheetOpened}>
       <AdressingFixedHeader
+        currentRequiredPage={4}
         header="내 친구 자랑"
         navigatePath="/recommend/dontGo"
         title1="😘 마지막이야! 질문 하나만 골라줘"

@@ -43,6 +43,7 @@ export default function FriendLoverTypePage() {
   return (
     <St.FriendLoverType>
       <AdressingFixedHeader
+        currentRequiredPage={3}
         header="내 친구 자랑"
         navigatePath="/recommend/appealDetail"
         title1="🧡 친구와 어울릴 것 같은 애인 유형"

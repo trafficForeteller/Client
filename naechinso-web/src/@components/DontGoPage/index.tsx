@@ -28,6 +28,7 @@ export default function DontGoPage() {
     <>
       <St.DontGo>
         <AdressingFixedHeader
+          currentRequiredPage={5}
           header="내 친구 자랑"
           navigatePath="/recommend/friendLoverType"
           title1="😥 친구를 거절한 상대에게 한 마디! "

@@ -1,6 +1,8 @@
 export { default as ImgAnonymousIcon } from "./anonymousIcon.png";
 export { default as ImgAppealDetail } from "./appealDetail.png";
 export { default as ImgChickenIcon } from "./chickenIcon.png";
+export { default as ImgCircleBlack } from "./circleBlack.png";
+export { default as ImgCircleGray } from "./circleGray.png";
 export { default as ImgCommentNaechinso } from "./commentNaechinso.png";
 export { default as ImgCongratulateIcon } from "./congratulateIcon.png";
 export { default as ImgDontGo } from "./dontGo.png";
