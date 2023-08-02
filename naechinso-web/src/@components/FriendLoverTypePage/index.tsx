@@ -36,8 +36,8 @@ export default function FriendLoverTypePage() {
     // 다음 버튼 누를 때 localStorage에 저장되면 state랑 노상관
     localStorage.setItem("friendLoverTypeList", JSON.stringify(friendLoverTypeArr));
     //friendLoverTypeArr checked가 true인 것 중에 keyword 가져오기
-    const checkedKeyword = friendLoverTypeArr.find((item) => item.checked)?.keyword as string;
-    localStorage.setItem("friendLoverType", checkedKeyword);
+    const checkedKeyword = friendLoverTypeArr.filter((item) => item.checked);
+    localStorage.setItem("friendLoverType", JSON.stringify(checkedKeyword));
   };
 
   return (

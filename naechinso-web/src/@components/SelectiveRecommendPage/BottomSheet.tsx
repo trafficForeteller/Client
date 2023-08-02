@@ -6,6 +6,7 @@ import styled, { keyframes } from "styled-components";
 import { postMemberReissue } from "../../apis/member.api";
 import { getCheckPrice, patchRecommendFriendDetail, postRecommendation } from "../../apis/recommend.api";
 import { IcPreviousBtn } from "../../asset/icons";
+import { keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
@@ -67,7 +68,10 @@ export default function BottomSheet(props: BottomSheetProps) {
 
   const handleSubmit = () => {
     // 제출하기 선택 시  postRecommend 채우기
-    const modifiedFriendLoverType = `내 친구는 ${localStorage.getItem("friendLoverType")} 애인이랑 만났음 해!`;
+    const storedData = JSON.parse(localStorage.getItem("friendLoverType") as string);
+    const keywords = storedData.map((item: keywordProps) => item.keyword).join(", ");
+    const modifiedFriendLoverType = `내 친구는 ${keywords} 애인이랑 만났음 해!`;
+
     setPostRecommend({
       recommendQuestions: [
         {

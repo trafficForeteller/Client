@@ -44,7 +44,7 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
     }
 
     const exists = keywordArr.some((keyword) => keyword.keyword === text);
-    if (!exists) {
+    if (!exists && questionNum === 2) {
       const newKeyword = {
         id: keywordArr.length,
         keyword: text,
@@ -54,6 +54,24 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
         return { ...keyword, checked: false };
       });
       setKeywordArr([...updatedKeywordArr, newKeyword]);
+    } else if (!exists && questionNum === 3) {
+      if (keywordArr.filter((item) => item.checked).length === 3) {
+        //arr가 3개일 때, item checked가 false인 키워드 추가
+        const newKeyword = {
+          id: keywordArr.length,
+          keyword: text,
+          checked: false,
+        };
+        setKeywordArr([...keywordArr, newKeyword]);
+      } else {
+        // arr가 2개 이하면, item checked가 true인 키워드 추가
+        const newKeyword = {
+          id: keywordArr.length,
+          keyword: text,
+          checked: true,
+        };
+        setKeywordArr([...keywordArr, newKeyword]);
+      }
     } else {
       const updatedKeywordArr = keywordArr.map((keyword) => {
         if (keyword.keyword === text) return { ...keyword, checked: true };

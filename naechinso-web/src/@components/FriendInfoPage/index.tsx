@@ -193,16 +193,21 @@ export default function FriendInfoPage() {
   const processRecommendAnswer = (recommendAnswer: string) => {
     // recommendAnser에서 키워드 부분을 자르고, 해당 객체의 checked를 true로 바꾸고, 그 아이템의 keyword를 찾아 로컬에 list와 keyword 넣기
     const keyword = recommendAnswer.slice("내 친구는 ".length, -" 애인이랑 만났음 해!".length);
-    const updatedList = [...friendLoverTypeList];
-    const matchedTypeIndex = updatedList.findIndex((item) => item.keyword === keyword);
-    updatedList.forEach((item) => {
-      if (item.keyword !== keyword) item.checked = false;
+    const keywordArr = keyword.split(', ').map(str => str.trim());
+    let updatedList = [...friendLoverTypeList];
+
+    keywordArr.forEach((str) => {
+      const matchedItem = updatedList.find(item => item.keyword === str);
+      if (matchedItem) {
+        matchedItem.checked = true;
+      } else {
+        updatedList = [...updatedList, { id: updatedList.length, keyword: str, checked: true }];
+      }
     });
-    if (matchedTypeIndex !== -1) {
-      updatedList[matchedTypeIndex].checked = true;
-    } else updatedList.push({ id: updatedList.length, keyword:keyword, checked:true });
-      localStorage.setItem("friendLoverTypeList", JSON.stringify(updatedList));
-      localStorage.setItem("friendLoverType", keyword);
+    const checkedItems = updatedList.filter(item => item.checked);
+
+    localStorage.setItem("friendLoverTypeList", JSON.stringify(updatedList));
+    localStorage.setItem("friendLoverType", JSON.stringify(checkedItems));
   };
 
   const processSelectiveRecommend = (questionToServer: IPostRecommendElement[]) => {
