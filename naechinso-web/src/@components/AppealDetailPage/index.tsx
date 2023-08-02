@@ -50,9 +50,12 @@ export default function AppealDetailPage() {
     <St.AppealDetail>
       <AdressingFixedHeader
         currentRequiredPage={2}
+        count={appealDetailArr.some((item) => item.checked === true) ? 1 : 0}
         header="내 친구 자랑"
         navigatePath="/recommend/keyword"
-        title1="🎈 내 친구는 OO한 친구야!"
+        title1="🎈"
+        title2="내 친구는"
+        title3="한 친구야!"
       />
 
       <SelectOneKeyword questionNum={2} keywordList={appealDetailArr} setKeywordList={setAppealDetailArr} />
@@ -69,6 +72,6 @@ export default function AppealDetailPage() {
 
 const St = {
   AppealDetail: styled.main`
-    padding: 18rem 2rem 13rem;
+    padding: 21.2rem 2rem 13rem;
   `,
 };

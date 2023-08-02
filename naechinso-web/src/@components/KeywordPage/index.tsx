@@ -120,7 +120,7 @@ export default function KeywordPage() {
 const St = {
   KeywordPage: styled.main`
     width: 100%;
-    padding-bottom: 13rem;
+    padding: 21.2rem 2rem 13rem;
   `,
   KeywordListWrapper: styled.section`
     margin: 0 auto;
@@ -128,7 +128,6 @@ const St = {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    padding: 21.2rem 1.5rem 1rem;
   `,
   KeywordWrapper: styled.button<{ checked: boolean }>`
     width: 10.51rem;

@@ -11,12 +11,13 @@ interface AdressingFixedHeader {
   navigatePath: string;
   title1: string;
   title2?: string;
+  title3?: string;
   currentRequiredPage: number;
   count?: number;
 }
 
 export default function AdressingFixedHeader(props: AdressingFixedHeader) {
-  const { header, navigatePath, title1, title2, currentRequiredPage, count } = props;
+  const { header, navigatePath, title1, title2, title3, currentRequiredPage, count } = props;
 
   const navigate = useNavigate();
 
@@ -47,11 +48,16 @@ export default function AdressingFixedHeader(props: AdressingFixedHeader) {
 
       <St.TitleWrapper>
         <Title title={title1} />
-        {title2 && <Title title={title2} />}
+        {title2 && !title3 && <Title title={title2} />}
+        {title2 && title3 && (
+          <St.SubTitleWrapper>
+            <Title title={title2} /> <St.Blank></St.Blank> <Title title={title3} />
+          </St.SubTitleWrapper>
+        )}
         {count !== undefined && (
           <St.CountWrapper>
             <St.Count count={count}>{count}</St.Count>
-            <St.MaxCount> / 3개</St.MaxCount>
+            <St.MaxCount> / {currentRequiredPage === 2 ? 1 : 3}개</St.MaxCount>
           </St.CountWrapper>
         )}
       </St.TitleWrapper>
@@ -119,6 +125,17 @@ const St = {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
+  `,
+  SubTitleWrapper: styled.div`
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  `,
+  Blank: styled.span`
+    background-color: ${({ theme }) => theme.colors.neural};
+    width: 4.8rem;
+    height: 3.4rem;
+    border-radius: 10px;
   `,
   CountWrapper: styled.article`
     display: flex;
