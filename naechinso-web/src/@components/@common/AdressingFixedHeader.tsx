@@ -12,10 +12,11 @@ interface AdressingFixedHeader {
   title1: string;
   title2?: string;
   currentRequiredPage: number;
+  count?: number;
 }
 
 export default function AdressingFixedHeader(props: AdressingFixedHeader) {
-  const { header, navigatePath, title1, title2, currentRequiredPage } = props;
+  const { header, navigatePath, title1, title2, currentRequiredPage, count } = props;
 
   const navigate = useNavigate();
 
@@ -47,6 +48,12 @@ export default function AdressingFixedHeader(props: AdressingFixedHeader) {
       <St.TitleWrapper>
         <Title title={title1} />
         {title2 && <Title title={title2} />}
+        {count !== undefined && (
+          <St.CountWrapper>
+            <St.Count count={count}>{count}</St.Count>
+            <St.MaxCount> / 3개</St.MaxCount>
+          </St.CountWrapper>
+        )}
       </St.TitleWrapper>
     </St.AdressingFixedHeader>
   );
@@ -94,13 +101,6 @@ const St = {
     color: ${({ theme }) => theme.colors.gray40};
     margin-bottom: 0.4rem;
   `,
-  TitleWrapper: styled.hgroup`
-    position: relative;
-    padding: 1.6rem 2rem 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  `,
   DotWrapper: styled.section`
     display: flex;
     align-items: center;
@@ -112,5 +112,24 @@ const St = {
   Dot: styled.img`
     width: 0.6rem;
     height: 0.6rem;
+  `,
+  TitleWrapper: styled.hgroup`
+    position: relative;
+    padding: 1.6rem 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  `,
+  CountWrapper: styled.article`
+    display: flex;
+    gap: 0.4rem;
+  `,
+  Count: styled.b<{ count: number }>`
+    color: ${({ theme, count }) => (count === 0 ? theme.colors.gray30 : theme.colors.orange)};
+    ${({ theme }) => theme.fonts.reg_13};
+  `,
+  MaxCount: styled.p`
+    color: ${({ theme }) => theme.colors.orange};
+    ${({ theme }) => theme.fonts.reg_13};
   `,
 };

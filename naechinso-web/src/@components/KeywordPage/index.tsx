@@ -89,6 +89,7 @@ export default function KeywordPage() {
     <St.KeywordPage>
       <AdressingFixedHeader
         currentRequiredPage={1}
+        count={checkedAppeals.length}
         header="내 친구 자랑"
         navigatePath={localStorage.getItem("member-uuid") ? "/recommend" : "/recommend/friendInfo"}
         title1="😘"
@@ -127,8 +128,7 @@ const St = {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    padding: 19rem 1.5rem 1rem;
-    /* overflow-y: scroll; */
+    padding: 21.2rem 1.5rem 1rem;
   `,
   KeywordWrapper: styled.button<{ checked: boolean }>`
     width: 10.51rem;
