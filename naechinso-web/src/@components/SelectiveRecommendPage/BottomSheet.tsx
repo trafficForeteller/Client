@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
-import { IcPreviousBtn } from "../../asset/icons";
+import { IcClose } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { TextAreaBox, ToggleTipBox } from "../@common";
@@ -30,31 +30,30 @@ export default function BottomSheet(props: BottomSheetProps) {
         <>
           <St.ModalBackground />
           <St.BottomSheet isBottomSheetOpened={isBottomSheetOpened}>
-            <St.MovePrevButton onClick={closeModal} type="button">
-              <IcPreviousBtn aria-label="모달 닫기" />
-            </St.MovePrevButton>
+            <St.ModalHeader>
+              <St.Title>답변 작성</St.Title>
+              <St.CloseBtn type="button" onClick={closeModal}>
+                <IcClose aria-label="모달 닫기" />
+              </St.CloseBtn>
+            </St.ModalHeader>
             <ToggleTipBox />
 
-            <St.Title>{localStorage.getItem("checkedSelectiveQ")}</St.Title>
+            <St.Question>{localStorage.getItem("checkedSelectiveQ")}</St.Question>
 
             <TextAreaBox
               placeholder={placeholder}
               minLength={29}
-              maxLength={150}
+              maxLength={300}
               text={selectiveRecommend}
               setText={setSelectiveRecommend}
-              height={15}
-              letterLimit="30자 이상 150자 이내"
+              height={13}
+              letterLimit="최소 30자"
               isModalOpened={false}
             />
             <St.Blank></St.Blank>
             <St.ButtonWrapper>
-              <St.NextStepBtn
-                type="button"
-                disabled={isButtonDisabled}
-                onClick={() => navigate(routePaths.DontGo)}
-                className={GTM_CLASS_NAME.recommendSuccessWithSelectiveQuestion}>
-                완성하기
+              <St.NextStepBtn type="button" disabled={isButtonDisabled} onClick={() => navigate(routePaths.DontGo)}>
+                다음
               </St.NextStepBtn>
             </St.ButtonWrapper>
           </St.BottomSheet>
@@ -66,7 +65,7 @@ export default function BottomSheet(props: BottomSheetProps) {
 
 const slideIn = keyframes`
   from {
-    transform: translateY(35%);
+    transform: translateY(30%);
   }
   to {
     transform: translateY(0%)
@@ -93,9 +92,9 @@ const St = {
     z-index: 98;
   `,
   BottomSheet: styled.main<{ isBottomSheetOpened: boolean }>`
-    padding: 0 2rem 11rem;
+    padding: 2rem 2rem 8rem;
     width: 100%;
-    height: 75%;
+    height: 78%;
 
     position: fixed;
     margin: 0 auto;
@@ -113,14 +112,29 @@ const St = {
       width: 37.5rem;
     }
   `,
+  ModalHeader: styled.div`
+    display: flex;
+    padding-left: 37%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.8rem;
+  `,
+  Title: styled.h3`
+    color: ${({ theme }) => theme.colors.black};
+    ${({ theme }) => theme.fonts.sub2};
+  `,
+  CloseBtn: styled.button``,
   MovePrevButton: styled.button`
     cursor: pointer;
     padding: 2rem 0;
   `,
-  Title: styled.h1`
-    ${({ theme }) => theme.fonts.sub2};
+  Question: styled.h1`
+    ${({ theme }) => theme.fonts.bold_16};
     color: ${({ theme }) => theme.colors.black};
     margin-bottom: 1.8rem;
+
+    display: flex;
+    align-items: baseline;
   `,
   ButtonWrapper: styled.section`
     display: flex;
@@ -138,7 +152,7 @@ const St = {
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.bold_16};
-    width: 34.3rem;
+    width: 32.7rem;
     height: 4.8rem;
     border-radius: 12px;
     cursor: pointer;

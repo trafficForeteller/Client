@@ -9,7 +9,6 @@ export const routePaths = {
   Keyword: "/recommend/keyword",
   ChooseFirstQuestion: "/recommend/question/1",
   FirstRecommend: "/recommend/answer/1",
-  SecondRecommend: "/recommend/answer/2",
   AppealDetail: "/recommend/appealDetail",
   FriendLoverType: "/recommend/friendLoverType",
   DontGo: "/recommend/dontGo",

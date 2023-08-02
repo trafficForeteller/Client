@@ -24,7 +24,6 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
   return (
     <St.TextAreaBox isModalOpened={isModalOpened}>
       <St.TextAreaWrapper height={height}>
-        :
         {textareaScroll === true ? (
           <St.TextArea placeholder={placeholder} value={text} onChange={(e) => handleText(e)}></St.TextArea>
         ) : (
@@ -42,17 +41,18 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
               resize: "none",
               outline: "none",
               overflow: "hidden",
-              color: "#111111",
+              color: "#121213",
 
               fontFamily: "Pretendard",
-              fontWeight: "500",
-              fontSize: "1.8rem",
-              lineHeight: "2.6rem",
+              fontWeight: "400",
+              fontSize: "15px",
+              lineHeight: "21px",
 
               border: "none",
               display: "flex",
               flexWrap: "wrap",
               zIndex: isModalOpened === true ? "-1" : "",
+              backgroundColor: "transparent",
             }}
           />
         )}
@@ -60,7 +60,7 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
       <St.TextLength>
         <St.TextLimit isModalOpened={isModalOpened}>{letterLimit}</St.TextLimit>
         <St.TextCountWrapper isModalOpened={isModalOpened}>
-          <St.TextCount>{text ? text.length : 0}</St.TextCount>/{maxLength}
+          <St.TextCount text={text}>{text ? text.length : 0}자</St.TextCount> / {maxLength}자
         </St.TextCountWrapper>
       </St.TextLength>
     </St.TextAreaBox>
@@ -71,6 +71,10 @@ const St = {
   TextAreaBox: styled.section<{ isModalOpened: boolean }>`
     height: fit-content;
     z-index: ${({ isModalOpened }) => (isModalOpened === true ? "-1" : "")};
+
+    background-color: ${({ theme }) => theme.colors.gray5};
+    padding: 1.6rem 1.6rem 1.2rem;
+    border-radius: 6px;
   `,
   TextAreaWrapper: styled.article<{ height: number }>`
     width: 100%;
@@ -79,8 +83,8 @@ const St = {
     margin: 0 auto;
     display: flex;
     gap: 0.8rem;
-    ${({ theme }) => theme.fonts.sub3}
-    color: ${({ theme }) => theme.colors.brown}
+    ${({ theme }) => theme.fonts.sub3};
+    color: ${({ theme }) => theme.colors.brown};
   `,
   TextArea: styled.textarea`
     width: 100%;
@@ -89,28 +93,24 @@ const St = {
     resize: none;
     display: flex;
     ${({ theme }) => theme.fonts.sub3};
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.gray100};
 
     &::placeholder {
-      color: ${({ theme }) => theme.colors.black20};
+      color: ${({ theme }) => theme.colors.gray40};
     }
   `,
   TextLength: styled.div`
-    margin-top: 0.8rem;
-    width: 100%;
-    float: right;
     display: flex;
     justify-content: space-between;
-    color: ${({ theme }) => theme.colors.gray40};
-    ${({ theme }) => theme.fonts.caption5}
+    color: ${({ theme }) => theme.colors.gray100};
+    ${({ theme }) => theme.fonts.reg_12}
+    margin-top: 1.4rem;
   `,
   TextLimit: styled.span<{ isModalOpened: boolean }>`
-    margin-left: 1.5rem;
-    color: ${({ theme }) => theme.colors.orange};
     z-index: ${({ isModalOpened }) => (isModalOpened === true ? "-1" : "")};
   `,
-  TextCount: styled.b`
-    color: ${({ theme }) => theme.colors.orange};
+  TextCount: styled.b<{ text: string }>`
+    color: ${({ theme, text }) => (text.length === 0 ? theme.colors.gray30 : theme.colors.orange)};
   `,
   TextCountWrapper: styled.p<{ isModalOpened: boolean }>`
     z-index: ${({ isModalOpened }) => (isModalOpened === true ? "-1" : "")};

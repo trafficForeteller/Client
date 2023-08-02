@@ -34,7 +34,6 @@ import {
   RecommenderInfoPage,
   RecommendLandingPage,
   RoulettePage,
-  SecondRecommendPage,
   SelectiveRecommendPage,
   SelfEmployedPage,
 } from "./@components";
@@ -112,10 +111,6 @@ export default function Router() {
         <Route
           path={routePaths.RecommenderInfo}
           element={localStorage.getItem("accessToken") ? <RecommenderInfoPage /> : <Navigate to="/" replace />}
-        />
-        <Route
-          path={routePaths.SecondRecommend}
-          element={localStorage.getItem("accessToken") ? <SecondRecommendPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.AppealDetail}

@@ -92,7 +92,7 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
         <St.ModalHeader>
           <St.Title>키워드 추가</St.Title>
           <St.CloseBtn type="button" onClick={closeModal}>
-            <IcClose />
+            <IcClose aria-label="모달 닫기" />
           </St.CloseBtn>
         </St.ModalHeader>
         <St.AddKeywordBox focused={isInputFocused}>
