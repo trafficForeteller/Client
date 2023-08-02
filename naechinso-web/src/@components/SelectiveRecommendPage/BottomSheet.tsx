@@ -1,16 +1,11 @@
-import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
-import { postMemberReissue } from "../../apis/member.api";
-import { getCheckPrice, patchRecommendFriendDetail, postRecommendation } from "../../apis/recommend.api";
 import { IcPreviousBtn } from "../../asset/icons";
-import { keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
-import { TextAreaBox, ToggleTipBox, WarningModal } from "../@common";
+import { TextAreaBox, ToggleTipBox } from "../@common";
 
 interface BottomSheetProps {
   isBottomSheetOpened: boolean;
@@ -21,7 +16,7 @@ interface BottomSheetProps {
 export default function BottomSheet(props: BottomSheetProps) {
   const { isBottomSheetOpened, closeModal, placeholder } = props;
   const navigate = useNavigate();
-  const [selectiveRecommend, setSelectiveRecommend] = useState("");
+  const [selectiveRecommend, setSelectiveRecommend] = useState(localStorage.getItem("selectiveRecommend") || "");
 
   useEffect(() => {
     localStorage.setItem("selectiveRecommend", selectiveRecommend);
