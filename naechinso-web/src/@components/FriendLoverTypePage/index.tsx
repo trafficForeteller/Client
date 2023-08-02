@@ -54,7 +54,7 @@ export default function FriendLoverTypePage() {
       <SelectOneKeyword questionNum={3} keywordList={friendLoverTypeArr} setKeywordList={setFriendLoverTypeArr} />
       <ConsultantTextBtn />
       <MoveNextPageBtn
-        nextPage={routePaths.DontGo}
+        nextPage={routePaths.SelectiveRecommend}
         title="다음"
         disabled={!activeNextBtn}
         handleState={saveCheckedFriendLoverTypeInLocal}

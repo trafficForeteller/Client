@@ -1,10 +1,15 @@
+import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { postMemberReissue } from "../../apis/member.api";
+import { getCheckPrice, patchRecommendFriendDetail, postRecommendation } from "../../apis/recommend.api";
 import { ImgDontGo } from "../../asset/image";
+import { keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
-import { AdressingFixedHeader, ConsultantTextBtn, SheildBox, TextAreaBox } from "../@common";
+import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
+import { AdressingFixedHeader, ConsultantTextBtn, SheildBox, TextAreaBox, WarningModal } from "../@common";
 
 export default function DontGoPage() {
   const [text, setText] = useState("");
@@ -20,9 +25,178 @@ export default function DontGoPage() {
 
   useEffect(() => {
     localStorage.setItem("dontGo", text);
+    setPatchRecommend({
+      ...patchRecommend,
+      dontGo: text,
+    });
   }, [text]);
 
   const isButtonDisabled = () => !text || text.length < 15;
+
+  /* 추천사 post하는 코드 시작*/
+  const [postRecommend, setPostRecommend] = useState({
+    recommendQuestions: [
+      {
+        recommendQuestion: "",
+        recommendAnswer: "",
+      },
+    ],
+  });
+  const [patchRecommend, setPatchRecommend] = useState<IPatchFriendDetail>({
+    appealDetail: "",
+    appeals: [],
+    dontGo: "",
+    priceType: "",
+  });
+
+  useEffect(() => {
+    // 한꺼번에 서버에 전송
+    const modifiedAppealDetail = `내 친구는 ${localStorage.getItem("appealDetail")} 친구야!`;
+    setPatchRecommend({
+      ...patchRecommend,
+      appealDetail: modifiedAppealDetail || "",
+      appeals: JSON.parse(localStorage.getItem("appeals") || "[]"),
+      dontGo: localStorage.getItem("dontGo") || "",
+    });
+  }, []);
+
+  const handleSubmit = () => {
+    // 제출하기 선택 시  postRecommend 채우기
+    const storedData = JSON.parse(localStorage.getItem("friendLoverType") as string);
+    const keywords = storedData.map((item: keywordProps) => item.keyword).join(", ");
+    const modifiedFriendLoverType = `내 친구는 ${keywords} 애인이랑 만났음 해!`;
+
+    setPostRecommend({
+      recommendQuestions: [
+        {
+          recommendQuestion: "친구는 어떤 사람이랑 어울릴 것 같아?",
+          recommendAnswer: modifiedFriendLoverType,
+        },
+        {
+          recommendQuestion: localStorage.getItem("checkedSelectiveQ") as string,
+          recommendAnswer: localStorage.getItem("selectiveRecommend") as string,
+        },
+      ],
+    });
+  };
+
+  useEffect(() => {
+    if (postRecommend.recommendQuestions.length > 1) handleRegisterRecommender();
+  }, [postRecommend]);
+
+  const handleRegisterRecommender = async () => {
+    // 추천사 등록하기
+    await postRecommendation(
+      postRecommend,
+      localStorage.getItem("accessToken"),
+      localStorage.getItem("uuid"),
+      handleSuccessPostRecommendation,
+      handleFailRequest,
+      handleReissuePostRecommendation,
+    );
+  };
+
+  const handleSuccessPostRecommendation = async () => {
+    // 상품을 받을 수 있는 추천사인지 확인하는 함수 실행
+    handleGetCheckPrice();
+  };
+
+  const handleGetCheckPrice = async () => {
+    // 상품을 받을 수 있는 추천사인지 확인
+    await getCheckPrice(
+      localStorage.getItem("accessToken"),
+      localStorage.getItem("uuid"),
+      handleSuccessGetCheckPrice,
+      handleFailRequest,
+      handleReissueGetCheckPrice,
+    );
+  };
+
+  const handleSuccessGetCheckPrice = (userData: IGetCheckPrice) => {
+    if (userData.isPrice === false) {
+      setPatchRecommend({
+        ...patchRecommend,
+        priceType: "NONE",
+      });
+    } else if (userData.isPrice === true && userData.isShowRecommend === true) {
+      setPatchRecommend({
+        ...patchRecommend,
+        priceType: "SUNGURI",
+      });
+    } else if (userData.isPrice === true && userData.isShowRecommend === false) {
+      navigate(routePaths.ChooseGift, { state: { patchRecommend } });
+    }
+  };
+
+  useEffect(() => {
+    // patchRecommend 성공 시
+    if (patchRecommend.priceType !== "") handlePatchRecommend();
+  }, [patchRecommend]);
+
+  const handlePatchRecommend = async () => {
+    // keyword, appealDetail, dontGo POST
+    await patchRecommendFriendDetail(
+      patchRecommend,
+      localStorage.getItem("accessToken"),
+      localStorage.getItem("uuid"),
+      handleSuccessPatchRecommend,
+      handleFailPatchRecommend,
+      handleReissuePatchRecommend,
+    );
+  };
+
+  const handleSuccessPatchRecommend = () => {
+    // 추천사 PATCH 성공할 시
+    localStorage.setItem("priceType", patchRecommend.priceType);
+    navigate(routePaths.Finish);
+  };
+
+  const handleFailPatchRecommend = (err: AxiosError) => {
+    // keyword, appealDetail, dontG POST 실패할 시
+    const errData = err.response && (err.response.data as Error);
+    const errorMessage = errData && (errData.message as string);
+    console.log(errorMessage);
+
+    if (errorMessage === "비속어가 포함되어 있습니다") setIsWarningModalOpened(true);
+    else navigate(routePaths.Error);
+  };
+
+  const handleReissuePatchRecommend = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    handlePatchRecommend();
+  };
+
+  const handleReissueGetCheckPrice = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    handleGetCheckPrice();
+  };
+
+  const handleFailRequest = (errorMessage: string) => {
+    //  postRecommendation 실패할 시
+    console.log(errorMessage);
+    navigate(routePaths.Error);
+  };
+
+  const handleReissuePostRecommendation = async () => {
+    // 액세스 토큰 만료 응답인지 확인
+    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
+    if (userData) {
+      localStorage.setItem("accessToken", userData["accessToken"]);
+      localStorage.setItem("refreshToken", userData["refreshToken"]);
+    }
+    handleRegisterRecommender();
+  };
+  /* 추천사 post하는 코드 끝*/
 
   return (
     <>
@@ -30,7 +204,7 @@ export default function DontGoPage() {
         <AdressingFixedHeader
           currentRequiredPage={5}
           header="내 친구 자랑"
-          navigatePath="/recommend/friendLoverType"
+          navigatePath="/recommend/selective"
           title1="😥 친구를 거절한 상대에게 한 마디! "
         />
         <SheildBox desc="친구의 이성적 매력을 한번 더 어필해봐!" />
@@ -54,14 +228,19 @@ export default function DontGoPage() {
 
         <ConsultantTextBtn />
         <St.NextStepBtnWrapper>
-          <St.NextStepBtn
-            type="button"
-            disabled={isButtonDisabled()}
-            onClick={() => navigate(routePaths.SelectiveRecommend)}>
+          <St.NextStepBtn type="button" disabled={isButtonDisabled()} onClick={handleSubmit}>
             완료
           </St.NextStepBtn>
         </St.NextStepBtnWrapper>
       </St.DontGo>
+      {isWarningModalOpened && (
+        <WarningModal
+          title1="상대방의 마음을 돌릴"
+          title2="한 마디를 다시 작성해줘🥺"
+          desc1="비속어가 포함되어 있는지 확인해줘!"
+          buttonTitle="응 수정할게!"
+        />
+      )}
     </>
   );
 }

@@ -20,188 +20,14 @@ interface BottomSheetProps {
 
 export default function BottomSheet(props: BottomSheetProps) {
   const { isBottomSheetOpened, closeModal, placeholder } = props;
-  const [isWarningModalOpened, setIsWarningModalOpened] = useState(false);
-
-  const [postRecommend, setPostRecommend] = useState({
-    recommendQuestions: [
-      {
-        recommendQuestion: "",
-        recommendAnswer: "",
-      },
-    ],
-  });
-
-  const [patchRecommend, setPatchRecommend] = useState<IPatchFriendDetail>({
-    appealDetail: "",
-    appeals: [],
-    dontGo: "",
-    priceType: "",
-  });
   const navigate = useNavigate();
-
   const [selectiveRecommend, setSelectiveRecommend] = useState("");
-
-  useEffect(() => {
-    if (localStorage.getItem("selectiveRecommend")) {
-      const selectiveRecommendInLocal = localStorage.getItem("selectiveRecommend") as string;
-      setSelectiveRecommend(selectiveRecommendInLocal);
-    } else if (localStorage.getItem("firstRecommend")) {
-      const firstRecommendInLocal = localStorage.getItem("firstRecommend") as string;
-      setSelectiveRecommend(firstRecommendInLocal);
-    }
-
-    // 한꺼번에 서버에 전송
-    const modifiedAppealDetail = `내 친구는 ${localStorage.getItem("appealDetail")} 친구야!`;
-    setPatchRecommend({
-      ...patchRecommend,
-      appealDetail: modifiedAppealDetail || "",
-      appeals: JSON.parse(localStorage.getItem("appeals") || "[]"),
-      dontGo: localStorage.getItem("dontGo") || "",
-    });
-  }, []);
 
   useEffect(() => {
     localStorage.setItem("selectiveRecommend", selectiveRecommend);
   }, [selectiveRecommend]);
 
   const isButtonDisabled = !selectiveRecommend || selectiveRecommend.length < 30;
-
-  const handleSubmit = () => {
-    // 제출하기 선택 시  postRecommend 채우기
-    const storedData = JSON.parse(localStorage.getItem("friendLoverType") as string);
-    const keywords = storedData.map((item: keywordProps) => item.keyword).join(", ");
-    const modifiedFriendLoverType = `내 친구는 ${keywords} 애인이랑 만났음 해!`;
-
-    setPostRecommend({
-      recommendQuestions: [
-        {
-          recommendQuestion: "친구는 어떤 사람이랑 어울릴 것 같아?",
-          recommendAnswer: modifiedFriendLoverType,
-        },
-        {
-          recommendQuestion: localStorage.getItem("checkedSelectiveQ") as string,
-          recommendAnswer: selectiveRecommend,
-        },
-      ],
-    });
-  };
-
-  useEffect(() => {
-    if (postRecommend.recommendQuestions.length > 1) handleRegisterRecommender();
-  }, [postRecommend]);
-
-  const handleRegisterRecommender = async () => {
-    // 추천사 등록하기
-    await postRecommendation(
-      postRecommend,
-      localStorage.getItem("accessToken"),
-      localStorage.getItem("uuid"),
-      handleSuccessPostRecommendation,
-      handleFailRequest,
-      handleReissuePostRecommendation,
-    );
-  };
-
-  const handleSuccessPostRecommendation = async () => {
-    // 상품을 받을 수 있는 추천사인지 확인하는 함수 실행
-    handleGetCheckPrice();
-  };
-
-  const handleGetCheckPrice = async () => {
-    // 상품을 받을 수 있는 추천사인지 확인
-    await getCheckPrice(
-      localStorage.getItem("accessToken"),
-      localStorage.getItem("uuid"),
-      handleSuccessGetCheckPrice,
-      handleFailRequest,
-      handleReissueGetCheckPrice,
-    );
-  };
-
-  const handleSuccessGetCheckPrice = (userData: IGetCheckPrice) => {
-    if (userData.isPrice === false) {
-      setPatchRecommend({
-        ...patchRecommend,
-        priceType: "NONE",
-      });
-    } else if (userData.isPrice === true && userData.isShowRecommend === true) {
-      setPatchRecommend({
-        ...patchRecommend,
-        priceType: "SUNGURI",
-      });
-    } else if (userData.isPrice === true && userData.isShowRecommend === false) {
-      navigate(routePaths.ChooseGift, { state: { patchRecommend } });
-    }
-  };
-
-  useEffect(() => {
-    // patchRecommend 성공 시
-    if (patchRecommend.priceType !== "") handlePatchRecommend();
-  }, [patchRecommend]);
-
-  const handlePatchRecommend = async () => {
-    // keyword, appealDetail, dontGo POST
-    await patchRecommendFriendDetail(
-      patchRecommend,
-      localStorage.getItem("accessToken"),
-      localStorage.getItem("uuid"),
-      handleSuccessPatchRecommend,
-      handleFailPatchRecommend,
-      handleReissuePatchRecommend,
-    );
-  };
-
-  const handleSuccessPatchRecommend = () => {
-    // 추천사 PATCH 성공할 시
-    localStorage.setItem("priceType", patchRecommend.priceType);
-    navigate(routePaths.Finish);
-  };
-
-  const handleFailPatchRecommend = (err: AxiosError) => {
-    // keyword, appealDetail, dontG POST 실패할 시
-    const errData = err.response && (err.response.data as Error);
-    const errorMessage = errData && (errData.message as string);
-    console.log(errorMessage);
-
-    if (errorMessage === "비속어가 포함되어 있습니다") setIsWarningModalOpened(true);
-    else navigate(routePaths.Error);
-  };
-
-  const handleReissuePatchRecommend = async () => {
-    // 액세스 토큰 만료 응답인지 확인
-    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
-    if (userData) {
-      localStorage.setItem("accessToken", userData["accessToken"]);
-      localStorage.setItem("refreshToken", userData["refreshToken"]);
-    }
-    handlePatchRecommend();
-  };
-
-  const handleReissueGetCheckPrice = async () => {
-    // 액세스 토큰 만료 응답인지 확인
-    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
-    if (userData) {
-      localStorage.setItem("accessToken", userData["accessToken"]);
-      localStorage.setItem("refreshToken", userData["refreshToken"]);
-    }
-    handleGetCheckPrice();
-  };
-
-  const handleFailRequest = (errorMessage: string) => {
-    //  postRecommendation 실패할 시
-    console.log(errorMessage);
-    navigate(routePaths.Error);
-  };
-
-  const handleReissuePostRecommendation = async () => {
-    // 액세스 토큰 만료 응답인지 확인
-    const userData = await postMemberReissue(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
-    if (userData) {
-      localStorage.setItem("accessToken", userData["accessToken"]);
-      localStorage.setItem("refreshToken", userData["refreshToken"]);
-    }
-    handleRegisterRecommender();
-  };
 
   return (
     <>
@@ -231,20 +57,12 @@ export default function BottomSheet(props: BottomSheetProps) {
               <St.NextStepBtn
                 type="button"
                 disabled={isButtonDisabled}
-                onClick={handleSubmit}
+                onClick={() => navigate(routePaths.DontGo)}
                 className={GTM_CLASS_NAME.recommendSuccessWithSelectiveQuestion}>
                 완성하기
               </St.NextStepBtn>
             </St.ButtonWrapper>
           </St.BottomSheet>
-          {isWarningModalOpened && (
-            <WarningModal
-              title1="상대방의 마음을 돌릴"
-              title2="한 마디를 다시 작성해줘🥺"
-              desc1="비속어가 포함되어 있는지 확인해줘!"
-              buttonTitle="응 수정할게!"
-            />
-          )}
         </>
       )}
     </>

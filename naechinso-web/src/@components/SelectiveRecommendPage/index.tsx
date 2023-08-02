@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { selectiveRecommendList, selectiveRecommendProps } from "../../core/recommend/recommend";
-import { AdressingFixedHeader, ConsultantTextBtn } from "../@common";
+import { AdressingFixedHeader } from "../@common";
 import BottomSheet from "./BottomSheet";
 
 export default function SelectiveRecommendPage() {
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
   const [placeholder, setPlaceholder] = useState("");
+  const [selectiveRecommend, setSelectiveRecommend] = useState("");
+
   const handleSelectQuestion = (question: selectiveRecommendProps) => {
     // 질문 골랐을 대
     setIsBottomSheetOpened(true);
@@ -21,6 +23,14 @@ export default function SelectiveRecommendPage() {
     localStorage.getItem("checkedSelectiveQ") !== null &&
       localStorage.getItem("selectiveRecommend") !== null &&
       setIsBottomSheetOpened(true);
+
+    if (localStorage.getItem("selectiveRecommend")) {
+      const selectiveRecommendInLocal = localStorage.getItem("selectiveRecommend") as string;
+      setSelectiveRecommend(selectiveRecommendInLocal);
+    } else if (localStorage.getItem("firstRecommend")) {
+      const firstRecommendInLocal = localStorage.getItem("firstRecommend") as string;
+      setSelectiveRecommend(firstRecommendInLocal);
+    }
   }, []);
 
   return (
@@ -28,8 +38,9 @@ export default function SelectiveRecommendPage() {
       <AdressingFixedHeader
         currentRequiredPage={4}
         header="내 친구 자랑"
-        navigatePath="/recommend/dontGo"
-        title1="😘 마지막이야! 질문 하나만 골라줘"
+        navigatePath="/recommend/friendLoverType"
+        title1="질문 하나를 골라서"
+        title2="내 친구를 더 어필해 보자! 😉"
       />
 
       {isBottomSheetOpened && (
@@ -56,7 +67,7 @@ const St = {
     position: relative;
     width: 100%;
     overflow: ${({ isBottomSheetOpened }) => (isBottomSheetOpened ? "hidden" : "auto")};
-    padding: 20rem 2rem 0;
+    padding: 18.8rem 2rem 0;
   `,
 
   SelectiveRecommend: styled.section`
@@ -74,8 +85,8 @@ const St = {
   `,
   QuestionBox: styled.button`
     width: 100%;
-    height: 8.8rem;
-    padding: 1.28rem;
+    height: 7.6rem;
+    padding: 1.2rem 1.6rem;
 
     display: flex;
     flex-direction: column;
@@ -88,11 +99,11 @@ const St = {
     }
   `,
   Icon: styled.p`
-    ${({ theme }) => theme.fonts.sub2};
+    ${({ theme }) => theme.fonts.bold_16};
   `,
   Title: styled.h3`
     color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.sub2};
+    ${({ theme }) => theme.fonts.bold_16};
   `,
   MoveBtnWrapper: styled.section`
     display: flex;
