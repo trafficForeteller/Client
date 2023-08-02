@@ -20,6 +20,7 @@ const colors = {
   blue_bac: "#EAF1FF",
   old_gray: "#EBEBF0",
   old_gray20: "#CCC",
+  gray5: "#F1F2F2",
   gray10: "#E8EAED",
   gray30: "#C5C5C9",
   gray40: "#ABABAE",
@@ -89,6 +90,7 @@ const fonts = {
   reg_15: FONT({ weight: 400, size: 1.5, lineHeight: 2 }),
   reg_14: FONT({ weight: 400, size: 1.4, lineHeight: 2 }),
   reg_13: FONT({ weight: 400, size: 1.3, lineHeight: 2 }),
+  reg_12: FONT({ weight: 400, size: 1.2, lineHeight: 2 }),
 } as const;
 
 type BackQuoteArgs = string[];

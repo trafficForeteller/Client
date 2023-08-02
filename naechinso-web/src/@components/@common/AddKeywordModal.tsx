@@ -17,12 +17,22 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
   const { closeModal, isOpenKeywordModal, keywordArr, setKeywordArr, questionNum } = props;
   const [text, setText] = useState("");
 
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  };
+
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
+  };
+
   const handleText = (e: React.ChangeEvent<HTMLInputElement>) => {
     const byteLength = new TextEncoder().encode(e.target.value).length;
     if (byteLength <= 15) {
       setText(e.target.value);
     } else {
-      setText(e.target.value.slice(0, 15)); // 최대 길이를 6으로 제한
+      setText(e.target.value.slice(0, 15)); // 최대 길이를 15로 제한
     }
   };
 
@@ -55,7 +65,8 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
     setText("");
   };
 
-  const isButtonDisabled = text.length < 1 && text.length > 15;
+  const isButtonDisabled = text.length < 5 || text.length > 15;
+
   return (
     <>
       <St.ModalBackground />
@@ -66,19 +77,21 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
             <IcClose />
           </St.CloseBtn>
         </St.ModalHeader>
-        <St.AddKeywordBox>
+        <St.AddKeywordBox focused={isInputFocused}>
           <St.AddKeywordInput
             type="text"
             value={text}
             onChange={handleText}
-            minLength={1}
+            minLength={5}
             maxLength={15}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
             placeholder={questionNum === 2 ? "ex) 책을 많이 읽는📖" : "ex)사랑스러워🎀"}
           />
           <St.InputCaptionWrapper>
-            <St.Maximum>최대 15자</St.Maximum>
+            <St.Minimum>최소 5자</St.Minimum>
             <St.TextCountWrapper>
-              <St.TextCount>{text ? text.length : 0}</St.TextCount>/15
+              <St.TextCount count={text.length}>{text ? text.length : 0}</St.TextCount> / 15
             </St.TextCountWrapper>
           </St.InputCaptionWrapper>
         </St.AddKeywordBox>
@@ -149,18 +162,20 @@ const St = {
     ${({ theme }) => theme.fonts.sub2};
   `,
   CloseBtn: styled.button``,
-  AddKeywordBox: styled.main`
-    display: flex;
+  AddKeywordBox: styled.main<{ focused: boolean }>`
+    display: inline-flex;
     flex-direction: column;
     width: 100%;
-    gap: 1.2rem;
-    margin-top: 4.8rem;
+    gap: 1.6rem;
+    margin-top: 2rem;
+    padding: 1.6rem 1.4rem 1.2rem 1.6rem;
+    border-radius: 6px;
+    background: ${({ theme }) => theme.colors.gray5};
+    border: ${({ theme, focused }) => (focused ? `1px solid ${theme.colors.orange}` : "")};
   `,
   AddKeywordInput: styled.input`
     color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.sub3};
-    border-bottom: 1px solid ${({ theme }) => theme.colors.gray30};
-    padding: 0.2rem;
+    ${({ theme }) => theme.fonts.reg_15};
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray40};
@@ -172,12 +187,17 @@ const St = {
     color: ${({ theme }) => theme.colors.gray40};
     ${({ theme }) => theme.fonts.caption3};
   `,
-  Maximum: styled.p`
-    color: ${({ theme }) => theme.colors.gray40};
-    ${({ theme }) => theme.fonts.caption3};
+  Minimum: styled.p`
+    color: ${({ theme }) => theme.colors.gray100};
+    ${({ theme }) => theme.fonts.reg_12};
   `,
-  TextCountWrapper: styled.span``,
-  TextCount: styled.b``,
+  TextCountWrapper: styled.span`
+    color: ${({ theme }) => theme.colors.gray100};
+    ${({ theme }) => theme.fonts.reg_12};
+  `,
+  TextCount: styled.b<{ count: number }>`
+    color: ${({ theme, count }) => (count === 0 ? theme.colors.gray30 : theme.colors.orange)};
+  `,
   NextStepBtnWrapper: styled.section`
     display: flex;
     justify-content: center;
@@ -195,8 +215,8 @@ const St = {
     background-color: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.bold_16};
-    width: 33.5rem;
-    height: 5.6rem;
+    width: 32.7rem;
+    height: 4.8rem;
     border-radius: 16px;
 
     &:disabled {
