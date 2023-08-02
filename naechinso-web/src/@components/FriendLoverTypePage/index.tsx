@@ -11,7 +11,7 @@ export default function FriendLoverTypePage() {
 
   useEffect(() => {
     // 키워드 클릭했을 때 실행되는 함수&& checked항목이 하나라도 true면 버튼 활성화
-    setActiveNextBtn(friendLoverTypeArr.some((item) => item.checked === true));
+    setActiveNextBtn(friendLoverTypeArr.filter((item) => item.checked).length === 3);
   }, [friendLoverTypeArr]);
 
   useEffect(() => {
@@ -44,9 +44,11 @@ export default function FriendLoverTypePage() {
     <St.FriendLoverType>
       <AdressingFixedHeader
         currentRequiredPage={3}
+        count={friendLoverTypeArr.filter((item) => item.checked).length}
         header="내 친구 자랑"
         navigatePath="/recommend/appealDetail"
-        title1="🧡 친구와 어울릴 것 같은 애인 유형"
+        title1="🧡"
+        title2="친구와 어울릴 것 같은 애인 유형"
       />
 
       <SelectOneKeyword questionNum={3} keywordList={friendLoverTypeArr} setKeywordList={setFriendLoverTypeArr} />
@@ -64,6 +66,6 @@ export default function FriendLoverTypePage() {
 const St = {
   FriendLoverType: styled.main`
     width: 100%;
-    padding: 20rem 2rem 13rem;
+    padding: 21.2rem 2rem 13rem;
   `,
 };
