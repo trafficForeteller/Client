@@ -8,7 +8,6 @@ import BottomSheet from "./BottomSheet";
 export default function SelectiveRecommendPage() {
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
   const [placeholder, setPlaceholder] = useState("");
-  const [selectiveRecommend, setSelectiveRecommend] = useState("");
 
   const handleSelectQuestion = (question: selectiveRecommendProps) => {
     // 질문 골랐을 대
@@ -20,16 +19,11 @@ export default function SelectiveRecommendPage() {
   const closeModal = () => setIsBottomSheetOpened(false);
 
   useEffect(() => {
-    localStorage.getItem("checkedSelectiveQ") !== null &&
-      localStorage.getItem("selectiveRecommend") !== null &&
-      setIsBottomSheetOpened(true);
-
-    if (localStorage.getItem("selectiveRecommend")) {
+    if (localStorage.getItem("checkedSelectiveQ")) {
       const selectiveRecommendInLocal = localStorage.getItem("selectiveRecommend") as string;
-      setSelectiveRecommend(selectiveRecommendInLocal);
     } else if (localStorage.getItem("firstRecommend")) {
-      const firstRecommendInLocal = localStorage.getItem("firstRecommend") as string;
-      setSelectiveRecommend(firstRecommendInLocal);
+      localStorage.setItem("selectiveRecommend", localStorage.getItem("firstRecommend") as string);
+      localStorage.removeItem("firstRecommend");
     }
   }, []);
 
@@ -94,9 +88,6 @@ const St = {
     // id에 따라 배경색과 글자색깔 구분
     background: ${({ theme }) => theme.colors.neural};
     border-radius: 16px;
-    @media only screen and (min-width: 375px) and (max-width: 600px) {
-      width: 33.5rem;
-    }
   `,
   Icon: styled.p`
     ${({ theme }) => theme.fonts.bold_16};

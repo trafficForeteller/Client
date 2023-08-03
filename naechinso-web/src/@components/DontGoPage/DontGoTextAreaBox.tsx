@@ -1,7 +1,7 @@
 import TextareaAutosize from "react-textarea-autosize";
 import styled from "styled-components";
 
-export interface TextAreaBoxProps {
+export interface DontGoTextAreaBoxProps {
   placeholder: string;
   minLength: number;
   maxLength: number;
@@ -10,52 +10,47 @@ export interface TextAreaBoxProps {
   height: number;
   letterLimit: string;
   isModalOpened: boolean;
-  textareaScroll?: boolean;
 }
 
-export default function TextAreaBox(props: TextAreaBoxProps) {
-  const { placeholder, minLength, maxLength, text, setText, height, letterLimit, isModalOpened, textareaScroll } =
-    props;
+export default function DontGoTextAreaBox(props: DontGoTextAreaBoxProps) {
+  const { placeholder, minLength, maxLength, text, setText, height, letterLimit, isModalOpened } = props;
 
   const handleText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
 
   return (
-    <St.TextAreaBox isModalOpened={isModalOpened}>
+    <St.DontGoTextAreaBox isModalOpened={isModalOpened}>
       <St.TextAreaWrapper height={height}>
-        {textareaScroll === true ? (
-          <St.TextArea placeholder={placeholder} value={text} onChange={(e) => handleText(e)}></St.TextArea>
-        ) : (
-          <TextareaAutosize
-            aria-label="주관식 추천사"
-            placeholder={placeholder}
-            minLength={minLength}
-            maxLength={maxLength}
-            value={text && text}
-            onChange={(e) => handleText(e)}
-            dir="auto"
-            rows={1}
-            style={{
-              width: "100%",
-              resize: "none",
-              outline: "none",
-              overflow: "hidden",
-              color: "#121213",
+        :
+        <TextareaAutosize
+          aria-label="주관식 추천사"
+          placeholder={placeholder}
+          minLength={minLength}
+          maxLength={maxLength}
+          value={text && text}
+          onChange={(e) => handleText(e)}
+          dir="auto"
+          rows={1}
+          style={{
+            width: "100%",
+            resize: "none",
+            outline: "none",
+            overflow: "hidden",
+            color: "#121213",
 
-              fontFamily: "Pretendard",
-              fontWeight: "400",
-              fontSize: "15px",
-              lineHeight: "21px",
+            fontFamily: "Pretendard",
+            fontWeight: "400",
+            fontSize: "15px",
+            lineHeight: "21px",
 
-              border: "none",
-              display: "flex",
-              flexWrap: "wrap",
-              zIndex: isModalOpened === true ? "-1" : "",
-              backgroundColor: "transparent",
-            }}
-          />
-        )}
+            border: "none",
+            display: "flex",
+            flexWrap: "wrap",
+            zIndex: isModalOpened === true ? "-1" : "",
+            backgroundColor: "transparent",
+          }}
+        />
       </St.TextAreaWrapper>
       <St.TextLength>
         <St.TextLimit isModalOpened={isModalOpened}>{letterLimit}</St.TextLimit>
@@ -63,18 +58,15 @@ export default function TextAreaBox(props: TextAreaBoxProps) {
           <St.TextCount text={text}>{text ? text.length : 0}</St.TextCount> / {maxLength}
         </St.TextCountWrapper>
       </St.TextLength>
-    </St.TextAreaBox>
+    </St.DontGoTextAreaBox>
   );
 }
 
 const St = {
-  TextAreaBox: styled.section<{ isModalOpened: boolean }>`
+  DontGoTextAreaBox: styled.section<{ isModalOpened: boolean }>`
     height: fit-content;
     z-index: ${({ isModalOpened }) => (isModalOpened === true ? "-1" : "")};
-
-    background-color: ${({ theme }) => theme.colors.gray5};
-    padding: 1.6rem 1.6rem 1.2rem;
-    border-radius: 6px;
+    padding-top: 2rem;
   `,
   TextAreaWrapper: styled.article<{ height: number }>`
     width: 100%;

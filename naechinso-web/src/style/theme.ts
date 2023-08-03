@@ -22,6 +22,7 @@ const colors = {
   old_gray20: "#CCC",
   gray5: "#F1F2F2",
   gray10: "#E8EAED",
+  gray20: "#D8D8DB",
   gray30: "#C5C5C9",
   gray40: "#ABABAE",
   gray50: "#8F8F92",
@@ -30,7 +31,6 @@ const colors = {
   gray80: "#33333C",
   gray100: "#121213",
   blue40: "#EAF1FF",
-  gray20: "#D8D8DB",
 } as const;
 
 interface Font {
@@ -83,6 +83,7 @@ const fonts = {
   bold_14: FONT({ weight: 700, size: 1.4, lineHeight: 2 }),
   bold_13: FONT({ weight: 700, size: 1.3, lineHeight: 2 }),
   bold_12: FONT({ weight: 700, size: 1.2, lineHeight: 1.6 }),
+  semi_10: FONT({ weight: 600, size: 1, lineHeight: 1.4 }),
   mid_16: FONT({ weight: 500, size: 1.6, lineHeight: 2.4 }),
   mid_14: FONT({ weight: 500, size: 1.4, lineHeight: 2 }),
   mid_12: FONT({ weight: 500, size: 1.2, lineHeight: 1.6 }),
@@ -92,6 +93,7 @@ const fonts = {
   reg_14: FONT({ weight: 400, size: 1.4, lineHeight: 2 }),
   reg_13: FONT({ weight: 400, size: 1.3, lineHeight: 2 }),
   reg_12: FONT({ weight: 400, size: 1.2, lineHeight: 1.6 }),
+  reg_10: FONT({ weight: 400, size: 1, lineHeight: 1.4 }),
 } as const;
 
 type BackQuoteArgs = string[];

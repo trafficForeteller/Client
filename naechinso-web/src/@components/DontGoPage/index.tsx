@@ -9,7 +9,8 @@ import { ImgDontGo } from "../../asset/image";
 import { keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
-import { AdressingFixedHeader, ConsultantTextBtn, SheildBox, TextAreaBox, WarningModal } from "../@common";
+import { AdressingFixedHeader, ConsultantTextBtn, TextAreaBox, WarningModal } from "../@common";
+import DontGoTextAreaBox from "./DontGoTextAreaBox";
 
 export default function DontGoPage() {
   const [text, setText] = useState("");
@@ -205,23 +206,24 @@ export default function DontGoPage() {
           currentRequiredPage={5}
           header="내 친구 자랑"
           navigatePath="/recommend/selective"
-          title1="😥 친구를 거절한 상대에게 한 마디! "
+          title1="친구가... 거절당했대..."
+          title2="회심의 회유 한 마디는? 💪👊"
         />
-        <SheildBox desc="친구의 이성적 매력을 한번 더 어필해봐!" />
+
         <St.CardWrapper>
           <St.Card src={ImgDontGo} alt="한 마디 발언 미리보기" />
           <St.CardGradient></St.CardGradient>
         </St.CardWrapper>
 
         <St.TextWrapper>
-          <TextAreaBox
+          <DontGoTextAreaBox
             placeholder="미래의 형수님 한번만 다시 생각해보십쇼. 이 친구가 겉 보기엔 끌리지 않을 수 있어도, 저와 주변 친구들이 그랬듯 제 친구의 매력에 한 번 빠지면 헤어나올 수 없거든요!"
             minLength={14}
             maxLength={100}
             text={text}
             setText={setText}
             height={7.8}
-            letterLimit="15자 이상 100자 이내"
+            letterLimit="10자 이상"
             isModalOpened={isWarningModalOpened}
           />
         </St.TextWrapper>
@@ -251,6 +253,7 @@ const St = {
     left: 0;
     top: 0;
     width: 100%;
+    height: 100vh;
     padding: 20rem 0 0;
   `,
   CardWrapper: styled.section`
