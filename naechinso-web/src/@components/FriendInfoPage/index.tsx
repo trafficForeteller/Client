@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { postMemberReissue } from "../../apis/member.api";
 import { getRecommend, postMagicRecommendFriendInfo, postRecommendFriendInfo } from "../../apis/recommend.api";
-import { appealDetailList, friendLoverTypeList, keywordList } from "../../core/recommend/recommend";
+import { appealDetailList, friendLoverTypeList, keywordList, selectiveRecommendList } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IGetReommend, IPostFriendInfo, IPostRecommendElement, IUuid } from "../../types/recommend";
 import { ConsultantTextBtn, ShortInputBox } from "../@common";
@@ -213,9 +213,15 @@ export default function FriendInfoPage() {
   const processSelectiveRecommend = (questionToServer: IPostRecommendElement[]) => {
     const filteredQuestions = questionToServer.filter((question) => question.recommendQuestion !== "친구는 어떤 사람이랑 어울릴 것 같아?");
     const question = filteredQuestions.length > 0 && filteredQuestions[filteredQuestions.length - 1];
+    
     if (question) {
       localStorage.setItem("checkedSelectiveQ", question.recommendQuestion);
       localStorage.setItem("selectiveRecommend", question.recommendAnswer);
+      const updatedList = selectiveRecommendList.map((item) => ({
+        ...item,
+        checked: question.recommendQuestion.includes(item.title),
+      }));
+      localStorage.setItem("selectiveRecommendList", JSON.stringify(updatedList));
     }
   };
 

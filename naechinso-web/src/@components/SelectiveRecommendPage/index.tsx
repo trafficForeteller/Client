@@ -36,12 +36,6 @@ export default function SelectiveRecommendPage() {
     if (newSelectiveRecommendList) {
       setSelectiveRecommendArr(newSelectiveRecommendList);
       if (checkedSelectiveQ) setButtonActive(true);
-    } else if (checkedSelectiveQ) {
-      const updatedList = selectiveRecommendArr.map((item) => ({
-        ...item,
-        checked: item.title.includes(checkedSelectiveQ),
-      }));
-      setSelectiveRecommendArr(updatedList);
     } else {
       setSelectiveRecommendArr(
         selectiveRecommendList.map((selectiveR) => {
