@@ -196,7 +196,7 @@ export default function FriendInfoPage() {
     const keywordArr = keyword.split(', ').map(str => str.trim());
     let updatedList = [...friendLoverTypeList];
 
-    keywordArr.forEach((str) => {
+    keywordArr.slice(0,3).forEach((str) => {
       const matchedItem = updatedList.find(item => item.keyword === str);
       if (matchedItem) {
         matchedItem.checked = true;

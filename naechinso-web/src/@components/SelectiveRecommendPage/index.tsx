@@ -32,10 +32,16 @@ export default function SelectiveRecommendPage() {
     // 새로고침 시 이전에 local에 저장된 keywordList 초기값으로 세팅
     const selectiveRecommendListOfLocal = localStorage.getItem("selectiveRecommendList") as string;
     const newSelectiveRecommendList = JSON.parse(selectiveRecommendListOfLocal);
-
+    const checkedSelectiveQ = localStorage.getItem("checkedSelectiveQ");
     if (newSelectiveRecommendList) {
       setSelectiveRecommendArr(newSelectiveRecommendList);
-      if (localStorage.getItem("checkedSelectiveQ")) setButtonActive(true);
+      if (checkedSelectiveQ) setButtonActive(true);
+    } else if (checkedSelectiveQ) {
+      const updatedList = selectiveRecommendArr.map((item) => ({
+        ...item,
+        checked: item.title.includes(checkedSelectiveQ),
+      }));
+      setSelectiveRecommendArr(updatedList);
     } else {
       setSelectiveRecommendArr(
         selectiveRecommendList.map((selectiveR) => {
