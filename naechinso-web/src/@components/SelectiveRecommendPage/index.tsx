@@ -2,14 +2,24 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { selectiveRecommendList, selectiveRecommendProps } from "../../core/recommend/recommend";
-import { AdressingFixedHeader } from "../@common";
+import { AdressingFixedHeader, MoveNextPageBtn } from "../@common";
 import BottomSheet from "./BottomSheet";
 
 export default function SelectiveRecommendPage() {
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
+  const [buttonActive, setButtonActive] = useState(false);
   const [placeholder, setPlaceholder] = useState("");
+  const [selectiveRecommendArr, setSelectiveRecommendArr] = useState(selectiveRecommendList);
 
-  const handleSelectQuestion = (question: selectiveRecommendProps) => {
+  const handleSelectQuestion = (question: selectiveRecommendProps | undefined) => {
+    if (!question) return;
+    // 선택한 question을 찾아서 checked 속성을 true로 변경하고, 나머지 객체들의 checked를 false로 변경
+    const updatedList = selectiveRecommendArr.map((item) => ({
+      ...item,
+      checked: item.id === question.id,
+    }));
+    setSelectiveRecommendArr(updatedList); // selectiveRecommendArr 업데이트
+
     // 질문 골랐을 대
     setIsBottomSheetOpened(true);
     localStorage.setItem("checkedSelectiveQ", question.icon + question.title);
@@ -19,13 +29,33 @@ export default function SelectiveRecommendPage() {
   const closeModal = () => setIsBottomSheetOpened(false);
 
   useEffect(() => {
-    if (localStorage.getItem("checkedSelectiveQ")) {
-      const selectiveRecommendInLocal = localStorage.getItem("selectiveRecommend") as string;
-    } else if (localStorage.getItem("firstRecommend")) {
+    // 새로고침 시 이전에 local에 저장된 keywordList 초기값으로 세팅
+    const selectiveRecommendListOfLocal = localStorage.getItem("selectiveRecommendList") as string;
+    const newSelectiveRecommendList = JSON.parse(selectiveRecommendListOfLocal);
+
+    if (newSelectiveRecommendList) {
+      setSelectiveRecommendArr(newSelectiveRecommendList);
+      if (localStorage.getItem("checkedSelectiveQ")) setButtonActive(true);
+    } else {
+      setSelectiveRecommendArr(
+        selectiveRecommendList.map((selectiveR) => {
+          selectiveR.checked = false;
+          return selectiveR;
+        }),
+      );
+    }
+
+    const firstRecommend = localStorage.getItem("firstRecommend");
+    if (firstRecommend) {
       localStorage.setItem("selectiveRecommend", localStorage.getItem("firstRecommend") as string);
       localStorage.removeItem("firstRecommend");
     }
   }, []);
+
+  useEffect(() => {
+    setButtonActive(selectiveRecommendArr.some((item) => item.checked));
+    localStorage.setItem("selectiveRecommendList", JSON.stringify(selectiveRecommendArr));
+  }, [selectiveRecommendArr]);
 
   return (
     <St.SelectiveRecommendPage isBottomSheetOpened={isBottomSheetOpened}>
@@ -42,16 +72,26 @@ export default function SelectiveRecommendPage() {
       )}
       <St.SelectiveRecommend>
         <St.QuestionListWrapper>
-          {selectiveRecommendList.map((question) => {
+          {selectiveRecommendArr.map((question) => {
             return (
-              <St.QuestionBox type="button" key={question.id} onClick={() => handleSelectQuestion(question)}>
+              <St.QuestionBox
+                type="button"
+                key={question.id}
+                onClick={() => handleSelectQuestion(question)}
+                checked={question.checked}>
                 <St.Icon>{question.icon}</St.Icon>
-                <St.Title>{question.title}</St.Title>
+                <St.Title checked={question.checked}>{question.title}</St.Title>
               </St.QuestionBox>
             );
           })}
         </St.QuestionListWrapper>
       </St.SelectiveRecommend>
+
+      <MoveNextPageBtn
+        title="다음"
+        disabled={!buttonActive}
+        handleState={() => handleSelectQuestion(selectiveRecommendArr.find((item) => item.checked === true))}
+      />
     </St.SelectiveRecommendPage>
   );
 }
@@ -75,9 +115,9 @@ const St = {
     flex-direction: column;
     align-items: center;
     gap: 1.2rem;
-    padding-bottom: 3.5rem;
+    padding-bottom: 10rem;
   `,
-  QuestionBox: styled.button`
+  QuestionBox: styled.button<{ checked: boolean }>`
     width: 100%;
     height: 7.6rem;
     padding: 1.2rem 1.6rem;
@@ -86,14 +126,14 @@ const St = {
     flex-direction: column;
     gap: 0.4rem;
     // id에 따라 배경색과 글자색깔 구분
-    background: ${({ theme }) => theme.colors.neural};
+    background: ${({ theme, checked }) => (checked ? theme.colors.brown : theme.colors.neural)};
     border-radius: 16px;
   `,
   Icon: styled.p`
     ${({ theme }) => theme.fonts.bold_16};
   `,
-  Title: styled.h3`
-    color: ${({ theme }) => theme.colors.black};
+  Title: styled.h3<{ checked: boolean }>`
+    color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.black)};
     ${({ theme }) => theme.fonts.bold_16};
   `,
   MoveBtnWrapper: styled.section`

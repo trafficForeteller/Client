@@ -41,7 +41,7 @@ const St = {
     bottom: 0;
     padding: 0 2rem;
     height: 8rem;
-    z-index: 99;
+    z-index: 5;
 
     background: ${({ isNoBackground }) =>
       isNoBackground ? "" : "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%)"};
