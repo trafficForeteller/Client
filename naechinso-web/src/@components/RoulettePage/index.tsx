@@ -40,6 +40,7 @@ export default function RoulettePage() {
     localStorage.removeItem("memberName");
     localStorage.removeItem("checkedKeywordList");
     localStorage.removeItem("checkedSelectiveQ");
+    localStorage.removeItem("selectiveRecommendList");
     localStorage.removeItem("selectiveRecommend");
     localStorage.removeItem("friendLoverType");
     localStorage.removeItem("friendLoverTypeList");

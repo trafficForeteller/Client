@@ -40,6 +40,7 @@ export default function LandingBox(props: LandingBoxProps) {
     localStorage.removeItem("memberPhoneNum");
     localStorage.removeItem("checkedKeywordList");
     localStorage.removeItem("checkedSelectiveQ");
+    localStorage.removeItem("selectiveRecommendList");
     localStorage.removeItem("selectiveRecommend");
     localStorage.removeItem("friendLoverType");
     localStorage.removeItem("friendLoverTypeList");

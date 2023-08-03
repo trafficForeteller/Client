@@ -113,6 +113,7 @@ export default function CheckFriendBox() {
     localStorage.removeItem("priceType");
     localStorage.removeItem("checkedKeywordList");
     localStorage.removeItem("checkedSelectiveQ");
+    localStorage.removeItem("selectiveRecommendList");
     localStorage.removeItem("selectiveRecommend");
     localStorage.removeItem("friendLoverType");
     localStorage.removeItem("friendLoverTypeList");

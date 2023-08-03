@@ -9,7 +9,7 @@ import { ImgDontGo } from "../../asset/image";
 import { keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
-import { AdressingFixedHeader, ConsultantTextBtn, TextAreaBox, WarningModal } from "../@common";
+import { AdressingFixedHeader, ConsultantTextBtn, WarningModal } from "../@common";
 import DontGoTextAreaBox from "./DontGoTextAreaBox";
 
 export default function DontGoPage() {
@@ -223,7 +223,7 @@ export default function DontGoPage() {
             text={text}
             setText={setText}
             height={7.8}
-            letterLimit="10자 이상"
+            letterLimit="최소 10자"
             isModalOpened={isWarningModalOpened}
           />
         </St.TextWrapper>

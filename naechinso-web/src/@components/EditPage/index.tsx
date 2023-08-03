@@ -32,6 +32,7 @@ export default function EditPage() {
     localStorage.removeItem("memberPhoneNum");
     localStorage.removeItem("checkedKeywordList");
     localStorage.removeItem("checkedSelectiveQ");
+    localStorage.removeItem("selectiveRecommendList");
     localStorage.removeItem("selectiveRecommend");
     localStorage.removeItem("friendLoverType");
     localStorage.removeItem("friendLoverTypeList");
