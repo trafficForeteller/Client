@@ -28,7 +28,7 @@ export default function LandingPage() {
         userData && localStorage.setItem("recommenderName", userData.name);
         navigate(routePaths.RecommendLanding);
       }
-    } else navigate(routePaths.PhoneNum);
+    } else setIsRecommenderModalOpened(true);
   };
 
   return (
