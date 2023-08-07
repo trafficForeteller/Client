@@ -6,6 +6,7 @@ import { IcNaechinsoLogo } from "../../asset/icons";
 import { ImgFinishBackground } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { IRouletteGauge } from "../../types/recommend";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { MoveNextPageBtn, Roulette, RouletteGauge } from "../@common";
 
 export default function RoulettePage() {
@@ -72,16 +73,15 @@ export default function RoulettePage() {
         setRecommendNumber={setRecommendNumber}
       />
       <Roulette
-        rouletteGauge={rouletteGauge}
         recommendNumber={recommendNumber}
         setRecommendNumber={setRecommendNumber}
         setRouletteGauge={setRouletteGauge}
       />
-      {/* GTM 새로 달아야함 */}
       <MoveNextPageBtn
         title="다른 친구 소개하고 룰렛 돌리기"
         disabled={false}
         handleState={handleMovePhoneNumPage}
+        className={GTM_CLASS_NAME.recommendView}
         isNoBackground={true}
       />
     </St.RoulettePage>

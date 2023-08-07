@@ -9,13 +9,7 @@ import { IRouletteGauge } from "../../types/recommend";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { MoveNextPageBtn, Roulette, RouletteGauge } from "../@common";
 
-interface FinishProps {
-  setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export default function Finish(props: FinishProps) {
-  const { setIsModalOpened } = props;
-
+export default function Finish() {
   const navigate = useNavigate();
   const [rouletteGauge, setRouletteGauge] = useState<IRouletteGauge[]>([
     { id: 0, name: "", status: "" },
@@ -63,7 +57,9 @@ export default function Finish(props: FinishProps) {
         <St.NaechinsoLogo>
           <IcNaechinsoLogo />
         </St.NaechinsoLogo>
-        <St.NaechinsoWeb href="https://www.naechinso.com/">내친소란?</St.NaechinsoWeb>
+        <St.NaechinsoWeb href="https://www.naechinso.com/" className={GTM_CLASS_NAME.landingView}>
+          내친소란?
+        </St.NaechinsoWeb>
       </St.HeaderWrapper>
       <St.TitleWrapper>
         <St.Title>
@@ -80,18 +76,16 @@ export default function Finish(props: FinishProps) {
         setRecommendNumber={setRecommendNumber}
       />
       <Roulette
-        rouletteGauge={rouletteGauge}
         recommendNumber={recommendNumber}
         setRecommendNumber={setRecommendNumber}
         setRouletteGauge={setRouletteGauge}
-        setIsModalOpened={setIsModalOpened}
       />
 
       <MoveNextPageBtn
         title="다른 친구 소개하고 룰렛 돌리기"
         disabled={false}
         handleState={handleMoveRecommendLanding}
-        className={GTM_CLASS_NAME.referral}
+        className={GTM_CLASS_NAME.recommendView}
         isNoBackground={true}
       />
     </St.Finish>

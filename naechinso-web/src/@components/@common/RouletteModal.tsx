@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { IGiftInfo } from "../../types/recommend";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 
 interface RouletteModalProps {
   closeModal: () => void;
@@ -29,7 +30,7 @@ export default function RouletteModal(props: RouletteModalProps) {
         </St.DescWrapper>
 
         <St.ButtonWrapper>
-          <St.Button type="button" onClick={closeModal}>
+          <St.Button type="button" onClick={closeModal} className={GTM_CLASS_NAME.rouletteSuccess}>
             알겠어!
           </St.Button>
         </St.ButtonWrapper>

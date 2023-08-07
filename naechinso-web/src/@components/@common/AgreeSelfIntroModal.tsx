@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { ImgHeartIcon } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 
 export default function AgreeSelfIntroModal() {
   const navigate = useNavigate();
@@ -20,7 +21,10 @@ export default function AgreeSelfIntroModal() {
         내친소는 신뢰 기반 서비스라서
         <br /> 추천하는 사람의 정보도 받고 있어
       </St.Desc>
-      <St.Button onClick={() => navigate(routePaths.PhoneNum)} type="button">
+      <St.Button
+        onClick={() => navigate(routePaths.PhoneNum)}
+        type="button"
+        className={GTM_CLASS_NAME.recommenderAccess}>
         그래 좋아!
       </St.Button>
     </St.AgreeSelfIntroModal>

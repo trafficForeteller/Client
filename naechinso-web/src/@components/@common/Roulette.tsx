@@ -14,18 +14,17 @@ import {
 } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
 import { IGiftInfo, IPostCheckRoulette, IRouletteGauge } from "../../types/recommend";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import RouletteModal from "./RouletteModal";
 
 interface RouletteProps {
-  rouletteGauge: IRouletteGauge[];
   setRouletteGauge: React.Dispatch<React.SetStateAction<IRouletteGauge[]>>;
   recommendNumber: number;
   setRecommendNumber: React.Dispatch<React.SetStateAction<number>>;
-  setIsModalOpened?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function Roulette(props: RouletteProps) {
-  const { rouletteGauge, setRouletteGauge, recommendNumber, setRecommendNumber, setIsModalOpened } = props;
+  const { setRouletteGauge, recommendNumber, setRecommendNumber } = props;
   const [rotating, setRotating] = useState(false);
   const [isModalOpen, setISModalOpen] = useState(false);
   const [giftInfo, setGiftInfo] = useState<IGiftInfo>({ name: "", src: "" });
@@ -108,7 +107,10 @@ export default function Roulette(props: RouletteProps) {
       <St.Roulette>
         <St.RouletteBoard src={ImgRoulette} alt="룰렛 원판" rotating={rotating} />
         <St.RoulettePicker src={ImgRoulettePicker} alt="룰렛 피커" />
-        <St.RouletteReadyBtn disabled={recommendNumber > 2 ? false : true} onClick={handleClick}>
+        <St.RouletteReadyBtn
+          disabled={recommendNumber > 2 ? false : true}
+          onClick={handleClick}
+          className={GTM_CLASS_NAME.rouletteView}>
           <St.RouletteBtnTitle recommendNumber={recommendNumber}>
             {recommendNumber > 2 ? "시-작!🤪" : "시작못함😥"}
           </St.RouletteBtnTitle>

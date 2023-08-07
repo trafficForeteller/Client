@@ -64,7 +64,7 @@ export default function FinishModal(props: FinishModalProps) {
         </St.DescWrapper>
         <CopyToClipboard text={copyText} onCopy={shareRecommendLink}>
           <St.ButtonWrapper>
-            <St.Button type="button" className={GTM_CLASS_NAME.viralUrl}>
+            <St.Button type="button" className={GTM_CLASS_NAME.shareLink}>
               초대 링크 공유하기
             </St.Button>
           </St.ButtonWrapper>

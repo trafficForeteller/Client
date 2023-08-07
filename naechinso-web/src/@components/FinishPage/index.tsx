@@ -22,7 +22,7 @@ export default function FinishPage() {
   return (
     <>
       {isModalOpened && <FinishModal title={modalTitle} closeModal={closeModal} />}
-      <Finish setIsModalOpened={setIsModalOpened} />
+      <Finish />
     </>
   );
 }

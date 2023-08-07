@@ -4,7 +4,6 @@ import styled, { keyframes } from "styled-components";
 
 import { IcClose } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
-import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { TextAreaBox, ToggleTipBox } from "../@common";
 
 interface BottomSheetProps {

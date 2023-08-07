@@ -9,6 +9,7 @@ import { ImgDontGo } from "../../asset/image";
 import { keywordProps } from "../../core/recommend/recommend";
 import { routePaths } from "../../core/routes/path";
 import { IGetCheckPrice, IPatchFriendDetail } from "../../types/recommend";
+import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { AdressingFixedHeader, ConsultantTextBtn, WarningModal } from "../@common";
 import DontGoTextAreaBox from "./DontGoTextAreaBox";
 
@@ -230,7 +231,11 @@ export default function DontGoPage() {
 
         <ConsultantTextBtn />
         <St.NextStepBtnWrapper>
-          <St.NextStepBtn type="button" disabled={isButtonDisabled()} onClick={handleSubmit}>
+          <St.NextStepBtn
+            type="button"
+            disabled={isButtonDisabled()}
+            onClick={handleSubmit}
+            className={GTM_CLASS_NAME.recommendSuccess}>
             완료
           </St.NextStepBtn>
         </St.NextStepBtnWrapper>

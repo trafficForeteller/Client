@@ -47,10 +47,7 @@ export default function FinishBottom() {
       <St.NextStepBtn type="button" onClick={handleMoveRecommendLanding} className={GTM_CLASS_NAME.referral}>
         다른 친구 소개하기
       </St.NextStepBtn>
-      <St.MoveLandingBtn
-        type="button"
-        onClick={() => navigate(routePaths.Landing)}
-        className={GTM_CLASS_NAME.landingView}>
+      <St.MoveLandingBtn type="button" onClick={() => navigate(routePaths.Landing)}>
         홈 화면으로 이동
       </St.MoveLandingBtn>
     </St.FinishBottom>

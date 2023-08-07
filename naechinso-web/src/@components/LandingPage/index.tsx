@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 import { getMemberStatus } from "../../apis/member.api";
 import { routePaths } from "../../core/routes/path";
-import { GTM_CLASS_NAME } from "../../util/const/gtm";
 import { LandingBox } from "../@common";
 
 export default function LandingPage() {
@@ -38,17 +37,6 @@ export default function LandingPage() {
         handleMoveLandingPage={handleMemberStatus}
         isRecommenderModalOpened={isRecommenderModalOpened}
       />
-      {/* {!localStorage.getItem("member-uuid") && (
-        <St.DescWrapper>
-          <St.Desc>내친소를 직접 사용하고 싶다면? </St.Desc>
-          <St.InstallBtn
-            type="button"
-            onClick={() => navigate(routePaths.InstallApp)}
-            className={GTM_CLASS_NAME.acquisitionInstallApp}>
-            여기로✨
-          </St.InstallBtn>
-        </St.DescWrapper>
-      )} */}
     </St.LandingPage>
   );
 }
