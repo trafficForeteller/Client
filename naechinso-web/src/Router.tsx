@@ -64,6 +64,7 @@ export default function Router() {
         <Route path={routePaths.Error} element={<ErrorPage />} />
         <Route path={routePaths.Recommendation} element={<RecommendationPage />} />
         <Route path={routePaths.Roulette} element={<RoulettePage />} />
+        <Route path={routePaths.RecommenderInfo} element={<RecommenderInfoPage />} />
 
         <Route path={routePaths.RecommenderAuth} element={<RecommenderAuthPage />} />
         <Route
@@ -107,10 +108,6 @@ export default function Router() {
         <Route
           path={routePaths.Keyword}
           element={localStorage.getItem("accessToken") ? <KeywordPage /> : <Navigate to="/" replace />}
-        />
-        <Route
-          path={routePaths.RecommenderInfo}
-          element={localStorage.getItem("accessToken") ? <RecommenderInfoPage /> : <Navigate to="/" replace />}
         />
         <Route
           path={routePaths.AppealDetail}
