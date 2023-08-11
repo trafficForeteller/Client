@@ -20,7 +20,7 @@ export default function FriendInfoPage() {
   const [name, setName] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
   const [postPhoneNum, setPostPhoneNum] = useState({ phoneNumber: "" });
-  let memberName = localStorage.getItem("memberName");
+  const memberName = localStorage.getItem("memberName");
 
   const [postFriendInfo, setPostFriendInfo] = useState<IPostFriendInfo>({
     phone: "",
@@ -270,7 +270,7 @@ export default function FriendInfoPage() {
       ...postMagicFriendInfo,
       name: name,
     });
-    if (step===1) localStorage.setItem("memberName", name);
+    // if (step===1) localStorage.setItem("memberName", name);
     setStep(step + 1);
     setActiveBtn(false);
   };
