@@ -33,7 +33,7 @@ export default function DontGoPage() {
     });
   }, [text]);
 
-  const isButtonDisabled = () => !text || text.length < 15;
+  const isButtonDisabled = () => !text || text.length < 10;
 
   /* 추천사 post하는 코드 시작*/
   const [postRecommend, setPostRecommend] = useState({
