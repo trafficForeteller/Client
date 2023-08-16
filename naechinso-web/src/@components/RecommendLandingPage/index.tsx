@@ -53,7 +53,7 @@ export default function RecommendLandingPage() {
         <St.CongratulateIcon src={ImgCongratulateIcon} alt="축하하는 얼굴" />
         <St.Title> 내 친구를 소개해보자! </St.Title>
         <St.DescWrapper>
-          <St.Desc>현재는 수도권에 거주하는 89~99년도생만</St.Desc>
+          <St.Desc>현재는 수도권에 거주하는 85~04년도생만</St.Desc>
           <St.Desc> 내친소를 이용할 수 있어!</St.Desc>
         </St.DescWrapper>
       </St.DescBox>
