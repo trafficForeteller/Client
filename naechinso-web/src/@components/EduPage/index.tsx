@@ -70,6 +70,12 @@ export default function EduPage() {
 
   useEffect(() => {
     // step에 따른 ActiveButton 활성화
+    setEdu({
+      ...edu,
+      eduName: eduName,
+      eduLevel: eduLevel,
+      eduMajor: eduMajor,
+    });
     if (eduLevel.length >= 2 && eduName.length >= 2 && eduMajor.length >= 2) setActiveBtn(true);
     else setActiveBtn(false);
   }, [eduLevel, eduName, eduMajor]);
@@ -93,12 +99,6 @@ export default function EduPage() {
 
   const handleEduData = () => {
     // 친구정보 step을 관리하는 함수
-    setEdu({
-      ...edu,
-      eduName: eduName,
-      eduLevel: eduLevel,
-      eduMajor: eduMajor,
-    });
     if (eduLevel.length >= 2 && eduName.length >= 2 && eduMajor.length >= 2) {
       saveEduInfoInLocal();
       patchCertifiedData();
