@@ -65,7 +65,7 @@ export default function FriendInfoPage() {
   useEffect(() => {
     // step에 따라 다른 모달 open
     window.scrollTo(0, 0);
-    if (step === 2 && memberName) {
+    if (step === 2 && localStorage.getItem("member-uuid")) {
       handleMagicFriendInfo();
     } else if (step === 3) {
       handleFriendInfo();
