@@ -2,7 +2,7 @@ export const routePaths = {
   Recommendation: "/recommendation/*",
   MagicLink: "/landing/*",
   InAppLanding: "/landing",
-  InstallApp: "/naechinso-app",
+  InstallApp: "/naechinso-app/*",
   PhoneNum: "/join",
   Certified: "/join/autorize",
   FriendInfo: "/recommend/friendInfo",
