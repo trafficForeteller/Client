@@ -60,7 +60,7 @@ export default function FriendInfoPage() {
   useEffect(() => {
     // step에 따른 ActiveButton 활성화
     if (step === 1 && name.length >= 2) setActiveBtn(true);   
-    else setActiveBtn(false);   
+    else if (step === 1 && name.length < 2) setActiveBtn(false);   
   }, [name,phoneNum]);
 
   useEffect(() => {
