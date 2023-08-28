@@ -227,7 +227,7 @@ const St = {
     right: 0;
     bottom: 0;
     padding: 0 2rem;
-    height: 11rem;
+    height: 8rem;
 
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 80%);
     z-index: ${({ inputActive }) => (inputActive ? "" : "-1")};

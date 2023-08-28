@@ -76,6 +76,7 @@ const fonts = {
   caption8: FONT({ weight: 700, size: 1.3, lineHeight: 2 }),
   caption9: FONT({ weight: 400, size: 1, lineHeight: 1.4 }),
 
+  bold_28: FONT({ weight: 700, size: 2.8, lineHeight: 3.6 }),
   bold_25: FONT({ weight: 700, size: 2.5, lineHeight: 3.4 }),
   bold_20: FONT({ weight: 700, size: 2, lineHeight: 3 }),
   bold_18: FONT({ weight: 700, size: 1.8, lineHeight: 2.6 }),
