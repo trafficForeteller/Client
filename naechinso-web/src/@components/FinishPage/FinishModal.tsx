@@ -6,12 +6,11 @@ import { ImgFinishModalNaechinso } from "../../asset/image";
 import { GTM_CLASS_NAME } from "../../util/const/gtm";
 
 interface FinishModalProps {
-  title: string;
   closeModal: () => void;
 }
 
 export default function FinishModal(props: FinishModalProps) {
-  const { title, closeModal } = props;
+  const { closeModal } = props;
 
   const recommenderName = localStorage.getItem("recommenderName") || "친한";
   const copyText = `${recommenderName} 친구가 너에 대한 추천사 작성을 완료했어!🎉 
@@ -53,13 +52,11 @@ export default function FinishModal(props: FinishModalProps) {
       <St.FinishModal>
         <St.Naechinso src={ImgFinishModalNaechinso} alt="내친소" />
         <St.TitleWrapper>
-          <St.Title>친구의 추천사가 완성됐어!</St.Title>
-          <St.Title>{title}🧡</St.Title>
+          <St.Title>이제 남은 건 친구의 가입 뿐...😎</St.Title>
         </St.TitleWrapper>
         <St.DescWrapper>
-          <St.Desc>친구가 가입할 수 있도록</St.Desc>
           <St.Desc>
-            아래의 <St.Highlight>🔗링크</St.Highlight>를 꼭 친구에게 전달해줘!
+            아래의 <St.Highlight>🔗링크</St.Highlight>를 꼭 친구에게 전달해줘
           </St.Desc>
         </St.DescWrapper>
         <CopyToClipboard text={copyText} onCopy={shareRecommendLink}>
@@ -105,6 +102,7 @@ const St = {
   Naechinso: styled.img`
     width: 8rem;
     height: 8rem;
+    transform: scaleX(-1);
   `,
   TitleWrapper: styled.hgroup`
     display: flex;
