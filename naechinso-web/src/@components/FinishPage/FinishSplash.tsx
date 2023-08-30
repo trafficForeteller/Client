@@ -1,10 +1,16 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 import { ImgRecommendation } from "../../asset/image";
 
-export default function FinishSplash() {
+interface FinishSplashProps {
+  visible: boolean;
+}
+
+export default function FinishSplash(props: FinishSplashProps) {
+  const { visible } = props;
+
   return (
-    <St.FinishSplash>
+    <St.FinishSplash visible={visible}>
       <St.HighlightTag>작성 완료</St.HighlightTag>
       <St.TitleWrapper>
         <St.Title>
@@ -17,8 +23,26 @@ export default function FinishSplash() {
   );
 }
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+
 const St = {
-  FinishSplash: styled.main`
+  FinishSplash: styled.main<{ visible: boolean }>`
     background-color: ${({ theme }) => theme.colors.gray2};
     display: flex;
     flex-direction: column;
@@ -32,6 +56,15 @@ const St = {
     position: absolute;
     left: 0;
     top: 0;
+
+    ${({ visible }) =>
+      visible
+        ? css`
+            animation: ${fadeIn} 0.3s ease-in-out forwards;
+          `
+        : css`
+            animation: ${fadeOut} 0.5s ease-in-out forwards;
+          `}
   `,
   HighlightTag: styled.div`
     background-color: ${({ theme }) => theme.colors.orange10};
@@ -58,8 +91,6 @@ const St = {
   `,
   Recommendation: styled.img`
     position: absolute;
-    /* left: 0;
-    right: 0; */
     bottom: 0;
 
     width: 37.67rem;

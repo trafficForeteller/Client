@@ -89,6 +89,7 @@ const St = {
     width: 100%;
     height: 200vh;
     z-index: 98;
+    overflow: hidden;
   `,
   BottomSheet: styled.main<{ isBottomSheetOpened: boolean }>`
     padding: 2rem 2rem 8rem;

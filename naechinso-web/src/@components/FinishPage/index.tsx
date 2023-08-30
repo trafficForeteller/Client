@@ -6,14 +6,14 @@ import FinishSplash from "./FinishSplash";
 
 export default function FinishPage() {
   const [isModalOpened, setIsModalOpened] = useState(true);
-  const [showSplash, setShowSplash] = useState(true);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     //memberuuid에 따른 모달 opened 수정
     if (localStorage.getItem("member-uuid")) setIsModalOpened(false);
 
     const timer = setTimeout(() => {
-      setShowSplash(false);
+      setVisible(false);
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -23,7 +23,7 @@ export default function FinishPage() {
 
   return (
     <>
-      {showSplash && <FinishSplash />}
+      {visible && <FinishSplash visible={visible} />}
       {isModalOpened && <FinishModal closeModal={closeModal} />}
       <Finish />
     </>
