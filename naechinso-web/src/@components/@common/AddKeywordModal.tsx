@@ -104,7 +104,7 @@ export default function AddKeywordModal(props: AddKeywordModalProps) {
             maxLength={15}
             onFocus={handleInputFocus}
             onBlur={handleInputBlur}
-            placeholder={questionNum === 3 ? "ex) 책을 많이 읽는📚" : "ex)사랑스러워🎀"}
+            placeholder={questionNum === 3 ? "ex) 책을 많이 읽는📚" : "ex)사랑스러운🎀"}
           />
           <St.InputCaptionWrapper>
             <St.Minimum>최소 5자</St.Minimum>
