@@ -70,22 +70,21 @@ export default function SelectiveRecommendPage() {
       {isBottomSheetOpened && (
         <BottomSheet isBottomSheetOpened={isBottomSheetOpened} closeModal={closeModal} placeholder={placeholder} />
       )}
-      <St.SelectiveRecommend>
-        <St.QuestionListWrapper>
-          {selectiveRecommendArr.map((question) => {
-            return (
-              <St.QuestionBox
-                type="button"
-                key={question.id}
-                onClick={() => handleSelectQuestion(question)}
-                checked={question.checked}>
-                <St.Icon>{question.icon}</St.Icon>
-                <St.Title checked={question.checked}>{question.title}</St.Title>
-              </St.QuestionBox>
-            );
-          })}
-        </St.QuestionListWrapper>
-      </St.SelectiveRecommend>
+
+      <St.QuestionListWrapper>
+        {selectiveRecommendArr.map((question) => {
+          return (
+            <St.QuestionBox
+              type="button"
+              key={question.id}
+              onClick={() => handleSelectQuestion(question)}
+              checked={question.checked}>
+              <St.Icon>{question.icon}</St.Icon>
+              <St.Title checked={question.checked}>{question.title}</St.Title>
+            </St.QuestionBox>
+          );
+        })}
+      </St.QuestionListWrapper>
 
       <MoveNextPageBtn
         title="다음"
@@ -102,11 +101,6 @@ const St = {
     width: 100%;
     overflow: ${({ isBottomSheetOpened }) => (isBottomSheetOpened ? "hidden" : "auto")};
     padding: 18.8rem 2rem 0;
-  `,
-
-  SelectiveRecommend: styled.section`
-    width: 100%;
-    height: 100vh;
   `,
   QuestionListWrapper: styled.article`
     margin: 0 auto;
