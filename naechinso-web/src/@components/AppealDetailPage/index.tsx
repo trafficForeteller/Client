@@ -55,7 +55,7 @@ export default function AppealDetailPage() {
         navigatePath="/recommend/keyword"
         title1="🎈"
         title2="내 친구는"
-        title3="한 친구야!"
+        title3=" 친구야!"
       />
 
       <SelectOneKeyword questionNum={2} keywordList={appealDetailArr} setKeywordList={setAppealDetailArr} />
