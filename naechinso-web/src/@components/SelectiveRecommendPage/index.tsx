@@ -71,7 +71,7 @@ export default function SelectiveRecommendPage() {
         <BottomSheet isBottomSheetOpened={isBottomSheetOpened} closeModal={closeModal} placeholder={placeholder} />
       )}
 
-      <St.QuestionListWrapper>
+      <St.QuestionListWrapper isBottomSheetOpened={isBottomSheetOpened}>
         {selectiveRecommendArr.map((question) => {
           return (
             <St.QuestionBox
@@ -102,7 +102,8 @@ const St = {
     overflow: ${({ isBottomSheetOpened }) => (isBottomSheetOpened ? "hidden" : "auto")};
     padding: 18.8rem 2rem 0;
   `,
-  QuestionListWrapper: styled.article`
+  QuestionListWrapper: styled.article<{ isBottomSheetOpened: boolean }>`
+    overflow: ${({ isBottomSheetOpened }) => (isBottomSheetOpened ? "hidden" : "auto")};
     margin: 0 auto;
     width: 100%;
     display: flex;

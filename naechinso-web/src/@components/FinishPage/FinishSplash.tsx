@@ -23,15 +23,6 @@ export default function FinishSplash(props: FinishSplashProps) {
   );
 }
 
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
 const fadeOut = keyframes`
   from {
     opacity: 1;
@@ -60,11 +51,9 @@ const St = {
     ${({ visible }) =>
       visible
         ? css`
-            animation: ${fadeIn} 0.3s ease-in-out forwards;
+            animation: ${fadeOut} 0.5s ease-in-out 2.5s forwards;
           `
-        : css`
-            animation: ${fadeOut} 0.5s ease-in-out forwards;
-          `}
+        : ""}
   `,
   HighlightTag: styled.div`
     background-color: ${({ theme }) => theme.colors.orange10};
