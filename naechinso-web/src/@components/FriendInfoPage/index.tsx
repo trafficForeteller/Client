@@ -64,9 +64,9 @@ export default function FriendInfoPage() {
   }, [name,phoneNum]);
 
   useEffect(() => {
-// 친구 정보 차있을 시 버튼 활성화
-if (step === 1 && name.length >= 2) setActiveBtn(true);   
-else if (step === 2 && name.length >= 2 && phoneNum.length === 9) setActiveBtn(true);   
+  // 친구 정보 차있을 시 버튼 활성화
+  if (step === 1 && name.length >= 2) setActiveBtn(true);   
+  else if (step === 2 && name.length >= 2 && phoneNum.length === 9) setActiveBtn(true);   
 
     // step에 따라 다른 모달 open
     window.scrollTo(0, 0);
@@ -231,7 +231,7 @@ else if (step === 2 && name.length >= 2 && phoneNum.length === 9) setActiveBtn(t
   };
 
   const handleFailGetRecommend = () => {
-    // 추천사 이전에 작성한 거 실패할 시 localStorage 삭제
+    // 추천사 이전에 작성한 거 불러오기 실패할 시 localStorage 삭제
     localStorage.removeItem("firstRecommend");
     localStorage.removeItem("secondRecommend");
     localStorage.removeItem("appealDetail");
