@@ -75,7 +75,7 @@ export default function FriendInfoPage() {
     } else if (step === 3) {
       handleFriendInfo();
     }
-  }, [step]);
+  }, [step,name,phoneNum]);
 
   const saveFriendInfoInLocal = (friendInfo: IPostFriendInfo) => {
     // 로컬스토리지에 저장
