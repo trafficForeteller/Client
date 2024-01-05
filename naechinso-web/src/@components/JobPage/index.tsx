@@ -18,7 +18,7 @@ export default function JobPage() {
     jobImage: null,
     jobName: "",
     jobPart: "",
-    jobLocation: "강남구",
+    jobLocation: "서울특별시 강남구",
   });
 
   useEffect(() => {

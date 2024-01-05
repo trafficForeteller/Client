@@ -12,7 +12,7 @@ export default function SelfEmployedPage() {
   const [job, setJob] = useState<IPatchJob>({
     jobName: "자영업자",
     jobPart: "",
-    jobLocation: "강남구",
+    jobLocation: "서울특별시 강남구",
     jobImage: null,
   });
   const [activeBtn, setActiveBtn] = useState(false);
