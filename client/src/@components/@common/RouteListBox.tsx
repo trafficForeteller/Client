@@ -6,7 +6,7 @@ import RouteList from "./RouteList";
 
 interface RouteListBoxProps {
   travelTime: number;
-  el: IStationInfo;
+  el: IStationInfo[];
   totalStationCount: number;
 }
 
@@ -25,25 +25,40 @@ export default function RouteListBox(props: RouteListBoxProps) {
     <St.RouteListBox>
       {hours !== 0 && (
         <St.TravelTime>
-          {hours}시 {minutes}분
+          {hours}시간 {minutes}분
         </St.TravelTime>
       )}
       {hours === 0 && minutes !== 0 && <St.TravelTime>{minutes}분</St.TravelTime>}
-      <RouteList
-        key={el.stationName}
-        stationName={el.stationName}
-        stationLaneName={el.stationLaneName}
-        stationCount={el.stationCount}
-        totalStationCount={totalStationCount}
-      />
+      <St.RouteListWrapper>
+        {el.map((routelist) => (
+          <RouteList
+            key={routelist.stationName}
+            stationLaneName={routelist.stationLaneName}
+            stationCount={routelist.stationCount}
+            totalStationCount={totalStationCount}
+          />
+        ))}
+      </St.RouteListWrapper>
+
+      {el.map((station) => {
+        return <div key={station.stationName}>{station.stationLaneName}</div>;
+      })}
     </St.RouteListBox>
   );
 }
 
 const St = {
-  RouteListBox: styled.article``,
+  RouteListBox: styled.article`
+    width: 100%;
+    padding: 2.1rem 3rem;
+  `,
   TravelTime: styled.div`
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.bold2};
+  `,
+  RouteListWrapper: styled.span`
+    display: flex;
+    width: 100%;
+    margin: 1.7rem 0;
   `,
 };

@@ -2,6 +2,7 @@ import { css, CSSProp } from "styled-components";
 
 const colors = {
   black: "#090A0A",
+  white: "#FFFFFF",
 
   gray1: "#848489",
   gray2: "#E3E5E5",

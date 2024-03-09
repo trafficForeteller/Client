@@ -35,6 +35,11 @@ const stationsValue = [
         stationLaneName: 3,
         stationCount: 7,
       },
+      {
+        stationName: "배고팡",
+        stationLaneName: 4,
+        stationCount: 8,
+      },
     ],
   },
 ];
@@ -43,7 +48,7 @@ export default function LandingPage() {
   const [startingStation, setStartingStation] = useState("");
   const [arrivalStation, setArrivalStation] = useState("");
   const [isClicked, setIsClicked] = useState(false);
-  const [stations, setStations] = useState<IGetStation[]>(stationsValue);
+  const [stationList, setStationList] = useState<IGetStation[]>(stationsValue);
 
   // 출발지 입력란의 값이 변경될 때마다 호출되는 이벤트 핸들러
   const handleStartingStationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,6 +73,11 @@ export default function LandingPage() {
     // 결과가 없을 땐 없다고 뜨게 하기
   };
 
+  const totalStationCount = stationList.reduce(
+    (acc, station) => acc + station.stations.reduce((count, el) => count + el.stationCount, 0),
+    0,
+  );
+
   return (
     <St.LandingPage>
       <Header />
@@ -84,21 +94,16 @@ export default function LandingPage() {
         <>
           <St.Border></St.Border>
           <St.RouteListWrapper>
-            {stations.map((station) =>
-              station.stations.map((el) => {
-                // totalStationCount 계산
-                const totalStationCount = stations.reduce(
-                  (acc, station) => acc + station.stations.reduce((count, el) => count + el.stationCount, 0),
-                  0,
-                );
-
-                return (
-                  <St.RouteList key={station.id}>
-                    <RouteListBox travelTime={station.travelTime} el={el} totalStationCount={totalStationCount} />
-                  </St.RouteList>
-                );
-              }),
-            )}
+            {stationList.map((station) => (
+              <St.RouteList key={station.id}>
+                <RouteListBox
+                  travelTime={station.travelTime}
+                  el={station.stations}
+                  totalStationCount={totalStationCount}
+                  key={station.id}
+                />
+              </St.RouteList>
+            ))}
           </St.RouteListWrapper>
         </>
       ) : (
@@ -133,6 +138,10 @@ const St = {
   RouteListWrapper: styled.section`
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
   `,
-  RouteList: styled.article``,
+  RouteList: styled.article`
+    width: 100%;
+  `,
 };
