@@ -11,11 +11,10 @@ export default function App() {
 
   return (
     <St.MobileContainer>
-      <meta name="title" content="내친소, 내 친구를 소개합니다" />
-      <meta name="description" content="친구를 소개해준다구? 어떤 친구야?👀" />
-      <meta property="og:title" content="내친소, 내 친구를 소개합니다" />
-      <meta property="og:description" content="친구를 소개해준다구? 어떤 친구야?👀" />
-      <meta property="og:url" content="https://recommend.naechinso.com/" />
+      <meta name="title" content="트래픽 예언가" />
+      <meta name="description" content="정확한 교통 예측으로, 스트레스 없는 이동을 경험하세요" />
+      <meta property="og:title" content="트래픽 예언가" />
+      <meta property="og:description" content="정확한 교통 예측으로, 스트레스 없는 이동을 경험하세요" />
       <Router />
     </St.MobileContainer>
   );
