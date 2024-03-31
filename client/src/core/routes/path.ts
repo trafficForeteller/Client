@@ -1,6 +1,6 @@
 export const routePaths = {
   Landing: "/*",
-  Login: "/login",
+  SiginIn: "/signIn",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];

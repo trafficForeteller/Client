@@ -46,7 +46,7 @@ export default function LandingPage() {
         </St.LoginBtn>
         <St.SignInBox>
           계정이 없으신가요?
-          <St.MoveSignInButton type="button" onClick={() => navigate(routePaths.Login)}>
+          <St.MoveSignInButton type="button" onClick={() => navigate(routePaths.SiginIn)}>
             회원가입하기
           </St.MoveSignInButton>
         </St.SignInBox>

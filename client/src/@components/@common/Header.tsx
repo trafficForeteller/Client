@@ -4,7 +4,6 @@ import styled from "styled-components";
 export default function Header() {
   return (
     <St.Header>
-      <St.Title>📖</St.Title>
       <St.Title>독파민</St.Title>
     </St.Header>
   );
@@ -15,16 +14,13 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
+
     width: 100%;
-  `,
-  TitleWrapper: styled.section`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    height: 4.8rem;
   `,
   Title: styled.h1`
     color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.fonts.bold24};
+    ${({ theme }) => theme.fonts.bold18};
   `,
 };

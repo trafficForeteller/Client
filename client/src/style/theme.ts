@@ -36,6 +36,7 @@ function FONT({ weight, size, lineHeight }: Font): string {
 
 const fonts = {
   bold24: FONT({ weight: 700, size: 2.4, lineHeight: 2.9 }),
+  bold18: FONT({ weight: 700, size: 1.8, lineHeight: 1.8 }),
   semi12: FONT({ weight: 600, size: 1.2, lineHeight: 1.5 }),
   reg14: FONT({ weight: 500, size: 1.4, lineHeight: 2.0 }),
   reg12: FONT({ weight: 500, size: 1.2, lineHeight: 1.5 }),
