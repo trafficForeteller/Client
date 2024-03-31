@@ -11,7 +11,7 @@ export default function App() {
 
   return (
     <St.MobileContainer>
-      <meta name="title" content="트래픽 예언가" />
+      <meta name="title" content="독파민" />
       <meta name="description" content="정확한 교통 예측으로, 스트레스 없는 이동을 경험하세요" />
       <meta property="og:title" content="트래픽 예언가" />
       <meta property="og:description" content="정확한 교통 예측으로, 스트레스 없는 이동을 경험하세요" />

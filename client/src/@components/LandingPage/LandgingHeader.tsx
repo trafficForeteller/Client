@@ -1,22 +1,22 @@
-import React from "react";
 import styled from "styled-components";
 
-export default function Header() {
+export default function LandingHeader() {
   return (
-    <St.Header>
+    <St.LandingHeader>
       <St.Title>📖</St.Title>
       <St.Title>독파민</St.Title>
-    </St.Header>
+    </St.LandingHeader>
   );
 }
 
 const St = {
-  Header: styled.section`
+  LandingHeader: styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
     width: 100%;
+    margin-bottom: 8.4rem;
   `,
   TitleWrapper: styled.section`
     display: flex;

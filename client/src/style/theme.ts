@@ -4,10 +4,10 @@ const colors = {
   black: "#090A0A",
   white: "#FFFFFF",
 
-  gray1: "#848489",
-  gray2: "#E3E5E5",
+  gray1: "#C5C6CC",
+  gray2: "#8F9098",
 
-  purple: "#6B4EFF",
+  purple: "#4224F5",
 
   line1: "#0052A4",
   line2: "#00A84D",
@@ -35,7 +35,12 @@ function FONT({ weight, size, lineHeight }: Font): string {
 }
 
 const fonts = {
-  bold1: FONT({ weight: 700, size: 1.8, lineHeight: 1.8 }),
+  bold24: FONT({ weight: 700, size: 2.4, lineHeight: 2.9 }),
+  semi12: FONT({ weight: 600, size: 1.2, lineHeight: 1.5 }),
+  reg14: FONT({ weight: 500, size: 1.4, lineHeight: 2.0 }),
+  reg12: FONT({ weight: 500, size: 1.2, lineHeight: 1.5 }),
+
+  bold1: FONT({ weight: 700, size: 2.4, lineHeight: 2.9 }),
   bold2: FONT({ weight: 700, size: 1.6, lineHeight: 1.6 }),
 
   reg1: FONT({ weight: 500, size: 1.6, lineHeight: 1.6 }),
