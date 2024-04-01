@@ -1,6 +1,7 @@
 export const routePaths = {
-  Landing: "/*",
   SiginIn: "/signIn",
+  RecommendBook: "/recommend",
+  Landing: "/*",
 };
 
 export type RoutePaths = typeof routePaths[keyof typeof routePaths];

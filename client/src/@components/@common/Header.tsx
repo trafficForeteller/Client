@@ -2,11 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 export default function Header() {
-  return (
-    <St.Header>
-      <St.Title>독파민</St.Title>
-    </St.Header>
-  );
+  return <St.Header>독파민</St.Header>;
 }
 
 const St = {
@@ -18,9 +14,10 @@ const St = {
 
     width: 100%;
     height: 4.8rem;
-  `,
-  Title: styled.h1`
+
     color: ${({ theme }) => theme.colors.black};
     ${({ theme }) => theme.fonts.bold18};
+
+    border-bottom: 0.5px solid ${({ theme }) => theme.colors.gray1};
   `,
 };
