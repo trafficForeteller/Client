@@ -3,6 +3,7 @@ export const routePaths = {
   SiginIn: "/signIn",
   RecommendBook: "/recommend",
   Search: "/search",
+  Record: "/record",
   Landing: "/*",
 };
 

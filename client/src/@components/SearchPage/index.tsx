@@ -45,6 +45,12 @@ export default function SearchPage() {
     }
   };
 
+  // BookWrapper를 클릭했을 때 Record 페이지로 이동하고 책 정보를 전달하는 함수입니다.
+  const handleBookClick = (bookInfo: any) => {
+    // Record 페이지로 이동하면서 책 정보를 전달합니다.
+    navigate(`${routePaths.Record}`, { state: bookInfo });
+  };
+
   return (
     <St.Search>
       <Header />
@@ -53,8 +59,8 @@ export default function SearchPage() {
         {searchResults.map((result) => {
           console.log(result.recordStatus);
           return (
-            <St.BookWrapper key={result.id}>
-              {result.recordStatus ? <St.RecordStatus>기록 완료</St.RecordStatus> : <></>}
+            <St.BookWrapper key={result.id} onClick={() => handleBookClick(result)}>
+              {result.recordStatus && <St.RecordStatus>기록 완료</St.RecordStatus>}
               <St.BookThumbnail src={result.bookThumbnail} alt="책 표지" />
               <St.BookName>{result.bookName}</St.BookName>
               <St.EmotionBox>
@@ -87,6 +93,8 @@ const St = {
     display: flex;
     flex-direction: column;
     position: relative;
+
+    cursor: pointer;
   `,
   RecordStatus: styled.div`
     ${({ theme }) => theme.fonts.semi8};

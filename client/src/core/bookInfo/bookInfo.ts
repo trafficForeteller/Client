@@ -221,6 +221,7 @@ export type searchBookInfoProps = {
   emotions: emotionProps[];
   bookThumbnail: string;
   bookName: string;
+  bookAuthor: string;
   recordStatus: boolean;
 };
 
@@ -233,6 +234,7 @@ export const searchBookInfoList: searchBookInfoProps[] = [
     ],
     bookThumbnail: ImgBook1,
     bookName: "강디두은",
+    bookAuthor: "코딱지",
     recordStatus: true,
   },
   {
@@ -243,6 +245,7 @@ export const searchBookInfoList: searchBookInfoProps[] = [
     ],
     bookThumbnail: ImgBook2,
     bookName: "구의 증명",
+    bookAuthor: "내가 다이기제잉",
     recordStatus: false,
   },
   {
@@ -253,6 +256,7 @@ export const searchBookInfoList: searchBookInfoProps[] = [
     ],
     bookThumbnail: ImgBook3,
     bookName: "직장인에서 직업인으로",
+    bookAuthor: "뿡뿡이",
     recordStatus: false,
   },
   {
@@ -263,6 +267,7 @@ export const searchBookInfoList: searchBookInfoProps[] = [
     ],
     bookThumbnail: ImgBook1,
     bookName: "구의 증명",
+    bookAuthor: "냠냠",
     recordStatus: true,
   },
   {
@@ -273,6 +278,7 @@ export const searchBookInfoList: searchBookInfoProps[] = [
     ],
     bookThumbnail: ImgBook1,
     bookName: "직장인에서 직업인으로",
+    bookAuthor: "꺼억",
     recordStatus: false,
   },
 ];
