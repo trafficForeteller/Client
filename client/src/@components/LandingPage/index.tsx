@@ -23,7 +23,7 @@ export default function LandingPage() {
   return (
     <St.Landing>
       <Header />
-      <St.Background src={ImgLandingBackground} alt="책장 배경" />
+      {/* <St.Background src={ImgLandingBackground} alt="책장 배경" /> */}
       <St.IntroBox>
         <St.Title>
           놓치기 아쉬운
@@ -45,20 +45,18 @@ export default function LandingPage() {
 }
 
 const St = {
-  Landing: styled.section`
-    position: relative;
-  `,
+  Landing: styled.section``,
   IntroBox: styled.div`
     display: flex;
     flex-direction: column;
     padding: 3rem 2.8rem 0;
-  `,
-  Background: styled.img`
-    width: 100%;
-    height: 30rem;
+    background-image: url(${ImgLandingBackground});
+    background-size: cover; /* 이미지를 컨테이너에 맞게 확대 또는 축소하여 보여줍니다. */
+    background-repeat: no-repeat; /* 이미지 반복을 방지합니다. */
+    position: relative; /* IntroBox가 포지셔닝을 가지도록 설정합니다. */
+    z-index: 0; /* 다른 요소 위에 위치하도록 설정합니다. */
 
-    position: absolute;
-    z-index: -1;
+    height: 30rem;
   `,
   Title: styled.h1`
     ${({ theme }) => theme.fonts.bold20};

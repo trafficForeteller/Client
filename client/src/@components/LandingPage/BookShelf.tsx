@@ -43,7 +43,7 @@ const St = {
     ${({ theme }) => theme.fonts.semi12};
     border-bottom: 1px solid #eaecec;
 
-    padding: 6.2rem 2.5rem 1.6rem;
+    padding: 2.7rem 2.5rem 1.6rem;
   `,
   BookShelfWrapper: styled.article`
     display: flex;
