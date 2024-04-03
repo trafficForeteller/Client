@@ -6,5 +6,6 @@ export { default as ImgFace2 } from "./face2.png";
 export { default as ImgFace3 } from "./face3.png";
 export { default as ImgFace4 } from "./face4.png";
 export { default as ImgFace5 } from "./face5.png";
+export { default as ImgLandingBackground } from "./landingBackground.png";
 export { default as ImgLandingNaechinso } from "./landingNaechinso.png";
 export { default as ImgStackOfBooks } from "./stackOfBooks.png";

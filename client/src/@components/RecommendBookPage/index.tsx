@@ -62,10 +62,7 @@ const St = {
     z-index: -1;
   `,
   Title: styled.h2`
-    ${({ theme }) => theme.fonts.semi16};
-
-    position: relative;
-    z-index: 1;
+    ${({ theme }) => theme.fonts.bold16};
 
     margin: 3rem 0 2.8rem 2.7rem;
   `,

@@ -10,6 +10,7 @@ const colors = {
   gray4: "#909090",
 
   purple: "#4224F5",
+  purple2: "#50487F",
   lightPurple: "#C7BEFD",
   lightPurple2: "#D4D1F0",
   lightPurple3: "#EEECFF",
@@ -41,6 +42,7 @@ function FONT({ weight, size, lineHeight }: Font): string {
 
 const fonts = {
   bold24: FONT({ weight: 700, size: 2.4, lineHeight: 2.9 }),
+  bold20: FONT({ weight: 700, size: 2.0, lineHeight: 2.4 }),
   bold18: FONT({ weight: 700, size: 1.8, lineHeight: 2.6 }),
   bold16: FONT({ weight: 700, size: 1.6, lineHeight: 1.9 }),
 
@@ -53,12 +55,6 @@ const fonts = {
 
   reg14: FONT({ weight: 500, size: 1.4, lineHeight: 1.7 }),
   reg12: FONT({ weight: 500, size: 1.2, lineHeight: 1.5 }),
-
-  bold1: FONT({ weight: 700, size: 2.4, lineHeight: 2.9 }),
-  bold2: FONT({ weight: 700, size: 1.6, lineHeight: 1.9 }),
-
-  reg1: FONT({ weight: 500, size: 1.6, lineHeight: 1.6 }),
-  reg2: FONT({ weight: 500, size: 1.0, lineHeight: 1.6 }),
 } as const;
 
 type BackQuoteArgs = string[];
