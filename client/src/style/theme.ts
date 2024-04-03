@@ -6,9 +6,13 @@ const colors = {
 
   gray1: "#C5C6CC",
   gray2: "#8F9098",
+  gray3: "#656565",
+  gray4: "#909090",
 
   purple: "#4224F5",
   lightPurple: "#C7BEFD",
+  lightPurple2: "#D4D1F0",
+  lightPurple3: "#EEECFF",
 
   line1: "#0052A4",
   line2: "#00A84D",
@@ -38,15 +42,20 @@ function FONT({ weight, size, lineHeight }: Font): string {
 const fonts = {
   bold24: FONT({ weight: 700, size: 2.4, lineHeight: 2.9 }),
   bold18: FONT({ weight: 700, size: 1.8, lineHeight: 2.6 }),
-  bold16: FONT({ weight: 700, size: 1.6, lineHeight: 2.2 }),
+  bold16: FONT({ weight: 700, size: 1.6, lineHeight: 1.9 }),
 
+  semi16: FONT({ weight: 600, size: 1.6, lineHeight: 1.9 }),
+  semi14: FONT({ weight: 600, size: 1.4, lineHeight: 1.7 }),
   semi12: FONT({ weight: 600, size: 1.2, lineHeight: 1.5 }),
+  semi10: FONT({ weight: 600, size: 1.0, lineHeight: 1.2 }),
+  semi8: FONT({ weight: 600, size: 0.8, lineHeight: 1.0 }),
+  semi6: FONT({ weight: 600, size: 0.6, lineHeight: 0.7 }),
 
-  reg14: FONT({ weight: 500, size: 1.4, lineHeight: 2.0 }),
+  reg14: FONT({ weight: 500, size: 1.4, lineHeight: 1.7 }),
   reg12: FONT({ weight: 500, size: 1.2, lineHeight: 1.5 }),
 
   bold1: FONT({ weight: 700, size: 2.4, lineHeight: 2.9 }),
-  bold2: FONT({ weight: 700, size: 1.6, lineHeight: 1.6 }),
+  bold2: FONT({ weight: 700, size: 1.6, lineHeight: 1.9 }),
 
   reg1: FONT({ weight: 500, size: 1.6, lineHeight: 1.6 }),
   reg2: FONT({ weight: 500, size: 1.0, lineHeight: 1.6 }),
