@@ -9,7 +9,17 @@ import BookShelf from "./BookShelf";
 
 export default function LandingPage() {
   const navigate = useNavigate();
+
   const [userId, setUserId] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState(""); // 검색어 상태를 관리합니다.
+
+  const handleSearch = () => {
+    if (searchKeyword.trim() !== "") {
+      // 검색 페이지로 이동하면서 검색어를 쿼리 파라미터로 전달합니다.
+      navigate(`${routePaths.Search}?keyword=${searchKeyword}`);
+      console.log(searchKeyword);
+    }
+  };
 
   const handleButtonClick = () => {
     // userId에 따라서 다른 경로로 이동
@@ -23,7 +33,7 @@ export default function LandingPage() {
   return (
     <St.Landing>
       <Header />
-      <SearchBox />
+      <SearchBox value={searchKeyword} onChange={(value: string) => setSearchKeyword(value)} onSearch={handleSearch} />
       <St.IntroBox>
         <St.Title>
           놓치기 아쉬운

@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { LandingPage, LoginPage, RecommendBookPage, SiginInPage } from "./@components";
+import { LandingPage, LoginPage, RecommendBookPage, SearchPage, SiginInPage } from "./@components";
 import { routePaths } from "./core/routes/path";
 
 export default function Router() {
@@ -11,6 +11,7 @@ export default function Router() {
         <Route path={routePaths.Login} element={<LoginPage />} />
         <Route path={routePaths.SiginIn} element={<SiginInPage />} />
         <Route path={routePaths.RecommendBook} element={<RecommendBookPage />} />
+        <Route path={routePaths.Search} element={<SearchPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -215,3 +215,64 @@ export const recordBookInfoList: basicBookInfoProps[] = [
     bookName: "구의 증명",
   },
 ];
+
+export type searchBookInfoProps = {
+  id: number;
+  emotions: emotionProps[];
+  bookThumbnail: string;
+  bookName: string;
+  recordStatus: boolean;
+};
+
+export const searchBookInfoList: searchBookInfoProps[] = [
+  {
+    id: 0,
+    emotions: [
+      { emotionId: 0, emotionNumber: 230 },
+      { emotionId: 1, emotionNumber: 68 },
+    ],
+    bookThumbnail: ImgBook1,
+    bookName: "강디두은",
+    recordStatus: true,
+  },
+  {
+    id: 1,
+    emotions: [
+      { emotionId: 4, emotionNumber: 153 },
+      { emotionId: 2, emotionNumber: 78 },
+    ],
+    bookThumbnail: ImgBook2,
+    bookName: "구의 증명",
+    recordStatus: false,
+  },
+  {
+    id: 2,
+    emotions: [
+      { emotionId: 1, emotionNumber: 230 },
+      { emotionId: 0, emotionNumber: 68 },
+    ],
+    bookThumbnail: ImgBook3,
+    bookName: "직장인에서 직업인으로",
+    recordStatus: false,
+  },
+  {
+    id: 3,
+    emotions: [
+      { emotionId: 4, emotionNumber: 153 },
+      { emotionId: 2, emotionNumber: 78 },
+    ],
+    bookThumbnail: ImgBook1,
+    bookName: "구의 증명",
+    recordStatus: true,
+  },
+  {
+    id: 4,
+    emotions: [
+      { emotionId: 0, emotionNumber: 230 },
+      { emotionId: 1, emotionNumber: 68 },
+    ],
+    bookThumbnail: ImgBook1,
+    bookName: "직장인에서 직업인으로",
+    recordStatus: false,
+  },
+];
