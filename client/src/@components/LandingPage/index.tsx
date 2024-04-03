@@ -1,9 +1,25 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { ImgLandingBackground } from "../../asset/image";
+import { routePaths } from "../../core/routes/path";
 import { Header } from "../@common";
+import BookShelf from "./BookShelf";
 
 export default function LandingPage() {
+  const navigate = useNavigate();
+  const [userId, setUserId] = useState("");
+
+  const handleButtonClick = () => {
+    // userId에 따라서 다른 경로로 이동
+    if (userId === "") {
+      navigate(routePaths.Login);
+    } else {
+      navigate(routePaths.RecommendBook);
+    }
+  };
+
   return (
     <St.Landing>
       <Header />
@@ -15,11 +31,15 @@ export default function LandingPage() {
           당신만을 위한 인생책을 준비했어요
         </St.Title>
         <St.SubTitle>내가 기록한 감정으로 딱 맞는 책을 찾으세요!</St.SubTitle>
-        <St.FloatingBtnWrapper type="button">
-          <St.FloatingBtnDesc>감동 MAX 책 후기 기록하고 &gt;</St.FloatingBtnDesc>
+        <St.FloatingBtnWrapper type="button" onClick={handleButtonClick}>
+          <St.FloatingBtnDesc>
+            {userId === "" ? "감동 MAX 책 후기 기록하고" : `${userId}님의 감정 기록 노트`}
+            &gt;
+          </St.FloatingBtnDesc>
           <St.FloatingBtn>책 추천받기</St.FloatingBtn>
         </St.FloatingBtnWrapper>
       </St.IntroBox>
+      <BookShelf userId={userId} />
     </St.Landing>
   );
 }
