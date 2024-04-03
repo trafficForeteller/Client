@@ -1,4 +1,5 @@
 export const routePaths = {
+  Login: "/login",
   SiginIn: "/signIn",
   RecommendBook: "/recommend",
   Landing: "/*",

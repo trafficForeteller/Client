@@ -5,7 +5,7 @@ import { emojiList, recommendBookInfoList } from "../../core/bookInfo/bookInfo";
 import { Header } from "../@common";
 import RecommendLoading from "./RecommendLoading";
 
-export default function RecommendBook() {
+export default function RecommendBookPage() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {

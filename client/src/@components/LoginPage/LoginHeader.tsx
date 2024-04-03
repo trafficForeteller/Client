@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 export default function LandingHeader() {
   return (
-    <St.LandingHeader>
+    <St.LoginHeader>
       <St.Title>📖</St.Title>
       <St.Title>독파민</St.Title>
-    </St.LandingHeader>
+    </St.LoginHeader>
   );
 }
 
 const St = {
-  LandingHeader: styled.section`
+  LoginHeader: styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
