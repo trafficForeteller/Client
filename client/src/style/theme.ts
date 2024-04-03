@@ -15,6 +15,7 @@ const colors = {
   lightPurple: "#C7BEFD",
   lightPurple2: "#D4D1F0",
   lightPurple3: "#EEECFF",
+  lightPurple4: "#F7F6FF",
 
   line1: "#0052A4",
   line2: "#00A84D",

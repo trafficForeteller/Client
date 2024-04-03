@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { ImgLandingBackground } from "../../asset/image";
 import { routePaths } from "../../core/routes/path";
-import { Header } from "../@common";
+import { Header, SearchBox } from "../@common";
 import BookShelf from "./BookShelf";
 
 export default function LandingPage() {
@@ -23,7 +23,7 @@ export default function LandingPage() {
   return (
     <St.Landing>
       <Header />
-      {/* <St.Background src={ImgLandingBackground} alt="책장 배경" /> */}
+      <SearchBox />
       <St.IntroBox>
         <St.Title>
           놓치기 아쉬운
