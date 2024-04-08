@@ -4,15 +4,17 @@ import styled from "styled-components";
 
 import { emojiList } from "../../core/bookInfo/bookInfo";
 import { Header } from "../@common";
+import BottomSheet from "./BottomSheet";
 import TextAreaBox from "./TextAreaBox";
 
 export default function RecordPage() {
-  const location = useLocation();
-  const bookInfo = location.state.bookInfo;
-
   const [selectedEmotion, setSelectedEmotion] = useState<(string | null)[]>([null, null, null]); // selectedEmotion 상태를 useState로 관리합니다.
   const [isSelectedAllEmoticon, setISSelectedEmoticon] = useState(false);
   const [text, setText] = useState("");
+  const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
+
+  const location = useLocation();
+  const bookInfo = location.state.bookInfo;
 
   useEffect(() => {
     // selectedEmotion 배열이 변경될 때마다 실행되어 "뿡"을 화면에 보여줍니다.
@@ -39,6 +41,8 @@ export default function RecordPage() {
     updatedEmotions.push(null); // 제거한 자리에 null을 추가하여 배열의 뒷쪽으로 밀어냅니다.
     setSelectedEmotion(updatedEmotions);
   };
+
+  const closeModal = () => setIsBottomSheetOpened(false);
 
   return (
     <St.Record>
@@ -69,7 +73,7 @@ export default function RecordPage() {
         {isSelectedAllEmoticon ? (
           <St.TextAreaWrapper>
             <TextAreaBox text={text} setText={setText} />
-            <St.RecordBtn type="button" disabled={text.length < 15}>
+            <St.RecordBtn type="button" disabled={text.length < 15} onClick={() => setIsBottomSheetOpened(true)}>
               기록하기
             </St.RecordBtn>
           </St.TextAreaWrapper>
@@ -81,6 +85,8 @@ export default function RecordPage() {
           </St.EmotionWrapper>
         )}
       </St.EmotionBox>
+
+      {isBottomSheetOpened && <BottomSheet isBottomSheetOpened={isBottomSheetOpened} closeModal={closeModal} />}
     </St.Record>
   );
 }
