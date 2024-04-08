@@ -57,6 +57,7 @@ const fonts = {
 
   reg14: FONT({ weight: 500, size: 1.4, lineHeight: 1.7 }),
   reg12: FONT({ weight: 500, size: 1.2, lineHeight: 1.5 }),
+  reg10: FONT({ weight: 500, size: 1.0, lineHeight: 1.2 }),
 } as const;
 
 type BackQuoteArgs = string[];

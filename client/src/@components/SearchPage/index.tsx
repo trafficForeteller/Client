@@ -48,7 +48,7 @@ export default function SearchPage() {
   // BookWrapper를 클릭했을 때 Record 페이지로 이동하고 책 정보를 전달하는 함수입니다.
   const handleBookClick = (bookInfo: any) => {
     // Record 페이지로 이동하면서 책 정보를 전달합니다.
-    navigate(`${routePaths.Record}`, { state: bookInfo });
+    navigate(`${routePaths.Record}`, { state: { bookInfo } });
   };
 
   return (

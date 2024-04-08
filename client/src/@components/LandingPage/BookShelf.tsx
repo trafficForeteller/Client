@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { emojiList, recordBookInfoList } from "../../core/bookInfo/bookInfo";
+import { routePaths } from "../../core/routes/path";
 
 interface BookShelfProps {
   userId: string;
@@ -8,6 +10,16 @@ interface BookShelfProps {
 
 export default function BookShelf(props: BookShelfProps) {
   const { userId } = props;
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    // userId에 따라서 다른 경로로 이동
+    if (userId === "") {
+      navigate(routePaths.Login);
+    } else {
+      navigate(routePaths.Record);
+    }
+  };
 
   return (
     <St.BookShelf>
@@ -15,7 +27,7 @@ export default function BookShelf(props: BookShelfProps) {
       <St.BookShelfWrapper>
         {recordBookInfoList.map((el) => {
           return (
-            <St.BookWrapper key={el.id}>
+            <St.BookWrapper key={el.id} onClick={handleButtonClick}>
               <St.BookThumbnail src={el.bookThumbnail} alt="책 표지" />
               <St.BookName>{el.bookName}</St.BookName>
               <St.EmotionBox>
