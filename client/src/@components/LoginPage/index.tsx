@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { routePaths } from "../../core/routes/path";
-import LoginHeader from "./LoginHeader";
-import LoginInputBox from "./LoginInputBox";
+import { LoginHeader, LoginInputBox } from "../@common";
 
 export default function LoginPage() {
   const navigate = useNavigate();
