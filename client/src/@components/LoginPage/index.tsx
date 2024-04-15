@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { postLogin } from "../../apis/basic.api";
 import { routePaths } from "../../core/routes/path";
+import { IPostLoginInfo } from "../../types/basic";
 import { LoginHeader, LoginInputBox } from "../@common";
 
 export default function LoginPage() {
@@ -10,7 +12,11 @@ export default function LoginPage() {
 
   const [userId, setUserId] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [isClicked, setIsClicked] = useState(false);
+
+  const [postLoginInfo, setPostLoginInfo] = useState<IPostLoginInfo>({
+    id: "",
+    pw: "",
+  });
 
   // id 값이 변경될 때마다 호출되는 이벤트 핸들러
   const handleUserIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,16 +28,27 @@ export default function LoginPage() {
     setUserPassword(e.target.value); // 입력된 값으로 상태를 업데이트
   };
 
+  useEffect(() => {
+    setPostLoginInfo({ id: userId, pw: userPassword });
+  }, [userId, userPassword]);
+
   // id, password 정보를 서버에 전송하는 함수
-  const handleLoginInfo = () => {
+  const handleLoginInfo = async () => {
     // 이 부분에 실제 API 호출 코드를 작성하면 됩니다.
+    await postLogin(postLoginInfo, handleSuccessPostLogin, handleFailPostLogin);
     console.log("id:", userId);
     console.log("pwd:", userPassword);
-    setIsClicked(true);
-    // 여기에 API 호출 코드 작성
+  };
 
-    // startingStation이나 arrivalStation이 비어있는 경우엔 제대로 입력해달라고 뜨게 하기
-    // 결과가 없을 땐 없다고 뜨게 하기
+  const handleSuccessPostLogin = (successMessage: string) => {
+    // 인증번호 맞을 때
+    console.log(successMessage);
+    navigate(routePaths.Landing);
+  };
+
+  const handleFailPostLogin = (errorMessage: string) => {
+    // 인증번호 틀릴 때
+    console.log(errorMessage);
   };
 
   return (
