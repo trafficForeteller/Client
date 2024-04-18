@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { IGetSearchBookData } from "../types/book";
+import { IGetRecommendBookData, IGetSearchBookData } from "../types/book";
 
 import { serverAxios } from ".";
 
@@ -26,14 +26,15 @@ export async function getSearchBook(
 
 //랜딩페이지 책 추천 컴포넌트
 export async function getRecommendBook(
-  onSuccess: (successData: IGetSearchBookData[]) => void,
+  onSuccess: (successData: IGetRecommendBookData[]) => void,
   onFail: (errorMessage: string) => void,
 ): Promise<void | null> {
   try {
     const { data } = await serverAxios.get(`${PREFIX_URL}/recommend`, {
       headers: { "Content-Type": "application/json" },
     });
-    onSuccess(data.documents);
+    console.log(data);
+    onSuccess(data);
   } catch (err) {
     if (err instanceof Error) {
       onFail(err.message);

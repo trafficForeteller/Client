@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { emojiList, recordBookInfoList } from "../../core/bookInfo/bookInfo";
+import { getRecommendBook } from "../../apis/book.api";
+import { emojiList } from "../../core/bookInfo/bookInfo";
 import { routePaths } from "../../core/routes/path";
+import { IGetRecommendBookData } from "../../types/book";
 
 interface BookShelfProps {
   userId: string;
@@ -11,6 +14,19 @@ interface BookShelfProps {
 export default function BookShelf(props: BookShelfProps) {
   const { userId } = props;
   const navigate = useNavigate();
+  const [recommendBookList, setRecommendBookList] = useState<IGetRecommendBookData[] | null>(null); // 수정: recommendBookList의 초기값을 null로 설정
+
+  useEffect(() => {
+    getRecommendBook(handleSuccessGetRecommendBook, handleFailGetRecommendBook);
+  }, []);
+
+  const handleSuccessGetRecommendBook = (recommendBookData: IGetRecommendBookData[]) => {
+    setRecommendBookList(recommendBookData);
+  };
+
+  const handleFailGetRecommendBook = (errorMessage: string) => {
+    console.log(errorMessage);
+  };
 
   const handleButtonClick = () => {
     // userId에 따라서 다른 경로로 이동
@@ -23,26 +39,29 @@ export default function BookShelf(props: BookShelfProps) {
 
   return (
     <St.BookShelf>
-      <St.Title>{userId === "" ? "사람들 책꽂이 구경하기" : `기록 책꽂이 ${recordBookInfoList.length}개`}</St.Title>
+      <St.Title>
+        {recommendBookList !== null ? `기록 책꽂이 ${recommendBookList.length}개` : "사람들 책꽂이 구경하기"}
+      </St.Title>
       <St.BookShelfWrapper>
-        {recordBookInfoList.map((el) => {
-          return (
-            <St.BookWrapper key={el.id} onClick={handleButtonClick}>
-              <St.BookThumbnail src={el.bookThumbnail} alt="책 표지" />
-              <St.BookName>{el.bookName}</St.BookName>
-              <St.EmotionBox>
-                {el.emotions.map((emo, idx) => {
-                  return (
-                    <St.EmotionWrapper key={idx}>
-                      <St.Emotion src={emojiList[emo.emotionId]} alt="이모지" />
-                      <St.EmotionNumber>{emo.emotionNumber}</St.EmotionNumber>
-                    </St.EmotionWrapper>
-                  );
-                })}
-              </St.EmotionBox>
-            </St.BookWrapper>
-          );
-        })}
+        {recommendBookList !== null &&
+          recommendBookList.map((el, idx) => {
+            return (
+              <St.BookWrapper key={idx} onClick={handleButtonClick}>
+                <St.BookThumbnail src={el.thumbnail} alt="책 표지" />
+                <St.BookName>{el.title}</St.BookName>
+                <St.EmotionBox>
+                  {el.emotion.map((emo, idx) => {
+                    return (
+                      <St.EmotionWrapper key={idx}>
+                        <St.Emotion src={emojiList[emo.emotionId]} alt="이모지" />
+                        <St.EmotionNumber>{emo.emotionNumber}</St.EmotionNumber>
+                      </St.EmotionWrapper>
+                    );
+                  })}
+                </St.EmotionBox>
+              </St.BookWrapper>
+            );
+          })}
       </St.BookShelfWrapper>
     </St.BookShelf>
   );

@@ -19,3 +19,12 @@ export interface IPostReviewBook {
   comments: string;
   rating: number;
 }
+
+export type IGetRecommendBookData = {
+  authors: string[];
+  contents: string;
+  isbn: string;
+  thumbnail: string;
+  title: string;
+  emotion: IEmotion[];
+};
