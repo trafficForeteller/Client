@@ -1,7 +1,21 @@
 export interface IGetSearchBookData {
-  author: string[];
+  authors: string[];
   contents: string;
+  isbn: string;
   thumbnail: string;
   title: string;
   check: number; // 기록 완료 여부. 1이 등록된 것
+  emotion: IEmotion[];
+}
+
+interface IEmotion {
+  emotionId: number;
+  emotionNumber: number;
+}
+
+export interface IPostReviewBook {
+  isbn: string;
+  emotion: IEmotion[];
+  comments: string;
+  rating: number;
 }

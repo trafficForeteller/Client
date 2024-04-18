@@ -1,8 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { routePaths } from "../../core/routes/path";
+
 export default function Header() {
-  return <St.Header>독파민</St.Header>;
+  const navigate = useNavigate();
+
+  return <St.Header onClick={() => navigate(routePaths.Landing)}>독파민</St.Header>;
 }
 
 const St = {

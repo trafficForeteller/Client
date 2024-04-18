@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { emojiList, recommendBookInfoList } from "../../core/bookInfo/bookInfo";
 import { Header } from "../@common";
-import RecommendLoading from "./RecommendLoading";
+import LoadingBox from "../@common/LoadingBox";
 
 export default function RecommendBookPage() {
   const [visible, setVisible] = useState(true);
@@ -20,7 +20,7 @@ export default function RecommendBookPage() {
     <St.RecommendBook>
       <Header />
       <St.Background></St.Background>
-      <St.Title>jisu123님의 다음 인생책</St.Title>
+      <St.Title>{localStorage.getItem("userId")}님의 다음 인생책</St.Title>
       <St.RecommendBookListWrapper>
         {recommendBookInfoList.map((el) => {
           return (
@@ -44,7 +44,7 @@ export default function RecommendBookPage() {
           );
         })}
       </St.RecommendBookListWrapper>
-      {visible && <RecommendLoading />}
+      {visible && <LoadingBox />}
     </St.RecommendBook>
   );
 }

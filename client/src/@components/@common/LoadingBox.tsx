@@ -2,23 +2,25 @@ import styled from "styled-components";
 
 import { ImgStackOfBooks } from "../../asset/image";
 
-export default function RecommendLoading() {
+export default function Loading() {
   return (
-    <St.RecommendLoading>
+    <St.Loading>
       <St.SpinBarWrapper>
         <St.SpinBar></St.SpinBar>
         <St.StackOfBooks src={ImgStackOfBooks} alt="책 추천 로딩" />
       </St.SpinBarWrapper>
       <St.LoadingDescWrapper>
-        <St.LoadingDesc>jisu123님의</St.LoadingDesc>
+        <St.LoadingDesc>
+          {localStorage.getItem("userId") ? `${localStorage.getItem("userId")}님의` : "당신 만을 위한"}
+        </St.LoadingDesc>
         <St.LoadingDesc>인생책을 찾고 있어요</St.LoadingDesc>
       </St.LoadingDescWrapper>
-    </St.RecommendLoading>
+    </St.Loading>
   );
 }
 
 const St = {
-  RecommendLoading: styled.section`
+  Loading: styled.section`
     width: 100%;
     height: 100%;
     background-color: white;

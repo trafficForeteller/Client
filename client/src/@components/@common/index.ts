@@ -1,4 +1,5 @@
 export { default as Header } from "./Header";
+export { default as LoadingBox } from "./LoadingBox";
 export { default as LoginHeader } from "./LoginHeader";
 export { default as LoginInputBox } from "./LoginInputBox";
 export { default as PathInputBox } from "./PathInputBox";
