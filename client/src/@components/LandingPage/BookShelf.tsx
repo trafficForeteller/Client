@@ -23,7 +23,7 @@ export default function BookShelf(props: BookShelfProps) {
 
   return (
     <St.BookShelf>
-      <St.Title>{userId === "" ? "사람들 책꽂이 구경하기" : "기록 책꽂이 nn개"}</St.Title>
+      <St.Title>{userId === "" ? "사람들 책꽂이 구경하기" : `기록 책꽂이 ${recordBookInfoList.length}개`}</St.Title>
       <St.BookShelfWrapper>
         {recordBookInfoList.map((el) => {
           return (
