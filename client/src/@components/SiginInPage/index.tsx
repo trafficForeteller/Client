@@ -39,10 +39,12 @@ export default function SiginInPage() {
     console.log("pwd:", userPassword);
   };
 
-  const handleSuccessPostSignIn = (successMessage: string) => {
+  const handleSuccessPostSignIn = (token: string) => {
     // 인증번호 맞을 때
-    console.log(successMessage);
+    console.log(token);
     navigate(routePaths.Landing);
+    localStorage.clear();
+    localStorage.setItem("accessToken", token);
   };
 
   const handleFailPostSignIn = (errorMessage: string) => {
@@ -66,12 +68,14 @@ export default function SiginInPage() {
 
 const St = {
   SignPage: styled.main`
+    width: 100%;
+    height: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    width: 100%;
-    gap: 1.6rem;
+    padding: 20% 2.4rem 0;
   `,
   SignSection: styled.section`
     display: flex;

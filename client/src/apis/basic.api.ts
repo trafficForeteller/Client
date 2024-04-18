@@ -7,14 +7,14 @@ import { serverAxios } from ".";
 
 export async function postSignIn(
   joinData: IPostSignInInfo,
-  onSuccess: (successMessage: string) => void,
+  onSuccess: (token: string) => void,
   onFail: (errorMessage: string) => void,
 ): Promise<void | null> {
   try {
     const { data } = await serverAxios.post("/join", joinData, {
       headers: { "Content-Type": "application/json" },
     });
-    onSuccess(data.data);
+    onSuccess(data.token);
   } catch (err) {
     if (err instanceof Error) {
       onFail(err.message);
@@ -24,14 +24,14 @@ export async function postSignIn(
 
 export async function postLogin(
   loginData: IPostLoginInfo,
-  onSuccess: (successMessage: string) => void,
+  onSuccess: (token: string) => void,
   onFail: (errorMessage: string) => void,
 ): Promise<void | null> {
   try {
     const { data } = await serverAxios.post("/login", loginData, {
       headers: { "Content-Type": "application/json" },
     });
-    onSuccess(data.data);
+    onSuccess(data.token);
   } catch (err) {
     if (err instanceof Error) {
       onFail(err.message);

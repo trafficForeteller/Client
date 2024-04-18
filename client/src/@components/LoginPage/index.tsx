@@ -40,14 +40,16 @@ export default function LoginPage() {
     console.log("pwd:", userPassword);
   };
 
-  const handleSuccessPostLogin = (successMessage: string) => {
-    // 인증번호 맞을 때
-    console.log(successMessage);
+  const handleSuccessPostLogin = (token: string) => {
+    // 로그인 성공했을 때
+    console.log(token);
     navigate(routePaths.Landing);
+    localStorage.clear();
+    localStorage.setItem("accessToken", token);
   };
 
   const handleFailPostLogin = (errorMessage: string) => {
-    // 인증번호 틀릴 때
+    // 로그인 실패했을 때
     console.log(errorMessage);
   };
 
@@ -73,7 +75,7 @@ export default function LoginPage() {
 }
 
 const St = {
-  LoginPage: styled.div`
+  LoginPage: styled.main`
     width: 100%;
     height: 100%;
 
