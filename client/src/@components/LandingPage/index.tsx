@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -12,6 +12,13 @@ export default function LandingPage() {
 
   const [userId, setUserId] = useState("");
   const [searchKeyword, setSearchKeyword] = useState(""); // 검색어 상태를 관리합니다.
+
+  useEffect(() => {
+    if (localStorage.getItem("userId") !== null) {
+      const id = localStorage.getItem("userId") as string;
+      setUserId(id);
+    }
+  }, []);
 
   const handleSearch = () => {
     if (searchKeyword.trim() !== "") {

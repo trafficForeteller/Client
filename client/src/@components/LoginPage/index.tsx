@@ -46,6 +46,7 @@ export default function LoginPage() {
     navigate(routePaths.Landing);
     localStorage.clear();
     localStorage.setItem("accessToken", token);
+    localStorage.setItem("userId", userId);
   };
 
   const handleFailPostLogin = (errorMessage: string) => {

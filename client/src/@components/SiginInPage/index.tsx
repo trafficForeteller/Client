@@ -45,6 +45,7 @@ export default function SiginInPage() {
     navigate(routePaths.Landing);
     localStorage.clear();
     localStorage.setItem("accessToken", token);
+    localStorage.setItem("userId", userId);
   };
 
   const handleFailPostSignIn = (errorMessage: string) => {
