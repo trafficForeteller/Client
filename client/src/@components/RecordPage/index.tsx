@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import { emojiList } from "../../core/bookInfo/bookInfo";
+import { IPostBookReviewData } from "../../types/book";
 import { Header } from "../@common";
 import BottomSheet from "./BottomSheet";
 import TextAreaBox from "./TextAreaBox";
@@ -14,13 +15,46 @@ export default function RecordPage() {
   const [isSelectedAllEmoticon, setISSelectedEmoticon] = useState(false);
   const [text, setText] = useState("");
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
+  const [postBookReviewInfo, setPostBookReviewInfo] = useState<IPostBookReviewData>({
+    isbn: "",
+    emotion: [
+      {
+        emotionId: 0,
+        emotionNumber: 0,
+      },
+      {
+        emotionId: 1,
+        emotionNumber: 0,
+      },
+      {
+        emotionId: 2,
+        emotionNumber: 0,
+      },
+      {
+        emotionId: 3,
+        emotionNumber: 0,
+      },
+      {
+        emotionId: 4,
+        emotionNumber: 0,
+      },
+    ],
+    comments: "",
+    rating: 0,
+  });
 
   useEffect(() => {
-    // selectedEmotion 배열이 변경될 때마다 실행되어 "뿡"을 화면에 보여줍니다.
+    // selectedEmotion 배열이 변경될 때마다 실행
     if (selectedEmotion.every((emo) => emo !== null)) {
       setISSelectedEmoticon(true);
     } else setISSelectedEmoticon(false);
+    setPostBookReviewInfo({ ...postBookReviewInfo, isbn: state.bookInfo });
   }, [selectedEmotion]);
+
+  useEffect(() => {
+    // selectedEmotion 배열이 변경될 때마다 실행되어 "뿡"을 화면에 보여줍니다.
+    setPostBookReviewInfo({ ...postBookReviewInfo, comments: text });
+  }, [text]);
 
   // 이모지를 선택할 때 실행되는 함수
   const handleEmojiClick = (emoji: string) => {
@@ -31,6 +65,13 @@ export default function RecordPage() {
       updatedEmotions[index] = emoji;
       setSelectedEmotion(updatedEmotions);
     }
+
+    // 해당 이모지에 대응하는 객체의 인덱스와 같은 위치에 있는 emotion 객체의 emotionNumber를 증가시킴
+    setPostBookReviewInfo((prevReview) => {
+      const updatedEmotion = [...prevReview.emotion];
+      updatedEmotion[index].emotionNumber += 1;
+      return { ...prevReview, emotion: updatedEmotion };
+    });
   };
 
   // 선택된 이모지를 제거하는 함수
@@ -39,6 +80,11 @@ export default function RecordPage() {
     updatedEmotions.splice(index, 1); // 해당 인덱스의 이모지를 제거합니다.
     updatedEmotions.push(null); // 제거한 자리에 null을 추가하여 배열의 뒷쪽으로 밀어냅니다.
     setSelectedEmotion(updatedEmotions);
+  };
+
+  // 평점 관리하는 함수
+  const handleRatingReview = (selectedHearts: boolean[]) => {
+    setPostBookReviewInfo({ ...postBookReviewInfo, rating: selectedHearts.filter((heart) => heart === true).length });
   };
 
   const closeModal = () => setIsBottomSheetOpened(false);
@@ -85,7 +131,14 @@ export default function RecordPage() {
         )}
       </St.EmotionBox>
 
-      {isBottomSheetOpened && <BottomSheet isBottomSheetOpened={isBottomSheetOpened} closeModal={closeModal} />}
+      {isBottomSheetOpened && (
+        <BottomSheet
+          isBottomSheetOpened={isBottomSheetOpened}
+          closeModal={closeModal}
+          handleRatingReview={handleRatingReview}
+          postBookReviewInfo={postBookReviewInfo}
+        />
+      )}
     </St.Record>
   );
 }

@@ -1,22 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
+import { postBookReview } from "../../apis/book.api";
 import { IcClose, IcEmptyHeart, IcFullHeart } from "../../asset/icons";
 import { routePaths } from "../../core/routes/path";
+import { IPostBookReviewData } from "../../types/book";
 
 interface BottomSheetProps {
   isBottomSheetOpened: boolean;
   closeModal: () => void;
+  handleRatingReview: (selectedHearts: boolean[]) => void;
+  postBookReviewInfo: IPostBookReviewData;
 }
 
 export default function BottomSheet(props: BottomSheetProps) {
-  const { isBottomSheetOpened, closeModal } = props;
+  const { isBottomSheetOpened, closeModal, handleRatingReview, postBookReviewInfo } = props;
   const [selectedHearts, setSelectedHearts] = useState([false, false, false, false, false]);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const navigate = useNavigate();
 
-  // 하트 클릭 핸들러
+  useEffect(() => {
+    handleRatingReview(selectedHearts);
+  }, [selectedHearts]);
+
+  const handlePostBookReview = async () => {
+    // 이 부분에 실제 API 호출 코드를 작성하면 됩니다.
+    await postBookReview(
+      postBookReviewInfo,
+      localStorage.getItem("accessToken"),
+      handleSuccessPostBookReview,
+      handleFailPostBookReview,
+    );
+    console.log(postBookReviewInfo);
+  };
+
+  const handleSuccessPostBookReview = (successMessage: string) => {
+    console.log(successMessage);
+    navigate(routePaths.Landing);
+  };
+
+  const handleFailPostBookReview = (errorMessage: string) => {
+    console.log(errorMessage);
+  };
+
   // 하트 클릭 핸들러
   const handleHeartClick = (index: number) => {
     const updatedHearts = selectedHearts.map((_, i) => i <= index);
@@ -48,7 +75,7 @@ export default function BottomSheet(props: BottomSheetProps) {
           )}
         </St.HeartWrapper>
 
-        <St.RecordBtn type="button" disabled={isButtonDisabled} onClick={() => navigate(routePaths.Landing)}>
+        <St.RecordBtn type="button" disabled={isButtonDisabled} onClick={handlePostBookReview}>
           기록하기
         </St.RecordBtn>
       </St.BottomSheet>

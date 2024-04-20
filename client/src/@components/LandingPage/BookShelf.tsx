@@ -34,6 +34,7 @@ export default function BookShelf(props: BookShelfProps) {
       navigate(routePaths.Login);
     } else {
       navigate(routePaths.Record, { state: { bookInfo } });
+      console.log(bookInfo);
     }
   };
 

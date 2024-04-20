@@ -13,7 +13,7 @@ interface IEmotion {
   emotionNumber: number;
 }
 
-export interface IPostReviewBook {
+export interface IPostBookReviewData {
   isbn: string;
   emotion: IEmotion[];
   comments: string;

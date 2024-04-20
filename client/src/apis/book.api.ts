@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { IGetLifeBookData, IGetRecommendBookData, IGetSearchBookData } from "../types/book";
+import { IGetLifeBookData, IGetRecommendBookData, IGetSearchBookData, IPostBookReviewData } from "../types/book";
 
 import { serverAxios } from ".";
 
@@ -51,6 +51,25 @@ export async function getLifeBook(
       headers: { "Content-Type": "application/json" },
     });
     onSuccess(data);
+  } catch (err) {
+    if (err instanceof Error) {
+      onFail(err.message);
+    }
+  }
+}
+
+//인생 책 추천 컴포넌트
+export async function postBookReview(
+  bookReviewData: IPostBookReviewData,
+  accessToken: string | null,
+  onSuccess: (successMessage: string) => void,
+  onFail: (errorMessage: string) => void,
+): Promise<void | null> {
+  try {
+    const { data } = await serverAxios.post(`${PREFIX_URL}/review`, bookReviewData, {
+      headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
+    });
+    onSuccess(data.message);
   } catch (err) {
     if (err instanceof Error) {
       onFail(err.message);
