@@ -19,32 +19,37 @@ export default function RecommendBookPage() {
   return (
     <St.RecommendBook>
       <Header />
-      <St.Background></St.Background>
-      <St.Title>{localStorage.getItem("userId")}님의 다음 인생책</St.Title>
-      <St.RecommendBookListWrapper>
-        {recommendBookInfoList.map((el) => {
-          return (
-            <St.RecommendBookInfoBox key={el.id} bookId={el.id}>
-              <St.EmotionBox bookId={el.id}>
-                {el.emotions.map((emo, idx) => {
-                  return (
-                    <St.EmotionWrapper key={idx}>
-                      <St.Emotion src={emojiList[emo.emotionId]} alt="이모지" bookId={el.id} />
-                      <St.EmotionNumber bookId={el.id}>{emo.emotionNumber}</St.EmotionNumber>
-                    </St.EmotionWrapper>
-                  );
-                })}
-              </St.EmotionBox>
-              <St.RecommendBookThumbnail src={el.bookThumbnail} alt="책 표지" bookId={el.id} />
-              <St.RecommendBookIntro bookId={el.id}>
-                <St.RecommendBookName bookId={el.id}>{el.bookName}</St.RecommendBookName>
-                <St.RecommendBookAuthor bookId={el.id}>{el.bookAuthor}</St.RecommendBookAuthor>
-              </St.RecommendBookIntro>
-            </St.RecommendBookInfoBox>
-          );
-        })}
-      </St.RecommendBookListWrapper>
-      {visible && <LoadingBox />}
+      {visible ? (
+        <LoadingBox />
+      ) : (
+        <>
+          <St.Background></St.Background>
+          <St.Title>{localStorage.getItem("userId")}님의 다음 인생책</St.Title>
+          <St.RecommendBookListWrapper>
+            {recommendBookInfoList.map((el) => {
+              return (
+                <St.RecommendBookInfoBox key={el.id} bookId={el.id}>
+                  <St.EmotionBox bookId={el.id}>
+                    {el.emotions.map((emo, idx) => {
+                      return (
+                        <St.EmotionWrapper key={idx}>
+                          <St.Emotion src={emojiList[emo.emotionId]} alt="이모지" bookId={el.id} />
+                          <St.EmotionNumber bookId={el.id}>{emo.emotionNumber}</St.EmotionNumber>
+                        </St.EmotionWrapper>
+                      );
+                    })}
+                  </St.EmotionBox>
+                  <St.RecommendBookThumbnail src={el.bookThumbnail} alt="책 표지" bookId={el.id} />
+                  <St.RecommendBookIntro bookId={el.id}>
+                    <St.RecommendBookName bookId={el.id}>{el.bookName}</St.RecommendBookName>
+                    <St.RecommendBookAuthor bookId={el.id}>{el.bookAuthor}</St.RecommendBookAuthor>
+                  </St.RecommendBookIntro>
+                </St.RecommendBookInfoBox>
+              );
+            })}
+          </St.RecommendBookListWrapper>
+        </>
+      )}
     </St.RecommendBook>
   );
 }
