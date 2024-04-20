@@ -28,12 +28,12 @@ export default function BookShelf(props: BookShelfProps) {
     console.log(errorMessage);
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (bookInfo: IGetRecommendBookData) => {
     // userId에 따라서 다른 경로로 이동
     if (userId === "") {
       navigate(routePaths.Login);
     } else {
-      navigate(routePaths.Record);
+      navigate(routePaths.Record, { state: { bookInfo } });
     }
   };
 
@@ -46,7 +46,7 @@ export default function BookShelf(props: BookShelfProps) {
         {recommendBookList !== null &&
           recommendBookList.map((el, idx) => {
             return (
-              <St.BookWrapper key={idx} onClick={handleButtonClick}>
+              <St.BookWrapper key={idx} onClick={() => handleButtonClick(el)}>
                 <St.BookThumbnail src={el.thumbnail} alt="책 표지" />
                 <St.BookName>{el.title}</St.BookName>
                 <St.EmotionBox>

@@ -20,7 +20,6 @@ export default function SearchPage() {
     // 페이지가 로드될 때마다 URL의 쿼리 파라미터를 확인하여 검색어를 가져옵니다.
     const queryParams = new URLSearchParams(location.search);
     const keyword = queryParams.get("keyword");
-    console.log(keyword);
 
     // 검색어가 존재하는 경우에만 검색 결과를 가져오고 상태를 업데이트합니다.
     if (keyword) {
@@ -49,7 +48,6 @@ export default function SearchPage() {
     if (searchKeyword.trim() !== "") {
       // 검색 페이지로 이동하면서 검색어를 쿼리 파라미터로 전달합니다.
       navigate(`${routePaths.Search}?keyword=${searchKeyword}`);
-      console.log(searchKeyword);
     }
   };
 

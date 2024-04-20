@@ -8,13 +8,12 @@ import BottomSheet from "./BottomSheet";
 import TextAreaBox from "./TextAreaBox";
 
 export default function RecordPage() {
+  const { state } = useLocation();
+
   const [selectedEmotion, setSelectedEmotion] = useState<(string | null)[]>([null, null, null]); // selectedEmotion 상태를 useState로 관리합니다.
   const [isSelectedAllEmoticon, setISSelectedEmoticon] = useState(false);
   const [text, setText] = useState("");
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
-
-  const location = useLocation();
-  const bookInfo = location.state.bookInfo;
 
   useEffect(() => {
     // selectedEmotion 배열이 변경될 때마다 실행되어 "뿡"을 화면에 보여줍니다.
@@ -49,9 +48,9 @@ export default function RecordPage() {
       {/* 뒤로가기 버튼 있어야 함 */}
       <Header />
       <St.BookWrapper>
-        <St.BookThumbnail src={bookInfo.bookThumbnail} alt="책 표지" />
-        <St.BookName>{bookInfo.bookName}</St.BookName>
-        <St.BookAuthor>{bookInfo.bookAuthor}</St.BookAuthor>
+        <St.BookThumbnail src={state.bookInfo.thumbnail} alt="책 표지" />
+        <St.BookName>{state.bookInfo.title}</St.BookName>
+        <St.BookAuthor>{state.bookInfo.authors}</St.BookAuthor>
       </St.BookWrapper>
       <St.SelectedEmotionWrapper>
         {selectedEmotion.map((emo, idx) =>

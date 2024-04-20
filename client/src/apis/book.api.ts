@@ -33,7 +33,6 @@ export async function getRecommendBook(
     const { data } = await serverAxios.get(`${PREFIX_URL}/recommend`, {
       headers: { "Content-Type": "application/json" },
     });
-    console.log(data);
     onSuccess(data);
   } catch (err) {
     if (err instanceof Error) {

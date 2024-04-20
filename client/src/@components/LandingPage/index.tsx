@@ -24,7 +24,6 @@ export default function LandingPage() {
     if (searchKeyword.trim() !== "") {
       // 검색 페이지로 이동하면서 검색어를 쿼리 파라미터로 전달합니다.
       navigate(`${routePaths.Search}?keyword=${searchKeyword}`);
-      console.log(searchKeyword);
     }
   };
 
