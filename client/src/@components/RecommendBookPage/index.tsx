@@ -1,20 +1,33 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { emojiList, recommendBookInfoList } from "../../core/bookInfo/bookInfo";
+import { getLifeBook } from "../../apis/book.api";
+import { emojiList } from "../../core/bookInfo/bookInfo";
+import { IGetLifeBookData } from "../../types/book";
 import { Header } from "../@common";
 import LoadingBox from "../@common/LoadingBox";
 
 export default function RecommendBookPage() {
   const [visible, setVisible] = useState(true);
+  const [lifeBookList, setLifeBookList] = useState<IGetLifeBookData[] | null>(null);
 
   useEffect(() => {
+    getLifeBook(handleSuccessGetLifeBook, handleFailGetLifeBook);
+
     const timer = setTimeout(() => {
       setVisible(false);
     }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
+
+  const handleSuccessGetLifeBook = (lifeBookData: IGetLifeBookData[]) => {
+    setLifeBookList(lifeBookData);
+  };
+
+  const handleFailGetLifeBook = (errorMessage: string) => {
+    console.log(errorMessage);
+  };
 
   return (
     <St.RecommendBook>
@@ -26,27 +39,28 @@ export default function RecommendBookPage() {
           <St.Background></St.Background>
           <St.Title>{localStorage.getItem("userId")}님의 다음 인생책</St.Title>
           <St.RecommendBookListWrapper>
-            {recommendBookInfoList.map((el) => {
-              return (
-                <St.RecommendBookInfoBox key={el.id} bookId={el.id}>
-                  <St.EmotionBox bookId={el.id}>
-                    {el.emotions.map((emo, idx) => {
-                      return (
-                        <St.EmotionWrapper key={idx}>
-                          <St.Emotion src={emojiList[emo.emotionId]} alt="이모지" bookId={el.id} />
-                          <St.EmotionNumber bookId={el.id}>{emo.emotionNumber}</St.EmotionNumber>
-                        </St.EmotionWrapper>
-                      );
-                    })}
-                  </St.EmotionBox>
-                  <St.RecommendBookThumbnail src={el.bookThumbnail} alt="책 표지" bookId={el.id} />
-                  <St.RecommendBookIntro bookId={el.id}>
-                    <St.RecommendBookName bookId={el.id}>{el.bookName}</St.RecommendBookName>
-                    <St.RecommendBookAuthor bookId={el.id}>{el.bookAuthor}</St.RecommendBookAuthor>
-                  </St.RecommendBookIntro>
-                </St.RecommendBookInfoBox>
-              );
-            })}
+            {lifeBookList !== null &&
+              lifeBookList.map((el, idx) => {
+                return (
+                  <St.RecommendBookInfoBox key={idx} bookId={idx}>
+                    <St.EmotionBox bookId={idx}>
+                      {el.emotion.map((emo, idx) => {
+                        return (
+                          <St.EmotionWrapper key={idx}>
+                            <St.Emotion src={emojiList[emo.emotionId]} alt="이모지" bookId={idx} />
+                            <St.EmotionNumber bookId={idx}>{emo.emotionNumber}</St.EmotionNumber>
+                          </St.EmotionWrapper>
+                        );
+                      })}
+                    </St.EmotionBox>
+                    <St.RecommendBookThumbnail src={el.thumbnail} alt="책 표지" bookId={idx} />
+                    <St.RecommendBookIntro bookId={idx}>
+                      <St.RecommendBookName bookId={idx}>{el.title}</St.RecommendBookName>
+                      <St.RecommendBookAuthor bookId={idx}>{el.authors}</St.RecommendBookAuthor>
+                    </St.RecommendBookIntro>
+                  </St.RecommendBookInfoBox>
+                );
+              })}
           </St.RecommendBookListWrapper>
         </>
       )}

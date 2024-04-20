@@ -28,3 +28,11 @@ export type IGetRecommendBookData = {
   title: string;
   emotion: IEmotion[];
 };
+
+export type IGetLifeBookData = {
+  authors: string[];
+  contents: string;
+  thumbnail: string;
+  title: string;
+  emotion: IEmotion[];
+};
