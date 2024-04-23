@@ -35,8 +35,6 @@ export default function SiginInPage() {
   const handleSignInInfo = async () => {
     // 인증번호 확인 서버에 POST
     await postSignIn(postSignInInfo, handleSuccessPostSignIn, handleFailPostSignIn);
-    console.log("id:", userId);
-    console.log("pwd:", userPassword);
   };
 
   const handleSuccessPostSignIn = (token: string) => {

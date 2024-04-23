@@ -48,7 +48,8 @@ export default function RecordPage() {
     if (selectedEmotion.every((emo) => emo !== null)) {
       setISSelectedEmoticon(true);
     } else setISSelectedEmoticon(false);
-    setPostBookReviewInfo({ ...postBookReviewInfo, isbn: state.bookInfo });
+    setPostBookReviewInfo({ ...postBookReviewInfo, isbn: state.bookInfo.isbn });
+    console.log(postBookReviewInfo.emotion);
   }, [selectedEmotion]);
 
   useEffect(() => {
@@ -57,7 +58,7 @@ export default function RecordPage() {
   }, [text]);
 
   // 이모지를 선택할 때 실행되는 함수
-  const handleEmojiClick = (emoji: string) => {
+  const handleEmojiClick = (emoji: string, clickedEmotionId: number) => {
     // selectedEmotion 배열에서 처음으로 null인 요소에 선택된 이모지를 추가합니다.
     const index = selectedEmotion.findIndex((emo) => emo === null);
     if (index !== -1) {
@@ -69,7 +70,7 @@ export default function RecordPage() {
     // 해당 이모지에 대응하는 객체의 인덱스와 같은 위치에 있는 emotion 객체의 emotionNumber를 증가시킴
     setPostBookReviewInfo((prevReview) => {
       const updatedEmotion = [...prevReview.emotion];
-      updatedEmotion[index].emotionNumber += 1;
+      updatedEmotion[clickedEmotionId].emotionNumber += 1;
       return { ...prevReview, emotion: updatedEmotion };
     });
   };
@@ -80,6 +81,13 @@ export default function RecordPage() {
     updatedEmotions.splice(index, 1); // 해당 인덱스의 이모지를 제거합니다.
     updatedEmotions.push(null); // 제거한 자리에 null을 추가하여 배열의 뒷쪽으로 밀어냅니다.
     setSelectedEmotion(updatedEmotions);
+
+    // 해당 이모지에 대응하는 객체의 인덱스와 같은 위치에 있는 emotion 객체의 emotionNumber를 제거시킴
+    setPostBookReviewInfo((prevReview) => {
+      const updatedEmotion = [...prevReview.emotion];
+      updatedEmotion[index].emotionNumber -= 1;
+      return { ...prevReview, emotion: updatedEmotion };
+    });
   };
 
   // 평점 관리하는 함수
@@ -125,7 +133,7 @@ export default function RecordPage() {
         ) : (
           <St.EmotionWrapper>
             {emojiList.map((emo, idx) => {
-              return <St.Emotion key={idx} src={emo} alt="이모지" onClick={() => handleEmojiClick(emo)} />;
+              return <St.Emotion key={idx} src={emo} alt="이모지" onClick={() => handleEmojiClick(emo, idx)} />;
             })}
           </St.EmotionWrapper>
         )}

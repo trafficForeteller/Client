@@ -36,13 +36,10 @@ export default function LoginPage() {
   const handleLoginInfo = async () => {
     // 이 부분에 실제 API 호출 코드를 작성하면 됩니다.
     await postLogin(postLoginInfo, handleSuccessPostLogin, handleFailPostLogin);
-    console.log("id:", userId);
-    console.log("pwd:", userPassword);
   };
 
   const handleSuccessPostLogin = (token: string) => {
     // 로그인 성공했을 때
-    console.log(token);
     navigate(routePaths.Landing);
     localStorage.clear();
     localStorage.setItem("accessToken", token);

@@ -67,7 +67,11 @@ export async function postBookReview(
 ): Promise<void | null> {
   try {
     const { data } = await serverAxios.post(`${PREFIX_URL}/review`, bookReviewData, {
-      headers: { Authorization: `${accessToken}`, "Content-Type": "application/json" },
+      headers: {
+        Authorization: `${accessToken}`,
+        "Content-Type": "application/json",
+        "Referrer-Policy": "no-referrer-when-downgrade",
+      },
     });
     onSuccess(data.message);
   } catch (err) {
